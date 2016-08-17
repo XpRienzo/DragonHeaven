@@ -3,7 +3,7 @@
 exports.BattleMovedex = {
 	kickmyass: {
 		num: 63,
-		accuracy: 100,
+		accuracy: true,
 		basePower: 0,
 		category: "Physical",
 		desc: "If this move is successful, the user must recharge on the following turn and cannot make a move.",
