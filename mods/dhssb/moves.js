@@ -509,6 +509,7 @@ evalchomp: {
 			def: 1,
 			spd: 1,
 		},
+		volatileStatus: 'Substitute',
 		onTryHit: function (target) {
 			if (target.volatiles['substitute']) {
 				this.add('-fail', target, 'move: Substitute');
@@ -565,8 +566,12 @@ evalchomp: {
 				this.add('-end', target, 'Substitute');
 			},
 		},
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Baton Pass", source);
+			this.useMove('Baton Pass', source);
+		},
 		flags: {},
-		selfSwitch: 'copyvolatile',
 		secondary: false,
 		target: "self",
 		type: "Dragon",
