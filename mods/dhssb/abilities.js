@@ -164,26 +164,6 @@ exports.BattleAbilities = {
 		id: "flameguard",
 		name: "Flame Guard",
 	},
-	discoverme: {
-		onTryHit: function (target, source, move) {
-			if (target !== source && (move.type === 'Water')) {
-				if (!this.heal(target.maxhp  / 20)) {
-					this.add('-immune', target, '[msg]', '[from] ability: discover me');
-				}
-				return null;
-			}
-		},
-                onSourceModifyDamage: function (damage, source, target, move) {
-			if (move.type== "Dragon") {
-				this.debug('discover me weaken');
-				return this.chainModify(0.5);
-			}
-		},
-		id: "discoverme",
-		name: "discover me",
-		rating: 3.5,
-		num: 10,
-	},
 	breakthrough: {
 		onModifyMovePriority: -5,
 		onModifyMove: function (move) {
