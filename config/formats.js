@@ -556,10 +556,6 @@ exports.Formats = [
 			if(name === 'quietchimchar') {
 				this.add('c|@Quiet Chimchar|Introducing the best starter ever!!');
 			}
-			if(name === 'alphapaul71') {
-				this.add('c|~Alpha Paul☯71|!htmlbox');
-				this.add('raw|<button name="parseCommand" value="/user alphapaul71">My Owner!</button>');
-			}
                         if(name === 'zmeeed') {
                                 this.add("c|@Zmeeed|For Mother Russia!");
                         }
@@ -630,9 +626,6 @@ exports.Formats = [
 			//let opp = toId(source.name);
 			if (name === 'spandan') {
 				this.add('c|~Spandan|Gr8 b8, m8. I rel8, str8 appreci8, and congratul8. I r8 this b8 an 8/8. Plz no h8, I\'m str8 ir8. Cre8 more, can\'t w8. We should convers8, I won\'t ber8, my number is 8888888, ask for N8. No calls l8 or out of st8. If on a d8, ask K8 to loc8. Even with a full pl8, I always have time to communic8 so don\'t hesit8');
-			}
-			if(name === 'alphapaul71') {
-				this.add('c|~Alpha Paul☯71|RIP Me feelsbd');
 			}
 			if(name === 'hydrostatics') {
 				this.add('c|~Hydrostatics|Cya next time Kid. I will not take it easy on you from next time.');
