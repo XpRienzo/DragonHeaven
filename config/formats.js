@@ -784,6 +784,12 @@ exports.Formats = [
  			if (name === 'shivam rustagi') {
  				this.add('c|%shivam rustagi|__**i am here to destroy ur life!**__');
  			}
+			if (name === 'flufi') {
+ 				this.add('c|$flufi|Ello o/');
+ 			}
+			if (name === 'BBgun999') {
+ 				this.add('c|%BBgun999|I will lick u forever!!!');
+ 			}
 		},
 		onFaint: function (pokemon, source, effect) {
 			let name = toId(pokemon.name);
@@ -865,6 +871,12 @@ exports.Formats = [
  			}
  			if (name === 'shivam rustagi') {
  				this.add('c|%shivam rustagi|u will be cursed for ever');
+ 			}
+			if (name === 'flufi') {
+ 				this.add('c|$flufi|Well shit');
+ 			}
+			if (name === 'BBgun999') {
+ 				this.add('c|%BBgun999|you wiped the lix off ;_;');
  			}
 //Wreck phrase test
 /*			if(opp=="hydrostatics")
