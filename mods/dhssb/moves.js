@@ -266,6 +266,14 @@ exports.BattleMovedex = {
 			spe: 1,
 		},
 	},
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+                        if (source.name == 'Quiet Chimchar') this.add("c|@Quiet Chimchar|I like to Cha Cha");
+			this.add('-anim', source, "Teeter Dance", target);
+		},
+		type: "Fire",
+		contestType: "Cool",
+       },
        powerlick: {
 		accuracy: 100,
 		basePower: 90,
