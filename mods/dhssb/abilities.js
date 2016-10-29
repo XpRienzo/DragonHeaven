@@ -101,6 +101,29 @@ exports.BattleAbilities = {
 		id: "flairhax",
 		name: "Flair Hax",
 	},
+<<<<<<< HEAD
+	"staticboost": {
+                onStart: function (pokemon) {
+			this.boost({spe:1,accuracy:1,evasion:1,def:1,spd:1,spa:1,atk:1});
+			this.useMove('magnetrise');
+		},
+		id: "staticboost",
+		name: "Static Boost",
+=======
+	bigbulletgun: {
+		onBoost: function (boost) {
+			for (let i in boost) {
+				boost[i] *= -1;
+			}
+                },
+                onStart: function (pokemon) {
+			this.boost({def: 3, spd: 3});
+                },
+  
+		id: "bigbulletgun",
+		name: "Big Bullet Gun",
+>>>>>>> refs/remotes/origin/patch-7
+	},
 	pressurebreaker: {
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Pressure');

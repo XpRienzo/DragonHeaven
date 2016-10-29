@@ -25,6 +25,30 @@ exports.BattleMovedex = {
 		type: "Ice",
 		contestType: "Beautiful",
 	},
+	"closecombat": {
+		num: 370,
+		accuracy: 100,
+		basePower: 120,
+		category: "Special",
+		desc: "Lowers the user's Defense and Special Defense by 1 stage.",
+		shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
+		id: "closecombat",
+		isViable: true,
+		name: "Close Combat",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			boosts: {
+				def: -1,
+				spd: -1,
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Tough",
+         },
 	"flirt": {
 		accuracy: 100,
 		basePower: 0,
@@ -197,6 +221,31 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Dragon",
 	},
+	"mythicform": {
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		id: "mythicform",
+		name: "Mythic Form",
+		pp: 1,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					spe: 1,
+				},
+			},
+		},
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Dance", target);
+			this.add('-start', target, 'typeadd', 'Dragon', '[from] move: Mythic Form');
+		},
+		target: "normal",
+		type: "Dragon",
+	},
 	chachadance: {
 		accuracy: 100,
 		basePower: 100,
@@ -217,12 +266,31 @@ exports.BattleMovedex = {
 			spe: 1,
 		},
 	},
+       powerlick: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		id: "powerlick",
+		name: "Power Lick",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+	        drain: [1, 8],
+		secondary: {
+			chance: 10,
+			status: ['brn','slp'],
+		},
+		self: {
+	        chance: 30,
+		boosts: {
+			spe: 1,
+		},
+	},
 		onPrepareHit: function (target, source) {
 			this.attrLastMove('[still]');
-                        if (source.name == 'Quiet Chimchar') this.add("c|@Quiet Chimchar|I like to Cha Cha");
-			this.add('-anim', source, "Teeter Dance", target);
+			this.add('-anim', source, "Lick", target);
 		},
-		type: "Fire",
+		type: "Ice",
 		contestType: "Cool",
 	},
         "rushb": {
