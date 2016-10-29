@@ -101,7 +101,6 @@ exports.BattleAbilities = {
 		id: "flairhax",
 		name: "Flair Hax",
 	},
-<<<<<<< HEAD
 	"staticboost": {
                 onStart: function (pokemon) {
 			this.boost({spe:1,accuracy:1,evasion:1,def:1,spd:1,spa:1,atk:1});
@@ -109,7 +108,7 @@ exports.BattleAbilities = {
 		},
 		id: "staticboost",
 		name: "Static Boost",
-=======
+	},
 	bigbulletgun: {
 		onBoost: function (boost) {
 			for (let i in boost) {
@@ -122,7 +121,6 @@ exports.BattleAbilities = {
   
 		id: "bigbulletgun",
 		name: "Big Bullet Gun",
->>>>>>> refs/remotes/origin/patch-7
 	},
 	pressurebreaker: {
 		onStart: function (pokemon) {
