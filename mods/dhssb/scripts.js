@@ -255,6 +255,12 @@ exports.BattleScripts = {
 				signatureMove: 'Hyperspeed Punch',
 				evs: {atk:252, spd:4, hp:252}, nature: 'Adamant',
 			},
+			'BBGun999': {
+				species: 'Goodra', ability: 'Big Bullet Gun', item: 'Rocky Helmet', gender: 'M',
+				moves: ['dracometeor', 'overheat', 'closecombat'],
+				signatureMove: 'Power Lick',
+				evs: {spd:252, def:4, hp:252}, nature: 'Naughty',
+			},
 			'Diarmuid O\'Dyna': {
 				species: 'Suicune', ability: 'Serene Grace', item: 'Leftovers', gender: 'F',
 				moves: ['flirt', 'yandereblast', 'forcedassistance'],
@@ -277,6 +283,12 @@ exports.BattleScripts = {
 				moves: ['icebeam', 'surf', 'ancientpower'],
 				signatureMove: "Ice Shard",
 				evs: {hp:252, atk:252, def:252, spa:252, spd:252, spe:252}, nature: 'Serious',
+			},
+			'flufi': {
+				species: 'Raichu', ability: 'Static Boost', item: 'Life Orb',
+				moves: ['thunder','dracometeor','focusblast'],
+				signatureMove: "Mythic Form",
+				evs: {hp:188, spa:252, spe:64}, nature: 'Modest',
 			},
 			'Hydrostatics': {
 				species: 'Palkia', ability: 'Pressure Breaker', item: 'Leftovers', gender: 'M' , shiny:true,
