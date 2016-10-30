@@ -16,5 +16,8 @@ exports.BattleScripts = {
     		this.modData('Pokedex', 'jynx').abilities['1'] = 'Dazzling';
 				
 		this.modData('Learnsets', 'mew').learnset.sketch = ['6E'];
+				
+		this.modData('Pokedex', 'alomomola').types = ['Water', 'Fairy'];
+    		this.modData('Pokedex', 'milotic').abilities['H'] = 'Primordial Sea';
 	},
 };
