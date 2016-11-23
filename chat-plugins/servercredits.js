@@ -1,6 +1,6 @@
 'Use Strict';
 
-/* Original code by panpawn! Modified for Dragon Heaven by Paul☯71◕‿◕!*/
+/* Original code by panpawn! Modified for Dragon Heaven by Kewlstatics!*/
 
 var color = require('../config/color');
 hashColor = function(name, bold) {
@@ -17,10 +17,11 @@ exports.commands = {
 					"<u>Development:</u><br />" +
                     "- " + hashColor('Snaquaza', true) + " (Major Contributor, Formats, Development)<br />" +
                     "- " + hashColor('Spandan', true) + " (Format Development, <s>Crashes</s>)<br />" +
+		    "- " + hashColor('Kewlstatics', true) + " (Major Development)<br />" +
+
 					"<br />" +
 					"<u>Contributors:</u><br />" +
 					"- " + hashColor('charizard8888', true) + " (Roomintro's)<br />" +
-                    "- " + hashColor('iAlain', true) + " (Development)<br />" +
                     "- " + hashColor('ClassyZ', true) + " (DHSSB, Development)<br />" +
                     "- " + hashColor('Diarmuid O\'Dyna', true) + " (Art)<br />" +
                     "- " + hashColor('Eternal Mayhem', true) + " (Roomintro's)<br />" +
