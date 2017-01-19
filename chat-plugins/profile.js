@@ -22,7 +22,7 @@ function Profile(isOnline, user, image) {
 	this.image = image;
 
 	this.username = Chat.escapeHTML(this.isOnline ? this.user.name : this.user);
-	this.url = Config.avatarurl || '';
+	this.url = Config.avatarurl || 'http://138.68.26.217:8000';
 }
 
 /**
