@@ -395,6 +395,10 @@ exports.Formats = [
 				this.add('j|Spandan');
 				this.add('raw|<center><div class="broadcast-red"><b>The server has crashed!</b><br>Please wait for an administrator to fix it.</div></center>');
 			}
+			if(name === 'winona') {
+				this.add('c|$Winona|feelsbrb');
+			}
+			
 			if(name === 'thetruefalcon') {
 				this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
 				this.add('c|%The True Falcon|Hi all');
@@ -492,6 +496,9 @@ exports.Formats = [
 			if(name === 'alphapaul71') {
 				this.add('c| Alpha Paul☯71|RIP Me feelsbd');
 			}
+			if(name === 'winona') {
+				this.add('raw|<div class="chat"><small>$</small><button name="parseCommand" value="/user Winona" style="background: none ; border: 0 ; padding: 0 5px 0 0 ; font-family: &quot;verdana&quot; , &quot;helvetica&quot; , &quot;arial&quot; , sans-serif ; font-size: 9pt ; cursor: pointer"><b><font color="#8BA725">Winona:</font></b></button><em class="mine">Le RIP me <img src="http://i.imgur.com/wp51rIg.png" title="feelsbn" width="50" height="50"></em></div>');
+			}
 			if(name === 'hydrostatics') {
 				this.add('c|+Hydrostatics|Cya next time Kid. I will not take it easy on you from next time.');
 			}
@@ -578,7 +585,8 @@ exports.Formats = [
 			}
 			//Switchout phrase
 			if(name=="spandan") this.add("c|~Spandan|brb");
-			if(name="charizard8888") this.add("c|&charizard8888|brb");
+			if(name=="charizard8888") this.add("c|&charizard8888|brb");
+			if(name=="winona") this.add("raw|I'm gonna use the Joestar family's secret technique m8 feelsgn");
 			if(name=="shivam rustagi") this.add("c|%shivam rustagi|I'll be back to haunt u till eternity"); //testing, hope it works
 
 			// Transform

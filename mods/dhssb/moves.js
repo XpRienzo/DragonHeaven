@@ -650,6 +650,23 @@ exports.BattleMovedex = {
 		target: "self",
 		type: "Dragon",
 	},
+	superduperwombocombo: {
+		accuracy: 100,
+		id: "superduperwombocombo",
+		isNonstandard: true,
+		name: "Super Duper Wombo Combo",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		self: { 
+				boosts: {
+					spa: 1,
+					spe: -2,
+					spd: 1,
+					spd: 1,
+				},
+			},
+		
 	legendsambition: {
 		accuracy: 100,
 		basePower: 130,

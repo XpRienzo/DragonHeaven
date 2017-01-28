@@ -394,3 +394,34 @@ Modest Nature
 Static Boost:on switch-in, raichu gains the ability of magnet rise and gets +1 in every stat including accuracy and evasion  
 
 Mythic Form:custom attack: mythic form type: dragon status move accuracy: null power: null adds dragon to raichu's type, so it should be electric/dragon after gains +1 speed
+
+### Winona 
+
+![Winona](http://www.smogon.com/dex/media/sprites/xy/exeggutor-alola.gif)
+Alolan-Exeggutor @ Sitrus Berry  
+Ability: Dank Zone  
+EVs: 252 HP / 252 SpA / 252 SpD / 252 Def  
+Quiet Nature Nature
+
+- Splash
+- Super Duper Wombo Combo
+
+Dank Zone:dank zone : triggers trick room, grassy terrain and sunny day.
+
+Super Duper Wombo Combo:super duper wombo combo : dragon type , status move , accuracy:_ , pp:5 , effect : use nature power, weather ball, splash and belly drum , animation: like revelation dance , priority: 0
+
+### The True Falcon 
+
+![Falcon](http://www.smogon.com/dex/media/sprites/xy/samurott.gif)
+Samurott @ Assault Vest 
+Ability: Ultra Technical
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature 
+
+- Waterfall
+- Ice Punch
+- Secret Sword
+- Heroic Beatdown 
+
+Ultra Technical:  
+Heroic Beatdown:

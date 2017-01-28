@@ -20,6 +20,11 @@ exports.BattleScripts = {
 		let team = [];
 		let variant = (this.random(2) === 1);
 		let sets = {
+			'Winona' : {
+				species: 'Exeggutor-Alola', ability: 'Dank Zone', item: 'Sitrus Berry', gender: 'M',
+				moves: ['splash'],
+				signatureMove: "Super Duper Wombo Combo",evs: {hp: 252, spa:252, spd: 252, def: 252}, ivs: {atk: 0, spe: 0,}, nature: 'Quiet ',
+			},
 			'The True Falcon' : {
 				species: 'Samurott', ability: 'Ultra Technical', item: 'Assualt Vest', gender: 'M',
 				moves: ['icepunch', 'waterfall', 'sacred sword'],
@@ -30,18 +35,18 @@ exports.BattleScripts = {
 				moves: ['thunder', 'draco meteor', 'focus blast'],
 				signatureMove: "Mythic Form",evs: {hp:188, spa:252, spe:64}, nature: 'Modest',
 			},
-            'BBgun999' : {
+           		 'BBgun999' : {
 				species: 'Goodra', ability: 'Big Bullet Gun', item: 'Rocky Helmet', gender: 'Male',
 				moves: ['draco meteor', 'overheat', 'close combat'],
 				signatureMove: "Power Lick",evs: {hp: 252, def: 4, spd: 252}, nature: 'Naughty',
 			},
-            'OriolesFan52': {
+            		'OriolesFan52': {
 				species: 'Feraligatr', ability: 'Aquify', item: 'Life Orb', gender: 'M', shiny:true, 
 				moves: ['extremespeed', 'dragondance', 'icepunch'],
 				signatureMove: "Bone Crushing Death Roll",
 				evs: {spd:252, atk:252, spe:252, def:252}, nature: 'Jolly',
 			},
-        	'Zmeeed': {
+        		'Zmeeed': {
 				species: 'Latios', ability: 'Russian Winter', item: 'Soul Dew', gender: 'M',
 				moves: ['psystrike', 'aurasphere', 'blizzard'],
 				signatureMove: "Rush B",
