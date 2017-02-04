@@ -1,7 +1,6 @@
 'use strict';
 exports.BattleScripts = {
-	init: function() {
-		this.getTeam = function (side, team) {
+	getTeam: function (side, team) {
 		const format = this.getFormat();
 		const teamGenerator = typeof format.team === 'string' && format.team.startsWith('random') ? format.team + 'Team' : '';
 		if (!teamGenerator && team) return team;
@@ -14,11 +13,10 @@ exports.BattleScripts = {
 		for(let i = 0 ;i < team.length ; i++) {
 			let arr = team[i].set.name.split(" ("), name  = "";
 			team[i].donorSpecies = this.getTemplate(toId(arr[1])).species;
-			name = name+arr[0];
+			name = name + arr[0];
 			team[i].name = name;
 			team[i].set.name = name;
 		}
 		return team;
-		};
 	},
 };
