@@ -34,7 +34,7 @@ exports.BattleMovedex = {
 		flags: {},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Blast Burn", target);
+			this.add('-anim', source, "Inferno Overdrive", target);
 		},
 		onHit: function (target, source, move) {
 			target.side.addSideCondition('firepledge');
@@ -77,6 +77,14 @@ exports.BattleMovedex = {
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Icicle Spear", target);
+			this.add('-anim', source, "Icicle Spear", target);
+			this.add('-anim', source, "Icicle Spear", target);
+			this.add('-anim', source, "Icicle Spear", target);
+			this.add('-anim', source, "Icicle Spear", target);
+			this.add('-anim', source, "Icicle Spear", target);
+			this.add('-anim', source, "Icicle Spear", target);
+			this.add('-anim', source, "Icicle Spear", target);
+			this.add('-anim', source, "Blizzard", target);
 		},
 		secondary: {
 			chance: 10,
@@ -147,6 +155,10 @@ exports.BattleMovedex = {
 		},
 		target: "normal",
 		type: "Dark",
+    onPrepareHit: function(target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Black Hole Eclipse", target);
+		},
 		isZ: "tyraniumz",
 	},
 	"earthlycrush": {
@@ -162,6 +174,7 @@ exports.BattleMovedex = {
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Tectonic Rage", target);
+      			this.add('-anim', source, "Tectonic Rage", target);
 		},
 		onModifyMove: function(move, pokemon, target) {
 			if (!target.isGrounded()) {
@@ -214,9 +227,11 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Diamond Storm", target);
 		},
+    onHit: function (target, source, move) {
+			this.add('-sidestart', target.side, 'move: Stealth Rock');
+		},
 		target: "self",
 		type: "Rock",
-		drain: [2, 3],
 		isZ: "gigaliumz",
 	},
 	"snowstormspinkle": {

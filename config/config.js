@@ -297,6 +297,7 @@ exports.grouplist = [
 		editroom: true,
 		addhtml: true,
 		potd: true,
+		pminfobox:true,
 		disableladder: true,
                 globalonly: true,
 		tournamentsmanagement: true,
