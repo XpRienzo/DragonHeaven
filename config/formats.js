@@ -3020,25 +3020,31 @@ exports.Formats = [
 		},
 	},
 	{
-		name: "[Gen 7] Move Equality",
-		desc: ["&bullet; Every Move has 100 base power with the exception of moves that have varying base powers."],
-		mod: 'gen7',
-		ruleset: ['[Gen 7] OU'],
-		banlist: ['Power Up Punch'],
-		onModifyMovePriority: 5,
-		onModifyMove: function(move, pokemon) {
-			if (move.category === 'Status' || move.priority !== 0 || move.onBasePower || move.basePowerCallback) return;
-			if (move.isZ) {
-				move.basePower = 180;
-				return;
+		    name: '[Gen 7] Move Equality',
+
+		    mod: 'gen7',
+		    ruleset: ['[Gen 7] OU'],
+		    banlist: ['Mud Slap', 'Power-Up Punch', 'Fell Stinger'],
+			desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/move-equality-looking-for-server.3599280/>Move Equality</a>"],
+		    onModifyMove: function(move) {
+			let moveTemplate = this.getMove(toId(move));
+			if (moveTemplate.category === 'Status' || moveTemplate.basePower === 0 || moveTemplate.priority !== 0) return move;
+			// Moves aren't allowed to modify its base power
+			if (move.basePowerCallback || move.onBasePower) return move;
+			move = Object.assign({}, move);
+			if (move.isZ && move.basePower > 1) {
+			    move.basePower = 180;
+			} else if (move.multihit) {
+			    let maxhits = Array.isArray(move.multihit) ? move.multihit[1] : move.multihit;
+			    move.basePower = Math.floor(100 / maxhits);
+			    move.zMovePower = 180;
+			} else {
+			    move.basePower = 100;
+			    move.zMovePower = 180;
 			}
-			if (move.multihit) {
-				move.basePower = parseInt(100 / move.multihit[move.multihit.length - 1]);
-				return;
-			}
-			move.basePower = 100;
-		},
-	},
+			return move;
+		    },
+},
 	{
 		name: "[Gen 7] Offensification",
 		desc: [
