@@ -43,4 +43,32 @@ exports.BattlePokedex = {
 	     color: "Blue",
 	     eggGroups: ["Water"],
   },
+    venomothmemega: {
+             num: 49,
+             species: "Venomoth-Memega",
+             baseSpecies: "venomoth",
+             forme: "Memega",
+             formeLetter: "M",
+             types: ["Bug", "Poison"],
+             baseStats: {hp: 70, atk: 45, def: 120, spa: 90, spd: 105, spe: 120,},
+             abilities: {0: "AllTerrainVenomoth"}, /* All attacks aimed at this Pokemon have their power decreased by 10% and lose any added effects they have, Bug-type attacks do 4x more damage to all Dragon-types and if the opponent is a Dragonite then it is automatically Encored into Barrier whether or not they have the move */
+             heightm: 1.5,
+	     weightkg: 12.5,
+	     color: "Purple",
+	     eggGroups: ["Bug"],
+  },
+    whiscashhmemega: {
+             num: 340,
+             species: "Whiscash-Memega",
+             baseSpecies: "whiscash",
+             forme: "Memega",
+             formeLetter: "M",
+             types: ["Water", "Ground"],
+             baseStats: {hp: 110, atk: 98, def: 93, spa: 76, spd: 91, spe: 90,},
+             abilities: {0: "Fishy Aura"}, /* Every time the opponent has a positive stat boost this Pokemon changes to the Ghost-type, uses Spectral Thief if the opponent is not a Normal-type, and changes back into its original typing. If the opponent is a Normal-type, it uses Haze */
+             heightm: 0.9,
+	     weightkg: 23.6,
+	     color: "Blue",
+	     eggGroups: ["Water 2"],
+  },
 };
