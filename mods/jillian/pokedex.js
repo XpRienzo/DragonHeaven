@@ -91,8 +91,8 @@ exports.BattlePokedex = {
         types: ["Psychic", "Flying"],
         baseStats: {hp: 39, atk: 56, def: 38, spa: 40, spd: 75, spe: 78},
         abilities: {0: "Keen Eye", 1: "Big Pecks", H: "Aerilate"},
-        evos: ["Avissolorian"],
-        prevo: "Avislon",
+        evos: ["avissolorian"],
+        prevo: "avislon",
         },
      avissolorian: {
         num: 1000012,
@@ -100,7 +100,7 @@ exports.BattlePokedex = {
         types: ["Psychic", "Flying"],
         baseStats: {hp: 74, atk: 89, def: 64, spa: 71, spd: 110, spe: 112},
         abilities: {0: "Keen Eye", 1: "Big Pecks", H: "Aerilate"},
-        prevo: "Avislorion",
+        prevo: "avislorion",
         },
      buglian: {
         num: 1000013,
@@ -108,7 +108,7 @@ exports.BattlePokedex = {
         types: ["Bug"],
         baseStats: {hp: 22, atk: 11, def: 36, spa: 19, spd: 50, spe: 44},
         abilities: {0: "Shield Dust", 1: "Run Away", H: "Poison Point"},
-        evos: ["Cocoonian"],
+        evos: ["cocoonian"],
         },
      cocoonian: {
         num: 1000014,
@@ -116,8 +116,8 @@ exports.BattlePokedex = {
         types: ["Bug"],
         baseStats: {hp: 56, atk: 25, def: 70, spa: 21, spd: 68, spe: 56},
         abilities: {0: "Shed Skin", H: "Poison Point"},
-        evos: ["Butternian"],
-        prevo: "Buglian",
+        evos: ["butternian"],
+        prevo: "buglian",
         },
       butternian: {
          num: 1000015,
@@ -125,7 +125,7 @@ exports.BattlePokedex = {
          types: ["Bug", "Psychic"],
          baseStats: {hp: 82, atk: 65, def: 54, spa: 101, spd: 110, spe: 95},
          abilities: {0: "Titend Lens", H: "Adaptability"},
-         prevo: "Cocoonian",
+         prevo: "cocoonian",
          },
       ménébrus: {
          num: 1000016,
@@ -133,7 +133,7 @@ exports.BattlePokedex = {
          types: ["Dark", "Electric"],
          baseStats: {hp: 28, atk: 45, def: 60, spa: 38, spd: 70, spe: 42},
          abilities: {0: "Prankster", 1: "Cold Blood", H: "Motor Drive"},
-         evos: ["Dillyabrus"],
+         evos: ["dillyabrus"],
          },
       dillyabrus: {
          num: 1000017,
@@ -141,8 +141,8 @@ exports.BattlePokedex = {
          types: ["Dark", "Electric"],
          baseStats: {hp: 65, atk: 49, def: 77, spa: 46, spd: 100, spe: 51},
          abilities: {0: "Prankster", 1: "Cold Blood", H: "Motor Drive"},
-         evos: ["Ténébrus"],
-         prevo: "Ménébrus",
+         evos: ["ténébrus"],
+         prevo: "ménébrus",
          },
       ténébrus: {
          num: 1000018,
@@ -150,7 +150,7 @@ exports.BattlePokedex = {
          types: ["Dark", "Electric"],
          baseStats: {hp: 110, atk: 62, def: 121, spa: 59, spd: 130, spe: 70},
          abilities: {0: "Prankster", 1: "Cold Blood", H: "Motor Drive"},
-         prevo: "Dillyabrus",
+         prevo: "dillyabrus",
          },
       caniki: {
          num: 1000019,
@@ -158,7 +158,7 @@ exports.BattlePokedex = {
          types: ["Normal"],
          baseStats: {hp: 45, atk: 32, def: 60, spa: 25, spd: 41, spe: 66},
          abilities: {0: "Pickup", 1: "Strong Jaw", H: "Run Away"},
-         evos: ["Cabotieki"],
+         evos: ["cabotieki"],
          },
       cabotieki: {
          num: 1000020,
@@ -166,7 +166,7 @@ exports.BattlePokedex = {
          types: ["Normal", "Fighting"],
          baseStats: {hp: 65, atk: 70, def: 65, spa: 50, spd: 70, spe: 101},
          abilities: {0: "Pickup", 1: "Strong Jaw", H: "Run Away"},
-         prevo: "Caniki",
+         prevo: "caniki",
          },
       foxini: {
          num: 1000021,
@@ -174,7 +174,7 @@ exports.BattlePokedex = {
          types: ["Fire", "Dark"],
          baseStats: {hp: 85, atk: 45, def: 60, spa: 70, spd: 35, spe: 110},
          abilities: {0: "Flash Fire", H: "Moxie"},
-         evos: ["Kyubini"],
+         evos: ["kyubini"],
          },
       kyubini: {
          num: 1000022,
@@ -182,7 +182,7 @@ exports.BattlePokedex = {
          types: ["Fire", "Dark"],
          baseStats: {hp: 115, atk: 75, def: 65, spa: 100, spd: 56, spe: 120},
          abilities: {0: "Flash Fire", H: "Moxie"},
-         prevo: "Foxini",
+         prevo: "foxini",
          },
       medusia: {
          num: 1000023,
@@ -198,7 +198,7 @@ exports.BattlePokedex = {
          types: ["Fighting"],
          baseStats: {hp: 95, atk: 110, def: 65, spa: 65, spd: 130, spe: 60},
          abilities: {0: "Tough Claws", H: "Punchilate"},
-         prevo: "Eevee",
+         prevo: "eevee",
          },
       zéphyreon: {
          num: 1000025,
@@ -206,7 +206,7 @@ exports.BattlePokedex = {
          types: ["Flying"],
          baseStats: {hp: 65, atk: 65, def: 60, spa: 130, spd: 95, spe: 110},
          abilities: {0: "Gale Wings", H: "Defiant"},
-         prevo: "Eevee",
+         prevo: "eevee",
          },
       landineon: {
          num: 1000026,
@@ -214,7 +214,7 @@ exports.BattlePokedex = {
          types: ["Ground"],
          baseStats: {hp: 130, atk: 110, def: 65, spa: 60, spd: 95, spe: 65},
          abilities: {0: "Sand Stream", H: "Landinate"},
-         prevo: "Eevee",
+         prevo: "eevee",
          },
       tombeon: {
          num: 1000027,
@@ -222,7 +222,7 @@ exports.BattlePokedex = {
          types: ["Ghost"],
          baseStats: {hp: 110, atk: 60, def: 130, spa: 95, spd: 65, spe: 65},
          abilities: {0: "Cursed Body", H: "Gates of Hell"},
-         preevo: "Eevee",
+         preevo: "eevee",
          },
        quetzaleon: {
           num: 1000028,
@@ -230,7 +230,7 @@ exports.BattlePokedex = {
           types: ["Dragon"],
           baseStats: {hp: 95, atk: 130, def: 60, spa: 65, spd: 65, spe: 110},
           abilities: {0: "Multiscale", H: "Predator"},
-          prevo: "Eevee",
+          prevo: "eevee",
           },
         lobotohm: {
            num: 1000029,
@@ -238,7 +238,7 @@ exports.BattlePokedex = {
            types: ["Electric"],
            baseStats: {hp: 65, atk: 60, def: 39, spa: 85, spd: 48, spe: 75},
            abilities: {0: "Lighting Rod", H: "Magnet Pull"},
-           evos: ["Tegolohm"],
+           evos: ["tegolohm"],
            },
         tegolohm: {
            num: 1000030,
@@ -246,7 +246,7 @@ exports.BattlePokedex = {
            types: ["Electric", "Steel"],
            baseStats: {hp: 65, atk: 100, def: 64, spa: 98, spd: 69, spe: 110},
            abilities: {0: "Lighting Rod", 1: "Gear Force", H: "Magnet Pull"},
-           prevo: "Lobotohm",
+           prevo: "lobotohm",
            },
         lingerspeed: {
            num: 1000031,
@@ -254,7 +254,7 @@ exports.BattlePokedex = {
            types: ["Bug"],
            baseStats: {hp: 35, atk: 50, def: 28, spa: 34, spd: 41, spe: 106},
            abilities: {0: "Speed Boost", H: "Leadership"},
-           evos: ["Fingerspeed"],
+           evos: ["fingerspeed"],
            },
         fingerspeed: {
            num: 1000032,
@@ -262,7 +262,7 @@ exports.BattlePokedex = {
            types: ["Bug", "Dark"],
            baseStats: {hp: 35, atk: 102, def: 40, spa: 50, spd: 41, spe: 135},
            abilities: {0: "Speed Boost", H: "Leadership"},
-           prevo: "Lingerspeed",
+           prevo: "lingerspeed",
            },
         medicura: {
            num: 1000033,
@@ -278,7 +278,7 @@ exports.BattlePokedex = {
            types: ["Water", "Fairy"],
            baseStats: {hp: 63, atk: 70, def: 95, spa: 100, spd: 70, spe: 106},
            abilities: {0: "Swift Swim", H: "Hydration"},
-           prevo: "Luvdisc",
+           prevo: "luvdisc",
            },
         pimentio: {
            num: 1000035,
@@ -286,7 +286,7 @@ exports.BattlePokedex = {
            types: ["Grass", "Fire"],
            baseStats: {hp: 35, atk: 58, def: 60, spa: 45, spd: 52, spe: 85},
            abilities: {0: "Flash Fire", H: "Chlorophyll"},
-           evos: ["Arrabiatan"],
+           evos: ["arrabiatan"],
            },
         arrabiatan: {
            num: 1000036,
@@ -294,7 +294,7 @@ exports.BattlePokedex = {
            types: ["Grass", "Fire"],
            baseStats: {hp: 70, atk: 85, def: 90, spa: 105, spd: 65, spe: 98},
            abilities: {0: "Flash Fire", H: "Chlorophyll"},
-           prevo: "Pimentio",
+           prevo: "pimentio",
            },
         munculu: {
            num: 1000037,
@@ -302,7 +302,7 @@ exports.BattlePokedex = {
            types: ["Grass", "Dragon"],
            baseStats: {hp: 20, atk: 60, def: 25, spa: 70, spd: 45, spe: 80},
            abilities: {0: "Swift Swim", 1: "Sheer Force", H: "Dragon Force"},
-           evos: ["Lorinculus"],
+           evos: ["lorinculus"],
            },
         lorinculus: {
            num: 1000038,
@@ -310,8 +310,8 @@ exports.BattlePokedex = {
            types: ["Grass", "Dragon"],
            baseStats: {hp: 35, atk: 85, def: 45, spa: 90, spd: 55, spe: 110},
            abilities: {0: "Swift Swim", 1: "Sheer Force", H: "Dragon Force"},
-           evos: ["Dracunculus"],
-           prevo: "Munculu",
+           evos: ["dracunculus"],
+           prevo: "munculu",
            },
         dracunculus: {
            num: 1000039,
@@ -319,7 +319,7 @@ exports.BattlePokedex = {
            types: ["Grass", "Dragon"],
            baseStats: {hp: 70, atk: 140, def: 50, spa: 140, spd: 50, spe: 150},
            abilities: {0: "Swift Swim", 1: "Sheer Force", H: "Dragon Force"},
-           prevo: "Lorinculus",
+           prevo: "lorinculus",
            },
         celiantooth: {
            num: 1000040,
@@ -327,7 +327,7 @@ exports.BattlePokedex = {
            types: ["Rock", "Fire"],
            baseStats: {hp: 60, atk: 80, def: 70, spa: 38, spd: 66, spe: 84},
            abilities: {0: "Rock Head", H: "Battle Armor"},
-           evos: ["Siciliantooth"],
+           evos: ["siciliantooth"],
            },
         siciliantooth: {
            num: 1000041,
@@ -335,7 +335,7 @@ exports.BattlePokedex = {
            types: ["Rock", "Fire"],
            baseStats: {hp: 90, atk: 110, def: 74, spa: 50, spd: 82, spe: 99},
            abilities: {0: "Rock Head", H: "Battle Armor"},
-           prevo: "Celiantooth",
+           prevo: "celiantooth",
            },
         doomiraptor: {
            num: 1000042,
@@ -343,7 +343,7 @@ exports.BattlePokedex = {
            types: ["Rock", "Ghost"],
            baseStats: {hp: 65, atk: 71, def: 78, spa: 62, spd: 65, spe: 59},
            abilities: {0: "Cursed Body", H: "Mummy"},
-           evos: ["Brachiodoom"],
+           evos: ["brachiodoom"],
            },
         brachiodoom: {
            num: 1000043,
@@ -351,7 +351,7 @@ exports.BattlePokedex = {
            types: ["Rock", "Ghost"],
            baseStats: {hp: 107, atk: 98, def: 105, spa: 85, spd: 90, spe: 46},
            abilities: {0: "Cursed Body", H: "Mummy"},
-           prevo: "Doomiraptor",
+           prevo: "doomiraptor",
            },
         duniliar: {
            num: 1000044,
@@ -359,7 +359,7 @@ exports.BattlePokedex = {
            types: ["Ground"],
            baseStats: {hp: 65, atk: 45, def: 70, spa: 65, spd: 70, spe: 28},
            abilities: {0: "Sand Rush", 1: "Sand Stream", H: "Sand Force"},
-           evos: ["Duniliandinar"],
+           evos: ["duniliandinar"],
            },
         duniliandinar: {
            num: 1000045,
@@ -367,7 +367,7 @@ exports.BattlePokedex = {
            types: ["Ground"],
            baseStats: {hp: 100, atk: 80, def: 75, spa: 85, spd: 90, spe: 65},
            abilities: {0: "Sand Rush", 1: "Sand Stream", H: "Sand Force"},
-           prevo: "Duniliar",
+           prevo: "duniliar",
            },
         helldragoon: {
            num: 1000046,
@@ -391,7 +391,7 @@ exports.BattlePokedex = {
            types: ["Water", "Ice"],
            baseStats: {hp: 52, atk: 46, def: 70, spa: 52, spd: 60, spe: 36},
            abilities: {0: "Water Absorb", H: "Ice Body"},
-           evos: ["Icynifish"],
+           evos: ["icynifish"],
            },
         icynifish: {
            num: 1000049,
@@ -399,8 +399,8 @@ exports.BattlePokedex = {
            types: ["Water", "Ice"],
            baseStats: {hp: 67, atk: 71, def: 85, spa: 64, spd: 71, spe: 50},
            abilities: {0: "Water Absorb", H: "Ice Body"},
-           evos: ["Coldiafish"],
-           prevo: "Chillifish",
+           evos: ["coldiafish"],
+           prevo: "chillifish",
            },
         coldiafish: {
            num: 1000050,
@@ -408,7 +408,7 @@ exports.BattlePokedex = {
            types: ["Water", "Ice"],
            baseStats: {hp: 82, atk: 97, def: 101, spa: 82, spd: 86, spe: 71},
            abilities: {0: "Water Absorb", H: "Ice Body"},
-           prevo: "Icynifish",
+           prevo: "icynifish",
            },
         kittyrius: {
            num: 1000051,
@@ -416,7 +416,7 @@ exports.BattlePokedex = {
            types: ["Fire", "Ghost"],
            baseStats: {hp: 35, atk: 61, def: 32, spa: 70, spd: 42, spe: 68},
            abilities: {0: "Flash Fire", 1: "Technician", H: "Insomnia"},
-           evos: ["Cerberinius"],
+           evos: ["cerberinius"],
            },
         cerberinius: {
            num: 1000052,
@@ -424,7 +424,7 @@ exports.BattlePokedex = {
            types: ["Fire", "Ghost"],
            baseStats: {hp: 70, atk: 100, def: 47, spa: 98, spd: 50, spe: 84},
            abilities: {0: "Flash Fire", 1: "Technician", H: "Insomnia"},
-           prevo: "Kittyrius",
+           prevo: "kittyrius",
            },
         venominous: {
            num: 1000053,
@@ -440,7 +440,7 @@ exports.BattlePokedex = {
            types: ["Fairy", "Flying"],
            baseStats: {hp: 38, atk: 36, def: 70, spa: 98, spd: 41, spe: 62},
            abilities: {0: "Pixilate", H: "Aerilate"},
-           evos: ["Archangelin"], ["Darkangelin"]
+           evos: ["archangelin"], ["darkangelin"]
            },
         archangelin: {
            num: 1000055,
@@ -448,7 +448,7 @@ exports.BattlePokedex = {
            types: ["Fairy", "Flying"],
            baseStats: {hp: 60, atk: 40, def: 75, spa: 117, spd: 62, spe: 84},
            abilities: {0: "Fairy Aura", H: "Aerilate"},
-           prevo: "Angelin",
+           prevo: "angelin",
            },
         darkangelin: {
            num: 1000056,
@@ -456,7 +456,7 @@ exports.BattlePokedex = {
            types: ["Dark", "Flying"],
            baseStats: {hp: 60, atk: 117, def: 62, spa: 40, spd: 75, spe: 84},
            abilities: {0: "Dark Aura", H: "Aerilate"},
-           prevo: "Angelin",
+           prevo: "angelin",
            },
         tintinar: {
            num: 1000057,
@@ -464,7 +464,7 @@ exports.BattlePokedex = {
            types: ["Steel"],
            baseStats: {hp: 30, atk: 45, def: 36, spa: 70, spd: 52, spe: 25},
            abilities: {0: "Clear Body", H: "Levitate"},
-           evos: ["Hourglinar"],
+           evos: ["hourglinar"],
            },
         hourglinar: {
            num: 1000058,
@@ -472,8 +472,8 @@ exports.BattlePokedex = {
            types: ["Steel"],
            baseStats: {hp: 50, atk: 61, def: 48, spa: 78, spd: 65, spe: 40},
            abilities: {0: "Clear Body", H: "Levitate"},
-           evos: ["Clockinar"],
-           prevo: "Tintinar",
+           evos: ["clockinar"],
+           prevo: "tintinar",
            },
         clockinar: {
            num: 1000059,
@@ -481,7 +481,7 @@ exports.BattlePokedex = {
            types: ["Steel"],
            baseStats: {hp: 75, atk: 79, def: 60, spa: 101, spd: 84, spe: 51},
            abilities: {0: "Clear Body", H: "Levitate"},
-           prevo: "Hourglinar",
+           prevo: "hourglinar",
            },
         emolgor: {
            num: 1000060,
@@ -489,7 +489,7 @@ exports.BattlePokedex = {
            types: ["Electric", "Flying"],
            baseStats: {hp: 65, atk: 90, def: 71, spa: 101, spd: 84, spe: 116},
            abilities: {0: "Static", H: "Motor Drive"},
-           prevo: "Emolga",
+           prevo: "emolga",
            },
         drapionord: {
            num: 1000061,
@@ -497,7 +497,7 @@ exports.BattlePokedex = {
            types: ["Poison", "Dark"],
            baseStats: {hp: 85, atk: 112, def: 124, spa: 60, spd: 85, spe: 103},
            abilities: {0: "Battle Armor", 1: "Sniper", H: "Keen Eye"},
-           prevo: "Drapion",
+           prevo: "drapion",
            },
         miniskhan: {
            num: 1000062,
@@ -505,7 +505,7 @@ exports.BattlePokedex = {
            types: ["Normal"],
            baseStats: {hp: 62, atk: 68, def: 46, spa: 30, spd: 56, spe: 71},
            abilities: {0: "Early Bird", 1: "Scrappy", H: "Inner Focus"},
-           evos: ["Kangaskhan"],
+           evos: ["kangaskhan"],
            },
         athenie: {
            num: 1000063,
