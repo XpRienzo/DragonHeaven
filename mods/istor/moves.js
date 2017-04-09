@@ -612,4 +612,26 @@ exports.BattleMovedex = {
 		zMovePower: 185,
 		contestType: "Cool",
 	},
+	"incandescent": {
+		num: 485,
+		accuracy: 100,
+		basePower: 140,
+		category: "Special",
+		desc: "The user must not be statused. Becomes burned.",
+		shortDesc: "Burns the user. Only works if not statused.",
+		id: "incandescent",
+		name: "Incandescant",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		/* Code for:
+			Move burns users
+			Move fails if it can't burn user
+		*/
+		secondary: false,
+		target: "allAdjacent",
+		type: "Fire",
+		zMovePower: 200,
+		contestType: "Beautiful",
+	},
 };
