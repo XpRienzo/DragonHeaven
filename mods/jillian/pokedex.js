@@ -80,7 +80,7 @@ exports.BattlePokedex = {
      avislon: {
         num: 1000010,
         species: "Avislon",
-        types: ["Normal", "Flying"],
+        types: ["Psychic", "Flying"],
         baseStats: {hp: 28, atk: 40, def: 19, spa: 25, spd: 68, spe: 65},
         abilities: {0: "Keen Eye", 1: "Big Pecks", H: "Aerilate"},
         evos: ["avislorion"],
@@ -88,7 +88,7 @@ exports.BattlePokedex = {
      avislorion: {
         num: 1000011,
         species: "Avislorion",
-        types: ["Normal", "Flying"],
+        types: ["Psychic", "Flying"],
         baseStats: {hp: 39, atk: 56, def: 38, spa: 40, spd: 75, spe: 78},
         abilities: {0: "Keen Eye", 1: "Big Pecks", H: "Aerilate"},
         evos: ["Avissolorian"],
@@ -97,7 +97,7 @@ exports.BattlePokedex = {
      avissolorian: {
         num: 1000012,
         species: "Avissolorian",
-        types: ["Normal", "Flying"],
+        types: ["Psychic", "Flying"],
         baseStats: {hp: 74, atk: 89, def: 64, spa: 71, spd: 110, spe: 112},
         abilities: {0: "Keen Eye", 1: "Big Pecks", H: "Aerilate"},
         prevo: "Avislorion",
