@@ -257,6 +257,18 @@ exports.BattleFormatsData = {
 		randomBattleMoves: ["synthesis", "spikyshield", "leechseed", "gigadrain", "aromatherapy"],
 		tier: "New",
 	},
+	zhulum: {
+		randomBattleMoves: ["incandescent", "dracometeor", "dragonpulse", "fireblast", "thunderbolt", "voltswitch"],
+		tier: "LC",
+	},
+	zhuval: {
+		randomBattleMoves: ["incandescent", "dracometeor", "dragonpulse", "fireblast", "thunderbolt", "voltswitch"],
+		tier: "NFE",
+	},
+	zhulion: {
+		randomBattleMoves: ["incandescent", "dracometeor", "dragonpulse", "fireblast", "thunderbolt", "voltswitch"],
+		tier: "New",
+	},
 	uisge: {
 		randomBattleMoves: ["scald", "psyshock", "recover", "calmmind"],
 		tier: "New",
