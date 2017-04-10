@@ -623,7 +623,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Fire", "Dragon"],
 		baseStats: {hp: 90, atk: 140, def: 110, spa: 80, spd: 110, spe: 125},
-		abilities: {0: "Fur Coat"}
+		abilities: {0: "Fur Coat"},
          },
      haxorus: {
 		inherit: true,
@@ -638,7 +638,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Dragon"],
 		baseStats: {hp: 76, atk: 157, def: 120, spa: 80, spd: 90, spe: 127},
-		abilities: {0: "Dragon Force"}
+		abilities: {0: "Dragon Force"},
         },
      mienshao: {
 		inherit: true,
@@ -653,7 +653,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Fighting", "Fairy"],
 		baseStats: {hp: 65, atk: 145, def: 90, spa: 95, spd: 80, spe: 135},
-		abilities: {0: "Moxie"}
+		abilities: {0: "Moxie"},
         },
      primeape: {
 		inherit: true,
@@ -668,7 +668,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Fighting", "Steel"],
 		baseStats: {hp: 65, atk: 135, def: 90, spa: 60, spd: 100, spe: 105},
-		abilities: {0: "Punchilate"}
+		abilities: {0: "Punchilate"},
         },
      gothitelle: {
 		inherit: true,
@@ -683,7 +683,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Psychic", "Fairy"],
 		baseStats: {hp: 70, atk: 55, def: 125, spa: 130, spd: 110, spe: 90},
-		abilities: {0: "Goddess Aura"}
+		abilities: {0: "Goddess Aura"},
         },
      magnezone: {
 		inherit: true,
@@ -698,7 +698,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Electric", "Steel"],
 		baseStats: {hp: 70, atk: 90, def: 115, spa: 160, spd: 90, spe: 110},
-		abilities: {0: "Gear Force"}
+		abilities: {0: "Gear Force"},
         },
      zangoose: {
 		inherit: true,
@@ -713,7 +713,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Normal"],
 		baseStats: {hp: 73, atk: 145, def: 70, spa: 60, spd: 80, spe: 130},
-		abilities: {0: "Guts"}
+		abilities: {0: "Guts"},
 	},
      dedenne: {
 		inherit: true,
@@ -728,7 +728,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Electric", "Fairy"],
 		baseStats: {hp: 67, atk: 78, def: 67, spa: 111, spd: 87, spe: 121},
-		abilities: {0: "Magnetism"}
+		abilities: {0: "Magnetism"},
         },
      bisharp: {
 		inherit: true,
@@ -743,7 +743,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Dark", "Steel"],
 		baseStats: {hp: 65, atk: 155, def: 110, spa: 60, spd: 70, spe: 110},
-		abilities: {0: "Cold Blood"}
+		abilities: {0: "Cold Blood"},
          },
      weavile: {
 		inherit: true,
@@ -758,7 +758,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Dark", "Ice"],
 		baseStats: {hp: 70, atk: 150, def: 80, spa: 45, spd: 115, spe: 150},
-		abilities: {0: "Technician"}    
+		abilities: {0: "Technician"},    
          },
      ninjask: {
 		inherit: true,
@@ -773,7 +773,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Bug", "Flying"],
 		baseStats: {hp: 61, atk: 130, def: 65, spa: 50, spd: 80, spe: 170},
-		abilities: {0: "Leadership"}     
+		abilities: {0: "Leadership"},     
          },
      dugtrio: {
 		inherit: true,
@@ -788,7 +788,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Ground"],
 		baseStats: {hp: 35, atk: 120, def: 65, spa: 50, spd: 100, spe: 155},
-		abilities: {0: "Landinate"}         
+		abilities: {0: "Landinate"},         
          },
      hippowdon: {
 		inherit: true,
@@ -803,7 +803,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Ground", "Steel"],
 		baseStats: {hp: 108, atk: 142, def: 138, spa: 68, spd: 102, spe: 67},
-		abilities: {0: "Sand Force"} 
+		abilities: {0: "Sand Force"}, 
          },
      chandelure: {
 		inherit: true,
@@ -818,7 +818,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Fire", "Ghost"],
 		baseStats: {hp: 60, atk: 55, def: 120, spa: 165, spd: 110, spe: 110},
-		abilities: {0: "Gates of Hell"} 
+		abilities: {0: "Gates of Hell"}, 
          },
      spiritomb: {
 		inherit: true,
@@ -833,7 +833,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Ghost", "Dark"],
 		baseStats: {hp: 50, atk: 112, def: 138, spa: 112, spd: 138, spe: 35},
-		abilities: {0: "Gates of Hell"} 
+		abilities: {0: "Gates of Hell"}, 
          },
      grumpig: {
 		inherit: true,
@@ -848,12 +848,12 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Psychic"],
 		baseStats: {hp: 80, atk: 45, def: 95, spa: 130, spd: 110, spe: 110},
-		abilities: {0: "Medicine"} 
+		abilities: {0: "Medicine"}, 
          },
      meloetta: {
 		inherit: true,
 		abilities: {0: "Serene Grace"},
-		otherFormes: ["meloettapirouette", "meloettamega"],
+		otherFormes: ["meloettamega"],
          },   
      meloettamega: {
 	        num: 648,
@@ -863,7 +863,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Normal", "Psychic"],
 		baseStats: {hp: 100, atk: 77, def: 87, spa: 148, spd: 158, spe: 130},
-		abilities: {0: "Medicine"} 
+		abilities: {0: "Medicine"}, 
           },
      druddigon: {
 		inherit: true,
@@ -878,7 +878,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Dragon", "Dark"],
 		baseStats: {hp: 77, atk: 150, def: 110, spa: 85, spd: 90, spe: 83},
-		abilities: {0: "Predator"} 
+		abilities: {0: "Predator"}, 
           },
      corsola: {
 		inherit: true,
@@ -893,7 +893,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Water", "Rock"],
 		baseStats: {hp: 65, atk: 70, def: 105, spa: 115, spd: 95, spe: 60},
-		abilities: {0: "Crush Coral"} 
+		abilities: {0: "Crush Coral"}, 
            },
      chimecho: {
 		inherit: true,
@@ -908,7 +908,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Psychic", "Fairy"],
 		baseStats: {hp: 75, atk: 50, def: 80, spa: 145, spd: 90, spe: 110},
-		abilities: {0: "Pixilate"} 
+		abilities: {0: "Pixilate"}, 
            },
      seviper: {
 		inherit: true,
@@ -923,7 +923,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Poison", "Dark"],
 		baseStats: {hp: 73, atk: 125, def: 80, spa: 130, spd: 60, spe: 90},
-		abilities: {0: "Adaptability"} 
+		abilities: {0: "Adaptability"}, 
 	   },
  };
 /* https://pastebin.com/8SudG3w9 */
