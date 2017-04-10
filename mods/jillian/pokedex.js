@@ -127,9 +127,9 @@ exports.BattlePokedex = {
         abilities: {0: "Titend Lens", H: "Adaptability"},
         prevo: "cocoonian",
         },
-   mÃ©nÃ©brus: {
+   menebrus: {
         num: 1000016,
-        species: "MÃ©nÃ©brus",
+        species: "Menebrus",
         types: ["Dark", "Electric"],
         baseStats: {hp: 28, atk: 45, def: 60, spa: 38, spd: 70, spe: 42},
         abilities: {0: "Prankster", 1: "Cold Blood", H: "Motor Drive"},
@@ -141,12 +141,12 @@ exports.BattlePokedex = {
         types: ["Dark", "Electric"],
         baseStats: {hp: 65, atk: 49, def: 77, spa: 46, spd: 100, spe: 51},
         abilities: {0: "Prankster", 1: "Cold Blood", H: "Motor Drive"},
-        evos: ["tÃ©nÃ©brus"],
-        prevo: "mÃ©nÃ©brus",
+        evos: ["tenebrus"],
+        prevo: "menebrus",
         },
-   tÃ©nÃ©brus: {
+   tenebrus: {
         num: 1000018,
-        species: "TÃ©nÃ©brus",
+        species: "Tenebrus",
         types: ["Dark", "Electric"],
         baseStats: {hp: 110, atk: 62, def: 121, spa: 59, spd: 130, spe: 70},
         abilities: {0: "Prankster", 1: "Cold Blood", H: "Motor Drive"},
@@ -200,9 +200,9 @@ exports.BattlePokedex = {
         abilities: {0: "Tough Claws", H: "Punchilate"},
         prevo: "eevee",
         },
-    zÃ©phyreon: {
+    zephyreon: {
         num: 1000025,
-        species: "ZÃ©phyreon",
+        species: "Zephyreon",
         types: ["Flying"],
         baseStats: {hp: 65, atk: 65, def: 60, spa: 130, spd: 95, spe: 110},
         abilities: {0: "Gale Wings", H: "Defiant"},
