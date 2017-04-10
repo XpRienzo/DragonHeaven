@@ -440,7 +440,7 @@ exports.BattlePokedex = {
          types: ["Fairy", "Flying"],
          baseStats: {hp: 38, atk: 36, def: 70, spa: 98, spd: 41, spe: 62},
          abilities: {0: "Pixilate", H: "Aerilate"},
-         evos: ["archangelin"], ["darkangelin"]
+         evos: ["archangelin"], ["darkangelin"],
          },
      archangelin: {
          num: 1000055,
