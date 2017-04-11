@@ -623,7 +623,7 @@ exports.BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Fire", "Dragon"],
-		baseStats: {hp: 90, atk: 140, def: 110, spa: 80, spd: 110, spe: 125},
+		baseStats: {hp: 90, atk: 140, def: 100, spa: 80, spd: 120, spe: 125},
 		abilities: {0: "Fur Coat"},
          },
      haxorus: {
