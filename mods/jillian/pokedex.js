@@ -819,7 +819,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Fire", "Ghost"],
 		baseStats: {hp: 60, atk: 55, def: 120, spa: 165, spd: 110, spe: 110},
-		abilities: {0: "Gates of Hell"}, 
+		abilities: {0: "Final Flicker"}, 
          },
      spiritomb: {
 		inherit: true,
