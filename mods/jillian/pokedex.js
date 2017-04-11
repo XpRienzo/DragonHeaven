@@ -718,7 +718,7 @@ exports.BattlePokedex = {
 	},
      dedenne: {
 		inherit: true,
-		abilities: {0: "Cheek Pouch", 1: "Pickup", H: "Plus"},: {
+		abilities: {0: "Cheek Pouch", 1: "Pickup", H: "Plus"},
 	        otherFormes: ["dedennemega"],   
         },    
      dedennemega: {
@@ -851,19 +851,19 @@ exports.BattlePokedex = {
 		baseStats: {hp: 80, atk: 45, def: 95, spa: 130, spd: 110, spe: 110},
 		abilities: {0: "Medicine"}, 
          },
-     meloetta: {
+     blissey: {
 		inherit: true,
-		abilities: {0: "Serene Grace"},
-		otherFormes: ["meloettamega"],
+		abilities: {0: "Natural Cure", 1: "Serene Grace", H: "Healer"},
+		otherFormes: ["blisseymega"],
          },   
-     meloettamega: {
-	        num: 648,
-		species: "Meloetta-Mega",
-		baseSpecies: "Meloetta",
+     blisseymega: {
+	        num: 242,
+		species: "Blissey-Mega",
+		baseSpecies: "Blissey",
 		forme: "Mega",
 		formeLetter: "M",
-		types: ["Normal", "Psychic"],
-		baseStats: {hp: 100, atk: 77, def: 87, spa: 148, spd: 158, spe: 130},
+		types: ["Normal", "Fairy"],
+		baseStats: {hp: 255, atk: 10, def: 60, spa: 105, spd: 155, spe: 55},
 		abilities: {0: "Medicine"}, 
           },
      druddigon: {
