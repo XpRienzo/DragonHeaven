@@ -615,6 +615,7 @@ exports.BattlePokedex = {
 		inherit: true,
 		abilities: {0: "Intimidate", 1: "Flash Fire", H: "Justified"},
 		otherFormes: ["arcaninemega"],
+         },
      arcaninemega: {
 		num: 59,
 		species: "Arcanine-Mega",
