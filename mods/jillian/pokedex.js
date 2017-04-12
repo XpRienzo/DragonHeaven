@@ -571,12 +571,12 @@ exports.BattlePokedex = {
          abilities: {0: "Iron Fist", 1: "Unburden", H: "Reckless"},
          evos: ["Does Not Evolve"],
          },
-     quagsire: {
+      quagsire: {
 		inherit: true,
 		abilities: {0: "Water Absorb", H: "Unaware"},
 		otherFormes: ["quagsiremega"],
          },
-     quagsiremega: {
+      quagsiremega: {
 		num: 195,
 		species: "Quagsire-Mega",
 		baseSpecies: "Quagsire",
@@ -586,7 +586,7 @@ exports.BattlePokedex = {
 		baseStats: {hp: 95, atk: 125, def: 105, spa: 65, spd: 95, spe: 45},
 		abilities: {0: "Landinate"},
          },
-     luxray: {
+      luxray: {
 		inherit: true,
 		abilities: {0: "Rivalry", 1: "Intimidate", H: "Guts"},
 		otherFormes: ["luxraymegaa" , "luxraymegab"],
@@ -926,5 +926,50 @@ exports.BattlePokedex = {
 		baseStats: {hp: 73, atk: 125, def: 80, spa: 130, spd: 60, spe: 90},
 		abilities: {0: "Adaptability"}, 
 	   },
+     meganium: {
+		inherit: true,
+		abilities: {0: "Overgrow", H: "Leaf Guard"},
+		otherFormes: ["meganiummega"],		
+           },   
+     meganiummega: {
+	        num: 154,
+		species: "Meganium-Mega",
+		baseSpecies: "Meganium",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Grass", "Psychic"],
+		baseStats: {hp: 80, atk: 52, def: 110, spa: 163, spd: 120, spe: 100},
+		abilities: {0: "Triage"}, 
+	   },
+    typhlosion: {
+		inherit: true,
+		abilities: {0: "Blaze", H: "Flash Fire"},
+		otherFormes: ["typhlosionmega"],
+           },   
+     typhlosionmega: {
+	        num: 157,
+		species: "Typhlosion-Mega",
+		baseSpecies: "Typhlosion",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Fire"],
+		baseStats: {hp: 78, atk: 94, def: 98, spa: 159, spd: 85, spe: 120},
+		abilities: {0: "Drought"}, 
+           },
+     feraligatr: {
+		inherit: true,
+		abilities: {0: "Torrent", H: "Sheer Force"},
+		otherFormes: ["feraligatrmega"],
+	   },   
+     feraligatrmega: {
+	        num: 160,
+		species: "Feraligatr-Mega",
+		baseSpecies: "Feraligatr",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Water", "Dark"],
+		baseStats: {hp: 85, atk: 155, def: 120, spa: 89, spd: 83, spe: 108},
+		abilities: {0: "Sheer Force"}, 
+          }, 				
  };
 /* https://pastebin.com/8SudG3w9 */
