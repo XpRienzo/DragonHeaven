@@ -984,7 +984,22 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Fairy"],
 		baseStats: {hp: 75, atk: 68, def: 118, spa: 142, spd: 164, spe: 85},
-		abilities: {0: "Misty Surge"},  
+		abilities: {0: "Misty Surge"},
+	 }, 
+     flygon: {
+		inherit: true,
+		abilities: {0: "Levitate"},
+		otherFormes: ["flygonmega"],  
+	 },   
+     flygonmega: {
+	        num: 330,
+		species: "Flygon-Mega",
+		baseSpecies: "Flygon",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Bug", "Dragon"],
+		baseStats: {hp: 80, atk: 135, def: 100, spa: 100, spd: 80, spe: 125},
+		abilities: {0: "Titend Lens"},  	     
 	  },	
  };
 /* https://pastebin.com/8SudG3w9 */
