@@ -970,6 +970,21 @@ exports.BattlePokedex = {
 		types: ["Water", "Dark"],
 		baseStats: {hp: 85, atk: 155, def: 120, spa: 89, spd: 83, spe: 108},
 		abilities: {0: "Sheer Force"}, 
-          }, 				
+          }, 
+     florges: {
+		inherit: true,
+		abilities: {0: "Flower Veil", H: "Symbiosis"},
+		otherFormes: ["florgesmega"],
+	  },   
+     florgesmega: {
+	        num: 671,
+		species: "Florges-Mega",
+		baseSpecies: "Florges",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Fairy"],
+		baseStats: {hp: 75, atk: 68, def: 118, spa: 142, spd: 164, spe: 85},
+		abilities: {0: "Misty Surge"},  
+	  },	
  };
 /* https://pastebin.com/8SudG3w9 */
