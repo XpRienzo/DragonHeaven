@@ -66,12 +66,12 @@ exports.BattlePokedex = {
         types: ["Water"],
         baseStats: {hp: 59, atk: 72, def: 86, spa: 85, spd: 74, spe: 52},
        abilities: {0: "Torrent", H: "Dry Skin"},
-        evos: ["poseidonion"],
+        evos: ["poseidocze"],
         prevo: "aquario",
 	},
-   poseidonion: {
+   poseidocze: {
         num: 1000009,
-        species: "Poseidonion",
+        species: "Poseidocze",
         types: ["Water", "Electric"],
         baseStats: {hp: 86, atk: 103, def: 70, spa: 110, spd: 78, spe: 71},
         abilities: {0: "Torrent", H: "Dry Skin"},
