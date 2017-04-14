@@ -169,7 +169,7 @@ exports.BattleAbilities = {
       name: "Leadership",
       rating: 2
       },
-         "fiensdishshield": {
+         "fiendishshield": {
 		            shortDesc: "This pokemon bounces back status moves to the user. Damage taken from sup.eff moves are reduced by 30%",
 	                    },
                           onTryHitPriority: 1,
@@ -240,7 +240,7 @@ exports.BattleAbilities = {
 		 rating: 4
 	},
         "magnetism": {
-		 shortDesc: "On switch-in, this pokemon uses Magnet Rise, and its foes becomes weak to Electric for 5 turns",
+		 shortDesc: "On switch-in, this pokemon uses Magnet Rise, and its Electric type moves deals double damage to the foe",
 		             },
 		          onStart: function (pokemon) {
 			           this.useMove("Magnet Rise", pokemon);
