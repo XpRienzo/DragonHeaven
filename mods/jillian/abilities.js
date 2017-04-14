@@ -91,8 +91,8 @@ exports.BattleAbilities = {
 		},
 	            "crushcoral": {
 		              shortDesc: "This Pokemon's Special Attack is doubled.",
-		              onModifyAtkPriority: 5,
-		              onModifyAtk: function (SpA) {
+		              onModifySpAPriority: 5,
+		              onModifySpA: function (SpA) {
 			            return this.chainModify(2);
 		},
 		id: "crushcoral",
