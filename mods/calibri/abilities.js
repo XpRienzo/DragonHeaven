@@ -87,128 +87,48 @@ exports.BattleAbilities = {
 		name: "Fire Resistance",
 		rating: 4,
 		num: 10001,
+	}, 
+	"Comeback": {
+		desc: "When this Pokemon has more than 1/2 its maximum HP and takes damage from an attack bringing it to 1/2 or less of its maximum HP, its Attack and Speed are raised by 2 stages. This effect applies after all hits from a multi-hit move; Sheer Force prevents it from activating if the move has a secondary effect.",
+		shortDesc: "When the user reaches 33% HP or less, their speed and attack are doubled.",
+		onAfterMoveSecondary: function (target, source, move) {
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			if (target.hp <= target.maxhp / 2 && target.hp + move.totalDamage > target.maxhp / 3) {
+				this.boost({spe: 2});
+				this.boost({atk: 2});
+			}
+		},
+		id: "comeback",
+		name: "Comeback",
+		rating: 2.5,
+		num: 201,
 	},
-	"antigravity": {
-		desc: "This Pokemon disables Ground-type attacks from being used.",
-		shortDesc: "This Pokemon disables Ground-type attacks from being used.",
-		onTryMove: function (target, source, effect) {
-			if (effect.type === 'Ground') {
-				this.debug('Anti-Gravity Ground supress');
-				this.add('-fail', source, effect, '[from] Anti-Gravity');
+	"fightingstance": {
+		desc: "This Pokemon's Defense is raised by 1 stage each time they come into contact with the target Pokemon.",
+		shortDesc: "This Pokemon's Defense is raised by 1 stage when making Contact with the target.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['contact']) {
+				this.boost({def: 1});
+			}
+		},
+		id: "fightingstance",
+		name: "Fighting Stance",
+		rating: 3,
+		num: 89,
+	},
+	"absorption": {
+		shortDesc: "This Pokemon heals 1/5 of their max HP when hit by a Contact move.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.flags['contact']) {
+				if (!this.heal(target.maxhp / 5)) {
+				}
 				return null;
 			}
 		},
-		id: "antigravity",
-		name: "Anti-Gravity",
-		rating: 4,
-		num: 10002,
-	},
-	"extremeentry": {
-		desc: "If this Pokemon switches in for the first time, its moves have their priority increased by 1.",
-		shortDesc: "If this Pokemon switches in for the first time, its moves have their priority increased by 1.",
-		onModifyPriority: function (priority, pokemon, target, move) {
-			if (pokemon.entered) return priority;
-			pokemon.entered = true;
-			return priority + 1;
-		},
-		id: "extremeentry",
-		name: "Extreme Entry",
-		rating: 3,
-		num: 10003,
-	},
-	"mesmerize": {
-		desc: "Making contact has a 100% chance of adding Leech Seed.",
-		shortDesc: "Making contact has a 100% chance of adding Leech Seed.",
-		// upokecenter says this is implemented as an added secondary effect
-		onModifyMove: function (move) {
-			if (!move || !move.flags['contact']) return;
-			move.volatileStatus = "leechseed";
-		},
-		onAfterDamage: function (damage, target, source, move) {
-			if (move && move.flags['contact'] && !source.hasType('Grass')) {
-				source.addVolatile('leechseed', target);
-			}
-		},
-		id: "mesmerize",
-		name: "Mesmerize",
-		rating: 4,
-		num: 10004,
-	},
-	"hunter": {
-		desc: "When the target of this move switches out, the move will hit before the target switches out.",
-		shortDesc: "Moves hit the target before switching out.",
-		id: "hunter",
-		name: "Hunter",
-			/* Add in a Pursuit effect for all moves here, no power boost */
-		rating: 5,
-		num: 10005,
-	},
-	"midnightlurker": {
-		desc: "This Pokemon's attacks are critical hits if the target is asleep.",
-		shortDesc: "This Pokemon's attacks are critical hits if the target is asleep.",
-		onModifyCritRatio: function (critRatio, source, target) {
-			if (target && target.status in {'slp':1}) return 5;
-		},
-		id: "midnightlurker",
-		name: "Midnight Lurker",
-		rating: 2,
-		num: 10006,
-	},
-	"doomsday": {
-		desc: "On switch-in, this Pokemon inflicts a Perish Song.",
-		shortDesc: "On switch-in, this Pokemon inflicts Perish Song.",
-		onStart: function (pokemon) {
-			let foeactive = pokemon.side.foe.active;
-			let activated = false;
-			for (let i = 0; i < foeactive.length; i++) {
-				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
-				if (!activated) {
-					this.add('-ability', pokemon, 'Doomsday', 'boost');
-					activated = true;
-				}
-				if (foeactive[i].volatiles['substitute'] || foeactive[i].hasAbility('soundproof')) {
-					this.add('-immune', foeactive[i], '[msg]');
-				} else {
-					pokemon.addVolatile('perishsong')
-				}
-			}
-		},
-		id: "doomsday",
-		name: "Doomsday",
+		id: "absorption",
+		name: "Absorption",
 		rating: 3.5,
-		num: 10007,
-	},
-	"magicalemanation": {
-		desc: "On switch-in, this Pokemon summons Magic Room.",
-		shortDesc: "On switch-in, this Pokemon summons Magic Room.",
-		onStart: function (source, effect) {
-			this.addPseudoWeather('magicroom', source, effect, '[of] ' + source);
-		},
-		id: "magicalemanation",
-		name: "Magical Emanation",
-		rating: 4.5,
-		num: 11002,
-	},
-	"trickyemanation": {
-		desc: "On switch-in, this Pokemon summons Trick Room.",
-		shortDesc: "On switch-in, this Pokemon summons Trick Room.",
-		onStart: function (source, effect) {
-			this.addPseudoWeather('trickroom', source, effect, '[of] ' + source);
-		},
-		id: "trickyemanation",
-		name: "Tricky Emanation",
-		rating: 4.5,
-		num: 11003,
-	},
-	"wondrousemanation": {
-		desc: "On switch-in, this Pokemon summons Wonder Room.",
-		shortDesc: "On switch-in, this Pokemon summons Wonder Room.",
-		onStart: function (source, effect) {
-			this.addPseudoWeather('wonderroom', source, effect, '[of] ' + source);
-		},
-		id: "wondrousemanation",
-		name: "Wondrous Emanation",
-		rating: 4.5,
-		num: 11004,
+		num: 11,
 	},
 };
