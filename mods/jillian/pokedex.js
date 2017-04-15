@@ -1000,6 +1000,26 @@ exports.BattlePokedex = {
 		types: ["Bug", "Dragon"],
 		baseStats: {hp: 80, atk: 135, def: 100, spa: 100, spd: 80, spe: 125},
 		abilities: {0: "Titend Lens"},  	     
-	  },	
+	 },
+     hydreigonmega: {
+	        num: 635,
+		species: "Hydreigon-Mega",
+		baseSpecies: "Hydreigon",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Dark", "Dragon"],
+		baseStats: {hp: 92, atk: 105, def: 110, spa: 165, spd: 100, spe: 128},
+	        abilities: {0: "Mega Launcher"}
+          },
+     miloticmega: {
+	        num: 350,
+		species: "Milotic-Mega",
+		baseSpecies: "Milotic",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Water", "Dragon"],
+		baseStats: {hp: 95, atk: 60, def: 119, spa: 140, spd: 145, spe: 61},
+		abilities: {0: "Multiscale"},
+          }, 
  };
 /* https://pastebin.com/8SudG3w9 */
