@@ -103,7 +103,7 @@ exports.BattleAbilities = {
                      shortDesc: "On switch-in, this pokemon cures itself and its teammates of status",
                      onStart: function (pokemon)
 			      this.add('-ability', pokemon, 'Medicine'),
-                              this.useMove("healbell", pokemon);
+                              this.useMove("Heal Bell", pokemon);
                 }
             }
         },
@@ -127,7 +127,7 @@ exports.BattleAbilities = {
 		       shortDesc: "On switch-in, this pokemon uses Curse and takes halved damage from Fairy type moves",
 	              },
 		          onStart: function (pokemon) {
-			           this.useMove("curse", pokemon);
+			           this.useMove("Curse", pokemon);
 	     }
 		  onBasePowerPriority: 7,
 		  onSourceBasePower: function (basePower, attacker, defender, move) {
@@ -232,7 +232,7 @@ exports.BattleAbilities = {
 		               onAfterDamageOrder: 1,
 		               onAfterDamage: function (damage, target, source, move) {
 			              if (source && source !== target && move && move.effectType === 'Move' && !target.hp) {
-		                      this.useMove("burnup", target);
+		                      this.useMove("Burn Up", target);
 			  }
 		 },
 		 id: "finalflicker",
@@ -243,7 +243,7 @@ exports.BattleAbilities = {
 		 shortDesc: "On switch-in, this pokemon uses Magnet Rise, and its Electric type moves deals double damage to the foe",
 		             },
 		          onStart: function (pokemon) {
-			           this.useMove("magnetrise", pokemon);
+			           this.useMove("Magnet Rise", pokemon);
 			  }
                     },
 			onBasePower: function (damage, source, target, move) {
