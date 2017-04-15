@@ -6,7 +6,7 @@ exports.BattlePokedex = {
         species: "Charish",
         types: ["Fire","Dark"],
         baseStats: {hp: 55, atk: 70, def: 65, spa: 82, spd: 70, spe: 31},
-        abilities: {0: "Flare Boost", H: "Fire Resistance"},
+        abilities: {0: "Flare Boost"},
         evos: ["charkol"],
 	},
   charkol: {
@@ -39,19 +39,20 @@ exports.BattlePokedex = {
   charizardmegaz: {
         num: 6,
         species: "Charizard-Mega-Z",
-        types: ["Fire","Ground"],
-        baseStats: {hp: 78, atk: 94, def: 128, spa: 99, spd: 115, spe: 70},
+        types: ["Ground","Fire"],
+        baseStats: {hp: 78, atk: 94, def: 118, spa: 99, spd: 135, spe: 96},
         abilities: {0: "Arena Trap"},
         evos: ["N/A"],
         prevo: "Charizard",
   },
-  Extilensho: {
-        num: 802,
-        species: "Extilensho",
-        types: ["Grass","Ghost"],
-        baseStats: {hp: 53, atk: 131, def: 128, spa: 45, spd: 128, spe: 40},
-        abilities: {0: "Grass Pelt"},
+  kingleralola: {
+        num: 99,
+        species: "Kingler-Alola",
+        types: ["Water","Rock"],
+        baseStats: {hp: 55, atk: 150, def: 100, spa: 105, spd: 100, spe: 30},
+        abilities: {0: "Boulder Shield"},
         evos: ["N/A"],
         prevo: "N/A",
-
+  },
+  
 };
