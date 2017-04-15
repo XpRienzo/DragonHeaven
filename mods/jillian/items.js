@@ -320,5 +320,27 @@ exports.BattleItems = {
 			               return true;
 		           },
 		           desc: "If holder is a Flygon, this item allows it to Mega Evolve in battle.",
-         },     
+         }, 
+	"hydreigonite": {
+		           id: "hydreigonite",
+               name: "Hydreigonite",
+		           megaStone: "Hydreigon-Mega",
+		           megaEvolves: "Hydreigon",
+		                 onTakeItem: function(item, source) {
+			               if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			               return true;
+		           },
+		           desc: "If holder is a Hydreigon, this item allows it to Mega Evolve in battle.",
+	 }, 
+	"miloticanite": {
+		           id: "miloticanite",
+               name: "Miloticanite",
+		           megaStone: "Milotic-Mega",
+		           megaEvolves: "Milotic",
+		                 onTakeItem: function(item, source) {
+			               if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			               return true;
+		           },
+		           desc: "If holder is a Milotic, this item allows it to Mega Evolve in battle.",
+	 },	
 };        
