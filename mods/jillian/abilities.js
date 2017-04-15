@@ -103,7 +103,7 @@ exports.BattleAbilities = {
                      shortDesc: "On switch-in, this pokemon cures itself and its teammates of status",
                      onStart: function (pokemon)
 			      this.add('-ability', pokemon, 'Medicine'),
-                              this.useMove("Heal Bell", pokemon);
+                              this.useMove("healbell", pokemon);
                 }
             }
         },
@@ -122,12 +122,12 @@ exports.BattleAbilities = {
       id: "predator",
       name: "Predator",
       rating: 3,
-      },
+    },
 	"gatesofhell": {
 		       shortDesc: "On switch-in, this pokemon uses Curse and takes halved damage from Fairy type moves",
-	               },
+	              },
 		          onStart: function (pokemon) {
-			           this.useMove("Curse", pokemon);
+			           this.useMove("curse", pokemon);
 	     }
 		  onBasePowerPriority: 7,
 		  onSourceBasePower: function (basePower, attacker, defender, move) {
@@ -137,11 +137,11 @@ exports.BattleAbilities = {
       },
       id: "gatesofhell",
       name: "Gates of Hell",
-      rating: 3.5
-      },
+      rating: 3.5,
+     },
 	 "gatesofheaven": {
 		       shortDesc: "On switch-in, this pokemon heals back 1/3 of its max HP and takes halved damage from Dark type moves",
-	               },
+	              },
 			 onStart: function (pokemon) {
 			pokemon.heal(pokemon.maxhp / 3);
 	      }
@@ -153,7 +153,7 @@ exports.BattleAbilities = {
      },
      id: "gatesofheaven",
      name: "Gates of Heaven",
-     rating: 3.5
+     rating: 3.5,
      },
 	 "leadership": {
 		     shortDesc: "This Pokemon's attacks get a x1.3 power boost if it moves first in the turn"
@@ -167,7 +167,7 @@ exports.BattleAbilities = {
       },
       id: "leadership",
       name: "Leadership",
-      rating: 2
+      rating: 2,
       },
          "fiendishshield": {
 		            shortDesc: "This pokemon bounces back status moves to the user. Damage taken from sup.eff moves are reduced by 30%",
@@ -205,7 +205,7 @@ exports.BattleAbilities = {
 		},
                 id: "fiendishshield",
 	        name: "Fiendish Shield",
-	        rating: 3.5
+	        rating: 3.5,
 	 },
 	"heavenlyshield": {
 	             shortDesc: "Heals the user by 1/6 of its max HP per turn, reduces damage from sup.eff attacks by 30%"
@@ -224,7 +224,7 @@ exports.BattleAbilities = {
 		},
 	        id: "heavenlyshield",
 	        name: "Heavenly Shield",
-	        rating: 3.5
+	        rating: 3.5,
         },
 	"finalflicker": {
 		    shortDesc: "If the pokemon is Koed by a move, it uses Burn Up upon fainting",
@@ -232,30 +232,27 @@ exports.BattleAbilities = {
 		               onAfterDamageOrder: 1,
 		               onAfterDamage: function (damage, target, source, move) {
 			              if (source && source !== target && move && move.effectType === 'Move' && !target.hp) {
-		                      this.useMove("Burn Up", pokemon);
+		                      this.useMove("burnup", target);
 			  }
 		 },
-		 id: "finalflicker"
-		 name: "Final Flicker"
-		 rating: 4
+		 id: "finalflicker",
+		 name: "Final Flicker",
+		 rating: 4,
 	},
         "magnetism": {
 		 shortDesc: "On switch-in, this pokemon uses Magnet Rise, and its Electric type moves deals double damage to the foe",
 		             },
 		          onStart: function (pokemon) {
-			           this.useMove("Magnet Rise", pokemon);
+			           this.useMove("magnetrise", pokemon);
 			  }
                     },
-			onModifyDamage: function (damage, source, target, move) {
+			onBasePower: function (damage, source, target, move) {
 		             if (move.type === 'Electric') {
 		                this.debug('Magnetism boost');
 				return this.chainModify(2);
-	            },
-	            effect: {
-		       duration: 5,
-	        }
+	            }
 	},
 	id: "magnetism",
 	name: "Magnetism",
-	rating: 5		
+	rating: 5,		
 };                
