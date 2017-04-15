@@ -102,7 +102,6 @@ exports.BattleAbilities = {
                 "medicine": {
                      shortDesc: "On switch-in, this pokemon cures itself and its teammates of status",
                      onStart: function (pokemon)
-			      this.add('-ability', pokemon, 'Medicine'),
                               this.useMove("Heal Bell", pokemon);
                 }
             }
