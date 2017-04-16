@@ -22,7 +22,11 @@ exports.BattleStatuses = {
 		                    onWeather: function (target) {
                         let typeMod = this.clampIntRange(pokemon.runEffectiveness('Poison'), -6, 6);
 				                this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
-		                    },
+		                            },
+	
+	                           onImmunity: function (type) {
+                                                if (type === 'Poison') return false;
+				   },
 		                    onEnd: function () {
 			                   this.add('-weather', 'none');
 		                   },
