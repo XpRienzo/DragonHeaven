@@ -29,7 +29,7 @@ exports.BattleAbilities = {
 		          onModifyMove: function (move, pokemon) {
 			                if (move.type === 'Normal' && move.id !== 'naturalgift' && !move.isZ) {
 				                       move.type = 'Ground';
-				                       if (move.category !== 'Status') pokemon.addVolatile('punchilate');
+				                       if (move.category !== 'Status') pokemon.addVolatile('landinate');
 				}
 		},
 		effect: {
@@ -53,7 +53,7 @@ exports.BattleAbilities = {
 		rating: 3,
     },
 		       "goddessaura": {
-		            shortDesc: "This Pokemon's Special Attack is raised by 1 stage after it is damaged by a Dark-type move.",
+		            shortDesc: "This Pokemon's Special Attack is raised by 1 if damaged by a Dark-type move.",
 		            onAfterDamage: function (damage, target, source, effect) {
 			          if (effect && effect.type === 'Dark') {
 				        this.boost({spatk:1});
@@ -136,7 +136,7 @@ exports.BattleAbilities = {
       rating: 3.5,
      },
 	 "gatesofheaven": {
-		       shortDesc: "On switch-in, this pokemon heals back 1/3 of its max HP and takes halved damage from Dark type moves",
+		       shortDesc: "On switch-in, heals back 1/3 of max HP and takes halved damage from Dark type moves",
 	             
 			 onStart: function (pokemon) {
 			pokemon.heal(pokemon.maxhp / 3);
@@ -167,7 +167,7 @@ exports.BattleAbilities = {
       rating: 2,
       },
          "fiendishshield": {
-		            shortDesc: "This pokemon bounces back status moves to the user. Damage taken from sup.eff moves are reduced by 30%",
+		            shortDesc: "Bounces back status moves to the user. Damage from sup.eff moves - 30%",
 	                    
                           onTryHitPriority: 1,
 		          onTryHit: function (target, source, move) {
@@ -205,7 +205,7 @@ exports.BattleAbilities = {
 	        rating: 3.5,
 	 },
 	"heavenlyshield": {
-	             shortDesc: "Heals the user by 1/6 of its max HP per turn, reduces damage from sup.eff attacks by 30%",
+	             shortDesc: "Heals the user by 1/6 of its max HP per turn, damage from sup.eff attacks - 30%",
 	              
 				onResidualOrder: 5,
 		                onResidualSubOrder: 2,
@@ -237,7 +237,7 @@ exports.BattleAbilities = {
 		 rating: 4,
 	},
         "magnetism": {
-		 shortDesc: "On switch-in, this pokemon uses Magnet Rise, and its Electric type moves deals double damage to the foe",
+		 shortDesc: "On switch-in, uses Magnet Rise, and its Electric type moves x2 damage",
 		             
 		          onStart: function (pokemon) {
 			           this.useMove("Magnet Rise", pokemon);
@@ -251,5 +251,14 @@ exports.BattleAbilities = {
 	},
 	id: "magnetism",
 	name: "Magnetism",
-	rating: 5,		
+	rating: 5,
+        },
+	"toxicemanations": {
+		shortDesc: "On switch-in, this Pokemon summons Poisoned Scent.",       
+	        onStart: function (source) {
+			this.setWeather('poisonscent');
+		},
+		id: "toxicemanations",
+		name: "Toxic Emanations",
+		rating: 4.5,
 };                
