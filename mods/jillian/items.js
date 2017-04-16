@@ -343,4 +343,15 @@ exports.BattleItems = {
 		           },
 		           desc: "If holder is a Milotic, this item allows it to Mega Evolve in battle.",
 	 },	
+	"vileplumite": {
+		           id: "vileplumite",
+               name: "Vileplumite",
+		           megaStone: "Vileplume-Mega",
+		           megaEvolves: "Vileplume",
+		                 onTakeItem: function(item, source) {
+			               if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			               return true;
+		           },
+		           desc: "If holder is a Vileplume, this item allows it to Mega Evolve in battle.",
+	 },	
 };        
