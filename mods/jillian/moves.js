@@ -386,7 +386,7 @@ exports.BattleMovedex = {
                                    name: "Icicle Statue",
                                    pp: 5,
                                    priority: 0,
-                                   flags: {protect: 1, mirror 1},
+                                   flags: {protect: 1, mirror: 1},
                                    self: {
 			                 boosts: {
 				              spa: -2,
