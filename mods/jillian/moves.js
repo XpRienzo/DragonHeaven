@@ -687,7 +687,7 @@ exports.BattleMovedex = {
 		                  zMovePower: 185,
 		                  contestType: "Tough",
                       },
-	/* "megabeam": {
+	                "megabeam": {
 		                  accuracy: 85,
 		                  basePower: 110,
 		                  category: "Special",
@@ -700,17 +700,20 @@ exports.BattleMovedex = {
 		                  priority: 0,
 		                  flags: {protect: 1, mirror: 1},
                                    onEffectiveness: function (typeMod, type, move) {
-                                    if (target.hasType('Electric')) return 0;
-                            		{
-		                       secondary: {
-			                     chance: 20,
-			                     boosts: {
-				                   spd: -2,
-			                     },
+                                    if (target.hasType('Electric'));
+					   this.debug('Mega Beam boost');
+				           return this.chainModify(2);
+				          },
+				     },
+		                  secondary: {
+			                 chance: 20,
+			                 boosts: {
+				         spd: -2,
+			              },
 		                   },
 		                   target: "normal",
 		                   type: "Steel",
 		                   zMovePower: 190,
 		                   contestType: "Beautiful",
-	                   },  Can't fix this one you do et Spandan*/
+                                   },
 };
