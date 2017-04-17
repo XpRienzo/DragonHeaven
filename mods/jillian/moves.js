@@ -713,5 +713,5 @@ exports.BattleMovedex = {
 		                    type: "Steel",
 		                    zMovePower: 190,
 		                    contestType: "Beautiful",
-                                    },
+                            },
 };
