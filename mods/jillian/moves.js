@@ -25,7 +25,6 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 
 exports.BattleMovedex = {
                       "drainingminds": {
-		               num: 71,
 		               accuracy: 100,
 		               basePower: 80,
 		               category: "Special",
