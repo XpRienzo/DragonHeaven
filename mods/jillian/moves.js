@@ -24,7 +24,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 'use strict';
 
 exports.BattleMovedex = {
-                      "drainingminds": {
+                         "drainingminds": {
 		               accuracy: 100,
 		               basePower: 80,
 		               category: "Special",
@@ -62,8 +62,8 @@ exports.BattleMovedex = {
 		                type: "Water",
 		                zMovePower: 180,
 		                contestType: "Beautiful",
-                    },
-	            "magneticbeam": {
+                        },
+	                "magneticbeam": {
 		                accuracy: true,
 		                basePower: 0,
 		                category: "Status",
@@ -80,8 +80,8 @@ exports.BattleMovedex = {
 		                type: "Electric",
 		                zMoveBoost: {spe: 2},
 		                contestType: "Beautiful",
-                    },
-                    "fullpowered": {
+                        },
+                        "fullpowered": {
 		                accuracy: true,
 		                basePower: 0,
 		                category: "Status",
@@ -116,8 +116,8 @@ exports.BattleMovedex = {
 		                type: "Steel",
 		                zMoveBoost: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1},
 		                contestType: "Clever",
-                    },
-	            "icyteardrop": {
+                      },
+	              "icyteardrop": {
 		                accuracy: 100,
 		                basePower: 60,
 		                category: "Special",
@@ -138,8 +138,8 @@ exports.BattleMovedex = {
 		                type: "Ice",
 		                zMovePower: 120,
 		                contestType: "Cute",
-                   	},
-	                "shieldoftheforest": {
+                       },
+	               "shieldoftheforest": {
 		                accuracy: true,
 		                basePower: 0,
 		                category: "Status",
@@ -193,8 +193,8 @@ exports.BattleMovedex = {
 		                type: "Bug",
 		                zMoveBoost: {evasion: 1},
 		                contestType: "Tough",
-                     },
-	             "naturetricks": {
+                       },
+	               "naturetricks": {
 		                accuracy: 100,
 		                basePower: 80,
 		                category: "Physical",
@@ -260,8 +260,8 @@ exports.BattleMovedex = {
 		                type: "Water",
 		                zMoveEffect: 'clearnegativeboost',
 		                contestType: "Beautiful",
-		  },
-                  "electriccloud": {
+		     },
+                     "electriccloud": {
                                 accuracy: 95,
                                 basePower: 65,
                                 category: "Special",
@@ -713,5 +713,5 @@ exports.BattleMovedex = {
 		                    type: "Steel",
 		                    zMovePower: 190,
 		                    contestType: "Beautiful",
-                            },
+                             },
 };
