@@ -25,8 +25,7 @@ exports.BattleStatuses = {
 			if (pokemon.hasType('Steel'));
 				this.damage === 0;
 			elseif(pokemon.hasType('Poison'));
-			this.damage === 0;
-		}
+			        this.damage === 0;
 	},
 	onEnd: function() {
 		this.add('-weather', 'none');
