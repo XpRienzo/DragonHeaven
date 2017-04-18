@@ -21,11 +21,11 @@ exports.BattleStatuses = {
 		},
 		onWeather: function(target) {
 			let typeMod = this.clampIntRange(pokemon.runEffectiveness('Poison'), -6, 6);
+			this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
 			if (pokemon.hasType('Steel'))
 				this.damage === 0;
 			elseif(pokemon.hasType('Poison'))
 			this.damage === 0;
-			else this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
 		}
 	},
 	onEnd: function() {
