@@ -2623,6 +2623,26 @@ exports.Formats = [
 		},
 	},
 	{
+		name: "[Gen 7] Crippled",
+		desc: [
+			"Pokemon with a base HP of 80 or higher get their base stats halved.",
+ 		],
+		mod: 'gen7',
+		ruleset: ['[Gen 7] Ubers'],
+		onModifyTemplate: function (template, pokemon) {
+			let hp = 0;
+			Object.values(template.baseStats).forEach(stat => {
+				hp += stat;
+			});
+			if (hp >= 80) {
+				for (let i in template.baseStats) {
+					template.baseStats[i] *= 0.5;
+				}
+			}
+			return template;
+		},
+	},
+	{
 		name: "[Gen 7] All Terrain",
 		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/3596038/\">All Terrain</a>: All Terrain is a metagame in which all terrains are active permanently. Yes, Grassy, Electric, Misty and Psychic terrain are all active all at once."],
 		ruleset: ['[Gen 7] OU'],
