@@ -2066,6 +2066,16 @@ exports.Formats = [
 		banlist: ['Uber', 'Power Construct', 'Shadow Tag'],
 	},
 	{
+		name: "[Gen 7] OU Unrestricted",
+		desc: [
+			"&bullet; OU based metagame without the typical clauses and ability/item/move bans. OU Pokemon Banlist (Ubers) still apply.",
+		],
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Team Preview'],
+		banlist: ['Uber'],
+	},
+	{
 		name: "[Gen 7] Ubers",
 		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3587184/\">Ubers Metagame Discussion</a>"],
 
@@ -2329,6 +2339,24 @@ exports.Formats = [
 		mod: 'gen7',
 		teamLength: {
 			validate: [1, 3],
+			battle: 1,
+		},
+		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		banlist: [
+			'Illegal', 'Unreleased', 'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre',
+			'Kyurem-White', 'Lugia', 'Lunala', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+			'Power Construct', 'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss',
+		],
+	},
+	{
+		name: "[Gen 7] 1v1 Full Team",
+		desc: [
+			"Bring six Pok&eacute;mon to Team Preview and choose one to battle.",
+		],
+
+		mod: 'gen7',
+		teamLength: {
+			validate: [1, 6],
 			battle: 1,
 		},
 		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
