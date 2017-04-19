@@ -651,7 +651,7 @@ exports.BattleMovedex = {
 			status: 'slp',
 			target: "allAdjacentFoes",
 		},
-		type: "Normal",
+		type: "Fairy",
 		zMovePower: 140,
 		contestType: "Beautiful",
 	},
@@ -678,7 +678,7 @@ exports.BattleMovedex = {
 			}
 		},
 		secondary: {
-			chance: 30,
+			chance: 20,
 			volatileStatus: 'confusion',
 		},
 		target: "any",
@@ -688,26 +688,21 @@ exports.BattleMovedex = {
 	},
 	"megabeam": {
 		accuracy: 85,
-		basePower: 110,
+		basePower: 95,
 		category: "Special",
-		desc: "Has a 20% chance to lower the target's Special Defense by 2 stages. It also hits Electric types for double damage",
-		shortDesc: "20% chance to lower the target's Sp. Def by 2. x2 damage on Electric",
+		desc: "Has a 30% chance to lower the target's Special Defense by 3 stages",
+		shortDesc: "30% chance to lower the target's Sp. Def by 3.",
 		id: "megabeam",
 		isViable: true,
 		name: "Mega Beam",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onModifyDamage: function(damage, source, target, move) {
-			if (target.hasType('Electric'));
-			this.debug('Mega Beam boost');
-			return this.chainModify(2);
 		},
 		secondary: {
-			chance: 20,
+			chance: 30,
 			boosts: {
-				spd: -2,
-			}
+				spd: -3,
 		},
 		target: "normal",
 		type: "Steel",
