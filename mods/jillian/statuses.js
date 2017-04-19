@@ -22,10 +22,6 @@ exports.BattleStatuses = {
 		onWeather: function(target) {
 			let typeMod = this.clampIntRange(target.runEffectiveness('Poison'), -6, 6);
 			this.damage(target.maxhp * Math.pow(2, typeMod) / 8);
-			if (target.hasType('Steel'));
-				this.damage === 0;
-			else if(target.hasType('Poison'));
-			        this.damage === 0;
 	},
 	onEnd: function() {
 		this.add('-weather', 'none');
