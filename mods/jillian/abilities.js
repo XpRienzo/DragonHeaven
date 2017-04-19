@@ -263,5 +263,5 @@ exports.BattleAbilities = {
 	id: "magnetism",
 	name: "Magnetism",
 	rating: 5,
-},
+    },
 };
