@@ -318,7 +318,7 @@ exports.BattleTypeChart = {
 	},
 	"Poison": {
 		damageTaken: {
-      poisonscent: 3,
+                        poisonscent: 3,
 			psn: 3,
 			tox: 3,
 			"Bug": 2,
@@ -394,7 +394,7 @@ exports.BattleTypeChart = {
 	},
 	"Steel": {
 		damageTaken: {
-      poisonscent: 3,
+                        poisonscent: 3,
 			psn: 3,
 			tox: 3,
 			sandstorm: 3,
