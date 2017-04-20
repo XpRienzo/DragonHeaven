@@ -143,7 +143,7 @@ exports.BattleMovedex = {
 		basePower: 0,
 		category: "Status",
 		desc: "Raises Defense and Special Defense of the user by 2 stages each, lowers Attack, Special Attack and Speed of the user by 1 stage each",
-		shortDesc: "Raises Def and SpD by 2, lowers Atk, SpA and Spe by 1.",
+		shortDesc: "+ Def and SpD by 2. -Atk, SpA and Spe by 1.",
 		id: "shieldoftheforest",
 		isViable: true,
 		name: "Shield of the Forest",
@@ -163,53 +163,21 @@ exports.BattleMovedex = {
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Tough",
 	},
-	"marabunta": {
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		desc: "Sets up a hazard on the foe's side of the field, damaging the foe according to their weakness to Bug and lowering the evasion by 1 stage of each foe that switches in, unless it is a Flying-type Pokemon or has the Ability Levitate. Can be used only once before failing. Can be removed from the foe's side if any foe uses Rapid Spin or Defog, or is hit by Defog.",
-		shortDesc: "Lowers evasion of grounded foes by 1 on switch-in, damages grounded foes, factoring Bug weakness.",
-		id: "marabunta",
-		isViable: true,
-		name: "Marabunta",
-		pp: 20,
-		priority: 0,
-		flags: {reflectable: 1},
-		sideCondition: 'marabunta',
-		effect: {
-			onStart: function(side) {
-				this.add('-sidestart', side, 'move: Marabunta');
-			},
-			onSwitchIn: function(pokemon) {
-				if (!pokemon.isGrounded()) return;
-				this.add('-activate', pokemon, 'move: Marabunta');
-				let typeMod = this.clampIntRange(pokemon.runEffectiveness('Bug'), -6, 6);
-				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
-				this.boost({
-					evasion: -1
-				}, pokemon, pokemon.side.foe.active[0], this.getMove('marabunta'));
-			},
-			secondary: false,
-			target: "foeSide",
-			type: "Bug",
-			zMoveBoost: {evasion: 1},
-			contestType: "Tough",
-		},
-		"naturetricks": {
-			accuracy: 100,
-			basePower: 80,
-			category: "Physical",
-			desc: "Has a 20% chance to flinch the target.",
-			shortDesc: "20% chance to flinch the target.",
-			id: "naturetricks",
-			name: "Nature Tricks",
-			pp: 15,
-			priority: 0,
-			flags: {contact: 1, protect: 1, mirror: 1},
-			secondary: {
-				chance: 20,
-				volatileStatus: 'flinch',
-			}
+	"naturetricks": {
+	         accuracy: 100,
+		 basePower: 80,
+		 category: "Physical",
+		 desc: "Has a 20% chance to flinch the target.",
+		 shortDesc: "20% chance to flinch the target.",
+		 id: "naturetricks",
+		 name: "Nature Tricks",
+		 pp: 15,
+		 priority: 0,
+		 flags: {contact: 1, protect: 1, mirror: 1},
+		 secondary: {
+			chance: 20,
+			volatileStatus: 'flinch',
+		     }
 		},
 		target: "normal",
 		type: "Grass",
@@ -655,6 +623,61 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Beautiful",
 	},
+	"megabeam": {
+		accuracy: 85,
+		basePower: 95,
+		category: "Special",
+		desc: "Has a 30% chance to lower the target's Special Defense by 3 stages",
+		shortDesc: "30% chance to lower the target's Sp. Def by 3.",
+		id: "megabeam",
+		isViable: true,
+		name: "Mega Beam",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		},
+		secondary: {
+			chance: 30,
+			boosts: {
+				spd: -3,
+		},
+		target: "normal",
+		type: "Steel",
+		zMovePower: 190,
+		contestType: "Beautiful",
+	},
+	"marabunta": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the foe's side of the field, damaging the foe according to their weakness to Bug and lowering the evasion by 1 stage of each foe that switches in, unless it is a Flying-type Pokemon or has the Ability Levitate. Can be used only once before failing. Can be removed from the foe's side if any foe uses Rapid Spin or Defog, or is hit by Defog.",
+		shortDesc: "Lowers evasion of grounded foes by 1 on switch-in, damages grounded foes, factoring Bug weakness.",
+		id: "marabunta",
+		isViable: true,
+		name: "Marabunta",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1},
+		sideCondition: 'marabunta',
+		effect: {
+			onStart: function(side) {
+				this.add('-sidestart', side, 'move: Marabunta');
+			},
+			onSwitchIn: function(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				this.add('-activate', pokemon, 'move: Marabunta');
+				let typeMod = this.clampIntRange(pokemon.runEffectiveness('Bug'), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+				this.boost({
+					evasion: -1
+				}, pokemon, pokemon.side.foe.active[0], this.getMove('marabunta'));
+			},
+		secondary: false,
+		target: "foeSide",
+		type: "Bug",
+		zMoveBoost: {evasion: 1},
+		contestType: "Tough",
+	},
 	"skywarth": {
 		accuracy: 70,
 		basePower: 110,
@@ -685,28 +708,5 @@ exports.BattleMovedex = {
 		type: "Flying",
 		zMovePower: 185,
 		contestType: "Tough",
-	},
-	"megabeam": {
-		accuracy: 85,
-		basePower: 95,
-		category: "Special",
-		desc: "Has a 30% chance to lower the target's Special Defense by 3 stages",
-		shortDesc: "30% chance to lower the target's Sp. Def by 3.",
-		id: "megabeam",
-		isViable: true,
-		name: "Mega Beam",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		},
-		secondary: {
-			chance: 30,
-			boosts: {
-				spd: -3,
-		},
-		target: "normal",
-		type: "Steel",
-		zMovePower: 190,
-		contestType: "Beautiful",
 	},
 };
