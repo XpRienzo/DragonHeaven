@@ -88,8 +88,8 @@ exports.BattleMovedex = {
 		type: "Psychic",
 		zMovePower: 200,
 		contestType: "Cool",
-	},
-	"Tundra Sweep": {
+      },
+      "Tundra Sweep": {
 		accuracy: true,
 		basePower: 110,
 		category: "Special",
