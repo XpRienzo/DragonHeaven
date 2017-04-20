@@ -678,15 +678,15 @@ exports.BattleMovedex = {
 		zMoveBoost: {evasion: 1},
 		contestType: "Tough",
 	},
-	"skywarth": {
+	"skywrath": {
 		accuracy: 70,
 		basePower: 110,
 		category: "Special",
 		desc: "Has a 20% chance to confuse the target. This move can hit a target using Bounce, Fly, or Sky Drop. If the weather is Rain Dance, this move does not check accuracy. If the weather is Sunny Day, this move's accuracy is 50%, lands Rain on hit",
 		shortDesc: "20% confuse chance, Rain no miss, Land Rain",
-		id: "skywarth",
+		id: "skywrath",
 		isViable: true,
-		name: "Sky Warth",
+		name: "Sky Wrath",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, distance: 1},
