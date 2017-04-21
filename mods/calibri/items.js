@@ -42,3 +42,4 @@ exports.BattleItems = {
 		gen: 6,
 		desc: "Holder's Defense is 2x, but it can only select the first move it executes.",
 	},
+};
