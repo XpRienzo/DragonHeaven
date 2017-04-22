@@ -101,7 +101,7 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Dragon",
 	},
-	zransei: {
+	"zransei": {
 		shortDesc: "Mega evolves Ransei",
 		accuracy: 100,
 		basePower: 300,
@@ -154,28 +154,26 @@ exports.BattleMovedex = {
 		type: "Fighting",
 		contestType: "Tough",
 	},
-	"mythicform": {
-		category: "Status",
-		id: "mythicform",
-		name: "Mythic Form",
-		pp: 20,
+	"eradicate": {
+		accuracy: 75,
+		basePower: 145,
+		category: "Physical",
+		desc: "This move combines Ground in its type effectiveness against the target. Damage doubles and no accuracy check is done if the target has used Minimize while active.",
+		shortDesc: "Combines Ground in type effectiveness. 33% Recoil.",
+		id: "eradicate",
+		name: "Eradicate",
+		pp: 5,
+		flags: {contact: 1, protect: 1, mirror: 1, gravity: 1, distance: 1, nonsky: 1},
+	        recoil: [1, 3],
+		onEffectiveness: function (typeMod, type, move) {
+			return typeMod + this.getEffectiveness('Ground', type);
+		},
 		priority: 0,
-		effect: {
-			onStart: function (side) {
-				if (side.pokemon[0].hasType('Dragon')) return false;
-				side.pokemon[0].addType('Dragon');
-				this.add('-start', side.pokemon[0], 'typeadd', 'Dragon', '[from] move: Mythic Form');
-			},
-		},
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "Recover", target);
-			this.add('-anim', source, "Wish", target);
-		},
 		secondary: false,
-		target: "self",
+		target: "allAdjacent",
 		type: "Dragon",
-		contestType: "Clever",
+		zMovePower: 200,
+		contestType: "Cool",
 	},
 	"totalannhilation": {
 		accuracy: true,
