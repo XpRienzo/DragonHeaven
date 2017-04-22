@@ -118,7 +118,31 @@ exports.BattleMovedex = {
 		type: "Ice",
 		zMovePower: 135,
 		contestType: "Beautiful",
-	},
-    
+    },
+    "narrowfang": {
+		num: 1004,
+		accuracy: 90,
+		basePower: 85,
+		category: "Physical",
+		desc: "Lowers the target's Attack, Special Attack, and Speed by 1 stage if the target is poisoned. Fails if the target is not poisoned.",
+		shortDesc: "x1.3 damage if the target is burned.",
+		id: "narrowfang",
+		name: "Narrow Fang",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, contact: 1, mirror: 1},
+		onHit: function (target, source, move) {
+			if (target.status === 'brn' || target.status === 'brn') {
+				return this.chainModify(1.3);
+			}
+			return false;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Steel",
+		zMovePower: 140,
+		contestType: "Tough",
+    },
+       
 };
 	    
