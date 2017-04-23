@@ -827,4 +827,4 @@ exports.BattleMovedex = {
 		zMovePower: 185,
 		contestType: "Beautiful",
 	},
-};		
+};
