@@ -43,10 +43,10 @@ exports.BattleStatuses = {
 		this.add('-weather', 'Poop Time Bomb', '[upkeep]');
 		if (this.isWeather('Poop Time Bomb')) this.eachEvent('Weather');
 	},
-	onEnd: function() {
-		this.add('-weather', 'none');
-	},
         onEnd: function (target) {
 	target.faint();
+	},
+	onEnd: function() {
+		this.add('-weather', 'none');
 	},
 };
