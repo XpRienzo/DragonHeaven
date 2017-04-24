@@ -294,7 +294,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {},
-		weather: 'poisonedscent',
+		weather: 'poisonscent',
 		secondary: false,
 		target: "all",
 		type: "Poison",
