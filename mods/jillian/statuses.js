@@ -19,7 +19,7 @@ exports.BattleStatuses = {
 		this.add('-weather', 'Poison Scent', '[upkeep]');
 		if (this.isWeather('Poison Scent')) this.eachEvent('Weather');
 	},
-	onWeather: function(target) {
+	onWeather: function (target) {
 		let typeMod = this.clampIntRange(target.runEffectiveness('Poison'), -6, 6);
 		this.damage(target.maxhp * Math.pow(2, typeMod) / 8);
 	},
