@@ -2,7 +2,7 @@
 
 exports.BattleStatuses = {
 
-	"poisonscent": {
+	poisonscent: {
 		effectType: 'Weather',
 		duration: 5,
 	},
@@ -26,22 +26,22 @@ exports.BattleStatuses = {
 	onEnd: function() {
 		this.add('-weather', 'none');
 	},
-        "pooptimebomb": {
+        poopytimebomb: {
 	         effectType: 'Weather',
 	         duration: 3,
         },
 	onStart: function(battle, source, effect) {
 		if (effect && effect.effectType === 'Ability') {
 			if (this.gen <= 5) this.effectData.duration = 0;
-			this.add('-weather', 'Poop Time Bomb', '[from] ability: ' + effect, '[of] ' + source);
+			this.add('-weather', 'Poopy Time Bomb', '[from] ability: ' + effect, '[of] ' + source);
 		} else {
-			this.add('-weather', 'Poop Time Bomb');
+			this.add('-weather', 'Poopy Time Bomb');
 		}
 	},
         onResidualOrder: 1,
 	onResidual: function() {
-		this.add('-weather', 'Poop Time Bomb', '[upkeep]');
-		if (this.isWeather('Poop Time Bomb')) this.eachEvent('Weather');
+		this.add('-weather', 'Poopy Time Bomb', '[upkeep]');
+		if (this.isWeather('Poopy Time Bomb')) this.eachEvent('Weather');
 	},
         onEnd: function (target) {
 	target.faint();
