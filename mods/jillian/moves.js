@@ -484,11 +484,11 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {snatch: 1},
 		onHit: function(target) {
-			if (target.hp <= target.maxhp / 2 || target.boosts.spatk >= 6 || target.boosts.spe >= 6 || target.maxhp === 1) { // Shedinja clause
+			if (target.hp <= target.maxhp / 2 || target.boosts.spa >= 6 || target.boosts.spe >= 6 || target.maxhp === 1) { // Shedinja clause
 				return false;
 			}
 			this.directDamage(target.maxhp / 2);
-			this.boost({spatk: 12, spe: 12}, target);
+			this.boost({spa: 12, spe: 12}, target);
 		},
 		secondary: false,
 		target: "self",
