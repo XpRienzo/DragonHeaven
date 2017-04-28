@@ -253,7 +253,7 @@ exports.BattleAbilities = {
 	id: "magnetism",
 	name: "Magnetism",
 	rating: 5,
-    },
+        },
 	"toxicemanations": {
 		shortDesc: "On switch-in, this Pokemon summons Poisoned Scent.",
 		onStart: function(source) {
@@ -262,5 +262,38 @@ exports.BattleAbilities = {
 		id: "toxicemanations",
 		name: "Toxic Emanations",
 		rating: 4.5,
-	},
+        },
+        "brushrusher": {
+		shortDesc: "If Grassy Terrain is active, this Pokemon's Speed is doubled.",
+		onModifySpe: function (spe) {
+			if (this.isTerrain('grassyterrain')) {
+				return this.chainModify(2);
+			}
+		},
+		id: "brushrusher",
+		name: "Brush Rusher",
+		rating: 2,
+        },
+	"mistskimmer": {
+		shortDesc: "If Misty Terrain is active, this Pokemon's Speed is doubled.",
+		onModifySpe: function (spe) {
+			if (this.isTerrain('mistyterrain')) {
+				return this.chainModify(2);
+			}
+		},
+		id: "mistskimmer",
+		name: "Mist Skimmer",
+		rating: 2,
+        },
+	"miracledash": {
+		shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
+		onModifySpe: function (spe) {
+			if (this.isTerrain('psychicterrain')) {
+				return this.chainModify(2);
+			}
+		},
+		id: "miracledash",
+		name: "Miracle Dash",
+		rating: 4,
+        },	
 };
