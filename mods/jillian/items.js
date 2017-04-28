@@ -354,4 +354,126 @@ exports.BattleItems = {
 		},
 		desc: "If holder is a Vileplume, this item allows it to Mega Evolve in battle.",
 	},
+	"trickystone": {
+		id: "trickystone",
+		name: "Tricky Stone",
+		fling: {
+			basePower: 60,
+		},
+		gen: 7,
+		desc: "Holder's use of Trick Room lasts 8 turns instead of 5.",
+	},
+	"magicstone": {
+		id: "magicstone",
+		name: "Magic Stone",
+		fling: {
+			basePower: 60,
+		},
+		gen: 7,
+		desc: "Holder's use of Magic Room lasts 8 turns instead of 5.",
+	},
+	"wonderstone": {
+		id: "wonderstone",
+		name: "Wonder Stone",
+		fling: {
+			basePower: 60,
+		},
+		gen: 7,
+		desc: "Holder's use of Wonder Room lasts 8 turns instead of 5.",
+	},
+	"toxicrock": {
+		id: "toxicrock",
+		name: "Toxic Rock",
+		fling: {
+			basePower: 40,
+		},
+		gen: 7,
+		desc: "Holder's use of Poison Scent lasts 8 turns instead of 5.",
+	},
+	"assaultsword": {
+		id: "assaultsword",
+		name: "Assault Sword",
+		fling: {
+			basePower: 80,
+		},
+		onModifySpDPriority: 1,
+		onModifySpD: function (atk) {
+			return this.chainModify(1.5);
+		},
+		onDisableMove: function (pokemon) {
+			let moves = pokemon.moveset;
+			for (let i = 0; i < moves.length; i++) {
+				if (this.getMove(moves[i].move).category === 'Status') {
+					pokemon.disableMove(moves[i].id);
+				}
+			}
+		},
+		gen: 7,
+		desc: "Holder's Atk is 1.5x, but it can only select damaging moves.",
+	},
+	"assaultshield": {
+		id: "assaultshield",
+		name: "Assault Shield",
+		fling: {
+			basePower: 80,
+		},
+		onModifySpDPriority: 1,
+		onModifySpD: function (def) {
+			return this.chainModify(1.5);
+		},
+		onDisableMove: function (pokemon) {
+			let moves = pokemon.moveset;
+			for (let i = 0; i < moves.length; i++) {
+				if (this.getMove(moves[i].move).category === 'Status') {
+					pokemon.disableMove(moves[i].id);
+				}
+			}
+		},
+		gen: 7,
+		desc: "Holder's Def is 1.5x, but it can only select damaging moves.",
+	},
+	"assaultshoes": {
+		id: "assaultshoes",
+		name: "Assault Shoes",
+		fling: {
+			basePower: 80,
+		},
+		onModifySpDPriority: 1,
+		onModifySpD: function (spe) {
+			return this.chainModify(1.5);
+		},
+		onDisableMove: function (pokemon) {
+			let moves = pokemon.moveset;
+			for (let i = 0; i < moves.length; i++) {
+				if (this.getMove(moves[i].move).category === 'Status') {
+					pokemon.disableMove(moves[i].id);
+				}
+			}
+		},
+		gen: 7,
+		desc: "Holder's Speed is 1.5x, but it can only select damaging moves.",
+	},
+	"assaultwand": {
+		id: "assaultwand",
+		name: "Assault Wand",
+		spritenum: 581,
+		fling: {
+			basePower: 80,
+		},
+		onModifySpDPriority: 1,
+		onModifySpD: function (spa) {
+			return this.chainModify(1.5);
+		},
+		onDisableMove: function (pokemon) {
+			let moves = pokemon.moveset;
+			for (let i = 0; i < moves.length; i++) {
+				if (this.getMove(moves[i].move).category === 'Status') {
+					pokemon.disableMove(moves[i].id);
+				}
+			}
+		},
+		num: 640,
+		gen: 6,
+		desc: "Holder's Sp. Atk is 1.5x, but it can only select damaging moves.",
+	},	
 };
