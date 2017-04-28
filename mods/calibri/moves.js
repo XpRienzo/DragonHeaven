@@ -143,6 +143,89 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Tough",
     },
+    "heavysuplex": {
+		num: 1005,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		desc: "This move combines Fighting in its type effectiveness against the target. Damage doubles and no accuracy check is done if the target has used Minimize while active.",
+		shortDesc: "Combines Fighting in type effectiveness. 1/5 Recoil.",
+		id: "heavysuplex",
+		name: "Heavy Suplex",
+		pp: 10,
+		flags: {contact: 1, protect: 1, mirror: 1},
+	        recoil: [1, 5],
+		onEffectiveness: function (typeMod, type, move) {
+			return typeMod + this.getEffectiveness('Fighting', type);
+		},
+		priority: 0,
+		secondary: false,
+		target: "allAdjacent",
+		type: "Normal",
+		zMovePower: 165,
+		contestType: "Tough",
+    },
+    "webbedterrain": {
+		num: 1006,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "For 5 turns, the terrain becomes Webbed Terrain. During the effect, the power of Bug-type attacks made by grounded Pokemon is multiplied by 1.5 and grounded Pokemon cannot be paralyzed; Pokemon already pararlyzed are not cured. Camouflage transforms the user into an Bug type, Nature Power becomes X-Scissor, and Secret Power has a 30% chance to cause paralysis. Fails if the current terrain is Webbed Terrain.",
+		shortDesc: "5 turns. Grounded: +Bug power, can't be paralyzed.",
+		id: "webbedterrain",
+		name: "Webbed Terrain",
+		pp: 20,
+		priority: 0,
+		flags: {nonsky: 1},
+		terrain: 'webbedterrain',
+		effect: {
+			duration: 5,
+			durationCallback: function (source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onSetStatus: function (status, target, source, effect) {
+				if (status.id === 'slp' && target.isGrounded() && !target.isSemiInvulnerable()) {
+					if (effect.effectType === 'Move' && !effect.secondaries) {
+						this.add('-activate', target, 'move: Webbed Terrain');
+					}
+					return false;
+				}
+			},
+			onTryAddVolatile: function (status, target) {
+				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
+				if (status.id === 'yawn') {
+					this.add('-activate', target, 'move: Webbed Terrain');
+					return null;
+				}
+			},
+			onBasePower: function (basePower, attacker, defender, move) {
+				if (move.type === 'Bug' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					this.debug('webbed terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onStart: function (battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Webbed Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Webbed Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd: function () {
+				this.add('-fieldend', 'move: Webbed Terrain');
+			},
+		},
+		secondary: false,
+		target: "all",
+		type: "Bug",
+		zMoveBoost: {spe: 2},
+		contestType: "Clever",
+	},
        
 };
 	    
