@@ -9,15 +9,15 @@ exports.BattleStatuses = {
 	onStart: function(battle, source, effect) {
 		if (effect && effect.effectType === 'Ability') {
 			if (this.gen <= 5) this.effectData.duration = 0;
-			this.add('-weather', 'Poison Scent', '[from] ability: ' + effect, '[of] ' + source);
+			this.add('-weather', 'PoisonScent', '[from] ability: ' + effect, '[of] ' + source);
 		} else {
-			this.add('-weather', 'Poison Scent');
+			this.add('-weather', 'PoisonScent');
 		}
 	},
 	onResidualOrder: 1,
 	onResidual: function() {
-		this.add('-weather', 'Poison Scent', '[upkeep]');
-		if (this.isWeather('Poison Scent')) this.eachEvent('Weather');
+		this.add('-weather', 'PoisonScent', '[upkeep]');
+		if (this.isWeather('PoisonScent')) this.eachEvent('Weather');
 	},
 	onWeather: function (target) {
 		let typeMod = this.clampIntRange(target.runEffectiveness('Poison'), -6, 6);
@@ -33,15 +33,15 @@ exports.BattleStatuses = {
 	onStart: function(battle, source, effect) {
 		if (effect && effect.effectType === 'Ability') {
 			if (this.gen <= 5) this.effectData.duration = 0;
-			this.add('-weather', 'Poopy Time Bomb', '[from] ability: ' + effect, '[of] ' + source);
+			this.add('-weather', 'PoopyTimeBomb', '[from] ability: ' + effect, '[of] ' + source);
 		} else {
-			this.add('-weather', 'Poopy Time Bomb');
+			this.add('-weather', 'PoopyTimeBomb');
 		}
 	},
         onResidualOrder: 1,
 	onResidual: function() {
-		this.add('-weather', 'Poopy Time Bomb', '[upkeep]');
-		if (this.isWeather('Poopy Time Bomb')) this.eachEvent('Weather');
+		this.add('-weather', 'PoopyTimeBomb', '[upkeep]');
+		if (this.isWeather('PoopyTimeBomb')) this.eachEvent('Weather');
 	},
         onEnd: function (target) {
 	target.faint();
