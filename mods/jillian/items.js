@@ -396,8 +396,8 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
-		onModifySpDPriority: 1,
-		onModifySpD: function (atk) {
+		onModifyAtkPriority: 1,
+		onModifyAtk: function (atk) {
 			return this.chainModify(1.5);
 		},
 		onDisableMove: function (pokemon) {
@@ -417,8 +417,8 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
-		onModifySpDPriority: 1,
-		onModifySpD: function (def) {
+		onModifyDefPriority: 1,
+		onModifyDef: function (def) {
 			return this.chainModify(1.5);
 		},
 		onDisableMove: function (pokemon) {
@@ -438,8 +438,8 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
-		onModifySpDPriority: 1,
-		onModifySpD: function (spe) {
+		onModifySpePriority: 1,
+		onModifySpe: function (spe) {
 			return this.chainModify(1.5);
 		},
 		onDisableMove: function (pokemon) {
@@ -456,12 +456,11 @@ exports.BattleItems = {
 	"assaultwand": {
 		id: "assaultwand",
 		name: "Assault Wand",
-		spritenum: 581,
 		fling: {
 			basePower: 80,
 		},
-		onModifySpDPriority: 1,
-		onModifySpD: function (spa) {
+		onModifySpAPriority: 1,
+		onModifySpA: function (spa) {
 			return this.chainModify(1.5);
 		},
 		onDisableMove: function (pokemon) {
