@@ -638,7 +638,7 @@ exports.BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Dragon"],
-		baseStats: {hp: 76, atk: 157, def: 120, spa: 80, spd: 90, spe: 127},
+		baseStats: {hp: 76, atk: 157, def: 120, spa: 70, spd: 90, spe: 127},
 		abilities: {0: "Dragon Force"},
         },
      mienshao: {
@@ -683,7 +683,7 @@ exports.BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Psychic", "Fairy"],
-		baseStats: {hp: 70, atk: 55, def: 125, spa: 130, spd: 110, spe: 90},
+		baseStats: {hp: 70, atk: 55, def: 125, spa: 130, spd: 110, spe: 100},
 		abilities: {0: "Goddess Aura"},
         },
      magnezone: {
@@ -743,7 +743,7 @@ exports.BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Dark", "Steel"],
-		baseStats: {hp: 65, atk: 155, def: 110, spa: 60, spd: 70, spe: 110},
+		baseStats: {hp: 65, atk: 155, def: 110, spa: 60, spd: 70, spe: 130},
 		abilities: {0: "Cold Blood"},
          },
      weavile: {
@@ -817,7 +817,7 @@ exports.BattlePokedex = {
 		baseSpecies: "Chandelure",
 		forme: "Mega",
 		formeLetter: "M",
-		types: ["Fire", "Ghost"],
+		types: ["Ghost", "Fire"],
 		baseStats: {hp: 60, atk: 55, def: 120, spa: 165, spd: 110, spe: 110},
 		abilities: {0: "Final Flicker"}, 
          },
@@ -878,7 +878,7 @@ exports.BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Dragon", "Dark"],
-		baseStats: {hp: 77, atk: 150, def: 110, spa: 85, spd: 90, spe: 83},
+		baseStats: {hp: 77, atk: 150, def: 110, spa: 75, spd: 90, spe: 83},
 		abilities: {0: "Predator"}, 
           },
      corsola: {
