@@ -968,7 +968,7 @@ exports.BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Water", "Dark"],
-		baseStats: {hp: 85, atk: 155, def: 120, spa: 89, spd: 83, spe: 108},
+		baseStats: {hp: 85, atk: 155, def: 120, spa: 79, spd: 83, spe: 108},
 		abilities: {0: "Sheer Force"}, 
           }, 
      florges: {
