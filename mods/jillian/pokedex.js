@@ -124,7 +124,7 @@ exports.BattlePokedex = {
         species: "Butternian",
         types: ["Bug", "Psychic"],
         baseStats: {hp: 82, atk: 65, def: 54, spa: 101, spd: 120, spe: 95},
-        abilities: {0: "Titend Lens", H: "Adaptability"},
+        abilities: {0: "Tinted Lens", H: "Adaptability"},
         prevo: "cocoonian",
         },
    menebrus: {
@@ -999,7 +999,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Bug", "Dragon"],
 		baseStats: {hp: 80, atk: 135, def: 100, spa: 100, spd: 80, spe: 125},
-		abilities: {0: "Titend Lens"}, 
+		abilities: {0: "Tinted Lens"}, 
          },
      hydreigon: {
 		inherit: true,
