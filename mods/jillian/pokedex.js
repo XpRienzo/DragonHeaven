@@ -908,7 +908,7 @@ exports.BattlePokedex = {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Psychic", "Fairy"],
-		baseStats: {hp: 75, atk: 50, def: 80, spa: 145, spd: 90, spe: 110},
+		baseStats: {hp: 75, atk: 50, def: 80, spa: 145, spd: 90, spe: 115},
 		abilities: {0: "Pixilate"}, 
            },
      seviper: {
