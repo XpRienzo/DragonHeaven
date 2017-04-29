@@ -1473,7 +1473,7 @@ exports.BattlePokedex = {
 		formeLetter: "J",
 		types: ["Water", "Fairy"],
 		genderRatio: {M: 0.875, F: 0.125},
-		baseStats: {hp: 75, atk: 93, def: 53, spa: 113, spd: 63, spe: 101},
+		baseStats: {hp: 75, atk: 93, def: 56, spa: 113, spd: 60, spe: 101},
 		abilities: {0: "Mist Skimmer"},
 		heightm: 1,
 		weightkg: 29,
