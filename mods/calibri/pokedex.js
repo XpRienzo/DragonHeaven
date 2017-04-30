@@ -26,6 +26,10 @@ exports.BattlePokedex = {
         baseStats: {hp: 70, atk: 115, def: 135, spa: 15, spd: 85, spe: 40},
         abilities: {0: "Skill Link"},
         prevo: "Sudowoodo",
+	heightm: 0.95,
+	weightkg: 141,
+	color: "Brown",
+	formeLetter: "M",
   },
   charizardmegaz: {
         num: 6,
@@ -34,6 +38,10 @@ exports.BattlePokedex = {
         baseStats: {hp: 78, atk: 94, def: 118, spa: 99, spd: 135, spe: 96},
         abilities: {0: "Arena Trap"},
         prevo: "Charizard",
+	formeLetter: "M",
+	heightm: 2.3,
+	weightkg: 120,
+	color: "Red",
   },
   kinglercalibri: {
         num: 99,
@@ -76,13 +84,27 @@ exports.BattlePokedex = {
         species: "Tropius-Mega",
 	formeLetter: "M",
         types: ["Grass","Flying"],
-        baseStats: {hp: 99, atk: 68, def: 93, spa: 72, spd: 97, spe: 131},
+        baseStats: {hp: 99, atk: 68, def: 98, spa: 72, spd: 102, spe: 121},
         abilities: {0: "Air Lock"},
 	prevo: "Tropius",
 	baseSpecies: "Tropius",
 	heightm: 3.5,
 	weightkg: 203,
 	color: "Green",
+  },
+  zebstrikamega: {
+	num: 523,
+	species: "Zebstrika-Mega",
+	formeLetter: "M",
+	types: ["Electric","Poison"],
+	baseStats: {hp: 75, atk: 135, def: 83, spa: 90, spd: 83, spe: 131},
+	abilities: {0: "Magnetism"},
+	prevo: "Zebstrika",
+        baseSpecies: "Zebstrika",
+	heightm: 1.9,
+	weightkg: 84.1,
+	color: "Black",
+	
   },
   dinodrill: {
         num: 696,
@@ -91,6 +113,9 @@ exports.BattlePokedex = {
         baseStats: {hp: 43, atk: 70, def: 70, spa: 41, spd: 30, spe: 83},
         abilities: {0: "Mold Breaker", H: "Solid Rock"},
         evos: ["collosodrill"],
+        color: "Gray",
+	heightm: 0.81,
+	weightkg: 112,
   },
   collosodrill: {
         num: 697,
@@ -99,6 +124,10 @@ exports.BattlePokedex = {
         baseStats: {hp: 55, atk: 100, def: 99, spa: 67, spd: 80, spe: 100},
         abilities: {0: "Drill Reinforcement"},
 	prevo: "dinodrill",  
+	color: "Gray",
+	heightm: 4,
+	weightkg: 636.8,
+	
   },
   
 };
