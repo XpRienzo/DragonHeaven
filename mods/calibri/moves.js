@@ -73,7 +73,7 @@ exports.BattleMovedex = {
 		basePower: 75,
 		category: "Physical",
 		desc: "Doesn't make accuracy check; Guaranteed to hit. Protects the user from critical hits for 1 turn.",
-		shortDesc: "No accuracy check. Blocks crits for 1 turn.",
+		shortDesc: "Always hits. Blocks critical hits for 2 turns.",
 		id: "shieldstrike",
 		name: "Shield Strike",
 		pp: 20,
@@ -83,19 +83,19 @@ exports.BattleMovedex = {
 		effect: {
 			duration: 1,
 			onStart: function (side) {
-				this.add('-sidestart', side, 'move: Lucky Chant'); // "The Lucky Chant shielded [side.name]'s team from critical hits!"
+				this.add('-sidestart', side, 'move: Lucky Chant'); // "Shield strike shielded [side.name]'s team from critical hits!"
 			},
 			onCriticalHit: false,
 			onResidualOrder: 21,
-			onResidualSubOrder: 5,
+			onResidualSubOrder: 2,
 			onEnd: function (side) {
-				this.add('-sideend', side, 'move: Lucky Chant'); // "[side.name]'s team's Lucky Chant wore off!"
+				this.add('-sideend', side, 'move: Lucky Chant'); // "[side.name]'s team's Shield Strike protection wore off!"
 			},
 		},
 		secondary: false,
 		target: "normal",
 		type: "Fighting",
-		zMoveBoost: {evasion: 2},
+		zMovePower: 140,
 		contestType: "Tough",
     },
     "tundrasweep": {
@@ -251,7 +251,7 @@ exports.BattleMovedex = {
 	"thunderclap": {
 		num: 1008,
 		accuracy: 100,
-		basePower: 160,
+		basePower: 135,
 		category: "Physical",
 		desc: "Paralyzes the user and the opposing Pokemon on use.",
 		shortDesc: "Paralyzes the user and the target.",
@@ -278,7 +278,7 @@ exports.BattleMovedex = {
 		desc: "The power of this move is doubled if Stealth Rocks are active on your opponent's side of the field.",
 		shortDesc: "Doubled damage with Stealth Rocks active.",
 		id: "powerbomb",
-		name: "Power Bomb",
+		name: "Powerbomb",
 		pp: 20,
 		priority: 0,
 		flags: {bullet: 1, protect: 1, mirror: 1},
@@ -286,6 +286,28 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Steel",
 		zMovePower: 135,
+		contestType: "Tough",
+	},
+	"colossalroar": {
+		num: 1010,
+		accuracy: false,
+		basePower: 0,
+		category: "Status",
+		desc: "Lower's the Attack and SpAttack of all adjacent Pokemon by 4 stages, and requires the user to recharge next turn.",
+		shortDesc: "Lowers all target's Atk/SpAtk by 4. Recharge.",
+		id: "colossalroar",
+		name: "Colossal Roar",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, sound: 1, authentic: 1},
+		boosts: {
+			atk: -4,
+			spa: -4,
+		},
+		secondary: false,
+		target: "allAdjacent",
+		type: "Dragon",
+		zMoveBoost: {atk: 2},
 		contestType: "Tough",
 	},
        
