@@ -104,7 +104,19 @@ exports.BattlePokedex = {
 	heightm: 1.9,
 	weightkg: 84.1,
 	color: "Black",
-	
+  },
+  raichumega: {
+	num: 26,
+	species: "Raichu-Mega",
+	formeLetter: "M",
+	types: ["Electric","Grass"],
+	baseStats: {hp: 60, atk: 120, def: 85, spa: 115, spd: 70, spe: 135},
+	abilities: {0: "Chlorophyll"},
+	prevo: "Raichu",
+        baseSpecies: "Raichu",
+	heightm: 0.76,
+	weightkg: 29,
+	color: "Yellow",
   },
   dinodrill: {
         num: 696,
