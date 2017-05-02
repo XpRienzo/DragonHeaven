@@ -5849,7 +5849,7 @@ exports.Formats = [
 		],
 		mod: 'franticfusions',
 		gameType: 'doubles',
-		ruleset: ['[Gen 7] OU'],
+		ruleset: ['[Gen 7] Doubles OU'],
 		banlist: ["Illegal", 'Kyurem-Black', 'Manaphy', 'Porygon-Z', 'Shedinja', 'Togekiss', 'Chatter'],
 		onBegin: function() {
 			let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
