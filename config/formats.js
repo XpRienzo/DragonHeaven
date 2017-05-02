@@ -5843,6 +5843,91 @@ exports.Formats = [
 		},
 	},
 	{
+		name: "[Gen 7] Multibility Doubles",
+		desc: [
+			"&bullet; Put your second ability in the item slot.",
+		],
+		mod: 'franticfusions',
+		gameType: 'doubles',
+		ruleset: ['[Gen 7] OU'],
+		banlist: ["Illegal", 'Kyurem-Black', 'Manaphy', 'Porygon-Z', 'Shedinja', 'Togekiss', 'Chatter'],
+		onBegin: function() {
+			let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
+			for (let i = 0, len = allPokemon.length; i < len; i++) {
+				let pokemon = allPokemon[i];
+				if (this.getAbility(toId(pokemon.item))) {
+					pokemon.abilitwo = toId(pokemon.item);
+					pokemon.item = "";
+				}
+			}
+		},
+		onSwitchInPriority: 1,
+		onSwitchIn: function(pokemon) {
+			if (pokemon.abilitwo && this.getAbility(pokemon.abilitwo)) {
+				let statusability = {
+					"aerilate": true,
+					"aurabreak": true,
+					"flashfire": true,
+					"parentalbond": true,
+					"pixilate": true,
+					"refrigerate": true,
+					"sheerforce": true,
+					"slowstart": true,
+					"truant": true,
+					"unburden": true,
+					"zenmode": true
+				};
+				let sec = statusability[pokemon.abilitwo] ? "other" + pokemon.abilitwo : pokemon.abilitwo;
+				pokemon.addVolatile(sec, pokemon); //Second Ability! YAYAYAY
+			}
+		},
+		validateSet: function(set, teamHas) {
+			let item = set.item;
+			if (this.tools.getAbility(toId(item)))
+			{
+				set.item = '';
+				let problems = this.validateSet(set, teamHas) || [];
+				let abilitwo = this.tools.getAbility(toId(item));
+				let bans = {
+					'arenatrap': true,
+					'contrary': true,
+					'furcoat': true,
+					'hugepower': true,
+					'imposter': true,
+					'parentalbond': true,
+					'purepower': true,
+					'shadowtag': true,
+					'trace': true,
+					'simple': true,
+					'wonderguard': true,
+					'moody': true
+				};
+				if (bans[toId(abilitwo.id)]) problems.push(set.species + "'s ability " + abilitwo.name + " is banned by Multibility.");
+				if (abilitwo.id === toId(set.ability)) problems.push("You cannot have two of " + abilitwo.name + " on the same Pokemon.");
+				set.item = item;
+				return problems;
+			}
+		},
+		onValidateTeam: function(team) {
+			let abilityTable = {};
+			for (let i = 0; i < team.length; i++) {
+				let ability = this.getAbility(team[i].ability);
+				if (!abilityTable[ability.id]) abilityTable[ability.id] = 0;
+				if (++abilityTable[ability.id] > 2) {
+					return ["You are limited to two of each ability by Ability Clause.", "(You have more than two of " + ability.name + " or " + this.getAbility(toId(team[i].item)).name + " [Item])"];
+				}
+				let item = toId(team[i].item);
+				if (!item) continue;
+				ability = this.getAbility(item);
+				if (!ability) continue;
+				if (!abilityTable[ability]) abilityTable[ability] = 0;
+				if (++abilityTable[ability] > 2) {
+					return ["You are limited to two of each ability by Ability Clause.", "(You have more than two of " + this.getAbility(ability).name + ")"];
+				}
+			}
+		},
+	},
+	{
 		name: "[Gen 7] Totem Showdown",
 		desc: [
 			"The Pok&eacute;mon in the first slot of a team acts like a Totem Pokemon which cannot be switched out.",
