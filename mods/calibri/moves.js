@@ -310,6 +310,27 @@ exports.BattleMovedex = {
 		zMoveBoost: {atk: 2},
 		contestType: "Tough",
 	},
+	"terrafreeze": {
+		num: 1011,
+		accuracy: true,
+		basePower: 80,
+		category: "Special",
+		desc: "If Terrafreeze critical hits, it gains a 100% chance to freeze the opponent.",
+		shortDesc: "Freezes on critical hit. +1 Priority.",
+		id: "terrafreeze",
+		name: "Terrafreeze",
+		pp: 15,
+		priority: 1,
+		flags: {},
+		onCriticalHit: function (target, source) {
+			target.trySetStatus('frz', source);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Ice",
+		zMoveEffect: 'crit3',
+		contestType: "Beautiful",
+	},
        
 };
 	    
