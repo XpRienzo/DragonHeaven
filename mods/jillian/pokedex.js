@@ -462,7 +462,7 @@ exports.BattlePokedex = {
          num: 1000057,
          species: "Tintinar",
          types: ["Steel"],
-         baseStats: {hp: 30, atk: 55, def: 36, spa: 70, spd: 52, spe: 25},
+         baseStats: {hp: 30, atk: 55, def: 40, spa: 70, spd: 52, spe: 25},
          abilities: {0: "Clear Body", H: "Levitate"},
          evos: ["hourglinar"],
          },
