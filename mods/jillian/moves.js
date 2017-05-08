@@ -994,4 +994,593 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Cool",
 	},
-};	
+	"rageofmothernature": {
+		accuracy: true,
+		basePower: 170,
+		category: "Physical",
+		desc: "Combines Grass and Ground type effectivnesses in damage dealt",
+		id: "rageofmothernature",
+		isViable: true,
+		name: "Rage of Mother Nature",
+		pp: 1,
+		priority: 0,
+		flags: {contact: 1},
+		isZ: "treenomiumz",
+		onEffectiveness: function(typeMod, type, move) {
+			return typeMod + this.getEffectiveness('Ground', type);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Grass",
+		contestType: "Beautiful",
+	},
+	"infernallavagrowl": {
+		accuracy: true,
+		basePower: 180,
+		category: "Special",
+		desc: "100% chance to burn the foe",
+		id: "infernallavagrowl",
+		isViable: true,
+		name: "Infernal Lava Growl",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "volcanoliumz",
+		secondary: {
+			chance: 100,
+			status: 'brn',
+
+		},
+		target: "normal",
+		type: "Fire",
+		contestType: "Beautiful",
+	},
+	"gianttidalwave": {
+		accuracy: true,
+		basePower: 210,
+		category: "Special",
+		desc: "Ignore stat changes of the foe",
+		id: "gianttidalwave",
+		isViable: true,
+		name: "Giant Tidal Wave",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "poseidiumz",
+		ignoreDefensive: true,
+		ignoreEvasion: true,
+		secondary: false,
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
+	},
+	"redflarerush": {
+		accuracy: true,
+		basePower: 165,
+		category: "Physical",
+		desc: "Summons Sunny Day on hit",
+		id: "redflarerush",
+		isViable: true,
+		name: "Red Flare Rush",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "flareoniumz",
+		onHit: function(target) {
+			this.setWeather('sunnyday');
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fire",
+		contestType: "Beautiful",
+	},
+	"blueoceandepths": {
+		accuracy: true,
+		basePower: 185,
+		category: "Special",
+		desc: "Summons Rain Dance on hit",
+		id: "blueoceandepths",
+		isViable: true,
+		name: "Blue Ocean Depths",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "vaporeoniumz",
+		onHit: function(target) {
+			this.setWeather('raindance');
+		},
+		secondary: false,
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
+	},
+	"highvoltagedischarge": {
+		accuracy: true,
+		basePower: 150,
+		category: "Special",
+		desc: "100% chance to paralyze the foe",
+		id: "highvoltagedischarge",
+		isViable: true,
+		name: "High Voltage Discharge",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "jolteoniumz",
+		secondary: {
+			chance: 100,
+			status: 'par',
+
+		},
+		target: "normal",
+		type: "Electric",
+		contestType: "Beautiful",
+	},
+	"icywindofthefarnorth": {
+		accuracy: true,
+		basePower: 160,
+		category: "Special",
+		desc: "100% chance to freeze the foe",
+		id: "icywindofthefarnorth",
+		isViable: true,
+		name: "Icy Wind of The Far North",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "glaceoniumz",
+		secondary: {
+			chance: 100,
+			status: 'frz',
+
+		},
+		target: "normal",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
+	"Meditationofnature": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Fully heals the user",
+		id: "meditationofnature",
+		isViable: true,
+		name: "Mediation of Nature",
+		pp: 1,
+		priority: 0,
+		flags: {heal: 1},
+		isZ: "leafeoniumz",
+		heal: [1],
+		secondary: false,
+		target: "normal",
+		type: "Grass",
+		contestType: "Beautiful",
+	},
+	"mentalsevilnesscrusher": {
+		accuracy: true,
+		basePower: 180,
+		category: "Special",
+		desc: "This move is super effective against Dark",
+		id: "mentalsevilnesscrusher",
+		isViable: true,
+		name: "Mental's Evilness Crusher",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "espeoniumz",
+		onEffectiveness: function(typeMod, type) {
+			if (type === 'Dark') return 1;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Clever",
+	},
+	"ultimatemadness": {
+		accuracy: true,
+		basePower: 160,
+		category: "Special",
+		desc: "Steals the target's stat boosts before dealing damage",
+		id: "ultimatemadness",
+		isViable: true,
+		name: "Ultimate Madness",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "umbreoniumz",
+		stealsBoosts: true,
+		secondary: false,
+		target: "normal",
+		type: "Dark",
+		contestType: "Clever",
+	},
+	"blessingofthegods": {
+		accuracy: true,
+		basePower: 180,
+		category: "Special",
+		desc: "Setup Misty Terrain",
+		id: "blessingofthegods",
+		isViable: true,
+		name: "Blessing of the Gods",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "sylveoniumz",
+		secondary: {
+			chance: 100,
+			self: {
+				onHit: function () {
+					this.setTerrain('mistyterrain');
+				},
+			},
+		},
+		target: "normal",
+		type: "Fairy",
+		contestType: "Clever",
+	},
+	"extremepummeling": {
+		accuracy: true,
+		basePower: 200,
+		category: "Physical",
+		desc: "Ignores the foe stats boost when dealing damage",
+		id: "extremepummeling",
+		isViable: true,
+		name: "Extreme Pummeling",
+		pp: 1,
+		priority: 0,
+		flags: {contact: 1},
+		isZ: "puncheoniumz",
+		ignoreDefensive: true,
+		ignoreEvasion: true,
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Clever",
+	},
+	"warthofshiningskies": {
+		accuracy: true,
+		basePower: 180,
+		category: "Special",
+		desc: "Deals super effective damage against Flying types",
+		id: "warthofshiningskies",
+		isViable: true,
+		name: "Warth Of Shining Skies",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "zephyreoniumz",
+		onEffectiveness: function(typeMod, type) {
+			if (type === 'Flying') return 1;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Clever",
+	},
+	"giantsandburial": {
+		accuracy: true,
+		basePower: 165,
+		category: "Special",
+		desc: "Summons Sandstorm on hit",
+		id: "giantsandburial",
+		isViable: true,
+		name: "Giant Sand Burial",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "landineoniumz",
+		onHit: function(target) {
+			this.setWeather('sandstorm');
+		},
+		secondary: false,
+		target: "normal",
+		type: "Ground",
+		contestType: "Beautiful",
+	},
+	"sentenceofthewalkingdead": {
+		accuracy: true,
+		basePower: 160,
+		category: "Special",
+		desc: "100% chance to sleep the foe",
+		id: "sentenceofthewalkingdead",
+		isViable: true,
+		name: "Sentence of the Walking Dead",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "tombeoniumz",
+		secondary: {
+			chance: 100,
+			status: 'slp',
+
+		},
+		target: "normal",
+		type: "Ghost",
+		contestType: "Beautiful",
+	},
+	"rageofthesuperiordragon": {
+		accuracy: true,
+		basePower: 190,
+		category: "Physical",
+		desc: "Hits Fairy types super effectively",
+		id: "rageofthesuperiordragon",
+		isViable: true,
+		name: "Rage of the Superior Dragon",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "quetzaleoniumz",
+		onEffectiveness: function(typeMod, type) {
+			if (type === 'Fairy') return 1;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Dragon",
+		contestType: "Beautiful",
+	},
+	"volcanicapocalypse": {
+		accuracy: true,
+		basePower: 180,
+		category: "Physical",
+		desc: "70% chance to burn the foe",
+		id: "volcanicapocalypse",
+		isViable: true,
+		name: "Volcanic Apocalypse",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "groudoniumz",
+		secondary: {
+			chance: 70,
+			status: 'brn',
+
+		},
+		target: "normal",
+		type: "Ground",
+		contestType: "Beautiful",
+	},
+	"outrageofthesevenseas": {
+		accuracy: true,
+		basePower: 190,
+		category: "Special",
+		desc: "Hits Dragon types super effectively",
+		id: "rageofthesuperiordragon",
+		isViable: true,
+		name: "Outrage of the Seven Seas",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "kyogriumz",
+		onEffectiveness: function(typeMod, type) {
+			if (type === 'Dragon') return 1;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Water",
+		contestType: "Beautiful",
+	},
+	"ultimatepoweroftheskies": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's stats by 3 stages each",
+		id: "ultimatepoweroftheskies",
+		isViable: true,
+		name: "Ultimate Power of the Skies",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "rayquazaniumz",
+		boosts: {
+			atk: 3,
+			def: 3,
+			spa: 3,
+			spd: 3,
+			spe: 3,
+		},
+		secondary: false,
+		target: "self",
+		type: "Flying",
+		contestType: "Beautiful",
+	},
+	"jirachiseternalwishes": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "User faints, fully heals the next Pokemon, setup Safeguard and screens",
+		id: "jirachiseternalwishes",
+		isViable: true,
+		name: "Jirachi's Eternal Wishes",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "jirachiumz",
+		onTryHit: function (pokemon, target, move) {
+			if (!this.canSwitch(pokemon.side)) {
+				delete move.selfdestruct;
+				return false;
+			}
+		},
+		selfdestruct: "ifHit",
+		sideCondition: 'lunardance',
+		effect: {
+			duration: 2,
+			onStart: function (side, source) {
+				this.debug('Lunar Dance started on ' + side.name);
+				this.effectData.positions = [];
+				for (let i = 0; i < side.active.length; i++) {
+					this.effectData.positions[i] = false;
+				}
+				this.effectData.positions[source.position] = true;
+			},
+			onRestart: function (side, source) {
+				this.effectData.positions[source.position] = true;
+			},
+			onSwitchInPriority: 1,
+			onSwitchIn: function (target) {
+				if (target.position !== this.effectData.sourcePosition) {
+					return;
+				}
+				if (!target.fainted) {
+					target.heal(target.maxhp);
+					target.setStatus('');
+					for (let m in target.moveset) {
+						target.moveset[m].pp = target.moveset[m].maxpp;
+					}
+					this.add('-heal', target, target.getHealth, '[from] move: Lunar Dance');
+					this.effectData.positions[target.position] = false;
+				}
+				if (!this.effectData.positions.some(affected => affected === true)) {
+					target.side.removeSideCondition('lunardance');
+				}
+			},
+		},
+		sideCondition: 'safeguard',
+		effect: {
+			duration: 5,
+			durationCallback: function (target, source, effect) {
+				if (source && source.hasAbility('persistent')) {
+					return 7;
+				}
+				return 5;
+			},
+			onSetStatus: function (status, target, source, effect) {
+				if (source && target !== source && effect && (!effect.infiltrates || target.side === source.side)) {
+					this.debug('interrupting setStatus');
+					if (effect.id === 'synchronize' || (effect.effectType === 'Move' && !effect.secondaries)) {
+						this.add('-activate', target, 'move: Safeguard');
+					}
+					return null;
+				}
+			},
+			onTryAddVolatile: function (status, target, source, effect) {
+				if ((status.id === 'confusion' || status.id === 'yawn') && source && target !== source && effect && (!effect.infiltrates || target.side === source.side)) {
+					if (!effect.secondaries) this.add('-activate', target, 'move: Safeguard');
+					return null;
+				}
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'Safeguard');
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'Safeguard');
+			},
+		},
+		sideCondition: 'reflect',
+		effect: {
+			duration: 5,
+			durationCallback: function (target, source, effect) {
+				if (source && source.hasItem('lightclay')) {
+					return 8;
+				}
+				return 5;
+			},
+			onAnyModifyDamage: function (damage, source, target, move) {
+				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Physical') {
+					if (!move.crit && !move.infiltrates) {
+						this.debug('Reflect weaken');
+						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
+						return this.chainModify(0.5);
+					}
+				}
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'Reflect');
+			},
+			onResidualOrder: 21,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'Reflect');
+			},
+		},
+		sideCondition: 'lightscreen',
+		effect: {
+			duration: 5,
+			durationCallback: function (target, source, effect) {
+				if (source && source.hasItem('lightclay')) {
+					return 8;
+				}
+				return 5;
+			},
+			onAnyModifyDamage: function (damage, source, target, move) {
+				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Special') {
+					if (!move.crit && !move.infiltrates) {
+						this.debug('Light Screen weaken');
+						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
+						return this.chainModify(0.5);
+					}
+				}
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Light Screen');
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 1,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'move: Light Screen');
+			},
+		},
+		secondary: false,
+		target: "self",
+		type: "Steel",
+		contestType: "Beautiful",
+	},
+	"ultimatemindcontrol": {
+		accuracy: true,
+		basePower: 200,
+		category: "Special",
+		desc: "No additional effect, can be used twice",
+		id: "ultimatemindcontrol",
+		isViable: true,
+		name: "Ultimate Mind Control",
+		pp: 2,
+		priority: 0,
+		flags: {},
+		isZ: "deoxyiumz",
+		secondary: false,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Beautiful",
+	},	
+	"lavashieldingdefense": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises user's defensive stats by 3 stages, and heals 50% HP",
+		id: "lavashieldingdefense",
+		isViable: true,
+		name: "Ultimate Power of the Skies",
+		pp: 1,
+		priority: 0,
+		flags: {heal: 1},
+		isZ: "torkoaliumz",
+		heal: [1,2],
+		boosts: {
+		        def: 3,
+			spd: 3,
+		},
+		secondary: false,
+		target: "self",
+		type: "Fire",
+		contestType: "Beautiful",
+	},	
+	"propheticalcurse": {
+		accuracy: true,
+		basePower: 210,
+		category: "Special",
+		desc: "Combines Fire and Ghost type effectivnesses in damage dealt",
+		id: "propheticalcurse",
+		isViable: true,
+		name: "Prophetical Curse",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "ninetalesiumz",
+		onEffectiveness: function(typeMod, type, move) {
+			return typeMod + this.getEffectiveness('Fire', type);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Ghost",
+		contestType: "Beautiful",
+	},	
+};
