@@ -1548,7 +1548,7 @@ exports.BattleMovedex = {
 		desc: "Raises user's defensive stats by 3 stages, and heals 50% HP",
 		id: "lavashieldingdefense",
 		isViable: true,
-		name: "Ultimate Power of the Skies",
+		name: "Lava Shielding Defense",
 		pp: 1,
 		priority: 0,
 		flags: {heal: 1},
