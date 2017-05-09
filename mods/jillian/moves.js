@@ -1482,7 +1482,7 @@ exports.BattleMovedex = {
 			},
 		},
 		secondary: false,
-		target: "User",
+		target: "self",
 		type: "Steel",
 		contestType: "Beautiful",
 	},
