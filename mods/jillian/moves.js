@@ -1393,6 +1393,54 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
+		sideCondition: 'auroraveil',
+		effect: {
+			duration: 5,
+			},
+			onAnyModifyDamage: function (damage, source, target, move) {
+				if (target !== source && target.side === this.effectData.target) {
+					if (!move.crit && !move.infiltrates) {
+						this.debug('Aurora Veil weaken');
+						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
+						return this.chainModify(0.5);
+					}
+				}
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Aurora Veil');
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 1,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'move: Aurora Veil');
+		},
+		sideCondition: 'safeguard',
+		effect: {
+			duration: 5,
+			},
+			onSetStatus: function (status, target, source, effect) {
+				if (source && target !== source && effect && (!effect.infiltrates || target.side === source.side)) {
+					this.debug('interrupting setStatus');
+					if (effect.id === 'synchronize' || (effect.effectType === 'Move' && !effect.secondaries)) {
+						this.add('-activate', target, 'move: Safeguard');
+					}
+					return null;
+				}
+			},
+			onTryAddVolatile: function (status, target, source, effect) {
+				if ((status.id === 'confusion' || status.id === 'yawn') && source && target !== source && effect && (!effect.infiltrates || target.side === source.side)) {
+					if (!effect.secondaries) this.add('-activate', target, 'move: Safeguard');
+					return null;
+				}
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'Safeguard');
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'Safeguard');
+		},
 		onTryHit: function (pokemon, target, move) {
 			if (!this.canSwitch(pokemon.side)) {
 				delete move.selfdestruct;
@@ -1400,12 +1448,39 @@ exports.BattleMovedex = {
 			}
 		},
 		selfdestruct: "ifHit",
-		ontryHit: function(source) {
-			  this.useMove('Lunar Dance', source);
-			  this.useMove('Safeguard', source);
-			  this.useMove('Reflect', source);
-			  this.useMove('Light Screen', source);
-		},	
+		sideCondition: 'lunardance',
+		effect: {
+			duration: 2,
+			onStart: function (side, source) {
+				this.debug('Lunar Dance started on ' + side.name);
+				this.effectData.positions = [];
+				for (let i = 0; i < side.active.length; i++) {
+					this.effectData.positions[i] = false;
+				}
+				this.effectData.positions[source.position] = true;
+			},
+			onRestart: function (side, source) {
+				this.effectData.positions[source.position] = true;
+			},
+			onSwitchInPriority: 1,
+			onSwitchIn: function (target) {
+				if (target.position !== this.effectData.sourcePosition) {
+					return;
+				}
+				if (!target.fainted) {
+					target.heal(target.maxhp);
+					target.setStatus('');
+					for (let m in target.moveset) {
+						target.moveset[m].pp = target.moveset[m].maxpp;
+					}
+					this.add('-heal', target, target.getHealth, '[from] move: Lunar Dance');
+					this.effectData.positions[target.position] = false;
+				}
+				if (!this.effectData.positions.some(affected => affected === true)) {
+					target.side.removeSideCondition('lunardance');
+				}
+			},
+		},
 		secondary: false,
 		target: "User",
 		type: "Steel",
