@@ -1136,27 +1136,6 @@ exports.BattleMovedex = {
 		type: "Ice",
 		contestType: "Beautiful",
 	},
-	"Meditationofnature": {
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		desc: "Fully heals the user",
-		id: "meditationofnature",
-		isViable: true,
-		name: "Mediation of Nature",
-		pp: 1,
-		priority: 0,
-		flags: {heal: 1},
-		isZ: "leafeoniumz",
-		onHit: function (target) {
-			if (target.hp >= target.maxhp) return false;
-			this.heal(target.maxhp);
-		},
-		secondary: false,
-		target: "User",
-		type: "Grass",
-		contestType: "Beautiful",
-	},
 	"mentalsevilnesscrusher": {
 		accuracy: true,
 		basePower: 180,
@@ -1455,33 +1434,6 @@ exports.BattleMovedex = {
 				this.add('-sideend', side, 'move: Light Screen');
 			},
 		},
-		sideCondition: 'safeguard',
-		effect: {
-			duration: 5,
-			},
-			onSetStatus: function (status, target, source, effect) {
-				if (source && target !== source && effect && (!effect.infiltrates || target.side === source.side)) {
-					this.debug('interrupting setStatus');
-					if (effect.id === 'synchronize' || (effect.effectType === 'Move' && !effect.secondaries)) {
-						this.add('-activate', target, 'move: Safeguard');
-					}
-					return null;
-				}
-			},
-			onTryAddVolatile: function (status, target, source, effect) {
-				if ((status.id === 'confusion' || status.id === 'yawn') && source && target !== source && effect && (!effect.infiltrates || target.side === source.side)) {
-					if (!effect.secondaries) this.add('-activate', target, 'move: Safeguard');
-					return null;
-				}
-			},
-			onStart: function (side) {
-				this.add('-sidestart', side, 'Safeguard');
-			},
-			onResidualOrder: 21,
-			onResidualSubOrder: 2,
-			onEnd: function (side) {
-				this.add('-sideend', side, 'Safeguard');
-		},
 		selfdestruct: "ifHit",
 		sideCondition: 'lunardance',
 		effect: {
@@ -1513,7 +1465,6 @@ exports.BattleMovedex = {
 				 }
 				 if (!this.effectData.positions.some(affected => affected === true)) {
 					        target.side.removeSideCondition('lunardance');
-					},
 				},
 			},
 		},
@@ -1580,5 +1531,26 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Ghost",
 		contestType: "Beautiful",
-	},	
+	},
+	"Meditationofnature": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Fully heals the user",
+		id: "meditationofnature",
+		isViable: true,
+		name: "Meditation of Nature",
+		pp: 1,
+		priority: 0,
+		flags: {heal: 1},
+		isZ: "leafeoniumz",
+		onHit: function (target) {
+			if (target.hp >= target.maxhp) return false;
+			this.heal(target.maxhp);
+		},
+		secondary: false,
+		target: "User",
+		type: "Grass",
+		contestType: "Beautiful",
+	},
 };
