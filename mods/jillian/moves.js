@@ -1532,25 +1532,25 @@ exports.BattleMovedex = {
 		type: "Ghost",
 		contestType: "Beautiful",
 	},
-	"Meditationofnature": {
+	"meditationofnature",
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Fully heals the user",
+		desc: "Fully heal the user",
 		id: "meditationofnature",
 		isViable: true,
 		name: "Meditation of Nature",
 		pp: 1,
 		priority: 0,
-		flags: {heal: 1},
+		flags: {},
 		isZ: "leafeoniumz",
 		onHit: function (target) {
 			if (target.hp >= target.maxhp) return false;
 			this.heal(target.maxhp);
 		},
 		secondary: false,
-		target: "User",
+		target: "self",
 		type: "Grass",
-		contestType: "Beautiful",
+		contestType: "Cool",
 	},
 };
