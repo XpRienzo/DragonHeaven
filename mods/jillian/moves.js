@@ -1148,7 +1148,10 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {heal: 1},
 		isZ: "leafeoniumz",
-		heal: [1,1],
+		onHit: function (target) {
+			if (target.hp >= target.maxhp) return false;
+			this.heal(target.maxhp);
+		},
 		secondary: false,
 		target: "User",
 		type: "Grass",
@@ -1393,26 +1396,64 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
-		sideCondition: 'auroraveil',
+		onTryHit: function (pokemon, target, move) {
+			if (!this.canSwitch(pokemon.side)) {
+				delete move.selfdestruct;
+				return false;
+			}
+		},
+		sideCondition: 'reflect',
 		effect: {
 			duration: 5,
+			durationCallback: function (target, source, effect) {
+				if (source && source.hasItem('lightclay')) {
+					return 8;
+				}
+				return 5;
 			},
 			onAnyModifyDamage: function (damage, source, target, move) {
-				if (target !== source && target.side === this.effectData.target) {
+				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Physical') {
 					if (!move.crit && !move.infiltrates) {
-						this.debug('Aurora Veil weaken');
+						this.debug('Reflect weaken');
 						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
 						return this.chainModify(0.5);
 					}
 				}
 			},
 			onStart: function (side) {
-				this.add('-sidestart', side, 'move: Aurora Veil');
+				this.add('-sidestart', side, 'Reflect');
+			},
+			onResidualOrder: 21,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'Reflect');
+			},
+		},
+		sideCondition: 'lightscreen',
+		effect: {
+			duration: 5,
+			durationCallback: function (target, source, effect) {
+				if (source && source.hasItem('lightclay')) {
+					return 8;
+				}
+				return 5;
+			},
+			onAnyModifyDamage: function (damage, source, target, move) {
+				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Special') {
+					if (!move.crit && !move.infiltrates) {
+						this.debug('Light Screen weaken');
+						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
+						return this.chainModify(0.5);
+					}
+				}
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Light Screen');
 			},
 			onResidualOrder: 21,
 			onResidualSubOrder: 1,
 			onEnd: function (side) {
-				this.add('-sideend', side, 'move: Aurora Veil');
+				this.add('-sideend', side, 'move: Light Screen');
+			},
 		},
 		sideCondition: 'safeguard',
 		effect: {
@@ -1440,12 +1481,6 @@ exports.BattleMovedex = {
 			onResidualSubOrder: 2,
 			onEnd: function (side) {
 				this.add('-sideend', side, 'Safeguard');
-		},
-		onTryHit: function (pokemon, target, move) {
-			if (!this.canSwitch(pokemon.side)) {
-				delete move.selfdestruct;
-				return false;
-			}
 		},
 		selfdestruct: "ifHit",
 		sideCondition: 'lunardance',
@@ -1475,10 +1510,11 @@ exports.BattleMovedex = {
 					}
 					this.add('-heal', target, target.getHealth, '[from] move: Lunar Dance');
 					this.effectData.positions[target.position] = false;
-				}
-				if (!this.effectData.positions.some(affected => affected === true)) {
-					target.side.removeSideCondition('lunardance');
-				}
+				 }
+				 if (!this.effectData.positions.some(affected => affected === true)) {
+					        target.side.removeSideCondition('lunardance');
+					},
+				},
 			},
 		},
 		secondary: false,
@@ -1486,7 +1522,7 @@ exports.BattleMovedex = {
 		type: "Steel",
 		contestType: "Beautiful",
 	},
-	"ultimatemindcontrol": {
+ 	"ultimatemindcontrol": {
 		accuracy: true,
 		basePower: 200,
 		category: "Special",
