@@ -1400,127 +1400,14 @@ exports.BattleMovedex = {
 			}
 		},
 		selfdestruct: "ifHit",
-		sideCondition: 'lunardance',
-		effect: {
-			duration: 2,
-			onStart: function (side, source) {
-				this.debug('Lunar Dance started on ' + side.name);
-				this.effectData.positions = [];
-				for (let i = 0; i < side.active.length; i++) {
-					this.effectData.positions[i] = false;
-				}
-				this.effectData.positions[source.position] = true;
-			},
-			onRestart: function (side, source) {
-				this.effectData.positions[source.position] = true;
-			},
-			onSwitchInPriority: 1,
-			onSwitchIn: function (target) {
-				if (target.position !== this.effectData.sourcePosition) {
-					return;
-				}
-				if (!target.fainted) {
-					target.heal(target.maxhp);
-					target.setStatus('');
-					for (let m in target.moveset) {
-						target.moveset[m].pp = target.moveset[m].maxpp;
-					}
-					this.add('-heal', target, target.getHealth, '[from] move: Lunar Dance');
-					this.effectData.positions[target.position] = false;
-				}
-				if (!this.effectData.positions.some(affected => affected === true)) {
-					target.side.removeSideCondition('lunardance');
-				}
-			},
-		},
-		sideCondition: 'safeguard',
-		effect: {
-			duration: 5,
-			durationCallback: function (target, source, effect) {
-				if (source && source.hasAbility('persistent')) {
-					return 7;
-				}
-				return 5;
-			},
-			onSetStatus: function (status, target, source, effect) {
-				if (source && target !== source && effect && (!effect.infiltrates || target.side === source.side)) {
-					this.debug('interrupting setStatus');
-					if (effect.id === 'synchronize' || (effect.effectType === 'Move' && !effect.secondaries)) {
-						this.add('-activate', target, 'move: Safeguard');
-					}
-					return null;
-				}
-			},
-			onTryAddVolatile: function (status, target, source, effect) {
-				if ((status.id === 'confusion' || status.id === 'yawn') && source && target !== source && effect && (!effect.infiltrates || target.side === source.side)) {
-					if (!effect.secondaries) this.add('-activate', target, 'move: Safeguard');
-					return null;
-				}
-			},
-			onStart: function (side) {
-				this.add('-sidestart', side, 'Safeguard');
-			},
-			onResidualOrder: 21,
-			onResidualSubOrder: 2,
-			onEnd: function (side) {
-				this.add('-sideend', side, 'Safeguard');
-			},
-		},
-		sideCondition: 'reflect',
-		effect: {
-			duration: 5,
-			durationCallback: function (target, source, effect) {
-				if (source && source.hasItem('lightclay')) {
-					return 8;
-				}
-				return 5;
-			},
-			onAnyModifyDamage: function (damage, source, target, move) {
-				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Physical') {
-					if (!move.crit && !move.infiltrates) {
-						this.debug('Reflect weaken');
-						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
-						return this.chainModify(0.5);
-					}
-				}
-			},
-			onStart: function (side) {
-				this.add('-sidestart', side, 'Reflect');
-			},
-			onResidualOrder: 21,
-			onEnd: function (side) {
-				this.add('-sideend', side, 'Reflect');
-			},
-		},
-		sideCondition: 'lightscreen',
-		effect: {
-			duration: 5,
-			durationCallback: function (target, source, effect) {
-				if (source && source.hasItem('lightclay')) {
-					return 8;
-				}
-				return 5;
-			},
-			onAnyModifyDamage: function (damage, source, target, move) {
-				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Special') {
-					if (!move.crit && !move.infiltrates) {
-						this.debug('Light Screen weaken');
-						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
-						return this.chainModify(0.5);
-					}
-				}
-			},
-			onStart: function (side) {
-				this.add('-sidestart', side, 'move: Light Screen');
-			},
-			onResidualOrder: 21,
-			onResidualSubOrder: 1,
-			onEnd: function (side) {
-				this.add('-sideend', side, 'move: Light Screen');
-			},
-		},
+		ontryHit: function(source) {
+			  this.useMove('Lunar Dance', source);
+			  this.useMove('Safeguard', source);
+			  this.useMove('Reflect', source);
+			  this.useMove('Light Screen', source);
+		},	
 		secondary: false,
-		target: "self",
+		target: "User",
 		type: "Steel",
 		contestType: "Beautiful",
 	},
