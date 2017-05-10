@@ -5732,6 +5732,39 @@ exports.Formats = [
 		},
 	},
 	{
+	    name: "Hawluchange+",
+	    ruleset: ['OU'],
+	    banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
+	    desc: [
+	        "All Pokemon can learn Flying Press and Flying Press will match their types.",
+                "If their SpA stat is higher than their Atk stat, then Flying Press will be a special move",
+	    ],
+	    mod: "hawluchange",
+	    onModifyMove: function(move, pokemon) {
+	        if (move.id === 'flyingpress') {
+	            move.type = pokemon.types[0];
+	            if (pokemon.types[1]) {
+	                move.onEffectiveness = function(typeMod, type, move) {
+	                    return typeMod + this.getEffectiveness(pokemon.types[1], type);
+	                }
+	            } else {
+	                move.onEffectiveness = function(typeMod, type, move) {
+	                    return typeMod;
+	                }
+	            }
+	        }
+	    }
+	    onModifyMove: function(move, pokemon) {
+	        if (move.id === 'flyingpress') {
+	            if (pokemon.stats.atk > pokemon.stats.spa) {
+	                move.category = (move.category === "Status") ? "Status" : "Physical";
+	            } else if (pokemon.stats.spa > pokemon.stats.atk) {
+	                move.category = (move.category === "Status") ? "Status" : "Special";
+	            }
+	        }
+	    }
+	},
+	{
 		name: "[Gen 7] Multibility",
 		desc: [
 			"&bullet; Put your second ability in the item slot.",
