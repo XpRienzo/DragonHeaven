@@ -321,7 +321,7 @@ exports.commands = {
 
 	//Misc commands for DragonHeaven
 	ns: 'natureswap',
-        'natureswap': function(target, room, user) {
+        'natureswap': function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let arg=target,by=user;
 		let natures = Object.assign({}, Tools.data.Natures);
@@ -365,7 +365,7 @@ exports.commands = {
                 }
                 this.sendReplyBox(text);
         },
-	fuse: function(target, room, user) {
+	fuse: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		if(!target || target === ' ' || !target.includes(',')) return this.errorReply('Error: Invalid Argument(s).')
 		let text = "";
@@ -412,7 +412,7 @@ exports.commands = {
 				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
 			}).join("&nbsp;|&ThickSpace;") + '</font>');
 	},
-	learnistor: function(target, room, user) {
+	learnistor: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let learnstor = Tools.mod('istor').data.Learnsets, movestor = Tools.mod('istor').data.Movedex, dexstor = Tools.mod('istor').data.Pokedex;
 		if (!target || toId(target) === '') return this.sendReply("/learnistor: Shows the whether a Pokemon can learn a move, including Pokemon and Moves from istor.");
