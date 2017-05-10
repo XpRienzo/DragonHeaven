@@ -1367,7 +1367,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "User faints, fully heals the next Pokemon, setup Safeguard and screens",
+		desc: "User faints, fully heals next, setup Safeguard and screens",
 		id: "jirachiseternalwishes",
 		isViable: true,
 		name: "Jirachi's Eternal Wishes",
@@ -1381,92 +1381,11 @@ exports.BattleMovedex = {
 				return false;
 			}
 		},
-		sideCondition: 'reflect',
-		effect: {
-			duration: 5,
-			durationCallback: function (target, source, effect) {
-				if (source && source.hasItem('lightclay')) {
-					return 8;
-				}
-				return 5;
-			},
-			onAnyModifyDamage: function (damage, source, target, move) {
-				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Physical') {
-					if (!move.crit && !move.infiltrates) {
-						this.debug('Reflect weaken');
-						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
-						return this.chainModify(0.5);
-					}
-				}
-			},
-			onStart: function (side) {
-				this.add('-sidestart', side, 'Reflect');
-			},
-			onResidualOrder: 21,
-			onEnd: function (side) {
-				this.add('-sideend', side, 'Reflect');
-			},
-		},
-		sideCondition: 'lightscreen',
-		effect: {
-			duration: 5,
-			durationCallback: function (target, source, effect) {
-				if (source && source.hasItem('lightclay')) {
-					return 8;
-				}
-				return 5;
-			},
-			onAnyModifyDamage: function (damage, source, target, move) {
-				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Special') {
-					if (!move.crit && !move.infiltrates) {
-						this.debug('Light Screen weaken');
-						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
-						return this.chainModify(0.5);
-					}
-				}
-			},
-			onStart: function (side) {
-				this.add('-sidestart', side, 'move: Light Screen');
-			},
-			onResidualOrder: 21,
-			onResidualSubOrder: 1,
-			onEnd: function (side) {
-				this.add('-sideend', side, 'move: Light Screen');
-			},
-		},
-		selfdestruct: "ifHit",
-		sideCondition: 'lunardance',
-		effect: {
-			duration: 2,
-			onStart: function (side, source) {
-				this.debug('Lunar Dance started on ' + side.name);
-				this.effectData.positions = [];
-				for (let i = 0; i < side.active.length; i++) {
-					this.effectData.positions[i] = false;
-				}
-				this.effectData.positions[source.position] = true;
-			},
-			onRestart: function (side, source) {
-				this.effectData.positions[source.position] = true;
-			},
-			onSwitchInPriority: 1,
-			onSwitchIn: function (target) {
-				if (target.position !== this.effectData.sourcePosition) {
-					return;
-				}
-				if (!target.fainted) {
-					target.heal(target.maxhp);
-					target.setStatus('');
-					for (let m in target.moveset) {
-						target.moveset[m].pp = target.moveset[m].maxpp;
-					}
-					this.add('-heal', target, target.getHealth, '[from] move: Lunar Dance');
-					this.effectData.positions[target.position] = false;
-				 }
-				 if (!this.effectData.positions.some(affected => affected === true)) {
-					        target.side.removeSideCondition('lunardance');
-				},
-			},
+		onHit: function (target, source) {
+			target.side.addSideCondition('lightscreen', source);
+			target.side.addSideCondition('reflect', source);
+			target.side.addSideCondition('safeguard', source);
+			target.side.addSideCondtion('lunardance', source);
 		},
 		secondary: false,
 		target: "self",
@@ -1532,11 +1451,11 @@ exports.BattleMovedex = {
 		type: "Ghost",
 		contestType: "Beautiful",
 	},
-	"meditationofnature",
+	"warthofthehundredyearoldtrees",
 		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		desc: "Fully heal the user",
+		basePower: 180,
+		category: "Special",
+		desc: "50% chance to randomly status a foe",
 		id: "meditationofnature",
 		isViable: true,
 		name: "Meditation of Nature",
@@ -1544,12 +1463,26 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "leafeoniumz",
-		onHit: function (target) {
-			if (target.hp >= target.maxhp) return false;
-			this.heal(target.maxhp);
+		secondary: {
+				chance: 50,
+				onHit: function (target, source) {
+				         	let result = this.random(4);
+				             	if (result === 0) {
+					          	target.trySetStatus('brn', source);
+				         	} else if (result === 1) {
+					       		target.trySetStatus('par', source);
+				         	} else if (result === 2) {
+					       		target.trySetStatus('frz', source);
+				         	} else if (result === 3) {
+					       		target.trySetStatus('psn', source);
+				         	} else if (result === 4) {
+					      		 target.trySetStatus('slp', source);
+						}
+					},
+				},
+			},
 		},
-		secondary: false,
-		target: "self",
+		target: "normal",
 		type: "Grass",
 		contestType: "Cool",
 	},
