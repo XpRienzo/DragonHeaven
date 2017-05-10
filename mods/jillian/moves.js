@@ -867,7 +867,7 @@ exports.BattleMovedex = {
 				this.addPseudoWeather('magicroom', source, effect, '[of] ' + source);
 			}
 		},
-		effect: {
+	 	effect: {
 			duration: 5,
 			durationCallback: function (source, effect) {
 				if (source && source.hasItem('magicstone')) {
@@ -1375,11 +1375,18 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
-		onHit: function (target, source) {
-			target.side.addSideCondition('lightscreen', source);
-			target.side.addSideCondition('reflect', source);
-			target.side.addSideCondition('safeguard', source);
-			target.side.addSideCondtion('lunardance', source);
+		onTryHit: function (pokemon, target, move) {
+			if (!this.canSwitch(pokemon.side)) {
+				delete move.selfdestruct;
+				return false;
+			}
+		},
+		selfdestruct: "ifHit",
+		onHit: function (pokemon, source) {
+			pokemon.side.addSideCondition('lunardance', source);
+			pokemon.side.addSideCondition('reflect', source);
+			pokemon.side.addSideCondition('safeguard', source);
+			pokemon.side.addSideCondtion('lightscreen', source);
 		},
 		secondary: false,
 		target: "self",
