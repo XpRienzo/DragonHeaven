@@ -1375,12 +1375,6 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
-		onTryHit: function (pokemon, target, move) {
-			if (!this.canSwitch(pokemon.side)) {
-				delete move.selfdestruct;
-				return false;
-			}
-		},
 		onHit: function (target, source) {
 			target.side.addSideCondition('lightscreen', source);
 			target.side.addSideCondition('reflect', source);
