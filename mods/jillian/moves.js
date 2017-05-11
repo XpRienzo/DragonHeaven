@@ -1517,7 +1517,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "User faints, fully heals next, setup Safeguard and screens",
+		desc: "User faints, fully heals next, setup screens and Safeguard",
 		id: "jirachiseternalwishes",
 		isViable: true,
 		name: "Jirachi's Eternal Wishes",
@@ -1525,11 +1525,11 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
-		onHit: function (target, source) {
-			this.add('-sidestart', target.side, 'move: Light Screen');
-			this.add('-sidestart', target.side, 'move: Reflect');
-			this.add('-sidestart', target.side, 'move: Safeguard');
-			target.useMove('Lunar Dance');
+		onHit: function (pokemon, source) {
+			this.add('-sidestart', pokemon.side, 'move: Light Screen');
+			this.add('-sidestart', pokemon.side, 'move: Reflect');
+			this.add('-sidestart', pokemon.side, 'move: Safeguard');
+			pokemon.useMove('Lunar Dance');
 		},
 		secondary: false,
 		target: "self",
@@ -1540,15 +1540,19 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 200,
 		category: "Special",
-		desc: "No additional effect, can be used twice",
+		desc: "100% chance to confuse the foe",
 		id: "ultimatemindcontrol",
 		isViable: true,
 		name: "Ultimate Mind Control",
-		pp: 2,
+		pp: 1,
 		priority: 0,
 		flags: {},
 		isZ: "deoxyiumz",
-		secondary: false,
+		secondary: {
+			chance: 100,
+			volatileStatus: 'confusion',
+
+		},
 		target: "normal",
 		type: "Psychic",
 		contestType: "Beautiful",
