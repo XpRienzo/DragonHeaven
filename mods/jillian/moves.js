@@ -1517,7 +1517,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "User faints, fully heals next, setup Safeguard and screens",
+		desc: "User faints, fully heals next, boosts its stats by 1 stage each",
 		id: "jirachiseternalwishes",
 		isViable: true,
 		name: "Jirachi's Eternal Wishes",
@@ -1525,11 +1525,46 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
-		onHit: function (target, source) {
-			this.add('-sidestart', target.side, 'move: Light Screen');
-			this.add('-sidestart', target.side, 'move: Reflect');
-			this.add('-sidestart', target.side, 'move: Safeguard');
-			target.useMove('Lunar Dance');
+		onTryHit: function (pokemon, target, move) {
+			if (!this.canSwitch(pokemon.side)) {
+				delete move.selfdestruct;
+				return false;
+			}
+		},
+		selfdestruct: "ifHit",
+		sideCondition: 'lunardance',
+		effect: {
+			duration: 2,
+			onStart: function (side, source) {
+				this.debug('Lunar Dance started on ' + side.name);
+				this.effectData.positions = [];
+				for (let i = 0; i < side.active.length; i++) {
+					this.effectData.positions[i] = false;
+				}
+				this.effectData.positions[source.position] = true;
+			},
+			onRestart: function (side, source) {
+				this.effectData.positions[source.position] = true;
+			},
+			onSwitchInPriority: 1,
+			onSwitchIn: function (target) {
+				if (target.position !== this.effectData.sourcePosition) {
+					return;
+				}
+				if (!target.fainted) {
+					target.heal(target.maxhp);
+					target.setStatus('');
+					for (let m in target.moveset) {
+						target.moveset[m].pp = target.moveset[m].maxpp;
+					}
+					this.add('-heal', target, target.getHealth, '[from] move: Lunar Dance');
+					this.effectData.positions[target.position] = false;
+				}
+				if (!this.effectData.positions.some(affected => affected === true)) {
+					target.side.removeSideCondition('lunardance');
+					this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}),
+				}
+			},
 		},
 		secondary: false,
 		target: "self",
@@ -1540,15 +1575,18 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 200,
 		category: "Special",
-		desc: "No additional effect, can be used twice",
+		desc: "100% chance to confuse the foe",
 		id: "ultimatemindcontrol",
 		isViable: true,
 		name: "Ultimate Mind Control",
-		pp: 2,
+		pp: 1,
 		priority: 0,
 		flags: {},
 		isZ: "deoxyiumz",
-		secondary: false,
+		secondary: {
+			chance: 100,
+			volatileStatus: 'confusion',
+		},
 		target: "normal",
 		type: "Psychic",
 		contestType: "Beautiful",
