@@ -1680,18 +1680,21 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 180,
 		category: "Physical",
-		desc: "100% chance to drop Attack by 1 stage, Priority +2",
+		desc: "100% chance to drop Attack by 1 stage, Boosts speed by 2",
 		id: "hyperspeedlunge",
 		isViable: true,
 		name: "Hyper Speed Lunge",
 		pp: 1,
-		priority: 2,
+		priority: 0,
 		flags: {},
 		isZ: "pheromoniumz",
+		boosts: {
+			spe: 2,
+		},
 		secondary: {
 			chance: 100,
 			boosts: {
-				atk: -1,
+				atk: -2,
 			},
 		},
 		target: "normal",
@@ -1709,8 +1712,8 @@ exports.BattleMovedex = {
 		pp: 1,
 		priority: 0,
 		flags: {},
-		willCrit: true,
 		isZ: "xurkitriumz",
+		willCrit: true,
 		secondary: {
 			chance: 100,
 			boosts: {
@@ -1761,23 +1764,22 @@ exports.BattleMovedex = {
 	},
 	"onepunchknockout": {
 		accuracy: true,
-		basePower: 0,
+		basePower: 600,
 		category: "Physical",
-		desc: "OHKOes the target",
+		desc: "Deals heavy damage to the target, usually never lives",
 		id: "onepunchknockout",
 		isViable: true,
 		name: "One Punch Knock Out",
 		pp: 1,
 		priority: 0,
 		flags: {},
-		ohko: true,
 		isZ: "buzzwoleniumz",
 		secondary: false,
 		target: "normal",
 		type: "Fighting",
 		contestType: "Beautiful"
 	},
-	"steelshieldingtower": {
+	"steelshieldingdefense": {
 		accuracy: true,
 		basePower: 130,
 		category: "Physical",
