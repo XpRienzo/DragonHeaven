@@ -5665,6 +5665,16 @@ exports.Formats = [
 		},
 	},
 	{
+		name: "[Gen 7] Ability Storm",
+		desc: [
+			"Pok&eacute;mon summon weather, terrain, or extra effects depending on their typing.",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/metagame-workshop.3598275/page-17#post-7345422\">Ability Storm</a>",
+		],
+		mod: 'gen7',
+		ruleset: ['[Gen 7] OU'],
+		banlist: ['Jirachi', 'Alakazam-Mega', 'Hoopa-Unbound', 'Manaphy', 'Kyurem-Black', 'Volcarona', 'Sableye-Mega', 'Sablenite'],
+	},
+	{
 		name: "[Gen 7] Completed",
 		desc: [
 			"Pok&eacute;mon no longer have their stats drop when they evolve or when they change forms during battle.",
