@@ -1676,27 +1676,23 @@ exports.BattleMovedex = {
 		type: "Steel",
 		contestType: "Beautiful"
 	},
-	"hyperspeedlunge": {
+	"mantisscorchinglunge": {
 		accuracy: true,
 		basePower: 180,
 		category: "Physical",
-		desc: "100% chance to drop Attack by 2 stages, Boosts speed by 2 stages",
-		shortdesc: "100% chance -2 atk, +2 speed",
-		id: "hyperspeedlunge",
+		desc: "100% chance to drop Attack by 2 stages",
+		shortdesc: "100% chance -2 atk",
+		id: "mantisscorchinglunge",
 		isViable: true,
-		name: "Hyper Speed Lunge",
+		name: "Mantis Scorching Lunge",
 		pp: 1,
 		priority: 0,
 		flags: {},
 		isZ: "pheromoniumz",
-		boosts: {
-			spe: 2,
-		},
 		secondary: {
 			chance: 100,
 			boosts: {
 				atk: -2,
-			},
 		},
 		target: "normal",
 		type: "Bug",
