@@ -1680,8 +1680,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 180,
 		category: "Physical",
-		desc: "100% chance to drop Attack by 2 stages",
-		shortdesc: "100% chance -2 atk",
+		desc: "100% chance to drop Attack by 2 stages, also boosts Speed",
+		shortdesc: "100% chance -2 atk, +2 speed",
 		id: "mantisscorchinglunge",
 		isViable: true,
 		name: "Mantis Scorching Lunge",
@@ -1689,6 +1689,9 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "pheromoniumz",
+		boosts: {
+			spe: 2,
+		},
 		secondary: {
 			chance: 100,
 			boosts: {
