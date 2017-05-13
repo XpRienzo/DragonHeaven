@@ -55,4 +55,67 @@
       		abilities: {0: "Static", H: "Gale Wings"},
       		prevo: "fletchinder",
   },
+  raichu: {
+		num: 26,
+		species: "Raichu",
+		types: ["Electric"],
+		baseStats: {hp: 60, atk: 90, def: 55, spa: 90, spd: 80, spe: 110},
+		abilities: {0: "Static", H: "Lightning Rod"},
+		heightm: 0.8,
+		weightkg: 30,
+		color: "Yellow",
+		prevo: "pikachu",
+		evoLevel: 1,
+	        evos: ["umichu","armochu","miraclechu","noxiochu","keruchu","conflachu"],
+		eggGroups: ["Field", "Fairy"],
+		otherFormes: ["raichualola"],
+  },
+  umichu: {
+	        num: 9006,
+	        species: "Umichu",
+	        types: ["Electric","Water"],
+	        baseStats: {hp: 80, atk: 75, def: 110, spa: 90, spd: 115, spe: 80},
+	        abilities: {0: "Hydration", H: "Lightning Rod"},
+	        prevo: "Raichu"
+  },
+  armochu: {
+	        num: 9007,
+	        species: "Armochu",
+	        types: ["Electric","Steel"],
+	        baseStats: {hp: 89, atk: 55, def: 101, spa: 140, spd: 103, spe: 62},
+	        abilities: {0: "Filter", H: "Battle Armour"},
+	        prevo: "Raichu"
+  },
+  miraclechu: {
+	        num: 9008,
+	        species: "Miraclechu",
+	        types: ["Electric","Psychic"],
+	        baseStats: {hp: 60, atk: 90, def: 75, spa: 135, spd: 75, spe: 110},
+	        abilities: {0: "Static", H: "Miracle Dash"},
+	        prevo: "Raichu"
+  },
+  noxiochu: {
+	        num: 9009,
+	        species: "Noxiochu",
+	        types: ["Electric","Poison"],
+	        baseStats: {hp: 75, atk: 112, def: 50, spa: 91, spd: 86, spe: 136},
+	        abilities: {0: "Volt Absorb", 1: "Poison Touch", H: "Electrojection"},
+	        prevo: "Raichu"
+  },
+  keruchu: {
+	        num: 9010,
+	        species: "Keruchu",
+	        types: ["Electric","Fighting"],
+	        baseStats: {hp: 70, atk: 110, def: 85, spa: 95, spd: 60, spe: 130},
+	        abilities: {0: "Scrappy", H: "Sheer Force"},
+	        prevo: "Raichu"
+  },
+  conflachu: {
+	        num: 9011,
+	        species: "Conflachu",
+	        types: ["Electric","Fire"],
+	        baseStats: {hp: 110, atk: 130, def: 65, spa: 70, spd: 65, spe: 110},
+	        abilities: {0: "Static", H: "Reckless"},
+	        prevo: "Raichu"
+  },
 };
