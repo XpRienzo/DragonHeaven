@@ -755,11 +755,11 @@ exports.BattleItems = {
 		name: "Pheromosium Z",
 		spritenum: 642,
 		onTakeItem: false,
-		zMove: "Hyper Speed Lunge",
+		zMove: "Mantis Scorching Lunge",
 		zMoveFrom: "Lunge",
 		zMoveUser: ["Pheromosa"],
 		gen: 7,
-		desc: "If holder is a Pheromosa with Lunge, it can use Hyper Speed Lunge.",
+		desc: "If holder is a Pheromosa with Lunge, it can use Mantis Scorching Lunge.",
 	},
 	"xurkitriumz": {
 		id: "xurkitriumz",
