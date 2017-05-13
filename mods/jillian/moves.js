@@ -515,7 +515,6 @@ exports.BattleMovedex = {
 		contestType: "Clever",
 	},
 	"fireshock": {
-		num: 474,
 		accuracy: 100,
 		basePower: 65,
 		category: "Special",
@@ -539,7 +538,6 @@ exports.BattleMovedex = {
 		contestType: "Beautiful",
 	},
 	"cryotherapy": {
-		num: 474,
 		accuracy: 100,
 		basePower: 65,
 		category: "Special",
@@ -563,7 +561,6 @@ exports.BattleMovedex = {
 		contestType: "Beautiful",
 	},
 	"parashock": {
-		num: 474,
 		accuracy: 100,
 		basePower: 65,
 		category: "Special",
@@ -1676,29 +1673,6 @@ exports.BattleMovedex = {
 		type: "Steel",
 		contestType: "Beautiful"
 	},
-	"mantisscorchinglunge": {
-		accuracy: true,
-		basePower: 180,
-		category: "Physical",
-		desc: "100% chance to drop Attack by 2 stages, user switches",
-		shortdesc: "100% chance -2 atk, user switches",
-		id: "mantisscorchinglunge",
-		isViable: true,
-		name: "Mantis Scorching Lunge",
-		pp: 1,
-		priority: 0,
-		flags: {},
-		isZ: "pheromoniumz",
-		selfSwitch: true,
-		secondary: {
-			chance: 100,
-			boosts: {
-				atk: -2,
-		},
-		target: "normal",
-		type: "Bug",
-		contestType: "Beautiful"
-	},
 	"infinitethunderstrike": {
 		accuracy: true,
 		basePower: 190,
@@ -1737,7 +1711,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Steel",
-		contestType: "Beautiful"
+		contestType: "Beautiful",
 	},
 	"extremepoisonousdownpour": {
 		accuracy: true,
@@ -1758,25 +1732,7 @@ exports.BattleMovedex = {
 		},
 		target: "normal",
 		type: "Poison",
-		contestType: "Beautiful"
-	},
-	"onepunchknockout": {
-		accuracy: true,
-		basePower: 220,
-		category: "Physical",
-		desc: "Deals heavy damage to the target, forcing it out",
-		id: "onepunchknockout",
-		isViable: true,
-		name: "One Punch Knock Out",
-		pp: 1,
-		priority: 0,
-		flags: {},
-		forceSwitch: true,
-		isZ: "buzzwoleniumz",
-		secondary: false,
-		target: "normal",
-		type: "Fighting",
-		contestType: "Beautiful"
+		contestType: "Beautiful",
 	},
 	"steelshieldingdefense": {
 		accuracy: true,
@@ -1796,7 +1752,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Steel",
-		contestType: "Beautiful"
+		contestType: "Beautiful",
 	},
 	"intothevoid": {
 		accuracy: true,
@@ -1824,6 +1780,47 @@ exports.BattleMovedex = {
 		},
 		target: "normal",
 		type: "Dark",
+		contestType: "Beautiful",
+	},
+	"mantisscorchinglunge": {
+		accuracy: true,
+		basePower: 180,
+		category: "Physical",
+		desc: "100% chance to drop Attack by 2 stages, user switches",
+		shortdesc: "100% chance -2 atk, user switches",
+		id: "mantisscorchinglunge",
+		isViable: true,
+		name: "Mantis Scorching Lunge",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "pheromoniumz",
+		selfSwitch: true,
+		secondary: {
+			chance: 100,
+			boosts: {
+				atk: -2,
+		},
+		target: "normal",
+		type: "Bug",
+		contestType: "Beautiful",
+	},
+	"onepunchknockout": {
+		accuracy: true,
+		basePower: 220,
+		category: "Physical",
+		desc: "Deals heavy damage to the target, forcing it out",
+		id: "onepunchknockout",
+		isViable: true,
+		name: "One Punch Knock Out",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		forceSwitch: true,
+		isZ: "buzzwoleniumz",
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
 		contestType: "Beautiful",
 	},
 };
