@@ -1796,8 +1796,11 @@ exports.BattleMovedex = {
 		flags: {},
 		isZ: "pheromoniumz",
 		selfSwitch: true,
-		boosts: {
-			atk: -2,
+		secondary: {
+			chance: 100,
+			boosts: { 
+				atk: -2,
+			},
 		},
 		target: "normal",
 		type: "Bug",
