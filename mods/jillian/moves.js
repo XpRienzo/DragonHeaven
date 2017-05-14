@@ -1786,8 +1786,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 180,
 		category: "Physical",
-		desc: "100% chance to drop Attack by 2 stages, user switches",
-		shortdesc: "100% chance -2 atk, user switches",
+		desc: "100% chance to drop Attack by 2 stages",
+		shortdesc: "100% chance -2 atk",
 		id: "mantisscorchinglunge",
 		isViable: true,
 		name: "Mantis Scorching Lunge",
@@ -1795,7 +1795,6 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "pheromoniumz",
-		selfSwitch: true,
 		secondary: {
 			chance: 100,
 			boosts: { 
@@ -1808,9 +1807,9 @@ exports.BattleMovedex = {
 	},
 	"onepunchknockout": {
 		accuracy: true,
-		basePower: 220,
+		basePower: 240,
 		category: "Physical",
-		desc: "Deals heavy damage to the target, forcing it out",
+		desc: "Deals heavy damage to the target",
 		id: "onepunchknockout",
 		isViable: true,
 		name: "One Punch Knock Out",
@@ -1818,7 +1817,6 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "buzzwoleniumz",
-		forceSwitch: true,
 		secondary: false,
 		target: "normal",
 		type: "Fighting",
