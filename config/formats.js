@@ -5771,12 +5771,14 @@ exports.Formats = [
 		mod: 'gen7',
 		ruleset: ['[Gen 7] OU'],
 		banlist: ['Illegal', 'Freeze-Dry'],
-		onEffectiveness: function (typeMod, type, pokemon) {
-		let Effectiveness = [this.getMove(pokemon.moveset[0].id).type];
-			if (type === '(pokemon.moveset[3].id).type') return 1;
+		onEffectiveness: function (typeMod, type, pokemon, move) {
+			if (move.id !== pokemon.moves[0]) return typeMod;
+			if (type === this.getMove(pokemon.moves[3]).type) {
+				return 1;
 			}
-		        if (type === '(pokemon.moveset[1].id).type') return 2;
-			},
+			if (type === this.getMove(pokemon.moves[1]).type) {
+				return 2;
+			}
 		},
 	},
 	{
