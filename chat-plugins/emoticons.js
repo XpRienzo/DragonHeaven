@@ -112,6 +112,10 @@ if (typeof demFeels.extendEmotes === 'function') {
 		'feelszard':'http://i.imgur.com/SSJoM7P.gif',
 		'<3':'http://cliparts.co/cliparts/Rkc/M7K/RkcM7KXTj.png',
 		'feelsshivam':'http://i.imgur.com/jTTPtyW.jpg?1',
+		'lolmoji':'http://aminoapps.com/static/bower/emojify.js/images/emoji/joy.png',
+		'molestermoon':'http://emojisaurus.com/images/emoji/full_moon_with_face.png',
+		'feelstoad':'http://2static.fjcdn.com/pictures/Pepe_2ac9cd_5583479.jpg',
+		
 	});
 }
 
