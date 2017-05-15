@@ -1141,24 +1141,23 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Cool",
 	},
-	"bstblast": {
+	"warpingawaykick": {
 		accuracy: 100,
-		basePower: 0,
-		damageCallback: function (pokemon) {
-			let damage = pokemon.bst;
-			pokemon.faint();
-			return damage;
-		},
-		category: "Special",
-		desc: "Deals damage to the target equal to the user's BST. If this move is successful, the user faints.",
-		shortDesc: "Does damage equal to the user's BST. User faints.",
-		id: "bstblast",
+		basePower: 80,
+		category: "Physical",
+		desc: "Does a very fast kick like the Pokemon was warping away, usually goes first. Boosts the user's Speed by 1 stage",
+		shortDesc: "Usually goes first. +1 Speed for the user.",
+		id: "warpingawaykick",
 		isViable: true,
-		name: "BST Blast",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1},
-		selfdestruct: "ifHit",
+		name: "Warping Away Kick",
+		pp: 10,
+		priority: 2,
+		flags: {protect: 1, mirror: 1, contact: 1},
+		self: {
+			boosts: {
+				spe: 1,
+			},
+		},
 		secondary: false,
 		target: "normal",
 		type: "Fighting",
