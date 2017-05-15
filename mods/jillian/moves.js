@@ -167,8 +167,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user restores 1/2 of its maximum HP, rounded half down. If the weather is Rain, the user instead restores 2/3 of its maximum HP, rounded half down.",
-		shortDesc: "User restores 1/2 its max HP; 2/3 in Rain.",
+		desc: "The user restores 1/2 of its maximum HP, rounded half down. If the weather is Rain, the user instead restores 2/3 of its maximum HP, rounded half down. If the weather is Sun, the move only heals 1/4.",
+		shortDesc: "User restores 1/2 its max HP; 2/3 in Rain, 25% in Sun.",
 		id: "magicalwater",
 		isViable: true,
 		name: "Magical Water",
@@ -178,7 +178,9 @@ exports.BattleMovedex = {
 		onHit: function(pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea'])) {
 				this.heal(this.modify(pokemon.maxhp, 0.667));
-			} else {
+			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
+				this.heal(this.modify(pokemon.maxhp, 0.25));
+			}  else {
 				this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
 		},
@@ -1262,6 +1264,60 @@ exports.BattleMovedex = {
 		zMovePower: 180,
 		contestType: "Tough",
 	},
+	"holysnow": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user restores 1/2 of its maximum HP, rounded half down. If the weather is Hail, the user instead restores 2/3 of its maximum HP, rounded half down. If the weather is Sandstorm, the move only heals 1/4.",
+		shortDesc: "User restores 1/2 its max HP; 2/3 in Rain, 25% in Sandstorm.",
+		id: "holysnow",
+		isViable: true,
+		name: "Holy Snow",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onHit: function(pokemon) {
+			if (this.isWeather(['hail'])) {
+				this.heal(this.modify(pokemon.maxhp, 0.667));
+			} else if (this.isWeather(['sandstorm'])) {
+				this.heal(this.modify(pokemon.maxhp, 0.25));
+			}  else {
+				this.heal(this.modify(pokemon.maxhp, 0.5));
+			}
+		},
+		secondary: false,
+		target: "self",
+		type: "Ice",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Beautiful",
+	},
+	"shoreup": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user restores 1/2 of its maximum HP, rounded half down. If the weather is Sandstorm, the user instead restores 2/3 of its maximum HP, rounded half down. If the weather is Hail, the move only heals 1/4.",
+		shortDesc: "User restores 1/2 its max HP; 2/3 in Sand, 25% in Hail.",
+		id: "shoreup",
+		isViable: true,
+		name: "Shore Up",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onHit: function(pokemon) {
+			if (this.isWeather(['sandstorm'])) {
+				this.heal(this.modify(pokemon.maxhp, 0.667));
+			} else if (this.isWeather(['hail'])) {
+				this.heal(this.modify(pokemon.maxhp, 0.25));
+			}  else {
+				this.heal(this.modify(pokemon.maxhp, 0.5));
+			}
+		},
+		secondary: false,
+		target: "self",
+		type: "Ground",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Beautiful",
+	},	
 	"speedblast": {
 		num: 515,
 		accuracy: 100,
@@ -1273,7 +1329,7 @@ exports.BattleMovedex = {
 		},
 		category: "Special",
 		desc: "Deals damage to the target equal to the user's current Speed. If this move is successful, the user faints.",
-		shortDesc: "Does damage equal to the user's HP. User faints.",
+		shortDesc: "Does damage equal to the user's Speed. User faints.",
 		id: "speedblast",
 		isViable: true,
 		name: "Speed Blast",
