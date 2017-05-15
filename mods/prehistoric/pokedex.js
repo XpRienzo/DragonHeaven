@@ -13,7 +13,7 @@ exports.BattlePokedex = {
 		prevo: "binacle",
 		evoLevel: 39,
 		eggGroups: ["Water 3"],
-    otherFormes: ["barbaracleprimal"],
+    		otherFormes: ["barbaracleprimal"],
 	},
 	barbaracleprimal: {
 		num: 689,
@@ -29,7 +29,7 @@ exports.BattlePokedex = {
 		color: "Brown",
 		eggGroups: ["Undiscovered", "Water 3"],
 	},
-  carracosta: {
+  	carracosta: {
 		num: 565,
 		species: "Carracosta",
 		types: ["Water", "Rock"],
@@ -42,9 +42,9 @@ exports.BattlePokedex = {
 		prevo: "tirtouga",
 		evoLevel: 37,
 		eggGroups: ["Water 1", "Water 3"],
-    otherFormes: ["carracostaprimal"],
+    		otherFormes: ["carracostaprimal"],
 	},
-  carracostaprimal: {
+  	carracostaprimal: {
 		num: 565,
 		species: "Carracosta-Primal",
 		baseSpecies: "Carracosta",
@@ -58,7 +58,7 @@ exports.BattlePokedex = {
 		color: "Brown",
 		eggGroups: ["Undiscovered", "Water 3"],
 	},
-  chesnaught: {
+  	chesnaught: {
 		num: 652,
 		species: "Chesnaught",
 		types: ["Grass", "Fighting"],
@@ -70,9 +70,9 @@ exports.BattlePokedex = {
 		prevo: "quilladin",
 		evoLevel: 36,
 		eggGroups: ["Monster", "Field"],
-    otherFormes: ["chesnaughtprimal"],
-  },
-  chesnaughtprimal: {
+    		otherFormes: ["chesnaughtprimal"],
+  	},
+  	chesnaughtprimal: {
 		num: 652,
 		species: "Chesnaught-Primal",
 		baseSpecies: "Chesnaught",
@@ -86,7 +86,7 @@ exports.BattlePokedex = {
 		color: "Green",
 		eggGroups: ["Undiscovered", "Monster"],
 	},
-  guzzlord: {
+  	guzzlord: {
 		num: 799,
 		species: "Guzzlord",
 		types: ["Dark", "Dragon"],
@@ -97,20 +97,49 @@ exports.BattlePokedex = {
 		weightkg: 888,
 		color: "Black",
 		eggGroups: ["Monster", "Undiscovered"],
-    otherFormes: ["guzzlordprimal"],
+    		otherFormes: ["guzzlordprimal"],
 	},
-  guzzlordprimal: {
+  	guzzlordprimal: {
 		num: 799,
 		species: "Guzzlord-Primal",
 		baseSpecies: "Guzzlord",
 		forme: "Primal",
 		formeLetter: "P",
-		types: ["Fighting", "Dragon],
+		types: ["Fighting", "Dragon"],
 		baseStats: {hp: 223, atk: 81, def: 108, spa: 87, spd: 108, spe: 53},
 		abilities: {0: "Multiscale"},
 		heightm: 6.4,
 		weightkg: 999.4,
 		color: "Brown",
 		eggGroups: ["Undiscovered", "Monster"],
+	},
+	darmanitan: {
+		num: 555,
+		species: "Darmanitan",
+		baseForme: "Standard",
+		types: ["Fire"],
+		baseStats: {hp: 105, atk: 140, def: 55, spa: 30, spd: 55, spe: 95},
+		abilities: {0: "Sheer Force"},
+		heightm: 1.3,
+		weightkg: 92.9,
+		color: "Red",
+		prevo: "darumaka",
+		evoLevel: 35,
+		eggGroups: ["Field"],
+		otherFormes: ["darmanitanprimal"],
+	},
+  	darmanitanprimal: {
+		num: 555,
+		species: "Darmanitan-Primal",
+		baseSpecies: "Darmanitan",
+		forme: "Primal",
+		formeLetter: "P",
+		types: ["Fire", "Grass"],
+		baseStats: {hp: 105, atk: 140, def: 121, spa: 140, spd: 131, spe: 120},
+		abilities: {0: "Truant"},
+		heightm: 1.3,
+		weightkg: 87.3,
+		color: "Red",
+		eggGroups: ["Undiscovered", "Field"],
 	},
   };
