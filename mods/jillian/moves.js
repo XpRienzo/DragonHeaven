@@ -1191,7 +1191,6 @@ exports.BattleMovedex = {
 		contestType: "Tough",
 	},
 	"defblast": {
-		num: 515,
 		accuracy: 100,
 		basePower: 0,
 		damageCallback: function (pokemon) {
@@ -1216,7 +1215,6 @@ exports.BattleMovedex = {
 		contestType: "Tough",
 	},
 	"spablast": {
-		accuracy: 100,
 		basePower: 0,
 		damageCallback: function (pokemon) {
 			let damage = pokemon.spa;
@@ -1240,7 +1238,6 @@ exports.BattleMovedex = {
 		contestType: "Tough",
 	},
 	"spdblast": {
-		num: 515,
 		accuracy: 100,
 		basePower: 0,
 		damageCallback: function (pokemon) {
@@ -1320,7 +1317,6 @@ exports.BattleMovedex = {
 		contestType: "Beautiful",
 	},	
 	"speedblast": {
-		num: 515,
 		accuracy: 100,
 		basePower: 0,
 		damageCallback: function (pokemon) {
