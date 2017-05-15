@@ -1269,7 +1269,7 @@ exports.BattleMovedex = {
 		basePower: 0,
 		category: "Status",
 		desc: "The user restores 1/2 of its maximum HP, rounded half down. If the weather is Hail, the user instead restores 2/3 of its maximum HP, rounded half down. If the weather is Sandstorm, the move only heals 1/4.",
-		shortDesc: "User restores 1/2 its max HP; 2/3 in Rain, 25% in Sandstorm.",
+		shortDesc: "User restores 1/2 its max HP; 2/3 in Hail, 25% in Sand.",
 		id: "holysnow",
 		isViable: true,
 		name: "Holy Snow",
@@ -1292,6 +1292,7 @@ exports.BattleMovedex = {
 		contestType: "Beautiful",
 	},
 	"shoreup": {
+		gen: 7,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
