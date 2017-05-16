@@ -1730,7 +1730,7 @@ exports.BattleMovedex = {
 			accuracy: 2,
 			evasion: 2,
 		},
-		selfSwitch: 'copyvolatile',
+		selfSwitch: 'copyboosts',
 		secondary: false,
 		target: "self",
 		type: "Normal",
