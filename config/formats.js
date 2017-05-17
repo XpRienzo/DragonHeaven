@@ -3512,6 +3512,21 @@ exports.Formats = [
 		column: 3,
 	},
 	{
+		name: "[Gen 7] Prehistoric",
+		desc: [
+			"&bullet; Coded by flufi.",
+			"A format that takes place in prehistoric times.",
+			"Over 100 Pokemon receive new Primal forms, along with",
+			"every one of those Pokemon getting a new signature move.",
+			"",
+			"NOTE: This is a long-term project and probably won't be done until June/July.",
+		],
+		mod: "prehistoric",
+		
+		rulset: ['[Gen 7] Ubers'],
+		banlist: ['Blue Orb', 'Shadow Tag'],
+	},
+	{
 		name: "Ascension",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3546114/\">OU Metagame Discussion</a>",
