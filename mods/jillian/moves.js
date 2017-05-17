@@ -2015,6 +2015,9 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "buzzwolenium Z",
+		self: {
+			atk: 2,
+		},
 		secondary: false,
 		target: "normal",
 		type: "Fighting",
