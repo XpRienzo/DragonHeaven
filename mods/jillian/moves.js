@@ -1992,7 +1992,7 @@ exports.BattleMovedex = {
 		pp: 1,
 		priority: 0,
 		flags: {},
-		isZ: "pheromoniumz",
+		isZ: "pheromosiumz",
 		secondary: {
 			chance: 100,
 			boosts: {
@@ -2014,7 +2014,7 @@ exports.BattleMovedex = {
 		pp: 1,
 		priority: 0,
 		flags: {},
-		isZ: "buzzwolenium Z",
+		isZ: "buzzwolium Z",
 		self: {
 			atk: 2,
 		},
