@@ -1721,6 +1721,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
+		selfSwitch: 'copyvolatile',
 		boosts: {
 			atk: 2,
 			def: 2,
@@ -1730,7 +1731,6 @@ exports.BattleMovedex = {
 			accuracy: 2,
 			evasion: 2,
 		},
-		selfSwitch: 'copyboost',
 		secondary: false,
 		target: "self",
 		type: "Normal",
