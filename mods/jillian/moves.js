@@ -1697,6 +1697,9 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "rayquazaniumz",
+		onTrapPokemon: function (pokemon) {
+				pokemon.tryTrap();
+		},
 		boosts: {
 			atk: 3,
 			def: 3,
