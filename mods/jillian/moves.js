@@ -419,6 +419,76 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Tough",
 	},
+	"rapidspin": {
+		num: 229,
+		accuracy: 100,
+		basePower: 20,
+		category: "Physical",
+		desc: "If this move is successful and the user has not fainted, the effects of Leech Seed and partial-trapping moves end for the user, and all hazards are removed from the user's side of the field.",
+		shortDesc: "Frees user from hazards/partial trap/Leech Seed.",
+		id: "rapidspin",
+		isViable: true,
+		name: "Rapid Spin",
+		pp: 40,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			onHit: function (pokemon) {
+				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
+					this.add('-end', pokemon, 'Leech Seed', '[from] move: Rapid Spin', '[of] ' + pokemon);
+				}
+				let sideConditions = {spikes:1, toxicspikes:1, stealthrock:1, stickyweb:1, marabunta:1};
+				for (let i in sideConditions) {
+					if (pokemon.hp && pokemon.side.removeSideCondition(i)) {
+						this.add('-sideend', pokemon.side, this.getEffect(i).name, '[from] move: Rapid Spin', '[of] ' + pokemon);
+					}
+				}
+				if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+					pokemon.removeVolatile('partiallytrapped');
+				}
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 100,
+		contestType: "Cool",
+	},
+	"defog": {
+		num: 432,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Lowers the target's evasiveness by 1 stage. If this move is successful and whether or not the target's evasiveness was affected, the effects of Reflect, Light Screen, Safeguard, Mist, Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the target's side, and the effects of Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the user's side. Ignores a target's substitute, although a substitute will still block the lowering of evasiveness.",
+		shortDesc: "-1 evasion; clears user and target side's hazards.",
+		id: "defog",
+		isViable: true,
+		name: "Defog",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		onHit: function (target, source, move) {
+			if (!target.volatiles['substitute'] || move.infiltrates) this.boost({evasion:-1});
+			let removeTarget = {reflect:1, lightscreen:1, auroraveil: 1, safeguard:1, mist:1, spikes:1, toxicspikes:1, stealthrock:1, stickyweb:1};
+			let removeAll = {spikes:1, toxicspikes:1, stealthrock:1, stickyweb:1, marabunta:1};
+			for (let targetCondition in removeTarget) {
+				if (target.side.removeSideCondition(targetCondition)) {
+					if (!removeAll[targetCondition]) continue;
+					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + target);
+				}
+			}
+			for (let sideCondition in removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+				}
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Flying",
+		zMoveBoost: {accuracy: 1},
+		contestType: "Cool",
+	},
 	"metalliccrush": {
 		accuracy: 75,
 		basePower: 150,
