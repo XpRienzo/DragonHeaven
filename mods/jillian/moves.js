@@ -1709,20 +1709,22 @@ exports.BattleMovedex = {
 		type: "Flying",
 		contestType: "Beautiful",
 	},
-	"superhelpinghand": {
+	"tradesforawish": {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Boosts the user stats by 2 stages each, then baton pass it away",
-		id: "superhelpinghand",
+		desc: "User +2 in each stat, heal 1/2, but user is trapped",
+		id: "tradesforawish",
 		isViable: true,
-		name: "Super Helping Hand",
+		name: "Trades for a Wish",
 		pp: 1,
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
-		selfSwitch: 'copyvolatile',
-		boosts: {
+		onTrapPokemon: function (pokemon) {
+				pokemon.tryTrap();
+		},
+		self: {
 			atk: 2,
 			def: 2,
 			spa: 2,
@@ -1731,6 +1733,7 @@ exports.BattleMovedex = {
 			accuracy: 2,
 			evasion: 2,
 		},
+		heal: [1,2],
 		secondary: false,
 		target: "self",
 		type: "Normal",
