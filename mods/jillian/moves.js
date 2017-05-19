@@ -1689,7 +1689,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Raises the user's stats by 3 stages each",
+		desc: "Raises the user's stats by 3 stages each, but traps it.",
 		id: "ultimatepoweroftheskies",
 		isViable: true,
 		name: "Ultimate Power of the Skies",
