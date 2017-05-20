@@ -12,7 +12,6 @@ exports.commands = {
 	credits: function (target, room, user) {
 		this.popupReply("|html|" + "<font size=4><center><u><b>Dragon Heaven Credits!</b></u></center></font><br />" +
 					"<u>Owner:</u><br />" +
-					"- " + hashColor('charizard8888', true) + " (Roomintros, HTML, CSS, Development, <br>OMG, ACTUALLY EVERYTHING. Defy him and you'll get banished to hell)<br />" +
 					"- " + hashColor('XpRienzo', true) + " (Founder, Sysadmin)<br />" +
 					"- " + hashColor('Nixola', true) + " (Host)<br />" +
                                         "<br />" +
@@ -21,6 +20,7 @@ exports.commands = {
                     "- " + hashColor('Spandan', true) + " (Format Development, <s>Crashes</s>)<br />" +
 					"<br />" +
 					"<u>Contributors:</u><br />" +
+		    "- " + hashColor('charizard8888', true) + " (Roomintros, HTML, CSS, Development)<br />" +
                     "- " + hashColor('ClassyZ', true) + " (DHSSB, Development)<br />" +
                     "- " + hashColor('Eternal Mayhem', true) + " (Roomintro's)<br />" +
                     "- " + hashColor('Spects', true) + " (Development)<br />" +
