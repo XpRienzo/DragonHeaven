@@ -557,11 +557,11 @@ exports.BattleItems = {
 		name: "Leafeonium Z",
 		spritenum: 635,
 		onTakeItem: false,
-		zMove: "Warth of The Hundred-Year-Old Trees",
+		zMove: "Wrath of The Hundred-Year-Old Trees",
 		zMoveFrom: "Leaf Blade",
 		zMoveUser: ["Leafeon"],
 		gen: 7,
-		desc: "If holder is a Leafeon with Leaf Blade, it can use Warth of the Hundred-Year-Old Trees",
+		desc: "If holder is a Leafeon with Leaf Blade, it can use Wrath of the Hundred-Year-Old Trees",
 	},
 	"espeoniumz": {
 		id: "espeoniumz",
