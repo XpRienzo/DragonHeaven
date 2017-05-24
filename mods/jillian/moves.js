@@ -1410,6 +1410,78 @@ exports.BattleMovedex = {
 		zMovePower: 180,
 		contestType: "Tough",
 	},
+	"burningthorns": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the foe's side of the field, burning each foe that switches in, unless it is a Flying-type Pokemon or has the Ability Levitate. Can be used up to one time before failing. Can be removed from the foe's side if any foe uses Rapid Spin or Defog, is hit by Defog, or a grounded Fire-type Pokemon switches in. Safeguard prevents the foe's party from being burned on switch-in, but a substitute does not.",
+		shortDesc: "Burns grounded foes on switch-in. Max 1 layer.",
+		id: "burningthorns",
+		isViable: true,
+		name: "Burning Thorns",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'burningthorns',
+		effect: {
+			// this is a side condition
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Burning Thorns');
+				this.effectData.layers = 1;
+			},
+			onSwitchIn: function (pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (!pokemon.runImmunity('Fire')) return;
+				if (pokemon.hasType('Fire')) {
+					this.add('-sideend', pokemon.side, 'move: Burning Thorns', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('burningthorns');
+				} else if {
+					pokemon.trySetStatus('brn', pokemon.side.foe.active[0]);
+				}
+			},
+		},
+		secondary: false,
+		target: "foeSide",
+		type: "Fire",
+		zMoveBoost: {def: 1},
+		contestType: "Clever",
+	},
+	"stunningbarbs": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the foe's side of the field, paralysing each foe that switches in, unless it is a Flying-type Pokemon or has the Ability Levitate. Can be used up to one time before failing. Can be removed from the foe's side if any foe uses Rapid Spin or Defog, is hit by Defog, or a grounded Electric-type Pokemon switches in. Safeguard prevents the foe's party from being paralysed on switch-in, but a substitute does not.",
+		shortDesc: "Paralyses grounded foes on switch-in. Max 1 layer.",
+		id: "stunningbarbs",
+		isViable: true,
+		name: "Stunning Barbs",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'stunningbarbs',
+		effect: {
+			// this is a side condition
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Stunning Barbs');
+				this.effectData.layers = 1;
+			},
+			onSwitchIn: function (pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (!pokemon.runImmunity('Electric')) return;
+				if (pokemon.hasType('Electric')) {
+					this.add('-sideend', pokemon.side, 'move: Stunning Barbs', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('stunningbarbs');
+				} else if {
+					pokemon.trySetStatus('par', pokemon.side.foe.active[0]);
+				}
+			},
+		},
+		secondary: false,
+		target: "foeSide",
+		type: "Electric",
+		zMoveBoost: {def: 1},
+		contestType: "Clever",
+	},
 	"rageofmothernature": {
 		accuracy: true,
 		basePower: 170,
@@ -1633,14 +1705,14 @@ exports.BattleMovedex = {
 		type: "Fighting",
 		contestType: "Clever",
 	},
-	"warthofshiningskies": {
+	"wrathofshiningskies": {
 		accuracy: true,
 		basePower: 180,
 		category: "Special",
 		desc: "Deals super effective damage against Flying types",
-		id: "warthofshiningskies",
+		id: "wrathofshiningskies",
 		isViable: true,
-		name: "Warth Of Shining Skies",
+		name: "Wrath Of Shining Skies",
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -1855,14 +1927,14 @@ exports.BattleMovedex = {
 		type: "Fire",
 		contestType: "Beautiful",
 	},
-	"warthofthehundredyearoldtrees": {
+	"wrathofthehundredyearoldtrees": {
 		accuracy: true,
 		basePower: 180,
 		category: "Special",
 		desc: "50% chance to randomly status a foe",
-		id: "warthofthehundredyearoldtrees",
+		id: "wrathofthehundredyearoldtrees",
 		isViable: true,
-		name: "Warth of The Hundred-Year-Old Trees",
+		name: "Wrath of The Hundred-Year-Old Trees",
 		pp: 1,
 		priority: 0,
 		flags: {},
