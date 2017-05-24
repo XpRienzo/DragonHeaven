@@ -1435,7 +1435,7 @@ exports.BattleMovedex = {
 				if (pokemon.hasType('Fire')) {
 					this.add('-sideend', pokemon.side, 'move: Burning Thorns', '[of] ' + pokemon);
 					pokemon.side.removeSideCondition('burningthorns');
-				} else if {
+				} else {
 					pokemon.trySetStatus('brn', pokemon.side.foe.active[0]);
 				}
 			},
@@ -1471,7 +1471,7 @@ exports.BattleMovedex = {
 				if (pokemon.hasType('Electric')) {
 					this.add('-sideend', pokemon.side, 'move: Stunning Barbs', '[of] ' + pokemon);
 					pokemon.side.removeSideCondition('stunningbarbs');
-				} else if {
+				} else {
 					pokemon.trySetStatus('par', pokemon.side.foe.active[0]);
 				}
 			},
