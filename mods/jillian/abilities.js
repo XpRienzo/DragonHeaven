@@ -295,5 +295,94 @@ exports.BattleAbilities = {
 		id: "miracledash",
 		name: "Miracle Dash",
 		rating: 4,
-        },	
+        },
+	"punchproof": {
+		desc: "This Pokemon is immune to punching moves. ¨Punching moves include all moves with punch or arm in their name",
+		shortDesc: "Makes user immune to punching moves",
+		onTryHit: function (pokemon, target, move) {
+			if (move.flags['punch']) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Punchproof');
+				return null;
+			}
+		},
+		id: "punchproof",
+		name: "Punchproof",
+		rating: 3,
+	},
+	"absolutezero": {
+		desc: "This Pokemon is immune to Water-type moves and raises its Attack by 1 stage when hit by a Water-type move.",
+		shortDesc: "This Pokemon's Attack is raised 1 stage if hit by a Water move; Water immunity.",
+		onTryHitPriority: 1,
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.boost({atk:1})) {
+					this.add('-immune', target, '[msg]', '[from] ability: Absolute Zero');
+				}
+				return null;
+			}
+		},
+		onAllyTryHitSide: function (target, source, move) {
+			if (target === this.effectData.target || target.side !== source.side) return;
+			if (move.type === 'Water') {
+				this.boost({atk:1}, this.effectData.target);
+			}
+		},
+		id: "absolutezero",
+		name: "Absolute Zero",
+		rating: 3.5,
+		num: 157,
+	},
+	"burningheal": {
+		desc: "If this Pokemon is burned, it restores 1/8 of its maximum HP, rounded down, at the end of each turn instead of losing HP.",
+		shortDesc: "This Pokemon is healed by 1/8 of its max HP each turn when burned; no HP loss.",
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'brn') {
+				this.heal(target.maxhp / 8);
+				return false;
+			}
+		},
+		id: "burningheal",
+		name: "Burning Heal",
+		rating: 4,
+		num: 90,
+	},
+	"renegate": {
+		desc: "This Pokemon's Normal-type moves become Ghost-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Ghost type and have 1.2x power.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Normal' && move.id !== 'naturalgift' && !move.isZ) {
+				move.type = 'Ghost';
+				if (move.category !== 'Status') pokemon.addVolatile('renegate');
+			}
+		},
+		effect: {
+			duration: 1,
+			onBasePowerPriority: 8,
+			onBasePower: function (basePower, pokemon, target, move) {
+				return this.chainModify([0x1333, 0x1000]);
+			},
+		},
+		id: "renegate",
+		name: "Renegate",
+		rating: 4,
+	},
+	"reaperslice": {
+		desc: "This Pokemon's  Ghost moves ignore substitutes and the opposing side's Reflect, Light Screen, Safeguard, and Mist, they also have x1.3 power",
+		shortDesc: "Moves ignore substitutes and opposing Reflect, Light Screen, Safeguard, and Mist, x1.3 power",
+		  	onModifyMove: function (move) {
+			  	if (move.type === 'Ghost') {
+			  	return move.infiltrates = true;
+			  	},
+			  	if (move.type === 'Ghost') {
+			  	this.debug('Reaper Slice boost');
+				return this.chainModify([0x14CD, 0x1000]);
+			  	}
+		  	}
+		},
+		id: "reaperslice",
+		name: "Reaper Slice",
+		rating: 3,
+	
+	},
 };
