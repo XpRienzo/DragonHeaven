@@ -311,7 +311,7 @@ exports.BattleAbilities = {
 	},
 	"absolutezero": {
 		desc: "This Pokemon's Ice type moves can hit Water types super effectively, they also have x1.3 power and fire type damage is halved.",
-		shortDesc: "This Pokemon's Ice moves hit Water supeff, x1.3 power",
+		shortDesc: "This Pokemon's Ice moves hit Water supeff, x1.3 power, fire type damage halved",
 		onModifyMove: function (move) {
 			if (move.type === 'Ice') {
 			  	this.debug('Absolute Zero boost');
