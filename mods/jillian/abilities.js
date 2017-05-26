@@ -310,7 +310,7 @@ exports.BattleAbilities = {
 		rating: 3,
 	},
 	"absolutezero": {
-		desc: "This Pokemon's Ice type moves can hit Water types super effectively, they also have x1.3 power",
+		desc: "This Pokemon's Ice type moves can hit Water types super effectively, they also have x1.3 power and fire type damage is halved.",
 		shortDesc: "This Pokemon's Ice moves hit Water supeff, x1.3 power",
 		onModifyMove: function (move) {
 			if (move.type === 'Ice') {
@@ -323,6 +323,14 @@ exports.BattleAbilities = {
 			duration: 1,
 			onEffectiveness: function (typeMod, type) {
 			if (type === 'Water') return 1;
+		},
+		effect: {
+			duration: 1,
+			onSourceModifyDamage: function(damage, source, target, move) {
+			if (move.type === 'fire') {
+				this.debug('Absolute Zero neutralize');
+				return this.chainModify(0.5);
+			}
 		},
 		id: "absolutezero",
 		name: "Absolute Zero",
