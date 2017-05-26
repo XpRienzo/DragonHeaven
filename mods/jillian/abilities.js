@@ -321,13 +321,11 @@ exports.BattleAbilities = {
 		},
 		effect: {
 			duration: 1,
-			onEffectiveness: function (typeMod, type) {
+		onEffectiveness: function (typeMod, type) {
 			if (type === 'Water') return 1;
 		},
-		effect: {
-			duration: 1,
-			onSourceModifyDamage: function(damage, source, target, move) {
-			if (move.type === 'fire') {
+		onSourceModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
 				this.debug('Absolute Zero neutralize');
 				return this.chainModify(0.5);
 			}
