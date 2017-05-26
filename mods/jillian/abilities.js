@@ -310,27 +310,23 @@ exports.BattleAbilities = {
 		rating: 3,
 	},
 	"absolutezero": {
-		desc: "This Pokemon is immune to Water-type moves and raises its Attack by 1 stage when hit by a Water-type move.",
-		shortDesc: "This Pokemon's Attack is raised 1 stage if hit by a Water move; Water immunity.",
-		onTryHitPriority: 1,
-		onTryHit: function (target, source, move) {
-			if (target !== source && move.type === 'Water') {
-				if (!this.boost({atk:1})) {
-					this.add('-immune', target, '[msg]', '[from] ability: Absolute Zero');
-				}
-				return null;
-			}
+		desc: "This Pokemon's Ice type moves can hit Water types super effectively, they also have x1.3 power",
+		shortDesc: "This Pokemon's Ice moves hit Water supeff, x1.3 power",
+		onModifyMove: function (move) {
+			if (move.type === 'Ice') {
+			  	this.debug('Absolute Zero boost');
+				return this.chainModify([0x14CD, 0x1000]);
+				return: true;
+			}		  
 		},
-		onAllyTryHitSide: function (target, source, move) {
-			if (target === this.effectData.target || target.side !== source.side) return;
-			if (move.type === 'Water') {
-				this.boost({atk:1}, this.effectData.target);
-			}
+		effect: {
+			duration: 1,
+			onEffectiveness: function (typeMod, type) {
+			if (type === 'Water') return 1;
 		},
 		id: "absolutezero",
 		name: "Absolute Zero",
 		rating: 3.5,
-		num: 157,
 	},
 	"burningheal": {
 		desc: "If this Pokemon is burned, it restores 1/8 of its maximum HP, rounded down, at the end of each turn instead of losing HP.",
