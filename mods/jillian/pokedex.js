@@ -1091,6 +1091,21 @@ exports.BattlePokedex = {
 		baseStats: {hp: 150, atk: 80, def: 64, spa: 120, spd: 74, spe: 110},
 		abilities: {0: "Reaper Slice"},
        	  }, 
+      goodra: {
+	        inherit: true,
+	        abilities: {0: "Sap Sipper", 1: "Hydration", H: "Gooey"},
+	       	otherFormes: ["goodramega"],
+	  },
+     goodramega: {
+	        num: 706,
+		species: "Goodra-Mega",
+		baseSpecies: "Goodra",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Dragon", "Poison"],
+		baseStats: {hp: 90, atk: 130, def: 90, spa: 130, spd: 150, spe: 110},
+		abilities: {0: "Punchproof"},
+       	  }, 
        raichualola: {
 		num: 26,
 		species: "Raichu-Alola",
