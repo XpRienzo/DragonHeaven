@@ -316,12 +316,9 @@ exports.BattleAbilities = {
 			if (move.type === 'Ice') {
 			  	this.debug('Absolute Zero boost');
 				return this.chainModify([0x14CD, 0x1000]);
-				return: true;
-			}		  
-		},
-		effect: {
-			duration: 1,
-		onEffectiveness: function (typeMod, type) {
+				}
+			},
+			onEffectiveness: function (typeMod, type) {
 			if (type === 'Water') return 1;
 		},
 		onSourceModifyAtk: function (atk, attacker, defender, move) {
