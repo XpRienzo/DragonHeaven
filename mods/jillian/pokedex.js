@@ -1121,6 +1121,21 @@ exports.BattlePokedex = {
 		baseStats: {hp: 65, atk: 110, def: 160, spa: 40, spd: 110, spe: 80},
 		abilities: {0: "Aerilate"},
        	  }, 
+	tangrowth: {
+	        inherit: true,
+	        abilities: {0: "Chlorophyll", 1: "Leaf Guard", H: "Regenerator"},
+	       	otherFormes: ["tangrowthmega"],
+       	  }, 
+     tangrowthmega: {
+	        num: 465,
+		species: "Tangrowth-Mega",
+		baseSpecies: "Tangrowth",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Grass", "Poison"],
+		baseStats: {hp: 100, atk: 120, def: 140, spa: 125, spd: 110, spe: 40},
+		abilities: {0: "Regenerator"},
+       	  }, 
        raichualola: {
 		num: 26,
 		species: "Raichu-Alola",
