@@ -197,7 +197,7 @@
 	        species: "Snowflora",
 	        types: ["Grass","Ice"],
 	        baseStats: {hp: 75, atk: 30, def: 75, spa: 85, spd: 55, spe: 105},
-	        abilities: {0: "Snow Warning", 1: "Slush Rush", H: "Refridgerate"},
+	        abilities: {0: "Snow Warning", 1: "Slush Rush", H: "Refrigerate"},
 	        prevo: "Sunkern"
   },
   moonflora: {
@@ -292,4 +292,56 @@
 	        abilities: {0: "Serene Grace", 1: "Sheer Force", H: "Static"},
 	        prevo: "Dunsparce"
   },  
+  scyther: {
+		num: 123,
+		species: "Scyther",
+		types: ["Bug", "Flying"],
+		baseStats: {hp: 70, atk: 110, def: 80, spa: 55, spd: 80, spe: 105},
+		abilities: {0: "Swarm", 1: "Technician", H: "Steadfast"},
+		heightm: 1.5,
+		weightkg: 56,
+		color: "Green",
+		evos: ["scizor","reapther","scypsy","buzzsoar","scyanide","magzor"],
+		eggGroups: ["Bug"],
+   },
+   reapther: {
+	        num: 9029,
+	        species: "Reapther",
+	        types: ["Bug","Ghost"],
+	        baseStats: {hp: 40, atk: 120, def: 80, spa: 65, spd: 75, spe: 125},
+	        abilities: {0: "Aftermath", 1: "Technicican", H: "Levitate"},
+	        prevo: "Scyther"
+   },
+   scypsy: {
+	        num: 9030,
+	        species: "Scypsy",
+	        types: ["Bug","Psychic"],
+	        baseStats: {hp: 65, atk: 100, def: 70, spa: 55, spd: 80, spe: 130},
+	        abilities: {0: "Technician", 1: "Telepathy", H: "Magic Guard"},
+	        prevo: "Scyther"
+   },
+   buzzsoar: {
+	        num: 9031,
+	        species: "Buzzsoar",
+	        types: ["Bug","Flying"],
+	        baseStats: {hp: 80, atk: 50, def: 70, spa: 130, spd: 70, spe: 100},
+	        abilities: {0: "Speed Boost", 1: "Quick Claws", H: "Technician"},
+	        prevo: "Scyther"
+   },
+   scyanide: {
+	        num: 9032,
+	        species: "Scyanide",
+	        types: ["Bug","Poison"],
+	        baseStats: {hp: 51, atk: 100, def: 50, spa: 120, spd: 50, spe: 109},
+	        abilities: {0: "Tinted Lens", 1: "Poison Touch", H: "Acidic Touch"},
+	        prevo: "Scyther"
+   },
+   magzor: {
+	        num: 9033,
+	        species: "Magzor",
+	        types: ["Bug","Fire"],
+	        baseStats: {hp: 70, atk: 130, def: 55, spa: 80, spd: 65, spe: 100},
+	        abilities: {0: "Blaze", 1: "Technician", H: "Guts"},
+	        prevo: "Scyther"
+   },
 };
