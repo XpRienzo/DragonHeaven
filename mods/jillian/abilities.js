@@ -384,4 +384,22 @@ exports.BattleAbilities = {
 		rating: 3,
 	
 	},
+	"solidice": {
+		desc: "This Pokemon is immune to Fighting type moves",
+		shortDesc: "This Pokemon is immune to Fighting type moves",
+		onTryHitPriority: 1,
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Grass') {
+				if (!this.boost({atk:1})) {
+					this.add('-immune', target, '[msg]', '[from] ability: Solid Ice');
+				}
+				return null;
+			}
+		},
+		id: "solidice",
+		name: "Solid Ice",
+		rating: 3.5,
+		num: 157,
+	},
+
 };
