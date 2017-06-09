@@ -389,7 +389,7 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon is immune to Fighting type moves",
 		onTryHitPriority: 1,
 		onTryHit: function (target, source, move) {
-			if (target !== source && move.type === 'Grass') {
+			if (target !== source && move.type === 'Fighting') {
 				if (!this.boost({atk:1})) {
 					this.add('-immune', target, '[msg]', '[from] ability: Solid Ice');
 				}
