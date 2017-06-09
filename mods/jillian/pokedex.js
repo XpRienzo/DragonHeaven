@@ -1149,7 +1149,7 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Ice", "Steel"],
 		baseStats: {hp: 95, atk: 147, def: 204, spa: 44, spd: 96, spe: 28},
-		abilities: {0: "Refrigerate"},
+		abilities: {0: "Solid Ice"},
        	  }, 
        raichualola: {
 		num: 26,
