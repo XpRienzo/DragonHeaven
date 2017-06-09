@@ -1031,7 +1031,7 @@ exports.BattlePokedex = {
 		baseStats: {hp: 95, atk: 60, def: 134, spa: 145, spd: 145, spe: 61},
 		abilities: {0: "Multiscale"},
           }, 
-     vileplume: {
+      vileplume: {
 		inherit: true,
 		abilities: {0: "Chlorophyll", H: "Effect Spore"},
 		otherFormes: ["vileplumemega"],
@@ -1104,7 +1104,22 @@ exports.BattlePokedex = {
 		formeLetter: "M",
 		types: ["Dragon", "Poison"],
 		baseStats: {hp: 90, atk: 130, def: 90, spa: 130, spd: 150, spe: 110},
-		abilities: {0: "Punchproof"},
+	        abilities: {0: "Punchproof"},
+         },
+     skarmory: {
+	        inherit: true,
+	        abilities: {0: "Keen Eye", 1: "Sturdy", H: "Weak Armor"},
+	       	otherFormes: ["skarmorymega"],
+       	  }, 
+     skarmorymega: {
+	        num: 227,
+		species: "Skarmory-Mega",
+		baseSpecies: "Skarmory",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Steel", "Flying"],
+		baseStats: {hp: 65, atk: 110, def: 160, spa: 40, spd: 110, spe: 80},
+		abilities: {0: "Aerilate"},
        	  }, 
        raichualola: {
 		num: 26,
