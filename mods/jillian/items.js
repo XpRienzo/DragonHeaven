@@ -354,6 +354,61 @@ exports.BattleItems = {
 		},
 		desc: "If holder is a Vileplume, this item allows it to Mega Evolve in battle.",
 	},
+	"mamoswinite": {
+		id: "mamoswinite",
+		name: "Mamoswinite",
+		megaStone: "Mamoswine-Mega",
+		megaEvolves: "Mamoswine",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Mamoswine, this item allows it to Mega Evolve in battle.",
+	},
+	"mismagite": {
+		id: "mismagite",
+		name: "Mismagite",
+		megaStone: "Mismagius-Mega",
+		megaEvolves: "Mismagius",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Mismagius, this item allows it to Mega Evolve in battle.",
+	},
+	"drifblimite": {
+		id: "drifblimite",
+		name: "Drifblimite",
+		megaStone: "Drifblim-Mega",
+		megaEvolves: "Drifblim",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Drifblim, this item allows it to Mega Evolve in battle.",
+	},
+	"goodrite": {
+		id: "goodrite",
+		name: "Goodrite",
+		megaStone: "Goodra-Mega",
+		megaEvolves: "Goodra",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Goodra, this item allows it to Mega Evolve in battle.",
+	},
+	"skarmorite": {
+		id: "skarmorite",
+		name: "Skarmorite",
+		megaStone: "Skarmory-Mega",
+		megaEvolves: "Skarmory",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Skarmory, this item allows it to Mega Evolve in battle.",
+	},
 	"trickystone": {
 		id: "trickystone",
 		name: "Tricky Stone",
