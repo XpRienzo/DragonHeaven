@@ -1082,7 +1082,7 @@ exports.BattlePokedex = {
 	       	otherFormes: ["drifblimmega"],
 	  },
      drifblimmega: {
-	        num: 429,
+	        num: 426,
 		species: "Drifblim-Mega",
 		baseSpecies: "Drifblim",
 		forme: "Mega",
@@ -1135,6 +1135,21 @@ exports.BattlePokedex = {
 		types: ["Grass", "Poison"],
 		baseStats: {hp: 100, atk: 120, def: 140, spa: 125, spd: 110, spe: 40},
 		abilities: {0: "Regenerator"},
+       	  }, 
+	avalugg: {
+	        inherit: true,
+	        abilities: {0: "Own Tempo", 1: "Ice Body", H: "Sturdy"},
+	       	otherFormes: ["avaluggmega"],
+       	  }, 
+     avaluggmega: {
+	        num: 713,
+		species: "Avalugg-Mega",
+		baseSpecies: "Avalugg",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Ice", "Steel"],
+		baseStats: {hp: 95, atk: 147, def: 204, spa: 44, spd: 98, spe: 28},
+		abilities: {0: "Refrigerate"},
        	  }, 
        raichualola: {
 		num: 26,
