@@ -420,6 +420,17 @@ exports.BattleItems = {
 		},
 		desc: "If holder is a Tangrowth, this item allows it to Mega Evolve in battle.",
 	},
+	"avaluggite": {
+		id: "avaluggite",
+		name: "Avaluggite",
+		megaStone: "Avalugg-Mega",
+		megaEvolves: "Avalugg",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Avalugg, this item allows it to Mega Evolve in battle.",
+	},
 	"trickystone": {
 		id: "trickystone",
 		name: "Tricky Stone",
