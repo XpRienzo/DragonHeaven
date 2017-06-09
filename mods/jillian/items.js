@@ -409,6 +409,17 @@ exports.BattleItems = {
 		},
 		desc: "If holder is a Skarmory, this item allows it to Mega Evolve in battle.",
 	},
+	"tangrowthite": {
+		id: "tangrowthite",
+		name: "Tangrowthite",
+		megaStone: "Tangrowth-Mega",
+		megaEvolves: "Tangrowth",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Tangrowth, this item allows it to Mega Evolve in battle.",
+	},
 	"trickystone": {
 		id: "trickystone",
 		name: "Tricky Stone",
