@@ -2,11 +2,13 @@
 
 exports.BattleMovedex = {
 	"fullhazards" :{
-		id: "fullhazards",
-		name: "Full Hazards",
 		accuracy: true,
+		basePower: 0,
+		Category: "Status",
 		desc: "Sets up all hazards",
 		shortDesc: "Sets up all hazards",
+		id: "fullhazards",
+		name: "Full Hazards",
 		pp: 15,
 		priority: 0,
 		flags: {reflectable: 1},
@@ -24,8 +26,13 @@ exports.BattleMovedex = {
 			target.side.addSideCondition('spikes', source);
 			target.side.addSideCondition('stealthrock', source);
 			target.side.addSideCondition('stickyweb', source);
-			if (source.name === 'EchoGaia') this.add("c|$EchoGaia|Insert Text Here)");
+			if (source.name === 'EchoGaia') this.add("c|$EchoGaia|You're screwed now)");
 		},
+		secondary: false,
+		target: "foeSide",
+		type: "Ground",
+		zMoveBoost: {evasion: 1},
+		contestType: "Clever",
 	},
 	"kneeofjustice": {
 		accuracy: 80,
