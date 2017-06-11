@@ -431,6 +431,17 @@ exports.BattleItems = {
 		},
 		desc: "If holder is a Avalugg, this item allows it to Mega Evolve in battle.",
 	},
+	"shucklite": {
+		id: "shucklite",
+		name: "Shucklite",
+		megaStone: "Shuckle-Mega",
+		megaEvolves: "Shuckle",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Shuckle, this item allows it to Mega Evolve in battle.",
+	},
 	"trickystone": {
 		id: "trickystone",
 		name: "Tricky Stone",
