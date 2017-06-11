@@ -1151,6 +1151,21 @@ exports.BattlePokedex = {
 		baseStats: {hp: 95, atk: 147, def: 204, spa: 44, spd: 96, spe: 28},
 		abilities: {0: "Solid Ice"},
        	  }, 
+	shuckle: {
+	        inherit: true,
+	        abilities: {0: "Sturdy", 1: "Gluttony", H: "Contrary"},
+	       	otherFormes: ["shucklemega"],
+       	  }, 
+     shucklemega: {
+	        num: 213,
+		species: "Shuckle-Mega",
+		baseSpecies: "Shuckle",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Bug", "Rock"],
+		baseStats: {hp: 20, atk: 160, def: 100, spa: 100, spd: 100, spe: 125},
+		abilities: {0: "Adaptability"},
+       	  }, 
        raichualola: {
 		num: 26,
 		species: "Raichu-Alola",
