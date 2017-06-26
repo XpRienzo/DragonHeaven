@@ -145,7 +145,7 @@ exports.commands = {
 			return this.errorReply(`Error: Pokemon not found`);
 		}
 		template = Object.assign({}, Dex.getTemplate(template));
-		stone = Object.assign({}, Dex.getItem(stone));
+		if (!stone.id) stone = Object.assign({}, Dex.getItem(stone));
 		if (template.isMega || (template.evos && Object.keys(template.evos).length > 0)) { // Mega Pokemon cannot be mega evolved
 			return this.errorReply(`You cannot mega evolve ${template.name} in Mix and Mega.`);
 		}
