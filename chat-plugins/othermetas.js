@@ -134,7 +134,7 @@ exports.commands = {
 				id: "dragonascent",
 				name: "Dragon Ascent",
 				megaStone: "Rayquaza-Mega",
-				megaEvolves: "Smeargle",
+				megaEvolves: "Rayquaza",
 			};
 		} else {
 			stone = Dex.getItem(sep[1]);
