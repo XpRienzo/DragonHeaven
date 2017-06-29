@@ -131,8 +131,6 @@ exports.commands = {
 		let stone;
 		if (toId(sep[1]) === 'dragonascent') {
 			stone = {
-				id: "dragonascent",
-				name: "Dragon Ascent",
 				megaStone: "Rayquaza-Mega",
 				megaEvolves: "Rayquaza",
 			};
