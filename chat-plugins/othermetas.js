@@ -129,6 +129,7 @@ exports.commands = {
 		if (!toId(target) || !target.includes('@')) return this.parse('/help mixandmega');
 		let sep = target.split('@');
 		let stone;
+		console.log(sep);
 		if (toId(sep[1]) === 'dragonascent') {
 			stone = {
 				id: "dragonascent",
