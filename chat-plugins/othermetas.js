@@ -121,18 +121,13 @@ exports.commands = {
 				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
 			}).join("&nbsp;|&ThickSpace;") + '</font>');
 	},
-	crossevolvehelp: ["/crossevo <base pokemon>, <evolved pokemon> - Shows the type and stats for the Cross Evolved Pokemon."],
 
 	mnm: 'mixandmega',
 	mixandmega: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		if (!toId(target) || !target.includes('@')) return this.parse('/help mixandmega');
 		let sep = target.split('@');
-		let stone = Dex.getItem(sep[1]);
-		let template = Object.assign({}, Dex.getTemplate(sep[0]));
-		if (!stone.exists || (stone.exists && !stone.megaEvolves && !stone.onPrimal)) return this.errorReply(`Error: Mega Stone not found`);
-		if (!template.exists) return this.errorReply(`Error: Pokemon not found`);
-		stone = toId(sep[1]);
+		let stone = null;
 		if (toId(sep[1]) === 'dragonascent') {
 			stone = {
 				id: "dragonascent",	
@@ -140,9 +135,18 @@ exports.commands = {
 				megaStone: "Rayquaza-Mega",
 				megaEvolves: "Smeargle",
 			};
+		} else {
+			stone = Dex.getItem(sep[1]);
 		}
+		let template = Object.assign({}, Dex.getTemplate(sep[0]));
+		if (!stone.exists || (stone.exists && !stone.megaEvolves && !stone.onPrimal)) return this.errorReply(`Error: Mega Stone not found`);
+		if (!template.exists) return this.errorReply(`Error: Pokemon not found`);
 		if (template.isMega || (template.evos && Object.keys(template.evos).length > 0)) { // Mega Pokemon cannot be mega evolved
 			return this.errorReply(`You cannot mega evolve ${template.name} in Mix and Mega.`);
+		}
+		let bannedStones = {'beedrillite':1, 'blazikenite':1, 'gengarite':1, 'kangaskhanite':1, 'mawilite':1, 'medichamite':1};
+		if (stone.id in bannedStones && template.name !== stone.megaEvolves) {
+			return this.errorReply(`You cannot use ${stone.name} on anything besides ${stone.megaEvolves} in Mix and Mega.`);
 		}
 		if (Dex.mod("mixandmega").getTemplate(sep[0]).tier === "Uber") { // Separate messages because there's a difference between being already mega evolved / NFE and being banned from mega evolving
 			return this.errorReply(`${template.name} is banned from mega evolving in Mix and Mega.`);
