@@ -128,10 +128,10 @@ exports.commands = {
 		if (!this.runBroadcast()) return;
 		if (!toId(target) || !target.includes('@')) return this.parse('/help mixandmega');
 		let sep = target.split('@');
-		let stone = null;
+		let stone;
 		if (toId(sep[1]) === 'dragonascent') {
 			stone = {
-				id: "dragonascent",	
+				id: "dragonascent",
 				name: "Dragon Ascent",
 				megaStone: "Rayquaza-Mega",
 				megaEvolves: "Smeargle",
