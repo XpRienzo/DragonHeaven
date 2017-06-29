@@ -140,8 +140,7 @@ exports.commands = {
 			stone = Dex.getItem(sep[1]);
 		}
 		let template = Object.assign({}, Dex.getTemplate(sep[0]));
-		console.log(stone);
-		if (!stone.exists || (stone.exists && !stone.megaEvolves && !stone.onPrimal)) return this.errorReply(`Error: Mega Stone not found`);
+		if (!stone.megaEvolves && !stone.onPrimal) return this.errorReply(`Error: Mega Stone not found`);
 		if (!template.exists) return this.errorReply(`Error: Pokemon not found`);
 		if (template.isMega || (template.evos && Object.keys(template.evos).length > 0)) { // Mega Pokemon cannot be mega evolved
 			return this.errorReply(`You cannot mega evolve ${template.name} in Mix and Mega.`);
