@@ -121,6 +121,7 @@ exports.commands = {
 				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
 			}).join("&nbsp;|&ThickSpace;") + '</font>');
 	},
+	crossevolvehelp: ["/crossevo <base pokemon>, <evolved pokemon> - Shows the type and stats for the Cross Evolved Pokemon."],
 
 	mnm: 'mixandmega',
 	mixandmega: function (target, room, user) {
