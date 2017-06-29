@@ -132,14 +132,14 @@ exports.commands = {
 		let template = Object.assign({}, Dex.getTemplate(sep[0]));
 		if (!stone.exists || (stone.exists && !stone.megaEvolves && !stone.onPrimal)) return this.errorReply(`Error: Mega Stone not found`);
 		if (!template.exists) return this.errorReply(`Error: Pokemon not found`);
-		let stone = toId(sep[1]);
+		stone = toId(sep[1]);
 		if (toId(sep[1]) === 'dragonascent') {
 			stone = {
 				id: "dragonascent",	
 				name: "Dragon Ascent",
 				megaStone: "Rayquaza-Mega",
 				megaEvolves: "Smeargle",
-			}
+			};
 		}
 		if (template.isMega || (template.evos && Object.keys(template.evos).length > 0)) { // Mega Pokemon cannot be mega evolved
 			return this.errorReply(`You cannot mega evolve ${template.name} in Mix and Mega.`);
