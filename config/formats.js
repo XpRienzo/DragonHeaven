@@ -3509,7 +3509,7 @@ exports.Formats = [
 
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview'],
-		banlist: ['Eviolite', 'Baton Pass'],
+		banlist: ['Deep Sea Scale', 'Deep Sea Tooth', 'Eviolite', 'Light Ball', 'Thick Club', 'Baton Pass'],
 		onModifyTemplate: function (template, pokemon) {
 			let bst = 0;
 			let hp = template.baseStats['hp'];
@@ -3517,6 +3517,7 @@ exports.Formats = [
 			for (let i in template.baseStats) {
 				template.baseStats['hp'] = hp;
 				template.baseStats[i] = Math.floor((template.baseStats[i] * (600 - template.baseStats['hp'])) / (bst - template.baseStats['hp']));
+				if (template.baseStats[i] > 255) template.baseStats[i] = 255;
 			}
 			return template;
 		},
