@@ -4015,7 +4015,7 @@ exports.BattleScripts = {
 				}
 			}
 		}
-		if (pokemon.length < 6) return this.randomFactoryTeam(side, ++depth);
+		if (pokemon.length < 6) return this.randomOMFactoryTeam(side, ++depth);
 
 		// Quality control
 		if (!teamData.forceResult) {
