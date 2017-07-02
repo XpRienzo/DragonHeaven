@@ -3814,7 +3814,7 @@ exports.BattleScripts = {
 
 		return pokemon;
 	},
-	randomOMFactorySets: require('./factory-sets.json'),
+	randomOMFactorySets: require('./om-factory-sets.json'),
 	randomOMFactorySet: function (template, slot, teamData, tier) {
 		let speciesId = toId(template.species);
 		// let flags = this.randomFactorySets[tier][speciesId].flags;
@@ -3908,7 +3908,7 @@ exports.BattleScripts = {
 
 		let pokemon = [];
 
-		let pokemonPool = Object.keys(this.randomFactorySets[chosenTier]);
+		let pokemonPool = Object.keys(this.randomOMFactorySets[chosenTier]);
 
 		let teamData = {typeCount: {}, typeComboCount: {}, baseFormes: {}, megaCount: 0, has: {}, forceResult: forceResult, weaknesses: {}, resistances: {}};
 		let requiredMoveFamilies = {'hazardSet': 1, 'hazardClear':1};
@@ -3927,7 +3927,7 @@ exports.BattleScripts = {
 			let template = this.getTemplate(this.sampleNoReplace(pokemonPool));
 			if (!template.exists) continue;
 
-			let speciesFlags = this.randomFactorySets[chosenTier][template.speciesid].flags;
+			let speciesFlags = this.randomOMFactorySets[chosenTier][template.speciesid].flags;
 
 			// Limit to one of each species (Species Clause)
 			if (teamData.baseFormes[template.baseSpecies]) continue;
@@ -3946,7 +3946,7 @@ exports.BattleScripts = {
 			}
 			if (skip) continue;
 
-			let set = this.randomFactorySet(template, pokemon.length, teamData, chosenTier);
+			let set = this.randomOMFactorySet(template, pokemon.length, teamData, chosenTier);
 			if (!set) continue;
 
 			// Limit 1 of any type combination
@@ -4020,10 +4020,10 @@ exports.BattleScripts = {
 		// Quality control
 		if (!teamData.forceResult) {
 			for (let requiredFamily in requiredMoveFamilies) {
-				if (!teamData.has[requiredFamily]) return this.randomFactoryTeam(side, ++depth);
+				if (!teamData.has[requiredFamily]) return this.randomOMFactoryTeam(side, ++depth);
 			}
 			for (let type in teamData.weaknesses) {
-				if (teamData.weaknesses[type] >= 3) return this.randomFactoryTeam(side, ++depth);
+				if (teamData.weaknesses[type] >= 3) return this.randomOMFactoryTeam(side, ++depth);
 			}
 		}
 
