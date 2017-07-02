@@ -3818,7 +3818,7 @@ exports.BattleScripts = {
 	randomOMFactorySet: function (template, slot, teamData, tier) {
 		let speciesId = toId(template.species);
 		// let flags = this.randomFactorySets[tier][speciesId].flags;
-		let setList = this.randomFactorySets[tier][speciesId].sets;
+		let setList = this.randomOMFactorySets[tier][speciesId].sets;
 		let effectivePool, priorityPool;
 
 		let itemsMax = {'choicespecs':1, 'choiceband':1, 'choicescarf':1};
