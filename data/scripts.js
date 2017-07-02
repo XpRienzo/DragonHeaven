@@ -3814,7 +3814,7 @@ exports.BattleScripts = {
 
 		return pokemon;
 	},
-	randomOMFactorySets: require('./om-factory-sets.json'),
+	randomOMFactorySets: require('./factory-sets.json'),
 	randomOMFactorySet: function (template, slot, teamData, tier) {
 		let speciesId = toId(template.species);
 		// let flags = this.randomFactorySets[tier][speciesId].flags;
@@ -3839,7 +3839,7 @@ exports.BattleScripts = {
 		for (let i = 0, l = setList.length; i < l; i++) {
 			let curSet = setList[i];
 			let itemData = this.getItem(curSet.item);
-			//if (teamData.megaCount > 0 && itemData.megaStone) continue; // reject 2+ mega stones
+			if (teamData.megaCount > 0 && itemData.megaStone) continue; // reject 2+ mega stones
 			if (itemsMax[itemData.id] && teamData.has[itemData.id] >= itemsMax[itemData.id]) continue;
 
 			let abilityData = this.getAbility(curSet.ability);
@@ -3903,7 +3903,8 @@ exports.BattleScripts = {
 		// The teams generated depend on the tier choice in such a way that
 		// no exploitable information is leaked from rolling the tier in getTeam(p1).
 		let availableTiers = ['BH'];
-		const chosenTier = availableTiers;
+		if (!this.factoryTier) this.factoryTier = availableTiers[this.random(availableTiers.length)];
+		const chosenTier = this.factoryTier;
 
 		let pokemon = [];
 
@@ -3926,13 +3927,13 @@ exports.BattleScripts = {
 			let template = this.getTemplate(this.sampleNoReplace(pokemonPool));
 			if (!template.exists) continue;
 
-			let speciesFlags = this.randomOMFactorySets[chosenTier][template.speciesid].flags;
+			let speciesFlags = this.randomFactorySets[chosenTier][template.speciesid].flags;
 
 			// Limit to one of each species (Species Clause)
 			if (teamData.baseFormes[template.baseSpecies]) continue;
 
-			// Limit the number of Megas to one, unless the format is Balanced Hackmons
-			if (chosenTier !== 'BH' && teamData.megaCount >= 1 && speciesFlags.megaOnly) continue;
+			// Limit the number of Megas to one
+			if (teamData.megaCount >= 1 && speciesFlags.megaOnly) continue;
 
 			// Limit 2 of any type
 			let types = template.types;
@@ -3945,7 +3946,7 @@ exports.BattleScripts = {
 			}
 			if (skip) continue;
 
-			let set = this.randomOMFactorySet(template, pokemon.length, teamData, chosenTier);
+			let set = this.randomFactorySet(template, pokemon.length, teamData, chosenTier);
 			if (!set) continue;
 
 			// Limit 1 of any type combination
@@ -4014,15 +4015,15 @@ exports.BattleScripts = {
 				}
 			}
 		}
-		if (pokemon.length < 6) return this.randomOMFactoryTeam(side, ++depth);
+		if (pokemon.length < 6) return this.randomFactoryTeam(side, ++depth);
 
 		// Quality control
 		if (!teamData.forceResult) {
 			for (let requiredFamily in requiredMoveFamilies) {
-				if (!teamData.has[requiredFamily]) return this.randomOMFactoryTeam(side, ++depth);
+				if (!teamData.has[requiredFamily]) return this.randomFactoryTeam(side, ++depth);
 			}
 			for (let type in teamData.weaknesses) {
-				if (teamData.weaknesses[type] >= 3) return this.randomOMFactoryTeam(side, ++depth);
+				if (teamData.weaknesses[type] >= 3) return this.randomFactoryTeam(side, ++depth);
 			}
 		}
 
