@@ -973,4 +973,927 @@ exports.BattleMovedex = {
 		zMovePower: 190,
 		contestType: "Cool",
 	},
+    "mindmelt": {
+        accuracy: 85,
+        basePower: 110,
+        category: "Special",
+        desc: "Has a 10% chance to burn the target. This move can hit Dark-types. Ignores the target's evasiveness.",
+        shortDesc: "10% chance to burn the target. Neutral on Dark. Evasiveness ignored.",
+        id: "mindmelt",
+        name: "Mind Melt",
+        pp: 5,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        ignoreEvasion: true,
+        ignoreImmunity: {'Psychic': true},
+        secondary: {
+            chance: 10,
+            status: 'brn',
+        },
+        target: "normal",
+        type: "Psychic",
+        zMovePower: 185,
+        contestType: "Clever",
+    },
+    "mindblast": {
+        accuracy: 100,
+        basePower: 80,
+        category: "Special",
+        desc: "This move's type effectiveness against Poison is changed to be super effective no matter what this move's type is.",
+        shortDesc: "Super effective on Poison.",
+        id: "mindblast",
+        name: "Mind Blast",
+        pp: 10,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        onEffectiveness: function (typeMod, type) {
+            if (type === 'Poison') return 1;
+        },
+        secondary: false,
+        target: "normal",
+        type: "Fairy",
+        zMovePower: 160,
+        contestType: "Beautiful",
+    },
+    "snap": {
+        accuracy: 100,
+        basePower: 70,
+        category: "Physical",
+        desc: "Has a 100% chance to lower the target's Special Attack by 1 stage and a 20% chance to flinch the target.",
+        shortDesc: "100% chance to lower the target's Sp. Atk by 1. 20% chance to flinch the target.",
+        id: "snap",
+        name: "Snap",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+        secondaries: [
+            {
+                chance: 100,
+                boosts: {
+                    spa: -1,
+                },
+            },
+            {
+                chance: 20,
+                volatileStatus: 'flinch',
+            },
+        ],
+        target: "normal",
+        type: "Water",
+        zMovePower: 140,
+        contestType: "Tough",
+    },
+    "hydraulicjaws": {
+        accuracy: 85,
+        basePower: 110,
+        category: "Physical",
+        desc: "Has a 30% chance to flinch the target.",
+        shortDesc: "30% chance to flinch the target.",
+        id: "hydraulicjaws",
+        name: "Hydraulic Jaws",
+        pp: 5,
+        priority: 0,
+        flags: {bite: 1, protect: 1, mirror: 1},
+        secondary: {
+            chance: 30,
+            volatileStatus: 'flinch',
+        },
+        target: "normal",
+        type: "Water",
+        zMovePower: 185,
+        contestType: "Tough",
+    },
+    "scaldingvortex": {
+        accuracy: 90,
+        basePower: 35,
+        category: "Special",
+        desc: "Prevents the target from switching for four or five turns; seven turns if the user is holding Grip Claw. Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, and has a 30% chance to burn the target at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute. This effect is not stackable or reset by using this or another partial-trapping move.",
+        shortDesc: "Traps and damages the target for 4-5 turns. 30% chance to burn after damage.",
+        id: "scaldingvortex",
+        name: "Scalding Vortex",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        volatileStatus: 'scaldingvortex',
+        secondary: false,
+        target: "normal",
+        type: "Water",
+        zMovePower: 100,
+        contestType: "Beautiful",
+    },
+    "sonicburst": {
+        accuracy: 100,
+        basePower: 60,
+        category: "Special",
+        desc: "No additional effect.",
+        shortDesc: "Usually goes first.",
+        id: "sonicburst",
+        name: "Sonic Burst",
+        pp: 20,
+        priority: 1,
+        flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+        secondary: false,
+        target: "normal",
+        type: "Normal",
+        zMovePower: 120,
+        contestType: "Cool",
+    },
+    "steampress": {
+        accuracy: 85,
+        basePower: 85,
+        category: "Physical",
+        desc: "Has a 30% chance to burn the target. The target thaws out if it is frozen. Prevents the target from switching for four or five turns; seven turns if the user is holding Grip Claw. Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute. This effect is not stackable or reset by using this or another partial-trapping move.",
+        shortDesc: "30% chance to burn the target. Traps and damages the target for 4-5 turns.",
+        id: "steampress",
+        name: "Steam Press",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, mirror: 1, defrost: 1},
+        volatileStatus: 'partiallytrapped',
+        thawsTarget: true,
+        secondary: {
+            chance: 30,
+            status: 'brn',
+        },
+        target: "normal",
+        type: "Water",
+        zMovePower: 160,
+        contestType: "Tough",
+    },
+    "steamyring": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        desc: "The user has 1/16 of its maximum HP, rounded down, restored at the end of each turn while it remains active. If the user is hit by a contact move during this effect, the attacker is burned. If the user uses Baton Pass, the replacement will receive the effect.",
+        shortDesc: "User recovers 1/16 max HP per turn. Effect burns on contact with the user.",
+        id: "steamyring",
+        name: "Steamy Ring",
+        pp: 20,
+        priority: 0,
+        flags: {snatch: 1},
+        volatileStatus: 'steamyring',
+        effect: {
+            onStart: function (pokemon) {
+                this.add('-start', pokemon, 'Steamy Ring');
+            },
+            onResidualOrder: 6,
+            onResidual: function (pokemon) {
+                this.heal(pokemon.maxhp / 16);
+            },
+            onHit: function (pokemon, source, move) {
+                if (move.flags['contact']) {
+                    source.trySetStatus('brn', pokemon);
+                }
+            }
+        },
+        secondary: false,
+        target: "self",
+        type: "Water",
+        zMoveBoost: {def: 1},
+        contestType: "Beautiful",
+    },
+    "buggin": {
+        accuracy: 90,
+        basePower: 50,
+        category: "Physical",
+        desc: "Hits twice, with each hit having a 100% chance to lower the target's Attack by 1 stage.",
+        shortDesc: "Hits 2 times. Each hit has 100% chance to lower the target's Attack by 1.",
+        id: "buggin",
+        name: "Buggin'",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        multihit: 2,
+        secondary: {
+            chance: 100,
+            boosts: {
+                atk: -1,
+            },
+        },
+        target: "normal",
+        type: "Bug",
+        zMovePower: 180,
+        contestType: "Clever",
+    },
+    "shreddingscythe": {
+        accuracy: 100,
+        basePower: 50,
+        category: "Physical",
+        desc: "Has a 100% chance to raise the user's Speed by 1 stage. If the user's Speed was changed, the user's weight is reduced by 50kg as long as it remains active. This effect is stackable but cannot reduce the user's weight to less than 0.1kg.",
+        shortDesc: "100% chance to raise the user's Speed by 1 and decrease the user's weight by 50 kg.",
+        id: "shreddingscythe",
+        name: "Shredding Scythe",
+        pp: 20,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        onHit: function (target, source) {
+            let hasContrary = source.hasAbility('contrary');
+            if ((hasContrary || source.boosts.spe !== 6) && (!hasContrary || pokemon.boosts.spe !== -6)) {
+                source.addVolatile('shreddingscythe');
+            }
+        },
+        effect: {
+            noCopy: true,
+            onStart: function (pokemon) {
+                if (pokemon.template.weightkg > 0.1) {
+                    this.effectData.multiplier = 1;
+                    this.add('-start', pokemon, 'Shredding Scythe');
+                }
+            },
+            onRestart: function (pokemon) {
+                if (pokemon.template.weightkg - (this.effectData.multiplier * 50) > 0.1) {
+                    this.effectData.multiplier++;
+                    this.add('-start', pokemon, 'Shredding Scythe');
+                }
+            },
+            onModifyWeightPriority: 1,
+            onModifyWeight: function (weight, pokemon) {
+                if (this.effectData.multiplier) {
+                    weight -= this.effectData.multiplier * 50;
+                    if (weight < 0.1) weight = 0.1;
+                    return weight;
+                }
+            },
+        },
+        secondary: {
+            chance: 100,
+            self: {
+                boosts: {
+                    spe: 1,
+                },
+            },
+        },
+        target: "normal",
+        type: "Bug",
+        zMovePower: 100,
+        contestType: "Cool",
+    },
+    "suresight": {
+        accuracy: 85,
+        basePower: 110,
+        category: "Special",
+        desc: "Causes the target to have its positive evasiveness stat stage ignored while it is active. This move can hit Ghost-types.",
+        shortDesc: "Neutral on Ghost. Evasiveness ignored.",
+        id: "suresight",
+        name: "Suresight",
+        pp: 5,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        ignoreEvasion: true,
+        ignoreImmunity: {'Normal': true},
+        secondary: false,
+        target: "normal",
+        type: "Normal",
+        zMovePower: 185,
+        contestType: "Clever",
+    },
+    "stoke": {
+        accuracy: 100,
+        basePower: 90,
+        category: "Special",
+        desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+        shortDesc: "User recovers 50% of the damage dealt.",
+        id: "stoke",
+        name: "Stoke",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, mirror: 1, heal: 1},
+        drain: [1, 2],
+        secondary: false,
+        target: "normal",
+        type: "Fire",
+        zMovePower: 175,
+        contestType: "Beautiful",
+    },
+    "starstrike": {
+        accuracy: 100,
+        basePower: 120,
+        category: "Physical",
+        desc: "Lowers the user's Defense and Special Defense by 1 stage.",
+        shortDesc: "Lowers the user's Defense and Sp. Def by 1.",
+        id: "starstrike",
+        name: "Star Strike",
+        pp: 5,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        self: {
+            boosts: {
+                def: -1,
+                spd: -1,
+            },
+        },
+        secondary: false,
+        target: "normal",
+        type: "Water",
+        zMovePower: 190,
+        contestType: "Tough",
+    },
+    "celestialfist": {
+        accuracy: 50,
+        basePower: 100,
+        category: "Physical",
+        defensiveCategory: "Special",
+        desc: "Deals damage to the target based on its Special Defense instead of Defense. Has a 100% chance to confuse the target if its Defense is higher than its Special Defense.",
+        shortDesc: "Damages target based on Sp. Def, not Defense. 100% chance to confuse if target has low Sp. Def.",
+        pp: 10,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+        secondary: {
+            chance: 100,
+            onHit: function (target) {
+                if (target.stats.def > target.stats.spd) target.addVolatile('confusion');
+            },
+        },
+        target: "normal",
+        type: "Fighting",
+        zMovePower: 180,
+        contestType: "Beautiful",
+    },
+    "thundervirus": {
+        // Is this adequate for paralyzing Electric-types? - Mygavolt
+        accuracy: 100,
+        basePower: 0,
+        category: "Status",
+        desc: "Paralyzes the target regardless of its typing.",
+        shortDesc: "Paralyzes the target regardless of its typing.",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, reflectable: 1, mirror: 1},
+        status: 'par',
+        ignoreImmunity: true,
+        secondary: false,
+        target: "normal",
+        type: "Electric",
+        zMoveBoost: {spd: 1},
+        contestType: "Clever",
+    },
+    "solarflare": {
+        accuracy: 100,
+        basePower: 140,
+        category: "Special",
+        desc: "Deals damage two turns after this move is used. At the end of that turn, the damage is calculated at that time and dealt to the Pokemon at the position the target had when the move was used. If the user is no longer active at the time, damage is calculated based on the user's natural Special Attack stat, types, and level, with no boosts from its held item or Ability. Between the time of executing the move and the turn the move does damage, the target is prevented from switching out by means other than Shed Shell, Baton Pass, Parting Shot, U-turn, or Volt Switch. The move fails if it, Future Sight, or Doom Desire is already in effect for the target's position.",
+        shortDesc: "Hits two turns after being used. Traps target before the hit.",
+        id: "solarflare",
+        name: "Solar Flare",
+        pp: 5,
+        priority: 0,
+        flags: {},
+        isFutureMove: true,
+        onTry: function (source, target) {
+            target.side.addSideCondition('futuremove');
+            if (target.side.sideConditions['futuremove'].positions[target.position]) {
+                return false;
+            }
+            target.side.sideConditions['futuremove'].positions[target.position] = {
+                duration: 3,
+                move: 'solarflare',
+                source: source,
+                moveData: {
+                    id: 'solarflare',
+                    name: "Solar Flare",
+                    accuracy: 100,
+                    basePower: 140,
+                    category: "Special",
+                    priority: 0,
+                    flags: {},
+                    effectType: 'Move',
+                    isFutureMove: true,
+                    type: 'Fire',
+                },
+            };
+            this.add('-start', source, 'Solar Flare');
+            return null;
+        },
+        secondary: {
+            chance: 100,
+            onHit: function (target, source, move) {
+                if (source.isActive) target.addVolatile('solartrap', source, move, 'trapper');
+            },
+        },
+        target: "normal",
+        type: "Fire",
+        zMovePower: 200,
+        contestType: "Beautiful",
+    },
+    "blossomdance": {
+        accuracy: 100,
+        basePower: 120,
+        category: "Physical",
+        desc: "If this move KOs the target, the user recovers 1/3 the HP lost by the target, rounded half up. Otherwise, the user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+        shortDesc: "33% drain if KO, otherwise 33% recoil.",
+        id: "blossomdance",
+        name: "Blossom Dance",
+        pp: 10,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        onHit: function (target, pokemon) {
+            pokemon.addVolatile('blossomdance');
+        },
+        effect: {
+            duration: 1,
+            onAfterMoveSecondarySelf: function (pokemon, target, move) {
+                let damage = this.getDamage(pokemon, target, move);
+                if (!target || target.fainted || target.hp <= 0) {
+                    this.heal(Math.ceil(damage * 1 / 3), pokemon, target, 'drain');
+                } else {
+                    this.damage(this.calcRecoilDamage(damage, move), pokemon, target, 'recoil');
+                }
+                pokemon.removeVolatile('blossomdance');
+            },
+        },
+        secondary: false,
+        target: "normal",
+        type: "Grass",
+        zMovePower: 190,
+        contestType: "Cool",
+    },
+    "leechshield": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        desc: "The user is protected from most attacks made by other Pokemon during this turn, and Pokemon trying to make contact with the user have 1/4 of their max HP drained. Non-damaging moves go through this protection. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails or if the user's last move used is not Detect, Endure, Leech Shield, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard. Fails if the user moves last this turn.",
+        shortDesc: "Protects from attacks. Contact: drains 1/4 HP.",
+        id: "leechshield",
+        name: "Leech Shield",
+        pp: 10,
+        priority: 4,
+        flags: {},
+        stallingMove: true,
+        volatileStatus: 'leechshield',
+        onTryHit: function (pokemon) {
+            return !!this.willAct() && this.runEvent('StallMove', pokemon);
+        },
+        onHit: function (pokemon) {
+            pokemon.addVolatile('stall');
+        },
+        effect: {
+            duration: 1,
+            onStart: function (target) {
+                this.add('-singleturn', target, 'Protect');
+            },
+            onSourcePrepareHit: function (source, target, effect) {
+                if (effect.effectType !== 'Move' || !effect.flags['protect'] || effect.category === 'Status') return;
+                if (effect.flags['contact']) {
+                    effect.ignoreImmunity = true;
+                }
+            },
+            onTryHitPriority: 3,
+            onTryHit: function (target, source, move) {
+                if (!move.flags['protect'] || move.category === 'Status') {
+                    if (move.isZ) move.zBrokeProtect = true;
+                    return;
+                }
+                this.add('-activate', target, 'move: Protect');
+                let lockedmove = source.getVolatile('lockedmove');
+                if (lockedmove) {
+                    // Outrage counter is reset
+                    if (source.volatiles['lockedmove'].duration === 2) {
+                        delete source.volatiles['lockedmove'];
+                    }
+                }
+                if (move.flags['contact']) {
+                    let damage = this.damage(pokemon.maxhp / 4, pokemon, target);
+                    if (damage) {
+                        this.heal(damage, target, pokemon);
+                    }
+                }
+                return null;
+            },
+        },
+        secondary: false,
+        target: "self",
+        type: "Grass",
+        zMoveEffect: 'clearnegativeboost',
+        contestType: "Clever",
+    },
+    "flamingtail": {
+        accuracy: 100,
+        basePower: 70,
+        category: "Physical",
+        desc: "If both the user and the target have not fainted, the target is forced to switch out and be replaced with a random unfainted ally. This effect fails if the target used Ingrain previously, has the Ability Suction Cups, or this move hit a substitute.",
+        shortDesc: "Forces the target to switch to a random ally.",
+        id: "flamingtail",
+        name: "Flaming Tail",
+        pp: 10,
+        priority: -6,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        forceSwitch: true,
+        target: "normal",
+        type: "Fire",
+        zMovePower: 140,
+        contestType: "Tough",
+    },
+    "gearthird": {
+        accuracy: 85,
+        basePower: 30,
+        basePowerCallback: function (pokemon) {
+            pokemon.addVolatile('gearthird');
+            return 10 * pokemon.volatiles['gearthird'].hit;
+        },
+        category: "Physical",
+        desc: "Hits three times. Power increases to 40 for the second hit and 30 for the third. This move checks accuracy for each hit, and the attack ends if the target avoids any of the hits. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Ability Skill Link, this move will always hit three times.",
+        shortDesc: "Hits 3 times. Each hit can miss, but power rises.",
+        id: "gearthird",
+        name: "Gear Third",
+        pp: 10,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        multihit: 3,
+        multiaccuracy: true,
+        effect: {
+            duration: 1,
+            onStart: function () {
+                this.effectData.hit = 1;
+            },
+            onRestart: function () {
+                this.effectData.hit++;
+            },
+        },
+        onAfterMove: function (pokemon) {
+            pokemon.removeVolatile('gearthird');
+        },
+        secondary: false,
+        target: "normal",
+        type: "Fighting",
+        zMovePower: 190,
+        contestType: "Clever",
+    },
+    "highflyinggears": {
+        accuracy: 90,
+        basePower: 60,
+        category: "Physical",
+        desc: "Hits twice. This move checks accuracy for each hit, and the attack ends if the target avoids either of the hits. If the attack ends as such, the user loses a quarter of its maximum HP, rounded down, as crash damage. Pokemon with the Ability Magic Guard are unaffected by crash damage. If the first hit breaks the target's substitute, it will take damage for the second hit. If the user has the Ability Skill Link, this move will always hit twice.",
+        shortDesc: "Hits 2 times. Each hit can miss, and user is hurt by 25% of its max HP if a hit misses.",
+        id: "highflyinggears",
+        name: "High Flying Gears",
+        pp: 10,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1, gravity: 1},
+        multihit: 2,
+        multiaccuracy: true,
+        hasCustomRecoil: true,
+        onHit: function (pokemon) {
+            pokemon.addVolatile('highflyinggears');
+        },
+        onMoveFail: function (target, source, move) {
+            this.damage(source.maxhp / 4, source, source, 'highflyinggears');
+        },
+        effect: {
+            duration: 1,
+            onStart: function () {
+                this.effectData.hit = 1;
+            },
+            onRestart: function () {
+                this.effectData.hit++;
+            },
+        },
+        onAfterMove: function (pokemon) {
+            if (this.effectData.hit < 2) {
+                this.damage(source.maxhp / 4, source, source, 'highflyinggears');
+            }
+            pokemon.removeVolatile('highflyinggears');
+        },
+        secondary: false,
+        target: "normal",
+        type: "Steel",
+        zMovePower: 190,
+        contestType: "Cool",
+    },
+    "turvytorrent": {
+        accuracy: 100,
+        basePower: 90,
+        category: "Special",
+        desc: "This move's effectiveness is treated as if in an Inverse Battle.",
+        shortDesc: "Has inverse type effectiveness.",
+        id: "turvytorrent",
+        name: "Turvy Torrent",
+        pp: 10,
+        priority: 0,
+        flags: {protect: 1, mirror: 1, nonsky: 1},
+        onEffectiveness: function (typeMod, type, move) {
+            switch (typeMod) {
+            case 0:
+                return typeMod;
+                break;
+            case 1:
+                return 2;
+                break;
+            default:
+                return 1;
+            }
+        },
+        secondary: false,
+        target: "allAdjacent",
+        type: "Water",
+        zMovePower: 175,
+        contestType: "Clever",
+    },
+    "negativezone": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        desc: "For 5 turns, all Pokemon's stat changes are reversed.",
+        shortDesc: "For 5 turns, stat changes are reversed.",
+        id: "negativezone",
+        name: "Negative Zone",
+        pp: 15,
+        priority: 0,
+        flags: {mirror: 1},
+        onHitField: function (target, source, effect) {
+            if (this.pseudoWeather['negativezone']) {
+                this.removePseudoWeather('negativezone', source, effect, '[of] ' + source);
+            } else {
+                this.addPseudoWeather('negativezone', source, effect, '[of] ' + source);
+            }
+        },
+        effect: {
+            duration: 5,
+            onStart: function (side, source) {
+                this.add('-fieldstart', 'move: Negative Zone', '[of] ' + source);
+            },
+            onBoost: function (boost, target, source, effect) {
+                if (effect && effect.id === 'zpower') return;
+                for (let i in boost) {
+                    boost[i] *= -1;
+                }
+            },
+            onResidualOrder: 23,
+            onEnd: function () {
+                this.add('-fieldend', 'move: Negative Zone');
+            },
+        },
+        secondary: false,
+        target: "all",
+        type: "Dark",
+        zMoveBoost: {atk: 1},
+        contestType: "Clever",
+    },
+    "neuramancy": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        desc: "Lowers the user's Speed by 2 stages and raises the user's Attack by 2 stages and its Defense, Special Attack, and Special Defense by 1 stage. This attack charges on the first turn and executes on the second. If the user is holding a Power Herb, the move completes in one turn.",
+        shortDesc: "Charges, then +2 Atk, +1 Def, +1 SpA, +1 SpD, -1 Spe turn 2.",
+        id: "neuramancy",
+        name: "Neuramancy",
+        pp: 5,
+        priority: 0,
+        flags: {charge: 1},
+        onTry: function (attacker, defender, move) {
+            if (attacker.removeVolatile(move.id)) {
+                return;
+            }
+            this.add('-prepare', attacker, move.name, defender);
+            if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+                this.add('-anim', attacker, move.name, defender);
+                attacker.removeVolatile(move.id);
+                return;
+            }
+            attacker.addVolatile('twoturnmove', defender);
+            return null;
+        },
+        boosts: {
+            atk: 2,
+            def: 1,
+            spa: 1,
+            spd: 1,
+            spe: -1,
+        },
+        secondary: false,
+        target: "self",
+        type: "Bug",
+        zMoveBoost: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1},
+        contestType: "Beautiful",
+    },
+    "ropeburn": {
+        accuracy: 100,
+        basePower: 80,
+        category: "Special",
+        desc: "Has a 10% chance to burn lighter or equally light targets; has a 70% chance to burn heavier targets.",
+        shortDesc: "70% chance to burn if target is heavier; 10% chance otherwise",
+        id: "ropeburn",
+        name: "Rope Burn",
+        pp: 10,
+        priority: 0,
+        flags: {protect: 1, mirror: 1, nonsky: 1},
+        secondary: {
+            chance: 100,
+            onHit: function (target, source) {
+                let result = this.random(10);
+                let chance = 1 * (target.getWeight() > source.getWeight() ? 7 : 1);
+                if (result < chance) source.trySetStatus('brn', target);
+            }
+        },
+        target: "normal",
+        type: "Grass",
+        zMovePower: 160,
+        contestType: "Tough",
+    },
+    "sacredstorm": {
+        accuracy: 100,
+        basePower: 65,
+        basePowerCallback: function (pokemon, target, move) {
+            if (target.positiveBoosts() > 0) {
+                return move.basePower * 2;
+            }
+            return move.basePower;
+        },
+        category: "Special",
+        // The move is supposed to ignore positive stat changes,
+        // but I don't know if that can be done in moves.js alone. - Mygavolt
+        desc: "Power doubles if the target is boosted in at least one stat. Ignores the target's stat stage changes, including evasiveness.",
+        shortDesc: "Power doubles if target is boosted. Ignores target's stat stage changes.",
+        id: "sacredstorm",
+        name: "Sacred Storm",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        ignoreEvasion: true,
+        ignoreDefensive: true,
+        secondary: false,
+        target: "normal",
+        type: "Water",
+        zMovePower: 120,
+        contestType: "Cool",
+    },
+    "spitesiphon": {
+        accuracy: 100,
+        basePower: 0,
+        category: "Status",
+        desc: "Causes the target's last move used to lose 3 PP. If applicable, lost PP is transferred to the user's move with the most used PP other than this move. Fails if the target has not made a move, if the move has 0 PP, or if it no longer knows the move.",
+        shortDesc: "Transfers 3 PP from the target to the user.",
+        id: "spitesiphon",
+        name: "Spite Siphon",
+        pp: 10,
+        priority: 0,
+        flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+        onHit: function (target, source) {
+            if (target.deductPP(target.lastMove, 3)) {
+                this.add("-activate", target, 'move: Spite Siphon', this.getMove(target.lastMove).name, 3);
+                // Determine which move to restore PP to
+                let i = 0;
+                for (let m in source.moveset) {
+                    let currentMove = source.moveset[m];
+                    let mostUsedMove = source.moveset[i];
+                    if (currentMove.maxpp - currentMove.pp > mostUsedMove.maxpp - mostUsedMove.pp && currentMove.id !== 'spitesiphon') {
+                        i = m;
+                    }
+                }
+                // Add PP to the move in question (if it's not Spite Siphon)
+                if (source.moveset[i].id !== 'spitesiphon') {
+                    source.moveset[i].pp = Math.min(source.moveset[i].pp + 3, source.moveset[i].maxpp);
+                }
+                return;
+            }
+            return false;
+        },
+        secondary: false,
+        target: "normal",
+        type: "Ghost",
+        zMoveEffect: 'heal',
+        contestType: "Tough",
+    },
+    "shadowkiss": {
+        accuracy: 100,
+        basePower: 80,
+        category: "Special",
+        desc: "The user recovers 3/4 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+        shortDesc: "User recovers 75% of the damage dealt.",
+        id: "shadowkiss",
+        name: "Shadow Kiss",
+        pp: 10,
+        priority: 0,
+        flags: {protect: 1, mirror: 1, heal: 1},
+        drain: [3, 4],
+        secondary: false,
+        target: "normal",
+        type: "Ghost",
+        zMovePower: 160,
+        contestType: "Cute",
+    },
+    "ironblooddrench": {
+        accuracy: 100,
+        basePower: 0,
+        category: "Status",
+        desc: "Lowers the target's Attack, Special Attack, and Speed by 1. Raises the user's Defense by 2 stages.",
+        shortDesc: "Lowers target's Atk, Sp. Atk, and Speed by 1. Raises user's Defense by 2.",
+        id: "ironblooddrench",
+        name: "Iron Blood Drench",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, reflectable: 1, mirror: 1},
+        boosts: {
+            atk: -1,
+            spa: -1,
+            spe: -1,
+        },
+        secondary: {
+            chance: 100,
+            self: {
+                boosts: {
+                    def: 2,
+                },
+            },
+        },
+        target: "normal",
+        type: "Steel",
+        zMoveBoost: {def: 1},
+        contestType: "Clever",
+    },
+    "xcross": {
+        accuracy: 100,
+        basePower: 65,
+        category: "Physical",
+        desc: "Has a higher chance for a critical hit.",
+        shortDesc: "Usually goes first. High critical hit ratio.",
+        id: "xcross",
+        name: "X-Cross",
+        pp: 20,
+        priority: 1,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        critRatio: 2,
+        secondary: false,
+        target: "normal",
+        type: "Steel",
+        zMovePower: 120,
+        contestType: "Tough",
+    },
+    "neurofang": {
+        accuracy: 100,
+        basePower: 80,
+        category: "Physical",
+        defensiveCategory: "Special",
+        desc: "Deals damage to the target based on its Special Defense instead of Defense.",
+        shortDesc: "Damages target based on Sp. Def, not Defense.",
+        id: "neurofang",
+        name: "Neuro Fang",
+        pp: 10,
+        priority: 0,
+        flags: {bite: 1, protect: 1, mirror: 1},
+        secondary: false,
+        target: "normal",
+        type: "Fire",
+        zMovePower: 160,
+        contestType: "Beautiful",
+    },
+    "explosiverobustion": {
+        accuracy: 95,
+        basePower: 125,
+        category: "Physical",
+        desc: "Lowers the user's Attack by 2 stages.",
+        shortDesc: "Lowers the user's Atk by 2.",
+        id: "explosiverobustion",
+        name: "Explosive Robustion",
+        pp: 10,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        self: {
+            boosts: {
+                atk: -2,
+            },
+        },
+        secondary: false,
+        target: "allAdjacent",
+        type: "Fire",
+        zMovePower: 190,
+        contestType: "Beautiful",
+    },
+    "lusterblitz": {
+        accuracy: 100,
+        basePower: 120,
+        category: "Physical",
+        desc: "If the target lost HP, the user or the target (determined by a 50% chance) takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP. Has a 10% chance to lower the target's Special Defense by 1 stage.",
+        shortDesc: "33% recoil to user or target. 10% chance to lower target's Sp. Def by 1.",
+        id: "lusterblitz",
+        name: "Luster Blitz",
+        pp: 10,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        onHit: function (target, pokemon) {
+            pokemon.addVolatile('lusterblitz');
+        },
+        effect: {
+            duration: 1,
+            onAfterMoveSecondarySelf: function (pokemon, target, move) {
+                let damage = this.getDamage(pokemon, target, move);
+                let recoilTarget = this.random(1);
+                if (recoilTarget) {
+                    this.damage(this.calcRecoilDamage(damage, move), target, pokemon, 'recoilToTarget');
+                } else {
+                    this.damage(this.calcRecoilDamage(damage, move), pokemon, target, 'recoilToUser');
+                }
+                pokemon.removeVolatile('lusterblitz');
+            },
+        },
+        secondary: {
+            chance: 10,
+            boosts: {
+                spd: -1,
+            },
+        },
+        target: "normal",
+        type: "Psychic",
+        zMovePower: 190,
+        contestType: "Clever",
+    },
 };
