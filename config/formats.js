@@ -15,7 +15,7 @@ exports.Formats = [
 		name: "[Gen 7] BH Battle Factory",
 
 		mod: 'gen7',
-		team: 'randomFactory',
+		team: 'randomOMFactory',
 		ruleset: ['Pokemon', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
