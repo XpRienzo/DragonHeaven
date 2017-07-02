@@ -315,6 +315,8 @@ exports.BattleMovedex = {
                 category: "Physical",
                 desc: "Hits two to five times. Has a 1/3 chance to hit two or three times, and a 1/6 chance to hit four or five times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Ability Skill Link, this move will always hit five times.",
                 shortDesc: "Hits 2-5 times in one turn.",
+                id: "whaleslap",
+                name: "Whale Slap",
                 pp: 5,
                 priority: 0,
                 flags: {contact: 1, protect: 1, mirror: 1},
@@ -412,6 +414,33 @@ exports.BattleMovedex = {
                 priority: 0,
                 flags: {protect: 1, mirror: 1},
                 volatileStatus: 'deathknell',
+                effect: {
+                        duration: 5,
+                        durationCallback: function (target, source) {
+                                if (source.hasItem('gripclaw')) return 7;
+                                return this.random(4, 6);
+                        },
+                        onStart: function (pokemon, source) {
+                                this.add('-activate', pokemon, 'move: ' + this.effectData.sourceEffect, '[of] ' + source);
+                        },
+                        onResidualOrder: 11,
+                        onResidual: function (pokemon) {
+                                if (this.effectData.source && (!this.effectData.source.isActive || this.effectData.source.hp <= 0 || !this.effectData.source.activeTurns)) {
+                                        delete pokemon.volatiles['deathknell'];
+                                        return;
+                                }
+                                if (target.deductPP(target.lastMove, 4)) {
+                                        this.add('-activate', target, 'move: Death Knell', this.getMove(target.lastMove).name, 4);
+                                        return;
+                                }
+                        },
+                        onEnd: function (pokemon) {
+                                this.add('-end', pokemon, this.effectData.sourceEffect, '[deathknell]');
+                        },
+                        onTrapPokemon: function (pokemon) {
+                                if (this.effectData.source && this.effectData.source.isActive) pokemon.tryTrap();
+                        },
+                },
                 secondary: false,
                 target: "normal",
                 type: "Ghost",
@@ -460,6 +489,8 @@ exports.BattleMovedex = {
                 category: "Physical",
                 desc: "Has a 100% chance to burn the target. Fails if the target did not select a physical attack, special attack, or Me First for use this turn, or if the target moves before the user.",
                 shortDesc: "Usually goes first. 100% chance to burn the target. Fails if target is not attacking.",
+                id: "blazeofglory",
+                name: "Blaze of Glory",
                 pp: 5,
                 priority: 1,
                 flags: {contact: 1, protect: 1, mirror: 1},
@@ -487,6 +518,8 @@ exports.BattleMovedex = {
                 defensiveCategory: "Special",
                 desc: "This move is always a critical hit unless the target is under the effect of Lucky Chant or has the Abilities Battle Armor or Shell Armor. Deals damage to the target based on its Special Defense instead of Defense.",
                 shortDesc: "Always results in a critical hit. Damages target based on Sp. Def, not Defense.",
+                id: "beakblade",
+                name: "Beak Blade",
                 pp: 15,
                 priority: 0,
                 flags: {protect: 1, mirror: 1},
@@ -503,6 +536,8 @@ exports.BattleMovedex = {
                 category: "Physical",
                 desc: "Has a 100% chance to lower the target's Speed by 1 stage. Applies Leech Seed to the target.",
                 shortDesc: "100% chance to lower target's Speed by 1 and apply Leech Seed.",
+                id: "cactussting",
+                name: "Cactus Sting",
                 pp: 15,
                 priority: 0,
                 flags: {protect: 1, mirror: 1},
