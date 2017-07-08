@@ -1812,7 +1812,7 @@ exports.BattleMovedex = {
 		basePower: 190,
 		category: "Special",
 		desc: "Hits Dragon types super effectively",
-		id: "rageofthesuperiordragon",
+		id: "outrageofthesevenseas",
 		isViable: true,
 		name: "Outrage of the Seven Seas",
 		pp: 1,
