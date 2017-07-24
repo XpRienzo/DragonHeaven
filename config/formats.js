@@ -33,6 +33,7 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
+<<<<<<< HEAD
 		name: "[Gen 7] Doubles Hackmons Cup",
 
 		mod: 'gen7',
@@ -42,6 +43,14 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 7] Triples Hackmons Cup",
+=======
+		name: "[Gen 7] Ubers",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587184/\">Ubers Metagame Discussion</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591388/\">Ubers Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3599816/\">Ubers Sample Teams</a>",
+		],
+>>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
 
 		gameType: 'triples',
 		team: 'randomHC',
@@ -7979,6 +7988,7 @@ exports.Formats = [
  			"<b>Banned Pokemon for UU 1v1:</b> Gyaradosite, Kyurem-Black, Charizardite X, Tapu Koko, Donphan, Mimikyu, Aegislash, Magnezone, Charizardite Y, Porygon-Z, Metagrossite, Tapu Lele, Jirachi, Durant, Golem, Dragonite, Venusaurite, Celesteela, Crustle, Kartana, Greninja, Snorlax",
  		],
 
+<<<<<<< HEAD
  		mod: 'gen7',
  		teamLength: {
  			validate: [1, 3],
@@ -7993,3 +8003,11 @@ exports.Formats = [
  		],
  	},
 ];
+=======
+		mod: 'gen1',
+		searchShow: false,
+		debug: true,
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+];
+>>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
