@@ -226,22 +226,13 @@ exports.commands = {
 		details['<font color="#686868">Does Not Evolve</font>'] = "";
 		this.sendReply(`|raw|${Chat.getDataPokemonHTML(mixedTemplate)}`);
 		this.sendReply('|raw|<font size="1">' + Object.keys(details).map(detail => {
-<<<<<<< HEAD
-				if (details[detail] === '') return detail;
-				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
-=======
 			if (details[detail] === '') return detail;
 			return '<font color="#686868">' + detail + ':</font> ' + details[detail];
->>>>>>> 2d711def887d45a223e705c3cc25a666374eff6a
 		}).join("&nbsp;|&ThickSpace;") + '</font>');
 	},
 	mixandmegahelp: ["/mnm <pokemon> @ <mega stone> - Shows the Mix and Mega evolved Pokemon's type and stats."],
 
-<<<<<<< HEAD
-	"!350cup": true,
-=======
 	'!350cup': true,
->>>>>>> a9e28b0f459b71f61385daeb2db4e5ccd087ad8f
 	'350': '350cup',
 	'350cup': function (target, room, user) {
 		if (!this.runBroadcast()) return;
@@ -256,33 +247,12 @@ exports.commands = {
 		for (let i in template.baseStats) {
 			newStats[i] = template.baseStats[i] * (bst <= 350 ? 2 : 1);
 		}
-<<<<<<< HEAD
-		details = {
-			"Dex#": mixedTemplate.num,
-			"Gen": mixedTemplate.gen,
-			"Height": mixedTemplate.heightm + " m",
-			"Weight": mixedTemplate.weightkg + " kg <em>(" + weighthit + " BP)</em>",
-			"Dex Colour": mixedTemplate.color,
-		};
-		if (mixedTemplate.eggGroups) details["Egg Group(s)"] = mixedTemplate.eggGroups.join(", ");
-		details['<font color="#686868">Does Not Evolve</font>'] = "";
-		this.sendReply(`|raw|${Chat.getDataPokemonHTML(mixedTemplate)}`);
-		this.sendReply('|raw|<font size="1">' + Object.keys(details).map(detail => {
-				if (details[detail] === '') return detail;
-				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
-		}).join("&nbsp;|&ThickSpace;") + '</font>');
-=======
 		template.baseStats = Object.assign({}, newStats);
 		this.sendReply(`|html|${Chat.getDataPokemonHTML(template)}`);
->>>>>>> 2d711def887d45a223e705c3cc25a666374eff6a
 	},
 	'350cuphelp': ["/350 OR /350cup <pokemon> - Shows the base stats that a Pokemon would have in 350 Cup."],
 
-<<<<<<< HEAD
-	"!tiershift": true,
-=======
 	'!tiershift': true,
->>>>>>> a9e28b0f459b71f61385daeb2db4e5ccd087ad8f
 	ts: 'tiershift',
 	tiershift: function (target, room, user) {
 		if (!this.runBroadcast()) return;
