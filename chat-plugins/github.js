@@ -13,6 +13,7 @@
 'use strict';
 
 let gitConfig = {};
+const git = exports.github = require('githubhook')(gitConfig);
 
 if (!Config.github) {
 	return;
@@ -25,8 +26,6 @@ if (!Config.github) {
 		secret: Config.github.secret,
 	};
 }
-
-const git = exports.github = require('githubhook')(gitConfig);
 
 let updates = {};
 let targetRooms = (Config.github.rooms && Config.github.rooms.length) ? Config.github.rooms : ['development'];
@@ -94,7 +93,7 @@ git.on('pull_request', function pullRequest(repo, ref, result) {
 	let message = "";
 	message += `[<font color='FF00FF'>${repo}</font>] `;
 	message += `<font color='909090'>${result.sender.login}</font> `;
-	message += `${action} pull request <a href=\"${url}\">#${requestNumber}</a>: `;
+	message += `${action} pull request <a href="${url}">#${requestNumber}</a>: `;
 	message += result.pull_request.title;
 	sendReport(message);
 });

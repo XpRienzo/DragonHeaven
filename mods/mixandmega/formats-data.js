@@ -33,7 +33,7 @@ exports.BattleFormatsData = {
 		inherit: true,
 		tier: "OU",
 	},
-	pheromosa: {
+	marshadow: {
 		inherit: true,
 		tier: "OU",
 	},
@@ -44,9 +44,5 @@ exports.BattleFormatsData = {
 	slaking: {
 		inherit: true,
 		tier: "Uber",
-	},
-	shayminsky: {
-		inherit: true,
-		tier: "OU",
 	},
 };

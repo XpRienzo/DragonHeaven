@@ -1,5 +1,35 @@
 'use strict';
 exports.BattleStatuses = {
+	shwb: {
+		exists: true,
+		effectType: 'Ability',
+		onStart: function () {
+			this.add('c|+shwb|[Insert Text Here]');
+		},
+		onFaint: function(pokemon) {
+			this.add('c|+shwb|[Insert Text Here]');
+		},
+	},
+	ludicrousity: {
+		exists: true,
+		effectType: 'Ability',
+		onStart: function () {
+			this.add('c|$Ludicrousity|Bow before me foolish mortals xaa');
+		},
+		onFaint: function(pokemon) {
+			this.add('c|$Pika Xreme|Ill be.... Wait, crap wrong quote');
+		},
+	},
+	pikaxreme: {
+		exists: true,
+		effectType: 'Ability',
+		onStart: function () {
+			this.add('c|$Pika Xreme|Praise Kirby');
+		},
+		onFaint: function(pokemon) {
+			this.add('c|$Pika Xreme|Urban Dictionary is a terrible site');
+		},
+	},
 	zapmaster2010: {
 		exists: true,
 		effectType: 'Ability',

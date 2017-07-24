@@ -354,6 +354,94 @@ exports.BattleItems = {
 		},
 		desc: "If holder is a Vileplume, this item allows it to Mega Evolve in battle.",
 	},
+	"mamoswinite": {
+		id: "mamoswinite",
+		name: "Mamoswinite",
+		megaStone: "Mamoswine-Mega",
+		megaEvolves: "Mamoswine",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Mamoswine, this item allows it to Mega Evolve in battle.",
+	},
+	"mismagite": {
+		id: "mismagite",
+		name: "Mismagite",
+		megaStone: "Mismagius-Mega",
+		megaEvolves: "Mismagius",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Mismagius, this item allows it to Mega Evolve in battle.",
+	},
+	"drifblimite": {
+		id: "drifblimite",
+		name: "Drifblimite",
+		megaStone: "Drifblim-Mega",
+		megaEvolves: "Drifblim",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Drifblim, this item allows it to Mega Evolve in battle.",
+	},
+	"goodrite": {
+		id: "goodrite",
+		name: "Goodrite",
+		megaStone: "Goodra-Mega",
+		megaEvolves: "Goodra",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Goodra, this item allows it to Mega Evolve in battle.",
+	},
+	"skarmorite": {
+		id: "skarmorite",
+		name: "Skarmorite",
+		megaStone: "Skarmory-Mega",
+		megaEvolves: "Skarmory",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Skarmory, this item allows it to Mega Evolve in battle.",
+	},
+	"tangrowthite": {
+		id: "tangrowthite",
+		name: "Tangrowthite",
+		megaStone: "Tangrowth-Mega",
+		megaEvolves: "Tangrowth",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Tangrowth, this item allows it to Mega Evolve in battle.",
+	},
+	"avaluggite": {
+		id: "avaluggite",
+		name: "Avaluggite",
+		megaStone: "Avalugg-Mega",
+		megaEvolves: "Avalugg",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Avalugg, this item allows it to Mega Evolve in battle.",
+	},
+	"shucklite": {
+		id: "shucklite",
+		name: "Shucklite",
+		megaStone: "Shuckle-Mega",
+		megaEvolves: "Shuckle",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Shuckle, this item allows it to Mega Evolve in battle.",
+	},
 	"trickystone": {
 		id: "trickystone",
 		name: "Tricky Stone",
@@ -557,11 +645,11 @@ exports.BattleItems = {
 		name: "Leafeonium Z",
 		spritenum: 635,
 		onTakeItem: false,
-		zMove: "Warth of The Hundred-Year-Old Trees",
+		zMove: "Wrath of The Hundred-Year-Old Trees",
 		zMoveFrom: "Leaf Blade",
 		zMoveUser: ["Leafeon"],
 		gen: 7,
-		desc: "If holder is a Leafeon with Leaf Blade, it can use Warth of the Hundred-Year-Old Trees",
+		desc: "If holder is a Leafeon with Leaf Blade, it can use Wrath of the Hundred-Year-Old Trees",
 	},
 	"espeoniumz": {
 		id: "espeoniumz",
@@ -689,11 +777,11 @@ exports.BattleItems = {
 		name: "Jirachium Z",
 		spritenum: 647,
 		onTakeItem: false,
-		zMove: "Super Helping Hand",
-		zMoveFrom: "Helping Hand",
+		zMove: "Trades for a Wish",
+		zMoveFrom: "Wish",
 		zMoveUser: ["Jirachi"],
 		gen: 7,
-		desc: "If holder is a Jirachi with Helping Hand, it can use Super Helping Hand.",
+		desc: "If holder is a Jirachi with Wish, it can use Trades for a Wish.",
 	},
 	"deoxyiumz": {
 		id: "deoxyiumz",
@@ -756,10 +844,10 @@ exports.BattleItems = {
 		spritenum: 642,
 		onTakeItem: false,
 		zMove: "Mantis Scorching Lunge",
-		zMoveFrom: "U-turn",
+		zMoveFrom: "Lunge",
 		zMoveUser: ["Pheromosa"],
 		gen: 7,
-		desc: "If holder is a Pheromosa with U-turn, it can use Mantis Scorching Lunge.",
+		desc: "If holder is a Pheromosa with Lunge, it can use Mantis Scorching Lunge.",
 	},
 	"xurkitriumz": {
 		id: "xurkitriumz",
@@ -800,10 +888,10 @@ exports.BattleItems = {
 		spritenum: 637,
 		onTakeItem: false,
 		zMove: "One Punch Knock Out",
-		zMoveFrom: "Hammer Arm",
+		zMoveFrom: "Brick Break",
 		zMoveUser: ["Buzzwole"],
 		gen: 7,
-		desc: "If holder is a Buzzwole with Hammer Arm, it can use One Punch Knock Out.",
+		desc: "If holder is a Buzzwole with Brick Break, it can use One Punch Knock Out.",
 	},
 	"celesteeliniumz": {
 		id: "celesteeliniumz",

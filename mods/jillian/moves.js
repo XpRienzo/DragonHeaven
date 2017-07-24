@@ -419,6 +419,76 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Tough",
 	},
+	"rapidspin": {
+		num: 229,
+		accuracy: 100,
+		basePower: 20,
+		category: "Physical",
+		desc: "If this move is successful and the user has not fainted, the effects of Leech Seed and partial-trapping moves end for the user, and all hazards are removed from the user's side of the field.",
+		shortDesc: "Frees user from hazards/partial trap/Leech Seed.",
+		id: "rapidspin",
+		isViable: true,
+		name: "Rapid Spin",
+		pp: 40,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			onHit: function (pokemon) {
+				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
+					this.add('-end', pokemon, 'Leech Seed', '[from] move: Rapid Spin', '[of] ' + pokemon);
+				}
+				let sideConditions = {spikes:1, toxicspikes:1, stealthrock:1, stickyweb:1, marabunta:1, burningthorns:1, stunningbarbs:1};
+				for (let i in sideConditions) {
+					if (pokemon.hp && pokemon.side.removeSideCondition(i)) {
+						this.add('-sideend', pokemon.side, this.getEffect(i).name, '[from] move: Rapid Spin', '[of] ' + pokemon);
+					}
+				}
+				if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+					pokemon.removeVolatile('partiallytrapped');
+				}
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 100,
+		contestType: "Cool",
+	},
+	"defog": {
+		num: 432,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Lowers the target's evasiveness by 1 stage. If this move is successful and whether or not the target's evasiveness was affected, the effects of Reflect, Light Screen, Safeguard, Mist, Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the target's side, and the effects of Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the user's side. Ignores a target's substitute, although a substitute will still block the lowering of evasiveness.",
+		shortDesc: "-1 evasion; clears user and target side's hazards.",
+		id: "defog",
+		isViable: true,
+		name: "Defog",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		onHit: function (target, source, move) {
+			if (!target.volatiles['substitute'] || move.infiltrates) this.boost({evasion:-1});
+			let removeTarget = {reflect:1, lightscreen:1, auroraveil: 1, safeguard:1, mist:1, spikes:1, toxicspikes:1, stealthrock:1, stickyweb:1, marabunta:1, burningthorns:1, stunningbarbs:1};
+			let removeAll = {spikes:1, toxicspikes:1, stealthrock:1, stickyweb:1, marabunta:1, burningthorns:1, stunningbarbs:1};
+			for (let targetCondition in removeTarget) {
+				if (target.side.removeSideCondition(targetCondition)) {
+					if (!removeAll[targetCondition]) continue;
+					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + target);
+				}
+			}
+			for (let sideCondition in removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+				}
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Flying",
+		zMoveBoost: {accuracy: 1},
+		contestType: "Cool",
+	},
 	"metalliccrush": {
 		accuracy: 75,
 		basePower: 150,
@@ -1340,6 +1410,78 @@ exports.BattleMovedex = {
 		zMovePower: 180,
 		contestType: "Tough",
 	},
+	"burningthorns": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the foe's side of the field, burning each foe that switches in, unless it is a Flying-type Pokemon or has the Ability Levitate. Can be used up to one time before failing. Can be removed from the foe's side if any foe uses Rapid Spin or Defog, is hit by Defog, or a grounded Fire-type Pokemon switches in. Safeguard prevents the foe's party from being burned on switch-in, but a substitute does not.",
+		shortDesc: "Burns grounded foes on switch-in. Max 1 layer.",
+		id: "burningthorns",
+		isViable: true,
+		name: "Burning Thorns",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'burningthorns',
+		effect: {
+			// this is a side condition
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Burning Thorns');
+				this.effectData.layers = 1;
+			},
+			onSwitchIn: function (pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (!pokemon.runImmunity('Fire')) return;
+				if (pokemon.hasType('Fire')) {
+					this.add('-sideend', pokemon.side, 'move: Burning Thorns', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('burningthorns');
+				} else {
+					pokemon.trySetStatus('brn', pokemon.side.foe.active[0]);
+				}
+			},
+		},
+		secondary: false,
+		target: "foeSide",
+		type: "Fire",
+		zMoveBoost: {def: 1},
+		contestType: "Clever",
+	},
+	"stunningbarbs": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets up a hazard on the foe's side of the field, paralysing each foe that switches in, unless it is a Flying-type Pokemon or has the Ability Levitate. Can be used up to one time before failing. Can be removed from the foe's side if any foe uses Rapid Spin or Defog, is hit by Defog, or a grounded Electric-type Pokemon switches in. Safeguard prevents the foe's party from being paralysed on switch-in, but a substitute does not.",
+		shortDesc: "Paralyses grounded foes on switch-in. Max 1 layer.",
+		id: "stunningbarbs",
+		isViable: true,
+		name: "Stunning Barbs",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'stunningbarbs',
+		effect: {
+			// this is a side condition
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Stunning Barbs');
+				this.effectData.layers = 1;
+			},
+			onSwitchIn: function (pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (!pokemon.runImmunity('Electric')) return;
+				if (pokemon.hasType('Electric')) {
+					this.add('-sideend', pokemon.side, 'move: Stunning Barbs', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('stunningbarbs');
+				} else {
+					pokemon.trySetStatus('par', pokemon.side.foe.active[0]);
+				}
+			},
+		},
+		secondary: false,
+		target: "foeSide",
+		type: "Electric",
+		zMoveBoost: {def: 1},
+		contestType: "Clever",
+	},
 	"rageofmothernature": {
 		accuracy: true,
 		basePower: 170,
@@ -1563,14 +1705,14 @@ exports.BattleMovedex = {
 		type: "Fighting",
 		contestType: "Clever",
 	},
-	"warthofshiningskies": {
+	"wrathofshiningskies": {
 		accuracy: true,
 		basePower: 180,
 		category: "Special",
 		desc: "Deals super effective damage against Flying types",
-		id: "warthofshiningskies",
+		id: "wrathofshiningskies",
 		isViable: true,
-		name: "Warth Of Shining Skies",
+		name: "Wrath Of Shining Skies",
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -1670,7 +1812,7 @@ exports.BattleMovedex = {
 		basePower: 190,
 		category: "Special",
 		desc: "Hits Dragon types super effectively",
-		id: "rageofthesuperiordragon",
+		id: "outrageofthesevenseas",
 		isViable: true,
 		name: "Outrage of the Seven Seas",
 		pp: 1,
@@ -1689,7 +1831,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Raises the user's stats by 3 stages each",
+		desc: "Raises the user's stats by 3 stages each, but traps it.",
 		id: "ultimatepoweroftheskies",
 		isViable: true,
 		name: "Ultimate Power of the Skies",
@@ -1697,6 +1839,9 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isZ: "rayquazaniumz",
+		onTrapPokemon: function (pokemon) {
+				pokemon.tryTrap();
+		},
 		boosts: {
 			atk: 3,
 			def: 3,
@@ -1709,19 +1854,22 @@ exports.BattleMovedex = {
 		type: "Flying",
 		contestType: "Beautiful",
 	},
-	"superhelpinghand": {
+	"tradesforawish": {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Boosts the user stats by 2 stages each, then baton pass it away",
-		id: "superhelpinghand",
+		desc: "User +2 in each stat, heal 1/2, but user is trapped",
+		id: "tradesforawish",
 		isViable: true,
-		name: "Super Helping Hand",
+		name: "Trades for a Wish",
 		pp: 1,
 		priority: 0,
 		flags: {},
 		isZ: "jirachiumz",
-		boosts: {
+		onTrapPokemon: function (pokemon) {
+				pokemon.tryTrap();
+		},
+		self: {
 			atk: 2,
 			def: 2,
 			spa: 2,
@@ -1730,7 +1878,7 @@ exports.BattleMovedex = {
 			accuracy: 2,
 			evasion: 2,
 		},
-		selfSwitch: 'copyvolatile',
+		heal: [1,2],
 		secondary: false,
 		target: "self",
 		type: "Normal",
@@ -1779,14 +1927,14 @@ exports.BattleMovedex = {
 		type: "Fire",
 		contestType: "Beautiful",
 	},
-	"warthofthehundredyearoldtrees": {
+	"wrathofthehundredyearoldtrees": {
 		accuracy: true,
 		basePower: 180,
 		category: "Special",
 		desc: "50% chance to randomly status a foe",
-		id: "warthofthehundredyearoldtrees",
+		id: "wrathofthehundredyearoldtrees",
 		isViable: true,
-		name: "Warth of The Hundred-Year-Old Trees",
+		name: "Wrath of The Hundred-Year-Old Trees",
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -1986,39 +2134,41 @@ exports.BattleMovedex = {
 		basePower: 180,
 		category: "Physical",
 		desc: "100% chance to drop Attack by 2 stages",
-		shortdesc: "100% chance -2 atk",
 		id: "mantisscorchinglunge",
 		isViable: true,
 		name: "Mantis Scorching Lunge",
 		pp: 1,
 		priority: 0,
 		flags: {},
-		isZ: "pheromoniumz",
+		isZ: "pheromosiumz",
 		secondary: {
 			chance: 100,
-			boosts: { 
+			boosts: {
 				atk: -2,
 			},
 		},
 		target: "normal",
 		type: "Bug",
-		contestType: "Beautiful",
+		contestType: "Cute",
 	},
 	"onepunchknockout": {
 		accuracy: true,
-		basePower: 240,
+		basePower: 200,
 		category: "Physical",
-		desc: "Deals heavy damage to the target",
+		desc: "Deals heavy damage to the target, boosts the user's Attack by 2 stages",
 		id: "onepunchknockout",
 		isViable: true,
 		name: "One Punch Knock Out",
 		pp: 1,
 		priority: 0,
 		flags: {},
-		isZ: "buzzwoleniumz",
+		isZ: "buzzwolium Z",
+		self: {
+			atk: 2,
+		},
 		secondary: false,
 		target: "normal",
 		type: "Fighting",
-		contestType: "Beautiful",
-	},
+		contestType: "Cute",
+	 },			
 };

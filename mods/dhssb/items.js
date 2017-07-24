@@ -44,4 +44,22 @@ exports.BattleItems = {
                 zMoveUser: ["Rayquaza"],
                 desc: "If holder is Ransei it can use Z-Ransei",
         },
+	"crafty": {
+                id: "crafty",
+                name: "Crafty",
+                megaStone: "Scarfty-Mega",
+                megaEvolves: "Scrafty",
+                onTakeItem: function(item, source) {
+                        if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+                        return true;
+                },
+                onDamage: function(damage, target, source, effect) {
+                        if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+                                if (target.useItem()) {
+                                        return target.hp - 1;
+                                }
+                        }
+                },
+                desc: "If holder is Zapmaster2010, this item allows it to Evolve in battle. For some reason, if Zap's HP is full, it will survive that would KO it with 1 HP. Single Use"
+        },
 };

@@ -38,17 +38,18 @@ exports.commands = {
 	othermetashelp: ["/om - Provides links to information on the Other Metagames.",
 		"!om - Show everyone that information. Requires: + % @ * # & ~"],
 
+	"!crossevolve": true,
 	ce: "crossevolve",
 	crossevo: "crossevolve",
 	crossevolve: function(target, user, room) {
 		if (!this.runBroadcast()) return;
 		if (!target || !target.includes(',')) return this.parse('/help crossevo')
 		let pokes = target.split(",");
-		if (!Tools.data.Pokedex[toId(pokes[0])] || !Tools.data.Pokedex[toId(pokes[1])]) {
+		if (!Dex.data.Pokedex[toId(pokes[0])] || !Dex.data.Pokedex[toId(pokes[1])]) {
 			return this.errorReply('Error: Pokemon not found.')
 		}
-		let template = Object.assign({}, Tools.getTemplate(pokes[0])), crossTemplate = Object.assign({}, Tools.getTemplate(pokes[1]));
-		let prevo = Tools.getTemplate(crossTemplate.prevo);
+		let template = Object.assign({}, Dex.getTemplate(pokes[0])), crossTemplate = Object.assign({}, Dex.getTemplate(pokes[1]));
+		let prevo = Dex.getTemplate(crossTemplate.prevo);
 		let mixedTemplate = Object.assign({}, template);
 		if (!template.evos || !template.evos.length) {
 			return this.errorReply(`Error: ${template.species} does not evolve.`);
@@ -59,7 +60,7 @@ exports.commands = {
 		let setStage = 1, crossStage = 1;
 		if (template.prevo) {
 			setStage++;
-			if (Tools.data.Pokedex[template.prevo].prevo) {
+			if (Dex.data.Pokedex[template.prevo].prevo) {
 				setStage++;
 			}
 		}
@@ -75,14 +76,14 @@ exports.commands = {
 		mixedTemplate.abilities = Object.assign({}, crossTemplate.abilities);
 		mixedTemplate.baseStats = {};
 		for (let statName in template.baseStats) {
-			mixedTemplate.baseStats[statName] = (crossTemplate.baseStats[statName] - prevo.baseStats[statName]) + Tools.data.Pokedex[template.id].baseStats[statName];
+			mixedTemplate.baseStats[statName] = (crossTemplate.baseStats[statName] - prevo.baseStats[statName]) + Dex.data.Pokedex[template.id].baseStats[statName];
 		}
-		mixedTemplate.types = [Tools.data.Pokedex[template.id].types[0]];
-		if (Tools.data.Pokedex[template.id].types[1]) mixedTemplate.types.push(Tools.data.Pokedex[template.id].types[1]);
+		mixedTemplate.types = [Dex.data.Pokedex[template.id].types[0]];
+		if (Dex.data.Pokedex[template.id].types[1]) mixedTemplate.types.push(Dex.data.Pokedex[template.id].types[1]);
 		if (crossTemplate.types[0] !== prevo.types[0]) mixedTemplate.types[0] = crossTemplate.types[0];
 		if (crossTemplate.types[1] !== prevo.types[1]) mixedTemplate.types[1] = crossTemplate.types[1] || crossTemplate.types[0];
 		if (mixedTemplate.types[0] === mixedTemplate.types[1]) mixedTemplate.types.length = 1;
-		mixedTemplate.weightkg = crossTemplate.weightkg - prevo.weightkg + Tools.data.Pokedex[template.id].weightkg;
+		mixedTemplate.weightkg = crossTemplate.weightkg - prevo.weightkg + Dex.data.Pokedex[template.id].weightkg;
 		if (mixedTemplate.weightkg <= 0) {
 			mixedTemplate.weightkg = 0.1;
 		}
@@ -122,39 +123,56 @@ exports.commands = {
 	},
 	crossevolvehelp: ["/crossevo <base pokemon>, <evolved pokemon> - Shows the type and stats for the Cross Evolved Pokemon."],
 
+	"!mixandmega": true,
 	mnm: 'mixandmega',
 	mixandmega: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		if (!toId(target) || !target.includes('@')) return this.parse('/help mixandmega');
 		let sep = target.split('@');
-		let stone = toId(sep[1]);
-		let template = toId(sep[0]);
-		if (!Tools.data.Items[stone] || (Tools.data.Items[stone] && !Tools.data.Items[stone].megaEvolves && !Tools.data.Items[stone].onPrimal)) {
-			return this.errorReply(`Error: Mega Stone not found`);
+		let stone;
+		if (toId(sep[1]) === 'dragonascent') {
+			stone = {
+				megaStone: "Rayquaza-Mega",
+				megaEvolves: "Rayquaza",
+			};
+		} else {
+			stone = Dex.getItem(sep[1]);
 		}
-		if (!Tools.data.Pokedex[toId(template)]) {
-			return this.errorReply(`Error: Pokemon not found`);
-		}
-		template = Object.assign({}, Tools.getTemplate(template));
-		stone = Object.assign({}, Tools.getItem(stone));
+		let template = Object.assign({}, Dex.getTemplate(sep[0]));
+		if (!stone.megaEvolves && !stone.onPrimal) return this.errorReply(`Error: Mega Stone not found.`);
+		if (!template.exists) return this.errorReply(`Error: Pokemon not found.`);
 		if (template.isMega || (template.evos && Object.keys(template.evos).length > 0)) { // Mega Pokemon cannot be mega evolved
-			return this.errorReply(`You cannot mega evolve ${template.name} in Mix and Mega.`);
+			this.errorReply(`Warning: You cannot mega evolve non-fully evolved Pokemon and Mega Pokemon in Mix and Mega.`);
 		}
-		let bannedStones = {'beedrillite':1, 'gengarite':1, 'kangaskhanite':1, 'mawilite':1};
+		let bannedStones = {'beedrillite':1, 'blazikenite':1, 'gengarite':1, 'kangaskhanite':1, 'mawilite':1, 'medichamite':1};
 		if (stone.id in bannedStones && template.name !== stone.megaEvolves) {
-			return this.errorReply(`You cannot use ${stone.name} on anything besides ${stone.megaEvolves} in Mix and Mega.`);
+			this.errorReply(`Warning: ${stone.name} is restricted to ${stone.megaEvolves} in Mix and Mega; therefore, ${template.name} cannot use ${stone.name} in actual play.`);
 		}
-		if (Tools.mod("mixandmega").getTemplate(sep[0]).tier === "Uber") { // Separate messages because there's a difference between being already mega evolved / NFE and being banned from mega evolving
-			return this.errorReply(`${template.name} is banned from mega evolving in Mix and Mega.`);
+		if (Dex.mod("mixandmega").getTemplate(sep[0]).tier === "Uber" && !template.isMega) { // Separate messages because there's a difference between being already mega evolved / NFE and being banned from mega evolving
+			this.errorReply(`Warning: ${template.name} is banned from mega evolving with a non-native mega stone in Mix and Mega and therefore cannot use ${toId(sep[1]) === 'dragonascent' ? 'Dragon Ascent' : stone.name} in actual play.`);
 		}
-		let baseTemplate = Tools.getTemplate(stone.megaEvolves);
-		let megaTemplate = Tools.getTemplate(stone.megaStone);
+		if (stone.isUnreleased) {
+			this.errorReply(`Warning: ${stone.name} is unreleased and is not usable in current Mix and Mega.`);
+		}
+		let dragonAscentUsers = {'smeargle':1, 'rayquaza':1, 'rayquazamega':1};
+		if (toId(sep[1]) === 'dragonascent' && !(toId(sep[0]) in dragonAscentUsers)) {
+			this.errorReply(`Warning: Only Pokemon with access to Dragon Ascent can mega evolve with Mega Rayquaza's traits; therefore, ${template.name} cannot mega evolve with Dragon Ascent.`);
+		}
+		// Fake Pokemon and Mega Stones
+		if (template.isNonstandard) {
+			this.errorReply(`Warning: ${template.name} is not a real Pokemon and is therefore not usable in Mix and Mega.`);
+		}
+		if (toId(sep[1]) === 'crucibellite') {
+			this.errorReply(`Warning: Crucibellite is a fake mega stone created by the CAP Project and is restricted to the CAP Crucibelle.`);
+		}
+		let baseTemplate = Dex.getTemplate(stone.megaEvolves);
+		let megaTemplate = Dex.getTemplate(stone.megaStone);
 		if (stone.id === 'redorb') { // Orbs do not have 'Item.megaStone' or 'Item.megaEvolves' properties.
-			megaTemplate = Tools.getTemplate("Groudon-Primal");
-			baseTemplate = Tools.getTemplate("Groudon");
+			megaTemplate = Dex.getTemplate("Groudon-Primal");
+			baseTemplate = Dex.getTemplate("Groudon");
 		} else if (stone.id === 'blueorb') {
-			megaTemplate = Tools.getTemplate("Kyogre-Primal");
-			baseTemplate = Tools.getTemplate("Kyogre");
+			megaTemplate = Dex.getTemplate("Kyogre-Primal");
+			baseTemplate = Dex.getTemplate("Kyogre");
 		}
 		let deltas = {
 			baseStats: {},
@@ -180,7 +198,7 @@ exports.commands = {
 		}
 		mixedTemplate.baseStats = {};
 		for (let statName in template.baseStats) { // Add the changed stats and weight
-			mixedTemplate.baseStats[statName] = Tools.clampIntRange(Tools.data.Pokedex[template.id].baseStats[statName] + deltas.baseStats[statName], 1, 255);
+			mixedTemplate.baseStats[statName] = Dex.clampIntRange(Dex.data.Pokedex[template.id].baseStats[statName] + deltas.baseStats[statName], 1, 255);
 		}
 		mixedTemplate.weightkg = Math.round(Math.max(0.1, template.weightkg + deltas.weightkg) * 100) / 100;
 		mixedTemplate.tier = "MnM";
@@ -208,42 +226,33 @@ exports.commands = {
 		details['<font color="#686868">Does Not Evolve</font>'] = "";
 		this.sendReply(`|raw|${Chat.getDataPokemonHTML(mixedTemplate)}`);
 		this.sendReply('|raw|<font size="1">' + Object.keys(details).map(detail => {
+<<<<<<< HEAD
 				if (details[detail] === '') return detail;
 				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
+=======
+			if (details[detail] === '') return detail;
+			return '<font color="#686868">' + detail + ':</font> ' + details[detail];
+>>>>>>> 2d711def887d45a223e705c3cc25a666374eff6a
 		}).join("&nbsp;|&ThickSpace;") + '</font>');
 	},
 	mixandmegahelp: ["/mnm <pokemon> @ <mega stone> - Shows the Mix and Mega evolved Pokemon's type and stats."],
 
+	"!350cup": true,
 	'350': '350cup',
 	'350cup': function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		if (!Tools.data.Pokedex[toId(target)]) {
-			return this.errorReply("Error: Pokemon not found.");
-		}
+		if (!toId(target)) return this.parse('/help 350cup');
+		let template = Object.assign({}, Dex.getTemplate(target));
+		if (!template.exists) return this.errorReply("Error: Pokemon not found.");
 		let bst = 0;
-		let mixedTemplate = Object.assign({}, Tools.getTemplate(target));
-		for (let i in mixedTemplate.baseStats) {
-			bst += mixedTemplate.baseStats[i];
+		for (let i in template.baseStats) {
+			bst += template.baseStats[i];
 		}
 		let newStats = {};
-		for (let i in mixedTemplate.baseStats) {
-			newStats[i] = mixedTemplate.baseStats[i] * (bst <= 350 ? 2 : 1);
+		for (let i in template.baseStats) {
+			newStats[i] = template.baseStats[i] * (bst <= 350 ? 2 : 1);
 		}
-		mixedTemplate.baseStats = Object.assign({}, newStats);
-		mixedTemplate.tier = "350Cup";
-		let details;
-		let weighthit = 20;
-		if (mixedTemplate.weightkg >= 200) {
-			weighthit = 120;
-		} else if (mixedTemplate.weightkg >= 100) {
-			weighthit = 100;
-		} else if (mixedTemplate.weightkg >= 50) {
-			weighthit = 80;
-		} else if (mixedTemplate.weightkg >= 25) {
-			weighthit = 60;
-		} else if (mixedTemplate.weightkg >= 10) {
-			weighthit = 40;
-		}
+<<<<<<< HEAD
 		details = {
 			"Dex#": mixedTemplate.num,
 			"Gen": mixedTemplate.gen,
@@ -258,49 +267,39 @@ exports.commands = {
 				if (details[detail] === '') return detail;
 				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
 		}).join("&nbsp;|&ThickSpace;") + '</font>');
+=======
+		template.baseStats = Object.assign({}, newStats);
+		this.sendReply(`|html|${Chat.getDataPokemonHTML(template)}`);
+>>>>>>> 2d711def887d45a223e705c3cc25a666374eff6a
 	},
 	'350cuphelp': ["/350 OR /350cup <pokemon> - Shows the base stats that a Pokemon would have in 350 Cup."],
 
+	"!tiershift": true,
 	ts: 'tiershift',
 	tiershift: function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		if (!Tools.data.Pokedex[toId(target)]) {
-			return this.errorReply("Error: Pokemon not found.");
-		}
+		if (!toId(target)) return this.parse('/help tiershift');
+		let template = Object.assign({}, Dex.getTemplate(target));
+		if (!template.exists) return this.errorReply("Error: Pokemon not found.");
 		let boosts = {
-			'UU': 5,
-			'BL2': 5,
-			'RU': 10,
-			'BL3': 10,
-			'NU': 15,
-			'BL4': 15,
-			'PU': 20,
-			'NFE': 20,
-			'LC Uber': 20,
-			'LC': 20,
+			'UU': 10,
+			'BL2': 10,
+			'RU': 20,
+			'BL3': 20,
+			'NU': 30,
+			'BL4': 30,
+			'PU': 40,
+			'NFE': 40,
+			'LC Uber': 40,
+			'LC': 40,
 		};
-		let mixedTemplate = Object.assign({}, Tools.getTemplate(target));
-		let boost = boosts[mixedTemplate.tier];
-		if (!(mixedTemplate.tier in boosts)) boost = 0;
-		let newStats = {};
-		for (let statName in mixedTemplate.baseStats) {
-			newStats[statName] = Tools.clampIntRange(mixedTemplate.baseStats[statName] + boost, 1, 255);
+		if (!(template.tier in boosts)) return this.sendReply(`|html|${Chat.getDataPokemonHTML(template)}`);
+		let boost = boosts[template.tier];
+		let newStats = Object.assign({}, template.baseStats);
+		for (let statName in template.baseStats) {
+			newStats[statName] = Dex.clampIntRange(newStats[statName] + boost, 1, 255);
 		}
-		mixedTemplate.baseStats = Object.assign({}, newStats);
-		mixedTemplate.tier = "TS";
-		let details;
-		let weighthit = 20;
-		if (mixedTemplate.weightkg >= 200) {
-			weighthit = 120;
-		} else if (mixedTemplate.weightkg >= 100) {
-			weighthit = 100;
-		} else if (mixedTemplate.weightkg >= 50) {
-			weighthit = 80;
-		} else if (mixedTemplate.weightkg >= 25) {
-			weighthit = 60;
-		} else if (mixedTemplate.weightkg >= 10) {
-			weighthit = 40;
-		}
+<<<<<<< HEAD
 		details = {
 			"Dex#": mixedTemplate.num,
 			"Gen": mixedTemplate.gen,
@@ -315,6 +314,10 @@ exports.commands = {
 				if (details[detail] === '') return detail;
 				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
 		}).join("&nbsp;|&ThickSpace;") + '</font>');
+=======
+		template.baseStats = Object.assign({}, newStats);
+		this.sendReply(`|raw|${Chat.getDataPokemonHTML(template)}`);
+>>>>>>> 2d711def887d45a223e705c3cc25a666374eff6a
 	},
 	'tiershifthelp': ["/ts OR /tiershift <pokemon> - Shows the base stats that a Pokemon would have in Tier Shift."],
 
@@ -323,8 +326,8 @@ exports.commands = {
         'natureswap': function(target, room, user) {
 		if (!this.runBroadcast()) return;
 		let arg=target,by=user;
-		let natures = Object.assign({}, Tools.data.Natures);
-		let pokemen = Object.assign({}, Tools.data.Pokedex);
+		let natures = Object.assign({}, Dex.data.Natures);
+		let pokemen = Object.assign({}, Dex.data.Pokedex);
                 let text = "";
                 if (arg == " " || arg == '') {
                         text += "Usage: <code>/ns &lt;Nature> &lt;Pokemon></code>";
@@ -370,10 +373,10 @@ exports.commands = {
 		let text = "";
 		let separated = target.split(",");
 		let name = toId(separated[0]), name2 = toId(separated[1]);
-		if (!Tools.data.Pokedex[name] || !Tools.data.Pokedex[name2]) {
+		if (!Dex.data.Pokedex[name] || !Dex.data.Pokedex[name2]) {
 			return this.errorReply("Error: Pokemon not found");;
 		}
-		let baseStats = {}, fusedTemplate = Object.assign({}, Tools.getTemplate(name)), template = Object.assign({}, Tools.getTemplate(name2));
+		let baseStats = {}, fusedTemplate = Object.assign({}, Dex.getTemplate(name)), template = Object.assign({}, Dex.getTemplate(name2));
 		Object.keys(fusedTemplate.baseStats).forEach(stat => {
 			baseStats[stat] = Math.floor((fusedTemplate.baseStats[stat] + template.baseStats[stat]) / 2);
 		});
@@ -381,9 +384,9 @@ exports.commands = {
 		fusedTemplate.types = [fusedTemplate.types[0]];
 		let type = (separated[2] && toId(separated[2]) === 'shiny' && template.types[1]) ? 1 : 0;
 		if(template.types[type] && template.types[type] !== fusedTemplate.types[0]) fusedTemplate.types.push(template.types[type]);
-		let weight = (Tools.data.Pokedex[fusedTemplate.id].weightkg + template.weightkg) / 2;
+		let weight = (Dex.data.Pokedex[fusedTemplate.id].weightkg + template.weightkg) / 2;
 		fusedTemplate.weightkg = weight;
-		fusedTemplate.abilities = Object.assign({'S': `<b>${template.abilities['0']}</b>`}, Tools.data.Pokedex[fusedTemplate.id].abilities);
+		fusedTemplate.abilities = Object.assign({'S': `<b>${template.abilities['0']}</b>`}, Dex.data.Pokedex[fusedTemplate.id].abilities);
 		this.sendReply(`|html|${Chat.getDataPokemonHTML(fusedTemplate)}`);
 		let details;
 		let weighthit = 20;
@@ -413,7 +416,7 @@ exports.commands = {
 	},
 	learnistor: function(target, room, user) {
 		if (!this.runBroadcast()) return;
-		let learnstor = Tools.mod('istor').data.Learnsets, movestor = Tools.mod('istor').data.Movedex, dexstor = Tools.mod('istor').data.Pokedex;
+		let learnstor = Dex.mod('istor').data.Learnsets, movestor = Dex.mod('istor').data.Movedex, dexstor = Dex.mod('istor').data.Pokedex;
 		if (!target || toId(target) === '') return this.sendReply("/learnistor: Shows the whether a Pokemon can learn a move, including Pokemon and Moves from istor.");
 		let targets = target.split(','), mon = targets[0], move = targets[1];
 		if (!mon || !dexstor[toId(mon)]) return this.errorReply("Error: Pokemon not found");
@@ -430,14 +433,14 @@ exports.commands = {
 	'bnb': 'badnboosted',
 	badnboosted : function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		if(!Tools.data.Pokedex[toId(target)]) {
+		if(!Dex.data.Pokedex[toId(target)]) {
 			return this.errorReply("Error: Pokemon not found.")
 		}
-		let template = Object.assign({}, Tools.getTemplate(target));
+		let template = Object.assign({}, Dex.getTemplate(target));
 		let newStats = Object.values(template.baseStats).map(function (stat) {
  			return (stat <= 70) ? (stat * 2) : stat;
  		});
-		this.sendReplyBox(`${Tools.data.Pokedex[toId(target)].species} in Bad 'n Boosted: <br /> ${newStats.join('/')}`);
+		this.sendReplyBox(`${Dex.data.Pokedex[toId(target)].species} in Bad 'n Boosted: <br /> ${newStats.join('/')}`);
 	},
 	badnboostedhelp: ["/bnb <pokemon> - Shows the base stats that a Pokemon would have in Bad 'n Boosted."],
 
@@ -452,4 +455,26 @@ exports.commands = {
 		this.sendReplyBox(`${buf}</div>`);
 	},
 	istorlisthelp: ["/istorlist - Shows the list of Istor Pokemon."],
+	felist: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
+		let feDex = require('../mods/fe/pokedex.js').BattlePokedex;
+		if (!feDex) return this.errorReply("Error Fetching FE Data.");
+		Object.values(feDex).forEach(mon => {
+			buf += `<button name="send" value="/dt ${mon.species}, FE" style="background:none;border:none;">${mon.species}</button><br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
+	felisthelp: ["/felist - Shows the list of Pokemon in Fusion Evolution."],
+	jillianlist: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Jillian Pokemon</h2></center>`;
+		let jillianDex = require('../mods/jillian/pokedex.js').BattlePokedex;
+		if (!jillianDex) return this.errorReply("Error Fetching Istor Data.");
+		Object.values(jillianDex).forEach(mon => {
+			buf += `<button name="send" value="/dt ${mon.species}, Jillian" style="background:none;border:none;">${mon.species}</button><br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
+	jillianlisthelp: ["/jillianlist - Shows the list of Pokemon in Jillian."],
 };

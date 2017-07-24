@@ -312,7 +312,7 @@ exports.BattleScripts = {
 				}
 				if (this.template.num === 493) {
 					// Arceus formes
-					let items = [Tools.getItem(this.item), Tools.getItem(this.ability)];
+					let items = [Dex.getItem(this.item), Dex.getItem(this.ability)];
 					let targetForme = (item[0] && item[0].onPlate ? 'Arceus-' + item[0].onPlate : 'Arceus');
 					if (targetForme === 'Arceus') targetForme = (item[1] && item[1].onPlate ? 'Arceus-' + item[1].onPlate : 'Arceus');
 					if (this.template.species !== targetForme) {

@@ -22,8 +22,6 @@ To reload chat commands:
 
 'use strict';
 
-let Chat = module.exports;
-
 const MAX_MESSAGE_LENGTH = 300;
 
 const BROADCAST_COOLDOWN = 20 * 1000;
@@ -33,6 +31,87 @@ const MAX_PARSE_RECURSION = 10;
 
 const VALID_COMMAND_TOKENS = '/!';
 const BROADCAST_TOKEN = '!';
+
+const FS = require('./fs');
+
+let Chat = module.exports;
+
+// Regex copied from the client
+const domainRegex = '[a-z0-9\\-]+(?:[.][a-z0-9\\-]+)*';
+const parenthesisRegex = '[(](?:[^\\s()<>&]|&amp;)*[)]';
+const linkRegex = new RegExp(
+	'(?:' +
+		'(?:' +
+			// When using www. or http://, allow any-length TLD (like .museum)
+			'(?:https?://|\\bwww[.])' + domainRegex +
+			'|\\b' + domainRegex + '[.]' +
+				// Allow a common TLD, or any 2-3 letter TLD followed by : or /
+				'(?:com?|org|net|edu|info|us|jp|[a-z]{2,3}(?=[:/]))' +
+		')' +
+		'(?:[:][0-9]+)?' +
+		'\\b' +
+		'(?:' +
+			'/' +
+			'(?:' +
+				'(?:' +
+					'[^\\s()&<>]|&amp;|&quot;' +
+					'|' + parenthesisRegex +
+				')*' +
+				// URLs usually don't end with punctuation, so don't allow
+				// punctuation symbols that probably aren't related to URL.
+				'(?:' +
+					'[^\\s`()\\[\\]{}\'".,!?;:&<>*_`^~\\\\]' +
+					'|' + parenthesisRegex +
+				')' +
+			')?' +
+		')?' +
+		'|[a-z0-9.]+\\b@' + domainRegex + '[.][a-z]{2,3}' +
+	')' +
+	'(?!.*&gt;)',
+	'ig'
+);
+const hyperlinkRegex = new RegExp(`(.+)&lt;(.+)&gt;`, 'i');
+// Matches U+FE0F and all Emoji_Presentation characters. More details on
+// http://www.unicode.org/Public/emoji/5.0/emoji-data.txt
+const emojiRegex = /[\u231A\u231B\u23E9-\u23EC\u23F0\u23F3\u25FD\u25FE\u2614\u2615\u2648-\u2653\u267F\u2693\u26A1\u26AA\u26AB\u26BD\u26BE\u26C4\u26C5\u26CE\u26D4\u26EA\u26F2\u26F3\u26F5\u26FA\u26FD\u2705\u270A\u270B\u2728\u274C\u274E\u2753-\u2755\u2757\u2795-\u2797\u27B0\u27BF\u2B1B\u2B1C\u2B50\u2B55\uFE0F\u{1F004}\u{1F0CF}\u{1F18E}\u{1F191}-\u{1F19A}\u{1F1E6}-\u{1F1FF}\u{1F201}\u{1F21A}\u{1F22F}\u{1F232}-\u{1F236}\u{1F238}-\u{1F23A}\u{1F250}\u{1F251}\u{1F300}-\u{1F320}\u{1F32D}-\u{1F335}\u{1F337}-\u{1F37C}\u{1F37E}-\u{1F393}\u{1F3A0}-\u{1F3CA}\u{1F3CF}-\u{1F3D3}\u{1F3E0}-\u{1F3F0}\u{1F3F4}\u{1F3F8}-\u{1F43E}\u{1F440}\u{1F442}-\u{1F4FC}\u{1F4FF}-\u{1F53D}\u{1F54B}-\u{1F54E}\u{1F550}-\u{1F567}\u{1F57A}\u{1F595}\u{1F596}\u{1F5A4}\u{1F5FB}-\u{1F64F}\u{1F680}-\u{1F6C5}\u{1F6CC}\u{1F6D0}-\u{1F6D2}\u{1F6EB}\u{1F6EC}\u{1F6F4}-\u{1F6F8}\u{1F910}-\u{1F93A}\u{1F93C}-\u{1F93E}\u{1F940}-\u{1F945}\u{1F947}-\u{1F94C}\u{1F950}-\u{1F96B}\u{1F980}-\u{1F997}\u{1F9C0}\u{1F9D0}-\u{1F9E6}]/u;
+
+const formattingResolvers = [
+	{token: "**", resolver: str => `<b>${str}</b>`},
+	{token: "__", resolver: str => `<i>${str}</i>`},
+	{token: "``", resolver: str => `<code>${str}</code>`},
+	{token: "~~", resolver: str => `<s>${str}</s>`},
+	{token: "^^", resolver: str => `<sup>${str}</sup>`},
+	{token: "\\", resolver: str => `<sub>${str}</sub>`},
+	{token: "&lt;&lt;", endToken: "&gt;&gt;", resolver: str => str.replace(/[a-z0-9-]/g, '').length ? false : `&laquo;<a href="${str}" target="_blank">${str}</a>&raquo;`},
+	{token: "[[", endToken: "]]", resolver: str => {
+		let hl = hyperlinkRegex.exec(str);
+		if (hl) return `<a href="${hl[2].trim().replace(/^([a-z]*[^a-z:])/g, 'http://$1')}">${hl[1].trim()}</a>`;
+
+		let query = str;
+		let querystr = str;
+		let split = str.split(':');
+		if (split.length > 1) {
+			let opt = toId(split[0]);
+			query = split.slice(1).join(':').trim();
+
+			switch (opt) {
+			case 'wiki':
+			case 'wikipedia':
+				return `<a href="http://en.wikipedia.org/w/index.php?title=Special:Search&search=${encodeURIComponent(query)}" target="_blank">${querystr}</a>`;
+			case 'yt':
+			case 'youtube':
+				query += " site:youtube.com";
+				querystr = `yt: ${query}`;
+				break;
+			case 'pokemon':
+			case 'item':
+				return `<psicon title="${query}" ${opt}="${query}" />`;
+			}
+		}
+
+		return `<a href="http://www.google.com/search?ie=UTF-8&btnI&q=${encodeURIComponent(query)}" target="_blank">${querystr}</a>`;
+	}},
+];
 
 const fs = require('fs');
 const path = require('path');
@@ -60,7 +139,7 @@ class PatternTester {
 	register(...elems) {
 		for (let elem of elems) {
 			this.elements.push(elem);
-			if (/^[^ \^\$\?\|\(\)\[\]]+ $/.test(elem)) {
+			if (/^[^ ^$?|()[\]]+ $/.test(elem)) {
 				this.fastElements.add(this.fastNormalize(elem));
 			}
 		}
@@ -300,7 +379,7 @@ class CommandContext {
 				message: this.message,
 			});
 			Rooms.global.reportCrash(err);
-			this.sendReply(`|html|<div class="broadcast-red"><b>Pokemon Showdown crashed!</b><br />Don't worry, we\'re working on fixing it.</div>`);
+			this.sendReply(`|html|<div class="broadcast-red"><b>Pokemon Showdown crashed!</b><br />Don't worry, we're working on fixing it.</div>`);
 		}
 		if (result === undefined) result = false;
 
@@ -309,7 +388,8 @@ class CommandContext {
 
 	checkFormat(room, user, message) {
 		if (!room) return true;
-		if (!room.filterStretching && !room.filterCaps) return true;
+		if (!room.filterStretching && !room.filterCaps && !room.filterEmojis) return true;
+		if (user.can('bypassall')) return true;
 
 		if (room.filterStretching && user.name.match(/(.+?)\1{5,}/i)) {
 			return this.errorReply(`Your username contains too much stretching, which this room doesn't allow.`);
@@ -317,14 +397,20 @@ class CommandContext {
 		if (room.filterCaps && user.name.match(/[A-Z\s]{6,}/)) {
 			return this.errorReply(`Your username contains too many capital letters, which this room doesn't allow.`);
 		}
+		if (room.filterEmojis && user.name.match(emojiRegex)) {
+			return this.errorReply(`Your username contains emojis, which this room doesn't allow.`);
+		}
 		// Removes extra spaces and null characters
 		message = message.trim().replace(/[ \u0000\u200B-\u200F]+/g, ' ');
 
-		if (room.filterStretching && message.match(/(.+?)\1{7,}/i) && !user.can('mute', null, room)) {
+		if (room.filterStretching && message.match(/(.+?)\1{7,}/i)) {
 			return this.errorReply(`Your message contains too much stretching, which this room doesn't allow.`);
 		}
-		if (room.filterCaps && message.match(/[A-Z\s]{18,}/) && !user.can('mute', null, room)) {
+		if (room.filterCaps && message.match(/[A-Z\s]{18,}/)) {
 			return this.errorReply(`Your message contains too many capital letters, which this room doesn't allow.`);
+		}
+		if (room.filterEmojis && message.match(emojiRegex)) {
+			return this.errorReply(`Your message contains emojis, which this room doesn't allow.`);
 		}
 
 		return true;
@@ -351,6 +437,10 @@ class CommandContext {
 			return false;
 		}
 		return true;
+	}
+	checkGameFilter() {
+		if (!this.room || !this.room.game || !this.room.game.onChatMessage) return false;
+		return this.room.game.onChatMessage(this.message);
 	}
 	pmTransform(message) {
 		let prefix = `|pm|${this.user.getIdentity()}|${this.pmTarget.getIdentity()}|`;
@@ -604,12 +694,18 @@ class CommandContext {
 				return false;
 			}
 
-			if (!this.checkBanwords(room, user.name)) {
+			if (!this.checkBanwords(room, user.name) && !user.can('bypassall')) {
 				this.errorReply(`Your username contains a phrase banned by this room.`);
 				return false;
 			}
 			if (!this.checkBanwords(room, message) && !user.can('mute', null, room)) {
 				this.errorReply("Your message contained banned words.");
+				return false;
+			}
+
+			let gameFilter = this.checkGameFilter();
+			if (gameFilter && !user.can('bypassall')) {
+				this.errorReply(gameFilter);
 				return false;
 			}
 
@@ -632,7 +728,7 @@ class CommandContext {
 		if (uri.startsWith('//')) return uri;
 		if (uri.startsWith('data:')) return uri;
 		if (!uri.startsWith('http://')) {
-			if (/^[a-z]+\:\/\//.test(uri) || isRelative) {
+			if (/^[a-z]+:\/\//.test(uri) || isRelative) {
 				return this.errorReply("URIs must begin with 'https://' or 'http://' or 'data:'");
 			}
 		} else {
@@ -685,7 +781,7 @@ class CommandContext {
 				this.errorReply('All images must have a width and height attribute');
 				return false;
 			}
-			let srcMatch = /src\s*\=\s*"?([^ "]+)(\s*")?/i.exec(match[0]);
+			let srcMatch = /src\s*=\s*"?([^ "]+)(\s*")?/i.exec(match[0]);
 			if (srcMatch) {
 				let uri = this.canEmbedURI(srcMatch[1], true);
 				if (!uri) return false;
@@ -694,7 +790,7 @@ class CommandContext {
 				images.lastIndex = match.index + 11;
 			}
 		}
-		if ((this.room.isPersonal || this.room.isPrivate === true) && !this.user.can('lock') && html.replace(/\s*style\s*=\s*\"?[^\"]*\"\s*>/g, '>').match(/<button[^>]/)) {
+		if ((this.room.isPersonal || this.room.isPrivate === true) && !this.user.can('lock') && html.replace(/\s*style\s*=\s*"?[^"]*"\s*>/g, '>').match(/<button[^>]/)) {
 			this.errorReply('You do not have permission to use scripted buttons in HTML.');
 			this.errorReply('If you just want to link to a room, you can do this: <a href="/roomid"><button>button contents</button></a>');
 			return false;
@@ -821,9 +917,8 @@ Chat.uncacheTree = function (root) {
 Chat.loadCommands = function () {
 	if (Chat.commands) return;
 
-	fs.readFile(path.resolve(__dirname, 'package.json'), (err, data) => {
-		if (err) return;
-		Chat.package = JSON.parse(data);
+	FS('package.json').readTextIfExists().then(data => {
+		if (data) Chat.package = JSON.parse(data);
 	});
 
 	let baseCommands = Chat.baseCommands = require('./chat-commands').commands;
@@ -849,6 +944,17 @@ Chat.loadCommands = function () {
 Chat.escapeHTML = function (str) {
 	if (!str) return '';
 	return ('' + str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;').replace(/\//g, '&#x2f;');
+};
+
+/**
+ * Strips HTML from a string.
+ *
+ * @param {string} html
+ * @return {string}
+ */
+Chat.stripHTML = function (html) {
+	if (!html) return '';
+	return html.replace(/<[^>]*>/g, '');
 };
 
 /**
@@ -940,19 +1046,11 @@ Chat.toDurationString = function (number, options) {
 	return parts.slice(positiveIndex).reverse().map((value, index) => value ? value + " " + unitNames[index] + (value > 1 ? "s" : "") : "").reverse().slice(0, precision).join(" ").trim();
 };
 
-Chat.getDataPokemonHTML = function (template) {
-	if (typeof template === 'string') template = Object.assign({}, Tools.getTemplate(template));
+Chat.getDataPokemonHTML = function (template, gen = 7) {
+	if (typeof template === 'string') template = Object.assign({}, Dex.getTemplate(template));
 	let buf = '<li class="result">';
 	buf += '<span class="col numcol">' + (template.tier) + '</span> ';
-	let num = 0;
-	if (template.spritenum) {
-		num = template.spritenum;
-	} else if (template.num < 802 && template.num > 0) {
-		num = template.num;
-	}
-	let top = Math.floor(num / 12) * 30;
-	let left = (num % 12) * 40;
-	buf += `<span class="col iconcol"><span style="background:transparent url(https://play.pokemonshowdown.com/sprites/smicons-sheet.png?a1) no-repeat scroll -${left}px -${top}px"></span></span> `;
+	buf += `<span class="col iconcol"><psicon pokemon="${template.id}"/></span> `;
 	buf += '<span class="col pokemonnamecol" style="white-space:nowrap"><a href="https://pokemonshowdown.com/dex/pokemon/' + template.id + '" target="_blank">' + template.species + '</a></span> ';
 	buf += '<span class="col typecol">';
 	if (template.types) {
@@ -961,14 +1059,14 @@ Chat.getDataPokemonHTML = function (template) {
 		}
 	}
 	buf += '</span> ';
-	if (template.abilities) {
+	if (gen >= 3) {
 		buf += '<span style="float:left;min-height:26px">';
 		if (template.abilities['1']) {
 			buf += '<span class="col twoabilitycol">' + template.abilities['0'] + '<br />' + template.abilities['1'] + '</span>';
 		} else {
 			buf += '<span class="col abilitycol">' + template.abilities['0'] + '</span>';
 		}
-		if (template.abilities && template.abilities['S']) {
+		if (template.abilities['S']) {
 			buf += '<span class="col twoabilitycol' + (template.unreleasedHidden ? ' unreleasedhacol' : '') + '"><em>' + template.abilities['H'] + '<br />' + template.abilities['S'] + '</em></span>';
 		} else if (template.abilities['H']) {
 			buf += '<span class="col abilitycol' + (template.unreleasedHidden ? ' unreleasedhacol' : '') + '"><em>' + template.abilities['H'] + '</em></span>';
@@ -985,9 +1083,9 @@ Chat.getDataPokemonHTML = function (template) {
 	buf += '<span class="col statcol"><em>HP</em><br />' + template.baseStats.hp + '</span> ';
 	buf += '<span class="col statcol"><em>Atk</em><br />' + template.baseStats.atk + '</span> ';
 	buf += '<span class="col statcol"><em>Def</em><br />' + template.baseStats.def + '</span> ';
-	if (template.baseStats.spc) {
-		buf += '<span class="col statcol"><em>Spc</em><br />' + template.baseStats.spc + '</span> ';
-		bst -= template.baseStats.spa + template.baseStats.spd;
+	if (gen <= 1) {
+		bst -= template.baseStats.spd;
+		buf += '<span class="col statcol"><em>Spc</em><br />' + template.baseStats.spa + '</span> ';
 	} else {
 		buf += '<span class="col statcol"><em>SpA</em><br />' + template.baseStats.spa + '</span> ';
 		buf += '<span class="col statcol"><em>SpD</em><br />' + template.baseStats.spd + '</span> ';
@@ -1000,21 +1098,23 @@ Chat.getDataPokemonHTML = function (template) {
 };
 
 Chat.getDataMoveHTML = function (move) {
-	if (typeof move === 'string') move = Object.assign({}, Tools.getMove(move));
+	if (typeof move === 'string') move = Object.assign({}, Dex.getMove(move));
 	let buf = `<ul class="utilichart"><li class="result">`;
 	buf += `<a data-entry="move|${move.name}"><span class="col movenamecol">${move.name}</span> `;
 	buf += `<span class="col typecol"><img src="//play.pokemonshowdown.com/sprites/types/${move.type}.png" alt="${move.type}" width="32" height="14">`;
 	buf += `<img src="//play.pokemonshowdown.com/sprites/categories/${move.category}.png" alt="${move.category}" width="32" height="14"></span> `;
 	if (move.basePower) buf += `<span class="col labelcol"><em>Power</em><br>${typeof move.basePower === 'number' ? move.basePower : '—'}</span> `;
 	buf += `<span class="col widelabelcol"><em>Accuracy</em><br>${typeof move.accuracy === 'number' ? (move.accuracy + '%') : '—'}</span> `;
-	buf += `<span class="col pplabelcol"><em>PP</em><br>${move.pp ? move.pp : 1}</span> `;
+	const basePP = move.pp || 1;
+	const pp = Math.floor(move.noPPBoosts ? basePP : basePP * 8 / 5);
+	buf += `<span class="col pplabelcol"><em>PP</em><br>${pp}</span> `;
 	buf += `<span class="col movedesccol">${move.shortDesc || move.desc}</span> `;
 	buf += `</a></li><li style="clear:both"></li></ul>`;
 	return buf;
 };
 
 Chat.getDataAbilityHTML = function (ability) {
-	if (typeof ability === 'string') ability = Object.assign({}, Tools.getAbility(ability));
+	if (typeof ability === 'string') ability = Object.assign({}, Dex.getAbility(ability));
 	let buf = `<ul class="utilichart"><li class="result">`;
 	buf += `<a data-entry="ability|${ability.name}"><span class="col namecol">${ability.name}</span> `;
 	buf += `<span class="col abilitydesccol">${ability.shortDesc || ability.desc}</span> `;
@@ -1023,11 +1123,9 @@ Chat.getDataAbilityHTML = function (ability) {
 };
 
 Chat.getDataItemHTML = function (item) {
-	if (typeof item === 'string') item = Object.assign({}, Tools.getItem(item));
-	let top = Math.floor(item.spritenum / 16) * 24;
-	let left = (item.spritenum % 16) * 24;
+	if (typeof item === 'string') item = Object.assign({}, Dex.getItem(item));
 	let buf = `<ul class="utilichart"><li class="result">`;
-	buf += `<a data-entry="item|${item.name}"><span class="col itemiconcol"><span style="background:transparent url(https://play.pokemonshowdown.com/sprites/itemicons-sheet.png) no-repeat scroll -${left}px -${top}px"></span></span> <span class="col namecol">${item.name}</span> `;
+	buf += `<a data-entry="item|${item.name}"><span class="col itemiconcol"><psicon item="${item.id}"></span> <span class="col namecol">${item.name}</span> `;
 	buf += `<span class="col itemdesccol">${item.shortDesc || item.desc}</span> `;
 	buf += `</a></li><li style="clear:both"></li></ul>`;
 	return buf;

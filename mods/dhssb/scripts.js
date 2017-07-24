@@ -5,39 +5,58 @@ exports.BattleScripts = {
 		let team = [];
 		let variant = (this.random(2) === 1);
 		let sets = {
+			'Uncle Flacco' : {
+				species: 'Shuckle', ability: 'Juice Drink', item: 'Binding Band', gender: 'M', 
+				moves: ['defendorder', 'shoreup', 'stickyweb'],
+				signatureMove: "Stone Wrap",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				nature:'Bold',
+			},
+			'shwb' : {
+				species: 'Lucario-Mega', ability: 'Brute Force', item: 'Leftovers', gender: 'M', shiny:true,
+				moves: ['highjumpkick', 'meteormash', 'extremespeed'],
+				signatureMove: "Build Up",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				nature:'Jolly',
+			},
+			'Pika Xreme' : {
+				species: 'Raichu', ability: 'Xreme Bulk', item: 'Leftovers', gender: 'M', shiny:true,
+				moves: ['volttackle', 'woodhammer', 'icehammer'],
+				signatureMove: "Healing Area",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				nature:'Adamant',
+			},
+			'Ludicrousity' : {
+				species: 'Umbreon', ability: 'Moonlight Guard', item: 'Leftovers', gender: 'M', shiny:true,
+				moves: ['spikyshield', 'toxic', 'rest'],
+				signatureMove: "Corrupt Aura",evs: {hp: 252, spd: 252, spa: 4},
+				nature:'Calm',
+			},
 			'EchoGaia' : {
 				species: 'Landorus-Therian', ability: 'Extreme Intimidate', item: 'Leftovers', gender: 'M',
 				moves: ['precipiceblades', 'stoneedge', 'uturn'],
-				signaturMove: "Full Hazards",
-				evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				signatureMove: "Full Hazards",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
 				nature:'Impish',
 			},
 			'Zapmaster2010' : {
 				species: 'Scrafty', ability: 'Zapdem', item: 'Black Belt', gender: 'M', shiny:true,
 				moves: ['highjumpkick', 'playrough', 'swordsdance'],
-				signaturMove: "Knee of Justice",
-				evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				signatureMove: "Knee of Justice",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
 				nature:'Adamant',
 			},
-			'Zygardeorder' : { /* Eyy will edit it soon */
+			'Zygardeorder' : {
 				species: 'Zygarde-10%', ability: 'Rawr', item: 'Leftovers', gender: 'M',
 				moves: ['thousandarrows', 'spectralthief', 'uturn'],
-				signaturMove: "Rawrr",
-				evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				signatureMove: "Soon TM",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
 				nature:'Jolly',
 			},
 			'Flurbel' : {
 				species: 'Lillipup', ability: 'Contrary Plus Plus', item: 'Eviolite', gender: 'M',
 				moves: ['vcreate', 'superpower', 'dragonascent'],
-				signatureMove: "The Netherlands First",
-				evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				signatureMove: "The Netherlands First",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
 				nature: 'Impish',
 			},
 			'Winona' : {
 				species: 'Exeggutor-Alola', ability: 'Dank Zone', item: 'Sitrus Berry', gender: 'M',
 				moves: ['icehammer', 'woodhammer', 'dragonhammer'],
-				signatureMove: "Super Duper Wombo Combo",
-				evs: {hp: 252, spa:252, spd: 252, def: 252},
+				signatureMove: "Super Duper Wombo Combo",evs: {hp: 252, spa:252, spd: 252, def: 252},
 				nature: 'Quiet',
 			},
 			'The True Falcon' : {

@@ -1,6 +1,41 @@
 'use strict';
 
 exports.BattleAbilities = {
+	"xremebulk": {
+		name:"Xreme Bulk",
+		id: "xremebulk",
+		shortDesc: "Damage taken 30%, negates Recoil, increases all damage dealt by 1.3x, immune to Burn, cannot be negated/ignored",
+		desc: "Damage taken 30%, negates Recoil, increases all damage dealt by 1.3x, immune to Burn, cannot be negated/ignored",
+		onBasePower: function (basePower, attacker, defender, move) {
+				return this.chainModify([0x14CD, 0x1000]);
+		},
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'recoil' && this.activeMove.id !== 'struggle') return null;
+		},
+		onUpdate: function (pokemon) {
+			if (pokemon.status === 'brn') {
+				this.add('-activate', pokemon, 'ability: Xreme Bulk');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Xreme Bulk');
+			return false;
+		},
+	},
+	"moonlightguard": {
+		name:"Moonlight Aura",
+		id: "moonlightaura",
+		shortDesc: "Raises SpD and Def by 2 stages upon switchin and removes all status conditions after the end of the turn",
+		desc: "Raises SpD and Def by 2 stages upon switchin and removes all status conditions after the end of the turn",
+		onStart: function(pokemon) {
+			this.add('-ability', pokemon, 'Moonlight Aura');
+			this.boost({def:2, spd:2});
+		},
+		
+	},
 	"zarpdem": {
 		name:"Zap Dem",
 		id:"zapdem",
@@ -9,6 +44,7 @@ exports.BattleAbilities = {
 			this.add('-ability', pokemon, 'Zap');
 			this.boost({atk:2, def:4, spd:4});
 			this.add('-formechange', pokemon, 'Charizard-Mega-Y', '[msg]');
+			this.add('-formechange', pokemon, 'Scrafty-Mega', '[msg]');
 			pokemon.formeChange("Scrafty-Mega");
 		},
 		

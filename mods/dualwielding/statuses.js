@@ -4,7 +4,7 @@ exports.BattleStatuses = {
 	choicelock: {
 		inherit: true,
 		onDisableMove: function (pokemon) {
-			if (!(Tools.getItem(pokemon.ability).isChoice || Tools.getItem(pokemon.item).isChoice) || !pokemon.hasMove(this.effectData.move)) {
+			if (!(Dex.getItem(pokemon.ability).isChoice || Dex.getItem(pokemon.item).isChoice) || !pokemon.hasMove(this.effectData.move)) {
 				pokemon.removeVolatile('choicelock');
 				return;
 			}
