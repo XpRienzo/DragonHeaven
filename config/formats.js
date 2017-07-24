@@ -33,7 +33,12 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
-<<<<<<< HEAD
+		name: "[Gen 7] Ubers",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587184/\">Ubers Metagame Discussion</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591388/\">Ubers Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3599816/\">Ubers Sample Teams</a>",
+		],
 		name: "[Gen 7] Doubles Hackmons Cup",
 
 		mod: 'gen7',
@@ -43,14 +48,6 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 7] Triples Hackmons Cup",
-=======
-		name: "[Gen 7] Ubers",
-		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587184/\">Ubers Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591388/\">Ubers Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3599816/\">Ubers Sample Teams</a>",
-		],
->>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
 
 		gameType: 'triples',
 		team: 'randomHC',
@@ -7988,26 +7985,9 @@ exports.Formats = [
  			"<b>Banned Pokemon for UU 1v1:</b> Gyaradosite, Kyurem-Black, Charizardite X, Tapu Koko, Donphan, Mimikyu, Aegislash, Magnezone, Charizardite Y, Porygon-Z, Metagrossite, Tapu Lele, Jirachi, Durant, Golem, Dragonite, Venusaurite, Celesteela, Crustle, Kartana, Greninja, Snorlax",
  		],
 
-<<<<<<< HEAD
- 		mod: 'gen7',
- 		teamLength: {
- 			validate: [1, 3],
- 			battle: 1,
- 		},
- 		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
- 		banlist: [
- 			'Illegal', 'Unreleased', 'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre',
- 			'Kyurem-White', 'Lugia', 'Lunala', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
- 			'Gyaradosite' , 'Kyurem-Black' , 'Charizardite X' , ' Tapu Koko' , 'Donphan' , 'Mimikyu' , 'Aegislash' , 'Magnezone' , 'Charizardite Y' , 'Porygon-Z' , 'Metagrossite' , 'Tapu Lele' , 'Jirachi' , 'Durant' , 'Golem' , 'Dragonite' , 'Venusaurite' , 'Celesteela' , 'Crustle' , 'Kartana' , 'Greninja' , 'Snorlax',
- 			'Power Construct', 'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss',
- 		],
- 	},
-];
-=======
 		mod: 'gen1',
 		searchShow: false,
 		debug: true,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 ];
->>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea

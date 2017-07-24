@@ -38,7 +38,6 @@ exports.commands = {
 	othermetashelp: ["/om - Provides links to information on the Other Metagames.",
 		"!om - Show everyone that information. Requires: + % @ * # & ~"],
 
-<<<<<<< HEAD
 	"!crossevolve": true,
 	ce: "crossevolve",
 	crossevo: "crossevolve",
@@ -125,9 +124,6 @@ exports.commands = {
 	crossevolvehelp: ["/crossevo <base pokemon>, <evolved pokemon> - Shows the type and stats for the Cross Evolved Pokemon."],
 
 	"!mixandmega": true,
-=======
-	'!mixandmega': true,
->>>>>>> a9e28b0f459b71f61385daeb2db4e5ccd087ad8f
 	mnm: 'mixandmega',
 	mixandmega: function (target, room, user) {
 		if (!this.runBroadcast()) return;
