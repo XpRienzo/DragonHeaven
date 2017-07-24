@@ -30,8 +30,6 @@ class Battle extends Dex.ModdedDex {
 
 		this.format = toId(format);
 		this.formatData = {id:this.format};
-		Dex.mod(format.mod).getBanlistTable(format); // fill in format ruleset
-		this.ruleset = format.ruleset;
 
 		this.effect = {id:''};
 		this.effectData = {id:''};
@@ -217,8 +215,8 @@ class Battle extends Dex.ModdedDex {
 		return this.getEffect(this.terrain);
 	}
 
-	getFormat() {
-		return this.getEffect(this.format);
+	getFormat(format) {
+		return super.getFormat(format || this.format);
 	}
 	addPseudoWeather(status, source, sourceEffect) {
 		status = this.getEffect(status);
@@ -1221,8 +1219,8 @@ class Battle extends Dex.ModdedDex {
 							// to run it again.
 							continue;
 						}
-						let banlistTable = this.getFormat().banlistTable;
-						if (banlistTable && !('illegal' in banlistTable) && !this.getFormat().team) {
+						const ruleTable = this.getRuleTable(this.getFormat());
+						if (!ruleTable.has('-illegal') && !this.getFormat().team) {
 							// hackmons format
 							continue;
 						} else if (abilitySlot === 'H' && template.unreleasedHidden) {
@@ -1230,7 +1228,7 @@ class Battle extends Dex.ModdedDex {
 							continue;
 						}
 						let ability = this.getAbility(abilityName);
-						if (banlistTable && ability.id in banlistTable) continue;
+						if (ruleTable.has('-' + ability.id)) continue;
 						if (pokemon.knownType && !this.getImmunity('trapped', pokemon)) continue;
 						this.singleEvent('FoeMaybeTrapPokemon',
 							ability, {}, pokemon, source);
@@ -1294,8 +1292,8 @@ class Battle extends Dex.ModdedDex {
 			this.sides[i].faintedLastTurn = this.sides[i].faintedThisTurn;
 			this.sides[i].faintedThisTurn = false;
 		}
-		let banlistTable = this.getFormat().banlistTable;
-		if (banlistTable && 'Rule:endlessbattleclause' in banlistTable) {
+		const ruleTable = this.getRuleTable(this.getFormat());
+		if (ruleTable.has('endlessbattleclause')) {
 			if (oneStale) {
 				let activationWarning = '<br />If all active Pok&eacute;mon go in an endless loop, Endless Battle Clause will activate.';
 				if (allStale) activationWarning = '';
@@ -1412,11 +1410,10 @@ class Battle extends Dex.ModdedDex {
 		if (format.onBegin) {
 			format.onBegin.call(this);
 		}
-		if (this.ruleset) {
-			for (let i = 0; i < this.ruleset.length; i++) {
-				this.addPseudoWeather(this.ruleset[i]);
-			}
-		}
+		this.getRuleTable(this.getFormat()).forEach((v, rule) => {
+			if (rule.startsWith('+') || rule.startsWith('-') || rule.startsWith('!')) return;
+			if (this.getFormat(rule).exists) this.addPseudoWeather(rule);
+		});
 
 		if (!this.p1.pokemon[0] || !this.p2.pokemon[0]) {
 			throw new Error('Battle not started: A player has an empty team.');

@@ -38,6 +38,7 @@ exports.commands = {
 	othermetashelp: ["/om - Provides links to information on the Other Metagames.",
 		"!om - Show everyone that information. Requires: + % @ * # & ~"],
 
+<<<<<<< HEAD
 	"!crossevolve": true,
 	ce: "crossevolve",
 	crossevo: "crossevolve",
@@ -124,6 +125,9 @@ exports.commands = {
 	crossevolvehelp: ["/crossevo <base pokemon>, <evolved pokemon> - Shows the type and stats for the Cross Evolved Pokemon."],
 
 	"!mixandmega": true,
+=======
+	'!mixandmega': true,
+>>>>>>> a9e28b0f459b71f61385daeb2db4e5ccd087ad8f
 	mnm: 'mixandmega',
 	mixandmega: function (target, room, user) {
 		if (!this.runBroadcast()) return;
@@ -237,7 +241,11 @@ exports.commands = {
 	},
 	mixandmegahelp: ["/mnm <pokemon> @ <mega stone> - Shows the Mix and Mega evolved Pokemon's type and stats."],
 
+<<<<<<< HEAD
 	"!350cup": true,
+=======
+	'!350cup': true,
+>>>>>>> a9e28b0f459b71f61385daeb2db4e5ccd087ad8f
 	'350': '350cup',
 	'350cup': function (target, room, user) {
 		if (!this.runBroadcast()) return;
@@ -274,7 +282,11 @@ exports.commands = {
 	},
 	'350cuphelp': ["/350 OR /350cup <pokemon> - Shows the base stats that a Pokemon would have in 350 Cup."],
 
+<<<<<<< HEAD
 	"!tiershift": true,
+=======
+	'!tiershift': true,
+>>>>>>> a9e28b0f459b71f61385daeb2db4e5ccd087ad8f
 	ts: 'tiershift',
 	tiershift: function (target, room, user) {
 		if (!this.runBroadcast()) return;
