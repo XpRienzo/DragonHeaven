@@ -1051,7 +1051,7 @@ exports.BattleMovedex = {
 		accuracy: 90,
 		basePower: 100,
 		category: "Special",
-		shortDesc: "20% chance to Burn or Paralyze",
+		shortDesc: "20% chance to Burn or Freeze",
 		id: "cryogenicfire",
 		name: "Cryogenic Fire",
 		pp: 15,
@@ -1063,7 +1063,14 @@ exports.BattleMovedex = {
 		},
 		secondary: {
 			chance: 20,
-			status: 'brn',
+			onHit: function (target, source) {
+				let result = this.random(2);
+				if (result === 0) {
+					target.trySetStatus('brn', source);
+				} else {
+					target.trySetStatus('frz', source);
+				}
+			},
 		},
 		target: "normal",
 		type: "Fire",
@@ -1179,5 +1186,18 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "all",
 		type: "Fire",
+	},
+	cut: {
+		inherit: true,
+		basePower: 80,
+		onEffectiveness: function (typeMod, type) {
+			if (type === 'Grass') return 1;
+		},
+		type: "Steel",
+	},
+	strength: {
+		inherit: true,
+		flags: {contact: 1, mirror: 1},
+		type: "Fighting",
 	},
 };
