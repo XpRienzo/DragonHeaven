@@ -35,7 +35,6 @@ $ node app.js
 ```
 
 ## Maintainers
-=======
 Detailed installation instructions
 ------------------------------------------------------------------------
 
@@ -166,6 +165,7 @@ Major Contributors
 - Kevin Lau [Ascriptmaster] - Development, Art (battle animations)
 - Konrad Borowski [xfix] - Development
 - Quinton Lee [sirDonovan] - Development
+=======
 
 Contributors
 
@@ -183,4 +183,5 @@ Contributors
 
 Special thanks
 
+[MIT](LICENSE)
 - See http://pokemonshowdown.com/credits

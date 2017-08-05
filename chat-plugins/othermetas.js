@@ -41,8 +41,7 @@ exports.commands = {
 	"!crossevolve": true,
 	ce: "crossevolve",
 	crossevo: "crossevolve",
-	crossevolve: function(target, user, room)
-	{
+	crossevolve: function(target, user, room) {
 		if (!this.runBroadcast()) return;
 		if (!target || !target.includes(',')) return this.parse('/help crossevo')
 		let pokes = target.split(",");
@@ -88,7 +87,7 @@ exports.commands = {
 		if (mixedTemplate.weightkg <= 0) {
 			mixedTemplate.weightkg = 0.1;
 		}
-		for (var i in mixedTemplate.baseStats) {
+		for (let i in mixedTemplate.baseStats) {
 			if (mixedTemplate.baseStats[i] < 1 || mixedTemplate.baseStats[i] > 255) {
 				return this.errorReply(`This Cross Evolution cannot happen since a stat goes below 0 or above 255.`);
 			}
@@ -233,7 +232,7 @@ exports.commands = {
 	},
 	mixandmegahelp: ["/mnm <pokemon> @ <mega stone> - Shows the Mix and Mega evolved Pokemon's type and stats."],
 
-	"!350cup": true,
+	'!350cup': true,
 	'350': '350cup',
 	'350cup': function (target, room, user) {
 		if (!this.runBroadcast()) return;
@@ -253,7 +252,7 @@ exports.commands = {
 	},
 	'350cuphelp': ["/350 OR /350cup <pokemon> - Shows the base stats that a Pokemon would have in 350 Cup."],
 
-	"!tiershift": true,
+	'!tiershift': true,
 	ts: 'tiershift',
 	tiershift: function (target, room, user) {
 		if (!this.runBroadcast()) return;
@@ -374,7 +373,7 @@ exports.commands = {
 		this.sendReply('|raw|<font size="1">' + Object.keys(details).map(detail => {
 				if (details[detail] === '') return detail;
 				return '<font color="#686868">' + detail + ':</font> ' + details[detail];
-			}).join("&nbsp;|&ThickSpace;") + '</font>');
+		}).join("&nbsp;|&ThickSpace;") + '</font>');
 	},
 	learnistor: function(target, room, user) {
 		if (!this.runBroadcast()) return;
@@ -392,7 +391,7 @@ exports.commands = {
 		return this.sendReplyBox("In Istor, " + mon.species + ' <font color="red"><u><b>can\'t<b><u></font> learn ' + move.name);
 	},
 	
-	'bnb' : 'badnboosted',
+	'bnb': 'badnboosted',
 	badnboosted : function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		if(!Dex.data.Pokedex[toId(target)]) {
