@@ -385,8 +385,8 @@ exports.BattleAbilities = {
 	
 	},
 	"solidice": {
-		desc: "This Pokemon is immune to Fighting type moves",
-		shortDesc: "This Pokemon is immune to Fighting type moves",
+		desc: "This Pokemon is immune to Fighting type moves, it also boost its Attack by 1 stage",
+		shortDesc: "This Pokemon is immune to Fighting type moves, +1 attack",
 		onTryHitPriority: 1,
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Fighting') {
@@ -399,7 +399,110 @@ exports.BattleAbilities = {
 		id: "solidice",
 		name: "Solid Ice",
 		rating: 3.5,
-		num: 157,
 	},
-
+	"supervision": {
+		desc: "The accuracy of this Pokemon's attacks is boosted by 30%",
+		onAllyModifyMove: function (move) {
+			if (typeof move.accuracy === 'number') {
+				move.accuracy *= 1.3;
+			}
+		},
+		id: "supervision",
+		name: "Supervision",
+	},
+	"duosweep": {
+		desc: "This pokemon attacks twice in the same turn, the second attack have 20% chance to miss and have half power",
+		shortDesc: "Attacks twice in the turn, 80% accuracy and half power on second hit",
+		onPrepareHit: function (source, target, move) {
+			if (move.id in {iceball: 1, rollout: 1}) return;
+			if (move.category !== 'Status' && !move.selfdestruct && !move.multihit && !move.flags['charge'] && !move.spreadHit && !move.isZ) {
+				move.multihit = 2;
+				source.addVolatile('duosweep');
+			}
+		},
+		effect: {
+			duration: 1,
+			onBasePowerPriority: 8,
+			onBasePower: function (basePower) {
+				if (this.effectData.hit) {
+					this.effectData.hit++;
+					return this.chainModify(0.5);
+				} else {
+					this.effectData.hit = 1;
+				}
+			},
+			onModifyMove: function (move) {
+			if (typeof move.accuracy === 'number') {
+				move.accuracy *= 0.8;
+			}
+		},
+			onSourceModifySecondaries: function (secondaries, target, source, move) {
+				if (move.id === 'secretpower' && this.effectData.hit < 2) {
+					// hack to prevent accidentally suppressing King's Rock/Razor Fang
+					return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+				}
+			},
+		},
+		id: "duosweep",
+		name: "Duosweep",
+		rating: 5,
+	},
+	"rainpower": {
+		desc: "This Pokemon's Attack and Special Attack is boosted by 50% under the rain, loses 1/8 HP each turn",
+		shortDesc: "+50% Atk and SpAtk under rain, -1/8 HP per turn",
+		onModifySpAPriority: 5,
+		onModifySpA: function (spa, pokemon) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(1.5);
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'raindance' || effect.id === 'primordialsea') {
+				this.damage(target.maxhp / 8, target, target);
+			}
+		},
+		id: "rainpower",
+		name: "Rain Power",
+		rating: 4,
+	},
+       "cacophony": {
+		desc: "This Pokemon's sound-based attacks have their power multiplied by 1.2.",
+		shortDesc: "This Pokemon's sound-based attacks have 1.2x power.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['sound']) {
+				this.debug('Cacophony boost');
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		id: "cacophony",
+		name: "Cacophony",
+		rating: 3,
+        },
+	"rootblock": {
+		desc: "Prevents adjacent opposing Pokemon from choosing to switch out unless they are immune to trapping or are airborne.",
+		shortDesc: "Prevents adjacent foes from choosing to switch unless they are airborne.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (!this.isAdjacent(pokemon, this.effectData.target)) return;
+			if (pokemon.isGrounded()) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if (!this.isAdjacent(pokemon, source)) return;
+			if (pokemon.isGrounded(!pokemon.knownType)) { // Negate immunity if the type is unknown
+				pokemon.maybeTrapped = true;
+			}
+		},
+		id: "rootblock",
+		name: "Root Block",
+		rating: 4.5,
+	},
 };
