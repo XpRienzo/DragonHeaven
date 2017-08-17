@@ -530,6 +530,39 @@ exports.BattleItems = {
 		},
 		desc: "If holder is a Delphox, this item allows it to Mega Evolve in battle.",
 	},
+	"deciduite": {
+		id: "deciduite",
+		name: "Deciduite",
+		megaStone: "Decidueye-Mega",
+		megaEvolves: "Decidueye",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Decidueye, this item allows it to Mega Evolve in battle.",
+	},
+	"incinerorite": {
+		id: "incinerorite",
+		name: "Incinerorite",
+		megaStone: "Incineroar-Mega",
+		megaEvolves: "Incineroar",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Incineroar, this item allows it to Mega Evolve in battle.",
+	},
+	"primarinite": {
+		id: "primarinite",
+		name: "Primarinite",
+		megaStone: "Primarina-Mega",
+		megaEvolves: "Primarina",
+		onTakeItem: function(item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		desc: "If holder is a Primarina, this item allows it to Mega Evolve in battle.",
+	},
 	"trickystone": {
 		id: "trickystone",
 		name: "Tricky Stone",
