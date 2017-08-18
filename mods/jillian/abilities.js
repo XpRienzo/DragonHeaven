@@ -411,8 +411,8 @@ exports.BattleAbilities = {
 		name: "Supervision",
 	},
 	"duosweep": {
-		desc: "This pokemon attacks twice in the same turn, the second attack have 20% chance to miss and have half power",
-		shortDesc: "Attacks twice in the turn, 80% accuracy and half power on second hit",
+		desc: "This pokemon attacks twice in the same turn, the second attack have its power quartered",
+		shortDesc: "Attacks twice in the turn, 25% power on second hit",
 		onPrepareHit: function (source, target, move) {
 			if (move.id in {iceball: 1, rollout: 1}) return;
 			if (move.category !== 'Status' && !move.selfdestruct && !move.multihit && !move.flags['charge'] && !move.spreadHit && !move.isZ) {
@@ -426,15 +426,11 @@ exports.BattleAbilities = {
 			onBasePower: function (basePower) {
 				if (this.effectData.hit) {
 					this.effectData.hit++;
-					return this.chainModify(0.5);
+					return this.chainModify(0.25);
 				} else {
 					this.effectData.hit = 1;
 				}
 			},
-			onModifyMove: function (move) {
-			if (typeof move.accuracy === 'number') {
-				move.accuracy *= 0.8;
-			}
 		},
 			onSourceModifySecondaries: function (secondaries, target, source, move) {
 				if (move.id === 'secretpower' && this.effectData.hit < 2) {
