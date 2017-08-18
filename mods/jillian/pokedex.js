@@ -919,7 +919,7 @@ exports.BattlePokedex = {
 	 druddigonional: {
 	 num: 100113,
 	 species: "Druddigonional",
-	 types: ["Dragon" "Poison"],
+	 types: ["Dragon","Poison"],
 	 baseStats: {hp: 87, atk: 135, def: 100, spa: 60, spd: 110, spe: 103},
 	 abilities: {0: "Rough Skin", 1: "Sheer Force", H: "Mold Breaker"},
 	 preevo: "druddigon",
@@ -927,7 +927,7 @@ exports.BattlePokedex = {
 	 heatvinemor: {
 	 num: 100114,
 	 species: "Heatvinemor",
-	 types: ["Fire" "Grass"],
+	 types: ["Fire","Grass"],
 	 baseStats: {hp: 105, atk: 112, def: 76, spa: 130, spd: 86, spe: 80},
 	 abilities: {0: "Gluttony", 1: "Flash Fire", H: "No Guard"},
 	 preevo: "heatmor",
@@ -935,7 +935,7 @@ exports.BattlePokedex = {
 	 furfroulove: {
 	 num: 100115,
 	 species: "Furfroulove",
-	 types: ["Normal" "Fairy"],
+	 types: ["Normal" ,"Fairy"],
 	 baseStats: {hp: 105, atk: 95, def: 80, spa: 70, spd: 115, spe: 122},
 	 abilities: {0: "Fur Coat"},
 	 preevo: "furfrou",
@@ -943,7 +943,7 @@ exports.BattlePokedex = {
 	 furfrouhate: {
 	 num: 100116,
 	 species: "Furfrouhate",
-	 types: ["Normal" "Ghost"],
+	 types: ["Normal","Ghost"],
 	 baseStats: {hp: 95, atk: 105, def: 90, spa: 80, spd: 105, spe: 112},
 	 abilities: {0: "Fur Coat"},
 	 preevo: "furfrou",
