@@ -411,8 +411,8 @@ exports.BattleAbilities = {
 		name: "Supervision",
 	},
 	"duosweep": {
-		desc: "This pokemon attacks twice in the same turn, the second attack have its power quartered",
-		shortDesc: "Attacks twice in the turn, 25% power on second hit",
+		desc: "This Pokemon's damaging moves become multi-hit moves that hit twice. The second hit has its damage quartered. Does not affect multi-hit moves or moves that have multiple targets.",
+		shortDesc: "This Pokemon's damaging moves hit twice. The second hit has its damage quartered.",
 		onPrepareHit: function (source, target, move) {
 			if (move.id in {iceball: 1, rollout: 1}) return;
 			if (move.category !== 'Status' && !move.selfdestruct && !move.multihit && !move.flags['charge'] && !move.spreadHit && !move.isZ) {
@@ -435,6 +435,7 @@ exports.BattleAbilities = {
 				if (move.id === 'secretpower' && this.effectData.hit < 2) {
 					// hack to prevent accidentally suppressing King's Rock/Razor Fang
 					return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+				}
 			},
 		},
 		id: "duosweep",
