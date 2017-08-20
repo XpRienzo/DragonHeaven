@@ -855,7 +855,7 @@ exports.BattlePokedex = {
 	 rootonny: {
          num: 1000105,
          species: "Rootonny",
-         types: ["Plante", "Dragon"],
+         types: ["Plante","Dragon"],
          baseStats: {hp: 129, atk: 125, def: 102, spa: 110, spd: 102, spe: 16},
          abilities: {0: "Intimidate", H: "Root Block"},
          preevo: "carnivine"
@@ -935,7 +935,7 @@ exports.BattlePokedex = {
 	 furfroulove: {
 	 num: 100115,
 	 species: "Furfroulove",
-	 types: ["Normal" ,"Fairy"],
+	 types: ["Normal","Fairy"],
 	 baseStats: {hp: 105, atk: 95, def: 80, spa: 70, spd: 115, spe: 122},
 	 abilities: {0: "Fur Coat"},
 	 preevo: "furfrou",
@@ -960,7 +960,7 @@ exports.BattlePokedex = {
 	 ladybowstic: {
 	 num: 100118,
 	 species: "Ladybowstic",
-	 types: ["Psychic", "Fighting"],
+	 types: ["Psychic","Fighting"],
 	 gender: "F",
 	 baseStats: {hp: 94, atk: 48, def: 81, spa: 138, spd: 91, spe: 124},
 	 abilities: {0: "Keen Eye", 1: "Miracle Dash", H: "Competitive"},
@@ -969,7 +969,7 @@ exports.BattlePokedex = {
 	 voltaikiolisk: {
 	 num: 100119,
 	 species: "Voltaikiolisk",
-	 types: ["Normal", "Electric"],
+	 types: ["Normal","Electric"],
 	 baseStats: {hp: 87, atk: 65, def: 67, spa: 139, spd: 104, spe: 124},
 	 abilities: {0: "Rain Power", 1: "Surge Surfer", H: "Solar Power"},
 	 preevo: "heliolisk",
@@ -977,7 +977,7 @@ exports.BattlePokedex = {
 	 qweebombee: {
 	 num: 100120,
 	 species: "Queebombee",
-	 types: ["Bug", "Fairy"],
+	 types: ["Bug","Fairy"],
 	 baseStats: {hp: 90, atk: 65, def: 70, spa: 125, spd: 80, spe: 139},
 	 abilities: {0: "Honey Gather", 1: "Simple", H: "Dazzling"},
 	 preevo: "ribombee",
@@ -985,7 +985,7 @@ exports.BattlePokedex = {
 	 shikoniitic: {
 	 num: 100121,
 	 species: "Shikoniitic",
-	 types: ["Grass", "Fairy"],
+	 types: ["Grass","Fairy"],
 	 baseStats: {hp: 75, atk: 55, def: 100, spa: 115, spd: 110, spe: 40},
 	 abilities: {0: "Prankster", 1: "Effect Spore", H: "Rain Dish"},
 	 preevo: "shiinotic",
@@ -1009,7 +1009,7 @@ exports.BattlePokedex = {
 	 hitogedemaru: {
 	 num: 100124,
 	 species: "Hitogedemaru",
-	 types: ["Electric", "Steel"],
+	 types: ["Electric","Steel"],
 	 baseStats: {hp: 85, atk: 128, def: 78, spa: 45, spd: 93, spe: 121},
 	 abilities: {0: "Iron Barbs", 1: "Gear Force", H: "Sturdy"},
 	 preevo: "togedemaru",
@@ -1025,7 +1025,7 @@ exports.BattlePokedex = {
 	 dumbiduck: {
 	 num: 100126,
 	 species: "Dumbiduck",
-	 types: ["Normal", "Flying"],
+	 types: ["Normal","Flying"],
 	 baseStats: {hp: 77, atk: 130, def: 75, spa: 78, spd: 77, spe: 100},
 	 abilities: {0: "Keen Eye", 1: "Sheer Force", H: "Defiant"},
 	 preevo: "farfetch'd",
@@ -1033,7 +1033,7 @@ exports.BattlePokedex = {
 	 octilmar: {
 	 num: 100127,
 	 species: "Octilmar",
-	 types: ["Water", "Poison"],
+	 types: ["Water","Poison"],
 	 baseStats: {hp: 90, atk: 125, def: 87, spa: 125, spd: 87, spe: 70},
 	 abilities: {0: "Suction Cups", 1: "Sniper", H: "Moody"},
 	 preevo: "octillery",
