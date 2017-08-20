@@ -436,18 +436,17 @@ exports.BattleAbilities = {
 				if (move.id === 'secretpower' && this.effectData.hit < 2) {
 					// hack to prevent accidentally suppressing King's Rock/Razor Fang
 					return secondaries.filter(effect => effect.volatileStatus === 'flinch');
-				}
 			},
 		},
 		id: "duosweep",
 		name: "Duosweep",
 		rating: 5,
 	},
-	"rainpower": {
-		desc: "This Pokemon's Attack and Special Attack is boosted by 50% under the rain, loses 1/8 HP each turn",
-		shortDesc: "+50% Atk and SpAtk under rain, -1/8 HP per turn",
-		onModifySpAPriority: 5,
-		onModifySpA: function (spa, pokemon) {
+        "rainpower": { 
+	         desc: "This Pokemon's Attack and Special Attack is boosted by 50% under the rain, loses 1/8 HP each turn",
+		 shortDesc: "+50% Atk and SpAtk under rain, -1/8 HP per turn",
+		 onModifySpAPriority: 5,
+		 onModifySpA: function (spa, pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea'])) {
 				return this.chainModify(1.5);
 			}
