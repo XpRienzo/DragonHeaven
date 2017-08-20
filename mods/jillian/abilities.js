@@ -435,6 +435,7 @@ exports.BattleAbilities = {
 				if (move.id === 'secretpower' && this.effectData.hit < 2) {
 					// hack to prevent accidentally suppressing King's Rock/Razor Fang
 					return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+				}
 			},
 		},
 		id: "duosweep",
