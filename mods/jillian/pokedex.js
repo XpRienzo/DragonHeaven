@@ -1,13 +1,17 @@
 'use strict';
 
 exports.BattlePokedex = {
-  leafien: {
+    leafien: {
         num: 1000001,
         species: "Leafien",
         types: ["Grass"],
         baseStats: {hp: 38, atk: 42, def: 40, spa: 52, spd: 28, spe: 40},
         abilities: {0: "Overgrow", H: "Sap Sipper"},
-        evos: ["branchion"],
+	evos: ["branchion"],
+	heightm: 0.5,
+	weightkg: 3.9,
+	color: "Green",
+	eggGroups: ["Monster", "Grass"],
 	},
   branchion: {
         num: 1000002,
@@ -17,6 +21,10 @@ exports.BattlePokedex = {
         abilities: {0: "Overgrow", H: "Sap Sipper"},
         evos: ["treenomian"],
         prevo: "branchion",
+	heightm: 1.2,
+	weightkg: 36.3,
+	color: "Green",
+	eggGroups: ["Monster", "Grass"],
 	},
   treenomian: {
         num: 1000003,
@@ -26,6 +34,10 @@ exports.BattlePokedex = {
         abilities: {0: "Overgrow", H: "Sap Sipper"},
         evos: ["treenomian"],
         prevo: "branchion",
+	heightm: 1.5,
+	weightkg: 73.9,
+	color: "Green",
+	eggGroups: ["Monster", "Grass"],
 	},
   laviniou: {
         num: 1000004,
@@ -34,6 +46,10 @@ exports.BattlePokedex = {
         baseStats: {hp: 30, atk: 50, def: 48, spa: 56, spd: 40, spe: 40},
         abilities: {0: "Blaze", H: "Sheer Force"},
         evos: ["marsminian"],
+	heightm: 0.8,
+	weightkg: 4.2,
+	color: "Red",
+	eggGroups: ["Monster", "Field"],
 	},
   marsminian: {
         num: 1000005,
@@ -43,6 +59,10 @@ exports.BattlePokedex = {
         abilities: {0: "Blaze", H: "Sheer Force"},
         evos: ["volcanolion"],
         prevo: "laviniou",
+	heightm: 1.8,
+	weightkg: 54.2,
+	color: "Red",
+	eggGroups: ["Monster", "Field"],
 	},
   volcanolion: {
         num: 1000006,
@@ -51,6 +71,10 @@ exports.BattlePokedex = {
         baseStats: {hp: 75, atk: 110, def: 90, spa: 105, spd: 73, spe: 99},
         abilities: {0: "Blaze", H: "Sheer Force"},
         prevo: "marsminian",
+	heightm: 3.5,
+	weightkg: 92.2,
+	color: "Red",
+	eggGroups: ["Monster", "Field"],
 	},
    aquario: {
         num: 1000007,
@@ -59,6 +83,10 @@ exports.BattlePokedex = {
         baseStats: {hp: 36, atk: 45, def: 28, spa: 85, spd: 65, spe: 54},
         abilities: {0: "Torrent", H: "Dry Skin"},
         evos: ["seamunian"],
+	heightm: 1.1,
+	weightkg: 10.2,
+	color: "Blue",
+	eggGroups: ["Water 1", "Monster"],
 	},
    seamunian: {
         num: 1000008,
@@ -68,6 +96,10 @@ exports.BattlePokedex = {
        abilities: {0: "Torrent", H: "Dry Skin"},
         evos: ["poseidocze"],
         prevo: "aquario",
+	heightm: 1.8,
+	weightkg: 36.2,
+	color: "Blue",
+	eggGroups: ["Water 1", "Monster"],
 	},
    poseidocze: {
         num: 1000009,
@@ -76,6 +108,10 @@ exports.BattlePokedex = {
         baseStats: {hp: 86, atk: 103, def: 70, spa: 120, spd: 78, spe: 91},
         abilities: {0: "Torrent", H: "Dry Skin"},
         prevo: "seamunian",
+	heightm: 3.9,
+	weightkg: 100.2,
+	color: "Blue",
+	eggGroups: ["Water 1", "Monster"],
 	},
    avislon: {
         num: 1000010,
