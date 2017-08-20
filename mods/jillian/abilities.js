@@ -431,7 +431,6 @@ exports.BattleAbilities = {
 					this.effectData.hit = 1;
 				}
 			},
-		},
 			onSourceModifySecondaries: function (secondaries, target, source, move) {
 				if (move.id === 'secretpower' && this.effectData.hit < 2) {
 					// hack to prevent accidentally suppressing King's Rock/Razor Fang
