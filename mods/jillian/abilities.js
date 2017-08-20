@@ -442,45 +442,7 @@ exports.BattleAbilities = {
 		id: "duosweep",
 		name: "Duosweep",
 		rating: 5,
-	},
-	"rainpower": {
-		desc: "This Pokemon's Attack and Special Attack is boosted by 50% under the rain, loses 1/8 HP each turn",
-		shortDesc: "+50% Atk and SpAtk under rain, -1/8 HP per turn",
-		onModifySpAPriority: 5,
-		onModifySpA: function (spa, pokemon) {
-			if (this.isWeather(['raindance', 'primordialsea'])) {
-				return this.chainModify(1.5);
-			}
-		},
-		onModifyAtkPriority: 5,
-		onModifyAtk: function (atk, pokemon) {
-			if (this.isWeather(['raindance', 'primordialsea'])) {
-				return this.chainModify(1.5);
-			}
-		},
-		onWeather: function (target, source, effect) {
-			if (effect.id === 'raindance' || effect.id === 'primordialsea') {
-				this.damage(target.maxhp / 8, target, target);
-			}
-		},
-		id: "rainpower",
-		name: "Rain Power",
-		rating: 4,
-	},
-       "cacophony": {
-		desc: "This Pokemon's sound-based attacks have their power multiplied by 1.2.",
-		shortDesc: "This Pokemon's sound-based attacks have 1.2x power.",
-		onBasePowerPriority: 8,
-		onBasePower: function (basePower, attacker, defender, move) {
-			if (move.flags['sound']) {
-				this.debug('Cacophony boost');
-				return this.chainModify([0x1333, 0x1000]);
-			}
-		},
-		id: "cacophony",
-		name: "Cacophony",
-		rating: 3,
-        },
+	 },
 	"rootblock": {
 		desc: "Prevents adjacent opposing Pokemon from choosing to switch out unless they are immune to trapping or are airborne.",
 		shortDesc: "Prevents adjacent foes from choosing to switch unless they are airborne.",
@@ -501,4 +463,42 @@ exports.BattleAbilities = {
 		name: "Root Block",
 		rating: 4.5,
 	},
+	"rainpower": {
+		desc: "If Rain Dance is active, this Pokemon's Special Attack and Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn.",
+		shortDesc: "If Rain Dance is active, this Pokemon's Sp. Atk and Atk is 1.5x; loses 1/8 max HP per turn.",
+		onModifySpAPriority: 5,
+		onModifySpA: function (spa, pokemon) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(1.5);
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'raindance' || effect.id === 'primordialsea') {
+				this.damage(target.maxhp / 8, target, target);
+			}
+		},
+		id: "rainpower",
+		name: "Rain Power",
+		rating: 2.5,
+	},
+	"cacophony": {
+		desc: "This Pokemon's sound-based attacks have their power multiplied by 1.2.",
+		shortDesc: "This Pokemon's sound-based attacks have 1.2x power.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['sound']) {
+				this.debug('Cacophony boost');
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		id: "cacophony",
+		name: "Cacophony",
+		rating: 3,
+        },
 };
