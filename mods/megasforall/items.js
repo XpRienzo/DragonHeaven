@@ -190,7 +190,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 932,
+		num: 1077,
 		gen: 6,
 		desc: "If holder is a Golem-Alola, this item allows it to Mega Evolve in battle.",
 	},
@@ -218,7 +218,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 935,
+		num: 1054,
 		gen: 6,
 		desc: "If holder is a Persian-Alola, this item allows it to Mega Evolve in battle.",
 	},
@@ -244,7 +244,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 928,
+		num: 1029,
 		gen: 6,
 		desc: "If holder is a Sandslash-Alola, this item allows it to Mega Evolve in battle.",
 	},
@@ -352,7 +352,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 927,
+		num: 1024,
 		gen: 6,
 		desc: "If holder is an Arbok, this item allows it to Mega Evolve in battle.",
 	},
@@ -366,7 +366,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 937,
+		num: 1059,
 		gen: 6,
 		desc: "If holder is an Arcanine, this item allows it to Mega Evolve in battle.",
 	},
@@ -384,6 +384,7 @@ exports.BattleItems = {
 	"articunite": {
 		id: "articunite",
 		name: "Articunite",
+		isUnreleased: true,
 		spritenum: 620,
 		megaStone: "Articuno-Mega",
 		megaEvolves: "Articuno",
@@ -1136,7 +1137,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 931,
+		num: 1036,
 		gen: 6,
 		desc: "If holder is a Clefable, this item allows it to Mega Evolve in battle.",
 	},
@@ -1556,6 +1557,7 @@ exports.BattleItems = {
 	"dragoniteite": {
 		id: "dragoniteite",
 		name: "Dragoniteite",
+		isUnreleased: true,
 		spritenum: 576,
 		megaStone: "Dragonite-Mega",
 		megaEvolves: "Dragonite",
@@ -1938,7 +1940,7 @@ exports.BattleItems = {
 	},
 	"fearonite": {
 		id: "fearonite",
-		name: "fearonite",
+		name: "Fearonite",
 		spritenum: 576,
 		megaStone: "Fearow-Mega",
 		megaEvolves: "Fearow",
@@ -1946,7 +1948,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 926,
+		num: 1022,
 		gen: 6,
 		desc: "If holder is a Fearow, this item allows it to Mega Evolve in battle.",
 	},
@@ -3326,6 +3328,20 @@ exports.BattleItems = {
 		gen: 3,
 		desc: "Raises holder's Attack by 1 stage when at 1/4 max HP or less. Single use.",
 	},
+	"liepardite": {
+		id: "liepardite",
+		name: "Liepardite",
+		spritenum: 576,
+		megaStone: "Liepard-Mega",
+		megaEvolves: "Liepard",
+		onTakeItem: function (item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 1077,
+		gen: 6,
+		desc: "If holder is a Liepard, this item allows it to Mega Evolve in battle.",
+	},
 	"lifeorb": {
 		id: "lifeorb",
 		name: "Life Orb",
@@ -3542,7 +3558,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 675,
+		num: 1068,
 		gen: 6,
 		desc: "If holder is a Machamp, this item allows it to Mega Evolve in battle.",
 	},
@@ -4202,7 +4218,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 930,
+		num: 1034,
 		gen: 6,
 		desc: "If holder is a Nidoking, this item allows it to Mega Evolve in battle.",
 	},
@@ -4216,7 +4232,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 929,
+		num: 1031,
 		gen: 6,
 		desc: "If holder is a Nidoqueen, this item allows it to Mega Evolve in battle.",
 	},
@@ -4841,7 +4857,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 936,
+		num: 1047,
 		gen: 6,
 		desc: "If holder is a Primeape, this item allows it to Mega Evolve in battle.",
 	},
@@ -6168,6 +6184,20 @@ exports.BattleItems = {
 		gen: 4,
 		desc: "Holder's Rock-type attacks have 1.2x power. Judgment is Rock type.",
 	},
+	"stoutlandite": {
+		id: "stoutlandite",
+		name: "Stoutlandite",
+		spritenum: 576,
+		megaStone: "Stoutland-Mega",
+		megaEvolves: "Stoutland",
+		onTakeItem: function (item, source) {
+			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+			return true;
+		},
+		num: 926,
+		gen: 6,
+		desc: "If holder is a Stoutland, this item allows it to Mega Evolve in battle.",
+	},
 	"sudowoodite": {
 		id: "sudowoodite",
 		name: "Sudowoodite",
@@ -6798,7 +6828,7 @@ exports.BattleItems = {
 			if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
 			return true;
 		},
-		num: 934,
+		num: 1040,
 		gen: 6,
 		desc: "If holder is a Wigglytuff, this item allows it to Mega Evolve in battle.",
 	},
