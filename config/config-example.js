@@ -130,8 +130,10 @@ exports.punishmentautolock = false;
 exports.chatmodchat = false;
 // battle modchat - default minimum group for speaking in battles; changeable with /modchat
 exports.battlemodchat = false;
-// pm modchat - minimum group for PMing other users, challenging other users, and laddering
+// pm modchat - minimum group for PMing other users, challenging other users
 exports.pmmodchat = false;
+// ladder modchat - minimum group for laddering
+exports.laddermodchat = false;
 
 // forced timer - force the timer on for all battles
 //   Players will be unable to turn it off.
@@ -242,6 +244,12 @@ exports.appealurl = '';
 exports.repl = true;
 exports.replsocketprefix = './logs/repl/';
 exports.replsocketmode = 0o600;
+
+// disablehotpatchall - disables `/hotpatch all`. Generally speaking, there's a
+// pretty big need for /hotpatch all - convenience. The only advantage any hotpatch
+// forms other than all is lower RAM use (which is only a problem for Main because
+// Main is huge), and to do pinpoint hotpatching (like /nohotpatch).
+exports.disablehotpatchall = false;
 
 // permissions and groups:
 //   Each entry in `grouplist' is a seperate group. Some of the members are "special"

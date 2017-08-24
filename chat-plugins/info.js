@@ -36,6 +36,8 @@ exports.commands = {
 		}
 
 		let buf = Chat.html`<strong class="username"><small style="display:none">${targetUser.group}</small>${targetUser.name}</strong> `;
+		const ac = targetUser.autoconfirmed;
+		if (ac && showAll) buf += ` <small style="color:gray">(ac${targetUser.userid === ac ? `` : `: ${ac}`})</small>`;
 		if (!targetUser.connected) buf += ` <em style="color:gray">(offline)</em>`;
 		let roomauth = '';
 		if (room.auth && targetUser.userid in room.auth) roomauth = room.auth[targetUser.userid];
@@ -100,7 +102,7 @@ exports.commands = {
 				if (punishment) {
 					let expiresIn = Punishments.checkLockExpiration(targetUser.locked);
 					if (expiresIn) buf += expiresIn;
-					if (punishment[3]) buf += ` (reason: ${punishment[3]})`;
+					if (punishment[3]) buf += Chat.html` (reason: ${punishment[3]})`;
 				}
 			} else if (targetUser.locked) {
 				buf += `<br />LOCKED: ${targetUser.locked}`;
@@ -119,7 +121,7 @@ exports.commands = {
 				if (punishment) {
 					let expiresIn = Punishments.checkLockExpiration(targetUser.locked);
 					if (expiresIn) buf += expiresIn;
-					if (punishment[3]) buf += ` (reason: ${punishment[3]})`;
+					if (punishment[3]) buf += Chat.html` (reason: ${punishment[3]})`;
 				}
 			}
 			if (targetUser.semilocked) {
@@ -207,7 +209,7 @@ exports.commands = {
 			buf += `${punishName}: ${punishUserid}`;
 			let expiresIn = Punishments.checkLockExpiration(userid);
 			if (expiresIn) buf += expiresIn;
-			if (reason) buf += ` (reason: ${reason})`;
+			if (reason) buf += Chat.html` (reason: ${reason})`;
 			buf += '<br />';
 			atLeastOne = true;
 		}
@@ -530,6 +532,9 @@ exports.commands = {
 				if (move.id === 'mirrormove') {
 					details['<a href="https://pokemonshowdown.com/dex/moves/mirrormove">Mirrorable Moves</a>'] = '';
 				}
+				if (move.isUnreleased) {
+					details["Unreleased in Gen " + mod.gen] = "";
+				}
 			} else if (newTargets[0].searchType === 'item') {
 				let item = mod.getItem(newTargets[0].name);
 				details = {
@@ -551,6 +556,9 @@ exports.commands = {
 				if (item.naturalGift && mod.gen >= 3) {
 					details["Natural Gift Type"] = item.naturalGift.type;
 					details["Natural Gift Base Power"] = item.naturalGift.basePower;
+				}
+				if (item.isUnreleased) {
+					details["Unreleased in Gen " + mod.gen] = "";
 				}
 			} else {
 				details = {};
@@ -1222,7 +1230,7 @@ exports.commands = {
 			this.sendReplyBox(
 				"Have a replay showcasing a bug on Pok&eacute;mon Showdown?<br />" +
 				"- <a href=\"https://www.smogon.com/forums/threads/3520646/\">Questions</a><br />" +
-				"- <a href=\"https://www.smogon.com/forums/threads/3469932/\">Bug Reports</a>"
+				"- <a href=\"https://www.smogon.com/forums/threads/3469932/\">Bug Reports</a> (ask in <a href=\"/help\">Help</a> before posting in the thread if you're unsure)"
 			);
 		}
 	},

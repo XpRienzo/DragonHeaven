@@ -1,10 +1,6 @@
 'use strict';
 
 exports.BattleItems = {
-	aggronite: {
-		inherit: true,
-		isUnreleased: false,
-	},
 	aguavberry: {
 		inherit: true,
 		onUpdate: function (pokemon) {
@@ -20,14 +16,6 @@ exports.BattleItems = {
 		},
 		desc: "Restores 1/8 max HP at 1/2 max HP or less; confuses if -SpD Nature. Single use.",
 	},
-	altarianite: {
-		inherit: true,
-		isUnreleased: false,
-	},
-	ampharosite: {
-		inherit: true,
-		isUnreleased: false,
-	},
 	belueberry: {
 		inherit: true,
 		isUnreleased: false,
@@ -41,10 +29,6 @@ exports.BattleItems = {
 		isUnreleased: false,
 	},
 	custapberry: {
-		inherit: true,
-		isUnreleased: false,
-	},
-	diancite: {
 		inherit: true,
 		isUnreleased: false,
 	},
@@ -96,14 +80,6 @@ exports.BattleItems = {
 				}
 			}
 		},
-	},
-	latiasite: {
-		inherit: true,
-		isUnreleased: false,
-	},
-	latiosite: {
-		inherit: true,
-		isUnreleased: false,
 	},
 	lightclay: {
 		inherit: true,
