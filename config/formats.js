@@ -2690,7 +2690,7 @@ exports.Formats = [
 		desc: [
 			"Pok&eacute;mon with a base stat total of 350 or lower get their stats doubled.",
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3589641/\">350 Cup</a>",
- 		],
+		],
 		mod: 'gen7',
 		ruleset: ['[Gen 7] Ubers'],
 		banlist: ['Deep Sea Tooth', 'Eevium Z', 'Eviolite', 'Light Ball'],
@@ -3693,38 +3693,38 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Clovermons",
 		desc: ["&bullet; <a href=http://pgenvp.wikia.com/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number>Clovermons</a>",
-		       "&bullet; <a href=http://pgenvp.wikia.com/wiki/Category:Moves>Moves</a><br>Brought to you by <font color=#0715b2><b>Zapmaster2010</b></font>",
-		      ],
+			   "&bullet; <a href=http://pgenvp.wikia.com/wiki/Category:Moves>Moves</a><br>Brought to you by <font color=#0715b2><b>Zapmaster2010</b></font>",
+			  ],
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: [],
 		mod: 'clovermons',
 	},
 	{
-  		name: "[Gen 7] Eevee'd",
-  		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/eeveed-current-slate-sliggoo-and-sunkern-submissions.3602933/>Eeveed</a>",
-		      ],
-  		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-  		banlist: ['Unreleased', 'Illegal'],
+		name: "[Gen 7] Eevee'd",
+		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/eeveed-current-slate-sliggoo-and-sunkern-submissions.3602933/>Eeveed</a>",
+			  ],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: ['Unreleased', 'Illegal'],
 		mod: 'eeveed',
-  	},
+	},
 	{
-  		name: "[Gen 7] Fusion Evolution",
-  		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/fusion-evolution-v2-submission-phase.3560216/>Fusion Evolution</a>",
-  		       "&bullet; <a href=http://www.smogon.com/forums/threads/fusion-moves-fusion-evolution-companion-project.3564805/>Fusion Moves</a>",
-  		      ],
-  		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		name: "[Gen 7] Fusion Evolution",
+		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/fusion-evolution-v2-submission-phase.3560216/>Fusion Evolution</a>",
+			   "&bullet; <a href=http://www.smogon.com/forums/threads/fusion-moves-fusion-evolution-companion-project.3564805/>Fusion Moves</a>",
+			  ],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		mod: 'fe',
-  		onModifyTemplate: function (template, pokemon, source) {
-  			//This hack is for something important: The Pokemon's Sprite.
-  			if (!template.base) return template;
-  			let temp = Objcet.assign({}, template);
-  			temp.species = temp.baseSpecies = template.base;
+		onModifyTemplate: function (template, pokemon, source) {
+			//This hack is for something important: The Pokemon's Sprite.
+			if (!template.base) return template;
+			let temp = Objcet.assign({}, template);
+			temp.species = temp.baseSpecies = template.base;
 			pokemon.name = template.species;
 			pokemon.fullname = `${pokemon.side.id}: ${pokemon.name}`;
 			pokemon.id = pokemon.fullname;
 			return temp;
-  		},
-  	},
+		},
+	},
 	{
 		name: "[Gen 7] Move Mastery",
 		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/move-mastery.3590075/\">Move Mastery</a>"],
@@ -3875,26 +3875,26 @@ exports.Formats = [
 		}
 	},
 	{
-  		name: "[Gen 7] OptiMons",
-  		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/.3609208/>OptiMons</a>",
-		      ],
-  		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-  		banlist: ['Unreleased', 'Illegal'],
+		name: "[Gen 7] OptiMons",
+		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/.3609208/>OptiMons</a>",
+			  ],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: ['Unreleased', 'Illegal'],
 		mod: 'opti',
-  	},
+	},
 	{
-  		name: "[Gen 7] Mememons",
-  		desc: ["&bullet; <a href=https://pastebin.com/3MpyAJ4x>Mememons</a><br>Brought to you by smellslikememe",
-		      ],
-  		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-  		mod: 'opti',
-  	},
+		name: "[Gen 7] Mememons",
+		desc: ["&bullet; <a href=https://pastebin.com/3MpyAJ4x>Mememons</a><br>Brought to you by smellslikememe",
+			  ],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		mod: 'opti',
+	},
 	{
 		name: "[Gen 7] Pokemon: The New First Generation",
 		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/pokemon-the-new-first-gen-submissions-for-new-pokemon-over.3578653/>Pokemon: The New First Generation</a>",
-		       "&bullet; <a href=https://docs.google.com/spreadsheets/d/1RT8-Ntryi_SvlD_AwBCPWTso7bFZNpAGX4F7wuHBPQY/edit>Pokemon: The New First Gen Spreadhseet</a>",
-		       "&bullet; Use /dgen (Pokemon/Item/Ability/Move) for more info",
-		      ],
+			   "&bullet; <a href=https://docs.google.com/spreadsheets/d/1RT8-Ntryi_SvlD_AwBCPWTso7bFZNpAGX4F7wuHBPQY/edit>Pokemon: The New First Gen Spreadhseet</a>",
+			   "&bullet; Use /dgen (Pokemon/Item/Ability/Move) for more info",
+			  ],
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: [],
 		mod: 'thefirstnewgen',
@@ -3902,7 +3902,7 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Jillian",
 		desc: ["&bullet; A custom region",
-		      ],
+			  ],
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: [],
 		mod: 'jillian',
@@ -3910,7 +3910,7 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Megas For All",
 		desc: ["&bullet; Megas",
-		      ],
+			  ],
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: [],
 		mod: 'megasforall',
@@ -5313,7 +5313,6 @@ exports.Formats = [
 		banlist: ['DeepSeaTooth', 'DeepSeaScale', 'Eviolite', 'Huge Power', 'Light Ball', 'Pure Power', 'Smeargle', 'Thick Club', 'Illegal', 'Unreleased']
 	},
 	{
-<<<<<<< HEAD
 		name: "Therianmons",
 		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/therianmons.3566303/\">Therianmons</a>"],
 		ruleset: ['OU'],
@@ -5477,17 +5476,6 @@ exports.Formats = [
 				}
 			}
 		},
-=======
-		name: "[Gen 7] Ubers",
-		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587184/\">Ubers Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591388/\">Ubers Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3599816/\">Ubers Sample Teams</a>",
-		],
-
-		mod: 'gen7',
-		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause'],
->>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
 	},
 	{
 		name: "Type Omelette",
@@ -6001,7 +5989,7 @@ exports.Formats = [
 		name: "[Gen 7] Crippled",
 		desc: [
 			"Pokemon with a base HP of 80 or higher get their base stats halved.",
- 		],
+		],
 		mod: 'gen7',
 		ruleset: ['[Gen 7] Ubers'],
 		onModifyTemplate: function (template, pokemon) {
@@ -6021,7 +6009,7 @@ exports.Formats = [
 		name: "[Gen 7] Freeze-Dry Mania",
 		desc: [
 			"All attacks in the first moveslots are super effective against the type of the attacks in the fourth moveslots but not very effective against the type of the attacks in the second moveslots",
- 		],
+		],
 		mod: 'gen7',
 		ruleset: ['[Gen 7] OU'],
 		banlist: ['Illegal', 'Freeze-Dry'],
@@ -6714,17 +6702,17 @@ exports.Formats = [
 		banlist: ['Illegal', 'Unreleased'],
 	},
 	{
-        name: "RU Theorymon",
-        desc: [
-            "&bullet; <a href=\"https://www.smogon.com/forums/threads/3568052/\">np: RU Stage 15</a>",
-            "&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/ru/\">RU Banlist</a>",
-            "&bullet; <a href=\"https://www.smogon.com/forums/threads/3558546/\">RU Viability Ranking</a>",
-        ],
+		name: "RU Theorymon",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3568052/\">np: RU Stage 15</a>",
+			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/ru/\">RU Banlist</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3558546/\">RU Viability Ranking</a>",
+		],
 
-        mod: 'rutheorymon',
+		mod: 'rutheorymon',
 
-        ruleset: ['UU'],
-        banlist: ['UU', 'BL2'],
+		ruleset: ['UU'],
+		banlist: ['UU', 'BL2'],
   },
 	{
 		name: "[Gen 6] Random Battle",
@@ -7748,42 +7736,38 @@ exports.Formats = [
 
 		mod: 'gen7',
 		teamLength: {
- 			validate: [1, 3],
- 			battle: 1,
- 		},
+			validate: [1, 3],
+			battle: 1,
+		},
 		ruleset: ['[Gen 7] OU', 'Allow One Sketch', 'Sketch Clause'],
 		banlist: [
- 			'Illegal', 'Unreleased', 'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Deoxys-Defense', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre',
-			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
-			'Power Construct', 'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss', 'Chansey + Charm + Psywave',
-			'Flash', 'Kinesis', 'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud-Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen',
- 		],
-		noSketch: ['Belly Drum', 'Celebrate', 'Conversion', "Forest's Curse", 'Geomancy', 'Happy Hour', 'Hold Hands', 'Lovely Kiss', 'Purify', 'Shell Smash', 'Shift Gear', 'Sketch', 'Spore', 'Sticky Web', 'Trick-or-Treat'],
-	},
-<<<<<<< HEAD
-	{
- 		name: "[Gen 7] 1v1 UU",
- 		desc: [
- 			"Bring three Pok&eacute;mon to Team Preview and choose one to battle.",
- 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587523/\">1v1</a>",
- 			"<b>Banned Pokemon for UU 1v1:</b> Gyaradosite, Kyurem-Black, Charizardite X, Tapu Koko, Donphan, Mimikyu, Aegislash, Magnezone, Charizardite Y, Porygon-Z, Metagrossite, Tapu Lele, Jirachi, Durant, Golem, Dragonite, Venusaurite, Celesteela, Crustle, Kartana, Greninja, Snorlax",
- 		],
-
- 		mod: 'gen7',
- 		teamLength: {
- 			validate: [1, 3],
- 			battle: 1,
- 		},
- 		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
- 		banlist: [
 			'Illegal', 'Unreleased', 'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Deoxys-Defense', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre',
 			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
 			'Power Construct', 'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss', 'Chansey + Charm + Psywave',
 			'Flash', 'Kinesis', 'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud-Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen',
- 			'Gyaradosite', 'Kyurem-Black', 'Tapu Koko', 'Charizardite X', 'Magnezone', 'Charizardite Y', 'Metagrossite', 'Mawilite', 'Lopunnite', 'Tapu Lele', 'Donphan', 'Aegislash', 'Mimikyu', 'Magearna', 'Landorus-Therian', 'Dragonite', 'Venusaurite', 'Genesect', 'Celesteela', 'Golem', 'Tapu Fini',
- 		],
- 	},
+		],
+		noSketch: ['Belly Drum', 'Celebrate', 'Conversion', "Forest's Curse", 'Geomancy', 'Happy Hour', 'Hold Hands', 'Lovely Kiss', 'Purify', 'Shell Smash', 'Shift Gear', 'Sketch', 'Spore', 'Sticky Web', 'Trick-or-Treat'],
+	},
+	{
+		name: "[Gen 7] 1v1 UU",
+		desc: [
+			"Bring three Pok&eacute;mon to Team Preview and choose one to battle.",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587523/\">1v1</a>",
+			"<b>Banned Pokemon for UU 1v1:</b> Gyaradosite, Kyurem-Black, Charizardite X, Tapu Koko, Donphan, Mimikyu, Aegislash, Magnezone, Charizardite Y, Porygon-Z, Metagrossite, Tapu Lele, Jirachi, Durant, Golem, Dragonite, Venusaurite, Celesteela, Crustle, Kartana, Greninja, Snorlax",
+		],
+
+		mod: 'gen7',
+		teamLength: {
+			validate: [1, 3],
+			battle: 1,
+		},
+		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		banlist: [
+			'Illegal', 'Unreleased', 'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Deoxys-Defense', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre',
+			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+			'Power Construct', 'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss', 'Chansey + Charm + Psywave',
+			'Flash', 'Kinesis', 'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud-Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen',
+			'Gyaradosite', 'Kyurem-Black', 'Tapu Koko', 'Charizardite X', 'Magnezone', 'Charizardite Y', 'Metagrossite', 'Mawilite', 'Lopunnite', 'Tapu Lele', 'Donphan', 'Aegislash', 'Mimikyu', 'Magearna', 'Landorus-Therian', 'Dragonite', 'Venusaurite', 'Genesect', 'Celesteela', 'Golem', 'Tapu Fini',
+		],
+	},
 ];
-=======
-];
->>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea

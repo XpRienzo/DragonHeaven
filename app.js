@@ -115,11 +115,8 @@ global.Tells = require('./tells.js');
 
 global.Db = require('nef')(require('nef-fs')('config/db'));
 
-<<<<<<< HEAD
-=======
 delete process.send; // in case we're a child process
 
->>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
 global.Verifier = require('./verifier');
 Verifier.PM.spawn();
 

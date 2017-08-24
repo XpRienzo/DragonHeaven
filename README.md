@@ -35,8 +35,6 @@ $ node app.js
 ```
 
 ## Maintainers
-<<<<<<< HEAD
-=======
 Detailed installation instructions
 ------------------------------------------------------------------------
 
@@ -168,7 +166,6 @@ Major Contributors
 - Konrad Borowski [xfix] - Development
 - Quinton Lee [sirDonovan] - Development
 =======
->>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
 
 Contributors
 
@@ -186,8 +183,4 @@ Contributors
 
 Special thanks
 
-<<<<<<< HEAD
-- See http://pokemonshowdown.com/credits
-=======
 [MIT](LICENSE)
->>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
