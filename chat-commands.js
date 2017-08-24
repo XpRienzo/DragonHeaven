@@ -2448,7 +2448,7 @@ exports.commands = {
 		return this.addModCommand(`The IP '${target}' was unmarked as shared by ${user.name}.`);
 	},
 	unmarksharedhelp: ["/unmarkshared [ip] - Unmarks a shared IP address. Requires @, &, ~"],
-	
+
 	pingall: function (target, room, user, connection) {
 		if(!this.can("broadcast")) return;
 		if(Object.keys(this.room.users).length < 3) return this.errorReply("This room doesn't have enough users.");
@@ -2459,7 +2459,7 @@ exports.commands = {
 	},
 	pingallhelp: ["/pingall [message] - Pings all the users of the current room with a message.",
 		     "Requires: +"],
-	
+
 	/*
 	roomlog: function (target, room, user, connection) {
 		if(!Config.logchat) return this.errorReply("Roomlogs are disabled for this server. (Did you mean: modlog?)");
@@ -2513,7 +2513,7 @@ exports.commands = {
 				if (r) return this.sendReplyBox('<a href="'+link+'">Roomlog for '+target+ '</a>');
 				else this.sendReplyBox("An Error Occured.");
 			}.bind(this));
-		} 
+		}
 		catch (e) {
 			this.errorReply("Error Uploading file to hastebin.");
 		}
@@ -2530,17 +2530,8 @@ exports.commands = {
 		if (!target) return this.parse('/help hotpatch');
 		if (!this.can('hotpatch')) return;
 
-<<<<<<< HEAD
-		for (let roomid of ['development']) {
-			let curRoom = Rooms(roomid);
-			if (curRoom) curRoom.add(`|c|${user.getIdentity()}|/log ${user.name} used /hotpatch ${target}`).update();
-		}
-
-		Rooms.global.notifyRooms(['development', 'staff', 'upperstaff'], `|c|${user.getIdentity()}|/log ${user.name} used /hotpatch ${target}`);
-=======
 		const lock = Monitor.hotpatchLock;
 		const hotpatches = ['chat', 'tournaments', 'formats', 'loginserver', 'punishments', 'dnsbl'];
->>>>>>> eb97940c8759503480e6c5909049ffd0d98019d2
 
 		try {
 			if (target === 'all') {
