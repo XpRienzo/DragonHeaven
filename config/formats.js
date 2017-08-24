@@ -5313,6 +5313,7 @@ exports.Formats = [
 		banlist: ['DeepSeaTooth', 'DeepSeaScale', 'Eviolite', 'Huge Power', 'Light Ball', 'Pure Power', 'Smeargle', 'Thick Club', 'Illegal', 'Unreleased']
 	},
 	{
+<<<<<<< HEAD
 		name: "Therianmons",
 		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/therianmons.3566303/\">Therianmons</a>"],
 		ruleset: ['OU'],
@@ -5476,6 +5477,17 @@ exports.Formats = [
 				}
 			}
 		},
+=======
+		name: "[Gen 7] Ubers",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587184/\">Ubers Metagame Discussion</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591388/\">Ubers Viability Ranking</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3599816/\">Ubers Sample Teams</a>",
+		],
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause'],
+>>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
 	},
 	{
 		name: "Type Omelette",
@@ -7748,6 +7760,7 @@ exports.Formats = [
  		],
 		noSketch: ['Belly Drum', 'Celebrate', 'Conversion', "Forest's Curse", 'Geomancy', 'Happy Hour', 'Hold Hands', 'Lovely Kiss', 'Purify', 'Shell Smash', 'Shift Gear', 'Sketch', 'Spore', 'Sticky Web', 'Trick-or-Treat'],
 	},
+<<<<<<< HEAD
 	{
  		name: "[Gen 7] 1v1 UU",
  		desc: [
@@ -7771,3 +7784,6 @@ exports.Formats = [
  		],
  	},
 ];
+=======
+];
+>>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea

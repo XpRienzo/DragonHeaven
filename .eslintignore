@@ -1,4 +1,8 @@
 tournaments/lib/
 logs/
 config/color.js
+<<<<<<< HEAD
+=======
+data/moves.js
+>>>>>>> 45c86638a7d0aa0aabda959743775cc12236eaea
 dev-tools/globals.js
