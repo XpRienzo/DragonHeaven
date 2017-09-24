@@ -95,7 +95,6 @@ exports.BattleItems = {
 	"aggronite": {
 		id: "aggronite",
 		name: "Aggronite",
-		isUnreleased: true,
 		spritenum: 578,
 		megaStone: "Aggron-Mega",
 		megaEvolves: "Aggron",
@@ -160,7 +159,9 @@ exports.BattleItems = {
 			this.debug('effect: ' + effect.id);
 			if (effect.effectType === 'Move' && effect.id !== 'confused') {
 				this.add('-enditem', target, 'Air Balloon');
-				target.setItem('');
+				target.item = '';
+				this.itemData = {id: '', target: this};
+				this.runEvent('AfterUseItem', target, null, null, 'airballoon');
 			}
 		},
 		num: 541,
@@ -196,7 +197,6 @@ exports.BattleItems = {
 	"altarianite": {
 		id: "altarianite",
 		name: "Altarianite",
-		isUnreleased: true,
 		spritenum: 615,
 		megaStone: "Altaria-Mega",
 		megaEvolves: "Altaria",
@@ -211,7 +211,6 @@ exports.BattleItems = {
 	"ampharosite": {
 		id: "ampharosite",
 		name: "Ampharosite",
-		isUnreleased: true,
 		spritenum: 580,
 		megaStone: "Ampharos-Mega",
 		megaEvolves: "Ampharos",
@@ -1166,7 +1165,6 @@ exports.BattleItems = {
 	"diancite": {
 		id: "diancite",
 		name: "Diancite",
-		isUnreleased: true,
 		spritenum: 624,
 		megaStone: "Diancie-Mega",
 		megaEvolves: "Diancie",
@@ -2723,7 +2721,6 @@ exports.BattleItems = {
 	"latiasite": {
 		id: "latiasite",
 		name: "Latiasite",
-		isUnreleased: true,
 		spritenum: 629,
 		megaStone: "Latias-Mega",
 		megaEvolves: "Latias",
@@ -2738,7 +2735,6 @@ exports.BattleItems = {
 	"latiosite": {
 		id: "latiosite",
 		name: "Latiosite",
-		isUnreleased: true,
 		spritenum: 630,
 		megaStone: "Latios-Mega",
 		megaEvolves: "Latios",
@@ -5587,6 +5583,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
+		onHitPriority: 1,
 		onHit: function (target, source, move) {
 			if (target.hp && move.category !== 'Status' && !move.damage && !move.damageCallback && move.typeMod > 0 && target.useItem()) {
 				this.boost({atk: 2, spa: 2});

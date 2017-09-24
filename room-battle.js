@@ -16,11 +16,14 @@
 /** 10 seconds */
 const TICK_TIME = 10 * 1000;
 
-// Timer constants: A tick is 10 seconds
-const STARTING_TICKS = 21;
-const MAX_TURN_TICKS = 15;
-const STARTING_TICKS_CHALLENGE = 28;
-const MAX_TURN_TICKS_CHALLENGE = 30;
+// Timer constants: In seconds, should be multiple of ten
+const STARTING_TIME = 210;
+const MAX_TURN_TIME = 150;
+const STARTING_TIME_CHALLENGE = 280;
+const MAX_TURN_TIME_CHALLENGE = 300;
+
+const NOT_DISCONNECTED = 10;
+const DISCONNECTION_TICKS = 7;
 
 // time after a player disabling the timer before they can re-enable it
 const TIMER_COOLDOWN = 20 * 1000;
@@ -142,14 +145,35 @@ class BattleTimer {
 		 */
 		this.dcTicksLeft = [];
 
+		/**
+		 * Last tick.
+		 * Represents the last time a tick happened.
+		 */
+		this.lastTick = 0;
+
 		this.lastDisabledTime = 0;
 		this.lastDisabledByUser = null;
 
-		this.isChallenge = !battle.rated && !battle.room.tour;
+		const hasLongTurns = Dex.getFormat(battle.format).gameType !== 'singles';
+		const isChallenge = (!battle.rated && !battle.room.tour);
+		this.settings = Object.assign({}, Dex.getFormat(battle.format).timer);
+		if (this.settings.perTurn === undefined) {
+			this.settings.perTurn = hasLongTurns ? 20 : 10;
+		}
+		if (this.settings.starting === undefined) {
+			this.settings.starting = isChallenge ? STARTING_TIME_CHALLENGE : STARTING_TIME;
+		}
+		if (this.settings.maxPerTurn === undefined) {
+			this.settings.maxPerTurn = isChallenge ? MAX_TURN_TIME_CHALLENGE : MAX_TURN_TIME;
+		}
+		if (this.settings.maxPerTurn <= 0) this.settings.maxPerTurn = Infinity;
+		this.settings.perTurnTicks = Math.floor(this.settings.perTurn / 10);
+		this.settings.startingTicks = Math.ceil(this.settings.starting / 10);
+		this.settings.maxPerTurnTicks = Math.ceil(this.settings.maxPerTurn / 10);
+		this.settings.maxFirstTurnTicks = Math.ceil((this.settings.maxFirstTurn || 0) / 10);
 
-		const ticksLeft = (this.isChallenge ? STARTING_TICKS_CHALLENGE : STARTING_TICKS);
 		for (let slotNum = 0; slotNum < 2; slotNum++) {
-			this.ticksLeft.push(ticksLeft);
+			this.ticksLeft.push(this.settings.startingTicks);
 			this.turnTicksLeft.push(-1);
 			this.dcTicksLeft.push(10);
 		}
@@ -158,7 +182,7 @@ class BattleTimer {
 		let userid = requester ? requester.userid : 'staff';
 		if (this.timerRequesters.has(userid)) return false;
 		if (this.timer && requester) {
-			this.battle.room.send(`|inactive|${requester.name} also wants the timer to be on.`);
+			this.battle.room.add(`|inactive|${requester.name} also wants the timer to be on.`).update();
 			this.timerRequesters.add(userid);
 			return false;
 		}
@@ -170,9 +194,9 @@ class BattleTimer {
 			}
 		}
 		this.timerRequesters.add(userid);
-		this.nextRequest();
+		this.nextRequest(true);
 		const requestedBy = requester ? ` (requested by ${requester.name})` : ``;
-		this.battle.room.add(`|inactive|Battle timer is ON: inactive players will automatically lose when time's up.${requestedBy}`);
+		this.battle.room.add(`|inactive|Battle timer is ON: inactive players will automatically lose when time's up.${requestedBy}`).update();
 		return true;
 	}
 	stop(requester) {
@@ -185,36 +209,31 @@ class BattleTimer {
 			this.timerRequesters.clear();
 		}
 		if (this.timerRequesters.size) {
-			this.battle.room.send(`|inactive|${requester.name} no longer wants the timer on, but the timer is staying on because ${[...this.timerRequesters].join(', ')} still does.`);
+			this.battle.room.add(`|inactive|${requester.name} no longer wants the timer on, but the timer is staying on because ${[...this.timerRequesters].join(', ')} still does.`).update();
 			return false;
 		}
 		if (!this.timer) return false;
 		clearTimeout(this.timer);
 		this.timer = undefined;
-		this.battle.room.send(`|inactiveoff|Battle timer is now OFF.`);
+		this.battle.room.add(`|inactiveoff|Battle timer is now OFF.`).update();
 		return true;
 	}
-	isActive(slot) {
-		if (!this.battle[slot] || !this.battle[slot].active) return false;
-		if (!this.battle.requests[slot][2]) return false;
-		return true;
+	waitingForChoice(slot) {
+		return !this.battle.requests[slot][2];
 	}
-	nextRequest() {
+	nextRequest(isFirst) {
 		if (this.timer) clearTimeout(this.timer);
 		if (!this.timerRequesters.size) return;
-		const maxTicksLeft = (this.isChallenge ? MAX_TURN_TICKS_CHALLENGE : MAX_TURN_TICKS);
-
+		const maxTurnTicks = (isFirst ? this.settings.maxFirstTurnTicks : 0) || this.settings.maxPerTurnTicks;
 		for (const slotNum of this.ticksLeft.keys()) {
 			const slot = 'p' + (slotNum + 1);
 			const player = this.battle[slot];
 
-			this.ticksLeft[slotNum]++;
-			// add 10 seconds to bank if they're below 160 seconds
-			if (this.ticksLeft[slotNum] < 16) this.ticksLeft[slotNum]++;
-			this.turnTicksLeft[slotNum] = Math.min(this.ticksLeft[slotNum], maxTicksLeft);
+			this.ticksLeft[slotNum] += this.settings.perTurnTicks;
+			this.turnTicksLeft[slotNum] = Math.min(this.ticksLeft[slotNum], maxTurnTicks);
 
 			const ticksLeft = this.turnTicksLeft[slotNum];
-			if (player) player.sendRoom(`|inactive|You have ${ticksLeft * 10} seconds to make your decision.`);
+			if (player) player.sendRoom(`|inactive|Time left: ${ticksLeft * 10} sec this turn | ${this.ticksLeft[slotNum] * 10} sec total`);
 		}
 		this.timer = setTimeout(() => this.nextTick(), TICK_TIME);
 	}
@@ -224,26 +243,26 @@ class BattleTimer {
 		for (const slotNum of this.ticksLeft.keys()) {
 			const slot = 'p' + (slotNum + 1);
 
-			if (this.isActive(slot)) continue;
+			if (!this.waitingForChoice(slot)) continue;
 			this.ticksLeft[slotNum]--;
 			this.turnTicksLeft[slotNum]--;
 
-			if (this.dcTicksLeft[slotNum] < 10) {
+			if (this.dcTicksLeft[slotNum] !== NOT_DISCONNECTED) {
 				this.dcTicksLeft[slotNum]--;
 			}
 
 			let dcTicksLeft = this.dcTicksLeft[slotNum];
-			if (!dcTicksLeft) this.turnTicksLeft[slotNum] = 0;
+			if (dcTicksLeft <= 0) this.turnTicksLeft[slotNum] = 0;
 			const ticksLeft = this.turnTicksLeft[slotNum];
 			if (!ticksLeft) continue;
-			if (ticksLeft < dcTicksLeft) dcTicksLeft = 10; // turn timer supersedes dc timer
+			if (ticksLeft < dcTicksLeft) dcTicksLeft = NOT_DISCONNECTED; // turn timer supersedes dc timer
 
 			if (dcTicksLeft <= 4) {
-				this.battle.room.send(`|inactive|${this.battle.playerNames[slotNum]} has ${dcTicksLeft * 10} seconds to reconnect!`);
+				this.battle.room.add(`|inactive|${this.battle.playerNames[slotNum]} has ${dcTicksLeft * 10} seconds to reconnect!`).update();
 			}
-			if (dcTicksLeft < 10) continue;
+			if (dcTicksLeft !== NOT_DISCONNECTED) continue;
 			if (ticksLeft % 3 === 0 || ticksLeft <= 4) {
-				this.battle.room.send(`|inactive|${this.battle.playerNames[slotNum]} has ${ticksLeft * 10} seconds left.`);
+				this.battle.room.add(`|inactive|${this.battle.playerNames[slotNum]} has ${ticksLeft * 10} seconds left.`).update();
 			}
 		}
 		if (!this.checkTimeout()) {
@@ -251,53 +270,67 @@ class BattleTimer {
 		}
 	}
 	checkActivity() {
-		if (!this.timerRequesters.size) return;
 		for (const slotNum of this.ticksLeft.keys()) {
 			const slot = 'p' + (slotNum + 1);
 			const player = this.battle[slot];
+			const isConnected = player && player.active;
 
-			// if a player has disconnected, don't wait longer than 6 ticks (1 minute)
-			if (!player || !player.active) {
-				if (this.dcTicksLeft[slotNum] === 10) {
-					this.dcTicksLeft[slotNum] = 7;
-					this.battle.room.send(`|inactive|${this.battle.playerNames[slotNum]} disconnected and has a minute to reconnect!`);
+			if (isConnected === (this.dcTicksLeft[slotNum] !== NOT_DISCONNECTED)) continue;
+
+			if (!isConnected) {
+				// player has disconnected: don't wait longer than 6 ticks (1 minute)
+				this.dcTicksLeft[slotNum] = DISCONNECTION_TICKS;
+				if (this.timerRequesters.size) {
+					this.battle.room.add(`|inactive|${this.battle.playerNames[slotNum]} disconnected and has a minute to reconnect!`).update();
 				}
-			} else if (this.dcTicksLeft[slotNum] < 10) {
-				this.dcTicksLeft[slotNum] = 10;
-				let timeLeft = ``;
-				if (!this.isActive(slot)) {
-					const ticksLeft = this.turnTicksLeft[slotNum];
-					timeLeft = ` and has ${ticksLeft * 10} seconds left`;
+			} else {
+				// player has reconnected
+				this.dcTicksLeft[slotNum] = NOT_DISCONNECTED;
+				if (this.timerRequesters.size) {
+					let timeLeft = ``;
+					if (this.waitingForChoice(slot)) {
+						const ticksLeft = this.turnTicksLeft[slotNum];
+						timeLeft = ` and has ${ticksLeft * 10} seconds left`;
+					}
+					this.battle.room.add(`|inactive|${this.battle.playerNames[slotNum]} reconnected${timeLeft}.`).update();
 				}
-				this.battle.room.send(`|inactive|${this.battle.playerNames[slotNum]} reconnected${timeLeft}.`);
 			}
 		}
 	}
 	checkTimeout() {
 		if (this.turnTicksLeft.every(c => !c)) {
-			this.battle.room.add(`|-message|All players are inactive.`);
-			this.battle.tie();
-			return true;
+			if (!this.settings.timeoutAutoChoose || this.ticksLeft.every(c => !c)) {
+				this.battle.room.add(`|-message|All players are inactive.`).update();
+				this.battle.tie();
+				return true;
+			}
 		}
+		let didSomething = false;
 		for (const [slotNum, ticks] of this.turnTicksLeft.entries()) {
 			if (ticks) continue;
-			this.battle.forfeit(null, ' lost due to inactivity.', slotNum);
-			return true;
+			if (this.settings.timeoutAutoChoose && this.ticksLeft[slotNum]) {
+				const slot = 'p' + (slotNum + 1);
+				this.battle.send('choose', slot, 'default');
+				didSomething = true;
+			} else {
+				this.battle.forfeit(null, ' lost due to inactivity.', slotNum);
+				return true;
+			}
 		}
-		return false;
+		return didSomething;
 	}
 }
 
 class Battle {
-	constructor(room, format, rated) {
-		format = Dex.getFormat(format);
+	constructor(room, formatid, rated) {
+		let format = Dex.getFormat(formatid);
 		this.id = room.id;
 		this.room = room;
 		this.title = format.name;
 		if (!this.title.endsWith(" Battle")) this.title += " Battle";
 		this.allowRenames = !rated;
 
-		this.format = format.id;
+		this.format = formatid;
 		this.rated = rated;
 		this.started = false;
 		this.ended = false;
@@ -320,7 +353,6 @@ class Battle {
 		// data to be logged
 		this.logData = null;
 		this.endType = 'normal';
-		this.customBanlist = !!format.customBanlist;
 
 		this.rqid = 1;
 
@@ -329,7 +361,7 @@ class Battle {
 			throw new Error(`Battle with ID ${room.id} already exists.`);
 		}
 
-		this.send('init', this.format, rated ? '1' : '', format.customBanlist ? format.customBanlist.join(',') : '');
+		this.send('init', this.format, rated ? '1' : '');
 		this.process.pendingTasks.set(room.id, this);
 	}
 
@@ -707,7 +739,7 @@ if (process.send && module === process.mainModule) {
 			const id = data[0];
 			if (!Battles.has(id)) {
 				try {
-					const battle = Sim.construct(Dex.getFormat(data[2], data[4]), data[3], sendBattleMessage);
+					const battle = Sim.construct(data[2], data[3], sendBattleMessage);
 					battle.id = id;
 					Battles.set(id, battle);
 				} catch (err) {
