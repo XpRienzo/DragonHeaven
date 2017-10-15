@@ -11,7 +11,7 @@ const FS = require('../fs');
 Punishments.roomPunishmentTypes.set('GIVEAWAYBAN', 'banned from giveaways');
 
 const BAN_DURATION = 7 * 24 * 60 * 60 * 1000;
-const RECENT_THRESHOLD = 30 * 24 * 60 * 1000;
+const RECENT_THRESHOLD = 30 * 24 * 60 * 60 * 1000;
 
 const STATS_FILE = 'config/chat-plugins/wifi.json';
 
@@ -269,7 +269,7 @@ class QuestionGiveaway extends Giveaway {
 				`<p style="text-align:center;">${this.question}<br />Correct answer${Chat.plural(this.answers)}: ${this.answers.join(', ')}</p>`));
 				this.winner.sendTo(this.room, `|raw|You have won the giveaway. PM <b>${Chat.escapeHTML(this.giver.name)}</b> (FC: ${this.fc}) to claim your prize!`);
 				if (this.winner.connected) this.winner.popup(`You have won the giveaway. PM **${Chat.escapeHTML(this.giver.name)}** (FC: ${this.fc}) to claim your prize!`);
-				if (this.giver.connected) this.giver.popup(`${Chat.escapeHTML(this.winner.name)} has won your question giveaway!`);
+				if (this.giver.connected) this.giver.popup(`${this.winner.name} has won your question giveaway!`);
 				Giveaway.updateStats(this.monIds);
 			}
 		}
@@ -382,7 +382,7 @@ class LotteryGiveaway extends Giveaway {
 				this.winners[i].sendTo(this.room, `|raw|You have won the lottery giveaway! PM <b>${this.giver.name}</b> (FC: ${this.fc}) to claim your prize!`);
 				if (this.winners[i].connected) this.winners[i].popup(`You have won the lottery giveaway! PM **${this.giver.name}** (FC: ${this.fc}) to claim your prize!`);
 			}
-			if (this.giver.connected) this.giver.popup(`The following users have won your lottery giveaway:\n${Chat.escapeHTML(winnerNames)}`);
+			if (this.giver.connected) this.giver.popup(`The following users have won your lottery giveaway:\n${winnerNames}`);
 			Giveaway.updateStats(this.monIds);
 		}
 		delete this.room.giveaway;
@@ -507,7 +507,7 @@ let commands = {
 		if (room.giveaway) return this.errorReply("There is already a giveaway going on!");
 
 		let [giver, ot, tid, fc, prize, question, ...answers] = target.split(target.includes('|') ? '|' : ',').map(param => param.trim());
-		if (!(giver && ot && tid && fc && prize && question && answers.length)) return this.errorReply("Invalid arguments specified - /question giver, ot, tid, fc, prize, question, answer(s)");
+		if (!(giver && ot && tid && fc && prize && question && answers.length)) return this.errorReply("Invalid arguments specified - /question giver | ot | tid | fc | prize | question | answer(s)");
 		tid = toId(tid);
 		if (isNaN(tid) || tid.length < 5 || tid.length > 6) return this.errorReply("Invalid TID");
 		fc = toId(fc);
@@ -560,7 +560,7 @@ let commands = {
 		if (room.giveaway) return this.errorReply("There is already a giveaway going on!");
 
 		let [giver, ot, tid, fc, prize, winners] = target.split(target.includes('|') ? '|' : ',').map(param => param.trim());
-		if (!(giver && ot && tid && fc && prize)) return this.errorReply("Invalid arguments specified - /lottery giver, ot, tid, fc, prize, winners");
+		if (!(giver && ot && tid && fc && prize)) return this.errorReply("Invalid arguments specified - /lottery giver | ot | tid | fc | prize | winners");
 		tid = toId(tid);
 		if (isNaN(tid) || tid.length < 5 || tid.length > 6) return this.errorReply("Invalid TID");
 		fc = toId(fc);
@@ -614,7 +614,7 @@ let commands = {
 			if (room.gtsga) return this.errorReply("There is already a GTS giveaway going on!");
 
 			let [giver, amount, summary, deposit, lookfor] = target.split(target.includes('|') ? '|' : ',').map(param => param.trim());
-			if (!(giver && amount && summary && deposit && lookfor)) return this.errorReply("Invalid arguments specified - /gts start giver, amount, summary, deposit, lookfor");
+			if (!(giver && amount && summary && deposit && lookfor)) return this.errorReply("Invalid arguments specified - /gts start giver | amount | summary | deposit | lookfor");
 			amount = parseInt(amount);
 			if (!amount || amount < 30 || amount > 100) return this.errorReply("Please enter a valid amount. For a GTS giveaway, you need to give away at least 30 mons, and no more than 100.");
 			let targetUser = Users(giver);
@@ -759,7 +759,8 @@ let commands = {
 			        '- changeanswer - Changes the answer of a question giveaway (Requires: giveaway host)<br />' +
 					'- viewanswer - Shows the answer in a question giveaway (only to giveaway host/giver)<br />' +
 					'- ban - Temporarily bans a user from entering giveaways (Requires: % @ * # & ~)<br />' +
-			        '- end - Forcibly ends the current giveaway (Requires: % @ * # & ~)<br />';
+			        '- end - Forcibly ends the current giveaway (Requires: % @ * # & ~)<br />' +
+					'- count <em>Mon</em> - Displays how often a certain mon has been given away. Use <code>!giveaway count</code> to broadcast this to the entire room<br />';
 			break;
 		case 'gts':
 			if (!this.can('broadcast', null, room)) return;
