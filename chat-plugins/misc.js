@@ -304,7 +304,7 @@ distor: function (target, room, user, connection, cmd) {
 					"<u>Contributors:</u><br />" +
 					"- " + hashColor('ClassyZ', true) + " (DHSSB, Development)<br />" +
 					"- " + hashColor('Eternal Mayhem', true) + " (Roomintro's)<br />" +
-					"- " + hashColor('Spects', true) + " (Development)<br />" +
+					"- " + hashColor('LightiumZ', true) + " (Development)<br />" +
 					"<br />" +
 					"<u>Special Thanks:</u><br />" +
 					"- Current staff team<br />" +
