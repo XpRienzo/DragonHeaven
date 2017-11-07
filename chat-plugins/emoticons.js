@@ -116,7 +116,6 @@ if (typeof demFeels.extendEmotes === 'function') {
 		'doge':'http://i.imgur.com/cUWrvHv.png',
 		'feelsweird':'https://cdn.betterttv.net/emote/5603731ce5fc5eff1de93229/2x',
 		'feelspika':'http://i.imgur.com/mBq3BAW.png',
-		'kappa':'https://i.imgur.com/ZxRU4z3.png?1',
 	});
 }
 
