@@ -112,6 +112,11 @@ if (typeof demFeels.extendEmotes === 'function') {
 		'feelszard':'http://i.imgur.com/SSJoM7P.gif',
 		'<3':'http://cliparts.co/cliparts/Rkc/M7K/RkcM7KXTj.png',
 		'feelsshivam':'http://i.imgur.com/jTTPtyW.jpg?1',
+		'Doge':'http://i.imgur.com/jfVcWbz.jpg',
+		'doge':'http://i.imgur.com/cUWrvHv.png',
+		'feelsweird':'https://cdn.betterttv.net/emote/5603731ce5fc5eff1de93229/2x',
+		'feelspika':'http://i.imgur.com/mBq3BAW.png',
+		'kappa':'https://i.imgur.com/ZxRU4z3.png?1',
 	});
 }
 
