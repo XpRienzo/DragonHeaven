@@ -619,7 +619,7 @@ exports.BattlePokedex = {
          num: 1000072,
          species: "Juggernaut",
          types: ["Dragon","Steel"],
-         baseStats: {hp: 86, atk: 125, def: 120, spa: 130, spd: 85, spe: 75},
+         baseStats: {hp: 86, atk: 115, def: 120, spa: 130, spd: 85, spe: 60},
          abilities: {0: "Tough Claws", 1: "Mega Launcher", H: "Filter"},
          preevo: "divernoon",
          },
@@ -651,7 +651,7 @@ exports.BattlePokedex = {
          num: 1000076,
          species: "Depthduck",
          types: ["Water","Psychic"],
-         baseStats: {hp: 100, atk: 92, def: 88, spa: 130, spd: 95, spe: 105},
+         baseStats: {hp: 90, atk: 92, def: 88, spa: 120, spd: 95, spe: 105},
          abilities: {0: "Drizzle", 1: "Cloud Nine", H: "Swift Swim"},
          preevo: "golduck",
          },
@@ -659,7 +659,7 @@ exports.BattlePokedex = {
          num: 1000077,
          species: "Thatu",
          types: ["Psychic","Flying"],
-         baseStats: {hp: 95, atk: 80, def: 90, spa: 135, spd: 95, spe: 105},
+         baseStats: {hp: 95, atk: 80, def: 90, spa: 135, spd: 95, spe: 95},
          abilities: {0: "Synchronize", 1: "Psychic Surge", H: "Magic Bounce"},
          preevo: "xatu",
          },
@@ -683,7 +683,7 @@ exports.BattlePokedex = {
          num: 1000080,
          species: "Sewgramp",
          types: ["Water","Ice"],
-         baseStats: {hp: 100, atk: 85, def: 95, spa: 135, spd: 110, spe: 100},
+         baseStats: {hp: 100, atk: 85, def: 95, spa: 115, spd: 110, spe: 87},
          abilities: {0: "Thick Fat", 1: "Snow Warning", H: "Slush Rush"},
          preevo: "dewgong",
          },
@@ -691,7 +691,7 @@ exports.BattlePokedex = {
          num: 1000081,
          species: "Lordmime",
          types: ["Psychic","Fairy"],
-         baseStats: {hp: 120, atk: 35, def: 105, spa: 110, spd: 135, spe: 95},
+         baseStats: {hp: 110, atk: 35, def: 105, spa: 110, spd: 135, spe: 95},
          abilities: {0: "Regenerator", 1: "Filter", H: "Technician"},
          preevo: "mrmime",
          },
@@ -727,7 +727,7 @@ exports.BattlePokedex = {
          abilities: {0: "Steelworker", 1: "Light Metal", H: "Filter"},
          preevo: "ledian",
          },
-	 Coldiledy: {
+	 coldiledy: {
          num: 1000086,
          species: "Coldiledy",
          types: ["Bug","Ice"],
@@ -831,7 +831,7 @@ exports.BattlePokedex = {
          abilities: {0: "Dark Aura", H: "Water Absorb"},
          preevo: "cacturne"
          },
-	 Duocleon: {
+	 duocleon: {
          num: 1000099,
          species: "Duocleon",
          types: ["Normal"],
