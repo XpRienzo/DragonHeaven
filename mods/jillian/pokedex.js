@@ -663,9 +663,9 @@ exports.BattlePokedex = {
          abilities: {0: "Synchronize", 1: "Psychic Surge", H: "Magic Bounce"},
          preevo: "xatu",
          },
-      naïpiat: {
+      naipiat: {
          num: 1000078,
-         species: "Naïpiat",
+         species: "Naipiat",
          types: ["Poison","Dark"],
          baseStats: {hp: 95, atk: 125, def: 80, spa: 75, spd: 100, spe: 100},
          abilities: {0: "Intimidate", 1: "Shed Skin", H: "Strong Jaw"},
