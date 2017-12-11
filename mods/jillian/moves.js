@@ -1493,6 +1493,14 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 1,
 		flags: {protect: 1, mirror: 1, contact: 1},
+		onTry: function (source, target) {
+			let decision = this.willMove(target);
+			if (!decision || decision.choice !== 'move' || (decision.move.category === 'Status' && decision.move.id !== 'mefirst') || target.volatiles.mustrecharge) {
+				this.attrLastMove('[still]');
+				this.add('-fail', source);
+				return null;
+			}
+		},
 		secondary: false,
 		target: "normal",
 		type: "Fairy",
