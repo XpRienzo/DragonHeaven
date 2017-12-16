@@ -187,17 +187,19 @@ if (cluster.isMaster) {
 
 	if (Config.ofe) {
 		try {
-			require.resolve('ofe');
+			require.resolve('node-oom-heapdump');
 		} catch (e) {
 			if (e.code !== 'MODULE_NOT_FOUND') throw e; // should never happen
 			throw new Error(
-				'ofe is not installed, but it is a required dependency if Config.ofe is set to true! ' +
-				'Run npm install ofe and restart the server.'
+				'node-oom-heapdump is not installed, but it is a required dependency if Config.ofe is set to true! ' +
+				'Run npm install node-oom-heapdump and restart the server.'
 			);
 		}
 
 		// Create a heapdump if the process runs out of memory.
-		require('ofe').call();
+		require('node-oom-heapdump')({
+			addTimestamp: true,
+		});
 	}
 
 	// Static HTTP server
@@ -299,14 +301,22 @@ if (cluster.isMaster) {
 	// and doing things on our server.
 
 	const sockjs = require('sockjs');
-	const server = sockjs.createServer({
+	const options = {
 		sockjs_url: "//play.pokemonshowdown.com/js/lib/sockjs-1.1.1-nwjsfix.min.js",
-		log: (severity, message) => {
-			if (severity === 'error') console.log('ERROR: ' + message);
-		},
 		prefix: '/showdown',
-	});
+		log(severity, message) {
+			if (severity === 'error') Monitor.warn(`ERROR: ${message}`);
+		},
+	};
 
+	try {
+		const deflate = require('permessage-deflate').configure(Config.wsdeflate);
+		options.faye_server_options = [deflate];
+	} catch (e) {
+		require('./crashlogger')(new Error("Dependency permessage-deflate is not installed or is otherwise unaccessable. No message compression will take place until server restart."), "Sockets");
+	}
+
+	const server = sockjs.createServer(options);
 	const sockets = new Map();
 	const channels = new Map();
 	const subchannels = new Map();

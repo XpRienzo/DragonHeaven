@@ -99,7 +99,7 @@ global.toId = Dex.getId;
 
 global.LoginServer = require('./loginserver');
 
-global.Ladders = require(Config.remoteladder ? './ladders-remote' : './ladders');
+global.Ladders = require('./ladders');
 
 global.Users = require('./users');
 
@@ -161,8 +161,8 @@ if (require.main === module) {
  * Set up our last global
  *********************************************************/
 
-global.TeamValidator = require('./team-validator');
-TeamValidator.PM.spawn();
+global.TeamValidatorAsync = require('./team-validator-async');
+TeamValidatorAsync.PM.spawn();
 
 /*********************************************************
  * Start up the REPL server

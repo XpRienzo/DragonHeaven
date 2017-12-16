@@ -2,3 +2,4 @@ tournaments/lib/
 logs/
 config/color.js
 dev-tools/globals.js
+node_modules/

@@ -57,6 +57,52 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
+		name: "[Gen 7] Shared Power (Random)",
+		desc: ["&bullet; All Pokemon on your team have all the abilities of your team."],
+		mod: 'pokebilities',
+		ruleset: ["[Gen 7] OU"],
+		team: 'random',
+		onSwitchInPriority: 1,
+		onBegin: function() {
+			let statusability = {
+				"aerilate": true,
+				"aurabreak": true,
+				"flashfire": true,
+				"parentalbond": true,
+				"pixilate": true,
+				"refrigerate": true,
+				"sheerforce": true,
+				"slowstart": true,
+				"truant": true,
+				"unburden": true,
+				"zenmode": true
+			};
+			for (let p = 0; p < this.sides.length; p++) {
+				for (let i = 0; i < this.sides[p].pokemon.length; i++) {
+					let pokemon = this.sides[p].pokemon[i];
+					this.sides[p].pokemon[i].innates = [];
+					let bans = this.data.Formats.gen7ou.banlist;
+					bans.push("Battle Bond");
+					for (let a in this.sides[p].pokemon) {
+						if (bans.includes(this.sides[p].pokemon[a].baseAbility)) continue;
+						if (this.sides[p].pokemon[a].baseAbility === pokemon.ability) continue;
+						if (statusability[this.sides[p].pokemon[a].baseAbility]) {
+							this.sides[p].pokemon[i].innates.push("other" + this.sides[p].pokemon[a].baseAbility);
+						} else {
+							this.sides[p].pokemon[i].innates.push(this.sides[p].pokemon[a].baseAbility);
+						}
+					}
+				}
+			}
+		},
+		onSwitchIn: function(pokemon) {
+			for (let i = 0; i < pokemon.innates.length; i++) {
+				if (!pokemon.volatiles[pokemon.innates[i]])
+					pokemon.addVolatile(pokemon.innates[i]);
+			}
+		},
+	},
+	{
 		name: "[Gen 7] Dragon Heaven Super Staff Bros",
 		desc: ["&bullet; The staff here becomes a Pokemon and battles! <br> &bullet; <a href=\"https://github.com/XpRienzo/DragonHeaven/blob/master/mods/dhssb/README.md\">Movesets</a>"],
 		mod: 'dhssb',
@@ -1814,89 +1860,73 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 7] Random Partners in Crime",
-		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/partners-in-crime.3559988/\">Partners in Crime</a>"],
-		mod: 'franticfusions',
-		team: 'random',
+		desc: [
+			"Doubles-based metagame where both active ally Pok&eacute;mon share abilities and moves.",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3618488/\">Partners in Crime</a>",
+		],
+
+		mod: 'pic',
 		gameType: 'doubles',
-		ruleset: ['[Gen 7] Random Doubles Battle'],
-		onBegin: function () {
-			this.statusability = {
-				"aerilate": true,
-				"aurabreak": true,
-				"flashfire": true,
-				"galvanize": true,
-				"normalize": true,
-				"parentalbond": true,
-				"pixilate": true,
-				"refrigerate": true,
-				"sheerforce": true,
-				"slowstart": true,
-				"truant": true,
-				"unburden": true,
-				"zenmode": true,
-			};
-			for (let k = 0; k < this.sides.length; k++) {
-				for (let i = 0; i < this.sides[k].pokemon.length; i++) {
-					let pokemon = this.sides[k].pokemon[i];
-					pokemon.oms = [];
-					pokemon.obms = [];
-					pokemon.om = Object.assign({}, pokemon.moves);
-					pokemon.obm = Object.assign({}, pokemon.baseMoves);
-					for (let j = 0; j < pokemon.baseMoveset.length; j++) {
-						pokemon.obms.push(Object.assign({}, pokemon.baseMoveset[j]));
-						pokemon.oms.push(Object.assign({}, pokemon.moveset[j]));
-					}
+		team: 'random',
+		ruleset: ['[Gen 7] Doubles OU', 'Sleep Clause Mod'],
+
+		banlist: ['Huge Power', 'Imposter', 'Parental Bond', 'Pure Power', 'Wonder Guard', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Mimic', 'Sketch', 'Transform'],
+		onDisableMovePriority: -1,
+		onSwitchInPriority: 2,
+		onSwitchIn: function (pokemon) {
+			if (this.p1.active.every(ally => ally && !ally.fainted)) {
+				let p1a = this.p1.active[0], p1b = this.p1.active[1];
+				if (p1a.ability !== p1b.ability) {
+					let p1a_innate = 'ability' + p1b.ability;
+					p1a.volatiles[p1a_innate] = {id: p1a_innate, target: p1a};
+					let p1b_innate = 'ability' + p1a.ability;
+					p1b.volatiles[p1b_innate] = {id: p1b_innate, target: p1b};
+				}
+			}
+			if (this.p2.active.every(ally => ally && !ally.fainted)) {
+				let p2a = this.p2.active[0], p2b = this.p2.active[1];
+				if (p2a.ability !== p2b.ability) {
+					let p2a_innate = 'ability' + p2b.ability;
+					p2a.volatiles[p2a_innate] = {id: p2a_innate, target: p2a};
+					let p2b_innate = 'ability' + p2a.ability;
+					p2b.volatiles[p2b_innate] = {id: p2b_innate, target: p2b};
+				}
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			if (ally && ally.ability !== pokemon.ability) {
+				if (!pokemon.innate) {
+					pokemon.innate = 'ability' + ally.ability;
+					delete pokemon.volatiles[pokemon.innate];
+					pokemon.addVolatile(pokemon.innate);
+				}
+				if (!ally.innate) {
+					ally.innate = 'ability' + pokemon.ability;
+					delete ally.volatiles[ally.innate];
+					ally.addVolatile(ally.innate);
 				}
 			}
 		},
-		onSwitchInPriority: 1,
-		onSwitchIn: function (pokemon) {
-			let partner = pokemon.side.active[1 ^ pokemon.position];
-			if (!partner) return;
-			let sec = this.statusability[pokemon.ability] ? ("other" + pokemon.ability) : pokemon.ability;
-			partner.sec = sec;
-			partner.addVolatile(sec);
-			sec = this.statusability[partner.ability] ? ("other" + partner.ability) : partner.ability;
-			pokemon.sec = sec;
-			pokemon.addVolatile(sec);
-			pokemon.baseMoveset.length = pokemon.moveset.length = pokemon.baseMoves.length = pokemon.moves.length = pokemon.obms.length;
-			partner.baseMoveset.length = partner.moveset.length = partner.baseMoves.length = partner.moves.length = partner.obms.length;
-			for (let i = pokemon.obms.length; i < pokemon.obms.length + partner.obms.length; i++) {
-				pokemon.baseMoveset[i] = Object.assign({}, partner.obms[i - partner.obms.length]);
-				pokemon.moveset[i] = Object.assign({}, partner.oms[i - partner.oms.length]);
-				pokemon.moves[i] = partner.om[i - partner.om.length];
-				pokemon.baseMoves[i] = partner.obm[i - partner.obm.length];
-			}
-			for (let i = partner.obms.length; i < pokemon.obms.length + partner.obms.length; i++) {
-				partner.baseMoveset[i] = Object.assign({}, pokemon.obms[i - pokemon.obms.length]);
-				partner.moveset[i] = Object.assign({}, pokemon.oms[i - pokemon.oms.length]);
-				partner.moves[i] = pokemon.om[i - pokemon.om.length];
-				partner.baseMoves[i] = pokemon.obm[i - pokemon.obm.length];
-			}
-			[partner, pokemon].forEach((mon => {
-				this.runEvent("DisableMove", mon);
-			}).bind(this));
-		},
-		onAfterMega: function (pokemon) {
-			let partner = pokemon.side.active[1 ^ pokemon.position];
-			if (!partner) return;
-			let sec = this.statusability[pokemon.ability] ? ("other" + pokemon.ability) : pokemon.ability;
-			partner.sec = sec;
-			partner.addVolatile(sec);
-		},
 		onSwitchOut: function (pokemon) {
-			let partner = pokemon.side.active[1 ^ pokemon.position];
-			if (!partner) return;
-			partner.removeVolatile(pokemon.side.active[1].sec);
-			delete partner.sec;
-			partner.baseMoveset.length = partner.moveset.length = partner.baseMoves.length = partner.moves.length = partner.obms.length;
+			if (pokemon.innate) {
+				pokemon.removeVolatile(pokemon.innate);
+				delete pokemon.innate;
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			if (ally && ally.innate) {
+				ally.removeVolatile(ally.innate);
+				delete ally.innate;
+			}
 		},
 		onFaint: function (pokemon) {
-			let partner = pokemon.side.active[1 ^ pokemon.position];
-			if (!partner) return;
-			partner.removeVolatile(pokemon.side.active[1].sec);
-			delete partner.sec;
-			partner.baseMoveset.length = partner.moveset.length = partner.baseMoves.length = partner.moves.length = partner.obms.length;
+			if (pokemon.innate) {
+				pokemon.removeVolatile(pokemon.innate);
+				delete pokemon.innate;
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			if (ally && ally.innate) {
+				ally.removeVolatile(ally.innate);
+				delete ally.innate;
+			}
 		},
 	},
 	{
@@ -2147,57 +2177,58 @@ exports.Formats = [
 	{
 		name: "[Gen 7] OU",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3592140/\">OU Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587177/\">OU Banlist</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3590726/\">OU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3598705/\">OU Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3608656/\">OU Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3587177/\">OU Banlist</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3590726/\">OU Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3606650/\">OU Sample Teams</a>",
 		],
 
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
+		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
 	},
 	{
 		name: "[Gen 7] Ubers",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587184/\">Ubers Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591388/\">Ubers Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3599816/\">Ubers Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3587184/\">Ubers Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3591388/\">Ubers Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3599816/\">Ubers Sample Teams</a>",
 		],
 
 		mod: 'gen7',
-		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview', 'Mega Rayquaza Clause'],
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Mega Rayquaza Clause'],
 		banlist: ['Baton Pass'],
 	},
 	{
 		name: "[Gen 7] UU",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3595341/\">UU Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3595093/\">UU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591880/\">UU Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3618821/\">UU Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3613279/\">UU Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3591880/\">UU Sample Teams</a>",
 		],
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] OU'],
-		banlist: ['OU', 'BL', 'Drizzle', 'Power Construct', 'Mewnium Z'],
+		banlist: ['OU', 'BL', 'Drizzle', 'Mewnium Z'],
 	},
 	{
 		name: "[Gen 7] RU",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3598017/\">RU Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3602279/\">RU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3598090/\">RU Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3619225/\">RU Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3602279/\">RU Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3598090/\">RU Sample Teams</a>",
 		],
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] UU'],
-		banlist: ['UU', 'BL2'],
+		banlist: ['UU', 'BL2', 'Kommonium Z', 'Aurora Veil'],
 	},
 	{
-		name: "[Gen 7] NU (beta)",
+		name: "[Gen 7] NU",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3606077/\">NU Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3606112/\">NU Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3616091/\">NU Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3607629/\">NU Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3606112/\">NU Sample Teams</a>",
 		],
 
 		mod: 'gen7',
@@ -2205,25 +2236,58 @@ exports.Formats = [
 		banlist: ['RU', 'BL3', 'Drought'],
 	},
 	{
+		name: "[Gen 7] PU",
+		desc: [
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3614120/\">PU Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3614892/\">PU Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3614470/\">PU Sample Teams</a>",
+		],
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] NU'],
+		banlist: ['NU', 'BL4'],
+	},
+	{
 		name: "[Gen 7] LC",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587196/\">LC Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/dex/sm/formats/lc/\">LC Banlist</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587565/\">LC Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3588679/\">LC Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3587196/\">LC Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/dex/sm/formats/lc/\">LC Banlist</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3609771/\">LC Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3588679/\">LC Sample Teams</a>",
 		],
 
 		mod: 'gen7',
 		maxLevel: 5,
 		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Team Preview', 'Little Cup'],
-		banlist: ['Cutiefly', 'Drifloon', 'Gligar', 'Gothita', 'Meditite', 'Misdreavus', 'Murkrow', 'Porygon', 'Scyther', 'Sneasel', 'Swirlix', 'Tangela', 'Vulpix-Base', 'Yanma', 'Eevium Z', 'Dragon Rage', 'Sonic Boom'],
+		banlist: [
+			'Cutiefly', 'Drifloon', 'Gligar', 'Gothita', 'Meditite', 'Misdreavus', 'Murkrow', 'Porygon', 'Scyther', 'Sneasel', 'Swirlix', 'Tangela', 'Vulpix-Base', 'Yanma',
+			'Eevium Z', 'Dragon Rage', 'Sonic Boom',
+		],
+	},
+	{
+		name: "[Gen 7] Monotype",
+		desc: [
+			"All the Pok&eacute;mon on a team must share a type.",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3587204/\">Monotype Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3589809/\">Monotype Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3599682/\">Monotype Sample Teams</a>",
+		],
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Same Type Clause', 'Team Preview'],
+		banlist: [
+			'Aegislash', 'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Dialga', 'Genesect', 'Giratina', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound',
+			'Kartana', 'Kyogre', 'Kyurem-White', 'Lugia', 'Lunala', 'Magearna', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
+			'Palkia', 'Pheromosa', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Tapu Lele', 'Xerneas', 'Yveltal', 'Zekrom', 'Zygarde',
+			'Battle Bond', 'Shadow Tag', 'Damp Rock', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Medichamite', 'Metagrossite', 'Salamencite', 'Smooth Rock', 'Terrain Extender', 'Baton Pass',
+		],
 	},
 	{
 		name: "[Gen 7] Anything Goes",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587441/\">Anything Goes</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591711/\">AG Resources</a>",
-			"&bullet; <a href=\"https://www.smogon.com/tiers/om/analyses/ag/\">AG Analyses</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3587441/\">Anything Goes</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3591711/\">AG Resources</a>",
+			"&bullet; <a href=\"http://www.smogon.com/tiers/om/analyses/ag/\">AG Analyses</a>",
 		],
 
 		mod: 'gen7',
@@ -2233,17 +2297,18 @@ exports.Formats = [
 	{
 		name: "[Gen 7] CAP",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587865/\">CAP Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3597893/\">CAP Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/posts/7203358/\">CAP Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3587865/\">CAP Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3597893/\">CAP Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/posts/7203358/\">CAP Sample Teams</a>",
 		],
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] OU', 'Allow CAP'],
+		banlist: ['Tomohawk + Earth Power', 'Tomohawk + Reflect'],
 	},
 	{
 		name: "[Gen 7] CAP LC",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3599594/\">CAP LC</a>"],
+		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/3599594/\">CAP LC</a>"],
 
 		mod: 'gen7',
 		searchShow: false,
@@ -2253,10 +2318,10 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Battle Spot Singles",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3601012/\">Introduction to Battle Spot Singles</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3605970/\">Battle Spot Singles Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3601658/\">Battle Spot Singles Roles Compendium</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3593055/\">Battle Spot Singles Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3601012/\">Introduction to Battle Spot Singles</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3605970/\">Battle Spot Singles Viability Ranking</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3601658/\">Battle Spot Singles Roles Compendium</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3593055/\">Battle Spot Singles Sample Teams</a>",
 		],
 
 		mod: 'gen7',
@@ -2265,27 +2330,45 @@ exports.Formats = [
 			validate: [3, 6],
 			battle: 3,
 		},
-		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview'],
+		ruleset: ['Pokemon', 'Standard GBU'],
 		requirePentagon: true,
 	},
 	{
-		name: "[Gen 7] Battle Spot Special 4",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3603342/\">Battle Spot Special</a>"],
+		name: "[Gen 7] Battle Spot Special 7",
+		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/3621403/\">Battle Spot Special: Season 7</a>"],
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
 		teamLength: {
-			validate: [1, 6],
-			battle: 1,
+			validate: [3, 6],
+			battle: 3,
 		},
-		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview'],
-		banlist: ['Eviolite', 'Focus Sash'],
-		onValidateSet(set) {
-			let item = this.getItem(set.item);
-			if (item.exists && (item.megaStone || item.zMove)) {
-				return [`${set.name || set.species} has ${item.name}, which is banned in Battle Spot Special 4.`];
+		ruleset: ['Pokemon', 'Standard GBU', 'Alola Pokedex'],
+		banlist: ['Poipole', 'Naganadel', 'Stakataka', 'Blacephalon'],
+		requirePlus: true,
+	},
+	{
+		name: "[Gen 7] Dragon Cup",
+		desc: [`&bullet; <a href="https://3ds.pokemon-gl.com/dl-regulation/6010">Dragon Cup: Official rules</a>`],
+
+		mod: 'gen7',
+		maxForcedLevel: 50,
+		teamLength: {
+			validate: [3, 6],
+			battle: 3,
+		},
+		timer: {starting: 15 * 60 - 10, perTurn: 10, maxPerTurn: 60, maxFirstTurn: 90, timeoutAutoChoose: true},
+		ruleset: ['Pokemon', 'Minimal GBU', 'Team Preview'],
+		onValidateTeam: function (team) {
+			const restrictedLegends = ['Mewtwo', 'Lugia', 'Ho-Oh', 'Kyogre', 'Groudon', 'Rayquaza', 'Dialga', 'Palkia', 'Giratina', 'Reshiram', 'Zekrom', 'Kyurem', 'Xerneas', 'Yveltal', 'Zygarde', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala', 'Necrozma'];
+			let count = 0;
+			for (const set of team) {
+				const baseSpecies = this.getTemplate(set.species).baseSpecies;
+				if (restrictedLegends.includes(baseSpecies)) count++;
+				if (count > 1) return ["You can only use one Restricted Legendary Pok\u00E9mon."];
 			}
 		},
+		requirePentagon: true,
 	},
 	{
 		name: "[Gen 7] Custom Game",
@@ -2296,15 +2379,19 @@ exports.Formats = [
 		debug: true,
 		maxLevel: 9999,
 		defaultLevel: 100,
+		teamLength: {
+			validate: [1, 24],
+			battle: 24,
+		},
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 
-	// SM Doubles
+	// US/UM Doubles
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "SM Doubles",
+		section: "US/UM Doubles",
 	},
 	{
 		name: "[Gen 7] Random Doubles Battle",
@@ -2317,16 +2404,16 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Doubles OU",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3586596/\">Doubles OU Metagame Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3592903/\">Doubles OU Viability Ranking</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3590987/\">Doubles OU Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3618612/\">Doubles OU Metagame Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3592903/\">Doubles OU Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3590987/\">Doubles OU Sample Teams</a>",
 		],
 
 		mod: 'gen7',
 		gameType: 'doubles',
-		ruleset: ['Pokemon', 'Standard Doubles', 'Team Preview'],
-		banlist: ['Arceus', 'Dialga', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Jirachi', 'Kyogre', 'Kyurem-White',
-			'Lugia', 'Lunala', 'Magearna', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+		ruleset: ['Pokemon', 'Standard Doubles', 'Swagger Clause', 'Team Preview'],
+		banlist: ['Arceus', 'Dialga', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Jirachi', 'Kyogre', 'Kyurem-White', 'Lugia', 'Lunala',
+			'Magearna', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Reshiram', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
 			'Power Construct', 'Eevium Z', 'Kangaskhanite', 'Dark Void', 'Gravity ++ Grass Whistle', 'Gravity ++ Hypnosis', 'Gravity ++ Lovely Kiss', 'Gravity ++ Sing', 'Gravity ++ Sleep Powder',
 		],
 	},
@@ -2340,27 +2427,22 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 7] Doubles UU",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3598014/\">Doubles UU Metagame Discussion</a>"],
+		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/3598014/\">Doubles UU Metagame Discussion</a>"],
 
 		mod: 'gen7',
 		gameType: 'doubles',
 		ruleset: ['[Gen 7] Doubles OU'],
 		banlist: [
-			'Aegislash', 'Amoonguss', 'Arcanine', 'Celesteela', 'Cresselia', 'Deoxys-Attack', 'Diancie', 'Excadrill', 'Ferrothorn', 'Garchomp',
-			'Gastrodon', 'Genesect', 'Gigalith', 'Heatran', 'Hoopa-Unbound', 'Jirachi', 'Kartana', 'Kingdra', 'Kyurem-Black', 'Landorus-Therian',
-			'Marowak-Alola', 'Milotic', 'Mimikyu', 'Muk-Alola', 'Ninetales-Alola', 'Oranguru', 'Pelipper', 'Pheromosa', 'Politoed',
-			'Porygon2', 'Rotom-Wash', 'Scrafty', 'Snorlax', 'Suicune', 'Sylveon', 'Tapu Bulu', 'Tapu Fini', 'Tapu Koko', 'Tapu Lele',
-			'Terrakion', 'Torkoal', 'Tyranitar', 'Venusaur', 'Volcanion', 'Volcarona', 'Weavile', 'Whimsicott', 'Zapdos', 'Zygarde-Base',
-			'Battle Bond', 'Blazikenite', 'Charizardite Y', 'Gardevoirite', 'Gengarite', 'Gyaradosite', 'Kangaskhanite', 'Mawilite', 'Metagrossite', 'Salamencite', 'Sceptilite', 'Swampertite', 'Tyranitarite',
+			'Aegislash', 'Amoonguss', 'Arcanine', 'Blacephalon', 'Bronzong', 'Celesteela', 'Deoxys-Attack', 'Diancie', 'Excadrill', 'Ferrothorn',
+			'Garchomp', 'Gastrodon', 'Genesect', 'Heatran', 'Hoopa-Unbound', 'Jirachi', 'Kartana', 'Kingdra', 'Kyurem-Black',
+			'Landorus-Therian', 'Ludicolo', 'Lycanroc-Dusk', 'Marowak-Alola', 'Marshadow', 'Milotic', 'Mimikyu', 'Naganadel', 'Ninetales-Alola', 'Oranguru',
+			'Pelipper', 'Politoed', 'Porygon2', 'Scrafty', 'Snorlax', 'Stakataka', 'Suicune', 'Tapu Bulu', 'Tapu Fini', 'Tapu Koko',
+			'Tapu Lele', 'Tyranitar', 'Volcanion', 'Volcarona', 'Weavile', 'Whimsicott', 'Zapdos', 'Zygarde-Base',
+			'Charizardite Y', 'Diancite', 'Gardevoirite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Metagrossite', 'Salamencite', 'Swampertite',
 		],
 	},
 	{
-		name: "[Gen 7] VGC 2017",
-		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3583926/\">VGC 2017 Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3591794/\">VGC 2017 Viability Rankings</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3590391/\">VGC 2017 Sample Teams</a>",
-		],
+		name: "[Gen 7] VGC 2018",
 
 		mod: 'gen7',
 		gameType: 'doubles',
@@ -2369,6 +2451,26 @@ exports.Formats = [
 			validate: [4, 6],
 			battle: 4,
 		},
+		timer: {starting: 15 * 60 - 10, perTurn: 10, maxPerTurn: 60, maxFirstTurn: 90, timeoutAutoChoose: true},
+		ruleset: ['Pokemon', 'Standard GBU'],
+		requirePlus: true,
+	},
+	{
+		name: "[Gen 7] VGC 2017",
+		desc: [
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3583926/\">VGC 2017 Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3591794/\">VGC 2017 Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3590391/\">VGC 2017 Sample Teams</a>",
+		],
+
+		mod: 'vgc17',
+		gameType: 'doubles',
+		forcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
+		timer: {starting: 15 * 60 - 10, perTurn: 10, maxPerTurn: 60, maxFirstTurn: 90, timeoutAutoChoose: true},
 		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Item Clause', 'Team Preview', 'Cancel Mod', 'Alola Pokedex'],
 		banlist: ['Illegal', 'Unreleased', 'Solgaleo', 'Lunala', 'Necrozma', 'Magearna', 'Marshadow', 'Zygarde', 'Mega'],
 		requirePlus: true,
@@ -2376,9 +2478,9 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Battle Spot Doubles",
 		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3595001/\">Battle Spot Doubles Discussion</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3593890/\">Battle Spot Doubles Viability Rankings</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3595859/\">Battle Spot Doubles Sample Teams</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3595001/\">Battle Spot Doubles Discussion</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3593890/\">Battle Spot Doubles Viability Rankings</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3595859/\">Battle Spot Doubles Sample Teams</a>",
 		],
 
 		mod: 'gen7',
@@ -2388,26 +2490,8 @@ exports.Formats = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview'],
+		ruleset: ['Pokemon', 'Standard GBU'],
 		requirePentagon: true,
-	},
-	{
-		name: "[Gen 7] tiny tourney",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3605226/\">tiny tourney Discussion</a>"],
-
-		mod: 'gen7',
-		gameType: 'doubles',
-		forcedLevel: 50,
-		teamLength: {
-			validate: [4, 6],
-			battle: 4,
-		},
-		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview'],
-		banlist: ['Mega'],
-		onValidateSet: function (set) {
-			let template = this.getTemplate(set.species || set.name);
-			if (template.heightm > 1) return [`${set.name || set.species} is over 1.0 m tall, which is banned in tiny tourney.`];
-		},
 	},
 	{
 		name: "[Gen 7] Doubles Custom Game",
@@ -2419,6 +2503,10 @@ exports.Formats = [
 		maxLevel: 9999,
 		defaultLevel: 100,
 		debug: true,
+		teamLength: {
+			validate: [2, 24],
+			battle: 24,
+		},
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
@@ -2463,22 +2551,6 @@ exports.Formats = [
 			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
 			'Power Construct', 'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss', 'Chansey + Charm + Psywave',
 			'Flash', 'Kinesis', 'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud-Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen',
-		],
-	},
-	{
-		name: "[Gen 7] Monotype",
-		desc: [
-			"All the Pok&eacute;mon on a team must share a type.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3587204/\">Monotype</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3589809/\">Monotype Viability Ranking</a>",
-		],
-
-		mod: 'gen7',
-		ruleset: ['Pokemon', 'Standard', 'Swagger Clause', 'Same Type Clause', 'Team Preview'],
-		banlist: [
-			'Aegislash', 'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Dialga', 'Genesect', 'Giratina', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound', 'Kartana', 'Kyogre',
-			'Kyurem-White', 'Lugia', 'Lunala', 'Mewtwo', 'Palkia', 'Pheromosa', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Tapu Lele', 'Xerneas', 'Yveltal', 'Zekrom', 'Zygarde',
-			'Battle Bond', 'Damp Rock', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite', 'Medichamite', 'Metagrossite', 'Salamencite', 'Smooth Rock', 'Terrain Extender', 'Baton Pass',
 		],
 	},
 	{
@@ -2995,44 +3067,24 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 7] Dual Wielding",
-		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/3608611\">Dual Wielding</a>: A Pokemon can hold two items, the second item in the Ability Slot."],
-		ruleset: ['[Gen 7] OU', 'Ignore Illegal Abilities'],
-		banlist: ['Fling', 'Regigigas', 'Slaking'],
-		mod: 'dualwielding',
-		onValidateSet: function(set, teamHas) {
-			let ability = set.ability;
-			if (!Dex.data.Items[toId(ability)]) return [`${set.name || set.species} has an invalid item.`];
-			let problems = [];
-			let item2 = Dex.getItem(toId(ability));
-			let bans = {};
-			if (!item2.exists) {
-				let abilit = Dex.getAbility(ability);
-				let template = Dex.getTemplate(set.species);
-				if (!abilit.name) {
-					problems.push(`${name} needs to have an ability.`);
-				} else if (!Object.values(template.abilities).includes(abilit.name)) {
-					problems.push(`${name} can't have ${set.ability}.`);
-				}
-				if (abilit.name === template.abilities['H']) {
-					isHidden = true;
+		desc: [
+			"Pok&eacute;mon can forgo their Ability in order to use a second item.",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3608611//\">Dual Wielding</a>",
+		],
 
-					if (template.unreleasedHidden && this.format.banlistTable['Unreleased']) {
-						problems.push(`${name}'s hidden ability is unreleased.`);
-					} else if (set.species.endsWith('Orange') || set.species.endsWith('White') && abilit.name === 'Symbiosis') {
-						problems.push(`${name}'s hidden ability is unreleased for the Orange and White forms.`);
-					}
-					if (template.maleOnlyHidden) {
-						set.gender = 'M';
-						lsetData.sources = ['5D'];
-					}
-				}
-			}
-			if (bans[toId(item2.id)]) problems.push(set.species + "'s item " + item2.name + " is banned by Dual Wielding.");
-			if (item2.id === toId(set.item)) problems.push(`You cannot have two of ${item2.name} on the same Pokemon.`);
-			if (item2.id.includes('choice') && toId(set.item).includes('choice')) problems.push(`You cannot have ${item2.name} and ${Dex.getItem(set.item).name} on the same Pokemon.`);
-			set.ability = ability;
+		mod: 'dualwielding',
+		ruleset: ['[Gen 7] OU'],
+		banlist: ['Regigigas', 'Slaking'],
+		validateSet: function (set, teamHas) {
+			let dual = this.dex.getItem(set.ability);
+			if (!dual.exists) return this.validateSet(set, teamHas);
+			let item = this.dex.getItem(set.item);
+			let validator = new this.constructor(Dex.getFormat(this.format.id, ['Ignore Illegal Abilities']));
+			let problems = validator.validateSet(Object.assign({}, set, {ability: ''}), teamHas) || validator.validateSet(Object.assign({}, set, {ability: '', item: set.ability}, teamHas)) || [];
+			if (dual.id === item.id) problems.push(`You cannot have two of the same item on a Pokemon. (${set.name || set.species} has two of ${item.name})`);
+			if (item.isChoice && dual.isChoice) problems.push(`You cannot have two choice items on a Pokemon. (${set.name || set.species} has ${item.name} and ${dual.name})`);
 			return problems;
-		},
+	  },
 	},
 	{
 		name: "[Gen 7] Follow the Leader",
@@ -3063,11 +3115,14 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 7] Full Potential",
-		desc: ['&bullet; <a href="http://www.smogon.com/forums/threads/3596777/">Full Potential</a>: In this metagame, every Pokemon uses their highest raw stat as their attacking stat.'],
-		ruleset: ['[Gen 7] OU'],
-		//team: 'random',
+		desc: [
+			"Moves use the Pok&eacute;mon's highest effective stat, barring HP, for damage calculation.",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3596777/\">Full Potential</a>",
+		],
+
 		mod: 'fullpotential',
-		banlist: ['Pheromosa', 'Shuckle', 'Speed Boost', 'Swampertite'],
+		ruleset: ['[Gen 7] OU', 'Item Clause'],
+		banlist: ['Raichu-Alola', 'Shuckle', 'Tapu Koko', 'Chlorophyll', 'Sand Rush', 'Slush Rush', 'Speed Boost', 'Swift Swim', 'Unburden', 'Swampertite'],
 	},
 	{
 		name: "[Gen 7] Godly Gift",
@@ -3452,6 +3507,75 @@ exports.Formats = [
 		}
 	},
 	{
+		name: "[Gen 7] Partners in Crime",
+		desc: [
+			"Doubles-based metagame where both active ally Pok&eacute;mon share abilities and moves.",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3618488/\">Partners in Crime</a>",
+		],
+
+		mod: 'pic',
+		gameType: 'doubles',
+		ruleset: ['[Gen 7] Doubles OU', 'Sleep Clause Mod'],
+		banlist: ['Huge Power', 'Imposter', 'Parental Bond', 'Pure Power', 'Wonder Guard', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Mimic', 'Sketch', 'Transform'],
+		onDisableMovePriority: -1,
+		onSwitchInPriority: 2,
+		onSwitchIn: function (pokemon) {
+			if (this.p1.active.every(ally => ally && !ally.fainted)) {
+				let p1a = this.p1.active[0], p1b = this.p1.active[1];
+				if (p1a.ability !== p1b.ability) {
+					let p1a_innate = 'ability' + p1b.ability;
+					p1a.volatiles[p1a_innate] = {id: p1a_innate, target: p1a};
+					let p1b_innate = 'ability' + p1a.ability;
+					p1b.volatiles[p1b_innate] = {id: p1b_innate, target: p1b};
+				}
+			}
+			if (this.p2.active.every(ally => ally && !ally.fainted)) {
+				let p2a = this.p2.active[0], p2b = this.p2.active[1];
+				if (p2a.ability !== p2b.ability) {
+					let p2a_innate = 'ability' + p2b.ability;
+					p2a.volatiles[p2a_innate] = {id: p2a_innate, target: p2a};
+					let p2b_innate = 'ability' + p2a.ability;
+					p2b.volatiles[p2b_innate] = {id: p2b_innate, target: p2b};
+				}
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			if (ally && ally.ability !== pokemon.ability) {
+				if (!pokemon.innate) {
+					pokemon.innate = 'ability' + ally.ability;
+					delete pokemon.volatiles[pokemon.innate];
+					pokemon.addVolatile(pokemon.innate);
+				}
+				if (!ally.innate) {
+					ally.innate = 'ability' + pokemon.ability;
+					delete ally.volatiles[ally.innate];
+					ally.addVolatile(ally.innate);
+				}
+			}
+		},
+		onSwitchOut: function (pokemon) {
+			if (pokemon.innate) {
+				pokemon.removeVolatile(pokemon.innate);
+				delete pokemon.innate;
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			if (ally && ally.innate) {
+				ally.removeVolatile(ally.innate);
+				delete ally.innate;
+			}
+		},
+		onFaint: function (pokemon) {
+			if (pokemon.innate) {
+				pokemon.removeVolatile(pokemon.innate);
+				delete pokemon.innate;
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			if (ally && ally.innate) {
+				ally.removeVolatile(ally.innate);
+				delete ally.innate;
+			}
+		},
+	},
+	{
 		name: "[Gen 7] Pokebilities",
 		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/3588652/\">Pokebilities</a>: A Pokemon has all of its abilities active at the same time."],
 		mod: 'pokebilities',
@@ -3560,6 +3684,51 @@ exports.Formats = [
 				if (template.baseStats[i] > 255) template.baseStats[i] = 255;
 			}
 			return template;
+		},
+	},
+	{
+		name: "[Gen 7] Shared Power",
+		desc: ["&bullet; All Pokemon on your team have all the abilities of your team."],
+		mod: 'pokebilities',
+		ruleset: ["[Gen 7] OU"],
+		onSwitchInPriority: 1,
+		onBegin: function() {
+			let statusability = {
+				"aerilate": true,
+				"aurabreak": true,
+				"flashfire": true,
+				"parentalbond": true,
+				"pixilate": true,
+				"refrigerate": true,
+				"sheerforce": true,
+				"slowstart": true,
+				"truant": true,
+				"unburden": true,
+				"zenmode": true
+			};
+			for (let p = 0; p < this.sides.length; p++) {
+				for (let i = 0; i < this.sides[p].pokemon.length; i++) {
+					let pokemon = this.sides[p].pokemon[i];
+					this.sides[p].pokemon[i].innates = [];
+					let bans = this.data.Formats.gen7ou.banlist;
+					bans.push("Battle Bond");
+					for (let a in this.sides[p].pokemon) {
+						if (bans.includes(this.sides[p].pokemon[a].baseAbility)) continue;
+						if (this.sides[p].pokemon[a].baseAbility === pokemon.ability) continue;
+						if (statusability[this.sides[p].pokemon[a].baseAbility]) {
+							this.sides[p].pokemon[i].innates.push("other" + this.sides[p].pokemon[a].baseAbility);
+						} else {
+							this.sides[p].pokemon[i].innates.push(this.sides[p].pokemon[a].baseAbility);
+						}
+					}
+				}
+			}
+		},
+		onSwitchIn: function(pokemon) {
+			for (let i = 0; i < pokemon.innates.length; i++) {
+				if (!pokemon.volatiles[pokemon.innates[i]])
+					pokemon.addVolatile(pokemon.innates[i]);
+			}
 		},
 	},
 	{
@@ -5881,93 +6050,6 @@ exports.Formats = [
 			if (!pokemon.side.foe.active[0]) return;
 			pokemon.side.foe.active[0].removeVolatile(pokemon.side.foe.active[0].sec);
 			delete pokemon.side.foe.active[0].sec;
-		},
-	},
-	{
-		name: "[Gen 7] Partners in Crime",
-		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/partners-in-crime.3559988/\">Partners in Crime</a>"],
-		mod: 'franticfusions',
-		gameType: 'doubles',
-		ruleset: ['[Gen 7] Doubles OU'],
-		onBegin: function () {
-			this.statusability = {
-				"aerilate": true,
-				"aurabreak": true,
-				"flashfire": true,
-				"galvanize": true,
-				"normalize": true,
-				"parentalbond": true,
-				"pixilate": true,
-				"refrigerate": true,
-				"sheerforce": true,
-				"slowstart": true,
-				"truant": true,
-				"unburden": true,
-				"zenmode": true,
-			};
-			for (let k = 0; k < this.sides.length; k++) {
-				for (let i = 0; i < this.sides[k].pokemon.length; i++) {
-					let pokemon = this.sides[k].pokemon[i];
-					pokemon.oms = [];
-					pokemon.obms = [];
-					pokemon.om = Object.assign({}, pokemon.moves);
-					pokemon.obm = Object.assign({}, pokemon.baseMoves);
-					for (let j = 0; j < pokemon.baseMoveset.length; j++) {
-						pokemon.obms.push(Object.assign({}, pokemon.baseMoveset[j]));
-						pokemon.oms.push(Object.assign({}, pokemon.moveset[j]));
-					}
-				}
-			}
-		},
-		onSwitchInPriority: 1,
-		onSwitchIn: function (pokemon) {
-			let partner = pokemon.side.active[1 ^ pokemon.position];
-			if (!partner) return;
-			let sec;
-			sec = this.statusability[pokemon.ability] ? ("other" + pokemon.ability) : pokemon.ability;
-			partner.sec = sec;
-			partner.addVolatile(sec);
-			sec = this.statusability[partner.ability] ? ("other" + partner.ability) : partner.ability;
-			pokemon.sec = sec;
-			pokemon.addVolatile(sec);
-			pokemon.baseMoveset.length = pokemon.moveset.length = pokemon.baseMoves.length = pokemon.moves.length = pokemon.obms.length;
-			partner.baseMoveset.length = partner.moveset.length = partner.baseMoves.length = partner.moves.length = partner.obms.length;
-			for (let i = pokemon.obms.length; i < pokemon.obms.length + partner.obms.length; i++) {
-				pokemon.baseMoveset[i] = Object.assign({}, partner.obms[i - partner.obms.length]);
-				pokemon.moveset[i] = Object.assign({}, partner.oms[i - partner.oms.length]);
-				pokemon.moves[i] = partner.om[i - partner.om.length];
-				pokemon.baseMoves[i] = partner.obm[i - partner.obm.length];
-			}
-			for (let i = partner.obms.length; i < pokemon.obms.length + partner.obms.length; i++) {
-				partner.baseMoveset[i] = Object.assign({}, pokemon.obms[i - pokemon.obms.length]);
-				partner.moveset[i] = Object.assign({}, pokemon.oms[i - pokemon.oms.length]);
-				partner.moves[i] = pokemon.om[i - pokemon.om.length];
-				partner.baseMoves[i] = pokemon.obm[i - pokemon.obm.length];
-			}
-			[partner, pokemon].forEach((mon => {
-				this.runEvent("DisableMove", mon);
-			}).bind(this));
-		},
-		onAfterMega: function (pokemon) {
-			let partner = pokemon.side.active[1 ^ pokemon.position];
-			if (!partner) return;
-			let sec = this.statusability[pokemon.ability] ? ("other" + pokemon.ability) : pokemon.ability;
-			partner.sec = sec;
-			partner.addVolatile(sec);
-		},
-		onSwitchOut: function (pokemon) {
-			let partner = pokemon.side.active[1 ^ pokemon.position];
-			if (!partner) return;
-			partner.removeVolatile(pokemon.side.active[1].sec);
-			delete partner.sec;
-			partner.baseMoveset.length = partner.moveset.length = partner.baseMoves.length = partner.moves.length = partner.obms.length;
-		},
-		onFaint: function (pokemon) {
-			let partner = pokemon.side.active[1 ^ pokemon.position];
-			if (!partner) return;
-			partner.removeVolatile(pokemon.side.active[1].sec);
-			delete partner.sec;
-			partner.baseMoveset.length = partner.moveset.length = partner.baseMoves.length = partner.moves.length = partner.obms.length;
 		},
 	},
 	{

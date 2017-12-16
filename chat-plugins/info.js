@@ -56,15 +56,15 @@ exports.commands = {
 		let publicrooms = "";
 		let hiddenrooms = "";
 		let privaterooms = "";
-		targetUser.inRooms.forEach(roomid => {
-			if (roomid === 'global') return;
+		for (const roomid of targetUser.inRooms) {
+			if (roomid === 'global') continue;
 			let targetRoom = Rooms.get(roomid);
 
 			let authSymbol = (targetRoom.auth && targetRoom.auth[targetUser.userid] ? targetRoom.auth[targetUser.userid] : '');
 			let battleTitle = (roomid.battle ? ` title="${roomid.title}"` : '');
 			let output = `${authSymbol}<a href="/${roomid}"${battleTitle}>${roomid}</a>`;
 			if (targetRoom.isPrivate === true) {
-				if (targetRoom.modjoin === '~') return;
+				if (targetRoom.modjoin === '~') continue;
 				if (privaterooms) privaterooms += " | ";
 				privaterooms += output;
 			} else if (targetRoom.isPrivate) {
@@ -74,7 +74,7 @@ exports.commands = {
 				if (publicrooms) publicrooms += " | ";
 				publicrooms += output;
 			}
-		});
+		}
 		buf += '<br />Rooms: ' + (publicrooms || '<em>(no public rooms)</em>');
 
 		if (!showAll) {
@@ -131,14 +131,22 @@ exports.commands = {
 		if ((user.can('ip', targetUser) || user === targetUser)) {
 			let ips = Object.keys(targetUser.ips);
 			ips = ips.map(ip => {
+				let status = [];
+				let punishment = Punishments.ips.get(ip);
+				if (user.can('ip') && punishment) {
+					let [punishType, userid] = punishment;
+					let punishMsg = Punishments.punishmentTypes.get(punishType) || 'punished';
+					if (userid !== targetUser.userid) punishMsg += ` as ${userid}`;
+					status.push(punishMsg);
+				}
 				if (Punishments.sharedIps.has(ip)) {
 					let sharedStr = 'shared';
 					if (Punishments.sharedIps.get(ip)) {
 						sharedStr += `: ${Punishments.sharedIps.get(ip)}`;
 					}
-					return ip + ` (${sharedStr})`;
+					status.push(sharedStr);
 				}
-				return ip;
+				return ip + (status.length ? ` (${status.join('; ')})` : '');
 			});
 			buf += `<br /> IP${Chat.plural(ips)}: ${ips.join(", ")}`;
 			if (user.group !== ' ' && targetUser.latestHost) {
@@ -206,7 +214,7 @@ exports.commands = {
 		let punishment = Punishments.userids.get(userid);
 		if (punishment) {
 			const [punishType, punishUserid, , reason] = punishment;
-			const punishName = {BAN: "BANNED", LOCK: "LOCKED", NAMELOCK: "NAMELOCKED"}[punishType] || punishType;
+			const punishName = (Punishments.punishmentTypes.get(punishType) || punishType).toUpperCase();
 			buf += `${punishName}: ${punishUserid}`;
 			let expiresIn = Punishments.checkLockExpiration(userid);
 			if (expiresIn) buf += expiresIn;
@@ -222,7 +230,7 @@ exports.commands = {
 			}
 		}
 
-		let punishments = Punishments.getRoomPunishments(targetUser);
+		let punishments = Punishments.getRoomPunishments(targetUser || {userid});
 
 		if (punishments && punishments.length) {
 			buf += `<br />Room punishments: `;
@@ -231,7 +239,7 @@ exports.commands = {
 				const [punishType, punishUserid, expireTime, reason] = punishment;
 				let punishDesc = Punishments.roomPunishmentTypes.get(punishType);
 				if (!punishDesc) punishDesc = `punished`;
-				if (punishUserid !== targetUser.userid) punishDesc += ` as ${punishUserid}`;
+				if (punishUserid !== userid) punishDesc += ` as ${punishUserid}`;
 				let expiresIn = new Date(expireTime).getTime() - Date.now();
 				let expireString = Chat.toDurationString(expiresIn, {precision: 1});
 				punishDesc += ` for ${expireString}`;
@@ -264,50 +272,56 @@ exports.commands = {
 	ipsearchall: 'ipsearch',
 	hostsearch: 'ipsearch',
 	ipsearch: function (target, room, user, connection, cmd) {
-		if (!target.trim()) return this.parse('/help ipsearch');
+		if (!target.trim()) return this.parse(`/help ipsearch`);
 		if (!this.can('rangeban')) return;
-		let results = [];
 
+		target = this.splitTargetText(target).trim();
+		let targetIp = this.targetUsername;
+		let targetRoom = target.length ? Rooms(target.trim()) : null;
+		if (!targetRoom && targetRoom !== null) return this.errorReply(`The room "${target}" does not exist.`);
+		let results = [];
 		let isAll = (cmd === 'ipsearchall');
 
-		if (/[a-z]/.test(target)) {
+		if (/[a-z]/.test(targetIp)) {
 			// host
-			this.sendReply("Users with host " + target + ":");
+			this.sendReply(`Users with host ${targetIp}${targetRoom ? ` in the room ${targetRoom.title}` : ``}:`);
 			Users.users.forEach(curUser => {
 				if (results.length > 100 && !isAll) return;
-				if (!curUser.latestHost || !curUser.latestHost.endsWith(target)) return;
+				if (!curUser.latestHost || !curUser.latestHost.endsWith(targetIp)) return;
+				if (targetRoom && !curUser.inRooms.has(targetRoom.id)) return;
 				results.push((curUser.connected ? " \u25C9 " : " \u25CC ") + " " + curUser.name);
 			});
 			if (results.length > 100 && !isAll) {
-				return this.sendReply("More than 100 users match the specified IP range. Use /ipsearchall to retrieve the full list.");
+				return this.sendReply(`More than 100 users match the specified IP range. Use /ipsearchall to retrieve the full list.`);
 			}
-		} else if (target.slice(-1) === '*') {
+		} else if (targetIp.slice(-1) === '*') {
 			// IP range
-			this.sendReply("Users in IP range " + target + ":");
-			target = target.slice(0, -1);
+			this.sendReply(`Users in IP range ${targetIp}${targetRoom ? ` in the room ${targetRoom.title}` : ``}:`);
+			targetIp = targetIp.slice(0, -1);
 			Users.users.forEach(curUser => {
 				if (results.length > 100 && !isAll) return;
-				if (!curUser.latestIp.startsWith(target)) return;
+				if (!curUser.latestIp.startsWith(targetIp)) return;
+				if (targetRoom && !curUser.inRooms.has(targetRoom.id)) return;
 				results.push((curUser.connected ? " \u25C9 " : " \u25CC ") + " " + curUser.name);
 			});
 			if (results.length > 100 && !isAll) {
-				return this.sendReply("More than 100 users match the specified IP range. Use /ipsearchall to retrieve the full list.");
+				return this.sendReply(`More than 100 users match the specified IP range. Use /ipsearchall to retrieve the full list.`);
 			}
 		} else {
-			this.sendReply("Users with IP " + target + ":");
+			this.sendReply(`Users with IP ${targetIp}${targetRoom ? ` in the room ${targetRoom.title}` : ``}:`);
 			Users.users.forEach(curUser => {
-				if (curUser.latestIp === target) {
-					results.push((curUser.connected ? " \u25C9 " : " \u25CC ") + " " + curUser.name);
-				}
+				if (curUser.latestIp !== targetIp) return;
+				if (targetRoom && !curUser.inRooms.has(targetRoom.id)) return;
+				results.push((curUser.connected ? " \u25C9 " : " \u25CC ") + " " + curUser.name);
 			});
 		}
 		if (!results.length) {
-			if (!target.includes('.')) return this.errorReply("'" + target + "' is not a valid IP or host.");
-			return this.sendReply("No results found.");
+			if (!targetIp.includes('.')) return this.errorReply(`${targetIp} is not a valid IP or host.`);
+			return this.sendReply(`No results found.`);
 		}
 		return this.sendReply(results.join('; '));
 	},
-	ipsearchhelp: ["/ipsearch [ip|range|host] - Find all users with specified IP, IP range, or host. Requires: & ~"],
+	ipsearchhelp: ["/ipsearch [ip|range|host], (room) - Find all users with specified IP, IP range, or host. If a room is provided only users in the room will be shown. Requires: & ~"],
 
 	checkchallenges: function (target, room, user) {
 		if (!this.can('ban', null, room)) return false;
@@ -596,12 +610,13 @@ exports.commands = {
 		if (!target) return this.parse('/help weakness');
 		if (!this.runBroadcast()) return;
 		target = target.trim();
+		let mod = target.split(',');
+		mod = Dex.mod(toId(mod[mod.length - 1])) || Dex;
 		let targets = target.split(/ ?[,/ ] ?/);
-
-		let pokemon = Dex.getTemplate(target);
-		let type1 = Dex.getType(targets[0]);
-		let type2 = Dex.getType(targets[1]);
-		let type3 = Dex.getType(targets[2]);
+		let pokemon = mod.getTemplate(target);
+		let type1 = mod.getType(targets[0]);
+		let type2 = mod.getType(targets[1]);
+		let type3 = mod.getType(targets[2]);
 
 		if (pokemon.exists) {
 			target = pokemon.species;
@@ -618,7 +633,7 @@ exports.commands = {
 			}
 
 			if (types.length === 0) {
-				return this.sendReplyBox("" + Chat.escapeHTML(target) + " isn't a recognized type or pokemon.");
+				return this.sendReplyBox(`${Chat.escapeHTML(target)} isn't a recognized type or pokemon${Dex.gen > mod.gen ? ` in Gen ${mod.gen}` : ""}.`);
 			}
 			pokemon = {types: types};
 			target = types.join("/");
@@ -627,10 +642,10 @@ exports.commands = {
 		let weaknesses = [];
 		let resistances = [];
 		let immunities = [];
-		for (let type in Dex.data.TypeChart) {
-			let notImmune = Dex.getImmunity(type, pokemon);
+		for (let type in mod.data.TypeChart) {
+			let notImmune = mod.getImmunity(type, pokemon);
 			if (notImmune) {
-				let typeMod = Dex.getEffectiveness(type, pokemon);
+				let typeMod = mod.getEffectiveness(type, pokemon);
 				switch (typeMod) {
 				case 1:
 					weaknesses.push(type);
@@ -676,19 +691,19 @@ exports.commands = {
 		let targets = target.split(/[,/]/).slice(0, 2);
 		if (targets.length !== 2) return this.errorReply("Attacker and defender must be separated with a comma.");
 
-		let searchMethods = {'getType':1, 'getMove':1, 'getTemplate':1};
-		let sourceMethods = {'getType':1, 'getMove':1};
-		let targetMethods = {'getType':1, 'getTemplate':1};
+		let searchMethods = ['getType', 'getMove', 'getTemplate'];
+		let sourceMethods = ['getType', 'getMove'];
+		let targetMethods = ['getType', 'getTemplate'];
 		let source, defender, foundData, atkName, defName;
 
 		for (let i = 0; i < 2; ++i) {
 			let method;
-			for (method in searchMethods) {
+			for (method of searchMethods) {
 				foundData = Dex[method](targets[i]);
 				if (foundData.exists) break;
 			}
 			if (!foundData.exists) return this.parse('/help effectiveness');
-			if (!source && method in sourceMethods) {
+			if (!source && sourceMethods.includes(method)) {
 				if (foundData.type) {
 					source = foundData;
 					atkName = foundData.name;
@@ -697,7 +712,7 @@ exports.commands = {
 					atkName = foundData.id;
 				}
 				searchMethods = targetMethods;
-			} else if (!defender && method in targetMethods) {
+			} else if (!defender && targetMethods.includes(method)) {
 				if (foundData.types) {
 					defender = foundData;
 					defName = foundData.species + " (not counting abilities)";
@@ -740,18 +755,20 @@ exports.commands = {
 
 		let targets = target.split(/[,+]/);
 		let sources = [];
+		let mod = Dex.mod(toId(targets[targets.length - 1])) || Dex;
 
 		let dispTable = false;
 		let bestCoverage = {};
 		let hasThousandArrows = false;
 
-		for (let type in Dex.data.TypeChart) {
+		for (let type in mod.data.TypeChart) {
 			// This command uses -5 to designate immunity
 			bestCoverage[type] = -5;
 		}
 
 		for (let i = 0; i < targets.length; i++) {
 			let move = targets[i].trim();
+			if (toId(move) === mod.currentMod) continue;
 			move = move.charAt(0).toUpperCase() + move.slice(1).toLowerCase();
 			if (move === 'Table' || move === 'All') {
 				if (this.broadcasting) return this.sendReplyBox("The full table cannot be broadcast.");
@@ -760,17 +777,17 @@ exports.commands = {
 			}
 
 			let eff;
-			if (move in Dex.data.TypeChart) {
+			if (move in mod.data.TypeChart) {
 				sources.push(move);
 				for (let type in bestCoverage) {
-					if (!Dex.getImmunity(move, type) && !move.ignoreImmunity) continue;
-					eff = Dex.getEffectiveness(move, type);
+					if (!mod.getImmunity(move, type) && !move.ignoreImmunity) continue;
+					eff = mod.getEffectiveness(move, type);
 					if (eff > bestCoverage[type]) bestCoverage[type] = eff;
 				}
 				continue;
 			}
-			move = Dex.getMove(move);
-			if (move.exists) {
+			move = mod.getMove(move);
+			if (move.exists && move.gen <= mod.gen) {
 				if (!move.basePower && !move.basePowerCallback) continue;
 				if (move.id === 'thousandarrows') hasThousandArrows = true;
 				sources.push(move);
@@ -778,9 +795,9 @@ exports.commands = {
 					if (move.id === "struggle") {
 						eff = 0;
 					} else {
-						if (!Dex.getImmunity(move.type, type) && !move.ignoreImmunity) continue;
-						let baseMod = Dex.getEffectiveness(move, type);
-						let moveMod = move.onEffectiveness && move.onEffectiveness.call(Dex, baseMod, type, move);
+						if (!mod.getImmunity(move.type, type) && !move.ignoreImmunity) continue;
+						let baseMod = mod.getEffectiveness(move, type);
+						let moveMod = move.onEffectiveness && move.onEffectiveness.call(mod, baseMod, type, move);
 						eff = typeof moveMod === 'number' ? moveMod : baseMod;
 					}
 					if (eff > bestCoverage[type]) bestCoverage[type] = eff;
@@ -788,7 +805,7 @@ exports.commands = {
 				continue;
 			}
 
-			return this.errorReply("No type or move '" + targets[i] + "' found.");
+			return this.errorReply(`No type or move '${targets[i]}' found${Dex.gen > mod.gen ? ` in Gen ${mod.gen}` : ""}.`);
 		}
 		if (sources.length === 0) return this.errorReply("No moves using a type table for determining damage were specified.");
 		if (sources.length > 4) return this.errorReply("Specify a maximum of 4 moves or types.");
@@ -838,16 +855,16 @@ exports.commands = {
 		} else {
 			let buffer = '<div class="scrollable"><table cellpadding="1" width="100%"><tr><th></th>';
 			let icon = {};
-			for (let type in Dex.data.TypeChart) {
+			for (let type in mod.data.TypeChart) {
 				icon[type] = '<img src="https://play.pokemonshowdown.com/sprites/types/' + type + '.png" width="32" height="14">';
 				// row of icons at top
 				buffer += '<th>' + icon[type] + '</th>';
 			}
 			buffer += '</tr>';
-			for (let type1 in Dex.data.TypeChart) {
+			for (let type1 in mod.data.TypeChart) {
 				// assembles the rest of the rows
 				buffer += '<tr><th>' + icon[type1] + '</th>';
-				for (let type2 in Dex.data.TypeChart) {
+				for (let type2 in mod.data.TypeChart) {
 					let typing;
 					let cell = '<th ';
 					let bestEff = -5;
@@ -861,11 +878,11 @@ exports.commands = {
 							let move = sources[i];
 
 							let curEff = 0;
-							if ((!Dex.getImmunity((move.type || move), type1) || !Dex.getImmunity((move.type || move), type2)) && !move.ignoreImmunity) continue;
-							let baseMod = Dex.getEffectiveness(move, type1);
+							if ((!mod.getImmunity((move.type || move), type1) || !mod.getImmunity((move.type || move), type2)) && !move.ignoreImmunity) continue;
+							let baseMod = mod.getEffectiveness(move, type1);
 							let moveMod = move.onEffectiveness && move.onEffectiveness.call(Dex, baseMod, type1, move);
 							curEff += typeof moveMod === 'number' ? moveMod : baseMod;
-							baseMod = Dex.getEffectiveness(move, type2);
+							baseMod = mod.getEffectiveness(move, type2);
 							moveMod = move.onEffectiveness && move.onEffectiveness.call(Dex, baseMod, type2, move);
 							curEff += typeof moveMod === 'number' ? moveMod : baseMod;
 
@@ -1196,8 +1213,8 @@ exports.commands = {
 		this.sendReplyBox(
 			"Pok&eacute;mon Showdown is open source:<br />" +
 			"- Language: JavaScript (Node.js)<br />" +
-			"- <a href=\"https://github.com/XpRienzo/DragonHeaven/commits/master\">What's new here?</a><br />" +
-			"- <a href=\"https://github.com/XpRienzo/DragonHeaven\">Dragon Heaven source code</a><br />" +
+			"- <a href=\"https://github.com/Zarel/Pokemon-Showdown/commits/master\">What's new?</a><br />" +
+			"- <a href=\"https://github.com/Zarel/Pokemon-Showdown\">Server source code</a><br />" +
 			"- <a href=\"https://github.com/Zarel/Pokemon-Showdown-Client\">Client source code</a><br />" +
 			"- <a href=\"https://github.com/Zarel/Pokemon-Showdown-Dex\">Dex source code</a>"
 		);
@@ -1214,7 +1231,18 @@ exports.commands = {
 	'!forums': true,
 	forums: function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		this.sendReplyBox("<a href=\"http://www.smogon.com/forums/forums/pok%C3%A9mon-showdown.209\">Pok&eacute;mon Showdown Forums</a>");
+		this.sendReplyBox("<a href=\"http://www.smogon.com/forums/forums/209/\">Pok&eacute;mon Showdown Forums</a>");
+	},
+
+	'!privacypolicy': true,
+	privacypolicy: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		this.sendReplyBox(
+			`- We log PMs so you can report them - staff can't look at them without permission unless there's a law enforcement reason.<br />` +
+			`- We log IPs to enforce bans and mutes.<br />` +
+			`- We use cookies to save your login info and teams, and for Google Analytics and AdSense.<br />` +
+			`- For more information, you can read our <a href="https://pokemonshowdown.com/privacy">full privacy policy.</a>`
+		);
 	},
 
 	'!suggestions': true,
@@ -1266,7 +1294,7 @@ exports.commands = {
 		if (!this.runBroadcast()) return;
 		this.sendReplyBox(
 			"New to competitive Pok&eacute;mon?<br />" +
-			"- <a href=\"http://www.smogon.com/forums/threads/3570628/#post-6774481\">Beginner's Guide to Pok&eacute;mon Showdown</a><br />" +
+			"- <a href=\"http://www.smogon.com/forums/posts/6774481/\">Beginner's Guide to Pok&eacute;mon Showdown</a><br />" +
 			"- <a href=\"http://www.smogon.com/dp/articles/intro_comp_pokemon\">An introduction to competitive Pok&eacute;mon</a><br />" +
 			"- <a href=\"http://www.smogon.com/bw/articles/bw_tiers\">What do 'OU', 'UU', etc mean?</a><br />" +
 			"- <a href=\"http://www.smogon.com/xyhub/tiers\">What are the rules for each format? What is 'Sleep Clause'?</a>"
@@ -1390,6 +1418,10 @@ exports.commands = {
 				if (format.removedRules && format.removedRules.length) rules.push("<b>Removed rules</b> - " + Chat.escapeHTML(format.removedRules.join(", ")));
 				if (format.banlist && format.banlist.length) rules.push("<b>Bans</b> - " + Chat.escapeHTML(format.banlist.join(", ")));
 				if (format.unbanlist && format.unbanlist.length) rules.push("<b>Unbans</b> - " + Chat.escapeHTML(format.unbanlist.join(", ")));
+				if (format.bannedStones && format.bannedStones.length) rules.push("<b>Banned Mega Stones</b> - " + Chat.escapeHTML(format.bannedStones.join(", ")));
+				if (format.cannotMega && format.cannotMega.length) rules.push("<b>Can't Mega Evolve non-natively</b> - " + Chat.escapeHTML(format.cannotMega.join(", ")));
+				if (format.bannedAbilities && format.bannedAbilities.length) rules.push("<b>Non-usable abilities</b> - " + Chat.escapeHTML(format.bannedAbilities.join(", ")));
+				if (format.noLearn && format.noLearn.length) rules.push("<b>Non-learnable moves</b> - " + Chat.escapeHTML(format.noLearn.join(", ")));
 				if (rules.length > 0) {
 					rulesetHtml = `<details><summary>Banlist/Ruleset</summary>${rules.join("<br />")}</details>`;
 				} else {
@@ -1421,9 +1453,8 @@ exports.commands = {
 			buf.push(Chat.html`<th style="border:1px solid gray" colspan="2">${sections[sectionId].name}</th>`);
 			for (let i = 0; i < sections[sectionId].formats.length; i++) {
 				let format = Dex.getFormat(sections[sectionId].formats[i]);
-				let formatId = toId(format.name);
 				let nameHTML = Chat.escapeHTML(format.name);
-				let descHTML = format.desc ? `${format.desc.join("<br />")}${Dex.data.Formats[format.id].suspect ? `<br />Currently Suspecting: <u>${Dex.data.Formats[formatId].suspect}</u>` : ""}` : "&mdash;";
+				let descHTML = format.desc ? format.desc.join("<br />") : "&mdash;";
 				buf.push(`<tr><td style="border:1px solid gray">${nameHTML}</td><td style="border: 1px solid gray; margin-left:10px">${descHTML}</td></tr>`);
 			}
 		}
@@ -1445,37 +1476,37 @@ exports.commands = {
 			"- /unmute <em>username</em>: unmute<br />" +
 			"- /announce OR /wall <em>message</em>: make an announcement<br />" +
 			"- /modlog <em>username</em>: search the moderator log of the room<br />" +
-			"- /modnote <em>note</em>: adds a moderator note that can be read through modlog<br />" +
+			"- /modnote <em>note</em>: add a moderator note that can be read through modlog<br />" +
 			"<br />" +
 			"<strong>Room moderators (@)</strong> can also use:<br />" +
-			"- /roomban OR /rb <em>username</em>: bans user from the room<br />" +
-			"- /roomunban <em>username</em>: unbans user from the room<br />" +
+			"- /roomban OR /rb <em>username</em>: ban user from the room<br />" +
+			"- /roomunban <em>username</em>: unban user from the room<br />" +
 			"- /roomvoice <em>username</em>: appoint a room voice<br />" +
 			"- /roomdevoice <em>username</em>: remove a room voice<br />" +
-			"- /staffintro <em>intro</em>: sets the staff introduction that will be displayed for all staff joining the room<br />" +
+			"- /staffintro <em>intro</em>: set the staff introduction that will be displayed for all staff joining the room<br />" +
 			"- /roomsettings: change a variety of room settings, namely modchat<br />" +
 			"<br />" +
 			"<strong>Room owners (#)</strong> can also use:<br />" +
-			"- /roomintro <em>intro</em>: sets the room introduction that will be displayed for all users joining the room<br />" +
+			"- /roomintro <em>intro</em>: set the room introduction that will be displayed for all users joining the room<br />" +
 			"- /rules <em>rules link</em>: set the room rules link seen when using /rules<br />" +
 			"- /roommod, /roomdriver <em>username</em>: appoint a room moderator/driver<br />" +
 			"- /roomdemod, /roomdedriver <em>username</em>: remove a room moderator/driver<br />" +
 			"- /roomdeauth <em>username</em>: remove all room auth from a user<br />" +
 			"- /declare <em>message</em>: make a large blue declaration to the room<br />" +
-			"- !htmlbox <em>HTML code</em>: broadcasts a box of HTML code to the room<br />" +
-			"- !showimage <em>[url], [width], [height]</em>: shows an image to the room<br />" +
+			"- !htmlbox <em>HTML code</em>: broadcast a box of HTML code to the room<br />" +
+			"- !showimage <em>[url], [width], [height]</em>: show an image to the room<br />" +
 			"- /roomsettings: change a variety of room settings, including modchat, capsfilter, etc<br />" +
 			"<br />" +
-			"More detailed help can be found in the <a href=\"http://www.smogon.com/forums/threads/3570628/#post-6774654\">roomauth guide</a><br />" +
+			"More detailed help can be found in the <a href=\"http://www.smogon.com/forums/posts/6774654/\">roomauth guide</a><br />" +
 			"<br />" +
 			"Tournament Help:<br />" +
-			"- /tour create <em>format</em>, elimination: Creates a new single elimination tournament in the current room.<br />" +
-			"- /tour create <em>format</em>, roundrobin: Creates a new round robin tournament in the current room.<br />" +
-			"- /tour end: Forcibly ends the tournament in the current room<br />" +
-			"- /tour start: Starts the tournament in the current room<br />" +
-			"- /tour banlist [pokemon], [talent], [...]: Bans moves, abilities, Pokémon or items from being used in a tournament (it must be created first)<br />" +
+			"- /tour create <em>format</em>, elimination: create a new single elimination tournament in the current room.<br />" +
+			"- /tour create <em>format</em>, roundrobin: create a new round robin tournament in the current room.<br />" +
+			"- /tour end: forcibly end the tournament in the current room<br />" +
+			"- /tour start: start the tournament in the current room<br />" +
+			"- /tour banlist [pokemon], [talent], [...]: ban moves, abilities, Pokémon or items from being used in a tournament (it must be created first)<br />" +
 			"<br />" +
-			"More detailed help can be found in the <a href=\"http://www.smogon.com/forums/threads/3570628/#post-6777489\">tournaments guide</a><br />" +
+			"More detailed help can be found in the <a href=\"http://www.smogon.com/forums/posts/6777489/\">tournaments guide</a><br />" +
 			"</div>"
 		);
 	},
@@ -1563,7 +1594,7 @@ exports.commands = {
 
 		let buffer = [];
 		if (showAll || target === 'staff') {
-			buffer.push("<a href=\"http://www.smogon.com/forums/threads/3570628/#post-6774482\">Staff FAQ</a>");
+			buffer.push("<a href=\"http://www.smogon.com/forums/posts/6774482/\">Staff FAQ</a>");
 		}
 		if (showAll || target === 'autoconfirmed' || target === 'ac') {
 			buffer.push("A user is autoconfirmed when they have won at least one rated battle and have been registered for one week or longer.");
@@ -1578,7 +1609,7 @@ exports.commands = {
 			buffer.push("<a href=\"http://www.smogon.com/badge_faq\">Badge FAQ</a>");
 		}
 		if (showAll || !buffer.length) {
-			buffer.unshift("<a href=\"http://www.smogon.com/forums/threads/3570628/#post-6774128\">Frequently Asked Questions</a>");
+			buffer.unshift("<a href=\"http://www.smogon.com/forums/posts/6774128/\">Frequently Asked Questions</a>");
 		}
 		this.sendReplyBox(buffer.join("<br />"));
 	},
@@ -1602,24 +1633,24 @@ exports.commands = {
 		let genNumber = 7;
 		let extraFormat = Dex.getFormat(targets[2]);
 
-		if (generation === 'sm' || generation === 'sumo' || generation === '7' || generation === 'seven') {
+		if (['7', 'gen7', 'seven', 'sm', 'sumo', 'usm', 'usum'].includes(generation)) {
 			generation = 'sm';
-		} else if (generation === 'xy' || generation === 'oras' || generation === '6' || generation === 'six') {
+		} else if (['6', 'gen6', 'oras', 'six', 'xy'].includes(generation)) {
 			generation = 'xy';
 			genNumber = 6;
-		} else if (generation === 'bw' || generation === 'bw2' || generation === '5' || generation === 'five') {
+		} else if (['5', 'b2w2', 'bw', 'bw2', 'five', 'gen5'].includes(generation)) {
 			generation = 'bw';
 			genNumber = 5;
-		} else if (generation === 'dp' || generation === 'dpp' || generation === '4' || generation === 'four') {
+		} else if (['4', 'dp', 'dpp', 'four', 'gen4', 'hgss'].includes(generation)) {
 			generation = 'dp';
 			genNumber = 4;
-		} else if (generation === 'adv' || generation === 'rse' || generation === 'rs' || generation === '3' || generation === 'three') {
+		} else if (['3', 'adv', 'frlg', 'gen3', 'rs', 'rse', 'three'].includes(generation)) {
 			generation = 'rs';
 			genNumber = 3;
-		} else if (generation === 'gsc' || generation === 'gs' || generation === '2' || generation === 'two') {
+		} else if (['2', 'gen2', 'gs', 'gsc', 'two'].includes(generation)) {
 			generation = 'gs';
 			genNumber = 2;
-		} else if (generation === 'rby' || generation === 'rb' || generation === '1' || generation === 'one') {
+		} else if (['1', 'gen1', 'one', 'rb', 'rby', 'rgy'].includes(generation)) {
 			generation = 'rb';
 			genNumber = 1;
 		} else {
@@ -1630,11 +1661,11 @@ exports.commands = {
 		if (pokemon.exists) {
 			atLeastOne = true;
 			if (genNumber < pokemon.gen) {
-				return this.sendReplyBox("" + pokemon.name + " did not exist in " + generation.toUpperCase() + "!");
+				return this.sendReplyBox(`${pokemon.name} did not exist in ${generation.toUpperCase()}!`);
 			}
 			if (pokemon.tier === 'CAP') {
 				generation = 'cap';
-				this.errorReply("CAP is not currently supported by Smogon Strategic Pokedex.");
+				this.errorReply(`CAP is not currently supported by Smogon Strategic Pokedex.`);
 			}
 
 			if ((pokemon.battleOnly && pokemon.baseSpecies !== 'Greninja') || pokemon.baseSpecies === 'Keldeo' || pokemon.baseSpecies === 'Genesect') {
@@ -1643,12 +1674,16 @@ exports.commands = {
 
 			let formatName = extraFormat.name;
 			let formatId = extraFormat.id;
+			if (formatName.startsWith('[Gen ')) {
+				formatName = formatName.replace('[Gen ' + formatName[formatName.indexOf('[') + 5] + '] ', '');
+				formatId = toId(formatName);
+			}
 			if (formatId === 'battlespotdoubles') {
 				formatId = 'battle_spot_doubles';
 			} else if (formatId === 'battlespottriples') {
 				formatId = 'battle_spot_triples';
 				if (genNumber > 6) {
-					this.sendReplyBox("Triples formats are not an available format in Pok&eacute;mon generation " + generation.toUpperCase() + ".");
+					return this.sendReplyBox(`Triples formats are not an available format in Pok&eacute;mon generation ${generation.toUpperCase()}.`);
 				}
 			} else if (formatId === 'doublesou') {
 				formatId = 'doubles';
@@ -1668,28 +1703,28 @@ exports.commands = {
 			// Special case for Meowstic-M
 			if (speciesid === 'meowstic') speciesid = 'meowsticm';
 			if (pokemon.tier === 'CAP') {
-				this.sendReplyBox("<a href=\"http://www.smogon.com/cap/pokemon/strategies/" + speciesid + "\">" + generation.toUpperCase() + " " + Chat.escapeHTML(formatName) + " " + pokemon.name + " analysis preview</a>, brought to you by <a href=\"http://www.smogon.com\">Smogon University</a> <a href=\"https://smogon.com/cap/\">CAP Project</a>");
+				this.sendReplyBox(`<a href="http://www.smogon.com/cap/pokemon/strategies/${speciesid}">${generation.toUpperCase()} ${Chat.escapeHTML(formatName)} ${pokemon.name} analysis preview</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a> <a href="http://smogon.com/cap/">CAP Project</a>`);
 			} else {
-				this.sendReplyBox("<a href=\"http://www.smogon.com/dex/" + generation + "/pokemon/" + speciesid + (formatId ? '/' + formatId : '') + "\">" + generation.toUpperCase() + " " + Chat.escapeHTML(formatName) + " " + pokemon.name + " analysis</a>, brought to you by <a href=\"http://www.smogon.com\">Smogon University</a>");
+				this.sendReplyBox(`<a href="http://www.smogon.com/dex/${generation}/pokemon/${speciesid}${(formatId ? '/' + formatId : '')}">${generation.toUpperCase()} ${Chat.escapeHTML(formatName)} ${pokemon.name} analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>`);
 			}
 		}
 
 		// Item
 		if (item.exists && genNumber > 1 && item.gen <= genNumber) {
 			atLeastOne = true;
-			this.sendReplyBox("<a href=\"http://www.smogon.com/dex/" + generation + "/items/" + item.id + "\">" + generation.toUpperCase() + " " + item.name + " item analysis</a>, brought to you by <a href=\"http://www.smogon.com\">Smogon University</a>");
+			this.sendReplyBox(`<a href="http://www.smogon.com/dex/${generation}/items/${item.id}">${generation.toUpperCase()} ${item.name} item analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>`);
 		}
 
 		// Ability
 		if (ability.exists && genNumber > 2 && ability.gen <= genNumber) {
 			atLeastOne = true;
-			this.sendReplyBox("<a href=\"http://www.smogon.com/dex/" + generation + "/abilities/" + ability.id + "\">" + generation.toUpperCase() + " " + ability.name + " ability analysis</a>, brought to you by <a href=\"http://www.smogon.com\">Smogon University</a>");
+			this.sendReplyBox(`<a href="http://www.smogon.com/dex/${generation}/abilities/${ability.id}">${generation.toUpperCase()} ${ability.name} ability analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>`);
 		}
 
 		// Move
 		if (move.exists && move.gen <= genNumber) {
 			atLeastOne = true;
-			this.sendReplyBox("<a href=\"http://www.smogon.com/dex/" + generation + "/moves/" + toId(move.name) + "\">" + generation.toUpperCase() + " " + move.name + " move analysis</a>, brought to you by <a href=\"http://www.smogon.com\">Smogon University</a>");
+			this.sendReplyBox(`<a href="http://www.smogon.com/dex/${generation}/moves/${toId(move.name)}">${generation.toUpperCase()} ${move.name} move analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>`);
 		}
 
 		// Format
@@ -1701,7 +1736,7 @@ exports.commands = {
 			} else if (formatId === 'battlespottriples') {
 				formatId = 'battle_spot_triples';
 				if (genNumber > 6) {
-					this.sendReplyBox("Triples formats are not an available format in Pok&eacute;mon generation " + generation.toUpperCase() + ".");
+					return this.sendReplyBox(`Triples formats are not an available format in Pok&eacute;mon generation ${generation.toUpperCase()}.`);
 				}
 			} else if (formatId === 'doublesou') {
 				formatId = 'doubles';
@@ -1719,12 +1754,12 @@ exports.commands = {
 			}
 			if (formatName) {
 				atLeastOne = true;
-				this.sendReplyBox("<a href=\"http://www.smogon.com/dex/" + generation + "/formats/" + formatId + "\">" + generation.toUpperCase() + " " + Chat.escapeHTML(formatName) + " format analysis</a>, brought to you by <a href=\"http://www.smogon.com\">Smogon University</a>");
+				this.sendReplyBox(`<a href="http://www.smogon.com/dex/${generation}/formats/${formatId}">${generation.toUpperCase()} ${Chat.escapeHTML(formatName)} format analysis</a>, brought to you by <a href="http://www.smogon.com">Smogon University</a>`);
 			}
 		}
 
 		if (!atLeastOne) {
-			return this.sendReplyBox("Pok&eacute;mon, item, move, ability, or format not found for generation " + generation.toUpperCase() + ".");
+			return this.sendReplyBox(`Pok&eacute;mon, item, move, ability, or format not found for generation ${generation.toUpperCase()}.`);
 		}
 	},
 	smogdexhelp: ["/analysis [pokemon], [generation], [format] - Links to the Smogon University analysis for this Pok\u00e9mon in the given generation.",
@@ -1819,10 +1854,10 @@ exports.commands = {
 		Config.potd = target;
 		Rooms.SimulatorProcess.eval('Config.potd = \'' + toId(target) + '\'');
 		if (target) {
-			if (Rooms.development) Rooms.development.addRaw("<b>The Pok&eacute;mon of the was set to " + target + ". This Pokemon will be guaranteed to show up in random battles.</b>");
+			if (Rooms.lobby) Rooms.lobby.addRaw("<div class=\"broadcast-blue\"><b>The Pok&eacute;mon of the Day is now " + target + "!</b><br />This Pokemon will be guaranteed to show up in random battles.</div>");
 			this.logModCommand("The Pok\u00e9mon of the Day was changed to " + target + " by " + user.name + ".");
 		} else {
-			if (Rooms.development) Rooms.development.addRaw("<b>The Pok&eacute;mon of the Day was removed. No pokemon will be guaranteed in random battles.</b>");
+			if (Rooms.lobby) Rooms.lobby.addRaw("<div class=\"broadcast-blue\"><b>The Pok&eacute;mon of the Day was removed!</b><br />No pokemon will be guaranteed in random battles.</div>");
 			this.logModCommand("The Pok\u00e9mon of the Day was removed by " + user.name + ".");
 		}
 	},

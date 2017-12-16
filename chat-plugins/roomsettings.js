@@ -212,7 +212,7 @@ exports.commands = {
 			room.modchat = 'autoconfirmed';
 			break;
 		case 'player':
-			target = '\u2606';
+			target = Users.PLAYER_SYMBOL;
 			/* falls through */
 		default:
 			if (!Config.groups[target]) {
@@ -285,7 +285,7 @@ exports.commands = {
 			if (!this.can('makeroom')) return;
 		}
 		if (room.tour && !room.tour.modjoin) return this.errorReply(`You can't do this in tournaments where modjoin is prohibited.`);
-		if (target === 'player') target = '\u2606';
+		if (target === 'player') target = Users.PLAYER_SYMBOL;
 		if (this.meansNo(target)) {
 			if (!room.modjoin) return this.errorReply(`Modjoin is already turned off in this room.`);
 			delete room.modjoin;
@@ -421,7 +421,7 @@ exports.commands = {
 
 	emojis: 'emojifilter',
 	emoji: 'emojifilter',
-	emojifilter : function (target, room, user) {
+	emojifilter: function (target, room, user) {
 		if (!target) {
 			const emojiSetting = (room.filterEmojis ? "ON" : "OFF");
 			return this.sendReply(`This room's emoji filter is currently: ${emojiSetting}`);

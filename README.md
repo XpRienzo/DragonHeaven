@@ -7,8 +7,14 @@
 Showdown Boilerplate is a template for [Pokémon Showdown](https://github.com/Zarel/Pokemon-Showdown)
 private servers.
 
+<<<<<<< HEAD
 What is a boilerplate? Boilerplate is any text that is or can be reused in new
 contexts or applications without being greatly changed from the original.
+=======
+[![Build Status](https://travis-ci.org/Zarel/Pokemon-Showdown.svg)](https://travis-ci.org/Zarel/Pokemon-Showdown)
+[![Dependency Status](https://david-dm.org/zarel/Pokemon-Showdown.svg)](https://david-dm.org/zarel/Pokemon-Showdown)
+[![devDependency Status](https://david-dm.org/zarel/Pokemon-Showdown/dev-status.svg)](https://david-dm.org/zarel/Pokemon-Showdown?type=dev)
+>>>>>>> 3cd34bc8e0b676cc6c5476bce93fc1500a588d26
 
 This repository contains the files needed to set up your own Pokémon Showdown
 server with all the amazing stuff that private Pokémon Showdown servers like
@@ -176,6 +182,7 @@ Contributors
 - Cody Thompson [Rising_Dusk] - Development
 - Ian Clail [Layell] - Art (battle graphics, sprites)
 - Jeremy Piemonte [panpawn] - Development
+- Kris Johnson [Kris] - Development
 - Neil Rashbrook [urkerab] - Development
 - Robin Vandenbrande [Quinella] - Development
 - [Ridaz] - Art (battle animations)
