@@ -269,10 +269,11 @@ class CommandContext {
 		// Output the message
 
 		if (message && message !== true && typeof message.then !== 'function') {
+			let m = parseEmoticons(message, this.room, this.user);
+			if (m) message = "/html " + m;
 			if (this.pmTarget) {
 				Chat.sendPM(message, this.user, this.pmTarget);
 			} else {
-				if (parseEmoticons(message, this.room, this.user)) return;
 				this.room.add(`|c|${this.user.getIdentity(this.room.id)}|${message}`);
 			}
 		}

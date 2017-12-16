@@ -133,7 +133,7 @@ const emotesKeys = Object.keys(emotes).sort();
 * @returns {Boolean|String}
 */
 function parseEmoticons(message, room, user, pm) {
-	if (typeof message !== 'string' || (!pm && room.disableEmoticons)) return false;
+	if (room) if (typeof message !== 'string' || (!pm && room.disableEmoticons)) return false;
 
 	let match = false;
 	let len = emotesKeys.length;
@@ -152,13 +152,19 @@ function parseEmoticons(message, room, user, pm) {
 
 	// add emotes
 	message = demFeels(message);
-
+	
 	// __italics__
 	message = message.replace(/\_\_([^< ](?:[^<]*?[^< ])?)\_\_(?![^<]*?<\/a)/g, '<i>$1</i>');
 
 	// **bold**
 	message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>');
 
+	return message;
+	
+	/*
+	 * Old emote code, will never be called but I'm leaving it in here just in case anyone feels like ever retracing it
+	 * - TheMezStrikes
+	 */
 	let group = user.getIdentity().charAt(0);
 	if (room && room.auth) group = room.auth[user.userid] || group;
 	if (pm && !user.hiding) group = user.group;
@@ -170,7 +176,7 @@ function parseEmoticons(message, room, user, pm) {
 
 	room.addRaw(message);
 
-	room.update();
+	/.update();
 
 	return true;
 }
