@@ -176,7 +176,7 @@ function parseEmoticons(message, room, user, pm) {
 
 	room.addRaw(message);
 
-	/.update();
+	room.update();
 
 	return true;
 }
