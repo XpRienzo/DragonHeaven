@@ -10,7 +10,7 @@
  */
 
 'use strict';
-
+let MSort = require('./mergesort.js');
 const TIMEOUT_EMPTY_DEALLOCATE = 10 * 60 * 1000;
 const TIMEOUT_INACTIVE_DEALLOCATE = 40 * 60 * 1000;
 const REPORT_USER_STATS_INTERVAL = 10 * 60 * 1000;
@@ -633,10 +633,10 @@ class GlobalRoom extends BasicRoom {
 			return Config.rankList;
 		}
 		let rankList = [];
-
+		
 		for (let rank in Config.groups) {
 			if (!Config.groups[rank] || !rank) continue;
-
+			console.log(rank);
 			let tarGroup = Config.groups[rank];
 			let groupType = tarGroup.addhtml || (!tarGroup.mute && !tarGroup.root) ? 'normal' : (tarGroup.root || tarGroup.declare) ? 'leadership' : 'staff';
 
@@ -644,9 +644,8 @@ class GlobalRoom extends BasicRoom {
 		}
 
 		const typeOrder = ['punishment', 'normal', 'staff', 'leadership'];
-
-		rankList = rankList.sort((a, b) => typeOrder.indexOf(b.type) - typeOrder.indexOf(a.type));
-
+		
+		rankList = MSort(rankList, function(a, b) {return typeOrder.indexOf(b.type) - typeOrder.indexOf(a.type)});
 		// add the punishment types at the very end.
 		for (let rank in Config.punishgroups) {
 			rankList.push({symbol: Config.punishgroups[rank].symbol, name: Config.punishgroups[rank].name, type: 'punishment'});
