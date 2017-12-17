@@ -134,7 +134,7 @@ const emotesKeys = Object.keys(emotes).sort();
 */
 function parseEmoticons(message, room, user, pm) {
 	if (room) if (typeof message !== 'string' || (!pm && room.disableEmoticons)) return false;
-
+	
 	let match = false;
 	let len = emotesKeys.length;
 
@@ -146,7 +146,10 @@ function parseEmoticons(message, room, user, pm) {
 	}
 
 	if (!match) return false;
-
+	
+	// Disallow emotes in /announce because that breaks everything
+	if (message.startsWith("/announce")) return false;
+	
 	// escape HTML
 	message = Chat.escapeHTML(message);
 
@@ -158,7 +161,11 @@ function parseEmoticons(message, room, user, pm) {
 
 	// **bold**
 	message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>');
-
+	
+	// >greentext
+	console.log(message);
+	if (message.startsWith("&gt;")) message = "<font color='#187902'>" + message + "</font>";
+	
 	return message;
 	
 	/*
