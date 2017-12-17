@@ -636,7 +636,7 @@ class GlobalRoom extends BasicRoom {
 		
 		for (let rank in Config.groups) {
 			if (!Config.groups[rank] || !rank) continue;
-			console.log(rank);
+			
 			let tarGroup = Config.groups[rank];
 			let groupType = tarGroup.addhtml || (!tarGroup.mute && !tarGroup.root) ? 'normal' : (tarGroup.root || tarGroup.declare) ? 'leadership' : 'staff';
 
