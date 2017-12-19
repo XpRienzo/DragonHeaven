@@ -24,24 +24,4 @@ exports.BattlePokedex = {
 		inherit: true,
 		otherForms: ["missingno"],
 	},
-	
-	// UOP is bot
-	klang: {
-		inherit: true,
-		baseStats: {hp: 90, atk:80, def: 110, spa:80, spd:110, spe: 75},
-		gen: "SSB",
-	},
-	unleashourpassion: {
-		num: 8000,
-		species: "Durant",
-		types: ["Bug", "Steel"],
-		genderRatio: {M: 1, F: 0},
-		baseStats: {hp: 45, atk: 49, def: 49, spa: 65, spd: 65, spe: 45},
-		abilities: {0: "Hustle"},
-		heightm: 0.3,
-		weightkg: 33,
-		color: "Gray",
-		eggGroups: ["Bug"],
-		gen: "SSB",
-	},
 };

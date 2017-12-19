@@ -104,7 +104,7 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 7] Dragon Heaven Super Staff Bros",
-		desc: ["&bullet; The staff here becomes a Pokemon and battles! <br> &bullet; <a href=\"https://github.com/XpRienzo/DragonHeaven/blob/master/mods/dhssb/README.md\">MoveSlotss</a>"],
+		desc: ["&bullet; The staff here becomes a Pokemon and battles! <br> &bullet; <a href=\"https://github.com/XpRienzo/DragonHeaven/blob/master/mods/dhssb/README.md\">Movesets</a>"],
 		mod: 'dhssb',
 		team: 'randomSeasonalMelee',
 		ruleset: ['PotD', 'Sleep Clause Mod', 'Freeze Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
@@ -117,8 +117,7 @@ exports.Formats = [
 
 			let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
 			for (let i = 0, len = allPokemon.length; i < len; i++) {
-				let pokemon = allPokemon[i];
-				console.log(pokemon.moveSlots);				
+				let pokemon = allPokemon[i];		
 				let last = pokemon.moves.length - 1;
 				if (pokemon.moves[last]) {
 					pokemon.moves[last] = toId(pokemon.set.signatureMove);
