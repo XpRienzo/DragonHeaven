@@ -1075,12 +1075,12 @@ exports.BattlePokedex = {
 	   preevo: "octillery",
 	   },
 	 asterosmos: {
-	   num: 100128,
+	    num: 100128,
 	   species: "Asterosmos",
 	   types: ["Ghost","Dark"],
 	   baseStats: {hp: 51, atk: 109, def: 43, spa: 187, spd: 61, spe: 119},
 	   abilities: {0: "Beast Boost"},
-       },
+      },
 	 saltydrong: {
        num: 100129,
 	   species: "Saltydrong",
