@@ -1150,7 +1150,7 @@ exports.BattlePokedex = {
 		abilities: {0: "Levitate"},
 		prevo: "weezing",
 		},
-	   scottpras: {
+	   scottprass: {
 		num: 100137,
 		species: "Scottprass",
 		types: ["Water", "Ice"],
