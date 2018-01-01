@@ -1226,7 +1226,7 @@ exports.BattlePokedex = {
 		num: 100147,
 		species: "Ultimence",
 		types: ["Dragon", "Fighting"],
-		baseStats: {hp: 95, atk: 155, def: 80, spa: 80, spd: 101, spe: 115},
+		baseStats: {hp: 95, atk: 145, def: 80, spa: 70, spd: 95, spe: 115},
 		abilities: {0: "Intimidate", H: "Iron Fist"},
 		prevo: "shelgon",
 		},
