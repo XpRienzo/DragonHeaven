@@ -1085,14 +1085,14 @@ exports.BattlePokedex = {
        num: 100129,
 	   species: "Saltydrong",
 	   types: ["Water","Steel"],
-	   baseStats: {hp: 81, atk: 57, def: 121, spa: 97, spd: 193, spe: 21},
+	   baseStats: {hp: 81, atk: 121, def: 57, spa: 97, spd: 193, spe: 21},
 	   abilities: {0: "Beast Boost"},
 	   },
 	 rouxdounion: {
        num: 100130,
 	   species: "Rouxdounion",
-	   types: ["Normal","Fire"],
-	   baseStats: {hp: 93, atk: 109, def: 131, spa: 83, spd: 93, spe: 61},
+	   types: ["Flying","Fire"],
+	   baseStats: {hp: 63, atk: 129, def: 131, spa: 83, spd: 73, spe: 91},
 	   abilities: {0: "Beast Boost"},
 	   },
 	 mystishovel: {
