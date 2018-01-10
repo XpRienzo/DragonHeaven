@@ -2791,6 +2791,27 @@ exports.Formats = [
 		},
 	},
 	{
+		name: "[Gen 7] Alphabet Cup",
+		desc: [
+			"Pok&eacute;mon can learn any move it shares the first letter of its name with.",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3617977/\">Alphabet Cup</a>",
+		],
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] OU'],
+		noLearn: ['Geomancy', 'Shell Smash', 'Sketch'],
+		onValidateTeam: function (team) {
+			let alphabetTable = {};
+			for (const set of team) {
+				let letter = toId(set.species).slice(0, 1);
+				if (alphabetTable[letter]) {
+					return ["You are limited to one Pokémon per letter.", "(You have more than one Pokémon beginning with " + letter.toUpperCase() + ")"];
+				}
+				alphabetTable[letter] = true;
+			}
+		},
+	},
+	{
 		name: "[Gen 7] Automagic",
 		desc: [
 			"Whenever an attack's secondary effect is triggered, any setup moves in that Pok&eacute;mon's moveset are run.",
@@ -3184,13 +3205,15 @@ exports.Formats = [
 		name: "[Gen 7] Inheritance",
 		desc: [
 			"Pok&eacute;mon may use the ability and moves of another, as long as they forfeit their own learnset.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3592844/\">Inheritance</a>",
+			"&bullet; <a href=\"http://www.smogon.com/forums/threads/3592844/\">Inheritance</a>",
 		],
 
 		mod: 'gen7',
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber', 'Gyaradosite', 'Mega Gyarados', 'Hoopa-Unbound', 'Kartana', 'Kyurem-Black', 'Regigigas', 'Shedinja', 'Slaking', 'Arena Trap', 'Imposter', 'Huge Power', 'Pure Power', 'Speed Boost', 'Water Bubble', 'Assist', 'Baton Pass', 'Chatter'],
-		bannedDonors: ['Smeargle', 'Hoopa-Unbound', 'Kartana', 'Kyurem-Black', 'Regigigas', 'Shedinja', 'Slaking'],
+		ruleset: ['[Gen 7] OU'],
+		banlist: [
+			'Hoopa-Unbound', 'Kartana', 'Kyurem-Black', 'Regigigas', 'Shedinja', 'Slaking', 'Gyaradosite',
+			'Huge Power', 'Imposter', 'Innards Out', 'Pure Power', 'Speed Boost', 'Water Bubble', 'Assist', 'Chatter', 'Shell Smash',
+		],
 		noChangeForme: true,
 		noChangeAbility: true,
 		getEvoFamily: function (species) {
@@ -3205,7 +3228,7 @@ exports.Formats = [
 				let abilityMap = Object.create(null);
 				for (let speciesid in Dex.data.Pokedex) {
 					let pokemon = Dex.data.Pokedex[speciesid];
-					if (pokemon.num < 1 || pokemon.species in this.format.banlistTable || this.format.bannedDonors.includes(pokemon.species)) continue;
+					if (pokemon.num < 1 || pokemon.species === 'Smeargle') continue;
 					if (Dex.data.FormatsData[speciesid].requiredItem || Dex.data.FormatsData[speciesid].requiredMove) continue;
 					for (let key in pokemon.abilities) {
 						let abilityId = toId(pokemon.abilities[key]);
@@ -3229,19 +3252,21 @@ exports.Formats = [
 			let template = Dex.getTemplate(species);
 			if (!template.exists) return [`The Pokemon "${set.species}" does not exist.`];
 			if (template.isUnreleased) return [`${template.species} is unreleased.`];
-			if (template.tier === 'Uber' || template.species in this.format.banlistTable) return [`${template.species} is banned.`];
+			let megaTemplate = Dex.getTemplate(Dex.getItem(set.item).megaStone);
+			if (template.tier === 'Uber' || megaTemplate.tier === 'Uber' || this.format.banlist.includes(template.species)) return [`${megaTemplate.tier === 'Uber' ? megaTemplate.species : template.species} is banned.`];
 
 			let name = set.name;
 
 			let abilityId = toId(set.ability);
+
 			if (!abilityId || !(abilityId in Dex.data.Abilities)) return [`${name} needs to have a valid ability.`];
 			let pokemonWithAbility = this.format.abilityMap[abilityId];
 			if (!pokemonWithAbility) return [`"${set.ability}" is not available on a legal Pokemon.`];
 
 			let canonicalSource = ''; // Specific for the basic implementation of Donor Clause (see onValidateTeam).
-			let validSources = set.abilitySources = []; // evolutionary families
-			for (let i = 0; i < pokemonWithAbility.length; i++) {
-				let donorTemplate = Dex.getTemplate(pokemonWithAbility[i]);
+			let validSources = set.abilitySources = []; // Evolution families
+			for (const donor of pokemonWithAbility) {
+				let donorTemplate = Dex.getTemplate(donor);
 				let evoFamily = this.format.getEvoFamily(donorTemplate);
 
 				if (validSources.indexOf(evoFamily) >= 0) continue;
@@ -3249,6 +3274,7 @@ exports.Formats = [
 				if (set.name === set.species) delete set.name;
 				set.species = donorTemplate.species;
 				problems = this.validateSet(set, teamHas) || [];
+
 				if (!problems.length) {
 					canonicalSource = donorTemplate.species;
 					validSources.push(evoFamily);
@@ -3275,8 +3301,7 @@ exports.Formats = [
 		onValidateTeam: function (team, format) {
 			// Donor Clause
 			let evoFamilyLists = [];
-			for (let i = 0; i < team.length; i++) {
-				let set = team[i];
+			for (const set of team) {
 				if (!set.abilitySources) continue;
 				evoFamilyLists.push(set.abilitySources.map(format.getEvoFamily));
 			}
@@ -3285,8 +3310,7 @@ exports.Formats = [
 			// Instead, we only check the trivial case of multiple Pokémon only legal for exactly one family. FIXME?
 			// This clause has only gotten more complex over time, so this is probably a won't fix.
 			let requiredFamilies = Object.create(null);
-			for (let i = 0; i < evoFamilyLists.length; i++) {
-				let evoFamilies = evoFamilyLists[i];
+			for (const evoFamilies of evoFamilyLists) {
 				if (evoFamilies.length !== 1) continue;
 				let [familyId] = evoFamilies;
 				if (!(familyId in requiredFamilies)) requiredFamilies[familyId] = 1;
@@ -3295,7 +3319,7 @@ exports.Formats = [
 			}
 		},
 		onBegin: function () {
-			for (let pokemon of this.p1.pokemon.concat(this.p2.pokemon)) {
+			for (const pokemon of this.p1.pokemon.concat(this.p2.pokemon)) {
 				if (pokemon.baseAbility.includes('0')) {
 					let donor = pokemon.baseAbility.split('0')[1];
 					pokemon.donor = toId(donor);
@@ -3306,7 +3330,7 @@ exports.Formats = [
 		},
 		onSwitchIn: function (pokemon) {
 			if (!pokemon.donor) return;
-			let donorTemplate = this.getTemplate(pokemon.donor);
+			let donorTemplate = Dex.getTemplate(pokemon.donor);
 			if (!donorTemplate.exists) return;
 			// Place volatiles on the Pokémon to show the donor details.
 			this.add('-start', pokemon, donorTemplate.species, '[silent]');
