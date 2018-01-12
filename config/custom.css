@@ -1,41 +1,40 @@
-
 /**************
   * GENERAL CSS *
   **************/
-
- body {
+body {
     background: #EEE url("http://i.imgur.com/JYUBwQr.jpg") no-repeat left fixed;
-  }
-.button{color:black;background:#ff9966!important;border:solid 1px black!important}.menugroup
- 
-.button:hover,.menugroup
- 
-.button:active{color:white;background:#ff9966!important;border:solid 1px black!important
 }
-
-  .astext{
+.button {
+    color: black;
+    background: #ff9966!important;
+    border: solid 1px black!important
+}
+.menugroup .button:hover,
+.menugroup .button:active {
+    color: white;
+    background: #ff9966!important;
+    border: solid 1px black!important
+}
+.astext {
     border: none;
     background: none;
-  }
-
-  .broadcast-blue {
+}
+.broadcast-blue {
     background-color: #054270;
     border: 5px solid #13d858;
-    font-size:24px;
+    font-size: 24px;
     color: #01ba76;
-    font-weight:bold;
+    font-weight: bold;
     font-family: sans-serif;
     padding: 20px;
     text-align: center;
     margin: 5px;
     text-shadow: 0px -1px 0px #e6e6e6;
-  }
-
-  .broadcast-blue a {
+}
+.broadcast-blue a {
     color: #0B1361;
-  }
-
-  .broadcast-red {
+}
+.broadcast-red {
     background-color: #FFB3B3;
     border: 1px solid #610B0B;
     color: #610B0B;
@@ -44,13 +43,11 @@
     text-align: center;
     margin: 5px;
     text-shadow: 0px -1px 0px #FFD7D7;
-  }
-
-  .broadcast-red a {
+}
+.broadcast-red a {
     color: #610B0B;
-  }
-
-  .broadcast-green {
+}
+.broadcast-green {
     background-color: #C3FFB3;
     border: 1px solid #19610B;
     color: #19610B;
@@ -59,458 +56,381 @@
     text-align: center;
     margin: 5px;
     text-shadow: 0px -1px 0px #D8FFD7;
-  }
-
-  .broadcast-green a {
+}
+.broadcast-green a {
     color: #19610B;
-  }
-
 }
-
 .rainbow {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  cursor: pointer;
-  border: none;
-  font: Jokerman;
-	font-size:60px;
-  color: rgba(0, 0, 0, 0);
-  text-align: center;
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  text-shadow: 3px 0 0 , 6px 0 0 black , 9px 0 0 rgb(245,221,8) , 12px 0 0 rgb(5,148,68) , 15px 0 0 rgb(2,135,206) , 18px 0 0  , 21px 0 0  ;
-  -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  -moz-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  -o-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: pointer;
+    border: none;
+    font: Jokerman;
+    font-size: 60px;
+    color: rgba(0, 0, 0, 0);
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    text-shadow: 3px 0 0, 6px 0 0 black, 9px 0 0 rgb(245, 221, 8), 12px 0 0 rgb(5, 148, 68), 15px 0 0 rgb(2, 135, 206), 18px 0 0, 21px 0 0;
+    -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -o-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
 .rainbow:hover {
-  text-shadow: -3px 0 0 rgb(217,31,38) , -6px 0 0 rgb(226,91,14) , -9px 0 0 rgb(245,221,8) , -12px 0 0 rgb(5,148,68) , -15px 0 0 rgb(2,135,206) , -18px 0 0 rgb(4,77,145) , -21px 0 0 rgb(42,21,113) ;
-  -webkit-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  -moz-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  -o-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    text-shadow: -3px 0 0 rgb(217, 31, 38), -6px 0 0 rgb(226, 91, 14), -9px 0 0 rgb(245, 221, 8), -12px 0 0 rgb(5, 148, 68), -15px 0 0 rgb(2, 135, 206), -18px 0 0 rgb(4, 77, 145), -21px 0 0 rgb(42, 21, 113);
+    -webkit-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -o-transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
 .flash {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  padding: 20px;
-	cursor:pointer;
-  border: none;
-  font-family: Jokerman;
-font-size:64px;
-  color: rgba(255,255,255,1);
-  text-align: center;
-  -o-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  text-shadow: 0 0 10px #f4aa42 , 0 0 20px #f4aa42 , 0 0 30px #f4aa42 , 0 0 40px #f4aa42 , 0 0 70px #f4aa42 , 0 0 80px #f4aa42 , 0 0 100px #f4aa42 , 0 0 150px #f4aa42 ;
-  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
-  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
-  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
-  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    padding: 20px;
+    cursor: pointer;
+    border: none;
+    font-family: Jokerman;
+    font-size: 64px;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 10px #f4aa42, 0 0 20px #f4aa42, 0 0 30px #f4aa42, 0 0 40px #f4aa42, 0 0 70px #f4aa42, 0 0 80px #f4aa42, 0 0 100px #f4aa42, 0 0 150px #f4aa42;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
 }
-
 .flash:hover {
-  text-shadow: 0 0 5px #d35656 , 0 0 10px #d35656 , 0 0 15px #d35656 , 0 0 20px #d35656 , 0 0 35px #d35656 , 0 0 40px #d35656 , 0 0 50px #d35656 , 0 0 75px #d35656 ;
+    text-shadow: 0 0 5px #d35656, 0 0 10px #d35656, 0 0 15px #d35656, 0 0 20px #d35656, 0 0 35px #d35656, 0 0 40px #d35656, 0 0 50px #d35656, 0 0 75px #d35656;
 }
-.boom{
-  text-align:center;
-  font-size:6.5em;
-  color:#fff;
-  letter-spacing: -7px;
-  font-weight:700;
-  text-transform:uppercase;
-  animation:blur .75s ease-out infinite;
-  text-shadow:0px 0px 5px #fff,
-      0px 0px 7px #fff;
+.boom {
+    text-align: center;
+    font-size: 6.5em;
+    color: #fff;
+    letter-spacing: -7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    animation: blur .75s ease-out infinite;
+    text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
 }
-
-@keyframes blur{
-  from{
-      text-shadow:0px 0px 10px #fff,
-      0px 0px 10px #FFA000, 
-      0px 0px 25px #FFA000,
-      0px 0px 25px #FFA000,
-      0px 0px 25px #FFA000,
-      0px 0px 25px #FFA000,
-      0px 0px 25px #FFA000,
-      0px 0px 25px #FFA000,
-      0px 0px 50px #FFA000,
-      0px 0px 50px #FFA000,
-      0px 0px 50px #7B96B8,
-      0px 0px 150px #7B96B8,
-      0px 10px 100px #7B96B8,
-      0px 10px 100px #7B96B8,
-      0px 10px 100px #7B96B8,
-      0px 10px 100px #7B96B8,
-      0px -10px 100px #7B96B8,
-      0px -10px 100px #7B96B8;}
+@keyframes blur {
+    from {
+        text-shadow: 0px 0px 10px #fff, 0px 0px 10px #FFA000, 0px 0px 25px #FFA000, 0px 0px 25px #FFA000, 0px 0px 25px #FFA000, 0px 0px 25px #FFA000, 0px 0px 25px #FFA000, 0px 0px 25px #FFA000, 0px 0px 50px #FFA000, 0px 0px 50px #FFA000, 0px 0px 50px #7B96B8, 0px 0px 150px #7B96B8, 0px 10px 100px #7B96B8, 0px 10px 100px #7B96B8, 0px 10px 100px #7B96B8, 0px 10px 100px #7B96B8, 0px -10px 100px #7B96B8, 0px -10px 100px #7B96B8;
+    }
 }
-  .textbox, .textbox:hover, .textbox:focus {
+.textbox, .textbox:hover, .textbox:focus {
     border: 1px solid #252F3F;
     box-shadow: none !important;
-  }
-
-  }
-  .closebutton, .minimizebutton {
+}
+.closebutton, .minimizebutton {
     color: #413B45;
-  }
-
-  .closebutton:hover, .minimizebutton:hover {
+}
+.closebutton:hover, .minimizebutton:hover {
     color: #000;
-                    }
-  .ps-room.ps-room-light {
-    background: rgba(255, 204, 153, 0.79);
+}
+.ps-room.ps-room-light {
+    background: rgba(255,
+    204,
+    153,
+    0.79);
     border-color: black;
-  }
-
-  .ps-room.ps-room-light.scrollable {
-    background:rgba(255, 204, 153, 0.79);
+}
+.ps-room.ps-room-light.scrollable {
+    background:rgba(255,
+    204,
+    153,
+    0.79);
     border-color: black;
-  }
-  .dark .ps-room.ps-room-light.scrollable {
-    background:rgba(120, 70, 50, 0.7)
+}
+.dark .ps-room.ps-room-light.scrollable {
+    background:rgba(120,70,50,0.7);
     border-color: black;
-  }
-
-  .roomlist a.ilink, .roomcounters button {
+}
+.roomlist a.ilink, .roomcounters button {
     border-color: black;
     color: black;
     background: white;
-  }
-
-  .roomlist a.ilink:hover, .roomcounters button:hover {
+}
+.roomlist a.ilink:hover, .roomcounters button:hover {
     border-color: black;
     color: orange;
     background: white;
-  }
+}
 .dark a.roomtab.button.closable {
-	color:black;
+    color:black;
 }
 .dark a.roomtab.button.cur {
-	color:black;
+    color:black;
 }
-
-
-
-
-  button:hover {
+button:hover {
     border: 1px solid #ffa500;
-
-  }
-
-  button {
+}
+button {
     background:#ffa500;
     border-radius: 5px;
     color: #000000;
     border: 1px solid #ffa500;
-  }
-  button {
+}
+button {
     background:#ffa500;
     border-radius: 5px;
     color: #000000;
     border: 1px solid #ffa500;
-  }
-
-button.button.mainmenu1{
-	color:#373b3d;
 }
-button.button.mainmenu2{
-	color:black;
+button.button.mainmenu1 {
+    color:#373b3d;
 }
-button.button.mainmenu3{
-	color:black;
+button.button.mainmenu2 {
+    color:black;
 }
-button.button.mainmenu4{
-	color:black;
+button.button.mainmenu3 {
+    color:black;
 }
-button.button.mainmenu5{
-	color:black;
+button.button.mainmenu4 {
+    color:black;
+}
+button.button.mainmenu5 {
+    color:black;
 }
 .dark button.button {
-	color:black;
+    color:black;
 }
-
-  .infobox {
+.infobox {
     border: 1px solid #0B1361;
     padding: 6px 6px;
-    background: rgba(255, 204, 153, 0.4);
-  }
-
-  .chat-log a, .pm-log a {
+    background: rgba(255,204,153,0.4);
+}
+.chat-log a, .pm-log a {
     color: #0500A5;
-  }
-
-  .chat-log a:visited, .pm-log a:visited {
+}
+.chat-log a:visited, .pm-log a:visited {
     color: #162055;
-  }
-
-  .userlist {
-    background: rgba(167, 239, 239, 0.45);
+}
+.userlist {
+    background: rgba(167,
+    239,
+    239,
+    0.45);
     border-right: 1px solid #252F3F;
-  }
-
-  .userlist li {
-    background-color: rgba(244, 244, 244, 0.8);
+}
+.userlist li {
+    background-color: rgba(244,244,244,0.8);
     border-bottom-color: #AAA;
-  }
-
-  .userlist li button:hover {
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  .userlist li em.group {
+}
+.userlist li button:hover {
+    background: rgba(255,
+    255,
+    255,
+    0.8);
+}
+.userlist li em.group {
     color: #252F3F;
-  }
-
-  .chat-log {
-    background: url("") top right no-repeat rgba(235, 235, 235, 0.785);
-  }
-
-  .chat-log-add {
-    background: rgba(178, 223, 247, 0.45);
+}
+.chat-log {
+    background: url("") top right no-repeat rgba(235,
+    235,
+    235,
+    0.785);
+}
+.chat-log-add {
+    background: rgba(178,223,247,0.45);
     border-top: 1px solid #252F3F;
-  }
-
-
-  #header {
-    background: rgba(255, 187, 153, 0.45) url("http://i.imgur.com/QbFNFD9.png") no-repeat 0 0;
+}
+#header {
+    background: rgba(255,187,153,0.45) url("http://i.imgur.com/QbFNFD9.png") no-repeat 0 0;
 }
 .dark #header {
-  background: rgba(240, 140, 100, 0.4) url("http://i.imgur.com/QbFNFD9.png") no-repeat 0 0;
+    background: rgba(240,
+    140,
+    100,
+    0.4) url("http://i.imgur.com/QbFNFD9.png") no-repeat 0 0;
 }
-
-  .header .logo {
+.header .logo {
     opacity: 0;
-
 }
- .a.button.minilogo{
+.a.button.minilogo {
     background: url("http://i.imgur.com/PKhofj0.png") no-repeat 0 0;
 }
-.dark .menugroup{
-        background: rgba(50, 30, 0, 0.4);
+.dark .menugroup {
+    background: rgba(50,30,0,0.4);
 }
 .menugroup {
-        border: 1px solid #d9d9d9;
-        background: rgba(255, 187, 153, 0.45);
-
+    border: 1px solid #d9d9d9;
+    background: rgba(255,187,153,0.45);
 }
 .label {
-        text-shadow: none !important;
-        font-style: italic;
+    text-shadow: none !important;
+    font-style: italic;
 }
-
-  .maintabbarbottom {
+.maintabbarbottom {
     background: #f4aa42;
     border: 1px solid #808080;
-  }
+}
 .dark .maintabbarbottom {
     background: #f4aa42;
     border: 1px solid #808080;
-  }
-
-  .tabbar a.button.notifying {
+}
+.tabbar a.button.notifying {
     background: #00E2DB;
     border-color: #00FFFF;
     color: #FFA000;
     text-shadow: none;
-  }
-
-  .tabbar a.button.notifying:hover {
+}
+.tabbar a.button.notifying:hover {
     background: #00DAD2;
     border-color: #00FFFF;
     color: black;
-  }
-
-  .tabbar a.button.cur, .tabbar a.button.cur:hover {
+}
+.tabbar a.button.cur,
+.tabbar a.button.cur:hover {
     background: #808080;
     border: 1px solid #413B45;
     color: #413B45;
     text-shadow: none;
-  }
-
-  .tabbar a.button {
+}
+.tabbar a.button {
     border: 1px solid #413B45;
     background: #a6a6a6;
     color: #413B45;
     text-shadow: none;
-  }
-
-  .tabbar a.button:hover {
+}
+.tabbar a.button:hover {
     border: 1px solid #413B45;
     background: #808080;
     color: #413B45;
     text-shadow: none;
-  }
-
-  .tabbar a.button.subtle-notifying {
+}
+.tabbar a.button.subtle-notifying {
     color: #990000;
-  }
-
-
-  .userbar button.icon {
+}
+.userbar button.icon {
     background: #EEE;
     border: 1px solid #AAA;
     padding: 0px 4px 2px 4px;
-  }
-
-  .userbar button.icon:hover {
+}
+.userbar button.icon:hover {
     background: #EEE;
     border: 1px solid #777;
-  }
-
-  .ps-popup {
+}
+.ps-popup {
     background: #DDD;
     border: 1px solid #AAA;
-  }
-
-  .credits h2 {
-    color: #2D3459;
-
 }
-
-.mainmenufooter a
-
-
-
-
-  a.subtle, .credits ul li p, .credits ul {
+.credits h2 {
+    color: #2D3459;
+}
+.mainmenufooter a a.subtle, .credits ul li p, .credits ul {
     color: #37348E;
-  }
-
- .popupmenu h3 {
+}
+.popupmenu h3 {
     color: #1E2C28;
-  }
-  .ps-popup {
+}
+.ps-popup {
     background-color: #ffe4ad;
     color: black;
-	}
-
-  .ps-popup a, .ps-popup a.ilink {
+}
+.ps-popup a, .ps-popup a.ilink {
     color: #37348E;
-  }
-
-  .ps-popup a.ilink:hover {
+}
+.ps-popup a.ilink:hover {
     color: #433FB9;
-  }
-
-  .avatarlist button {
+}
+.avatarlist button {
     border: 1px solid #ff6600;
-  }
-
-  .avatarlist button:hover {
+}
+.avatarlist button:hover {
     border: 1px solid #ff6600;
-    background-color: rgb(255, 153, 102);
-  }
-
-
-
-  .ps-popup .buttonbar button:hover {
+    background-color: rgb(255,153,102);
+}
+.ps-popup .buttonbar button:hover {
     background: #6AE68B;
-  }
-
-  .ps-overlay {
-    background: rgba(0, 0, 0, 0.5);
-    }
-
-  .ps-popup a {
+}
+.ps-overlay {
+    background: rgba(0,0,0,0.5);
+}
+.ps-popup a {
     color: black;
-  }
-
-  .ps-popup a.ilink {
+}
+.ps-popup a.ilink {
     color: black;
-  }
-
-  .ps-popup a.ilink:hover {
+}
+.ps-popup a.ilink:hover {
     color: blue;
-  }
-
-  .ps-popup hr {
+}
+.ps-popup hr {
     border: none;
     border-bottom: 1px solid #7C000C;
-                    }
-
-  .ps-popup .buttonbar button {
+}
+.ps-popup .buttonbar button {
     background: #EEE;
     border: 1px solid #AAA;
     padding: 2px 4px;
-  }
-
-  .ps-popup .buttonbar button:hover {
+}
+.ps-popup .buttonbar button:hover {
     background: #EEE;
     border: 1px solid #777;
-  }
-  .ps-room.ps-room-opaque {
-    background: rgba(178, 223, 247, 0.7);
-  }
-
-  .ps-room .battle-controls {
-    background: rgba(0, 0, 0, 0);
-  }
-  .battle-log {
+}
+.ps-room.ps-room-opaque {
+    background: rgba(178,223,247,0.7);
+}
+.ps-room .battle-controls {
+    background: rgba(0,0,0,0);
+}
+.battle-log {
     background: url("");
     border-color: #413B45;
-  }
-
-  .message-error {
+}
+.message-error {
     border: 1px solid #413B45;
     background: #ECB3B4;
     color: #413B45;
     margin-bottom: 1px;
-  }
-/*Battle CSS*/
-
-   .backdrop {
-    background: url(http://cdn.wallpapersafari.com/31/60/sFZiGV.jpg) !important;
-        opacity: 0.6;
 }
 
-  .battle-log .chat {
+/*Battle CSS*/
+.backdrop {
+    background: url(http://cdn.wallpapersafari.com/31/60/sFZiGV.jpg) !important;
+    opacity: 0.6;
+}
+.battle-log .chat {
     padding: 3px 1px;
-  }
-
-  .battle-log h2 {
+}
+.battle-log h2 {
     text-align: right;
     font-style: italic;
     border-color: #000000;
     background: #ff9966;
     color: #000000;
-  }
-
-  .battle-log-add {
+}
+.battle-log-add {
     background: #ff9966;
     border: 1px solid #000000;
     color: #000000;
-  }
-  .battle {
+}
+.battle {
     border-color: #413B45;
-  }
-
-  .battle-log .rated strong {
+}
+.battle-log .rated strong {
     background: #2D3459;
-  }
-
-  .battle-log .chat strong {
+}
+.battle-log .chat strong {
     color: #2D3459;
-  }
-
-  .rightbar, .leftbar {
+}
+.rightbar, .leftbar {
     border-color: #413B45;
-    background: rgba(206, 234, 250, 0.5);
-  }
-
-  .trainer strong {
+    background: rgba(206,234,250,0.5);
+}
+.trainer strong {
     color: #413B45;
-  }
-
-  .trainer div {
+}
+.trainer div {
     opacity: 1;
-  }
-  .turnstatus-protect {
+}
+.turnstatus-protect {
     background:url(http://i.imgur.com/RVxCoHz.png);
     opacity:1!important;
     height:103px!important;
@@ -519,9 +439,8 @@ button.button.mainmenu5{
     border-width:0;
     box-shadow:none;
     opacity:0.9;
-  }
-
-  .sidecondition-safeguard {
+}
+.sidecondition-safeguard {
     background:url(http://i.imgur.com/FrCoWCW.png);
     opacity:0.6!important;
     height:90px!important;
@@ -530,9 +449,8 @@ button.button.mainmenu5{
     opacity:0.9;
     border-width:0;
     box-shadow:none;
-  }
-
-  .sidecondition-reflect {
+}
+.sidecondition-reflect {
     background:url(http://i.imgur.com/X1XDxVB.png);
     opacity:0.7!important;
     height:90px!important;
@@ -541,9 +459,8 @@ button.button.mainmenu5{
     border-width:0;
     opacity:0.9;
     box-shadow:none;
-  }
-
-  .sidecondition-lightscreen {
+}
+.sidecondition-lightscreen {
     background:url(http://i.imgur.com/8eLftNA.png);
     opacity:0.6!important;
     height:90px!important;
@@ -552,627 +469,572 @@ button.button.mainmenu5{
     border-radius:0;
     border-width:0;
     box-shadow:none;
-                    }
-
-  .pm-window h3 {
+}
+.pm-window h3 {
     border-color: #000000;
-    background: rgb(255, 102, 0) url("") bottom right no-repeat;
-    background-position: 200px;
-    color:   #000000;
-    text-shadow: 0px -1px 0px  #000000;
-  }
-
-  .pm-window h3:hover {
-    background: rgb(255, 163, 102) url("") bottom right no-repeat;
+    background: rgb(255,102,0) url("") bottom right no-repeat;
     background-position: 200px;
     color: #000000;
-  }
-
-  .pm-window h3 small {
+    text-shadow: 0px -1px 0px #000000;
+}
+.pm-window h3:hover {
+    background: rgb(255,163,102) url("") bottom right no-repeat;
+    background-position: 200px;
     color: #000000;
-  }
-
-  .pm-window.focused h3, .pm-window.focused h3:hover {
+}
+.pm-window h3 small {
+    color: #000000;
+}
+.pm-window.focused h3, .pm-window.focused h3:hover {
     border-color: #0033CC;
-    background: rgb(0, 153, 204) url("") bottom right no-repeat;
+    background: rgb(0,153,204) url("") bottom right no-repeat;
     background-position: 200px;
     color: #0033CC;
     text-shadow: 0px -1px 0px #0033CC;
-  }
-
-  .pm-window h3:hover .minimizebutton, .pm-window h3 .closebutton, .pm-window h3 .minimizebutton {
-    color:  #CCFFFF;
-  }
-
-  .pm-window h3 .closebutton:hover {
-    color:#CCFFFF;
-  }
-
-  .pm-window h3 .minimizebutton:hover {
+}
+.pm-window h3:hover .minimizebutton, .pm-window h3 .closebutton, .pm-window h3 .minimizebutton {
     color: #CCFFFF;
-  }
-
-  .pm-window h3 .closebutton:hover + .minimizebutton {
+}
+.pm-window h3 .closebutton:hover {
+    color:#CCFFFF;
+}
+.pm-window h3 .minimizebutton:hover {
+    color: #CCFFFF;
+}
+.pm-window h3 .closebutton:hover + .minimizebutton {
     color: #CCFFFF !important;
-  }
-
-  .message-pm {
-    color:  #000000;
-  }
-
-  .pm-window h3.pm-notifying {
+}
+.message-pm {
+    color: #000000;
+}
+.pm-window h3.pm-notifying {
     border-color: #3399ff;
     background: #3399ff;
     color: #2367DE;
     text-shadow: none;
-  }
-
-  .pm-window h3.pm-notifying:hover {
+}
+.pm-window h3.pm-notifying:hover {
     background: #99ccff;
-  }
-
-  .pm-window h3.pm-notifying small {
-    color:  #000000;
-  }
-
-  .pm-window h3.pm-notifying .closebutton, .pm-window h3.pm-notifying .minimizebutton {
+}
+.pm-window h3.pm-notifying small {
+    color: #000000;
+}
+.pm-window h3.pm-notifying .closebutton, .pm-window h3.pm-notifying .minimizebutton {
     color:#000000;
-  }
-
-  .pm-window h3.pm-notifying .closebutton:hover {
+}
+.pm-window h3.pm-notifying .closebutton:hover {
     color: #000000;
-  }
-
-  .pm-window h3.pm-notifying .minimizebutton:hover {
+}
+.pm-window h3.pm-notifying .minimizebutton:hover {
     color: #000000;
-  }
-
-  .pm-window h3.pm-notifying .closebutton:hover + .minimizebutton {
+}
+.pm-window h3.pm-notifying .closebutton:hover + .minimizebutton {
     color: #000000 !important;
-  }
-
-  .pm-log, .pm-window.focused .pm-log {
+}
+.pm-log,
+.pm-window.focused .pm-log {
     border-color: #000000;
 }
 .pmnote {
-	color:#36688D;
-	font-weight:bold
-	
+    color:#36688D;
+    font-weight:bold
 }
 .message-pm {
-	color:#36688D;
-	font-weight:bold;
-
+    color:#36688D;
+    font-weight:bold;
 }
-
 .userlist li button:hover {
-        background:rgba(244, 244, 244, 0.5)
-  }
-
+    background:rgba(244,244,244,0.5);
+}
 
 /*************************************
   * Userlist Icons *
   ************************************/
- #lobby-userlist-user-lordhaji  em.group, #staff-userlist-user-lordhaji em.group, #shadowbanroom-userlist-user-lordhaji  em.group, #casino-userlist-user-lordhaji  em.group, #development-userlist-user-lordhaji  em.group, #gamecave-userlist-user-lordhaji  em.group, #catchevolve-userlist-user-lordhaji  em.group, #smashbros-userlist-user-lordhaji  em.group {
+#lobby-userlist-user-lordhaji  em.group, #staff-userlist-user-lordhaji em.group, #shadowbanroom-userlist-user-lordhaji  em.group, #casino-userlist-user-lordhaji  em.group, #development-userlist-user-lordhaji  em.group, #gamecave-userlist-user-lordhaji  em.group, #catchevolve-userlist-user-lordhaji  em.group, #smashbros-userlist-user-lordhaji  em.group {
     background: rgba(244, 244, 244, 0.8) url("http://vignette2.wikia.nocookie.net/pokemon/images/3/3c/448M.png/revision/latest?cb=20131021092720") right no-repeat;
- }
-   #lobby-userlist-user-lordhaji  em.group, #staff-userlist-user-lordhaji em.group, #shadowbanroom-userlist-user-lordhaji  em.group, #casino-userlist-user-lordhaji  em.group, #development-userlist-user-lordhaji  em.group, #gamecave-userlist-user-clawliet  em.group, #catchevolve-userlist-user-lordhaji  em.group, #smashbros-userlist-user-lordhaji  em.group {
+}
+#lobby-userlist-user-lordhaji  em.group, #staff-userlist-user-lordhaji em.group, #shadowbanroom-userlist-user-lordhaji  em.group, #casino-userlist-user-lordhaji  em.group, #development-userlist-user-lordhaji  em.group, #gamecave-userlist-user-clawliet  em.group, #catchevolve-userlist-user-lordhaji  em.group, #smashbros-userlist-user-lordhaji  em.group {
     color:#39FF14;
-  }
-  #lobby-userlist-user-clawliet, #staff-userlist-user-clawliet, #shadowbanroom-userlist-user-clawliet, #tournaments-userlist-user-clawliet, #casino-userlist-user-clawliet, #femalehq-userlist-user-clawliet, #catchandevolve-userlist-user-clawliet, #smogontiers-userlist-user-clawliet, #leagueoflegends-userlist-user-clawliet, #1v1-userlist-user-clawliet, #bbc-userlist-user-clawliet, #roleplaying-userlist-user-clawliet, #theartbotshop-userlist-user-clawliet, #theranseiregion-userlist-user-clawliet, #thehangout-userlist-user-clawliet, #cancerlobbyshitposting-userlist-user-clawliet, #smashbros-userlist-user-clawliet, #monotype-userlist-user-clawliet {
+}
+#lobby-userlist-user-clawliet, #staff-userlist-user-clawliet, #shadowbanroom-userlist-user-clawliet, #tournaments-userlist-user-clawliet, #casino-userlist-user-clawliet, #femalehq-userlist-user-clawliet, #catchandevolve-userlist-user-clawliet, #smogontiers-userlist-user-clawliet, #leagueoflegends-userlist-user-clawliet, #1v1-userlist-user-clawliet, #bbc-userlist-user-clawliet, #roleplaying-userlist-user-clawliet, #theartbotshop-userlist-user-clawliet, #theranseiregion-userlist-user-clawliet, #thehangout-userlist-user-clawliet, #cancerlobbyshitposting-userlist-user-clawliet, #smashbros-userlist-user-clawliet, #monotype-userlist-user-clawliet {
     background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokemon/conquest/icon/149.png") right no-repeat;
-  }
-
-  #lobby-userlist-user-clawliet  em.group, #staff-userlist-user-clawliet  em.group, #shadowbanroom-userlist-user-clawliet  em.group, #casino-userlist-user-clawliet  em.group, #tournaments-userlist-user-clawliet  em.group, #femalehq-userlist-user-clawliet  em.group, #catchevolve-userlist-user-clawliet  em.group, #smashbros-userlist-user-clawliet  em.group, #1v1-userlist-user-clawliet  em.group, #tournaments-userlist-user-clawliet  em.group, #bbc-userlist-user-clawliet  em.group, #smogontiers-userlist-user-clawliet  em.group, #roleplaying-userlist-user-clawliet  em.group, #thehangout-userlist-user-clawliet  em.group, #theartbotshop-userlist-user-clawliet  em.group, #theranseiregion-userlist-user-clawliet  em.group, #cancerlobbyshitposting-userlist-user-clawliet  em.group, #monotype-userlist-user-clawliet  em.group, #shadowleague-userlist-user-clawliet  em.group {
+}
+#lobby-userlist-user-clawliet  em.group, #staff-userlist-user-clawliet  em.group, #shadowbanroom-userlist-user-clawliet  em.group, #casino-userlist-user-clawliet  em.group, #tournaments-userlist-user-clawliet  em.group, #femalehq-userlist-user-clawliet  em.group, #catchevolve-userlist-user-clawliet  em.group, #smashbros-userlist-user-clawliet  em.group, #1v1-userlist-user-clawliet  em.group, #tournaments-userlist-user-clawliet  em.group, #bbc-userlist-user-clawliet  em.group, #smogontiers-userlist-user-clawliet  em.group, #roleplaying-userlist-user-clawliet  em.group, #thehangout-userlist-user-clawliet  em.group, #theartbotshop-userlist-user-clawliet  em.group, #theranseiregion-userlist-user-clawliet  em.group, #cancerlobbyshitposting-userlist-user-clawliet  em.group, #monotype-userlist-user-clawliet  em.group, #shadowleague-userlist-user-clawliet  em.group {
     color:red;
-  }
-
-  #lobby-userlist-user-deltastatics  em.group, #staff-userlist-user-deltastatics  em.group, #shadowbanroom-userlist-user-deltastatics  em.group, #casino-userlist-user-deltastatics  em.group, #tournaments-userlist-user-deltastatics  em.group, #femalehq-userlist-user-deltastatics  em.group, #catchevolve-userlist-user-deltastatics  em.group, #smashbros-userlist-user-deltastatics  em.group, #1v1-userlist-user-deltastatics  em.group, #tournaments-userlist-user-deltastatics  em.group, #bbc-userlist-user-deltastatics  em.group, #smogontiers-userlist-user-deltastatics  em.group, #roleplaying-userlist-user-deltastatics  em.group, #thehangout-userlist-user-deltastatics  em.group, #theartbotshop-userlist-user-deltastatics  em.group, #theranseiregion-userlist-user-deltastatics  em.group, #cancerlobbyshitposting-userlist-user-deltastatics  em.group, #monotype-userlist-user-deltastatics  em.group, #shadowleague-userlist-user-deltastatics  em.group {
+}
+#lobby-userlist-user-deltastatics  em.group, #staff-userlist-user-deltastatics  em.group, #shadowbanroom-userlist-user-deltastatics  em.group, #casino-userlist-user-deltastatics  em.group, #tournaments-userlist-user-deltastatics  em.group, #femalehq-userlist-user-deltastatics  em.group, #catchevolve-userlist-user-deltastatics  em.group, #smashbros-userlist-user-deltastatics  em.group, #1v1-userlist-user-deltastatics  em.group, #tournaments-userlist-user-deltastatics  em.group, #bbc-userlist-user-deltastatics  em.group, #smogontiers-userlist-user-deltastatics  em.group, #roleplaying-userlist-user-deltastatics  em.group, #thehangout-userlist-user-deltastatics  em.group, #theartbotshop-userlist-user-deltastatics  em.group, #theranseiregion-userlist-user-deltastatics  em.group, #cancerlobbyshitposting-userlist-user-deltastatics  em.group, #monotype-userlist-user-deltastatics  em.group, #shadowleague-userlist-user-deltastatics  em.group {
     color:green;
-  }
-
-  #lobby-userlist-user-nick151  em.group, #staff-userlist-user-nick151  em.group, #casino-userlist-user-nick151  em.group {
+}
+#lobby-userlist-user-nick151  em.group, #staff-userlist-user-nick151  em.group, #casino-userlist-user-nick151  em.group {
     color:red;
-  }
-
-  #lobby-userlist-user-paul71, #staff-userlist-user-paul71, #gamecave-userlist-user-paul71 {
+}
+#lobby-userlist-user-paul71, #staff-userlist-user-paul71, #gamecave-userlist-user-paul71 {
     background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/493.png") right no-repeat;
-  }
-
-  #lobby-userlist-user-shiryuki  em.group, #casino-userlist-user-shiryuki  em.group, #staff-userlist-user-shiryuki  em.group {
+}
+#lobby-userlist-user-shiryuki  em.group, #casino-userlist-user-shiryuki  em.group, #staff-userlist-user-shiryuki  em.group {
     color:red;
-  }
-
-  #tournaments-userlist-user-ranseihttpspritespokecheckorgsicon384png, #theranseiregion-userlist-user-ranseihttpspritespokecheckorgsicon384png {
+}
+#tournaments-userlist-user-ranseihttpspritespokecheckorgsicon384png, #theranseiregion-userlist-user-ranseihttpspritespokecheckorgsicon384png {
     background: rgba(244, 244, 244, 0.8) url("Lobby") right no-repeat;
-  }
-
-  #lobby-userlist-user-ransei, #tournaments-userlist-user-ransei, #theranseiregion-userlist-user-ransei {
+}
+#lobby-userlist-user-ransei, #tournaments-userlist-user-ransei, #theranseiregion-userlist-user-ransei {
     background: rgba(244, 244, 244, 0.8) url("http://sprites.pokecheck.org/sicon/384.png") right no-repeat;
-  }
-
-  #lobby-userlist-user-camilas, #casino-userlist-user-camilas, #tournaments-userlist-user-camilas {
+}
+#lobby-userlist-user-camilas, #casino-userlist-user-camilas, #tournaments-userlist-user-camilas {
     background: rgba(244, 244, 244, 0.8) url("http://imgur.com/7rdvKm8.gif") right no-repeat;
-  }
-  #lobby-userlist-user-mdi, #suicunesquad-userlist-user-mdi {
+}
+#lobby-userlist-user-mdi, #suicunesquad-userlist-user-mdi {
     background:  rgba(244, 244, 244, 0.8) url("http://pldh.net/media/pokexycons/245.png") right no-repeat;
 }
 #lobby-userlist-user-suicunesquad,#suicunesquad-userlist-user-suicunesquad {
-  background:  rgba(244, 244, 244, 0.8) url("http://pldh.net/media/pokexycons/245.png") right no-repeat;
+    background:  rgba(244, 244, 244, 0.8) url("http://pldh.net/media/pokexycons/245.png") right no-repeat;
 }
 #lobby-userlist-user-calrissian,#suicunesquad-userlist-user-calrissian {
-  background:  rgba(244, 244, 244, 0.8) url("http://pldh.net/media/pokexycons/245.png") right no-repeat;
+    background:  rgba(244, 244, 244, 0.8) url("http://pldh.net/media/pokexycons/245.png") right no-repeat;
 }
 #lobby-userlist-user-suicuter,#suicunesquad-userlist-user-suicuter {
-  background:  rgba(244, 244, 244, 0.8) url("http://pldh.net/media/pokexycons/245.png") right no-repeat;
+    background:  rgba(244, 244, 244, 0.8) url("http://pldh.net/media/pokexycons/245.png") right no-repeat;
 }
 #lobby-userlist-user-diarmuidodyna, #staffuserlist-user-diarmuidodyna,#art-userlist-user-diarmuidodyna {
-  background:  rgba(244, 244, 244, 0.8) url("http://i.imgur.com/OgcPcJs.png") right no-repeat;
+    background:  rgba(244, 244, 244, 0.8) url("http://i.imgur.com/OgcPcJs.png") right no-repeat;
 }
-  #lobby-userlist-user-camilas, #casino-userlist-user-camilas, #staff-userlist-user-camilas {
+#lobby-userlist-user-camilas, #casino-userlist-user-camilas, #staff-userlist-user-camilas {
     background: rgba(244, 244, 244, 0.8) url("https://raw.githubusercontent.com/msikma/pokesprite/master/icons/pokemon/shiny/rayquaza-mega.png") right no-repeat;
-  }
-
-  #staff-userlist-user-neowulf, #lobby-userlist-user-neowulf, #casino-userlist-user-neowulf {
+}
+#staff-userlist-user-neowulf, #lobby-userlist-user-neowulf, #casino-userlist-user-neowulf {
     background: rgba(244, 244, 244, 0.8) url("http://vignette3.wikia.nocookie.net/pokemon/images/0/03/212M.png/revision/latest?cb=20131021093532") right no-repeat;
-  }
-
-  #lobby-userlist-user-natm {
+}
+#lobby-userlist-user-natm {
     background: rgba(244, 244, 244, 0.8) url("http://media-cerulean.cursecdn.com/attachments/6/427/icon-absol.png") right no-repeat;
-  }
-
-  #staff-userlist-user-neowulf, #lobby-userlist-user-neowulf, #casino-userlist-user-neowulf {
+}
+#staff-userlist-user-neowulf, #lobby-userlist-user-neowulf, #casino-userlist-user-neowulf {
     background: rgba(244, 244, 244, 0.8) url("http://pldh.net/media/pokexycons/212-mega.png") right no-repeat;
-  }
-
-  #lobby-userlist-user-thunderren, #flygonfriends-userlist-user-thunderren, #catchandevolve-userlist-user-thunderren {
+}
+#lobby-userlist-user-thunderren, #flygonfriends-userlist-user-thunderren, #catchandevolve-userlist-user-thunderren {
     background: rgba(244, 244, 244, 0.8) url("gray") right no-repeat;
-  }
-
-  #lobby-userlist-user-goalie, #theranseiregion-userlist-user-goalie, #smogontiers-userlist-user-goalie {
+}
+#lobby-userlist-user-goalie, #theranseiregion-userlist-user-goalie, #smogontiers-userlist-user-goalie {
     background: rgba(244, 244, 244, 0.8) url("http://orig13.deviantart.net/2e4e/f/2015/062/b/5/shiny_the_flygon_icon_by_the_shiny_store-d8kbesg.gif") right no-repeat;
-  }
-
-  #lobby-userlist-user-thegodofhaxorus, #gamecave-userlist-user-thegodofhaxorus, #staff-userlist-user-thegodofhaxorus {
+}
+#lobby-userlist-user-thegodofhaxorus, #gamecave-userlist-user-thegodofhaxorus, #staff-userlist-user-thegodofhaxorus {
     background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/612.png") right no-repeat;
-  }
-
-  #lobby-userlist-user-xprienzo, #staff-userlist-user-xprienzo, #gamecave-userlist-user-xprienzo {
+}
+#lobby-userlist-user-xprienzo, #staff-userlist-user-xprienzo, #gamecave-userlist-user-xprienzo {
     background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/643.png") right no-repeat;
-  }
-  #lobby-userlist-user-zekrompkstarship, #staff-userlist-user-zekrompkstarship, #gamecave-userlist-user-zekrompkstarship {
+}
+#lobby-userlist-user-zekrompkstarship, #staff-userlist-user-zekrompkstarship, #gamecave-userlist-user-zekrompkstarship {
     background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/644.png") right no-repeat;
-  }
-
- #lobby-userlist-user-bestbuddy, #staff-userlist-user-bestbuddy, #gamecave-userlist-user-bestbuddy {
+}
+#lobby-userlist-user-bestbuddy, #staff-userlist-user-bestbuddy, #gamecave-userlist-user-bestbuddy {
     background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/222.png") right no-repeat;
- }
-
- #lobby-userlist-user-dracobottt, #botgames-userlist-user-dracobottt, #gamecave-userlist-user-dracobottt {
-   background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/373.png") right no-repeat;
- }
-
- #lobby-userlist-user-eternalmayhem, #staff-userlist-user-eternalmayhem, #help-userlist-user-eternalmayhem {
-   background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/373-mega.png") right no-repeat;
- }
-
- #lobby-userlist-user-hydrostatics, #help-userlist-user-hydrostatics, #hydrocity-userlist-user-hydrostatics {
-   background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/172-mega.png") right no-repeat;
- }
- #lobby-userlist-user-classyz, #staff-userlist-user-classyz, #animeandmanga-userlist-user-classyz {
-   background:rgba(244, 244, 244, 0.8) url("http://i.imgur.com/6CdD44p.gif") no-repeat right;
- }
+}
+#lobby-userlist-user-dracobottt, #botgames-userlist-user-dracobottt, #gamecave-userlist-user-dracobottt {
+    background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/373.png") right no-repeat;
+}
+#lobby-userlist-user-eternalmayhem, #staff-userlist-user-eternalmayhem, #help-userlist-user-eternalmayhem {
+    background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/373-mega.png") right no-repeat;
+}
+#lobby-userlist-user-hydrostatics, #help-userlist-user-hydrostatics, #hydrocity-userlist-user-hydrostatics {
+    background: rgba(244, 244, 244, 0.8) url("http://media.pldh.net/pokexycons/172-mega.png") right no-repeat;
+}
+#lobby-userlist-user-classyz, #staff-userlist-user-classyz, #animeandmanga-userlist-user-classyz {
+    background:rgba(244, 244, 244, 0.8) url("http://i.imgur.com/6CdD44p.gif") no-repeat right;
+}
 
 /**************
   * Custom Colors *
   **************/
-
- .chat.chatmessage-lordhaji  strong {
+.chat.chatmessage-lordhaji strong {
     color:#39FF14 !important;
-
- }
-.chat.chatmessage-pieddychomp  strong {
-    color:blue !important;
-  }
-
-.chat.chatmessage-ransei  strong {
-    color:red !important;
-  }
-
-.chat.chatmessage-mdi  strong {
-      color:blue !important;
-    }
-.chat.chatmessage-calrissian  strong {
-    color:blue !important;
-   }
-
-   .chat.chatmessage-suicunesquad  strong {
-         color:blue !important;
-       }
-       .chat.chatmessage-suicuter  strong {
-             color:blue !important;
-           }
-.chat.chatmessage-clawliet  strong {
-    color:red !important;
-  }
-
-.chat.chatmessage-eternalmayhem  strong {
-    color:purple !important;
-  }
-
-.chat.chatmessage-darkchampionmewtwo  strong {
-    color:black !important;
-  }
-
-.chat.chatmessage-paul71  strong {
-    color:orange !important;
-  }
-
-  .chat.chatmessage-charizard8888  strong {
-    color:orange !important;
-  }
-
-.chat.chatmessage-solarstatics  strong {
-    color:red !important;
-  }
-
-.chat.chatmessage-clawliet  strong {
-    color:blue !important;
-  }
-
-.chat.chatmessage-bestbuddy  strong {
-    color:red !important;
-  }
-
-.chat.chatmessage-dracobottt  strong {
-    color:blue !important;
-  }
-  /******************
-  * Battle CSS ~end *
-  ******************/
-
-  /******************
-  * Battle CSS ~end *
-  ******************/
-
-  .ladder table, .ladder td, .ladder th {
-    border: 1px solid #DDD;
-  }
-
-  .ladder th {
-    background: #fff;
-  }
-
-  .closebutton, .minimizebutton {
-    color: #EEE;
-  }
-
-  .closebutton:hover {
-    color: #E04942;
-  }
-
-  .minimizebutton:hover {
-    color: #F9CA6C;
-  }
-
-  .ps-room .battle-controls {
-    background: transparent !important;
-  }
-
-
-
-
- .lobby-userlist-users {
-    background: url("http://pldh.net/media/pokecons_action/484.gif") right no-repeat;
-    background: url("http://www.pokestadium.com/assets/img/sprites/misc/icons/old/reshiram.png") left no-repeat;
-    }
-/* ICONS START */
-#lobby-userlist-user-charizard8888, #staff-userlist-user-charizard8888, #dragnor-userlist-user-charizard8888, #othermetas-userlist-user-charizard8888, #chillin-userlist-user-charizard8888, #test-userlist-user-charizard8888, #upperstaff-userlist-user-charizard8888, #development-userlist-user-charizard8888, #trademarked-userlist-user-charizard8888, #io-userlist-user-charizard8888, #animeandmanga-userlist-user-charizard8888, #theadminchat-userlist-user-charizard8888, #houseofreluxing-userlist-user-charizard8888, #cosmopolitan-userlist-user-charizard8888, #errors-userlist-user-charizard8888, #istor-userlist-user-charizard8888{
-background : rgba(244, 244, 244, 0.8) url("http://www.pokestadium.com/assets/img/sprites/misc/icons/charizard-mega-x.png") no-repeat right
-}
-#lobby-userlist-user-ggdaca, #staff-userlist-user-ggdaca, #dragnor-userlist-user-ggdaca, #othermetas-userlist-user-ggdaca, #chillin-userlist-user-ggdaca, #test-userlist-user-ggdaca, #upperstaff-userlist-user-ggdaca, #development-userlist-user-ggdaca, #trademarked-userlist-user-ggdaca, #io-userlist-user-ggdaca, #animeandmanga-userlist-user-ggdaca, #theadminchat-userlist-user-ggdaca, #houseofreluxing-userlist-user-ggdaca, #cosmopolitan-userlist-user-ggdaca, #errors-userlist-user-ggdaca, #istor-userlist-user-ggdaca{
-background : rgba(244, 244, 244, 0.8) url("https://pldh.net/media/pokexycons/384-mega.png") no-repeat right
-}
-#lobby-userlist-user-winona, #staff-userlist-user-winona, #dragnor-userlist-user-winona, #othermetas-userlist-user-winona, #chillin-userlist-user-winona, #test-userlist-user-winona, #upperstaff-userlist-user-winona, #development-userlist-user-winona, #trademarked-userlist-user-winona, #io-userlist-user-winona, #animeandmanga-userlist-user-winona, #theadminchat-userlist-user-winona, #houseofreluxing-userlist-user-winona, #cosmopolitan-userlist-user-winona, #errors-userlist-user-winona, #istor-userlist-user-winona{
-background : rgba(244, 244, 244, 0.8) url("http://i.imgur.com/joKdbXU.gif") no-repeat right
-}
-#lobby-userlist-user-bbgun999, #staff-userlist-user-bbgun999, #dragnor-userlist-user-bbgun999, #othermetas-userlist-user-bbgun999, #chillin-userlist-user-bbgun999, #test-userlist-user-bbgun999, #upperstaff-userlist-user-bbgun999, #development-userlist-user-bbgun999, #trademarked-userlist-user-bbgun999, #io-userlist-user-bbgun999, #animeandmanga-userlist-user-bbgun999, #theadminchat-userlist-user-bbgun999, #houseofreluxing-userlist-user-bbgun999, #cosmopolitan-userlist-user-bbgun999, #errors-userlist-user-bbgun999, #istor-userlist-user-bbgun999{
-background : rgba(244, 244, 244, 0.8) url("http://www.pokestadium.com/assets/img/sprites/misc/icons/goodra.png") no-repeat right
-}
-#lobby-userlist-user-flufi, #staff-userlist-user-flufi, #dragnor-userlist-user-flufi, #othermetas-userlist-user-flufi, #chillin-userlist-user-flufi, #test-userlist-user-flufi, #upperstaff-userlist-user-flufi, #development-userlist-user-flufi, #trademarked-userlist-user-flufi, #io-userlist-user-flufi, #animeandmanga-userlist-user-flufi, #theadminchat-userlist-user-flufi, #houseofreluxing-userlist-user-flufi, #cosmopolitan-userlist-user-flufi, #errors-userlist-user-flufi, #istor-userlist-user-flufi{
-background : rgba(244, 244, 244, 0.8) url("https://pldh.net/media/pokemon/ranger2/026.png") no-repeat right
-}
-#lobby-userlist-user-zapmaster2010, #staff-userlist-user-zapmaster2010, #dragnor-userlist-user-zapmaster2010, #othermetas-userlist-user-zapmaster2010, #chillin-userlist-user-zapmaster2010, #test-userlist-user-zapmaster2010, #upperstaff-userlist-user-zapmaster2010, #development-userlist-user-zapmaster2010, #trademarked-userlist-user-zapmaster2010, #io-userlist-user-zapmaster2010, #animeandmanga-userlist-user-zapmaster2010, #theadminchat-userlist-user-zapmaster2010, #houseofreluxing-userlist-user-zapmaster2010, #cosmopolitan-userlist-user-zapmaster2010, #errors-userlist-user-zapmaster2010, #istor-userlist-user-zapmaster2010{
-background : rgba(244, 244, 244, 0.8) url("http://www.pokestadium.com/assets/img/sprites/misc/icons/mewtwo-mega-y.png") no-repeat right
-}
-#lobby-userlist-user-flurbel, #staff-userlist-user-flurbel, #dragnor-userlist-user-flurbel, #othermetas-userlist-user-flurbel, #chillin-userlist-user-flurbel, #test-userlist-user-flurbel, #upperstaff-userlist-user-flurbel, #development-userlist-user-flurbel, #trademarked-userlist-user-flurbel, #io-userlist-user-flurbel, #animeandmanga-userlist-user-flurbel, #theadminchat-userlist-user-flurbel, #houseofreluxing-userlist-user-flurbel, #cosmopolitan-userlist-user-flurbel, #errors-userlist-user-flurbel, #istor-userlist-user-flurbel{
-background : rgba(244, 244, 244, 0.8) url("http://orig10.deviantart.net/f057/f/2011/133/1/5/lillipup_by_mixer26-d3g9gpg.gif") no-repeat right
-}
-#lobby-userlist-user-zygten, #staff-userlist-user-zygten, #dragnor-userlist-user-zygten, #othermetas-userlist-user-zygten, #chillin-userlist-user-zygten, #test-userlist-user-zygten, #upperstaff-userlist-user-zygten, #development-userlist-user-zygten, #trademarked-userlist-user-zygten, #io-userlist-user-zygten, #animeandmanga-userlist-user-zygten, #theadminchat-userlist-user-zygten, #houseofreluxing-userlist-user-zygten, #cosmopolitan-userlist-user-zygten, #errors-userlist-user-zygten, #istor-userlist-user-zygten{
-background : rgba(244, 244, 244, 0.8) url("http://www.pokestadium.com/assets/img/sprites/misc/icons/greninja.png") no-repeat right
-}
-/* ICONS END */
-/* COLORS START */
-#lobby-userlist-user-toolboxe strong em, #lobby-userlist-user-toolboxe strong, #lobby-userlist-user-toolboxe span, #staff-userlist-user-toolboxe strong em, #staff-userlist-user-toolboxe strong, #staff-userlist-user-toolboxe span, #dragnor-userlist-user-toolboxe strong em, #dragnor-userlist-user-toolboxe strong, #dragnor-userlist-user-toolboxe span, #othermetas-userlist-user-toolboxe strong em, #othermetas-userlist-user-toolboxe strong, #othermetas-userlist-user-toolboxe span, #chillin-userlist-user-toolboxe strong em, #chillin-userlist-user-toolboxe strong, #chillin-userlist-user-toolboxe span, #test-userlist-user-toolboxe strong em, #test-userlist-user-toolboxe strong, #test-userlist-user-toolboxe span, #upperstaff-userlist-user-toolboxe strong em, #upperstaff-userlist-user-toolboxe strong, #upperstaff-userlist-user-toolboxe span, #development-userlist-user-toolboxe strong em, #development-userlist-user-toolboxe strong, #development-userlist-user-toolboxe span, #trademarked-userlist-user-toolboxe strong em, #trademarked-userlist-user-toolboxe strong, #trademarked-userlist-user-toolboxe span, #io-userlist-user-toolboxe strong em, #io-userlist-user-toolboxe strong, #io-userlist-user-toolboxe span, #animeandmanga-userlist-user-toolboxe strong em, #animeandmanga-userlist-user-toolboxe strong, #animeandmanga-userlist-user-toolboxe span, #theadminchat-userlist-user-toolboxe strong em, #theadminchat-userlist-user-toolboxe strong, #theadminchat-userlist-user-toolboxe span, #houseofreluxing-userlist-user-toolboxe strong em, #houseofreluxing-userlist-user-toolboxe strong, #houseofreluxing-userlist-user-toolboxe span, #cosmopolitan-userlist-user-toolboxe strong em, #cosmopolitan-userlist-user-toolboxe strong, #cosmopolitan-userlist-user-toolboxe span, #errors-userlist-user-toolboxe strong em, #errors-userlist-user-toolboxe strong, #errors-userlist-user-toolboxe span, #istor-userlist-user-toolboxe strong em, #istor-userlist-user-toolboxe strong, #istor-userlist-user-toolboxe span{
-color:  #0000FF !important;
-}
-.chat.chatmessage-toolboxe strong {
-color:  #0000FF !important;
-}
-#lobby-userlist-user-trashyclassy strong em, #lobby-userlist-user-trashyclassy strong, #lobby-userlist-user-trashyclassy span, #staff-userlist-user-trashyclassy strong em, #staff-userlist-user-trashyclassy strong, #staff-userlist-user-trashyclassy span, #dragnor-userlist-user-trashyclassy strong em, #dragnor-userlist-user-trashyclassy strong, #dragnor-userlist-user-trashyclassy span, #othermetas-userlist-user-trashyclassy strong em, #othermetas-userlist-user-trashyclassy strong, #othermetas-userlist-user-trashyclassy span, #chillin-userlist-user-trashyclassy strong em, #chillin-userlist-user-trashyclassy strong, #chillin-userlist-user-trashyclassy span, #test-userlist-user-trashyclassy strong em, #test-userlist-user-trashyclassy strong, #test-userlist-user-trashyclassy span, #upperstaff-userlist-user-trashyclassy strong em, #upperstaff-userlist-user-trashyclassy strong, #upperstaff-userlist-user-trashyclassy span, #development-userlist-user-trashyclassy strong em, #development-userlist-user-trashyclassy strong, #development-userlist-user-trashyclassy span, #trademarked-userlist-user-trashyclassy strong em, #trademarked-userlist-user-trashyclassy strong, #trademarked-userlist-user-trashyclassy span, #io-userlist-user-trashyclassy strong em, #io-userlist-user-trashyclassy strong, #io-userlist-user-trashyclassy span, #animeandmanga-userlist-user-trashyclassy strong em, #animeandmanga-userlist-user-trashyclassy strong, #animeandmanga-userlist-user-trashyclassy span, #theadminchat-userlist-user-trashyclassy strong em, #theadminchat-userlist-user-trashyclassy strong, #theadminchat-userlist-user-trashyclassy span, #houseofreluxing-userlist-user-trashyclassy strong em, #houseofreluxing-userlist-user-trashyclassy strong, #houseofreluxing-userlist-user-trashyclassy span, #cosmopolitan-userlist-user-trashyclassy strong em, #cosmopolitan-userlist-user-trashyclassy strong, #cosmopolitan-userlist-user-trashyclassy span, #errors-userlist-user-trashyclassy strong em, #errors-userlist-user-trashyclassy strong, #errors-userlist-user-trashyclassy span, #istor-userlist-user-trashyclassy strong em, #istor-userlist-user-trashyclassy strong, #istor-userlist-user-trashyclassy span{
-color:  #cc0000 !important;
-}
-.chat.chatmessage-trashyclassy strong {
-color:  #cc0000 !important;
-}
-#lobby-userlist-user-spandamn strong em, #lobby-userlist-user-spandamn strong, #lobby-userlist-user-spandamn span, #staff-userlist-user-spandamn strong em, #staff-userlist-user-spandamn strong, #staff-userlist-user-spandamn span, #dragnor-userlist-user-spandamn strong em, #dragnor-userlist-user-spandamn strong, #dragnor-userlist-user-spandamn span, #othermetas-userlist-user-spandamn strong em, #othermetas-userlist-user-spandamn strong, #othermetas-userlist-user-spandamn span, #chillin-userlist-user-spandamn strong em, #chillin-userlist-user-spandamn strong, #chillin-userlist-user-spandamn span, #test-userlist-user-spandamn strong em, #test-userlist-user-spandamn strong, #test-userlist-user-spandamn span, #upperstaff-userlist-user-spandamn strong em, #upperstaff-userlist-user-spandamn strong, #upperstaff-userlist-user-spandamn span, #development-userlist-user-spandamn strong em, #development-userlist-user-spandamn strong, #development-userlist-user-spandamn span, #trademarked-userlist-user-spandamn strong em, #trademarked-userlist-user-spandamn strong, #trademarked-userlist-user-spandamn span, #io-userlist-user-spandamn strong em, #io-userlist-user-spandamn strong, #io-userlist-user-spandamn span, #animeandmanga-userlist-user-spandamn strong em, #animeandmanga-userlist-user-spandamn strong, #animeandmanga-userlist-user-spandamn span, #theadminchat-userlist-user-spandamn strong em, #theadminchat-userlist-user-spandamn strong, #theadminchat-userlist-user-spandamn span, #houseofreluxing-userlist-user-spandamn strong em, #houseofreluxing-userlist-user-spandamn strong, #houseofreluxing-userlist-user-spandamn span, #cosmopolitan-userlist-user-spandamn strong em, #cosmopolitan-userlist-user-spandamn strong, #cosmopolitan-userlist-user-spandamn span, #errors-userlist-user-spandamn strong em, #errors-userlist-user-spandamn strong, #errors-userlist-user-spandamn span, #istor-userlist-user-spandamn strong em, #istor-userlist-user-spandamn strong, #istor-userlist-user-spandamn span{
-color:  delete !important;
-}
-.chat.chatmessage-spandamn strong {
-color:  delete !important;
-}
-#lobby-userlist-user-batterbotto strong em, #lobby-userlist-user-batterbotto strong, #lobby-userlist-user-batterbotto span, #staff-userlist-user-batterbotto strong em, #staff-userlist-user-batterbotto strong, #staff-userlist-user-batterbotto span, #dragnor-userlist-user-batterbotto strong em, #dragnor-userlist-user-batterbotto strong, #dragnor-userlist-user-batterbotto span, #othermetas-userlist-user-batterbotto strong em, #othermetas-userlist-user-batterbotto strong, #othermetas-userlist-user-batterbotto span, #chillin-userlist-user-batterbotto strong em, #chillin-userlist-user-batterbotto strong, #chillin-userlist-user-batterbotto span, #test-userlist-user-batterbotto strong em, #test-userlist-user-batterbotto strong, #test-userlist-user-batterbotto span, #upperstaff-userlist-user-batterbotto strong em, #upperstaff-userlist-user-batterbotto strong, #upperstaff-userlist-user-batterbotto span, #development-userlist-user-batterbotto strong em, #development-userlist-user-batterbotto strong, #development-userlist-user-batterbotto span, #trademarked-userlist-user-batterbotto strong em, #trademarked-userlist-user-batterbotto strong, #trademarked-userlist-user-batterbotto span, #io-userlist-user-batterbotto strong em, #io-userlist-user-batterbotto strong, #io-userlist-user-batterbotto span, #animeandmanga-userlist-user-batterbotto strong em, #animeandmanga-userlist-user-batterbotto strong, #animeandmanga-userlist-user-batterbotto span, #theadminchat-userlist-user-batterbotto strong em, #theadminchat-userlist-user-batterbotto strong, #theadminchat-userlist-user-batterbotto span, #houseofreluxing-userlist-user-batterbotto strong em, #houseofreluxing-userlist-user-batterbotto strong, #houseofreluxing-userlist-user-batterbotto span, #cosmopolitan-userlist-user-batterbotto strong em, #cosmopolitan-userlist-user-batterbotto strong, #cosmopolitan-userlist-user-batterbotto span, #errors-userlist-user-batterbotto strong em, #errors-userlist-user-batterbotto strong, #errors-userlist-user-batterbotto span, #istor-userlist-user-batterbotto strong em, #istor-userlist-user-batterbotto strong, #istor-userlist-user-batterbotto span{
-color: #e53b2b !important;
-}
-.chat.chatmessage-batterbotto strong {
-color: #e53b2b !important;
-}
-#lobby-userlist-user-outrageousbot strong em, #lobby-userlist-user-outrageousbot strong, #lobby-userlist-user-outrageousbot span, #staff-userlist-user-outrageousbot strong em, #staff-userlist-user-outrageousbot strong, #staff-userlist-user-outrageousbot span, #dragnor-userlist-user-outrageousbot strong em, #dragnor-userlist-user-outrageousbot strong, #dragnor-userlist-user-outrageousbot span, #othermetas-userlist-user-outrageousbot strong em, #othermetas-userlist-user-outrageousbot strong, #othermetas-userlist-user-outrageousbot span, #chillin-userlist-user-outrageousbot strong em, #chillin-userlist-user-outrageousbot strong, #chillin-userlist-user-outrageousbot span, #test-userlist-user-outrageousbot strong em, #test-userlist-user-outrageousbot strong, #test-userlist-user-outrageousbot span, #upperstaff-userlist-user-outrageousbot strong em, #upperstaff-userlist-user-outrageousbot strong, #upperstaff-userlist-user-outrageousbot span, #development-userlist-user-outrageousbot strong em, #development-userlist-user-outrageousbot strong, #development-userlist-user-outrageousbot span, #trademarked-userlist-user-outrageousbot strong em, #trademarked-userlist-user-outrageousbot strong, #trademarked-userlist-user-outrageousbot span, #io-userlist-user-outrageousbot strong em, #io-userlist-user-outrageousbot strong, #io-userlist-user-outrageousbot span, #animeandmanga-userlist-user-outrageousbot strong em, #animeandmanga-userlist-user-outrageousbot strong, #animeandmanga-userlist-user-outrageousbot span, #theadminchat-userlist-user-outrageousbot strong em, #theadminchat-userlist-user-outrageousbot strong, #theadminchat-userlist-user-outrageousbot span, #houseofreluxing-userlist-user-outrageousbot strong em, #houseofreluxing-userlist-user-outrageousbot strong, #houseofreluxing-userlist-user-outrageousbot span, #cosmopolitan-userlist-user-outrageousbot strong em, #cosmopolitan-userlist-user-outrageousbot strong, #cosmopolitan-userlist-user-outrageousbot span, #errors-userlist-user-outrageousbot strong em, #errors-userlist-user-outrageousbot strong, #errors-userlist-user-outrageousbot span, #istor-userlist-user-outrageousbot strong em, #istor-userlist-user-outrageousbot strong, #istor-userlist-user-outrageousbot span{
-color: #C85732 !important;
-}
-.chat.chatmessage-outrageousbot strong {
-color: #C85732 !important;
-}
-#lobby-userlist-user-snaq strong em, #lobby-userlist-user-snaq strong, #lobby-userlist-user-snaq span, #staff-userlist-user-snaq strong em, #staff-userlist-user-snaq strong, #staff-userlist-user-snaq span, #dragnor-userlist-user-snaq strong em, #dragnor-userlist-user-snaq strong, #dragnor-userlist-user-snaq span, #othermetas-userlist-user-snaq strong em, #othermetas-userlist-user-snaq strong, #othermetas-userlist-user-snaq span, #chillin-userlist-user-snaq strong em, #chillin-userlist-user-snaq strong, #chillin-userlist-user-snaq span, #test-userlist-user-snaq strong em, #test-userlist-user-snaq strong, #test-userlist-user-snaq span, #upperstaff-userlist-user-snaq strong em, #upperstaff-userlist-user-snaq strong, #upperstaff-userlist-user-snaq span, #development-userlist-user-snaq strong em, #development-userlist-user-snaq strong, #development-userlist-user-snaq span, #trademarked-userlist-user-snaq strong em, #trademarked-userlist-user-snaq strong, #trademarked-userlist-user-snaq span, #io-userlist-user-snaq strong em, #io-userlist-user-snaq strong, #io-userlist-user-snaq span, #animeandmanga-userlist-user-snaq strong em, #animeandmanga-userlist-user-snaq strong, #animeandmanga-userlist-user-snaq span, #theadminchat-userlist-user-snaq strong em, #theadminchat-userlist-user-snaq strong, #theadminchat-userlist-user-snaq span, #houseofreluxing-userlist-user-snaq strong em, #houseofreluxing-userlist-user-snaq strong, #houseofreluxing-userlist-user-snaq span, #cosmopolitan-userlist-user-snaq strong em, #cosmopolitan-userlist-user-snaq strong, #cosmopolitan-userlist-user-snaq span, #errors-userlist-user-snaq strong em, #errors-userlist-user-snaq strong, #errors-userlist-user-snaq span, #istor-userlist-user-snaq strong em, #istor-userlist-user-snaq strong, #istor-userlist-user-snaq span{
-color:  DE351A !important;
-}
-.chat.chatmessage-snaq strong {
-color:  DE351A !important;
-}
-#lobby-userlist-user-alphashivam strong em, #lobby-userlist-user-alphashivam strong, #lobby-userlist-user-alphashivam span, #staff-userlist-user-alphashivam strong em, #staff-userlist-user-alphashivam strong, #staff-userlist-user-alphashivam span, #dragnor-userlist-user-alphashivam strong em, #dragnor-userlist-user-alphashivam strong, #dragnor-userlist-user-alphashivam span, #othermetas-userlist-user-alphashivam strong em, #othermetas-userlist-user-alphashivam strong, #othermetas-userlist-user-alphashivam span, #chillin-userlist-user-alphashivam strong em, #chillin-userlist-user-alphashivam strong, #chillin-userlist-user-alphashivam span, #test-userlist-user-alphashivam strong em, #test-userlist-user-alphashivam strong, #test-userlist-user-alphashivam span, #upperstaff-userlist-user-alphashivam strong em, #upperstaff-userlist-user-alphashivam strong, #upperstaff-userlist-user-alphashivam span, #development-userlist-user-alphashivam strong em, #development-userlist-user-alphashivam strong, #development-userlist-user-alphashivam span, #trademarked-userlist-user-alphashivam strong em, #trademarked-userlist-user-alphashivam strong, #trademarked-userlist-user-alphashivam span, #io-userlist-user-alphashivam strong em, #io-userlist-user-alphashivam strong, #io-userlist-user-alphashivam span, #animeandmanga-userlist-user-alphashivam strong em, #animeandmanga-userlist-user-alphashivam strong, #animeandmanga-userlist-user-alphashivam span, #theadminchat-userlist-user-alphashivam strong em, #theadminchat-userlist-user-alphashivam strong, #theadminchat-userlist-user-alphashivam span, #houseofreluxing-userlist-user-alphashivam strong em, #houseofreluxing-userlist-user-alphashivam strong, #houseofreluxing-userlist-user-alphashivam span, #cosmopolitan-userlist-user-alphashivam strong em, #cosmopolitan-userlist-user-alphashivam strong, #cosmopolitan-userlist-user-alphashivam span, #errors-userlist-user-alphashivam strong em, #errors-userlist-user-alphashivam strong, #errors-userlist-user-alphashivam span, #istor-userlist-user-alphashivam strong em, #istor-userlist-user-alphashivam strong, #istor-userlist-user-alphashivam span{
-color:  #333333 !important;
-}
-.chat.chatmessage-alphashivam strong {
-color:  #333333 !important;
-}
-#lobby-userlist-user-snaquaza strong em, #lobby-userlist-user-snaquaza strong, #lobby-userlist-user-snaquaza span, #staff-userlist-user-snaquaza strong em, #staff-userlist-user-snaquaza strong, #staff-userlist-user-snaquaza span, #dragnor-userlist-user-snaquaza strong em, #dragnor-userlist-user-snaquaza strong, #dragnor-userlist-user-snaquaza span, #othermetas-userlist-user-snaquaza strong em, #othermetas-userlist-user-snaquaza strong, #othermetas-userlist-user-snaquaza span, #chillin-userlist-user-snaquaza strong em, #chillin-userlist-user-snaquaza strong, #chillin-userlist-user-snaquaza span, #test-userlist-user-snaquaza strong em, #test-userlist-user-snaquaza strong, #test-userlist-user-snaquaza span, #upperstaff-userlist-user-snaquaza strong em, #upperstaff-userlist-user-snaquaza strong, #upperstaff-userlist-user-snaquaza span, #development-userlist-user-snaquaza strong em, #development-userlist-user-snaquaza strong, #development-userlist-user-snaquaza span, #trademarked-userlist-user-snaquaza strong em, #trademarked-userlist-user-snaquaza strong, #trademarked-userlist-user-snaquaza span, #io-userlist-user-snaquaza strong em, #io-userlist-user-snaquaza strong, #io-userlist-user-snaquaza span, #animeandmanga-userlist-user-snaquaza strong em, #animeandmanga-userlist-user-snaquaza strong, #animeandmanga-userlist-user-snaquaza span, #theadminchat-userlist-user-snaquaza strong em, #theadminchat-userlist-user-snaquaza strong, #theadminchat-userlist-user-snaquaza span, #houseofreluxing-userlist-user-snaquaza strong em, #houseofreluxing-userlist-user-snaquaza strong, #houseofreluxing-userlist-user-snaquaza span, #cosmopolitan-userlist-user-snaquaza strong em, #cosmopolitan-userlist-user-snaquaza strong, #cosmopolitan-userlist-user-snaquaza span, #errors-userlist-user-snaquaza strong em, #errors-userlist-user-snaquaza strong, #errors-userlist-user-snaquaza span, #istor-userlist-user-snaquaza strong em, #istor-userlist-user-snaquaza strong, #istor-userlist-user-snaquaza span{
-color:  520287 !important;
-}
-.chat.chatmessage-snaquaza strong {
-color:  520287 !important;
-}
-#lobby-userlist-user-dratiniii strong em, #lobby-userlist-user-dratiniii strong, #lobby-userlist-user-dratiniii span, #staff-userlist-user-dratiniii strong em, #staff-userlist-user-dratiniii strong, #staff-userlist-user-dratiniii span, #dragnor-userlist-user-dratiniii strong em, #dragnor-userlist-user-dratiniii strong, #dragnor-userlist-user-dratiniii span, #othermetas-userlist-user-dratiniii strong em, #othermetas-userlist-user-dratiniii strong, #othermetas-userlist-user-dratiniii span, #chillin-userlist-user-dratiniii strong em, #chillin-userlist-user-dratiniii strong, #chillin-userlist-user-dratiniii span, #test-userlist-user-dratiniii strong em, #test-userlist-user-dratiniii strong, #test-userlist-user-dratiniii span, #upperstaff-userlist-user-dratiniii strong em, #upperstaff-userlist-user-dratiniii strong, #upperstaff-userlist-user-dratiniii span, #development-userlist-user-dratiniii strong em, #development-userlist-user-dratiniii strong, #development-userlist-user-dratiniii span, #trademarked-userlist-user-dratiniii strong em, #trademarked-userlist-user-dratiniii strong, #trademarked-userlist-user-dratiniii span, #io-userlist-user-dratiniii strong em, #io-userlist-user-dratiniii strong, #io-userlist-user-dratiniii span, #animeandmanga-userlist-user-dratiniii strong em, #animeandmanga-userlist-user-dratiniii strong, #animeandmanga-userlist-user-dratiniii span, #theadminchat-userlist-user-dratiniii strong em, #theadminchat-userlist-user-dratiniii strong, #theadminchat-userlist-user-dratiniii span, #houseofreluxing-userlist-user-dratiniii strong em, #houseofreluxing-userlist-user-dratiniii strong, #houseofreluxing-userlist-user-dratiniii span, #cosmopolitan-userlist-user-dratiniii strong em, #cosmopolitan-userlist-user-dratiniii strong, #cosmopolitan-userlist-user-dratiniii span, #errors-userlist-user-dratiniii strong em, #errors-userlist-user-dratiniii strong, #errors-userlist-user-dratiniii span, #istor-userlist-user-dratiniii strong em, #istor-userlist-user-dratiniii strong, #istor-userlist-user-dratiniii span{
-color:  #007cff !important;
-}
-.chat.chatmessage-dratiniii strong {
-color:  #007cff !important;
-}
-#lobby-userlist-user-darmanitanxd strong em, #lobby-userlist-user-darmanitanxd strong, #lobby-userlist-user-darmanitanxd span, #staff-userlist-user-darmanitanxd strong em, #staff-userlist-user-darmanitanxd strong, #staff-userlist-user-darmanitanxd span, #dragnor-userlist-user-darmanitanxd strong em, #dragnor-userlist-user-darmanitanxd strong, #dragnor-userlist-user-darmanitanxd span, #othermetas-userlist-user-darmanitanxd strong em, #othermetas-userlist-user-darmanitanxd strong, #othermetas-userlist-user-darmanitanxd span, #chillin-userlist-user-darmanitanxd strong em, #chillin-userlist-user-darmanitanxd strong, #chillin-userlist-user-darmanitanxd span, #test-userlist-user-darmanitanxd strong em, #test-userlist-user-darmanitanxd strong, #test-userlist-user-darmanitanxd span, #upperstaff-userlist-user-darmanitanxd strong em, #upperstaff-userlist-user-darmanitanxd strong, #upperstaff-userlist-user-darmanitanxd span, #development-userlist-user-darmanitanxd strong em, #development-userlist-user-darmanitanxd strong, #development-userlist-user-darmanitanxd span, #trademarked-userlist-user-darmanitanxd strong em, #trademarked-userlist-user-darmanitanxd strong, #trademarked-userlist-user-darmanitanxd span, #io-userlist-user-darmanitanxd strong em, #io-userlist-user-darmanitanxd strong, #io-userlist-user-darmanitanxd span, #animeandmanga-userlist-user-darmanitanxd strong em, #animeandmanga-userlist-user-darmanitanxd strong, #animeandmanga-userlist-user-darmanitanxd span, #theadminchat-userlist-user-darmanitanxd strong em, #theadminchat-userlist-user-darmanitanxd strong, #theadminchat-userlist-user-darmanitanxd span, #houseofreluxing-userlist-user-darmanitanxd strong em, #houseofreluxing-userlist-user-darmanitanxd strong, #houseofreluxing-userlist-user-darmanitanxd span, #cosmopolitan-userlist-user-darmanitanxd strong em, #cosmopolitan-userlist-user-darmanitanxd strong, #cosmopolitan-userlist-user-darmanitanxd span, #errors-userlist-user-darmanitanxd strong em, #errors-userlist-user-darmanitanxd strong, #errors-userlist-user-darmanitanxd span, #istor-userlist-user-darmanitanxd strong em, #istor-userlist-user-darmanitanxd strong, #istor-userlist-user-darmanitanxd span{
-color: #23B36D !important;
-}
-.chat.chatmessage-darmanitanxd strong {
-color: #23B36D !important;
-}
-#lobby-userlist-user-ransei strong em, #lobby-userlist-user-ransei strong, #lobby-userlist-user-ransei span, #staff-userlist-user-ransei strong em, #staff-userlist-user-ransei strong, #staff-userlist-user-ransei span, #dragnor-userlist-user-ransei strong em, #dragnor-userlist-user-ransei strong, #dragnor-userlist-user-ransei span, #othermetas-userlist-user-ransei strong em, #othermetas-userlist-user-ransei strong, #othermetas-userlist-user-ransei span, #chillin-userlist-user-ransei strong em, #chillin-userlist-user-ransei strong, #chillin-userlist-user-ransei span, #test-userlist-user-ransei strong em, #test-userlist-user-ransei strong, #test-userlist-user-ransei span, #upperstaff-userlist-user-ransei strong em, #upperstaff-userlist-user-ransei strong, #upperstaff-userlist-user-ransei span, #development-userlist-user-ransei strong em, #development-userlist-user-ransei strong, #development-userlist-user-ransei span, #trademarked-userlist-user-ransei strong em, #trademarked-userlist-user-ransei strong, #trademarked-userlist-user-ransei span, #io-userlist-user-ransei strong em, #io-userlist-user-ransei strong, #io-userlist-user-ransei span, #animeandmanga-userlist-user-ransei strong em, #animeandmanga-userlist-user-ransei strong, #animeandmanga-userlist-user-ransei span, #theadminchat-userlist-user-ransei strong em, #theadminchat-userlist-user-ransei strong, #theadminchat-userlist-user-ransei span, #houseofreluxing-userlist-user-ransei strong em, #houseofreluxing-userlist-user-ransei strong, #houseofreluxing-userlist-user-ransei span, #cosmopolitan-userlist-user-ransei strong em, #cosmopolitan-userlist-user-ransei strong, #cosmopolitan-userlist-user-ransei span, #errors-userlist-user-ransei strong em, #errors-userlist-user-ransei strong, #errors-userlist-user-ransei span, #istor-userlist-user-ransei strong em, #istor-userlist-user-ransei strong, #istor-userlist-user-ransei span{
-color:  dac007 !important;
-}
-.chat.chatmessage-ransei strong {
-color:  dac007 !important;
-}
-#lobby-userlist-user-bbgun999 strong em, #lobby-userlist-user-bbgun999 strong, #lobby-userlist-user-bbgun999 span, #staff-userlist-user-bbgun999 strong em, #staff-userlist-user-bbgun999 strong, #staff-userlist-user-bbgun999 span, #dragnor-userlist-user-bbgun999 strong em, #dragnor-userlist-user-bbgun999 strong, #dragnor-userlist-user-bbgun999 span, #othermetas-userlist-user-bbgun999 strong em, #othermetas-userlist-user-bbgun999 strong, #othermetas-userlist-user-bbgun999 span, #chillin-userlist-user-bbgun999 strong em, #chillin-userlist-user-bbgun999 strong, #chillin-userlist-user-bbgun999 span, #test-userlist-user-bbgun999 strong em, #test-userlist-user-bbgun999 strong, #test-userlist-user-bbgun999 span, #upperstaff-userlist-user-bbgun999 strong em, #upperstaff-userlist-user-bbgun999 strong, #upperstaff-userlist-user-bbgun999 span, #development-userlist-user-bbgun999 strong em, #development-userlist-user-bbgun999 strong, #development-userlist-user-bbgun999 span, #trademarked-userlist-user-bbgun999 strong em, #trademarked-userlist-user-bbgun999 strong, #trademarked-userlist-user-bbgun999 span, #io-userlist-user-bbgun999 strong em, #io-userlist-user-bbgun999 strong, #io-userlist-user-bbgun999 span, #animeandmanga-userlist-user-bbgun999 strong em, #animeandmanga-userlist-user-bbgun999 strong, #animeandmanga-userlist-user-bbgun999 span, #theadminchat-userlist-user-bbgun999 strong em, #theadminchat-userlist-user-bbgun999 strong, #theadminchat-userlist-user-bbgun999 span, #houseofreluxing-userlist-user-bbgun999 strong em, #houseofreluxing-userlist-user-bbgun999 strong, #houseofreluxing-userlist-user-bbgun999 span, #cosmopolitan-userlist-user-bbgun999 strong em, #cosmopolitan-userlist-user-bbgun999 strong, #cosmopolitan-userlist-user-bbgun999 span, #errors-userlist-user-bbgun999 strong em, #errors-userlist-user-bbgun999 strong, #errors-userlist-user-bbgun999 span, #istor-userlist-user-bbgun999 strong em, #istor-userlist-user-bbgun999 strong, #istor-userlist-user-bbgun999 span{
-color:  f2733c !important;
-}
-.chat.chatmessage-bbgun999 strong {
-color:  f2733c !important;
-}
-#lobby-userlist-user-desokoro strong em, #lobby-userlist-user-desokoro strong, #lobby-userlist-user-desokoro span, #staff-userlist-user-desokoro strong em, #staff-userlist-user-desokoro strong, #staff-userlist-user-desokoro span, #dragnor-userlist-user-desokoro strong em, #dragnor-userlist-user-desokoro strong, #dragnor-userlist-user-desokoro span, #othermetas-userlist-user-desokoro strong em, #othermetas-userlist-user-desokoro strong, #othermetas-userlist-user-desokoro span, #chillin-userlist-user-desokoro strong em, #chillin-userlist-user-desokoro strong, #chillin-userlist-user-desokoro span, #test-userlist-user-desokoro strong em, #test-userlist-user-desokoro strong, #test-userlist-user-desokoro span, #upperstaff-userlist-user-desokoro strong em, #upperstaff-userlist-user-desokoro strong, #upperstaff-userlist-user-desokoro span, #development-userlist-user-desokoro strong em, #development-userlist-user-desokoro strong, #development-userlist-user-desokoro span, #trademarked-userlist-user-desokoro strong em, #trademarked-userlist-user-desokoro strong, #trademarked-userlist-user-desokoro span, #io-userlist-user-desokoro strong em, #io-userlist-user-desokoro strong, #io-userlist-user-desokoro span, #animeandmanga-userlist-user-desokoro strong em, #animeandmanga-userlist-user-desokoro strong, #animeandmanga-userlist-user-desokoro span, #theadminchat-userlist-user-desokoro strong em, #theadminchat-userlist-user-desokoro strong, #theadminchat-userlist-user-desokoro span, #houseofreluxing-userlist-user-desokoro strong em, #houseofreluxing-userlist-user-desokoro strong, #houseofreluxing-userlist-user-desokoro span, #cosmopolitan-userlist-user-desokoro strong em, #cosmopolitan-userlist-user-desokoro strong, #cosmopolitan-userlist-user-desokoro span, #errors-userlist-user-desokoro strong em, #errors-userlist-user-desokoro strong, #errors-userlist-user-desokoro span, #istor-userlist-user-desokoro strong em, #istor-userlist-user-desokoro strong, #istor-userlist-user-desokoro span{
-color:  800000 !important;
-}
-.chat.chatmessage-desokoro strong {
-color:  800000 !important;
-}
-#lobby-userlist-user-spandan strong em, #lobby-userlist-user-spandan strong, #lobby-userlist-user-spandan span, #staff-userlist-user-spandan strong em, #staff-userlist-user-spandan strong, #staff-userlist-user-spandan span, #dragnor-userlist-user-spandan strong em, #dragnor-userlist-user-spandan strong, #dragnor-userlist-user-spandan span, #othermetas-userlist-user-spandan strong em, #othermetas-userlist-user-spandan strong, #othermetas-userlist-user-spandan span, #chillin-userlist-user-spandan strong em, #chillin-userlist-user-spandan strong, #chillin-userlist-user-spandan span, #test-userlist-user-spandan strong em, #test-userlist-user-spandan strong, #test-userlist-user-spandan span, #upperstaff-userlist-user-spandan strong em, #upperstaff-userlist-user-spandan strong, #upperstaff-userlist-user-spandan span, #development-userlist-user-spandan strong em, #development-userlist-user-spandan strong, #development-userlist-user-spandan span, #trademarked-userlist-user-spandan strong em, #trademarked-userlist-user-spandan strong, #trademarked-userlist-user-spandan span, #io-userlist-user-spandan strong em, #io-userlist-user-spandan strong, #io-userlist-user-spandan span, #animeandmanga-userlist-user-spandan strong em, #animeandmanga-userlist-user-spandan strong, #animeandmanga-userlist-user-spandan span, #theadminchat-userlist-user-spandan strong em, #theadminchat-userlist-user-spandan strong, #theadminchat-userlist-user-spandan span, #houseofreluxing-userlist-user-spandan strong em, #houseofreluxing-userlist-user-spandan strong, #houseofreluxing-userlist-user-spandan span, #cosmopolitan-userlist-user-spandan strong em, #cosmopolitan-userlist-user-spandan strong, #cosmopolitan-userlist-user-spandan span, #errors-userlist-user-spandan strong em, #errors-userlist-user-spandan strong, #errors-userlist-user-spandan span, #istor-userlist-user-spandan strong em, #istor-userlist-user-spandan strong, #istor-userlist-user-spandan span{
-color:  delete !important;
-}
-.chat.chatmessage-spandan strong {
-color:  delete !important;
-}
-#lobby-userlist-user-charizard8888 strong em, #lobby-userlist-user-charizard8888 strong, #lobby-userlist-user-charizard8888 span, #staff-userlist-user-charizard8888 strong em, #staff-userlist-user-charizard8888 strong, #staff-userlist-user-charizard8888 span, #dragnor-userlist-user-charizard8888 strong em, #dragnor-userlist-user-charizard8888 strong, #dragnor-userlist-user-charizard8888 span, #othermetas-userlist-user-charizard8888 strong em, #othermetas-userlist-user-charizard8888 strong, #othermetas-userlist-user-charizard8888 span, #chillin-userlist-user-charizard8888 strong em, #chillin-userlist-user-charizard8888 strong, #chillin-userlist-user-charizard8888 span, #test-userlist-user-charizard8888 strong em, #test-userlist-user-charizard8888 strong, #test-userlist-user-charizard8888 span, #upperstaff-userlist-user-charizard8888 strong em, #upperstaff-userlist-user-charizard8888 strong, #upperstaff-userlist-user-charizard8888 span, #development-userlist-user-charizard8888 strong em, #development-userlist-user-charizard8888 strong, #development-userlist-user-charizard8888 span, #trademarked-userlist-user-charizard8888 strong em, #trademarked-userlist-user-charizard8888 strong, #trademarked-userlist-user-charizard8888 span, #io-userlist-user-charizard8888 strong em, #io-userlist-user-charizard8888 strong, #io-userlist-user-charizard8888 span, #animeandmanga-userlist-user-charizard8888 strong em, #animeandmanga-userlist-user-charizard8888 strong, #animeandmanga-userlist-user-charizard8888 span, #theadminchat-userlist-user-charizard8888 strong em, #theadminchat-userlist-user-charizard8888 strong, #theadminchat-userlist-user-charizard8888 span, #houseofreluxing-userlist-user-charizard8888 strong em, #houseofreluxing-userlist-user-charizard8888 strong, #houseofreluxing-userlist-user-charizard8888 span, #cosmopolitan-userlist-user-charizard8888 strong em, #cosmopolitan-userlist-user-charizard8888 strong, #cosmopolitan-userlist-user-charizard8888 span, #errors-userlist-user-charizard8888 strong em, #errors-userlist-user-charizard8888 strong, #errors-userlist-user-charizard8888 span, #istor-userlist-user-charizard8888 strong em, #istor-userlist-user-charizard8888 strong, #istor-userlist-user-charizard8888 span{
-color: #FFA000 !important;
-}
-.chat.chatmessage-charizard8888 strong {
-color: #FFA000 !important;
-}
-#lobby-userlist-user-oriolesfan52 strong em, #lobby-userlist-user-oriolesfan52 strong, #lobby-userlist-user-oriolesfan52 span, #staff-userlist-user-oriolesfan52 strong em, #staff-userlist-user-oriolesfan52 strong, #staff-userlist-user-oriolesfan52 span, #dragnor-userlist-user-oriolesfan52 strong em, #dragnor-userlist-user-oriolesfan52 strong, #dragnor-userlist-user-oriolesfan52 span, #othermetas-userlist-user-oriolesfan52 strong em, #othermetas-userlist-user-oriolesfan52 strong, #othermetas-userlist-user-oriolesfan52 span, #chillin-userlist-user-oriolesfan52 strong em, #chillin-userlist-user-oriolesfan52 strong, #chillin-userlist-user-oriolesfan52 span, #test-userlist-user-oriolesfan52 strong em, #test-userlist-user-oriolesfan52 strong, #test-userlist-user-oriolesfan52 span, #upperstaff-userlist-user-oriolesfan52 strong em, #upperstaff-userlist-user-oriolesfan52 strong, #upperstaff-userlist-user-oriolesfan52 span, #development-userlist-user-oriolesfan52 strong em, #development-userlist-user-oriolesfan52 strong, #development-userlist-user-oriolesfan52 span, #trademarked-userlist-user-oriolesfan52 strong em, #trademarked-userlist-user-oriolesfan52 strong, #trademarked-userlist-user-oriolesfan52 span, #io-userlist-user-oriolesfan52 strong em, #io-userlist-user-oriolesfan52 strong, #io-userlist-user-oriolesfan52 span, #animeandmanga-userlist-user-oriolesfan52 strong em, #animeandmanga-userlist-user-oriolesfan52 strong, #animeandmanga-userlist-user-oriolesfan52 span, #theadminchat-userlist-user-oriolesfan52 strong em, #theadminchat-userlist-user-oriolesfan52 strong, #theadminchat-userlist-user-oriolesfan52 span, #houseofreluxing-userlist-user-oriolesfan52 strong em, #houseofreluxing-userlist-user-oriolesfan52 strong, #houseofreluxing-userlist-user-oriolesfan52 span, #cosmopolitan-userlist-user-oriolesfan52 strong em, #cosmopolitan-userlist-user-oriolesfan52 strong, #cosmopolitan-userlist-user-oriolesfan52 span, #errors-userlist-user-oriolesfan52 strong em, #errors-userlist-user-oriolesfan52 strong, #errors-userlist-user-oriolesfan52 span, #istor-userlist-user-oriolesfan52 strong em, #istor-userlist-user-oriolesfan52 strong, #istor-userlist-user-oriolesfan52 span{
-color:  c16815 !important;
-}
-.chat.chatmessage-oriolesfan52 strong {
-color:  c16815 !important;
-}
-#lobby-userlist-user-pikaxreme strong em, #lobby-userlist-user-pikaxreme strong, #lobby-userlist-user-pikaxreme span, #staff-userlist-user-pikaxreme strong em, #staff-userlist-user-pikaxreme strong, #staff-userlist-user-pikaxreme span, #dragnor-userlist-user-pikaxreme strong em, #dragnor-userlist-user-pikaxreme strong, #dragnor-userlist-user-pikaxreme span, #othermetas-userlist-user-pikaxreme strong em, #othermetas-userlist-user-pikaxreme strong, #othermetas-userlist-user-pikaxreme span, #chillin-userlist-user-pikaxreme strong em, #chillin-userlist-user-pikaxreme strong, #chillin-userlist-user-pikaxreme span, #test-userlist-user-pikaxreme strong em, #test-userlist-user-pikaxreme strong, #test-userlist-user-pikaxreme span, #upperstaff-userlist-user-pikaxreme strong em, #upperstaff-userlist-user-pikaxreme strong, #upperstaff-userlist-user-pikaxreme span, #development-userlist-user-pikaxreme strong em, #development-userlist-user-pikaxreme strong, #development-userlist-user-pikaxreme span, #trademarked-userlist-user-pikaxreme strong em, #trademarked-userlist-user-pikaxreme strong, #trademarked-userlist-user-pikaxreme span, #io-userlist-user-pikaxreme strong em, #io-userlist-user-pikaxreme strong, #io-userlist-user-pikaxreme span, #animeandmanga-userlist-user-pikaxreme strong em, #animeandmanga-userlist-user-pikaxreme strong, #animeandmanga-userlist-user-pikaxreme span, #theadminchat-userlist-user-pikaxreme strong em, #theadminchat-userlist-user-pikaxreme strong, #theadminchat-userlist-user-pikaxreme span, #houseofreluxing-userlist-user-pikaxreme strong em, #houseofreluxing-userlist-user-pikaxreme strong, #houseofreluxing-userlist-user-pikaxreme span, #cosmopolitan-userlist-user-pikaxreme strong em, #cosmopolitan-userlist-user-pikaxreme strong, #cosmopolitan-userlist-user-pikaxreme span, #errors-userlist-user-pikaxreme strong em, #errors-userlist-user-pikaxreme strong, #errors-userlist-user-pikaxreme span, #istor-userlist-user-pikaxreme strong em, #istor-userlist-user-pikaxreme strong, #istor-userlist-user-pikaxreme span{
-color:  ef1aa5 !important;
-}
-.chat.chatmessage-pikaxreme strong {
-color:  ef1aa5 !important;
-}
-#lobby-userlist-user-setclassyz strong em, #lobby-userlist-user-setclassyz strong, #lobby-userlist-user-setclassyz span, #staff-userlist-user-setclassyz strong em, #staff-userlist-user-setclassyz strong, #staff-userlist-user-setclassyz span, #dragnor-userlist-user-setclassyz strong em, #dragnor-userlist-user-setclassyz strong, #dragnor-userlist-user-setclassyz span, #othermetas-userlist-user-setclassyz strong em, #othermetas-userlist-user-setclassyz strong, #othermetas-userlist-user-setclassyz span, #chillin-userlist-user-setclassyz strong em, #chillin-userlist-user-setclassyz strong, #chillin-userlist-user-setclassyz span, #test-userlist-user-setclassyz strong em, #test-userlist-user-setclassyz strong, #test-userlist-user-setclassyz span, #upperstaff-userlist-user-setclassyz strong em, #upperstaff-userlist-user-setclassyz strong, #upperstaff-userlist-user-setclassyz span, #development-userlist-user-setclassyz strong em, #development-userlist-user-setclassyz strong, #development-userlist-user-setclassyz span, #trademarked-userlist-user-setclassyz strong em, #trademarked-userlist-user-setclassyz strong, #trademarked-userlist-user-setclassyz span, #io-userlist-user-setclassyz strong em, #io-userlist-user-setclassyz strong, #io-userlist-user-setclassyz span, #animeandmanga-userlist-user-setclassyz strong em, #animeandmanga-userlist-user-setclassyz strong, #animeandmanga-userlist-user-setclassyz span, #theadminchat-userlist-user-setclassyz strong em, #theadminchat-userlist-user-setclassyz strong, #theadminchat-userlist-user-setclassyz span, #houseofreluxing-userlist-user-setclassyz strong em, #houseofreluxing-userlist-user-setclassyz strong, #houseofreluxing-userlist-user-setclassyz span, #cosmopolitan-userlist-user-setclassyz strong em, #cosmopolitan-userlist-user-setclassyz strong, #cosmopolitan-userlist-user-setclassyz span, #errors-userlist-user-setclassyz strong em, #errors-userlist-user-setclassyz strong, #errors-userlist-user-setclassyz span, #istor-userlist-user-setclassyz strong em, #istor-userlist-user-setclassyz strong, #istor-userlist-user-setclassyz span{
-color:  black !important;
-}
-.chat.chatmessage-setclassyz strong {
-color:  black !important;
-}
-#lobby-userlist-user-classyz strong em, #lobby-userlist-user-classyz strong, #lobby-userlist-user-classyz span, #staff-userlist-user-classyz strong em, #staff-userlist-user-classyz strong, #staff-userlist-user-classyz span, #dragnor-userlist-user-classyz strong em, #dragnor-userlist-user-classyz strong, #dragnor-userlist-user-classyz span, #othermetas-userlist-user-classyz strong em, #othermetas-userlist-user-classyz strong, #othermetas-userlist-user-classyz span, #chillin-userlist-user-classyz strong em, #chillin-userlist-user-classyz strong, #chillin-userlist-user-classyz span, #test-userlist-user-classyz strong em, #test-userlist-user-classyz strong, #test-userlist-user-classyz span, #upperstaff-userlist-user-classyz strong em, #upperstaff-userlist-user-classyz strong, #upperstaff-userlist-user-classyz span, #development-userlist-user-classyz strong em, #development-userlist-user-classyz strong, #development-userlist-user-classyz span, #trademarked-userlist-user-classyz strong em, #trademarked-userlist-user-classyz strong, #trademarked-userlist-user-classyz span, #io-userlist-user-classyz strong em, #io-userlist-user-classyz strong, #io-userlist-user-classyz span, #animeandmanga-userlist-user-classyz strong em, #animeandmanga-userlist-user-classyz strong, #animeandmanga-userlist-user-classyz span, #theadminchat-userlist-user-classyz strong em, #theadminchat-userlist-user-classyz strong, #theadminchat-userlist-user-classyz span, #houseofreluxing-userlist-user-classyz strong em, #houseofreluxing-userlist-user-classyz strong, #houseofreluxing-userlist-user-classyz span, #cosmopolitan-userlist-user-classyz strong em, #cosmopolitan-userlist-user-classyz strong, #cosmopolitan-userlist-user-classyz span, #errors-userlist-user-classyz strong em, #errors-userlist-user-classyz strong, #errors-userlist-user-classyz span, #istor-userlist-user-classyz strong em, #istor-userlist-user-classyz strong, #istor-userlist-user-classyz span{
-color:  #1a001a !important;
-}
-.chat.chatmessage-classyz strong {
-color:  #1a001a !important;
-}
-#lobby-userlist-user-pieddychomp strong em, #lobby-userlist-user-pieddychomp strong, #lobby-userlist-user-pieddychomp span, #staff-userlist-user-pieddychomp strong em, #staff-userlist-user-pieddychomp strong, #staff-userlist-user-pieddychomp span, #dragnor-userlist-user-pieddychomp strong em, #dragnor-userlist-user-pieddychomp strong, #dragnor-userlist-user-pieddychomp span, #othermetas-userlist-user-pieddychomp strong em, #othermetas-userlist-user-pieddychomp strong, #othermetas-userlist-user-pieddychomp span, #chillin-userlist-user-pieddychomp strong em, #chillin-userlist-user-pieddychomp strong, #chillin-userlist-user-pieddychomp span, #test-userlist-user-pieddychomp strong em, #test-userlist-user-pieddychomp strong, #test-userlist-user-pieddychomp span, #upperstaff-userlist-user-pieddychomp strong em, #upperstaff-userlist-user-pieddychomp strong, #upperstaff-userlist-user-pieddychomp span, #development-userlist-user-pieddychomp strong em, #development-userlist-user-pieddychomp strong, #development-userlist-user-pieddychomp span, #trademarked-userlist-user-pieddychomp strong em, #trademarked-userlist-user-pieddychomp strong, #trademarked-userlist-user-pieddychomp span, #io-userlist-user-pieddychomp strong em, #io-userlist-user-pieddychomp strong, #io-userlist-user-pieddychomp span, #animeandmanga-userlist-user-pieddychomp strong em, #animeandmanga-userlist-user-pieddychomp strong, #animeandmanga-userlist-user-pieddychomp span, #theadminchat-userlist-user-pieddychomp strong em, #theadminchat-userlist-user-pieddychomp strong, #theadminchat-userlist-user-pieddychomp span, #houseofreluxing-userlist-user-pieddychomp strong em, #houseofreluxing-userlist-user-pieddychomp strong, #houseofreluxing-userlist-user-pieddychomp span, #cosmopolitan-userlist-user-pieddychomp strong em, #cosmopolitan-userlist-user-pieddychomp strong, #cosmopolitan-userlist-user-pieddychomp span, #errors-userlist-user-pieddychomp strong em, #errors-userlist-user-pieddychomp strong, #errors-userlist-user-pieddychomp span, #istor-userlist-user-pieddychomp strong em, #istor-userlist-user-pieddychomp strong, #istor-userlist-user-pieddychomp span{
-color:  Blue !important;
 }
 .chat.chatmessage-pieddychomp strong {
-color:  Blue !important;
+    color:blue !important;
 }
-#lobby-userlist-user-setoutrageousbot strong em, #lobby-userlist-user-setoutrageousbot strong, #lobby-userlist-user-setoutrageousbot span, #staff-userlist-user-setoutrageousbot strong em, #staff-userlist-user-setoutrageousbot strong, #staff-userlist-user-setoutrageousbot span, #dragnor-userlist-user-setoutrageousbot strong em, #dragnor-userlist-user-setoutrageousbot strong, #dragnor-userlist-user-setoutrageousbot span, #othermetas-userlist-user-setoutrageousbot strong em, #othermetas-userlist-user-setoutrageousbot strong, #othermetas-userlist-user-setoutrageousbot span, #chillin-userlist-user-setoutrageousbot strong em, #chillin-userlist-user-setoutrageousbot strong, #chillin-userlist-user-setoutrageousbot span, #test-userlist-user-setoutrageousbot strong em, #test-userlist-user-setoutrageousbot strong, #test-userlist-user-setoutrageousbot span, #upperstaff-userlist-user-setoutrageousbot strong em, #upperstaff-userlist-user-setoutrageousbot strong, #upperstaff-userlist-user-setoutrageousbot span, #development-userlist-user-setoutrageousbot strong em, #development-userlist-user-setoutrageousbot strong, #development-userlist-user-setoutrageousbot span, #trademarked-userlist-user-setoutrageousbot strong em, #trademarked-userlist-user-setoutrageousbot strong, #trademarked-userlist-user-setoutrageousbot span, #io-userlist-user-setoutrageousbot strong em, #io-userlist-user-setoutrageousbot strong, #io-userlist-user-setoutrageousbot span, #animeandmanga-userlist-user-setoutrageousbot strong em, #animeandmanga-userlist-user-setoutrageousbot strong, #animeandmanga-userlist-user-setoutrageousbot span, #theadminchat-userlist-user-setoutrageousbot strong em, #theadminchat-userlist-user-setoutrageousbot strong, #theadminchat-userlist-user-setoutrageousbot span, #houseofreluxing-userlist-user-setoutrageousbot strong em, #houseofreluxing-userlist-user-setoutrageousbot strong, #houseofreluxing-userlist-user-setoutrageousbot span, #cosmopolitan-userlist-user-setoutrageousbot strong em, #cosmopolitan-userlist-user-setoutrageousbot strong, #cosmopolitan-userlist-user-setoutrageousbot span, #errors-userlist-user-setoutrageousbot strong em, #errors-userlist-user-setoutrageousbot strong, #errors-userlist-user-setoutrageousbot span, #istor-userlist-user-setoutrageousbot strong em, #istor-userlist-user-setoutrageousbot strong, #istor-userlist-user-setoutrageousbot span{
-color:  delete !important;
-}
-.chat.chatmessage-setoutrageousbot strong {
-color:  delete !important;
-}
-#lobby-userlist-user-delete strong em, #lobby-userlist-user-delete strong, #lobby-userlist-user-delete span, #staff-userlist-user-delete strong em, #staff-userlist-user-delete strong, #staff-userlist-user-delete span, #dragnor-userlist-user-delete strong em, #dragnor-userlist-user-delete strong, #dragnor-userlist-user-delete span, #othermetas-userlist-user-delete strong em, #othermetas-userlist-user-delete strong, #othermetas-userlist-user-delete span, #chillin-userlist-user-delete strong em, #chillin-userlist-user-delete strong, #chillin-userlist-user-delete span, #test-userlist-user-delete strong em, #test-userlist-user-delete strong, #test-userlist-user-delete span, #upperstaff-userlist-user-delete strong em, #upperstaff-userlist-user-delete strong, #upperstaff-userlist-user-delete span, #development-userlist-user-delete strong em, #development-userlist-user-delete strong, #development-userlist-user-delete span, #trademarked-userlist-user-delete strong em, #trademarked-userlist-user-delete strong, #trademarked-userlist-user-delete span, #io-userlist-user-delete strong em, #io-userlist-user-delete strong, #io-userlist-user-delete span, #animeandmanga-userlist-user-delete strong em, #animeandmanga-userlist-user-delete strong, #animeandmanga-userlist-user-delete span, #theadminchat-userlist-user-delete strong em, #theadminchat-userlist-user-delete strong, #theadminchat-userlist-user-delete span, #houseofreluxing-userlist-user-delete strong em, #houseofreluxing-userlist-user-delete strong, #houseofreluxing-userlist-user-delete span, #cosmopolitan-userlist-user-delete strong em, #cosmopolitan-userlist-user-delete strong, #cosmopolitan-userlist-user-delete span, #errors-userlist-user-delete strong em, #errors-userlist-user-delete strong, #errors-userlist-user-delete span, #istor-userlist-user-delete strong em, #istor-userlist-user-delete strong, #istor-userlist-user-delete span{
-color:  spandan !important;
-}
-.chat.chatmessage-delete strong {
-color:  spandan !important;
-}
-#lobby-userlist-user-chrz4rd strong em, #lobby-userlist-user-chrz4rd strong, #lobby-userlist-user-chrz4rd span, #staff-userlist-user-chrz4rd strong em, #staff-userlist-user-chrz4rd strong, #staff-userlist-user-chrz4rd span, #dragnor-userlist-user-chrz4rd strong em, #dragnor-userlist-user-chrz4rd strong, #dragnor-userlist-user-chrz4rd span, #othermetas-userlist-user-chrz4rd strong em, #othermetas-userlist-user-chrz4rd strong, #othermetas-userlist-user-chrz4rd span, #chillin-userlist-user-chrz4rd strong em, #chillin-userlist-user-chrz4rd strong, #chillin-userlist-user-chrz4rd span, #test-userlist-user-chrz4rd strong em, #test-userlist-user-chrz4rd strong, #test-userlist-user-chrz4rd span, #upperstaff-userlist-user-chrz4rd strong em, #upperstaff-userlist-user-chrz4rd strong, #upperstaff-userlist-user-chrz4rd span, #development-userlist-user-chrz4rd strong em, #development-userlist-user-chrz4rd strong, #development-userlist-user-chrz4rd span, #trademarked-userlist-user-chrz4rd strong em, #trademarked-userlist-user-chrz4rd strong, #trademarked-userlist-user-chrz4rd span, #io-userlist-user-chrz4rd strong em, #io-userlist-user-chrz4rd strong, #io-userlist-user-chrz4rd span, #animeandmanga-userlist-user-chrz4rd strong em, #animeandmanga-userlist-user-chrz4rd strong, #animeandmanga-userlist-user-chrz4rd span, #theadminchat-userlist-user-chrz4rd strong em, #theadminchat-userlist-user-chrz4rd strong, #theadminchat-userlist-user-chrz4rd span, #houseofreluxing-userlist-user-chrz4rd strong em, #houseofreluxing-userlist-user-chrz4rd strong, #houseofreluxing-userlist-user-chrz4rd span, #cosmopolitan-userlist-user-chrz4rd strong em, #cosmopolitan-userlist-user-chrz4rd strong, #cosmopolitan-userlist-user-chrz4rd span, #errors-userlist-user-chrz4rd strong em, #errors-userlist-user-chrz4rd strong, #errors-userlist-user-chrz4rd span, #istor-userlist-user-chrz4rd strong em, #istor-userlist-user-chrz4rd strong, #istor-userlist-user-chrz4rd span{
-color:  F9A867 !important;
-}
-.chat.chatmessage-chrz4rd strong {
-color:  F9A867 !important;
-}
-#lobby-userlist-user-mogstarz strong em, #lobby-userlist-user-mogstarz strong, #lobby-userlist-user-mogstarz span, #staff-userlist-user-mogstarz strong em, #staff-userlist-user-mogstarz strong, #staff-userlist-user-mogstarz span, #dragnor-userlist-user-mogstarz strong em, #dragnor-userlist-user-mogstarz strong, #dragnor-userlist-user-mogstarz span, #othermetas-userlist-user-mogstarz strong em, #othermetas-userlist-user-mogstarz strong, #othermetas-userlist-user-mogstarz span, #chillin-userlist-user-mogstarz strong em, #chillin-userlist-user-mogstarz strong, #chillin-userlist-user-mogstarz span, #test-userlist-user-mogstarz strong em, #test-userlist-user-mogstarz strong, #test-userlist-user-mogstarz span, #upperstaff-userlist-user-mogstarz strong em, #upperstaff-userlist-user-mogstarz strong, #upperstaff-userlist-user-mogstarz span, #development-userlist-user-mogstarz strong em, #development-userlist-user-mogstarz strong, #development-userlist-user-mogstarz span, #trademarked-userlist-user-mogstarz strong em, #trademarked-userlist-user-mogstarz strong, #trademarked-userlist-user-mogstarz span, #io-userlist-user-mogstarz strong em, #io-userlist-user-mogstarz strong, #io-userlist-user-mogstarz span, #animeandmanga-userlist-user-mogstarz strong em, #animeandmanga-userlist-user-mogstarz strong, #animeandmanga-userlist-user-mogstarz span, #theadminchat-userlist-user-mogstarz strong em, #theadminchat-userlist-user-mogstarz strong, #theadminchat-userlist-user-mogstarz span, #houseofreluxing-userlist-user-mogstarz strong em, #houseofreluxing-userlist-user-mogstarz strong, #houseofreluxing-userlist-user-mogstarz span, #cosmopolitan-userlist-user-mogstarz strong em, #cosmopolitan-userlist-user-mogstarz strong, #cosmopolitan-userlist-user-mogstarz span, #errors-userlist-user-mogstarz strong em, #errors-userlist-user-mogstarz strong, #errors-userlist-user-mogstarz span, #istor-userlist-user-mogstarz strong em, #istor-userlist-user-mogstarz strong, #istor-userlist-user-mogstarz span{
-color: #842DCE !important;
-}
-.chat.chatmessage-mogstarz strong {
-color: #842DCE !important;
-}
-#lobby-userlist-user-megazardx8888 strong em, #lobby-userlist-user-megazardx8888 strong, #lobby-userlist-user-megazardx8888 span, #staff-userlist-user-megazardx8888 strong em, #staff-userlist-user-megazardx8888 strong, #staff-userlist-user-megazardx8888 span, #dragnor-userlist-user-megazardx8888 strong em, #dragnor-userlist-user-megazardx8888 strong, #dragnor-userlist-user-megazardx8888 span, #othermetas-userlist-user-megazardx8888 strong em, #othermetas-userlist-user-megazardx8888 strong, #othermetas-userlist-user-megazardx8888 span, #chillin-userlist-user-megazardx8888 strong em, #chillin-userlist-user-megazardx8888 strong, #chillin-userlist-user-megazardx8888 span, #test-userlist-user-megazardx8888 strong em, #test-userlist-user-megazardx8888 strong, #test-userlist-user-megazardx8888 span, #upperstaff-userlist-user-megazardx8888 strong em, #upperstaff-userlist-user-megazardx8888 strong, #upperstaff-userlist-user-megazardx8888 span, #development-userlist-user-megazardx8888 strong em, #development-userlist-user-megazardx8888 strong, #development-userlist-user-megazardx8888 span, #trademarked-userlist-user-megazardx8888 strong em, #trademarked-userlist-user-megazardx8888 strong, #trademarked-userlist-user-megazardx8888 span, #io-userlist-user-megazardx8888 strong em, #io-userlist-user-megazardx8888 strong, #io-userlist-user-megazardx8888 span, #animeandmanga-userlist-user-megazardx8888 strong em, #animeandmanga-userlist-user-megazardx8888 strong, #animeandmanga-userlist-user-megazardx8888 span, #theadminchat-userlist-user-megazardx8888 strong em, #theadminchat-userlist-user-megazardx8888 strong, #theadminchat-userlist-user-megazardx8888 span, #houseofreluxing-userlist-user-megazardx8888 strong em, #houseofreluxing-userlist-user-megazardx8888 strong, #houseofreluxing-userlist-user-megazardx8888 span, #cosmopolitan-userlist-user-megazardx8888 strong em, #cosmopolitan-userlist-user-megazardx8888 strong, #cosmopolitan-userlist-user-megazardx8888 span, #errors-userlist-user-megazardx8888 strong em, #errors-userlist-user-megazardx8888 strong, #errors-userlist-user-megazardx8888 span, #istor-userlist-user-megazardx8888 strong em, #istor-userlist-user-megazardx8888 strong, #istor-userlist-user-megazardx8888 span{
-color:  ABCDEF !important;
-}
-.chat.chatmessage-megazardx8888 strong {
-color:  ABCDEF !important;
-}
-#lobby-userlist-user-zebstriking strong em, #lobby-userlist-user-zebstriking strong, #lobby-userlist-user-zebstriking span, #staff-userlist-user-zebstriking strong em, #staff-userlist-user-zebstriking strong, #staff-userlist-user-zebstriking span, #dragnor-userlist-user-zebstriking strong em, #dragnor-userlist-user-zebstriking strong, #dragnor-userlist-user-zebstriking span, #othermetas-userlist-user-zebstriking strong em, #othermetas-userlist-user-zebstriking strong, #othermetas-userlist-user-zebstriking span, #chillin-userlist-user-zebstriking strong em, #chillin-userlist-user-zebstriking strong, #chillin-userlist-user-zebstriking span, #test-userlist-user-zebstriking strong em, #test-userlist-user-zebstriking strong, #test-userlist-user-zebstriking span, #upperstaff-userlist-user-zebstriking strong em, #upperstaff-userlist-user-zebstriking strong, #upperstaff-userlist-user-zebstriking span, #development-userlist-user-zebstriking strong em, #development-userlist-user-zebstriking strong, #development-userlist-user-zebstriking span, #trademarked-userlist-user-zebstriking strong em, #trademarked-userlist-user-zebstriking strong, #trademarked-userlist-user-zebstriking span, #io-userlist-user-zebstriking strong em, #io-userlist-user-zebstriking strong, #io-userlist-user-zebstriking span, #animeandmanga-userlist-user-zebstriking strong em, #animeandmanga-userlist-user-zebstriking strong, #animeandmanga-userlist-user-zebstriking span, #theadminchat-userlist-user-zebstriking strong em, #theadminchat-userlist-user-zebstriking strong, #theadminchat-userlist-user-zebstriking span, #houseofreluxing-userlist-user-zebstriking strong em, #houseofreluxing-userlist-user-zebstriking strong, #houseofreluxing-userlist-user-zebstriking span, #cosmopolitan-userlist-user-zebstriking strong em, #cosmopolitan-userlist-user-zebstriking strong, #cosmopolitan-userlist-user-zebstriking span, #errors-userlist-user-zebstriking strong em, #errors-userlist-user-zebstriking strong, #errors-userlist-user-zebstriking span, #istor-userlist-user-zebstriking strong em, #istor-userlist-user-zebstriking strong, #istor-userlist-user-zebstriking span{
-color:  8A0707 !important;
-}
-.chat.chatmessage-zebstriking strong {
-color:  8A0707 !important;
-}
-#lobby-userlist-user-flufi strong em, #lobby-userlist-user-flufi strong, #lobby-userlist-user-flufi span, #staff-userlist-user-flufi strong em, #staff-userlist-user-flufi strong, #staff-userlist-user-flufi span, #dragnor-userlist-user-flufi strong em, #dragnor-userlist-user-flufi strong, #dragnor-userlist-user-flufi span, #othermetas-userlist-user-flufi strong em, #othermetas-userlist-user-flufi strong, #othermetas-userlist-user-flufi span, #chillin-userlist-user-flufi strong em, #chillin-userlist-user-flufi strong, #chillin-userlist-user-flufi span, #test-userlist-user-flufi strong em, #test-userlist-user-flufi strong, #test-userlist-user-flufi span, #upperstaff-userlist-user-flufi strong em, #upperstaff-userlist-user-flufi strong, #upperstaff-userlist-user-flufi span, #development-userlist-user-flufi strong em, #development-userlist-user-flufi strong, #development-userlist-user-flufi span, #trademarked-userlist-user-flufi strong em, #trademarked-userlist-user-flufi strong, #trademarked-userlist-user-flufi span, #io-userlist-user-flufi strong em, #io-userlist-user-flufi strong, #io-userlist-user-flufi span, #animeandmanga-userlist-user-flufi strong em, #animeandmanga-userlist-user-flufi strong, #animeandmanga-userlist-user-flufi span, #theadminchat-userlist-user-flufi strong em, #theadminchat-userlist-user-flufi strong, #theadminchat-userlist-user-flufi span, #houseofreluxing-userlist-user-flufi strong em, #houseofreluxing-userlist-user-flufi strong, #houseofreluxing-userlist-user-flufi span, #cosmopolitan-userlist-user-flufi strong em, #cosmopolitan-userlist-user-flufi strong, #cosmopolitan-userlist-user-flufi span, #errors-userlist-user-flufi strong em, #errors-userlist-user-flufi strong, #errors-userlist-user-flufi span, #istor-userlist-user-flufi strong em, #istor-userlist-user-flufi strong, #istor-userlist-user-flufi span{
-color: #e0331d !important;
-}
-.chat.chatmessage-flufi strong {
-color: #e0331d !important;
-}
-#lobby-userlist-user-tamatomo strong em, #lobby-userlist-user-tamatomo strong, #lobby-userlist-user-tamatomo span, #staff-userlist-user-tamatomo strong em, #staff-userlist-user-tamatomo strong, #staff-userlist-user-tamatomo span, #dragnor-userlist-user-tamatomo strong em, #dragnor-userlist-user-tamatomo strong, #dragnor-userlist-user-tamatomo span, #othermetas-userlist-user-tamatomo strong em, #othermetas-userlist-user-tamatomo strong, #othermetas-userlist-user-tamatomo span, #chillin-userlist-user-tamatomo strong em, #chillin-userlist-user-tamatomo strong, #chillin-userlist-user-tamatomo span, #test-userlist-user-tamatomo strong em, #test-userlist-user-tamatomo strong, #test-userlist-user-tamatomo span, #upperstaff-userlist-user-tamatomo strong em, #upperstaff-userlist-user-tamatomo strong, #upperstaff-userlist-user-tamatomo span, #development-userlist-user-tamatomo strong em, #development-userlist-user-tamatomo strong, #development-userlist-user-tamatomo span, #trademarked-userlist-user-tamatomo strong em, #trademarked-userlist-user-tamatomo strong, #trademarked-userlist-user-tamatomo span, #io-userlist-user-tamatomo strong em, #io-userlist-user-tamatomo strong, #io-userlist-user-tamatomo span, #animeandmanga-userlist-user-tamatomo strong em, #animeandmanga-userlist-user-tamatomo strong, #animeandmanga-userlist-user-tamatomo span, #theadminchat-userlist-user-tamatomo strong em, #theadminchat-userlist-user-tamatomo strong, #theadminchat-userlist-user-tamatomo span, #houseofreluxing-userlist-user-tamatomo strong em, #houseofreluxing-userlist-user-tamatomo strong, #houseofreluxing-userlist-user-tamatomo span, #cosmopolitan-userlist-user-tamatomo strong em, #cosmopolitan-userlist-user-tamatomo strong, #cosmopolitan-userlist-user-tamatomo span, #errors-userlist-user-tamatomo strong em, #errors-userlist-user-tamatomo strong, #errors-userlist-user-tamatomo span, #istor-userlist-user-tamatomo strong em, #istor-userlist-user-tamatomo strong, #istor-userlist-user-tamatomo span{
-color:  e06d21 !important;
-}
-.chat.chatmessage-tamatomo strong {
-color:  e06d21 !important;
-}
-#lobby-userlist-user-mareanie strong em, #lobby-userlist-user-mareanie strong, #lobby-userlist-user-mareanie span, #staff-userlist-user-mareanie strong em, #staff-userlist-user-mareanie strong, #staff-userlist-user-mareanie span, #dragnor-userlist-user-mareanie strong em, #dragnor-userlist-user-mareanie strong, #dragnor-userlist-user-mareanie span, #othermetas-userlist-user-mareanie strong em, #othermetas-userlist-user-mareanie strong, #othermetas-userlist-user-mareanie span, #chillin-userlist-user-mareanie strong em, #chillin-userlist-user-mareanie strong, #chillin-userlist-user-mareanie span, #test-userlist-user-mareanie strong em, #test-userlist-user-mareanie strong, #test-userlist-user-mareanie span, #upperstaff-userlist-user-mareanie strong em, #upperstaff-userlist-user-mareanie strong, #upperstaff-userlist-user-mareanie span, #development-userlist-user-mareanie strong em, #development-userlist-user-mareanie strong, #development-userlist-user-mareanie span, #trademarked-userlist-user-mareanie strong em, #trademarked-userlist-user-mareanie strong, #trademarked-userlist-user-mareanie span, #io-userlist-user-mareanie strong em, #io-userlist-user-mareanie strong, #io-userlist-user-mareanie span, #animeandmanga-userlist-user-mareanie strong em, #animeandmanga-userlist-user-mareanie strong, #animeandmanga-userlist-user-mareanie span, #theadminchat-userlist-user-mareanie strong em, #theadminchat-userlist-user-mareanie strong, #theadminchat-userlist-user-mareanie span, #houseofreluxing-userlist-user-mareanie strong em, #houseofreluxing-userlist-user-mareanie strong, #houseofreluxing-userlist-user-mareanie span, #cosmopolitan-userlist-user-mareanie strong em, #cosmopolitan-userlist-user-mareanie strong, #cosmopolitan-userlist-user-mareanie span, #errors-userlist-user-mareanie strong em, #errors-userlist-user-mareanie strong, #errors-userlist-user-mareanie span, #istor-userlist-user-mareanie strong em, #istor-userlist-user-mareanie strong, #istor-userlist-user-mareanie span{
-color:  5232a3 !important;
-}
-.chat.chatmessage-mareanie strong {
-color:  5232a3 !important;
-}
-#lobby-userlist-user-mdi strong em, #lobby-userlist-user-mdi strong, #lobby-userlist-user-mdi span, #staff-userlist-user-mdi strong em, #staff-userlist-user-mdi strong, #staff-userlist-user-mdi span, #dragnor-userlist-user-mdi strong em, #dragnor-userlist-user-mdi strong, #dragnor-userlist-user-mdi span, #othermetas-userlist-user-mdi strong em, #othermetas-userlist-user-mdi strong, #othermetas-userlist-user-mdi span, #chillin-userlist-user-mdi strong em, #chillin-userlist-user-mdi strong, #chillin-userlist-user-mdi span, #test-userlist-user-mdi strong em, #test-userlist-user-mdi strong, #test-userlist-user-mdi span, #upperstaff-userlist-user-mdi strong em, #upperstaff-userlist-user-mdi strong, #upperstaff-userlist-user-mdi span, #development-userlist-user-mdi strong em, #development-userlist-user-mdi strong, #development-userlist-user-mdi span, #trademarked-userlist-user-mdi strong em, #trademarked-userlist-user-mdi strong, #trademarked-userlist-user-mdi span, #io-userlist-user-mdi strong em, #io-userlist-user-mdi strong, #io-userlist-user-mdi span, #animeandmanga-userlist-user-mdi strong em, #animeandmanga-userlist-user-mdi strong, #animeandmanga-userlist-user-mdi span, #theadminchat-userlist-user-mdi strong em, #theadminchat-userlist-user-mdi strong, #theadminchat-userlist-user-mdi span, #houseofreluxing-userlist-user-mdi strong em, #houseofreluxing-userlist-user-mdi strong, #houseofreluxing-userlist-user-mdi span, #cosmopolitan-userlist-user-mdi strong em, #cosmopolitan-userlist-user-mdi strong, #cosmopolitan-userlist-user-mdi span, #errors-userlist-user-mdi strong em, #errors-userlist-user-mdi strong, #errors-userlist-user-mdi span, #istor-userlist-user-mdi strong em, #istor-userlist-user-mdi strong, #istor-userlist-user-mdi span{
-color:  delete !important;
+.chat.chatmessage-ransei strong {
+    color:red !important;
 }
 .chat.chatmessage-mdi strong {
-color:  delete !important;
+    color:blue !important;
 }
-#lobby-userlist-user-setamberdillo strong em, #lobby-userlist-user-setamberdillo strong, #lobby-userlist-user-setamberdillo span, #staff-userlist-user-setamberdillo strong em, #staff-userlist-user-setamberdillo strong, #staff-userlist-user-setamberdillo span, #dragnor-userlist-user-setamberdillo strong em, #dragnor-userlist-user-setamberdillo strong, #dragnor-userlist-user-setamberdillo span, #othermetas-userlist-user-setamberdillo strong em, #othermetas-userlist-user-setamberdillo strong, #othermetas-userlist-user-setamberdillo span, #chillin-userlist-user-setamberdillo strong em, #chillin-userlist-user-setamberdillo strong, #chillin-userlist-user-setamberdillo span, #test-userlist-user-setamberdillo strong em, #test-userlist-user-setamberdillo strong, #test-userlist-user-setamberdillo span, #upperstaff-userlist-user-setamberdillo strong em, #upperstaff-userlist-user-setamberdillo strong, #upperstaff-userlist-user-setamberdillo span, #development-userlist-user-setamberdillo strong em, #development-userlist-user-setamberdillo strong, #development-userlist-user-setamberdillo span, #trademarked-userlist-user-setamberdillo strong em, #trademarked-userlist-user-setamberdillo strong, #trademarked-userlist-user-setamberdillo span, #io-userlist-user-setamberdillo strong em, #io-userlist-user-setamberdillo strong, #io-userlist-user-setamberdillo span, #animeandmanga-userlist-user-setamberdillo strong em, #animeandmanga-userlist-user-setamberdillo strong, #animeandmanga-userlist-user-setamberdillo span, #theadminchat-userlist-user-setamberdillo strong em, #theadminchat-userlist-user-setamberdillo strong, #theadminchat-userlist-user-setamberdillo span, #houseofreluxing-userlist-user-setamberdillo strong em, #houseofreluxing-userlist-user-setamberdillo strong, #houseofreluxing-userlist-user-setamberdillo span, #cosmopolitan-userlist-user-setamberdillo strong em, #cosmopolitan-userlist-user-setamberdillo strong, #cosmopolitan-userlist-user-setamberdillo span, #errors-userlist-user-setamberdillo strong em, #errors-userlist-user-setamberdillo strong, #errors-userlist-user-setamberdillo span, #istor-userlist-user-setamberdillo strong em, #istor-userlist-user-setamberdillo strong, #istor-userlist-user-setamberdillo span{
-color:  63000f !important;
+.chat.chatmessage-calrissian strong {
+    color:blue !important;
+}
+.chat.chatmessage-suicunesquad strong {
+    color:blue !important;
+}
+.chat.chatmessage-suicuter strong {
+    color:blue !important;
+}
+.chat.chatmessage-clawliet strong {
+    color:red !important;
+}
+.chat.chatmessage-eternalmayhem strong {
+    color:purple !important;
+}
+.chat.chatmessage-darkchampionmewtwo strong {
+    color:black !important;
+}
+.chat.chatmessage-paul71 strong {
+    color:orange !important;
+}
+.chat.chatmessage-charizard8888 strong {
+    color:orange !important;
+}
+.chat.chatmessage-solarstatics strong {
+    color:red !important;
+}
+.chat.chatmessage-clawliet strong {
+    color:blue !important;
+}
+.chat.chatmessage-bestbuddy strong {
+    color:red !important;
+}
+.chat.chatmessage-dracobottt strong {
+    color:blue !important;
+}
+/******************
+  * Battle CSS ~end *
+  ******************/
+  
+/******************
+  * Battle CSS ~end *
+  ******************/
+  
+.ladder table,
+.ladder td,
+.ladder th {
+    border: 1px solid #DDD;
+}
+.ladder th {
+    background: #fff;
+}
+.closebutton,
+.minimizebutton {
+    color: #EEE;
+}
+.closebutton:hover {
+    color: #E04942;
+}
+.minimizebutton:hover {
+    color: #F9CA6C;
+}
+.ps-room .battle-controls {
+    background: transparent !important;
+}
+.lobby-userlist-users {
+    background: url("http://pldh.net/media/pokecons_action/484.gif") right no-repeat;
+    background: url("http://www.pokestadium.com/assets/img/sprites/misc/icons/old/reshiram.png") left no-repeat;
+}
+
+/* ICONS START */
+li[id*="charizard8888"] {
+    background: rgba(244,244,244,0.8) url("http://www.pokestadium.com/assets/img/sprites/misc/icons/charizard-mega-x.png") no-repeat right
+}
+li[id*="ggdaca"] {
+    background: rgba(244,244,244,0.8) url("https://pldh.net/media/pokexycons/384-mega.png") no-repeat right
+}
+li[id*="winona"] {
+    background: rgba(244,244,244,0.8) url("http://i.imgur.com/joKdbXU.gif") no-repeat right
+}
+li[id*="bbgun999"] {
+    background: rgba(244,244,244,0.8) url("http://www.pokestadium.com/assets/img/sprites/misc/icons/goodra.png") no-repeat right
+}
+li[id*="flufi"] {
+    background: rgba(244,244,244,0.8) url("https://pldh.net/media/pokemon/ranger2/026.png") no-repeat right
+}
+li[id*="zapmaster2010"] {
+    background: rgba(244,244,244,0.8) url("http://www.pokestadium.com/assets/img/sprites/misc/icons/mewtwo-mega-y.png") no-repeat right
+}
+li[id*="flurbel"] {
+    background: rgba(244,244,244,0.8) url("http://orig10.deviantart.net/f057/f/2011/133/1/5/lillipup_by_mixer26-d3g9gpg.gif") no-repeat right
+}
+li[id*="zygten"] {
+    background: rgba(244,244,244,0.8) url("http://www.pokestadium.com/assets/img/sprites/misc/icons/greninja.png") no-repeat right
+}
+/* ICONS END */
+
+/* COLORS START */
+li[id*="toolboxe"] strong em,[id*="toolboxe"] strong,[id*="toolboxe"] span {
+    color: #0000FF !important;
+}
+.chat.chatmessage-toolboxe strong {
+    color: #0000FF !important;
+}
+li[id*="trashyclassy"] strong em,[id*="trashyclassy"] strong,[id*="trashyclassy"] span {
+    color: #cc0000 !important;
+}
+.chat.chatmessage-trashyclassy strong {
+    color: #cc0000 !important;
+}
+li[id*="spandamn"] strong em,[id*="spandamn"] strong,[id*="spandamn"] span {
+    color: delete !important;
+}
+.chat.chatmessage-spandamn strong {
+    color: delete !important;
+}
+li[id*="batterbotto"] strong em,[id*="batterbotto"] strong,[id*="batterbotto"] span {
+    color: #e53b2b !important;
+}
+.chat.chatmessage-batterbotto strong {
+    color: #e53b2b !important;
+}
+li[id*="outrageousbot"] strong em,[id*="outrageousbot"] strong,[id*="outrageousbot"] span {
+    color: #C85732 !important;
+}
+.chat.chatmessage-outrageousbot strong {
+    color: #C85732 !important;
+}
+li[id*="snaq"] strong em,[id*="snaq"] strong,[id*="snaq"] span {
+    color: DE351A !important;
+}
+.chat.chatmessage-snaq strong {
+    color: DE351A !important;
+}
+li[id*="alphashivam"] strong em,[id*="alphashivam"] strong,[id*="alphashivam"] span {
+    color: #333333 !important;
+}
+.chat.chatmessage-alphashivam strong {
+    color: #333333 !important;
+}
+li[id*="snaquaza"] strong em,[id*="snaquaza"] strong,[id*="snaquaza"] span {
+    color: 520287 !important;
+}
+.chat.chatmessage-snaquaza strong {
+    color: 520287 !important;
+}
+li[id*="dratiniii"] strong em,[id*="dratiniii"] strong,[id*="dratiniii"] span {
+    color: #007cff !important;
+}
+.chat.chatmessage-dratiniii strong {
+    color: #007cff !important;
+}
+li[id*="darmanitanxd"] strong em,[id*="darmanitanxd"] strong,[id*="darmanitanxd"] span {
+    color: #23B36D !important;
+}
+.chat.chatmessage-darmanitanxd strong {
+    color: #23B36D !important;
+}
+li[id*="ransei"] strong em,[id*="ransei"] strong,[id*="ransei"] span {
+    color: dac007 !important;
+}
+.chat.chatmessage-ransei strong {
+    color: dac007 !important;
+}
+li[id*="bbgun999"] strong em,[id*="bbgun999"] strong,[id*="bbgun999"] span {
+    color: f2733c !important;
+}
+.chat.chatmessage-bbgun999 strong {
+    color: f2733c !important;
+}
+li[id*="desokoro"] strong em,[id*="desokoro"] strong,[id*="desokoro"] span {
+    color: 800000 !important;
+}
+.chat.chatmessage-desokoro strong {
+    color: 800000 !important;
+}
+li[id*="spandan"] strong em,[id*="spandan"] strong,[id*="spandan"] span {
+    color: delete !important;
+}
+.chat.chatmessage-spandan strong {
+    color: delete !important;
+}
+li[id*="charizard8888"] strong em,[id*="charizard8888"] strong,[id*="charizard8888"] span {
+    color: #FFA000 !important;
+}
+.chat.chatmessage-charizard8888 strong {
+    color: #FFA000 !important;
+}
+li[id*="oriolesfan52"] strong em,[id*="oriolesfan52"] strong,[id*="oriolesfan52"] span {
+    color: c16815 !important;
+}
+.chat.chatmessage-oriolesfan52 strong {
+    color: c16815 !important;
+}
+li[id*="pikaxreme"] strong em,[id*="pikaxreme"] strong,[id*="pikaxreme"] span {
+    color: ef1aa5 !important;
+}
+.chat.chatmessage-pikaxreme strong {
+    color: ef1aa5 !important;
+}
+li[id*="setclassyz"] strong em,[id*="setclassyz"] strong,[id*="setclassyz"] span {
+    color: black !important;
+}
+.chat.chatmessage-setclassyz strong {
+    color: black !important;
+}
+li[id*="classyz"] strong em,[id*="classyz"] strong,[id*="classyz"] span {
+    color: #1a001a !important;
+}
+.chat.chatmessage-classyz strong {
+    color: #1a001a !important;
+}
+li[id*="pieddychomp"] strong em,[id*="pieddychomp"] strong,[id*="pieddychomp"] span {
+    color: Blue !important;
+}
+.chat.chatmessage-pieddychomp strong {
+    color: Blue !important;
+}
+li[id*="setoutrageousbot"] strong em,[id*="setoutrageousbot"] strong,[id*="setoutrageousbot"] span {
+    color: delete !important;
+}
+.chat.chatmessage-setoutrageousbot strong {
+    color: delete !important;
+}
+/************ What is this doing here? ~UOP **************
+li[id*="delete"] strong em,[id*="delete"] strong,[id*="delete"] span {
+    color: spandan !important;
+}
+.chat.chatmessage-delete strong {
+    color: spandan !important;
+} */
+li[id*="chrz4rd"] strong em,[id*="chrz4rd"] strong,[id*="chrz4rd"] span {
+    color: F9A867 !important;
+}
+.chat.chatmessage-chrz4rd strong {
+    color: F9A867 !important;
+}
+li[id*="mogstarz"] strong em,[id*="mogstarz"] strong,[id*="mogstarz"] span {
+    color: #842DCE !important;
+}
+.chat.chatmessage-mogstarz strong {
+    color: #842DCE !important;
+}
+li[id*="megazardx8888"] strong em,[id*="megazardx8888"] strong,[id*="megazardx8888"] span {
+    color: ABCDEF !important;
+}
+.chat.chatmessage-megazardx8888 strong {
+    color: ABCDEF !important;
+}
+li[id*="zebstriking"] strong em,[id*="zebstriking"] strong,[id*="zebstriking"] span {
+    color: 8A0707 !important;
+}
+.chat.chatmessage-zebstriking strong {
+    color: 8A0707 !important;
+}
+li[id*="flufi"] strong em,[id*="flufi"] strong,[id*="flufi"] span {
+    color: #e0331d !important;
+}
+.chat.chatmessage-flufi strong {
+    color: #e0331d !important;
+}
+li[id*="tamatomo"] strong em,[id*="tamatomo"] strong,[id*="tamatomo"] span {
+    color: e06d21 !important;
+}
+.chat.chatmessage-tamatomo strong {
+    color: e06d21 !important;
+}
+li[id*="mareanie"] strong em,[id*="mareanie"] strong,[id*="mareanie"] span {
+    color: 5232a3 !important;
+}
+.chat.chatmessage-mareanie strong {
+    color: 5232a3 !important;
+}
+li[id*="mdi"] strong em,[id*="mdi"] strong,[id*="mdi"] span {
+    color: delete !important;
+}
+.chat.chatmessage-mdi strong {
+    color: delete !important;
+}
+li[id*="setamberdillo"] strong em,[id*="setamberdillo"] strong,[id*="setamberdillo"] span {
+    color: 63000f !important;
 }
 .chat.chatmessage-setamberdillo strong {
-color:  63000f !important;
+    color: 63000f !important;
 }
-#lobby-userlist-user-amberdillo strong em, #lobby-userlist-user-amberdillo strong, #lobby-userlist-user-amberdillo span, #staff-userlist-user-amberdillo strong em, #staff-userlist-user-amberdillo strong, #staff-userlist-user-amberdillo span, #dragnor-userlist-user-amberdillo strong em, #dragnor-userlist-user-amberdillo strong, #dragnor-userlist-user-amberdillo span, #othermetas-userlist-user-amberdillo strong em, #othermetas-userlist-user-amberdillo strong, #othermetas-userlist-user-amberdillo span, #chillin-userlist-user-amberdillo strong em, #chillin-userlist-user-amberdillo strong, #chillin-userlist-user-amberdillo span, #test-userlist-user-amberdillo strong em, #test-userlist-user-amberdillo strong, #test-userlist-user-amberdillo span, #upperstaff-userlist-user-amberdillo strong em, #upperstaff-userlist-user-amberdillo strong, #upperstaff-userlist-user-amberdillo span, #development-userlist-user-amberdillo strong em, #development-userlist-user-amberdillo strong, #development-userlist-user-amberdillo span, #trademarked-userlist-user-amberdillo strong em, #trademarked-userlist-user-amberdillo strong, #trademarked-userlist-user-amberdillo span, #io-userlist-user-amberdillo strong em, #io-userlist-user-amberdillo strong, #io-userlist-user-amberdillo span, #animeandmanga-userlist-user-amberdillo strong em, #animeandmanga-userlist-user-amberdillo strong, #animeandmanga-userlist-user-amberdillo span, #theadminchat-userlist-user-amberdillo strong em, #theadminchat-userlist-user-amberdillo strong, #theadminchat-userlist-user-amberdillo span, #houseofreluxing-userlist-user-amberdillo strong em, #houseofreluxing-userlist-user-amberdillo strong, #houseofreluxing-userlist-user-amberdillo span, #cosmopolitan-userlist-user-amberdillo strong em, #cosmopolitan-userlist-user-amberdillo strong, #cosmopolitan-userlist-user-amberdillo span, #errors-userlist-user-amberdillo strong em, #errors-userlist-user-amberdillo strong, #errors-userlist-user-amberdillo span, #istor-userlist-user-amberdillo strong em, #istor-userlist-user-amberdillo strong, #istor-userlist-user-amberdillo span{
-color:  63000f !important;
+li[id*="amberdillo"] strong em,[id*="amberdillo"] strong,[id*="amberdillo"] span {
+    color: 63000f !important;
 }
 .chat.chatmessage-amberdillo strong {
-color:  63000f !important;
+    color: 63000f !important;
 }
-#lobby-userlist-user-bondance strong em, #lobby-userlist-user-bondance strong, #lobby-userlist-user-bondance span, #staff-userlist-user-bondance strong em, #staff-userlist-user-bondance strong, #staff-userlist-user-bondance span, #dragnor-userlist-user-bondance strong em, #dragnor-userlist-user-bondance strong, #dragnor-userlist-user-bondance span, #othermetas-userlist-user-bondance strong em, #othermetas-userlist-user-bondance strong, #othermetas-userlist-user-bondance span, #chillin-userlist-user-bondance strong em, #chillin-userlist-user-bondance strong, #chillin-userlist-user-bondance span, #test-userlist-user-bondance strong em, #test-userlist-user-bondance strong, #test-userlist-user-bondance span, #upperstaff-userlist-user-bondance strong em, #upperstaff-userlist-user-bondance strong, #upperstaff-userlist-user-bondance span, #development-userlist-user-bondance strong em, #development-userlist-user-bondance strong, #development-userlist-user-bondance span, #trademarked-userlist-user-bondance strong em, #trademarked-userlist-user-bondance strong, #trademarked-userlist-user-bondance span, #io-userlist-user-bondance strong em, #io-userlist-user-bondance strong, #io-userlist-user-bondance span, #animeandmanga-userlist-user-bondance strong em, #animeandmanga-userlist-user-bondance strong, #animeandmanga-userlist-user-bondance span, #theadminchat-userlist-user-bondance strong em, #theadminchat-userlist-user-bondance strong, #theadminchat-userlist-user-bondance span, #houseofreluxing-userlist-user-bondance strong em, #houseofreluxing-userlist-user-bondance strong, #houseofreluxing-userlist-user-bondance span, #cosmopolitan-userlist-user-bondance strong em, #cosmopolitan-userlist-user-bondance strong, #cosmopolitan-userlist-user-bondance span, #errors-userlist-user-bondance strong em, #errors-userlist-user-bondance strong, #errors-userlist-user-bondance span, #istor-userlist-user-bondance strong em, #istor-userlist-user-bondance strong, #istor-userlist-user-bondance span{
-color:  ff00ff !important;
+li[id*="bondance"] strong em,[id*="bondance"] strong,[id*="bondance"] span {
+    color: ff00ff !important;
 }
 .chat.chatmessage-bondance strong {
-color:  ff00ff !important;
+    color: ff00ff !important;
 }
-#lobby-userlist-user-zygardeorder strong em, #lobby-userlist-user-zygardeorder strong, #lobby-userlist-user-zygardeorder span, #staff-userlist-user-zygardeorder strong em, #staff-userlist-user-zygardeorder strong, #staff-userlist-user-zygardeorder span, #dragnor-userlist-user-zygardeorder strong em, #dragnor-userlist-user-zygardeorder strong, #dragnor-userlist-user-zygardeorder span, #othermetas-userlist-user-zygardeorder strong em, #othermetas-userlist-user-zygardeorder strong, #othermetas-userlist-user-zygardeorder span, #chillin-userlist-user-zygardeorder strong em, #chillin-userlist-user-zygardeorder strong, #chillin-userlist-user-zygardeorder span, #test-userlist-user-zygardeorder strong em, #test-userlist-user-zygardeorder strong, #test-userlist-user-zygardeorder span, #upperstaff-userlist-user-zygardeorder strong em, #upperstaff-userlist-user-zygardeorder strong, #upperstaff-userlist-user-zygardeorder span, #development-userlist-user-zygardeorder strong em, #development-userlist-user-zygardeorder strong, #development-userlist-user-zygardeorder span, #trademarked-userlist-user-zygardeorder strong em, #trademarked-userlist-user-zygardeorder strong, #trademarked-userlist-user-zygardeorder span, #io-userlist-user-zygardeorder strong em, #io-userlist-user-zygardeorder strong, #io-userlist-user-zygardeorder span, #animeandmanga-userlist-user-zygardeorder strong em, #animeandmanga-userlist-user-zygardeorder strong, #animeandmanga-userlist-user-zygardeorder span, #theadminchat-userlist-user-zygardeorder strong em, #theadminchat-userlist-user-zygardeorder strong, #theadminchat-userlist-user-zygardeorder span, #houseofreluxing-userlist-user-zygardeorder strong em, #houseofreluxing-userlist-user-zygardeorder strong, #houseofreluxing-userlist-user-zygardeorder span, #cosmopolitan-userlist-user-zygardeorder strong em, #cosmopolitan-userlist-user-zygardeorder strong, #cosmopolitan-userlist-user-zygardeorder span, #errors-userlist-user-zygardeorder strong em, #errors-userlist-user-zygardeorder strong, #errors-userlist-user-zygardeorder span, #istor-userlist-user-zygardeorder strong em, #istor-userlist-user-zygardeorder strong, #istor-userlist-user-zygardeorder span{
-color:  14AE3B !important;
+li[id*="zygardeorder"] strong em,[id*="zygardeorder"] strong,[id*="zygardeorder"] span {
+    color: 14AE3B !important;
 }
 .chat.chatmessage-zygardeorder strong {
-color:  14AE3B !important;
+    color: 14AE3B !important;
 }
-#lobby-userlist-user-sapphire strong em, #lobby-userlist-user-sapphire strong, #lobby-userlist-user-sapphire span, #staff-userlist-user-sapphire strong em, #staff-userlist-user-sapphire strong, #staff-userlist-user-sapphire span, #dragnor-userlist-user-sapphire strong em, #dragnor-userlist-user-sapphire strong, #dragnor-userlist-user-sapphire span, #othermetas-userlist-user-sapphire strong em, #othermetas-userlist-user-sapphire strong, #othermetas-userlist-user-sapphire span, #chillin-userlist-user-sapphire strong em, #chillin-userlist-user-sapphire strong, #chillin-userlist-user-sapphire span, #test-userlist-user-sapphire strong em, #test-userlist-user-sapphire strong, #test-userlist-user-sapphire span, #upperstaff-userlist-user-sapphire strong em, #upperstaff-userlist-user-sapphire strong, #upperstaff-userlist-user-sapphire span, #development-userlist-user-sapphire strong em, #development-userlist-user-sapphire strong, #development-userlist-user-sapphire span, #trademarked-userlist-user-sapphire strong em, #trademarked-userlist-user-sapphire strong, #trademarked-userlist-user-sapphire span, #io-userlist-user-sapphire strong em, #io-userlist-user-sapphire strong, #io-userlist-user-sapphire span, #animeandmanga-userlist-user-sapphire strong em, #animeandmanga-userlist-user-sapphire strong, #animeandmanga-userlist-user-sapphire span, #theadminchat-userlist-user-sapphire strong em, #theadminchat-userlist-user-sapphire strong, #theadminchat-userlist-user-sapphire span, #houseofreluxing-userlist-user-sapphire strong em, #houseofreluxing-userlist-user-sapphire strong, #houseofreluxing-userlist-user-sapphire span, #cosmopolitan-userlist-user-sapphire strong em, #cosmopolitan-userlist-user-sapphire strong, #cosmopolitan-userlist-user-sapphire span, #errors-userlist-user-sapphire strong em, #errors-userlist-user-sapphire strong, #errors-userlist-user-sapphire span, #istor-userlist-user-sapphire strong em, #istor-userlist-user-sapphire strong, #istor-userlist-user-sapphire span{
-color:  040CFF !important;
+li[id*="sapphire"] strong em,[id*="sapphire"] strong,[id*="sapphire"] span {
+    color: 040CFF !important;
 }
 .chat.chatmessage-sapphire strong {
-color:  040CFF !important;
+    color: 040CFF !important;
 }
-#lobby-userlist-user-emperorgaming strong em, #lobby-userlist-user-emperorgaming strong, #lobby-userlist-user-emperorgaming span, #staff-userlist-user-emperorgaming strong em, #staff-userlist-user-emperorgaming strong, #staff-userlist-user-emperorgaming span, #dragnor-userlist-user-emperorgaming strong em, #dragnor-userlist-user-emperorgaming strong, #dragnor-userlist-user-emperorgaming span, #othermetas-userlist-user-emperorgaming strong em, #othermetas-userlist-user-emperorgaming strong, #othermetas-userlist-user-emperorgaming span, #chillin-userlist-user-emperorgaming strong em, #chillin-userlist-user-emperorgaming strong, #chillin-userlist-user-emperorgaming span, #test-userlist-user-emperorgaming strong em, #test-userlist-user-emperorgaming strong, #test-userlist-user-emperorgaming span, #upperstaff-userlist-user-emperorgaming strong em, #upperstaff-userlist-user-emperorgaming strong, #upperstaff-userlist-user-emperorgaming span, #development-userlist-user-emperorgaming strong em, #development-userlist-user-emperorgaming strong, #development-userlist-user-emperorgaming span, #trademarked-userlist-user-emperorgaming strong em, #trademarked-userlist-user-emperorgaming strong, #trademarked-userlist-user-emperorgaming span, #io-userlist-user-emperorgaming strong em, #io-userlist-user-emperorgaming strong, #io-userlist-user-emperorgaming span, #animeandmanga-userlist-user-emperorgaming strong em, #animeandmanga-userlist-user-emperorgaming strong, #animeandmanga-userlist-user-emperorgaming span, #theadminchat-userlist-user-emperorgaming strong em, #theadminchat-userlist-user-emperorgaming strong, #theadminchat-userlist-user-emperorgaming span, #houseofreluxing-userlist-user-emperorgaming strong em, #houseofreluxing-userlist-user-emperorgaming strong, #houseofreluxing-userlist-user-emperorgaming span, #cosmopolitan-userlist-user-emperorgaming strong em, #cosmopolitan-userlist-user-emperorgaming strong, #cosmopolitan-userlist-user-emperorgaming span, #errors-userlist-user-emperorgaming strong em, #errors-userlist-user-emperorgaming strong, #errors-userlist-user-emperorgaming span, #istor-userlist-user-emperorgaming strong em, #istor-userlist-user-emperorgaming strong, #istor-userlist-user-emperorgaming span{
-color:  02a9d3 !important;
+li[id*="emperorgaming"] strong em,[id*="emperorgaming"] strong,[id*="emperorgaming"] span {
+    color: 02a9d3 !important;
 }
 .chat.chatmessage-emperorgaming strong {
-color:  02a9d3 !important;
+    color: 02a9d3 !important;
 }
-#lobby-userlist-user-it11 strong em, #lobby-userlist-user-it11 strong, #lobby-userlist-user-it11 span, #staff-userlist-user-it11 strong em, #staff-userlist-user-it11 strong, #staff-userlist-user-it11 span, #dragnor-userlist-user-it11 strong em, #dragnor-userlist-user-it11 strong, #dragnor-userlist-user-it11 span, #othermetas-userlist-user-it11 strong em, #othermetas-userlist-user-it11 strong, #othermetas-userlist-user-it11 span, #chillin-userlist-user-it11 strong em, #chillin-userlist-user-it11 strong, #chillin-userlist-user-it11 span, #test-userlist-user-it11 strong em, #test-userlist-user-it11 strong, #test-userlist-user-it11 span, #upperstaff-userlist-user-it11 strong em, #upperstaff-userlist-user-it11 strong, #upperstaff-userlist-user-it11 span, #development-userlist-user-it11 strong em, #development-userlist-user-it11 strong, #development-userlist-user-it11 span, #trademarked-userlist-user-it11 strong em, #trademarked-userlist-user-it11 strong, #trademarked-userlist-user-it11 span, #io-userlist-user-it11 strong em, #io-userlist-user-it11 strong, #io-userlist-user-it11 span, #animeandmanga-userlist-user-it11 strong em, #animeandmanga-userlist-user-it11 strong, #animeandmanga-userlist-user-it11 span, #theadminchat-userlist-user-it11 strong em, #theadminchat-userlist-user-it11 strong, #theadminchat-userlist-user-it11 span, #houseofreluxing-userlist-user-it11 strong em, #houseofreluxing-userlist-user-it11 strong, #houseofreluxing-userlist-user-it11 span, #cosmopolitan-userlist-user-it11 strong em, #cosmopolitan-userlist-user-it11 strong, #cosmopolitan-userlist-user-it11 span, #errors-userlist-user-it11 strong em, #errors-userlist-user-it11 strong, #errors-userlist-user-it11 span, #istor-userlist-user-it11 strong em, #istor-userlist-user-it11 strong, #istor-userlist-user-it11 span{
-color:  e8af04 !important;
+li[id*="it11"] strong em,[id*="it11"] strong,[id*="it11"] span {
+    color: e8af04 !important;
 }
 .chat.chatmessage-it11 strong {
-color:  e8af04 !important;
+    color: e8af04 !important;
 }
-#lobby-userlist-user-golisopodman strong em, #lobby-userlist-user-golisopodman strong, #lobby-userlist-user-golisopodman span, #staff-userlist-user-golisopodman strong em, #staff-userlist-user-golisopodman strong, #staff-userlist-user-golisopodman span, #dragnor-userlist-user-golisopodman strong em, #dragnor-userlist-user-golisopodman strong, #dragnor-userlist-user-golisopodman span, #othermetas-userlist-user-golisopodman strong em, #othermetas-userlist-user-golisopodman strong, #othermetas-userlist-user-golisopodman span, #chillin-userlist-user-golisopodman strong em, #chillin-userlist-user-golisopodman strong, #chillin-userlist-user-golisopodman span, #test-userlist-user-golisopodman strong em, #test-userlist-user-golisopodman strong, #test-userlist-user-golisopodman span, #upperstaff-userlist-user-golisopodman strong em, #upperstaff-userlist-user-golisopodman strong, #upperstaff-userlist-user-golisopodman span, #development-userlist-user-golisopodman strong em, #development-userlist-user-golisopodman strong, #development-userlist-user-golisopodman span, #trademarked-userlist-user-golisopodman strong em, #trademarked-userlist-user-golisopodman strong, #trademarked-userlist-user-golisopodman span, #io-userlist-user-golisopodman strong em, #io-userlist-user-golisopodman strong, #io-userlist-user-golisopodman span, #animeandmanga-userlist-user-golisopodman strong em, #animeandmanga-userlist-user-golisopodman strong, #animeandmanga-userlist-user-golisopodman span, #theadminchat-userlist-user-golisopodman strong em, #theadminchat-userlist-user-golisopodman strong, #theadminchat-userlist-user-golisopodman span, #houseofreluxing-userlist-user-golisopodman strong em, #houseofreluxing-userlist-user-golisopodman strong, #houseofreluxing-userlist-user-golisopodman span, #cosmopolitan-userlist-user-golisopodman strong em, #cosmopolitan-userlist-user-golisopodman strong, #cosmopolitan-userlist-user-golisopodman span, #errors-userlist-user-golisopodman strong em, #errors-userlist-user-golisopodman strong, #errors-userlist-user-golisopodman span, #istor-userlist-user-golisopodman strong em, #istor-userlist-user-golisopodman strong, #istor-userlist-user-golisopodman span{
-color:  8A728A !important;
+li[id*="golisopodman"] strong em,[id*="golisopodman"] strong,[id*="golisopodman"] span {
+    color: 8A728A !important;
 }
 .chat.chatmessage-golisopodman strong {
-color:  8A728A !important;
+    color: 8A728A !important;
 }
-#lobby-userlist-user-winona strong em, #lobby-userlist-user-winona strong, #lobby-userlist-user-winona span, #staff-userlist-user-winona strong em, #staff-userlist-user-winona strong, #staff-userlist-user-winona span, #dragnor-userlist-user-winona strong em, #dragnor-userlist-user-winona strong, #dragnor-userlist-user-winona span, #othermetas-userlist-user-winona strong em, #othermetas-userlist-user-winona strong, #othermetas-userlist-user-winona span, #chillin-userlist-user-winona strong em, #chillin-userlist-user-winona strong, #chillin-userlist-user-winona span, #test-userlist-user-winona strong em, #test-userlist-user-winona strong, #test-userlist-user-winona span, #upperstaff-userlist-user-winona strong em, #upperstaff-userlist-user-winona strong, #upperstaff-userlist-user-winona span, #development-userlist-user-winona strong em, #development-userlist-user-winona strong, #development-userlist-user-winona span, #trademarked-userlist-user-winona strong em, #trademarked-userlist-user-winona strong, #trademarked-userlist-user-winona span, #io-userlist-user-winona strong em, #io-userlist-user-winona strong, #io-userlist-user-winona span, #animeandmanga-userlist-user-winona strong em, #animeandmanga-userlist-user-winona strong, #animeandmanga-userlist-user-winona span, #theadminchat-userlist-user-winona strong em, #theadminchat-userlist-user-winona strong, #theadminchat-userlist-user-winona span, #houseofreluxing-userlist-user-winona strong em, #houseofreluxing-userlist-user-winona strong, #houseofreluxing-userlist-user-winona span, #cosmopolitan-userlist-user-winona strong em, #cosmopolitan-userlist-user-winona strong, #cosmopolitan-userlist-user-winona span, #errors-userlist-user-winona strong em, #errors-userlist-user-winona strong, #errors-userlist-user-winona span, #istor-userlist-user-winona strong em, #istor-userlist-user-winona strong, #istor-userlist-user-winona span{
-color:  4fa4ff !important;
+li[id*="winona"] strong em,[id*="winona"] strong,[id*="winona"] span {
+    color: 4fa4ff !important;
 }
 .chat.chatmessage-winona strong {
-color:  4fa4ff !important;
+    color: 4fa4ff !important;
 }
-#lobby-userlist-user-neymardasilvajr strong em, #lobby-userlist-user-neymardasilvajr strong, #lobby-userlist-user-neymardasilvajr span, #staff-userlist-user-neymardasilvajr strong em, #staff-userlist-user-neymardasilvajr strong, #staff-userlist-user-neymardasilvajr span, #dragnor-userlist-user-neymardasilvajr strong em, #dragnor-userlist-user-neymardasilvajr strong, #dragnor-userlist-user-neymardasilvajr span, #othermetas-userlist-user-neymardasilvajr strong em, #othermetas-userlist-user-neymardasilvajr strong, #othermetas-userlist-user-neymardasilvajr span, #chillin-userlist-user-neymardasilvajr strong em, #chillin-userlist-user-neymardasilvajr strong, #chillin-userlist-user-neymardasilvajr span, #test-userlist-user-neymardasilvajr strong em, #test-userlist-user-neymardasilvajr strong, #test-userlist-user-neymardasilvajr span, #upperstaff-userlist-user-neymardasilvajr strong em, #upperstaff-userlist-user-neymardasilvajr strong, #upperstaff-userlist-user-neymardasilvajr span, #development-userlist-user-neymardasilvajr strong em, #development-userlist-user-neymardasilvajr strong, #development-userlist-user-neymardasilvajr span, #trademarked-userlist-user-neymardasilvajr strong em, #trademarked-userlist-user-neymardasilvajr strong, #trademarked-userlist-user-neymardasilvajr span, #io-userlist-user-neymardasilvajr strong em, #io-userlist-user-neymardasilvajr strong, #io-userlist-user-neymardasilvajr span, #animeandmanga-userlist-user-neymardasilvajr strong em, #animeandmanga-userlist-user-neymardasilvajr strong, #animeandmanga-userlist-user-neymardasilvajr span, #theadminchat-userlist-user-neymardasilvajr strong em, #theadminchat-userlist-user-neymardasilvajr strong, #theadminchat-userlist-user-neymardasilvajr span, #houseofreluxing-userlist-user-neymardasilvajr strong em, #houseofreluxing-userlist-user-neymardasilvajr strong, #houseofreluxing-userlist-user-neymardasilvajr span, #cosmopolitan-userlist-user-neymardasilvajr strong em, #cosmopolitan-userlist-user-neymardasilvajr strong, #cosmopolitan-userlist-user-neymardasilvajr span, #errors-userlist-user-neymardasilvajr strong em, #errors-userlist-user-neymardasilvajr strong, #errors-userlist-user-neymardasilvajr span, #istor-userlist-user-neymardasilvajr strong em, #istor-userlist-user-neymardasilvajr strong, #istor-userlist-user-neymardasilvajr span{
-color:  631a0b !important;
+li[id*="neymardasilvajr"] strong em,[id*="neymardasilvajr"] strong,[id*="neymardasilvajr"] span {
+    color: 631a0b !important;
 }
 .chat.chatmessage-neymardasilvajr strong {
-color:  631a0b !important;
+    color: 631a0b !important;
 }
-#lobby-userlist-user-setransei strong em, #lobby-userlist-user-setransei strong, #lobby-userlist-user-setransei span, #staff-userlist-user-setransei strong em, #staff-userlist-user-setransei strong, #staff-userlist-user-setransei span, #dragnor-userlist-user-setransei strong em, #dragnor-userlist-user-setransei strong, #dragnor-userlist-user-setransei span, #othermetas-userlist-user-setransei strong em, #othermetas-userlist-user-setransei strong, #othermetas-userlist-user-setransei span, #chillin-userlist-user-setransei strong em, #chillin-userlist-user-setransei strong, #chillin-userlist-user-setransei span, #test-userlist-user-setransei strong em, #test-userlist-user-setransei strong, #test-userlist-user-setransei span, #upperstaff-userlist-user-setransei strong em, #upperstaff-userlist-user-setransei strong, #upperstaff-userlist-user-setransei span, #development-userlist-user-setransei strong em, #development-userlist-user-setransei strong, #development-userlist-user-setransei span, #trademarked-userlist-user-setransei strong em, #trademarked-userlist-user-setransei strong, #trademarked-userlist-user-setransei span, #io-userlist-user-setransei strong em, #io-userlist-user-setransei strong, #io-userlist-user-setransei span, #animeandmanga-userlist-user-setransei strong em, #animeandmanga-userlist-user-setransei strong, #animeandmanga-userlist-user-setransei span, #theadminchat-userlist-user-setransei strong em, #theadminchat-userlist-user-setransei strong, #theadminchat-userlist-user-setransei span, #houseofreluxing-userlist-user-setransei strong em, #houseofreluxing-userlist-user-setransei strong, #houseofreluxing-userlist-user-setransei span, #cosmopolitan-userlist-user-setransei strong em, #cosmopolitan-userlist-user-setransei strong, #cosmopolitan-userlist-user-setransei span, #errors-userlist-user-setransei strong em, #errors-userlist-user-setransei strong, #errors-userlist-user-setransei span, #istor-userlist-user-setransei strong em, #istor-userlist-user-setransei strong, #istor-userlist-user-setransei span{
-color:  delete !important;
+li[id*="setransei"] strong em,[id*="setransei"] strong,[id*="setransei"] span {
+    color: delete !important;
 }
 .chat.chatmessage-setransei strong {
-color:  delete !important;
+    color: delete !important;
 }
-#lobby-userlist-user-deletesetransei strong em, #lobby-userlist-user-deletesetransei strong, #lobby-userlist-user-deletesetransei span, #staff-userlist-user-deletesetransei strong em, #staff-userlist-user-deletesetransei strong, #staff-userlist-user-deletesetransei span, #dragnor-userlist-user-deletesetransei strong em, #dragnor-userlist-user-deletesetransei strong, #dragnor-userlist-user-deletesetransei span, #othermetas-userlist-user-deletesetransei strong em, #othermetas-userlist-user-deletesetransei strong, #othermetas-userlist-user-deletesetransei span, #chillin-userlist-user-deletesetransei strong em, #chillin-userlist-user-deletesetransei strong, #chillin-userlist-user-deletesetransei span, #test-userlist-user-deletesetransei strong em, #test-userlist-user-deletesetransei strong, #test-userlist-user-deletesetransei span, #upperstaff-userlist-user-deletesetransei strong em, #upperstaff-userlist-user-deletesetransei strong, #upperstaff-userlist-user-deletesetransei span, #development-userlist-user-deletesetransei strong em, #development-userlist-user-deletesetransei strong, #development-userlist-user-deletesetransei span, #trademarked-userlist-user-deletesetransei strong em, #trademarked-userlist-user-deletesetransei strong, #trademarked-userlist-user-deletesetransei span, #io-userlist-user-deletesetransei strong em, #io-userlist-user-deletesetransei strong, #io-userlist-user-deletesetransei span, #animeandmanga-userlist-user-deletesetransei strong em, #animeandmanga-userlist-user-deletesetransei strong, #animeandmanga-userlist-user-deletesetransei span, #theadminchat-userlist-user-deletesetransei strong em, #theadminchat-userlist-user-deletesetransei strong, #theadminchat-userlist-user-deletesetransei span, #houseofreluxing-userlist-user-deletesetransei strong em, #houseofreluxing-userlist-user-deletesetransei strong, #houseofreluxing-userlist-user-deletesetransei span, #cosmopolitan-userlist-user-deletesetransei strong em, #cosmopolitan-userlist-user-deletesetransei strong, #cosmopolitan-userlist-user-deletesetransei span, #errors-userlist-user-deletesetransei strong em, #errors-userlist-user-deletesetransei strong, #errors-userlist-user-deletesetransei span, #istor-userlist-user-deletesetransei strong em, #istor-userlist-user-deletesetransei strong, #istor-userlist-user-deletesetransei span{
-color:  delete !important;
+li[id*="deletesetransei"] strong em,[id*="deletesetransei"] strong,[id*="deletesetransei"] span {
+    color: delete !important;
 }
 .chat.chatmessage-deletesetransei strong {
-color:  delete !important;
+    color: delete !important;
 }
-#lobby-userlist-user-zapmaster2010 strong em, #lobby-userlist-user-zapmaster2010 strong, #lobby-userlist-user-zapmaster2010 span, #staff-userlist-user-zapmaster2010 strong em, #staff-userlist-user-zapmaster2010 strong, #staff-userlist-user-zapmaster2010 span, #dragnor-userlist-user-zapmaster2010 strong em, #dragnor-userlist-user-zapmaster2010 strong, #dragnor-userlist-user-zapmaster2010 span, #othermetas-userlist-user-zapmaster2010 strong em, #othermetas-userlist-user-zapmaster2010 strong, #othermetas-userlist-user-zapmaster2010 span, #chillin-userlist-user-zapmaster2010 strong em, #chillin-userlist-user-zapmaster2010 strong, #chillin-userlist-user-zapmaster2010 span, #test-userlist-user-zapmaster2010 strong em, #test-userlist-user-zapmaster2010 strong, #test-userlist-user-zapmaster2010 span, #upperstaff-userlist-user-zapmaster2010 strong em, #upperstaff-userlist-user-zapmaster2010 strong, #upperstaff-userlist-user-zapmaster2010 span, #development-userlist-user-zapmaster2010 strong em, #development-userlist-user-zapmaster2010 strong, #development-userlist-user-zapmaster2010 span, #trademarked-userlist-user-zapmaster2010 strong em, #trademarked-userlist-user-zapmaster2010 strong, #trademarked-userlist-user-zapmaster2010 span, #io-userlist-user-zapmaster2010 strong em, #io-userlist-user-zapmaster2010 strong, #io-userlist-user-zapmaster2010 span, #animeandmanga-userlist-user-zapmaster2010 strong em, #animeandmanga-userlist-user-zapmaster2010 strong, #animeandmanga-userlist-user-zapmaster2010 span, #theadminchat-userlist-user-zapmaster2010 strong em, #theadminchat-userlist-user-zapmaster2010 strong, #theadminchat-userlist-user-zapmaster2010 span, #houseofreluxing-userlist-user-zapmaster2010 strong em, #houseofreluxing-userlist-user-zapmaster2010 strong, #houseofreluxing-userlist-user-zapmaster2010 span, #cosmopolitan-userlist-user-zapmaster2010 strong em, #cosmopolitan-userlist-user-zapmaster2010 strong, #cosmopolitan-userlist-user-zapmaster2010 span, #errors-userlist-user-zapmaster2010 strong em, #errors-userlist-user-zapmaster2010 strong, #errors-userlist-user-zapmaster2010 span, #istor-userlist-user-zapmaster2010 strong em, #istor-userlist-user-zapmaster2010 strong, #istor-userlist-user-zapmaster2010 span{
-color:  #0715b2 !important;
+li[id*="zapmaster2010"] strong em,[id*="zapmaster2010"] strong,[id*="zapmaster2010"] span {
+    color: #0715b2 !important;
 }
 .chat.chatmessage-zapmaster2010 strong {
-color:  #0715b2 !important;
+    color: #0715b2 !important;
 }
-#lobby-userlist-user-spanda strong em, #lobby-userlist-user-spanda strong, #lobby-userlist-user-spanda span, #staff-userlist-user-spanda strong em, #staff-userlist-user-spanda strong, #staff-userlist-user-spanda span, #dragnor-userlist-user-spanda strong em, #dragnor-userlist-user-spanda strong, #dragnor-userlist-user-spanda span, #othermetas-userlist-user-spanda strong em, #othermetas-userlist-user-spanda strong, #othermetas-userlist-user-spanda span, #chillin-userlist-user-spanda strong em, #chillin-userlist-user-spanda strong, #chillin-userlist-user-spanda span, #test-userlist-user-spanda strong em, #test-userlist-user-spanda strong, #test-userlist-user-spanda span, #upperstaff-userlist-user-spanda strong em, #upperstaff-userlist-user-spanda strong, #upperstaff-userlist-user-spanda span, #development-userlist-user-spanda strong em, #development-userlist-user-spanda strong, #development-userlist-user-spanda span, #trademarked-userlist-user-spanda strong em, #trademarked-userlist-user-spanda strong, #trademarked-userlist-user-spanda span, #io-userlist-user-spanda strong em, #io-userlist-user-spanda strong, #io-userlist-user-spanda span, #animeandmanga-userlist-user-spanda strong em, #animeandmanga-userlist-user-spanda strong, #animeandmanga-userlist-user-spanda span, #theadminchat-userlist-user-spanda strong em, #theadminchat-userlist-user-spanda strong, #theadminchat-userlist-user-spanda span, #houseofreluxing-userlist-user-spanda strong em, #houseofreluxing-userlist-user-spanda strong, #houseofreluxing-userlist-user-spanda span, #cosmopolitan-userlist-user-spanda strong em, #cosmopolitan-userlist-user-spanda strong, #cosmopolitan-userlist-user-spanda span, #errors-userlist-user-spanda strong em, #errors-userlist-user-spanda strong, #errors-userlist-user-spanda span, #istor-userlist-user-spanda strong em, #istor-userlist-user-spanda strong, #istor-userlist-user-spanda span{
-color:  delete !important;
+li[id*="spanda"] strong em,[id*="spanda"] strong,[id*="spanda"] span {
+    color: delete !important;
 }
 .chat.chatmessage-spanda strong {
-color:  delete !important;
+    color: delete !important;
 }
-#lobby-userlist-user-latiosnn strong em, #lobby-userlist-user-latiosnn strong, #lobby-userlist-user-latiosnn span, #staff-userlist-user-latiosnn strong em, #staff-userlist-user-latiosnn strong, #staff-userlist-user-latiosnn span, #dragnor-userlist-user-latiosnn strong em, #dragnor-userlist-user-latiosnn strong, #dragnor-userlist-user-latiosnn span, #othermetas-userlist-user-latiosnn strong em, #othermetas-userlist-user-latiosnn strong, #othermetas-userlist-user-latiosnn span, #chillin-userlist-user-latiosnn strong em, #chillin-userlist-user-latiosnn strong, #chillin-userlist-user-latiosnn span, #test-userlist-user-latiosnn strong em, #test-userlist-user-latiosnn strong, #test-userlist-user-latiosnn span, #upperstaff-userlist-user-latiosnn strong em, #upperstaff-userlist-user-latiosnn strong, #upperstaff-userlist-user-latiosnn span, #development-userlist-user-latiosnn strong em, #development-userlist-user-latiosnn strong, #development-userlist-user-latiosnn span, #trademarked-userlist-user-latiosnn strong em, #trademarked-userlist-user-latiosnn strong, #trademarked-userlist-user-latiosnn span, #io-userlist-user-latiosnn strong em, #io-userlist-user-latiosnn strong, #io-userlist-user-latiosnn span, #animeandmanga-userlist-user-latiosnn strong em, #animeandmanga-userlist-user-latiosnn strong, #animeandmanga-userlist-user-latiosnn span, #theadminchat-userlist-user-latiosnn strong em, #theadminchat-userlist-user-latiosnn strong, #theadminchat-userlist-user-latiosnn span, #houseofreluxing-userlist-user-latiosnn strong em, #houseofreluxing-userlist-user-latiosnn strong, #houseofreluxing-userlist-user-latiosnn span, #cosmopolitan-userlist-user-latiosnn strong em, #cosmopolitan-userlist-user-latiosnn strong, #cosmopolitan-userlist-user-latiosnn span, #errors-userlist-user-latiosnn strong em, #errors-userlist-user-latiosnn strong, #errors-userlist-user-latiosnn span, #istor-userlist-user-latiosnn strong em, #istor-userlist-user-latiosnn strong, #istor-userlist-user-latiosnn span{
-color:  DE51AC !important;
+li[id*="latiosnn"] strong em,[id*="latiosnn"] strong,[id*="latiosnn"] span {
+    color: #DE51AC !important;
 }
 .chat.chatmessage-latiosnn strong {
-color:  DE51AC !important;
+    color: #DE51AC !important;
 }
-#lobby-userlist-user-zard8888 strong em, #lobby-userlist-user-zard8888 strong, #lobby-userlist-user-zard8888 span, #staff-userlist-user-zard8888 strong em, #staff-userlist-user-zard8888 strong, #staff-userlist-user-zard8888 span, #dragnor-userlist-user-zard8888 strong em, #dragnor-userlist-user-zard8888 strong, #dragnor-userlist-user-zard8888 span, #othermetas-userlist-user-zard8888 strong em, #othermetas-userlist-user-zard8888 strong, #othermetas-userlist-user-zard8888 span, #chillin-userlist-user-zard8888 strong em, #chillin-userlist-user-zard8888 strong, #chillin-userlist-user-zard8888 span, #test-userlist-user-zard8888 strong em, #test-userlist-user-zard8888 strong, #test-userlist-user-zard8888 span, #upperstaff-userlist-user-zard8888 strong em, #upperstaff-userlist-user-zard8888 strong, #upperstaff-userlist-user-zard8888 span, #development-userlist-user-zard8888 strong em, #development-userlist-user-zard8888 strong, #development-userlist-user-zard8888 span, #trademarked-userlist-user-zard8888 strong em, #trademarked-userlist-user-zard8888 strong, #trademarked-userlist-user-zard8888 span, #io-userlist-user-zard8888 strong em, #io-userlist-user-zard8888 strong, #io-userlist-user-zard8888 span, #animeandmanga-userlist-user-zard8888 strong em, #animeandmanga-userlist-user-zard8888 strong, #animeandmanga-userlist-user-zard8888 span, #theadminchat-userlist-user-zard8888 strong em, #theadminchat-userlist-user-zard8888 strong, #theadminchat-userlist-user-zard8888 span, #houseofreluxing-userlist-user-zard8888 strong em, #houseofreluxing-userlist-user-zard8888 strong, #houseofreluxing-userlist-user-zard8888 span, #cosmopolitan-userlist-user-zard8888 strong em, #cosmopolitan-userlist-user-zard8888 strong, #cosmopolitan-userlist-user-zard8888 span, #errors-userlist-user-zard8888 strong em, #errors-userlist-user-zard8888 strong, #errors-userlist-user-zard8888 span, #istor-userlist-user-zard8888 strong em, #istor-userlist-user-zard8888 strong, #istor-userlist-user-zard8888 span{
-color: #296B89 !important;
+li[id*="zard8888"] strong em,[id*="zard8888"] strong,[id*="zard8888"] span {
+    color: #296B89 !important;
 }
 .chat.chatmessage-zard8888 strong {
-color: #296B89 !important;
+    color: #296B89 !important;
 }
-#lobby-userlist-user-hdow strong em, #lobby-userlist-user-hdow strong, #lobby-userlist-user-hdow span, #staff-userlist-user-hdow strong em, #staff-userlist-user-hdow strong, #staff-userlist-user-hdow span, #dragnor-userlist-user-hdow strong em, #dragnor-userlist-user-hdow strong, #dragnor-userlist-user-hdow span, #othermetas-userlist-user-hdow strong em, #othermetas-userlist-user-hdow strong, #othermetas-userlist-user-hdow span, #chillin-userlist-user-hdow strong em, #chillin-userlist-user-hdow strong, #chillin-userlist-user-hdow span, #test-userlist-user-hdow strong em, #test-userlist-user-hdow strong, #test-userlist-user-hdow span, #upperstaff-userlist-user-hdow strong em, #upperstaff-userlist-user-hdow strong, #upperstaff-userlist-user-hdow span, #development-userlist-user-hdow strong em, #development-userlist-user-hdow strong, #development-userlist-user-hdow span, #trademarked-userlist-user-hdow strong em, #trademarked-userlist-user-hdow strong, #trademarked-userlist-user-hdow span, #io-userlist-user-hdow strong em, #io-userlist-user-hdow strong, #io-userlist-user-hdow span, #animeandmanga-userlist-user-hdow strong em, #animeandmanga-userlist-user-hdow strong, #animeandmanga-userlist-user-hdow span, #theadminchat-userlist-user-hdow strong em, #theadminchat-userlist-user-hdow strong, #theadminchat-userlist-user-hdow span, #houseofreluxing-userlist-user-hdow strong em, #houseofreluxing-userlist-user-hdow strong, #houseofreluxing-userlist-user-hdow span, #cosmopolitan-userlist-user-hdow strong em, #cosmopolitan-userlist-user-hdow strong, #cosmopolitan-userlist-user-hdow span, #errors-userlist-user-hdow strong em, #errors-userlist-user-hdow strong, #errors-userlist-user-hdow span, #istor-userlist-user-hdow strong em, #istor-userlist-user-hdow strong, #istor-userlist-user-hdow span{
-color:  601da3 !important;
+li[id*="userlist-user-hdow"] strong em, li[id*="userlist-user-hdow"] strong, li[id*="userlist-user-hdow"] span {
+    color: #601da3 !important;
 }
 .chat.chatmessage-hdow strong {
-color:  601da3 !important;
+    color: #601da3 !important;
 }
 /* COLORS END */
