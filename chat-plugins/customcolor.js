@@ -37,20 +37,21 @@ function updateColor() {
 }
 
 function generateCSS(name, color) {
-    var css = '';
-    var rooms = [];
-    name = toId(name);
-    Rooms.rooms.forEach((curRoom, id) => {
+	var css = '';
+	name = toId(name);
+	/*var rooms = [];
+	Rooms.rooms.forEach((curRoom, id) => {
 		if (id === 'global' || curRoom.type !== 'chat' || curRoom.isPersonal) return;
 		if (!isNaN(Number(id.charAt(0)))) return;
 		rooms.push('#' + id + '-userlist-user-' + name + ' strong em');
 		rooms.push('#' + id + '-userlist-user-' + name + ' strong');
 		rooms.push('#' + id + '-userlist-user-' + name + ' span');
 	});
-    css = rooms.join(', ') + '{\ncolor: ' + color + ' !important;\n}\n';
-    css += '.chat.chatmessage-' + name + ' strong {\n';
-    css += 'color: ' + color + ' !important;\n}\n';
-    return css;
+	css = rooms.join(', ') + '{\ncolor: ' + color + ' !important;\n}\n';*/
+	css = 'li[id*="userlist-user-' + name + '"] strong em, li[id*="userlist-user-' + name + '"] strong, li[id*="userlist-user-' + name + '"] span' + '{\ncolor: ' + color + ' !important;\n}\n';
+	css += '.chat.chatmessage-' + name + ' strong {\n';
+	css += 'color: ' + color + ' !important;\n}\n';
+	return css;
 }
 
 exports.commands = {
