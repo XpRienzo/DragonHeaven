@@ -1046,7 +1046,42 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Electric",
 	},
-	/* Adrenaline: Fighting Type, Status, Doubles Attack and Speed for 3 turns, but halves defence */
+	"adrenaline": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "For 3 turns, the user doubles their attack and speed, at the cost of halving their defence.",
+		shortDesc: "Raises Attack and Speed but lowers defence for 3 turns.",
+		id: "adrenaline",name: "Adrenaline",pp: 10,priority: 0,flags: {snatch: 1},
+		volatileStatus: 'adrenaline',effect: {
+			duration: 3,
+			onStart: function (pokemon) {
+				this.add('-start', pokemon, 'Adrenaline');
+			},
+			onModifyAtkPriority: 1,
+			onModifyAtk: function (atk) {
+				return this.chainModify(2);
+			},
+			onModifyDefPriority: 2,
+			onModifyDef: function (def, pokemon) {
+				return this.chainModify(1.5);
+			},
+			onModifySpe: function (spe) {
+				return this.chainModify(1.5);
+			},
+			onEnd: function (pokemon) {
+				this.add('-end', pokemon, 'Adrenaline');
+			},
+			onRestart: function (pokemon) {
+				pokemon.removeVolatile('Adrenaline');
+			},
+		},
+		secondary: false,
+		target: "self",
+		type: "Fighting",
+		zMoveBoost: {defence: 2},
+		contestType: "Cool",
+	},
 	"cryogenicfire": {
 		accuracy: 90,
 		basePower: 100,
