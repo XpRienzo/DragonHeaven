@@ -14,6 +14,9 @@ exports.BattleStatuses = {
                   onResidual: function (pokemon) {
                     this.damage(pokemon.maxhp / 16);
                   },
+			 onModifySpe: function (spa, pokemon) {
+				return this.chainModify(0.5);
+						 },
               },
        acidrain: {
 		effectType: 'Weather',
@@ -44,5 +47,30 @@ exports.BattleStatuses = {
 			this.add('-weather', 'none');
 		},
 	},
-  
+   ragingwinds: {
+		effectType: 'Weather',
+		duration: 5,
+		durationCallback: function (source, effect) {
+			if (source && source.hasItem('breezyrock')) {
+				return 8;
+			}
+			return 5;
+		},
+		onStart: function (battle, source, effect) {
+			if (effect && effect.effectType === 'Ability') {
+				if (this.gen <= 5) this.effectData.duration = 0;
+				this.add('-weather', 'RagingWinds', '[from] ability: ' + effect, '[of] ' + source);
+			} else {
+				this.add('-weather', 'RagingWinds');
+			}
+		},
+		onResidualOrder: 1,
+		onResidual: function () {
+			this.add('-weather', 'RagingWinds', '[upkeep]');
+			if (this.isWeather('ragingWinds')) this.eachEvent('Weather');
+		},
+		onEnd: function () {
+			this.add('-weather', 'none');
+		},
+	},
 };
