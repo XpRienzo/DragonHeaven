@@ -837,4 +837,45 @@ exports.BattlePokedex = {
         evoLevel: 25,
         eggGroups: ["Grass", "Fairy"],
     },
+	delcatty: {
+			inherit: true,
+        	baseStats: {hp: 85, atk: 65, def: 65, spa: 55, spd: 55, spe: 103},
+    },
+	Dustox: {
+			inherit: true,
+        	baseStats: {hp: 70, atk: 40, def: 75, spa: 60, spd: 90, spe: 65},
+    },
+	Beautifly: {
+			inherit: true,
+        	baseStats: {hp: 60, atk: 45, def: 55, spa: 120, spd: 55, spe: 65},
+    },
+	Butterfree: {
+			inherit: true,
+        	baseStats: {hp: 60, atk: 45, def: 50, spa: 90, spd: 80, spe: 75},
+    },
+	emero: {
+		num: 8067,
+		species: "Emero",
+		types: ["Water"],
+		baseStats: {hp: 40, atk: 35, def: 70, spa: 60, spd: 80, spe: 60},
+		abilities: {0: "Run Away", 1: "Swift Swim", H: "Anticipation"},
+		evos: ["emerum"],
+	},
+	emerum: {
+		num: 8068,
+		species: "Emerum",
+		types: ["Water", "Grass"],
+		baseStats: {hp: 60, atk: 45, def: 90, spa: 80, spd: 100, spe: 70},
+		abilities: {0: "Clorophyll", 1: "Swift Swim", H: "Leaf Guard"},
+		evos: ["emerysia"],
+		prevo: "emero",
+	},
+	emerysia: {
+		num: 8069,
+		species: "Emerysia",
+		types: ["Water", "Grass"],
+		baseStats: {hp: 80, atk: 55, def: 105, spa: 90, spd: 125, spe: 85},
+		abilities: {0: "Clorophyll", 1: "Swift Swim", H: "Leaf Guard"},
+		prevo: "emerum",
+	},
 };
