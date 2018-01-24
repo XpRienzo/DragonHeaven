@@ -220,4 +220,54 @@ exports.BattleAbilities = {
 		name: "Melting Point",
 		rating: 4,
 	},
+	"mistcannon": {
+		shortDesc: "If Misty Terrain is active, this Pokemon's Special Attack is multiplied by 1.3.",
+		onModifySpaPriority: 6,
+		onModifySpa: function (pokemon) {
+			if (this.isTerrain('mistyterrain')) return this.chainModify(1.3);
+		},
+		id: "mistcannon",
+		name: "Mist Cannon",
+		rating: 3,
+	},
+	"mistshield": {
+		shortDesc: "If Misty Terrain is active, this Pokemon's Defense's are multiplied by 1.3.",
+		onModifyDefPriority: 6,
+		onModifyDef: function (pokemon) {
+			if (this.isTerrain('mistyterrain')) return this.chainModify(1.3);
+		},
+		onModifySpdPriority: 6,
+		onModifySpd: function (pokemon) {
+			if (this.isTerrain('mistyterrain')) return this.chainModify(1.3);
+		},
+		id: "mistshield",
+		name: "Mist Shield",
+		rating: 3,
+	},
+	"petrifyingtouch": {
+		shortDesc: "This Pokemon's attacks have a 30% chance to paralyze.",
+		onModifyMove: function (move) {
+			if (move.category !== "Status") {
+				move.secondaries.push({
+					chance: 30,
+					Status: 'par',
+				}
+			}
+		 },
+		id: "petrifyingtouch",
+		name: "Petrifying Touch",
+		rating: 3,							 
+		},
+	"preystinging": {
+		shortDesc: "A Pokemon making contact with this Pokemon will be paralyzed.",
+		onAfterDamage: function (damage, target, source, move) {
+			if (move && move.flags['contact']) {
+					source.trySetStatus('par', target);
+			}
+		},
+		id: "preystinging",
+		name: "Prey Stinging",
+		rating: 2,
+	},
+	
 };
