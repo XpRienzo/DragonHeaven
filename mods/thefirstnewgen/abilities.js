@@ -247,10 +247,12 @@ exports.BattleAbilities = {
 	"petrifyingtouch": {
 		shortDesc: "This Pokemon's attacks have a 30% chance to paralyze.",
 		onModifyMove: function (move) {
-			if (move.category !== "Status") {
+			if (!move || !move.flags['contact']) return;
+			if (!move.secondaries) {
 				move.secondaries.push({
 					chance: 30,
 					Status: 'par',
+					ability: this.getAbility('petrifyingtouch'),
 				}
 			}
 		 },
