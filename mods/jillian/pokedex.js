@@ -1142,6 +1142,17 @@ exports.BattlePokedex = {
 		abilities: {0: "Rock Head", 1: "Lightning Rod", H: "Sheer Force"},
 		prevo: "marowak",
 		},
+	   murinowakalola: {
+		num: 100135,
+		species: "Murinowak-Alola",
+		baseSpecies: "Murinowak",
+		forme: "Alola",
+		formeLetter: "A",
+		types: ["Ghost", "Fighting"],
+		baseStats: {hp: 75, atk: 105, def: 120, spa: 70, spd: 105, spe: 75},
+		abilities: {0: "Rock Head", 1: "Lightning Rod", H: "Sheer Force"},
+		prevo: "marowakalola",
+		},
 	   weetrizing: {
 		num: 100136,
 		species: "Weetrizing",
