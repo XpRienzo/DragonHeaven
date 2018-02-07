@@ -4343,8 +4343,8 @@ exports.Formats = [
          let types = bt.types;
          let bTypes = (types.length === 1 || types[1] === 'Luke') ? types[0] : types.join('/');
          this.add('-start', pokemon, 'typechange', bTypes, '[silent]');
-       },
-  	},
+       }   
+   },
 	{
 		name: "[Gen 7] Pokemon: The New First Generation",
 		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/pokemon-the-new-first-gen-submissions-for-new-pokemon-over.3578653/>Pokemon: The New First Generation</a>",
