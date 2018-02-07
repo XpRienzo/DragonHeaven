@@ -4336,6 +4336,14 @@ exports.Formats = [
   		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		mod: 'lukemod',
 		banlist: ['Illegal'],
+		onSwitchIn: function (pokemon) {
+
+       let bt = pokemon.baseTemplate;
+       if (bt.baseSpecies in changed || (bt.actualSpecies && bt.actualSpecies in changed)) {
+         let types = bt.types;
+         let bTypes = (types.length === 1 || types[1] === 'Luke') ? types[0] : types.join('/');
+         this.add('-start', pokemon, 'typechange', bTypes, '[silent]');
+       },
   	},
 	{
 		name: "[Gen 7] Pokemon: The New First Generation",
