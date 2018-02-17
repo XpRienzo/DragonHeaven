@@ -1151,5 +1151,14 @@ exports.BattleMovedex = {
 		inherit: true,
 		accuracy: 45,
 	},
-	
+	"toxicspikes": {
+		inherit: true,
+		if (pokemon.hasType('Poison') || pokemon.template.species === 'Shuckle') {
+					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('toxicspikes');
+				} else if (this.effectData.layers >= 2) {
+					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
+				} else {
+					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+				}
 };
