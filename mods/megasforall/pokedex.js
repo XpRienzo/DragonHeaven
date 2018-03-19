@@ -2,7 +2,7 @@
 
 exports.BattlePokedex = {
 	fearowmega: {
-       num: 22,
+      num: 22,
 	   species: "Fearow-Mega",
 	   baseSpecies: "Fearow",
 	   forme: "Mega",
