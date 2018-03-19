@@ -756,6 +756,16 @@ gutter: function (target, room, user) {
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
+	egutter2: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Alola Formes Pokemon</h2></center>`;
+		let jillianDex = require('../mods/eternal/moves.js').BattlePokedex;
+		if (!jillianDex) return this.errorReply("Error Fetching Istor Data.");
+		Object.values(jillianDex).forEach(move => {
+			buf += `'${move.name}': {<br> ${move.basePower}, 'category': ${move.category},<br>},`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
 	fespeed: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
