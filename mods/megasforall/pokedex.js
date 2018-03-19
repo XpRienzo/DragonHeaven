@@ -12,7 +12,7 @@ exports.BattlePokedex = {
 	   abilities: {0: "Home-In"},
 	   heightm: 1.2,
 	   weightkg: 38,
-	   color: "Brown",
+	   color: "Rawr",
 	   evoLevel: 1,
 	   eggGroups: ["Flying"],
 	},
