@@ -762,7 +762,7 @@ gutter: function (target, room, user) {
 		let jillianDex = require('../mods/megasforall/pokedex.js').BattlePokedex;
 		if (!jillianDex) return this.errorReply("Error Fetching Istor Data.");
 		Object.values(jillianDex).forEach(mon => {
-			if (mon.formeLetter === 'Z') {
+			if (mon.formeLetter === 'Q') {
 			buf += `&quot;${mon.species}&quot;: {<br> &quot;t1&quot;: &quot;${mon.types[0]}&quot;, <br>&quot;t2&quot;: &quot;${mon.types[1]}&quot;,<br> &quot;bs&quot;: { <br>&quot;hp&quot;: ${mon.baseStats.hp}, <br>&quot;at&quot;: ${mon.baseStats.atk}, <br> &quot;df&quot;: ${mon.baseStats.def}, <br> &quot;sa&quot;: ${mon.baseStats.spa},<br>&quot;sd&quot;: ${mon.baseStats.spd}, <br>&quot;sp&quot;: ${mon.baseStats.spe} <br> }, <br> &quot;w&quot;: ${mon.weightkg}<br> },`;
 }});
 		this.sendReplyBox(`${buf}</div>`);
@@ -818,7 +818,7 @@ gutter: function (target, room, user) {
 			let speedtierplus = 2.2 * mon.baseStats.spe + 108.9;
 			let speedtier = 2 * mon.baseStats.spe + 99;
 			let speedtierzero = 2 * mon.baseStats.spe + 36;
-			if (mon.formeLetter === 'Z') {
+			if (mon.formeLetter === 'Q') {
 			buf += `${speedtierplus}: Fast+ ${mon.species}<br>${speedtier}: Fast ${mon.species}<br>${speedtierzero}: Bulky ${mon.species}<br>`;
 		}
 		}
