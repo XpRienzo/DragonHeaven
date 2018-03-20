@@ -586,6 +586,17 @@ exports.commands = {
 		this.sendReplyBox(`${buf}</div>`);
 	},
 	eternalmonsthelp: ["/eternalmons - Shows the list of Pokemon in Eternal Pokemon."],
+	eternallearn: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Eternal Pokemon</h2></center>`;
+		let jillianDex = require('../mods/eternal/pokedex.js').BattlePokedex;
+		if (!jillianDex) return this.errorReply("Error Fetching Istor Data.");
+		Object.values(jillianDex).forEach(mon => {
+			buf += `this.modData('Learnsets', ${mon.id}.learnset.move = ['7L1']&#59; <br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
+	eternallearnthelp: ["/eternalmons - Shows the list of Pokemon in Eternal Pokemon."],
 	eternalmoves: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Eternal Pokemon Moves</h2></center>`;
