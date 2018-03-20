@@ -219,14 +219,12 @@ class LoginServerInstance {
 	}
 }
 
-==== BASE ====
-let LoginServer = module.exports = new LoginServerInstance();
+let LoginServer = Object.assign(new LoginServerInstance(), {
+	TimeoutError,
 
-LoginServer.TimeoutError = TimeoutError;
-
-if (Config.remoteladder) LoginServer.ladderupdateServer = new LoginServerInstance();
-LoginServer.prepreplayServer = new LoginServerInstance();
-==== BASE ====
+	ladderupdateServer: new LoginServerInstance(),
+	prepreplayServer: new LoginServerInstance(),
+});
 
 FS('./config/custom.css').onModify(() => {
 	LoginServer.request('invalidatecss');
