@@ -6,7 +6,7 @@ exports.BattlePokedex = {
 	   species: "Fearow-Mega",
 	   baseSpecies: "Fearow",
 	   forme: "Mega",
-	   formeLetter: "M",
+	   formeLetter: "Z",
 	   types: ["Dark","Flying"],
 	   baseStats: {hp: 65, atk: 130, def: 85, spa: 61, spd: 81, spe: 120},
 	   abilities: {0: "Home-In"},
