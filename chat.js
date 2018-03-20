@@ -1662,6 +1662,7 @@ Chat.stringify = function (value, depth = 0) {
 Chat.formatText = require('./chat-formatter').formatText;
 Chat.linkRegex = require('./chat-formatter').linkRegex;
 Chat.updateServerLock = false;
+Chat.uploadToHastebin = function (toUpload, callback) {
 	let reqOpts = {
 		hostname: "hastebin.com",
 		method: "POST",
