@@ -592,7 +592,7 @@ exports.commands = {
 		let jillianDex = require('../mods/eternal/pokedex.js').BattlePokedex;
 		if (!jillianDex) return this.errorReply("Error Fetching Istor Data.");
 		Object.values(jillianDex).forEach(mon => {
-			buf += `this.modData('Learnsets', ${mon.baseSpecies}.toLowerCase();.learnset.move = ['7L1']&#59; <br>`;
+			buf += `this.modData('Learnsets', ${mon.baseSpecies}.learnset.move = ['7L1']&#59; <br>`;
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
