@@ -10,7 +10,7 @@
  */
 
 'use strict';
-let MSort = require('./mergesort.js');
+
 const TIMEOUT_EMPTY_DEALLOCATE = 10 * 60 * 1000;
 const TIMEOUT_INACTIVE_DEALLOCATE = 40 * 60 * 1000;
 const REPORT_USER_STATS_INTERVAL = 10 * 60 * 1000;
@@ -551,10 +551,10 @@ class GlobalRoom extends BasicRoom {
 			return Config.rankList;
 		}
 		let rankList = [];
-		
+
 		for (let rank in Config.groups) {
 			if (!Config.groups[rank] || !rank) continue;
-			
+
 			let tarGroup = Config.groups[rank];
 			let groupType = tarGroup.addhtml || (!tarGroup.mute && !tarGroup.root) ? 'normal' : (tarGroup.root || tarGroup.declare) ? 'leadership' : 'staff';
 
@@ -562,8 +562,9 @@ class GlobalRoom extends BasicRoom {
 		}
 
 		const typeOrder = ['punishment', 'normal', 'staff', 'leadership'];
-		
-		rankList = MSort(rankList, function(a, b) {return typeOrder.indexOf(b.type) - typeOrder.indexOf(a.type)});
+
+		rankList = rankList.sort((a, b) => typeOrder.indexOf(b.type) - typeOrder.indexOf(a.type));
+
 		// add the punishment types at the very end.
 		for (let rank in Config.punishgroups) {
 			rankList.push({symbol: Config.punishgroups[rank].symbol, name: Config.punishgroups[rank].name, type: 'punishment'});
@@ -967,248 +968,20 @@ class BasicChatRoom extends BasicRoom {
 	 */
 	constructor(roomid, title, options = {}) {
 		super(roomid, title);
-==== BASE ====
-		this.modchat = (Config.battlemodchat || false);
-		this.reportJoins = Config.reportbattlejoins;
 
-		/** @type {'battle'} */
-		this.type = 'battle';
-		// TypeScript bug: subclass null
-		this.muteTimer = /** @type {NodeJS.Timer?} */ (null);
-		this.lastUpdate = 0;
-
-		this.modchatUser = '';
-		this.expireTimer = null;
-		this.active = false;
-
-		this.format = options.format || '';
-		this.auth = Object.create(null);
-		//console.log("NEW BATTLE");
-
-		this.tour = options.tour || null;
-		this.parent = options.parent || (this.tour && this.tour.room) || null;
-
-		this.p1 = null;
-		this.p2 = null;
-
-		/**
-		 * The lower player's rating, for searching purposes.
-		 * 0 for unrated battles. 1 for unknown ratings.
-		 * @type {number}
-		 */
-		this.rated = options.rated || 0;
-		/** @type {RoomBattle?} */
-		this.battle = null;
-		/** @type {RoomGame} */
-		// @ts-ignore
-		this.game = null;
-
-		this.modlogStream = Rooms.battleModlogStream;
-	}
-	/**
-	 * - logNum = 0    : spectator log (no exact HP)
-	 * - logNum = 1, 2 : player log (exact HP for that player)
-	 * - logNum = 3    : debug log (exact HP for all players)
-	 * @param {0 | 1 | 2 | 3} logNum
-	 */
-	getLog(logNum) {
-		let log = [];
-		for (let i = 0; i < this.log.length; ++i) {
-			let line = this.log[i];
-			if (line === '|split') {
-				log.push(this.log[i + logNum + 1]);
-				i += 4;
-			} else {
-				log.push(line);
-			}
+		if (options.logTimes === undefined) options.logTimes = true;
+		if (options.autoTruncate === undefined) options.autoTruncate = !options.isHelp;
+		if (options.reportJoins === undefined) {
+			options.reportJoins = !!Config.reportjoins || options.isPersonal;
 		}
-		return log;
-	}
-	/**
-	 * @param {User} user
-	 */
-	getLogForUser(user) {
-		if (!(user in this.game.players)) return this.getLog(0);
-		return this.getLog(this.game.players[user].slotNum + 1);
-	}
-	/**
-	 * @param {User?} excludeUser
-	 */
-	update(excludeUser = null) {
-		if (this.log.length <= this.lastUpdate) return;
-
-		if (this.userCount) {
-			Sockets.subchannelBroadcast(this.id, '>' + this.id + '\n\n' + this.log.slice(this.lastUpdate).join('\n'));
+		if (options.batchJoins === undefined) {
+			options.batchJoins = options.isPersonal ? 0 : Config.reportjoinsperiod || 0;
 		}
+		this.log = Roomlogs.create(this, options);
 
-		this.lastUpdate = this.log.length;
-
-		// empty rooms time out after ten minutes
-		let hasUsers = false;
-		for (let i in this.users) { // eslint-disable-line no-unused-vars
-			hasUsers = true;
-			break;
-		}
-		if (!hasUsers) {
-			if (this.expireTimer) clearTimeout(this.expireTimer);
-			this.expireTimer = setTimeout(() => this.tryExpire(), TIMEOUT_EMPTY_DEALLOCATE);
-		} else {
-			if (this.expireTimer) clearTimeout(this.expireTimer);
-			this.expireTimer = setTimeout(() => this.tryExpire(), TIMEOUT_INACTIVE_DEALLOCATE);
-		}
-	}
-	tryExpire() {
-		this.expire();
-	}
-	/**
-	 * @param {0 | 1} num
-	 * @param {string} message
-	 */
-	sendPlayer(num, message) {
-		let player = this.getPlayer(num);
-		if (!player) return false;
-		player.sendRoom(message);
-	}
-	/**
-	 * @param {0 | 1} num
-	 */
-	getPlayer(num) {
-		return this.battle['p' + (num + 1)];
-	}
-	/**
-	 * @param {User} user
-	 */
-	requestModchat(user) {
-		if (user === null) {
-			this.modchatUser = '';
-			return;
-		} else if (user.can('modchat') || !this.modchatUser || this.modchatUser === user.userid) {
-			this.modchatUser = user.userid;
-			return;
-		} else {
-			return "Invite-only can only be turned off by the user who turned it on, or staff";
-		}
-	}
-	/**
-	 * @param {User} user
-	 * @param {Connection} connection
-	 */
-	onConnect(user, connection) {
-		this.sendUser(connection, '|init|battle\n|title|' + this.title + '\n' + this.getLogForUser(user).join('\n'));
-		if (this.game && this.game.onConnect) this.game.onConnect(user, connection);
-	}
-	/**
-	 * @param {User} user
-	 * @param {Connection} connection
-	 */
-	onJoin(user, connection) {
-		if (!user) return false;
-		if (this.users[user.userid]) return user;
-
-		if (user.named) {
-			this.add((this.reportJoins && !user.locked ? '|j|' : '|J|') + user.name).update();
-		}
-
-		this.users[user.userid] = user;
-		this.userCount++;
-
-		if (this.game && this.game.onJoin) {
-			this.game.onJoin(user, connection);
-		}
-		return user;
-	}
-	/**
-	 * @param {User} user
-	 * @param {string} oldid
-	 * @param {boolean} joining
-	 */
-	onRename(user, oldid, joining) {
-		if (joining) {
-			this.add((this.reportJoins && !user.locked ? '|j|' : '|J|') + user.name);
-		}
-		delete this.users[oldid];
-		this.users[user.userid] = user;
-		this.update();
-		return user;
-	}
-	/**
-	 * @param {User} user
-	 */
-	onLeave(user) {
-		if (!user) return; // ...
-		if (!user.named) {
-			delete this.users[user.userid];
-			return;
-		}
-		delete this.users[user.userid];
-		this.userCount--;
-		this.add((this.reportJoins && !user.locked ? '|l|' : '|L|') + user.name);
-
-		if (this.game && this.game.onLeave) {
-			this.game.onLeave(user);
-		}
-		this.update();
-	}
-	expire() {
-		this.send('|expire|');
-		this.destroy();
-	}
-	destroy() {
-		// deallocate ourself
-==== BASE ====
-
-==== BASE ====
-		if (this.tour) {
-			// resolve state of the tournament;
-			if (!this.battle.ended) this.tour.onBattleWin(this, '');
-			this.tour = null;
-		}
-
-		// remove references to ourself
-		for (let i in this.users) {
-			this.users[i].leaveRoom(this, null, true);
-			delete this.users[i];
-		}
-
-		// deallocate children and get rid of references to them
-		if (this.game) {
-			this.game.destroy();
-		}
-		this.battle = null;
-		// @ts-ignore
-		this.game = null;
-
-		this.active = false;
-
-		if (this.expireTimer) {
-			clearTimeout(this.expireTimer);
-		}
-		this.expireTimer = null;
-
-		if (this.muteTimer) {
-			clearTimeout(this.muteTimer);
-		}
-		this.muteTimer = null;
-
-		// get rid of some possibly-circular references
-		Rooms.rooms.delete(this.id);
-	}
-}
-
-class ChatRoom extends BasicRoom {
-	/**
-	 * @param {string} roomid
-	 * @param {string} [title]
-	 * @param {AnyObject} [options]
-	 */
-	constructor(roomid, title, options = {}) {
-		super(roomid, title);
-
-		this.logTimes = true;
-		this.logFile = null;
-		this.logFilename = '';
-		this.destroyingLog = false;
-==== BASE ====
+		/** @type {any} */
+		// TODO: strongly type polls
+		this.poll = null;
 
 		// room settings
 		this.desc = '';
