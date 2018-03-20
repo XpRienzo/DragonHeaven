@@ -7,7 +7,7 @@ const randomBSSFactorySets = require('./bss-factory-sets.json');
 const randomFactorySets = require('./factory-sets.json');
 
 class RandomTeams extends Dex.ModdedDex {
-	constructor(format, seed) {
+	constructor(format, prng) {
 		format = Dex.getFormat(format);
 		super(format.mod);
 		this.randomBSSFactorySets = randomBSSFactorySets;
@@ -15,11 +15,17 @@ class RandomTeams extends Dex.ModdedDex {
 
 		this.factoryTier = '';
 		this.format = format;
-		this.prng = new PRNG(seed);
+		this.prng = prng && !Array.isArray(prng) ? prng : new PRNG(prng);
 	}
 	generateTeam() {
 		const generatorName = typeof this.format.team === 'string' && this.format.team.startsWith('random') ? this.format.team + 'Team' : '';
 		return this[generatorName || 'randomTeam']();
+	}
+	randomChance(numerator, denominator) {
+		return this.prng.randomChance(numerator, denominator);
+	}
+	sample(items) {
+		return this.prng.sample(items);
 	}
 	random(m, n) {
 		return this.prng.next(m, n);
@@ -99,7 +105,7 @@ class RandomTeams extends Dex.ModdedDex {
 			let item = '';
 			if (this.gen >= 2) {
 				do {
-					item = items[this.random(items.length)];
+					item = this.sample(items);
 				} while (this.getItem(item).gen > this.gen || this.data.Items[item].isNonstandard);
 			}
 
@@ -113,14 +119,14 @@ class RandomTeams extends Dex.ModdedDex {
 			let itemData = this.getItem(item);
 			if (itemData.forcedForme && species === this.getTemplate(itemData.forcedForme).baseSpecies) {
 				do {
-					item = items[this.random(items.length)];
+					item = this.sample(items);
 					itemData = this.getItem(item);
 				} while (itemData.gen > this.gen || itemData.isNonstandard || itemData.forcedForme && species === this.getTemplate(itemData.forcedForme).baseSpecies);
 			}
 
 			// Random legal ability
 			let abilities = Object.values(template.abilities).filter(a => this.getAbility(a).gen <= this.gen);
-			let ability = this.gen <= 2 ? 'None' : abilities[this.random(abilities.length)];
+			let ability = this.gen <= 2 ? 'None' : this.sample(abilities);
 
 			// Four random unique moves from the movepool
 			let moves;
@@ -147,7 +153,7 @@ class RandomTeams extends Dex.ModdedDex {
 			let s = ["hp", "atk", "def", "spa", "spd", "spe"];
 			let evpool = 510;
 			do {
-				let x = s[this.random(s.length)];
+				let x = this.sample(s);
 				let y = this.random(Math.min(256 - evs[x], evpool + 1));
 				evs[x] += y;
 				evpool -= y;
@@ -157,7 +163,7 @@ class RandomTeams extends Dex.ModdedDex {
 			let ivs = {hp: this.random(32), atk: this.random(32), def: this.random(32), spa: this.random(32), spd: this.random(32), spe: this.random(32)};
 
 			// Random nature
-			let nature = natures[this.random(natures.length)];
+			let nature = this.sample(natures);
 
 			// Level balance--calculate directly from stats rather than using some silly lookup table
 			let mbstmin = 1307; // Sunkern has the lowest modified base stat total, and that total is 807
@@ -188,17 +194,16 @@ class RandomTeams extends Dex.ModdedDex {
 				level++;
 			}
 
-			// Random gender--already handled by PS
-
 			// Random happiness
 			let happiness = this.random(256);
 
 			// Random shininess
-			let shiny = !this.random(1024);
+			let shiny = this.randomChance(1, 1024);
 
 			team.push({
 				name: template.baseSpecies,
 				species: template.species,
+				gender: template.gender,
 				item: item,
 				ability: ability,
 				moves: moves,
@@ -217,7 +222,7 @@ class RandomTeams extends Dex.ModdedDex {
 		// Pick six random pokemon--no repeats, even among formes
 		// Also need to either normalize for formes or select formes at random
 		// Unreleased are okay but no CAP
-		let last = [0, 151, 251, 386, 493, 649, 721, 802][this.gen];
+		let last = [0, 151, 251, 386, 493, 649, 721, 807][this.gen];
 		let hasDexNumber = {};
 		for (let i = 0; i < 6; i++) {
 			let num;
@@ -241,7 +246,7 @@ class RandomTeams extends Dex.ModdedDex {
 			if (!formes[i].length) {
 				throw new Error("Invalid pokemon gen " + this.gen + ": " + JSON.stringify(formes) + " numbers " + JSON.stringify(hasDexNumber));
 			}
-			sixPokemon.push(formes[i][this.random(formes[i].length)]);
+			sixPokemon.push(this.sample(formes[i]));
 		}
 		return sixPokemon;
 	}
@@ -290,7 +295,7 @@ class RandomTeams extends Dex.ModdedDex {
 			if (this.gen === 6) {
 				let evpool = 510;
 				do {
-					let x = s[this.random(s.length)];
+					let x = this.sample(s);
 					let y = this.random(Math.min(256 - evs[x], evpool + 1));
 					evs[x] += y;
 					evpool -= y;
@@ -303,7 +308,7 @@ class RandomTeams extends Dex.ModdedDex {
 			let ivs = {hp: this.random(32), atk: this.random(32), def: this.random(32), spa: this.random(32), spd: this.random(32), spe: this.random(32)};
 
 			// Random nature
-			let nature = naturePool[this.random(naturePool.length)];
+			let nature = this.sample(naturePool);
 
 			// Level balance
 			let mbstmin = 1307;
@@ -330,11 +335,12 @@ class RandomTeams extends Dex.ModdedDex {
 			let happiness = this.random(256);
 
 			// Random shininess
-			let shiny = !this.random(1024);
+			let shiny = this.randomChance(1, 1024);
 
 			team.push({
 				name: template.baseSpecies,
 				species: template.species,
+				gender: template.gender,
 				item: item,
 				ability: ability,
 				moves: m,
@@ -399,7 +405,7 @@ class RandomTeams extends Dex.ModdedDex {
 		];
 		// Moves that shouldn't be the only STAB moves:
 		let NoStab = [
-			'aquajet', 'bounce', 'explosion', 'fakeout', 'flamecharge', 'fly', 'iceshard', 'pursuit', 'quickattack', 'skyattack',
+			'aquajet', 'bounce', 'explosion', 'fakeout', 'firstimpression', 'flamecharge', 'fly', 'iceshard', 'pursuit', 'quickattack', 'skyattack',
 			'chargebeam', 'clearsmog', 'eruption', 'vacuumwave', 'waterspout',
 		];
 
@@ -431,11 +437,11 @@ class RandomTeams extends Dex.ModdedDex {
 					counter['adaptability']++;
 					// STAB:
 					// Certain moves aren't acceptable as a Pokemon's only STAB attack
-					if (!(moveid in NoStab) && (moveid !== 'hiddenpower' || Object.keys(hasType).length === 1)) counter['stab']++;
+					if (!NoStab.includes(moveid) && (moveid !== 'hiddenpower' || Object.keys(hasType).length === 1)) counter['stab']++;
 				}
-				if (move.priority === 0 && (hasAbility['Protean'] || moves.includes('conversion')) && !(moveid in NoStab)) counter['stab']++;
+				if (move.priority === 0 && (hasAbility['Protean'] || moves.includes('conversion')) && !NoStab.includes(moveid)) counter['stab']++;
 				if (move.category === 'Physical') counter['hustle']++;
-				if (movetype === 'Normal' && !(moveid in NoStab)) {
+				if (movetype === 'Normal' && !NoStab.includes(moveid)) {
 					if (hasAbility['Aerilate'] || hasAbility['Pixilate'] || hasAbility['Refrigerate']) counter['stab']++;
 				}
 				if (move.flags['bite']) counter['bite']++;
@@ -451,7 +457,7 @@ class RandomTeams extends Dex.ModdedDex {
 			// Moves with low accuracy:
 			if (move.accuracy && move.accuracy !== true && move.accuracy < 90) counter['inaccurate']++;
 			// Moves with non-zero priority:
-			if (move.priority !== 0) counter['priority']++;
+			if (move.category !== 'Status' && move.priority !== 0) counter['priority']++;
 
 			// Moves that change stats:
 			if (RecoveryMove.includes(moveid)) counter['recovery']++;
@@ -516,7 +522,7 @@ class RandomTeams extends Dex.ModdedDex {
 		}
 		let battleForme = this.checkBattleForme(template);
 		if (battleForme && battleForme.randomBattleMoves && (battleForme.isMega ? !teamDetails.megaStone : this.random(2))) {
-			template = this.getTemplate(template.otherFormes.length >= 2 ? template.otherFormes[this.random(template.otherFormes.length)] : template.otherFormes[0]);
+			template = this.getTemplate(template.otherFormes.length >= 2 ? this.sample(template.otherFormes) : template.otherFormes[0]);
 		}
 
 		let movePool = (template.randomBattleMoves ? template.randomBattleMoves.slice() : Object.keys(template.learnset));
@@ -704,7 +710,7 @@ class RandomTeams extends Dex.ModdedDex {
 					break;
 				case 'protect':
 					if (counter.setupType && (hasAbility['Guts'] || hasAbility['Speed Boost']) && !hasMove['batonpass']) rejected = true;
-					if ((hasMove['lightscreen'] && hasMove['reflect']) || (hasMove['rest'] && hasMove['sleeptalk'])) rejected = true;
+					if (hasMove['rest'] || hasMove['lightscreen'] && hasMove['reflect']) rejected = true;
 					break;
 				case 'pursuit':
 					if (counter.setupType || (hasMove['rest'] && hasMove['sleeptalk']) || (hasMove['knockoff'] && !hasType['Dark'])) rejected = true;
@@ -735,7 +741,6 @@ class RandomTeams extends Dex.ModdedDex {
 					break;
 				case 'voltswitch':
 					if (counter.setupType || !!counter['speedsetup'] || hasMove['batonpass'] || hasMove['magnetrise'] || hasMove['uturn']) rejected = true;
-					if (hasMove['nuzzle'] && hasMove['thunderbolt']) rejected = true;
 					break;
 
 				// Bit redundant to have both
@@ -745,6 +750,9 @@ class RandomTeams extends Dex.ModdedDex {
 					break;
 				case 'lunge':
 					if (hasMove['leechlife']) rejected = true;
+					break;
+				case 'darkestlariat': case 'nightslash':
+					if (hasMove['knockoff'] || hasMove['pursuit']) rejected = true;
 					break;
 				case 'darkpulse':
 					if (hasMove['shadowball']) rejected = true;
@@ -756,7 +764,7 @@ class RandomTeams extends Dex.ModdedDex {
 					if (counter.damagingMoves.length < 2 || hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					break;
 				case 'dragonclaw':
-					if (hasMove['dragontail'] || hasMove['outrage'] && counter.Status >= 1) rejected = true;
+					if (hasMove['dragontail'] || hasMove['outrage']) rejected = true;
 					break;
 				case 'dracometeor':
 					if (hasMove['swordsdance'] || counter.setupType === 'Physical' && hasMove['outrage']) rejected = true;
@@ -776,7 +784,6 @@ class RandomTeams extends Dex.ModdedDex {
 					break;
 				case 'thunderbolt':
 					if (hasMove['discharge'] || (hasMove['raindance'] && hasMove['thunder']) || (hasMove['voltswitch'] && hasMove['wildcharge'])) rejected = true;
-					if (!counter.setupType && !counter['speedsetup'] && hasMove['voltswitch'] && template.types.length > 1 && !counter[template.types.find(type => type !== 'Electric')]) rejected = true;
 					break;
 				case 'thunderpunch':
 					if (hasAbility['Galvanize'] && !!counter['Normal']) rejected = true;
@@ -920,8 +927,8 @@ class RandomTeams extends Dex.ModdedDex {
 				case 'sludgewave':
 					if (hasMove['poisonjab']) rejected = true;
 					break;
-				case 'psychic':
-					if (hasMove['psyshock'] || hasMove['storedpower']) rejected = true;
+				case 'photongeyser': case 'psychic':
+					if (hasMove['psyshock'] || counter.setupType === 'Special' && hasMove['storedpower']) rejected = true;
 					break;
 				case 'psychocut': case 'zenheadbutt':
 					if ((hasMove['psychic'] || hasMove['psyshock']) && counter.setupType !== 'Physical') rejected = true;
@@ -1025,7 +1032,7 @@ class RandomTeams extends Dex.ModdedDex {
 				if ((hasType['Bug'] && !hasMove['batonpass'] && (movePool.includes('megahorn') || movePool.includes('pinmissile') || (hasType['Flying'] && !hasMove['hurricane'] && movePool.includes('bugbuzz')))) ||
 					(hasType['Dark'] && hasMove['suckerpunch'] && counter.stab < template.types.length) ||
 					(hasType['Dragon'] && !counter['Dragon'] && !hasAbility['Aerilate'] && !hasAbility['Pixilate'] && !hasMove['rest'] && !hasMove['sleeptalk']) ||
-					(hasType['Electric'] && !counter['Electric']) ||
+					(hasType['Electric'] && !counter['Electric'] && !hasAbility['Galvanize']) ||
 					(hasType['Fighting'] && !counter['Fighting'] && (counter.setupType || !counter['Status'])) ||
 					(hasType['Fire'] && !counter['Fire']) ||
 					(hasType['Ground'] && !counter['Ground'] && !hasMove['rest'] && !hasMove['sleeptalk']) ||
@@ -1039,15 +1046,17 @@ class RandomTeams extends Dex.ModdedDex {
 					(hasAbility['Gale Wings'] && !counter['Flying']) ||
 					(hasAbility['Grassy Surge'] && !counter['Grass']) ||
 					(hasAbility['Guts'] && hasType['Normal'] && movePool.includes('facade')) ||
+					(hasAbility['Psychic Surge'] && !counter['Psychic']) ||
 					(hasAbility['Slow Start'] && movePool.includes('substitute')) ||
 					(hasAbility['Stance Change'] && !counter.setupType && movePool.includes('kingsshield')) ||
+					(hasAbility['Technician'] && movePool.includes('bulletpunch')) ||
 					(hasAbility['Water Bubble'] && !counter['Water']) ||
 					(counter['defensesetup'] && !counter.recovery && !hasMove['rest']) ||
 					(movePool.includes('technoblast') || template.requiredMove && movePool.includes(toId(template.requiredMove)))) &&
 					(counter['physicalsetup'] + counter['specialsetup'] < 2 && (!counter.setupType || counter.setupType === 'Mixed' || (move.category !== counter.setupType && move.category !== 'Status') || counter[counter.setupType] + counter.Status > 3))) {
 					// Reject Status or non-STAB
 					if (!isSetup && !move.weather && moveid !== 'judgment' && moveid !== 'rest' && moveid !== 'sleeptalk') {
-						if (move.category === 'Status' || !hasType[move.type] || (move.basePower && move.basePower < 40 && !move.multihit)) rejected = true;
+						if (move.category === 'Status' || !hasType[move.type] || move.selfSwitch || move.basePower && move.basePower < 40 && !move.multihit) rejected = true;
 					}
 				}
 
@@ -1101,7 +1110,7 @@ class RandomTeams extends Dex.ModdedDex {
 						}
 					}
 					if (rejectableMoves.length) {
-						moves.splice(rejectableMoves[this.random(rejectableMoves.length)], 1);
+						moves.splice(this.sample(rejectableMoves), 1);
 					}
 				}
 			}
@@ -1126,12 +1135,12 @@ class RandomTeams extends Dex.ModdedDex {
 		let ability1 = this.getAbility(abilities[1]);
 		let ability2 = this.getAbility(abilities[2]);
 		if (abilities[1]) {
-			if (abilities[2] && ability1.rating <= ability2.rating && this.random(2)) {
+			if (abilities[2] && ability1.rating <= ability2.rating && this.randomChance(1, 2)) {
 				[ability1, ability2] = [ability2, ability1];
 			}
-			if (ability0.rating <= ability1.rating && this.random(2)) {
+			if (ability0.rating <= ability1.rating && this.randomChance(1, 2)) {
 				[ability0, ability1] = [ability1, ability0];
-			} else if (ability0.rating - 0.6 <= ability1.rating && this.random(3)) {
+			} else if (ability0.rating - 0.6 <= ability1.rating && this.randomChance(2, 3)) {
 				[ability0, ability1] = [ability1, ability0];
 			}
 			ability = ability0.name;
@@ -1254,7 +1263,7 @@ class RandomTeams extends Dex.ModdedDex {
 				ability = 'Pickup';
 			} else if (template.baseSpecies === 'Basculin') {
 				ability = 'Adaptability';
-			} else if (template.species === 'Lopunny' && hasMove['switcheroo'] && this.random(3)) {
+			} else if (template.species === 'Lopunny' && hasMove['switcheroo'] && this.randomChance(2, 3)) {
 				ability = 'Klutz';
 			} else if ((template.species === 'Rampardos' && !hasMove['headsmash']) || hasMove['rockclimb']) {
 				ability = 'Sheer Force';
@@ -1273,7 +1282,7 @@ class RandomTeams extends Dex.ModdedDex {
 				// Judgment doesn't change type with Z-Crystals
 				item = template.requiredItems[0];
 			} else {
-				item = template.requiredItems[this.random(template.requiredItems.length)];
+				item = this.sample(template.requiredItems);
 			}
 		} else if (hasMove['magikarpsrevenge']) {
 			// PoTD Magikarp
@@ -1295,6 +1304,22 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Stick';
 		} else if (template.species === 'Kommo-o' && !teamDetails.zMove) {
 			item = hasMove['clangingscales'] ? 'Kommonium Z' : 'Dragonium Z';
+		} else if ((template.species === 'Necrozma-Dusk-Mane' || template.species === 'Necrozma-Dawn-Wings') && !teamDetails.zMove) {
+			if (hasMove['autotomize'] && hasMove['sunsteelstrike']) {
+				item = 'Solganium Z';
+			} else if (hasMove['trickroom'] && hasMove['moongeistbeam']) {
+				item = 'Lunalium Z';
+			} else {
+				item = 'Ultranecrozium Z';
+				if (!hasMove['photongeyser']) {
+					for (let i = 0; i < moves.length; i++) {
+						let move = this.getMove(moves[i]);
+						if (move.category === 'Status' || hasType[move.type]) continue;
+						moves[i] = 'photongeyser';
+						break;
+					}
+				}
+			}
 		} else if (template.baseSpecies === 'Pikachu') {
 			item = 'Light Ball';
 		} else if (template.species === 'Shedinja' || template.species === 'Smeargle') {
@@ -1304,8 +1329,8 @@ class RandomTeams extends Dex.ModdedDex {
 		} else if (template.species === 'Unown') {
 			item = 'Choice Specs';
 		} else if (template.species === 'Wobbuffet') {
-			item = hasMove['destinybond'] ? 'Custap Berry' : ['Leftovers', 'Sitrus Berry'][this.random(2)];
-		} else if (template.species === 'Raichu-Alola' && hasMove['thunderbolt'] && !teamDetails.zMove && this.random(4) < 1) {
+			item = hasMove['destinybond'] ? 'Custap Berry' : this.sample(['Leftovers', 'Sitrus Berry']);
+		} else if (template.species === 'Raichu-Alola' && hasMove['thunderbolt'] && !teamDetails.zMove && this.randomChance(1, 4)) {
 			item = 'Aloraichium Z';
 		} else if (template.species === 'Zygarde-10%' && hasMove['substitute'] && !teamDetails.zMove) {
 			item = hasMove['outrage'] ? 'Dragonium Z' : 'Groundium Z';
@@ -1317,10 +1342,10 @@ class RandomTeams extends Dex.ModdedDex {
 			// To perma-taunt a Pokemon by giving it Assault Vest
 			item = 'Assault Vest';
 		} else if (hasMove['switcheroo'] || hasMove['trick']) {
-			let randomNum = this.random(3);
-			if (counter.Physical >= 3 && (template.baseStats.spe < 60 || template.baseStats.spe > 108 || randomNum)) {
+			let randomBool = this.randomChance(2, 3);
+			if (counter.Physical >= 3 && (template.baseStats.spe < 60 || template.baseStats.spe > 108 || randomBool)) {
 				item = 'Choice Band';
-			} else if (counter.Special >= 3 && (template.baseStats.spe < 60 || template.baseStats.spe > 108 || randomNum)) {
+			} else if (counter.Special >= 3 && (template.baseStats.spe < 60 || template.baseStats.spe > 108 || randomBool)) {
 				item = 'Choice Specs';
 			} else {
 				item = 'Choice Scarf';
@@ -1339,8 +1364,8 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Soul Dew';
 		} else if (hasMove['bellydrum']) {
 			if (ability === 'Gluttony') {
-				item = ['Aguav', 'Figy', 'Iapapa', 'Mago', 'Wiki'][this.random(5)] + ' Berry';
-			} else if (template.baseStats.spe <= 50 && !teamDetails.zMove && this.random(2)) {
+				item = this.sample(['Aguav', 'Figy', 'Iapapa', 'Mago', 'Wiki']) + ' Berry';
+			} else if (template.baseStats.spe <= 50 && !teamDetails.zMove && this.randomChance(1, 2)) {
 				item = 'Normalium Z';
 			} else {
 				item = 'Sitrus Berry';
@@ -1378,10 +1403,10 @@ class RandomTeams extends Dex.ModdedDex {
 		} else if (template.baseStats.spe <= 50 && hasMove['sleeppowder'] && counter.setupType && !teamDetails.zMove) {
 			item = 'Grassium Z';
 		} else if (counter.Physical >= 4 && !hasMove['bodyslam'] && !hasMove['dragontail'] && !hasMove['fakeout'] && !hasMove['flamecharge'] && !hasMove['rapidspin'] && !hasMove['suckerpunch']) {
-			item = template.baseStats.atk >= 100 && template.baseStats.spe >= 60 && template.baseStats.spe <= 108 && !counter['priority'] && this.random(3) ? 'Choice Scarf' : 'Choice Band';
+			item = template.baseStats.atk >= 100 && template.baseStats.spe >= 60 && template.baseStats.spe <= 108 && !counter['priority'] && this.randomChance(2, 3) ? 'Choice Scarf' : 'Choice Band';
 		} else if (counter.Special >= 4 && !hasMove['acidspray'] && !hasMove['chargebeam'] && !hasMove['clearsmog'] && !hasMove['fierydance']) {
-			item = template.baseStats.spa >= 100 && template.baseStats.spe >= 60 && template.baseStats.spe <= 108 && !counter['priority'] && this.random(3) ? 'Choice Scarf' : 'Choice Specs';
-		} else if (((counter.Physical >= 3 && hasMove['defog']) || (counter.Special >= 3 && hasMove['uturn'])) && template.baseStats.spe >= 60 && template.baseStats.spe <= 108 && !counter['priority'] && this.random(3)) {
+			item = template.baseStats.spa >= 100 && template.baseStats.spe >= 60 && template.baseStats.spe <= 108 && !counter['priority'] && this.randomChance(2, 3) ? 'Choice Scarf' : 'Choice Specs';
+		} else if (((counter.Physical >= 3 && hasMove['defog']) || (counter.Special >= 3 && hasMove['uturn'])) && template.baseStats.spe >= 60 && template.baseStats.spe <= 108 && !counter['priority'] && this.randomChance(2, 3)) {
 			item = 'Choice Scarf';
 		} else if (ability === 'Defeatist' || hasMove['eruption'] || hasMove['waterspout']) {
 			item = counter.Status <= 1 ? 'Expert Belt' : 'Leftovers';
@@ -1397,7 +1422,7 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Leftovers';
 		} else if (hasMove['substitute']) {
 			item = !counter['drain'] || counter.damagingMoves.length < 2 ? 'Leftovers' : 'Life Orb';
-		} else if ((ability === 'Iron Barbs' || ability === 'Rough Skin') && this.random(2)) {
+		} else if ((ability === 'Iron Barbs' || ability === 'Rough Skin') && this.randomChance(1, 2)) {
 			item = 'Rocky Helmet';
 		} else if (counter.Physical + counter.Special >= 4 && template.baseStats.spd >= 65 && template.baseStats.hp + template.baseStats.def + template.baseStats.spd >= 235) {
 			item = 'Assault Vest';
@@ -1475,23 +1500,23 @@ class RandomTeams extends Dex.ModdedDex {
 		if (hasMove['batonpass'] && counter.setupType && level > 77) level = 77;
 
 		// Prepare optimal HP
-		let hp = Math.floor(Math.floor(2 * template.baseStats.hp + ivs.hp + Math.floor(evs.hp / 4) + 100) * level / 100 + 10);
-		if (hasMove['substitute'] && (item === 'Sitrus Berry' || (ability === 'Power Construct' && item !== 'Leftovers'))) {
-			// Two Substitutes should activate Sitrus Berry or Power Construct
-			while (hp % 4 > 0) {
-				evs.hp -= 4;
-				hp = Math.floor(Math.floor(2 * template.baseStats.hp + ivs.hp + Math.floor(evs.hp / 4) + 100) * level / 100 + 10);
+		let srWeakness = this.getEffectiveness('Rock', template);
+		while (evs.hp > 1) {
+			let hp = Math.floor(Math.floor(2 * template.baseStats.hp + ivs.hp + Math.floor(evs.hp / 4) + 100) * level / 100 + 10);
+			if (hasMove['substitute'] && hasMove['reversal']) {
+				// Reversal users should be able to use four Substitutes
+				if (hp % 4 > 0) break;
+			} else if (hasMove['substitute'] && (item === 'Sitrus Berry' || ability === 'Power Construct' && item !== 'Leftovers')) {
+				// Two Substitutes should activate Sitrus Berry or Power Construct
+				if (hp % 4 === 0) break;
+			} else if (hasMove['bellydrum'] && (item === 'Sitrus Berry' || ability === 'Gluttony')) {
+				// Belly Drum should activate Sitrus Berry
+				if (hp % 2 === 0) break;
+			} else {
+				// Maximize number of Stealth Rock switch-ins
+				if (srWeakness <= 0 || hp % (4 / srWeakness) > 0) break;
 			}
-		} else if (hasMove['bellydrum'] && (item === 'Sitrus Berry' || ability === 'Gluttony')) {
-			// Belly Drum should activate Sitrus Berry
-			if (hp % 2 > 0) evs.hp -= 4;
-		} else if (hasMove['substitute'] && hasMove['reversal']) {
-			// Reversal users should be able to use four Substitutes
-			if (hp % 4 === 0) evs.hp -= 4;
-		} else {
-			// Maximize number of Stealth Rock switch-ins
-			let srWeakness = this.getEffectiveness('Rock', template);
-			if (srWeakness > 0 && hp % (4 / srWeakness) === 0) evs.hp -= 4;
+			evs.hp -= 4;
 		}
 
 		// Minimize confusion damage
@@ -1508,13 +1533,14 @@ class RandomTeams extends Dex.ModdedDex {
 		return {
 			name: template.baseSpecies,
 			species: species,
+			gender: template.gender,
 			moves: moves,
 			ability: ability,
 			evs: evs,
 			ivs: ivs,
 			item: item,
 			level: level,
-			shiny: !this.random(1024),
+			shiny: this.randomChance(1, 1024),
 		};
 	}
 	randomTeam() {
@@ -1526,7 +1552,7 @@ class RandomTeams extends Dex.ModdedDex {
 		// For Monotype
 		let isMonotype = this.format.id === 'gen7monotyperandombattle';
 		let typePool = Object.keys(this.data.TypeChart);
-		let type = typePool[this.random(typePool.length)];
+		let type = this.sample(typePool);
 
 		let pokemonPool = [];
 		for (let id in this.data.FormatsData) {
@@ -1568,33 +1594,33 @@ class RandomTeams extends Dex.ModdedDex {
 			switch (tier) {
 			case 'Uber':
 				// Ubers are limited to 2 but have a 20% chance of being added anyway.
-				if (uberCount > 1 && this.random(5) >= 1) continue;
+				if (uberCount > 1 && this.randomChance(4, 5)) continue;
 				break;
 			case 'PU':
 				// PUs are limited to 2 but have a 20% chance of being added anyway.
-				if (puCount > 1 && this.random(5) >= 1) continue;
+				if (puCount > 1 && this.randomChance(4, 5)) continue;
 				break;
 			case 'Unreleased': case 'CAP':
 				// Unreleased and CAP have 20% the normal rate
-				if (this.random(5) >= 1) continue;
+				if (this.randomChance(4, 5)) continue;
 			}
 
 			// Adjust rate for species with multiple formes
 			switch (template.baseSpecies) {
 			case 'Arceus': case 'Silvally':
-				if (this.random(18) >= 1) continue;
+				if (this.randomChance(17, 18)) continue;
 				break;
 			case 'Pikachu':
-				if (this.random(7) >= 1) continue;
+				if (this.randomChance(6, 7)) continue;
 				continue;
 			case 'Genesect':
-				if (this.random(5) >= 1) continue;
+				if (this.randomChance(4, 5)) continue;
 				break;
 			case 'Castform': case 'Gourgeist': case 'Oricorio':
-				if (this.random(4) >= 1) continue;
+				if (this.randomChance(3, 4)) continue;
 				break;
 			case 'Basculin': case 'Cherrim': case 'Greninja': case 'Hoopa': case 'Meloetta': case 'Meowstic':
-				if (this.random(2) >= 1) continue;
+				if (this.randomChance(1, 2)) continue;
 				break;
 			}
 
@@ -1618,7 +1644,7 @@ class RandomTeams extends Dex.ModdedDex {
 				// Limit 2 of any type
 				let skip = false;
 				for (let t = 0; t < types.length; t++) {
-					if (typeCount[types[t]] > 1 && this.random(5) >= 1) {
+					if (typeCount[types[t]] > 1 && this.randomChance(4, 5)) {
 						skip = true;
 						break;
 					}
@@ -1705,8 +1731,8 @@ class RandomTeams extends Dex.ModdedDex {
 			species = template.baseSpecies;
 		}
 		let battleForme = this.checkBattleForme(template);
-		if (battleForme && (battleForme.isMega ? !teamDetails.megaStone : this.random(2))) {
-			template = this.getTemplate(template.otherFormes.length >= 2 ? template.otherFormes[this.random(template.otherFormes.length)] : template.otherFormes[0]);
+		if (battleForme && (battleForme.isMega ? !teamDetails.megaStone : this.randomChance(1, 2))) {
+			template = this.getTemplate(template.otherFormes.length >= 2 ? this.sample(template.otherFormes) : template.otherFormes[0]);
 		}
 
 		let movePool = (template.randomDoubleBattleMoves || template.randomBattleMoves);
@@ -2132,7 +2158,7 @@ class RandomTeams extends Dex.ModdedDex {
 						}
 					}
 					if (rejectableMoves.length) {
-						moves.splice(rejectableMoves[this.random(rejectableMoves.length)], 1);
+						moves.splice(this.sample(rejectableMoves), 1);
 					}
 				}
 			}
@@ -2159,12 +2185,12 @@ class RandomTeams extends Dex.ModdedDex {
 		ability = ability0.name;
 		if (abilities[1]) {
 			if (abilities[2] && ability2.rating === ability1.rating) {
-				if (this.random(2)) ability1 = ability2;
+				if (this.randomChance(1, 2)) ability1 = ability2;
 			}
 			if (ability0.rating <= ability1.rating) {
-				if (this.random(2)) ability = ability1.name;
+				if (this.randomChance(1, 2)) ability = ability1.name;
 			} else if (ability0.rating - 0.6 <= ability1.rating) {
-				if (!this.random(3)) ability = ability1.name;
+				if (this.randomChance(1, 3)) ability = ability1.name;
 			}
 
 			let rejectAbility = false;
@@ -2295,7 +2321,7 @@ class RandomTeams extends Dex.ModdedDex {
 				// Judgment doesn't change type with Z-Crystals
 				item = template.requiredItems[0];
 			} else {
-				item = template.requiredItems[this.random(template.requiredItems.length)];
+				item = this.sample(template.requiredItems);
 			}
 		} else if (ability === 'Imposter') {
 			item = 'Choice Scarf';
@@ -2304,18 +2330,18 @@ class RandomTeams extends Dex.ModdedDex {
 		} else if (template.species === 'Unown') {
 			item = 'Choice Specs';
 		} else if (hasMove['trick'] || hasMove['switcheroo']) {
-			let randomNum = this.random(2);
-			if (counter.Physical >= 3 && (template.baseStats.spe >= 95 || randomNum)) {
+			let randomBool = this.randomChance(1, 2);
+			if (counter.Physical >= 3 && (template.baseStats.spe >= 95 || randomBool)) {
 				item = 'Choice Band';
-			} else if (counter.Special >= 3 && (template.baseStats.spe >= 95 || randomNum)) {
+			} else if (counter.Special >= 3 && (template.baseStats.spe >= 95 || randomBool)) {
 				item = 'Choice Specs';
 			} else {
 				item = 'Choice Scarf';
 			}
 		} else if (ability === 'Gluttony' || ability === 'Schooling') {
-			item = ['Aguav', 'Figy', 'Iapapa', 'Mago', 'Wiki'][this.random(5)] + ' Berry';
+			item = this.sample(['Aguav', 'Figy', 'Iapapa', 'Mago', 'Wiki']) + ' Berry';
 		} else if (hasMove['bellydrum']) {
-			if (template.baseStats.spe <= 50 && !teamDetails.zMove && this.random(2)) {
+			if (template.baseStats.spe <= 50 && !teamDetails.zMove && this.randomChance(1, 2)) {
 				item = 'Normalium Z';
 			} else {
 				item = 'Sitrus Berry';
@@ -2348,7 +2374,7 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Petaya Berry';
 		} else if (template.species === 'Wobbuffet') {
 			item = hasMove['destinybond'] ? 'Custap Berry' : 'Sitrus Berry';
-		} else if (template.species === 'Raichu-Alola' && hasMove['thunderbolt'] && !teamDetails.zMove && this.random(4) < 1) {
+		} else if (template.species === 'Raichu-Alola' && hasMove['thunderbolt'] && !teamDetails.zMove && this.randomChance(1, 4)) {
 			item = 'Aloraichium Z';
 		} else if (hasMove['focusenergy'] || (template.species === 'Unfezant' && counter['Physical'] >= 2)) {
 			item = 'Scope Lens';
@@ -2505,13 +2531,14 @@ class RandomTeams extends Dex.ModdedDex {
 		return {
 			name: template.baseSpecies,
 			species: species,
+			gender: template.gender,
 			moves: moves,
 			ability: ability,
 			evs: evs,
 			ivs: ivs,
 			item: item,
 			level: level,
-			shiny: !this.random(template.id === 'missingno' ? 4 : 1024),
+			shiny: this.randomChance(1, template.id === 'missingno' ? 4 : 1024),
 		};
 	}
 	randomFactorySet(template, slot, teamData, tier) {
@@ -2527,7 +2554,7 @@ class RandomTeams extends Dex.ModdedDex {
 			'hydration': 'raindance', 'swiftswim': 'raindance',
 			'leafguard': 'sunnyday', 'solarpower': 'sunnyday', 'chlorophyll': 'sunnyday',
 			'sandforce': 'sandstorm', 'sandrush': 'sandstorm', 'sandveil': 'sandstorm',
-			'snowcloak': 'hail',
+			'slushrush': 'hail', 'snowcloak': 'hail',
 		};
 		let weatherAbilities = ['drizzle', 'drought', 'snowwarning', 'sandstream'];
 
@@ -2537,11 +2564,12 @@ class RandomTeams extends Dex.ModdedDex {
 		priorityPool = [];
 		for (let i = 0, l = setList.length; i < l; i++) {
 			let curSet = setList[i];
-			let itemData = this.getItem(curSet.item);
+			let itemData = this.getItem(curSet.item + '');
 			if (teamData.megaCount > 0 && itemData.megaStone) continue; // reject 2+ mega stones
+			if (teamData.zCount > 0 && itemData.zMove) continue; // reject 2+ Z stones
 			if (itemsMax[itemData.id] && teamData.has[itemData.id] >= itemsMax[itemData.id]) continue;
 
-			let abilityData = this.getAbility(curSet.ability);
+			let abilityData = this.getAbility(curSet.ability + '');
 			if (weatherAbilitiesRequire[abilityData.id] && teamData.weather !== weatherAbilitiesRequire[abilityData.id]) continue;
 			if (teamData.weather && weatherAbilities.includes(abilityData.id)) continue; // reject 2+ weather setters
 
@@ -2573,21 +2601,37 @@ class RandomTeams extends Dex.ModdedDex {
 			}
 		}
 
-		let setData = effectivePool[this.random(effectivePool.length)];
+		let setData = this.sample(effectivePool);
 		let moves = [];
 		for (let i = 0; i < setData.set.moves.length; i++) {
 			let moveSlot = setData.set.moves[i];
-			moves.push(setData.moveVariants ? moveSlot[setData.moveVariants[i]] : moveSlot[this.random(moveSlot.length)]);
+			moves.push(setData.moveVariants ? moveSlot[setData.moveVariants[i]] : this.sample(moveSlot));
+		}
+
+		let items = [];
+		if (Array.isArray(setData.set.item) === true) {
+			let randomItem = setData.set.item;
+			items.push(setData.itemVariants ? randomItem[setData.itemVariants] : this.sample(randomItem));
+		} else {
+			items.push(setData.set.item);
+		}
+
+		let abilities = [];
+		if (Array.isArray(setData.set.ability) === true) {
+			let randomAbility = setData.set.ability;
+			abilities.push(setData.abilityVariants ? randomAbility[setData.abilityVariants] : this.sample(randomAbility));
+		} else {
+			abilities.push(setData.set.ability);
 		}
 
 		return {
 			name: setData.set.name || template.baseSpecies,
 			species: setData.set.species,
-			gender: setData.set.gender || template.gender || (this.random(2) ? 'M' : 'F'),
-			item: setData.set.item || '',
-			ability: setData.set.ability || template.abilities['0'],
-			shiny: typeof setData.set.shiny === 'undefined' ? !this.random(1024) : setData.set.shiny,
-			level: 100,
+			gender: setData.set.gender || template.gender || (this.randomChance(1, 2) ? 'M' : 'F'),
+			item: items + '' || setData.set.item || '',
+			ability: abilities + '' || setData.set.ability || template.abilities['0'],
+			shiny: typeof setData.set.shiny === 'undefined' ? this.randomChance(1, 1024) : setData.set.shiny,
+			level: setData.set.level || 100,
 			happiness: typeof setData.set.happiness === 'undefined' ? 255 : setData.set.happiness,
 			evs: setData.set.evs || {hp: 84, atk: 84, def: 84, spa: 84, spd: 84, spe: 84},
 			ivs: setData.set.ivs || {hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31},
@@ -2600,15 +2644,17 @@ class RandomTeams extends Dex.ModdedDex {
 
 		// The teams generated depend on the tier choice in such a way that
 		// no exploitable information is leaked from rolling the tier in getTeam(p1).
-		let availableTiers = ['Uber', 'OU', 'UU', 'RU', 'NU', 'PU'];
-		if (!this.factoryTier) this.factoryTier = availableTiers[this.random(availableTiers.length)];
-		const chosenTier = this.factoryTier;
+		let availableTiers = ['Uber', 'OU', 'UU', 'RU', 'NU', 'PU', 'LC', 'Mono'];
+		if (!this.FactoryTier) this.FactoryTier = this.sample(availableTiers);
+		const chosenTier = this.FactoryTier;
 
 		let pokemon = [];
-
 		let pokemonPool = Object.keys(this.randomFactorySets[chosenTier]);
 
-		let teamData = {typeCount: {}, typeComboCount: {}, baseFormes: {}, megaCount: 0, has: {}, forceResult: forceResult, weaknesses: {}, resistances: {}};
+		let typePool = Object.keys(this.data.TypeChart);
+		const type = this.sample(typePool);
+
+		let teamData = {typeCount: {}, typeComboCount: {}, baseFormes: {}, megaCount: 0, zCount: 0, has: {}, forceResult: forceResult, weaknesses: {}, resistances: {}};
 		let requiredMoveFamilies = ['hazardSet', 'hazardClear'];
 		let requiredMoves = {'stealthrock': 'hazardSet', 'rapidspin': 'hazardClear', 'defog': 'hazardClear'};
 		let weatherAbilitiesSet = {'drizzle': 'raindance', 'drought': 'sunnyday', 'snowwarning': 'hail', 'sandstream': 'sandstorm'};
@@ -2625,6 +2671,9 @@ class RandomTeams extends Dex.ModdedDex {
 			let template = this.getTemplate(this.sampleNoReplace(pokemonPool));
 			if (!template.exists) continue;
 
+			let set = this.randomFactorySet(template, pokemon.length, teamData, chosenTier);
+			if (!set) continue;
+
 			let speciesFlags = this.randomFactorySets[chosenTier][template.speciesid].flags;
 
 			// Limit to one of each species (Species Clause)
@@ -2633,31 +2682,36 @@ class RandomTeams extends Dex.ModdedDex {
 			// Limit the number of Megas to one
 			if (teamData.megaCount >= 1 && speciesFlags.megaOnly) continue;
 
-			// Limit 2 of any type
+			// Limit the number of Z moves to one
+			if (teamData.zCount >= 1 && set.item.length !== 0 && set.item + ''.indexOf("ium Z") !== -1) continue;
+
 			let types = template.types;
-			let skip = false;
-			for (let t = 0; t < types.length; t++) {
-				if (teamData.typeCount[types[t]] > 1 && this.random(5)) {
-					skip = true;
-					break;
+			// Enforce Monotype
+			if (chosenTier === 'Mono' && types.indexOf(type) < 0) {
+				continue;
+			} else {
+			// If not Monotype, limit to two of each type
+				let skip = false;
+				for (let t = 0; t < types.length; t++) {
+					if (teamData.typeCount[types[t]] > 1 && this.randomChance(4, 5)) {
+						skip = true;
+						break;
+					}
 				}
-			}
-			if (skip) continue;
+				if (skip) continue;
 
-			let set = this.randomFactorySet(template, pokemon.length, teamData, chosenTier);
-			if (!set) continue;
-
-			// Limit 1 of any type combination
-			let typeCombo = types.slice().sort().join();
-			if (set.ability === 'Drought' || set.ability === 'Drizzle') {
+				// Limit 1 of any type combination
+				let typeCombo = types.slice().sort().join();
+				if (set.ability + '' === 'Drought' || set.ability + '' === 'Drizzle') {
 				// Drought and Drizzle don't count towards the type combo limit
-				typeCombo = set.ability;
+					typeCombo = set.ability + '';
+				}
+				if (typeCombo in teamData.typeComboCount) continue;
 			}
-			if (typeCombo in teamData.typeComboCount) continue;
 
 			// Okay, the set passes, add it to our team
 			pokemon.push(set);
-
+			let typeCombo = types.slice().sort().join();
 			// Now that our Pokemon has passed all checks, we can update team data:
 			for (let t = 0; t < types.length; t++) {
 				if (types[t] in teamData.typeCount) {
@@ -2670,8 +2724,9 @@ class RandomTeams extends Dex.ModdedDex {
 
 			teamData.baseFormes[template.baseSpecies] = 1;
 
-			let itemData = this.getItem(set.item);
+			let itemData = this.getItem(set.item + '');
 			if (itemData.megaStone) teamData.megaCount++;
+			if (itemData.zMove) teamData.zCount++;
 			if (itemData.id in teamData.has) {
 				teamData.has[itemData.id]++;
 			} else {
@@ -2756,7 +2811,7 @@ class RandomTeams extends Dex.ModdedDex {
 			if (weatherAbilitiesRequire[abilityData.id] && teamData.weather !== weatherAbilitiesRequire[abilityData.id]) continue;
 			if (teamData.weather && weatherAbilities.includes(abilityData.id)) continue; // reject 2+ weather setters
 
-			if (curSet.species === 'aron' && teamData.weather !== 'sandstorm') continue; // reject Aron without a Sand Stream user
+			if (curSet.species === 'Aron' && teamData.weather !== 'sandstorm') continue; // reject Aron without a Sand Stream user
 
 			let reject = false;
 			let hasRequiredMove = false;
@@ -2786,20 +2841,20 @@ class RandomTeams extends Dex.ModdedDex {
 			}
 		}
 
-		let setData = effectivePool[this.random(effectivePool.length)];
+		let setData = this.sample(effectivePool);
 		let moves = [];
 		for (let i = 0; i < setData.set.moves.length; i++) {
 			let moveSlot = setData.set.moves[i];
-			moves.push(setData.moveVariants ? moveSlot[setData.moveVariants[i]] : moveSlot[this.random(moveSlot.length)]);
+			moves.push(setData.moveVariants ? moveSlot[setData.moveVariants[i]] : this.sample(moveSlot));
 		}
 
 		return {
 			name: setData.set.nickname || setData.set.name || template.baseSpecies,
 			species: setData.set.species,
-			gender: setData.set.gender || template.gender || (this.random(2) ? 'M' : 'F'),
+			gender: setData.set.gender || template.gender || (this.randomChance(1, 2) ? 'M' : 'F'),
 			item: setData.set.item || '',
 			ability: setData.set.ability || template.abilities['0'],
-			shiny: typeof setData.set.shiny === 'undefined' ? !this.random(1024) : setData.set.shiny,
+			shiny: typeof setData.set.shiny === 'undefined' ? this.randomChance(1, 1024) : setData.set.shiny,
 			level: setData.set.level || 50,
 			happiness: typeof setData.set.happiness === 'undefined' ? 255 : setData.set.happiness,
 			evs: setData.set.evs || {hp: 84, atk: 84, def: 84, spa: 84, spd: 84, spe: 84},
@@ -2846,7 +2901,7 @@ class RandomTeams extends Dex.ModdedDex {
 			let types = template.types;
 			let skip = false;
 			for (let t = 0; t < types.length; t++) {
-				if (teamData.typeCount[types[t]] > 1 && this.random(5)) {
+				if (teamData.typeCount[types[t]] > 1 && this.randomChance(4, 5)) {
 					skip = true;
 					break;
 				}

@@ -218,7 +218,7 @@ exports.BattleMovedex = {
 				}
 			}
 			if (stats.length) {
-				let randomStat = stats[this.random(stats.length)];
+				let randomStat = this.sample(stats);
 				let boost = {};
 				boost[randomStat] = 2;
 				this.boost(boost);
@@ -647,7 +647,7 @@ exports.BattleMovedex = {
 				}
 			}
 			let randomMove = '';
-			if (moves.length) randomMove = moves[this.random(moves.length)];
+			if (moves.length) randomMove = this.sample(moves);
 			if (!randomMove) {
 				return false;
 			}
@@ -784,7 +784,7 @@ exports.BattleMovedex = {
 			onBeforeMovePriority: 2,
 			onBeforeMove: function (pokemon, target, move) {
 				this.add('-activate', pokemon, 'move: Attract', '[of] ' + this.effectData.source);
-				if (this.random(2) === 0) {
+				if (this.randomChance(1, 2)) {
 					this.add('cant', pokemon, 'Attract');
 					return false;
 				}
@@ -2584,7 +2584,7 @@ exports.BattleMovedex = {
 			if (!possibleTypes.length) {
 				return false;
 			}
-			let randomType = possibleTypes[this.random(possibleTypes.length)];
+			let randomType = this.sample(possibleTypes);
 
 			if (!source.setType(randomType)) return false;
 			this.add('-start', source, 'typechange', randomType);
@@ -5481,6 +5481,8 @@ exports.BattleMovedex = {
 				}
 			}
 			source.setItem('');
+			source.lastItem = item.id;
+			source.usedItemThisTurn = true;
 			this.add("-enditem", source, item.name, '[from] move: Fling');
 			this.runEvent('AfterUseItem', source, null, null, item);
 		},
@@ -5498,7 +5500,6 @@ exports.BattleMovedex = {
 		desc: "The target restores 1/2 of its maximum HP, rounded half up. If the terrain is Grassy Terrain, the target instead restores 2/3 of its maximum HP, rounded half down.",
 		shortDesc: "Heals the target by 50% of its max HP.",
 		id: "floralhealing",
-		isViable: true,
 		name: "Floral Healing",
 		pp: 10,
 		priority: 0,
@@ -5744,7 +5745,7 @@ exports.BattleMovedex = {
 			},
 			onFoeRedirectTargetPriority: 1,
 			onFoeRedirectTarget: function (target, source, source2, move) {
-				if (this.validTarget(this.effectData.target, source, move.target)) {
+				if (!this.effectData.target.isSkyDropped() && this.validTarget(this.effectData.target, source, move.target)) {
 					this.debug("Follow Me redirected target of move");
 					return this.effectData.target;
 				}
@@ -6737,7 +6738,7 @@ exports.BattleMovedex = {
 				this.add('-singlemove', pokemon, 'Grudge');
 			},
 			onFaint: function (target, source, effect) {
-				if (!source || !effect) return;
+				if (!source || source.fainted || !effect) return;
 				if (effect.effectType === 'Move' && !effect.isFutureMove) {
 					for (const moveSlot of source.moveSlots) {
 						if (moveSlot.id === source.lastMove.id) {
@@ -7429,7 +7430,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The power of the target's attack this turn is multiplied by 1.5 (this effect is stackable). Fails if there is no ally adjacent to the user, but does not fail if the ally is using a two-turn move.",
+		desc: "The power of the target's attack this turn is multiplied by 1.5 (this effect is stackable). Fails if there is no ally adjacent to the user or if the ally already moved this turn, but does not fail if the ally is using a two-turn move.",
 		shortDesc: "One adjacent ally's move power is 1.5x this turn.",
 		id: "helpinghand",
 		name: "Helping Hand",
@@ -7437,6 +7438,9 @@ exports.BattleMovedex = {
 		priority: 5,
 		flags: {authentic: 1},
 		volatileStatus: 'helpinghand',
+		onTryHit: function (target) {
+			if (!target.newlySwitched && !this.willMove(target)) return false;
+		},
 		effect: {
 			duration: 1,
 			onStart: function (target, source) {
@@ -9655,13 +9659,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {mirror: 1},
-		onHitField: function (target, source, effect) {
-			if (this.pseudoWeather['magicroom']) {
-				this.removePseudoWeather('magicroom', source, effect, '[of] ' + source);
-			} else {
-				this.addPseudoWeather('magicroom', source, effect, '[of] ' + source);
-			}
-		},
+		pseudoWeather: 'magicroom',
 		effect: {
 			duration: 5,
 			durationCallback: function (source, effect) {
@@ -9672,6 +9670,9 @@ exports.BattleMovedex = {
 			},
 			onStart: function (target, source) {
 				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
+			},
+			onRestart: function (target, source) {
+				this.removePseudoWeather('magicroom');
 			},
 			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
 			onResidualOrder: 25,
@@ -10262,7 +10263,7 @@ exports.BattleMovedex = {
 			let randomMove = '';
 			if (moves.length) {
 				moves.sort((a, b) => a.num - b.num);
-				randomMove = moves[this.random(moves.length)].id;
+				randomMove = this.sample(moves).id;
 			}
 			if (!randomMove) {
 				return false;
@@ -10855,13 +10856,7 @@ exports.BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {nonsky: 1},
-		onHitField: function (target, source, effect) {
-			if (this.pseudoWeather['mudsport']) {
-				return false;
-			} else {
-				this.addPseudoWeather('mudsport', source, effect, '[of] ' + source);
-			}
-		},
+		pseudoWeather: 'mudsport',
 		effect: {
 			duration: 5,
 			onStart: function (side, source) {
@@ -10994,6 +10989,8 @@ exports.BattleMovedex = {
 			move.basePower = item.naturalGift.basePower;
 			move.type = item.naturalGift.type;
 			pokemon.setItem('');
+			pokemon.lastItem = item.id;
+			pokemon.usedItemThisTurn = true;
 			this.runEvent('AfterUseItem', pokemon, null, null, item);
 		},
 		secondary: false,
@@ -12959,7 +12956,7 @@ exports.BattleMovedex = {
 			},
 			onFoeRedirectTargetPriority: 1,
 			onFoeRedirectTarget: function (target, source, source2, move) {
-				if (source.runStatusImmunity('powder') && this.validTarget(this.effectData.target, source, move.target)) {
+				if (!this.effectData.target.isSkyDropped() && source.runStatusImmunity('powder') && this.validTarget(this.effectData.target, source, move.target)) {
 					this.debug("Rage Powder redirected target of move");
 					return this.effectData.target;
 				}
@@ -13140,6 +13137,7 @@ exports.BattleMovedex = {
 		onHit: function (pokemon) {
 			if (pokemon.item || !pokemon.lastItem) return false;
 			pokemon.setItem(pokemon.lastItem);
+			pokemon.lastItem = '';
 			this.add('-item', pokemon, pokemon.getItem(), '[from] move: Recycle');
 		},
 		secondary: false,
@@ -14119,6 +14117,7 @@ exports.BattleMovedex = {
 		desc: "Has a 30% chance to burn the target.",
 		shortDesc: "30% chance to burn adjacent Pokemon.",
 		id: "searingshot",
+		isViable: true,
 		name: "Searing Shot",
 		pp: 5,
 		priority: 0,
@@ -14968,8 +14967,6 @@ exports.BattleMovedex = {
 				if (this.willMove(this.effectData.source)) {
 					this.effectData.source.activeTurns--;
 				}
-				this.effectData.source.removeVolatile('followme');
-				this.effectData.source.removeVolatile('ragepowder');
 			},
 			onAnyDragOut: function (pokemon) {
 				if (pokemon === this.effectData.target || pokemon === this.effectData.source) return false;
@@ -15158,7 +15155,7 @@ exports.BattleMovedex = {
 				}
 			}
 			let randomMove = '';
-			if (moves.length) randomMove = moves[this.random(moves.length)];
+			if (moves.length) randomMove = this.sample(moves);
 			if (!randomMove) {
 				return false;
 			}
@@ -15411,8 +15408,9 @@ exports.BattleMovedex = {
 				this.add('-singleturn', pokemon, 'Snatch');
 			},
 			onAnyTryMove: function (source, target, move) {
-				if (move && move.flags['snatch'] && move.sourceEffect !== 'snatch') {
-					let snatchUser = this.effectData.source;
+				let snatchUser = this.effectData.source;
+				if (snatchUser.isSkyDropped()) return;
+				if (move && !move.isZ && move.flags['snatch'] && move.sourceEffect !== 'snatch') {
 					snatchUser.removeVolatile('snatch');
 					this.add('-activate', snatchUser, 'move: Snatch', '[of] ' + source);
 					this.useMove(move.id, snatchUser);
@@ -16927,7 +16925,10 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onTryHit: function (target, source) {
-			return target.hasType(source.getTypes());
+			if (!target.hasType(source.getTypes())) {
+				this.add('-immune', target, '[msg]');
+				return null;
+			}
 		},
 		secondary: false,
 		target: "allAdjacent",
@@ -17913,13 +17914,7 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: -7,
 		flags: {mirror: 1},
-		onHitField: function (target, source, effect) {
-			if (this.pseudoWeather['trickroom']) {
-				this.removePseudoWeather('trickroom', source, effect, '[of] ' + source);
-			} else {
-				this.addPseudoWeather('trickroom', source, effect, '[of] ' + source);
-			}
-		},
+		pseudoWeather: 'trickroom',
 		effect: {
 			duration: 5,
 			durationCallback: function (source, effect) {
@@ -17930,6 +17925,9 @@ exports.BattleMovedex = {
 			},
 			onStart: function (target, source) {
 				this.add('-fieldstart', 'move: Trick Room', '[of] ' + source);
+			},
+			onRestart: function (target, source) {
+				this.removePseudoWeather('trickroom');
 			},
 			// Speed modification is changed in Pokemon.getActionSpeed() in sim/pokemon.js
 			onResidualOrder: 23,
@@ -18040,7 +18038,7 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		multihit: [2, 2],
+		multihit: 2,
 		secondary: {
 			chance: 20,
 			status: 'psn',
@@ -18501,13 +18499,7 @@ exports.BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {nonsky: 1},
-		onHitField: function (target, source, effect) {
-			if (this.pseudoWeather['watersport']) {
-				return false;
-			} else {
-				this.addPseudoWeather('watersport', source, effect, '[of] ' + source);
-			}
-		},
+		pseudoWeather: 'watersport',
 		effect: {
 			duration: 5,
 			onStart: function (side, source) {
@@ -18589,6 +18581,7 @@ exports.BattleMovedex = {
 		desc: "Hits two to five times. Has a 1/3 chance to hit two or three times, and a 1/6 chance to hit four or five times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Ability Skill Link, this move will always hit five times. Base power is 20 if the user is Ash-Greninja.",
 		shortDesc: "Hits 2-5 times in one turn.",
 		id: "watershuriken",
+		isViable: true,
 		name: "Water Shuriken",
 		pp: 20,
 		priority: 1,
@@ -18857,13 +18850,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {mirror: 1},
-		onHitField: function (target, source, effect) {
-			if (this.pseudoWeather['wonderroom']) {
-				this.removePseudoWeather('wonderroom', source, effect, '[of] ' + source);
-			} else {
-				this.addPseudoWeather('wonderroom', source, effect, '[of] ' + source);
-			}
-		},
+		pseudoWeather: 'wonderroom',
 		effect: {
 			duration: 5,
 			durationCallback: function (source, effect) {
@@ -18874,6 +18861,9 @@ exports.BattleMovedex = {
 			},
 			onStart: function (side, source) {
 				this.add('-fieldstart', 'move: Wonder Room', '[of] ' + source);
+			},
+			onRestart: function (target, source) {
+				this.removePseudoWeather('wonderroom');
 			},
 			// Swapping defenses implemented in sim/pokemon.js:Pokemon#calculateStat and Pokemon#getStat
 			onResidualOrder: 24,
@@ -19182,7 +19172,7 @@ exports.BattleMovedex = {
 		name: "Magikarp's Revenge",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, recharge: 1, protect: 1, mirror: 1},
+		flags: {contact: 1, recharge: 1, protect: 1, mirror: 1, heal: 1},
 		noSketch: true,
 		drain: [1, 2],
 		onTry: function (pokemon) {

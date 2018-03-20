@@ -25,7 +25,7 @@ exports.BattleScripts = {
 			}
 		}
 		let baseMove = this.getMove(move);
-		move = zMove ? this.getZMoveCopy(move, pokemon) : baseMove;
+		move = zMove ? this.getZMoveCopy(baseMove, pokemon) : baseMove;
 		if (!target && target !== false) target = this.resolveTarget(pokemon, move);
 
 		// copy the priority for Quick Guard
@@ -134,15 +134,14 @@ exports.BattleScripts = {
 	},
 	useMoveInner: function (move, pokemon, target, sourceEffect, zMove) {
 		if (!sourceEffect && this.effect.id) sourceEffect = this.effect;
+		move = this.getMoveCopy(move);
 		if (zMove && move.id === 'weatherball') {
 			let baseMove = move;
 			this.singleEvent('ModifyMove', move, null, pokemon, target, move, move);
 			move = this.getZMoveCopy(move, pokemon);
 			if (move.type !== 'Normal') sourceEffect = baseMove;
-		} else if (zMove || (sourceEffect && sourceEffect.isZ && sourceEffect.id !== 'instruct')) {
+		} else if (zMove || (move.category !== 'Status' && sourceEffect && sourceEffect.isZ && sourceEffect.id !== 'instruct')) {
 			move = this.getZMoveCopy(move, pokemon);
-		} else {
-			move = this.getMoveCopy(move);
 		}
 		if (this.activeMove) {
 			move.priority = this.activeMove.priority;
@@ -230,7 +229,7 @@ exports.BattleScripts = {
 		if (!sourceEffect || sourceEffect.id === 'pursuit') {
 			let extraPP = 0;
 			for (let i = 0; i < targets.length; i++) {
-				let ppDrop = this.singleEvent('DeductPP', targets[i].getAbility(), targets[i].abilityData, targets[i], pokemon, move);
+				let ppDrop = this.runEvent('DeductPP', targets[i], pokemon, move);
 				if (ppDrop !== true) {
 					extraPP += ppDrop || 0;
 				}
@@ -418,7 +417,7 @@ exports.BattleScripts = {
 		} else {
 			accuracy = this.runEvent('Accuracy', target, pokemon, move, accuracy);
 		}
-		if (accuracy !== true && this.random(100) >= accuracy) {
+		if (accuracy !== true && !this.randomChance(accuracy, 100)) {
 			if (!move.spreadHit) this.attrLastMove('[miss]');
 			this.add('-miss', pokemon, target);
 			return false;
@@ -456,7 +455,7 @@ exports.BattleScripts = {
 			if (stolen) {
 				this.attrLastMove('[still]');
 				this.add('-clearpositiveboost', target, pokemon, 'move: ' + move.name);
-				this.boost(boosts, pokemon);
+				this.boost(boosts, pokemon, pokemon);
 
 				for (let statName in boosts) {
 					boosts[statName] = 0;
@@ -475,9 +474,9 @@ exports.BattleScripts = {
 				// yes, it's hardcoded... meh
 				if (hits[0] === 2 && hits[1] === 5) {
 					if (this.gen >= 5) {
-						hits = [2, 2, 3, 3, 4, 5][this.random(6)];
+						hits = this.sample([2, 2, 3, 3, 4, 5]);
 					} else {
-						hits = [2, 2, 2, 3, 3, 3, 4, 5][this.random(8)];
+						hits = this.sample([2, 2, 2, 3, 3, 3, 4, 5]);
 					}
 				} else {
 					hits = this.random(hits[0], hits[1] + 1);
@@ -517,7 +516,7 @@ exports.BattleScripts = {
 					accuracy = this.runEvent('ModifyAccuracy', target, pokemon, move, accuracy);
 					if (!move.alwaysHit) {
 						accuracy = this.runEvent('Accuracy', target, pokemon, move, accuracy);
-						if (accuracy !== true && this.random(100) >= accuracy) break;
+						if (accuracy !== true && !this.randomChance(accuracy, 100)) break;
 					}
 				}
 
@@ -543,7 +542,7 @@ exports.BattleScripts = {
 		}
 
 		if (move.recoil && move.totalDamage) {
-			this.damage(this.calcRecoilDamage(move.totalDamage, move), pokemon, target, 'recoil');
+			this.damage(this.calcRecoilDamage(move.totalDamage, move), pokemon, pokemon, 'recoil');
 		}
 
 		if (move.struggleRecoil) {
@@ -835,7 +834,6 @@ exports.BattleScripts = {
 	},
 
 	getZMoveCopy: function (move, pokemon) {
-		move = this.getMove(move);
 		let zMove;
 		if (pokemon) {
 			let item = pokemon.getItem();
@@ -856,7 +854,7 @@ exports.BattleScripts = {
 	},
 
 	canZMove: function (pokemon) {
-		if (pokemon.side.zMoveUsed || (pokemon.transformed && (pokemon.template.isMega || pokemon.template.isPrimal))) return;
+		if (pokemon.side.zMoveUsed || (pokemon.transformed && (pokemon.template.isMega || pokemon.template.isPrimal || pokemon.template.forme === "Ultra"))) return;
 		let item = pokemon.getItem();
 		if (!item.zMove) return;
 		if (item.zMoveUser && !item.zMoveUser.includes(pokemon.template.species)) return;

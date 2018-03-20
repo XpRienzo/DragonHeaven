@@ -29,6 +29,19 @@ exports.BattleAbilities = {
 		rating: 2,
 		num: 66,
 	},
+	"colorchange": {
+		inherit: true,
+		desc: "This Pokemon's type changes to match the type of the last move that hit it, unless that type is already one of its types. This effect applies after each hit from a multi-hit move.",
+		onAfterDamage: function (damage, target, source, move) {
+			if (!target.hp) return;
+			let type = move.type;
+			if (target.isActive && move.effectType === 'Move' && move.category !== 'Status' && type !== '???' && !target.hasType(type)) {
+				if (!target.setType(type)) return false;
+				this.add('-start', target, 'typechange', type, '[from] Color Change');
+			}
+		},
+		onAfterMoveSecondary: function () {},
+	},
 	"effectspore": {
 		inherit: true,
 		onAfterDamage: function (damage, target, source, move) {
@@ -46,6 +59,17 @@ exports.BattleAbilities = {
 	},
 	"flashfire": {
 		inherit: true,
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+				if (target.status === 'frz') {
+					return;
+				}
+				if (!target.addVolatile('flashfire')) {
+					this.add('-immune', target, '[msg]', '[from] ability: Flash Fire');
+				}
+				return null;
+			}
+		},
 		effect: {
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart: function (target) {
@@ -99,7 +123,7 @@ exports.BattleAbilities = {
 				}
 			}
 			if (!warnMoves.length) return;
-			let warnMove = warnMoves[this.random(warnMoves.length)];
+			let warnMove = this.sample(warnMoves);
 			this.add('-activate', pokemon, 'ability: Forewarn', warnMove);
 		},
 	},

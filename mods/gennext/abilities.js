@@ -124,7 +124,7 @@ exports.BattleAbilities = {
 		},
 		onAfterDamage: function (damage, target, source, move) {
 			if (move && move.flags['contact'] && this.isWeather('hail')) {
-				if (this.random(10) < 3) {
+				if (this.randomChance(3, 10)) {
 					source.trySetStatus('frz', target);
 				}
 			}
@@ -504,6 +504,7 @@ exports.BattleAbilities = {
 			if (!pokemon.gluttonyFlag && !pokemon.item && this.getItem(pokemon.lastItem).isBerry) {
 				pokemon.gluttonyFlag = true;
 				pokemon.setItem(pokemon.lastItem);
+				pokemon.lastItem = '';
 				this.add("-item", pokemon, pokemon.item, '[from] ability: Gluttony');
 			}
 		},

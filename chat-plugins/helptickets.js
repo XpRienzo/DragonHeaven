@@ -124,7 +124,10 @@ function notifyUnclaimedTicket(upper) {
 	if (!room) return;
 	clearTimeout(unclaimedTicketTimer[room.id]);
 	unclaimedTicketTimer[room.id] = null;
-	room.send(`|tempnotify|helptickets|Unclaimed help tickets!|There are unclaimed Help tickets`);
+	for (let i in room.users) {
+		let user = room.users[i];
+		if (user.can('mute', null, room)) user.sendTo(room, `|tempnotify|helptickets|Unclaimed help tickets!|There are unclaimed Help tickets`);
+	}
 }
 
 
@@ -165,7 +168,10 @@ function notifyStaff(upper) {
 		buf = `|tempnotifyoff|helptickets`;
 	}
 	if (room.userCount) Sockets.channelBroadcast(room.id, `>view-help-tickets\n${buf}`);
-	room.send(`${buf}|There are unclaimed Help tickets`);
+	for (let i in room.users) {
+		let user = room.users[i];
+		if (user.can('mute', null, room)) user.sendTo(room, `${buf}|There are unclaimed Help tickets`);
+	}
 	pokeUnclaimedTicketTimer(upper, hasUnclaimed);
 }
 
@@ -270,10 +276,41 @@ exports.pages = {
 				ticket: `I feel my last Help request shouldn't have been closed`,
 				password: `I lost my password`,
 				other: `Other`,
+
+				confirmpmharassment: `Report harassment in a private message (PM)`,
+				confirmbattleharassment: `Report harassment in a battle`,
+				confirmchatharassment: `Report harassment in a chatroom`,
+				confirminap: `Report inappropriate content`,
+				confirminapname: `Report an inappropriate username`,
+				confirminappokemon: `Report inappropriate Pok&eacute;mon nicknames`,
+				confirmtimerstalling: `Report timerstalling`,
+				confirmreportroomowner: `Report a Room Owner`,
+				confirmreportglobal: `Report a Global Staff member`,
+				confirmappeal: `Appeal your lock`,
+				confirmipappeal: `Appeal IP lock`,
+				confirmappealsemi: `Appeal ISP lock`,
+				confirmticket: `Report last ticket`,
+				confirmother: `Call a Global Staff member`,
+			};
+			const ticketTitles = {
+				pmharassment: `PM Harassment`,
+				battleharassment: `Battle Harassment`,
+				chatharassment: `Chatroom Harassment`,
+				inap: `Inappropriate Content`,
+				inapname: `Inappropriate Username`,
+				inappokemon: `Inappropriate Pokemon Nicknames`,
+				timerstalling: `Timerstalling`,
+				reportroomowner: `Room Owner Complaint`,
+				reportglobal: `Global Staff Complaint`,
+				appeal: `Appeal`,
+				ipappeal: `IP-Appeal`,
+				appealsemi: `ISP-Appeal`,
+				ticket: `Report Last Ticket`,
+				other: `Other`,
 			};
 			for (const [i, page] of query.entries()) {
 				const isLast = (i === query.length - 1);
-				if (page && page in pages) {
+				if (page && page in pages && !page.startsWith('confirm')) {
 					let prevPageLink = query.slice(0, i).join('-');
 					if (prevPageLink) prevPageLink = `-${prevPageLink}`;
 					buf += `<p><a href="/view-help-request${prevPageLink}" target="replace"><button class="button">Back</button></a> <button class="button disabled" disabled>${pages[page]}</button></p>`;
@@ -301,20 +338,26 @@ exports.pages = {
 				case 'harassment':
 					buf += `<p>If someone is harassing you, click the appropriate button below and a global staff member will take a look. Consider using <code>/ignore [username]</code> if it's minor instead.</p>`;
 					buf += `<p>If you are reporting harassment in a battle, please save a replay of the battle.</p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit PM Harassment">Report harassment in a private message (PM)</button> <button class="button" name="send" value="/helpticket submit Battle Harassment">Report harassment in a battle</button> <button class="button" name="send" value="/helpticket submit Chatroom Harassment">Report harassment in a chatroom</button></p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirmpmharassment</Button> <Button>confirmbattleharassment</Button> <Button>confirmchatharassment</Button></p>`;
 					break;
 				case 'inap':
 					buf += `<p>If a user has posted inappropriate content, has an inappropriate name, or has inappropriate Pok&eacute;mon nicknames, click the appropriate button below and a global staff member will take a look.</p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit Inappropriate Content">Report inappropriate content</button> <button class="button" name="send" value="/helpticket submit Inappropriate Nickname">Report an inappropriate username</button> <button class="button" name="send" value="/helpticket submit Inappropriate Pokemon Nicknames">Report inappropriate Pok&eacute;mon nicknames</button></p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirminap</Button> <Button>confirminapname</Button> <Button>confirminappokemon</Button></p>`;
 					break;
 				case 'timerstalling':
-					buf += `<p>If someone is timerstalling in your battle, and the battle has <b>not</b> ended, click the button below and a global staff member will take a look.</p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit Timerstalling">Report timerstalling</button></p>`;
+					buf += `<p>Timerstalling is the act of intentionally using up almost all the time on the timer, and then moving.</p>`;
+					buf += `<p>Please make sure your opponent is using up most of the timer each turn, has been doing this for at least two turns, and the battle has NOT ended.</p>`;
+					buf += `<p>If the above is true, please click the button below to call a global staff member.</p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirmtimerstalling</Button></p>`;
 					break;
 				case 'staff':
 					buf += `<p>If you have a complaint against a room staff member, please PM a Room Owner (marked with a #) in the room.</p>`;
 					buf += `<p>If you have a complaint against a global staff member or Room Owner, please click the appropriate button below. Alternatively, make a post in <a href="http://www.smogon.com/forums/threads/names-passwords-rooms-and-servers-contacting-upper-staff.3538721/#post-6300151">Admin Requests</a>.</p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit Room Owner Complaint">Report a Room Owner</button> <button class="button" name="send" value="/helpticket submit Global Staff Complaint">Report a Global Staff Member</button></p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirmreportroomowner</Button> <Button>confirmreportglobal</Button></p>`;
 					break;
 				case 'appeal':
 					buf += `<p><b>What would you like to appeal?</b></p>`;
@@ -335,24 +378,28 @@ exports.pages = {
 					if (user.semilocked || isStaff) {
 						buf += `<p><Button>semilock</Button></p>`;
 					}
+					buf += `<p><Button>appealother</Button></p>`;
 					break;
 				case 'permalock':
 					buf += `<p>Please make a post in the <a href="http://www.smogon.com/forums/threads/discipline-appeal-rules.3583479/">Discipline Appeal Forums</a> to appeal a permalock.</p>`;
 					break;
 				case 'lock':
 					buf += `<p>If you want to appeal your lock, click the button below and a global staff member will be with you shortly. Alternatively, make a post in <a href="http://www.smogon.com/forums/threads/discipline-appeal-rules.3583479/">Discipline Appeals</a>.</p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit Appeal">Appeal your lock</button></p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirmappeal</Button></p>`;
 					break;
 				case 'ip':
 					buf += `<p>If you are locked under a name you don't recognize, click the button below to call a global staff member so we can check.</p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit IP-Appeal">Appeal IP lock</button></p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirmipappeal</Button></p>`;
 					break;
 				case 'semilock':
 					buf += `<p>Click the button below, and a global staff member will check. </p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit ISP-Appeal">Appeal ISP lock</button></p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirmappealsemi</Button></p>`;
 					break;
 				case 'appealother':
-					buf += `<p>Please PM the staff member who punished you. If you dont know who punished you, ask another room staff member; they will redirect you to the correct user. If you are banned or blacklisted from the room, use <code>/roomauth [name of room]</code> to get a list of room staff members. Bold names are online.</p>`;
+					buf += `<p>Please PM the staff member who punished you. If you don't know who punished you, ask another room staff member; they will redirect you to the correct user. If you are banned or blacklisted from the room, use <code>/roomauth [name of room]</code> to get a list of room staff members. Bold names are online.</p>`;
 					break;
 				case 'misc':
 					buf += `<p><b>Maybe one of these options will be helpful?</b></p>`;
@@ -365,7 +412,8 @@ exports.pages = {
 					break;
 				case 'ticket':
 					buf += `<p>If you feel that staff did not properly help you with your last issue, click the button below to get in touch with an upper staff member.</p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit Report Last Ticket">Report last ticket</button></p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirmticket</Button></p>`;
 					break;
 				case 'password':
 					buf += `<p>If you lost your password, click the button below to make a post in Admin Requests. We will need to clarify a few pieces of information before resetting the account. Please note that password resets are low priority and may take a while; we recommend using a new account while waiting.</p>`;
@@ -373,7 +421,13 @@ exports.pages = {
 					break;
 				case 'other':
 					buf += `<p>If your issue is not handled above, click the button below to ask for a global. Please be ready to explain the situation.</p>`;
-					buf += `<p><button class="button" name="send" value="/helpticket submit Other">Call a global staff member</button></p>`;
+					if (!isLast) break;
+					buf += `<p><Button>confirmother</Button></p>`;
+					break;
+				default:
+					if (!page.startsWith('confirm')) break;
+					buf += `<p><b>Are you sure you want to submit a ${ticketTitles[page.slice(7)]} report?</b></p>`;
+					buf += `<p><button class="button notifying" name="send" value="/helpticket submit ${ticketTitles[page.slice(7)]}">Yes, Contact global staff</button> <a href="/view-help-request-${query.slice(0, i).join('-')}" target="replace"><button class="button">No, cancel</button></a></p>`;
 					break;
 				}
 			}
@@ -444,14 +498,33 @@ exports.pages = {
 };
 
 exports.commands = {
+	'!report': true,
+	report: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		if (this.broadcasting) {
+			return this.sendReplyBox('<button name="joinRoom" value="view-help-request--report" class="button"><strong>Report someone</strong></button>');
+		}
+
+		return this.parse('/join view-help-request--report');
+	},
+
+	'!appeal': true,
+	appeal: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		if (this.broadcasting) {
+			return this.sendReplyBox('<button name="joinRoom" value="view-help-request--appeal" class="button"><strong>Appeal a punishment</strong></button>');
+		}
+
+		return this.parse('/join view-help-request--appeal');
+	},
+
 	requesthelp: 'helpticket',
 	helprequest: 'helpticket',
-	report: 'helpticket',
 	ht: 'helpticket',
 	helpticket: {
 		'!create': true,
 		'': 'create',
-		create: function (target, room, user, connection) {
+		create: function (target, room, user) {
 			if (!this.runBroadcast()) return;
 			if (this.broadcasting) {
 				return this.sendReplyBox('<button name="joinRoom" value="view-help-request" class="button"><strong>Request help</strong></button>');
@@ -484,7 +557,7 @@ exports.commands = {
 				}
 			}
 			if (Monitor.countTickets(user.latestIp)) return this.popupReply(`Due to high load, you are limited to creating ${Punishments.sharedIps.has(user.latestIp) ? `50` : `5`} tickets every hour.`);
-			if (!['PM Harassment', 'Battle Harassment', 'Chatroom Harassment', 'Inappropriate Content', 'Inappropriate Nickname', 'Inappropriate Pokemon Nicknames', 'Timerstalling', 'Global Staff Complaint', 'Appeal', 'IP-Appeal', 'ISP-Appeal', 'Report Last Ticket', 'Room Owner Complaint', 'Other'].includes(target)) return this.parse('/helpticket');
+			if (!['PM Harassment', 'Battle Harassment', 'Chatroom Harassment', 'Inappropriate Content', 'Inappropriate Username', 'Inappropriate Pokemon Nicknames', 'Timerstalling', 'Global Staff Complaint', 'Appeal', 'IP-Appeal', 'ISP-Appeal', 'Report Last Ticket', 'Room Owner Complaint', 'Other'].includes(target)) return this.parse('/helpticket');
 			let upper = false;
 			if (['Room Owner Complaint', 'Global Staff Complaint', 'Report Last Ticket'].includes(target)) upper = true;
 			if (target === 'Report Last Ticket') {
@@ -501,7 +574,7 @@ exports.commands = {
 				escalated: upper,
 				ip: user.latestIp,
 			};
-			let contexts = {
+			const contexts = {
 				'Battle Harassment': 'Please save a replay of the battle and put it in chat so global staff can check.',
 				'Inappropriate Pokemon Nicknames': 'Please save a replay of the battle and put it in chat so global staff can check.',
 				'Timerstalling': 'Please place the link to the battle in chat so global staff can check.',
@@ -560,7 +633,7 @@ exports.commands = {
 		escalatehelp: [`/helpticket escalate [user], (upperstaff) - Escalate a ticket. If upperstaff is included, escalate the ticket to upper staff. Requires: % @ * & ~`],
 
 		'!list': true,
-		list: function (target, room, user, connection) {
+		list: function (target, room, user) {
 			if (!this.can('lock')) return;
 			this.parse('/join view-help-tickets');
 		},

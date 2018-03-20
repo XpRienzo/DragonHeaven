@@ -24,6 +24,7 @@
  */
 
 'use strict';
+/** @typedef {GlobalRoom | GameRoom | ChatRoom} Room */
 
 const PLAYER_SYMBOL = '\u2606';
 const HOST_SYMBOL = '\u2605';
@@ -157,7 +158,7 @@ function getExactUser(name) {
  * @param {{forPunishment: boolean, includeTrusted: boolean}} options
  */
 function findUsers(userids, ips, options) {
-	let matches = [];
+	let matches = /** @type {User[]} */ ([]);
 	if (options && options.forPunishment) ips = ips.filter(ip => !Punishments.sharedIps.has(ip));
 	for (const user of users.values()) {
 		if (!(options && options.forPunishment) && !user.named && !user.connected) continue;
@@ -179,12 +180,13 @@ function findUsers(userids, ips, options) {
 /*********************************************************
  * User groups
  *********************************************************/
+
 let usergroups = Object.create(null);
 function importUsergroups() {
 	// can't just say usergroups = {} because it's exported
 	for (let i in usergroups) delete usergroups[i];
 
-	FS('config/usergroups.csv').readTextIfExists().then(data => {
+	FS('config/usergroups.csv').readIfExists().then(data => {
 		for (const row of data.split("\n")) {
 			if (!row) continue;
 			let cells = row.split(",");
@@ -503,6 +505,13 @@ class User {
 		this.s2 = '';
 		/**@type {string} */
 		this.s3 = '';
+
+		/** @type {boolean} */
+		this.punishmentNotified = false;
+		/** @type {boolean} */
+		this.lockNotified = false;
+		/**@type {string} */
+		this.autoconfirmed = '';
 		// initialize
 		Users.add(this);
 	}
@@ -566,7 +575,7 @@ class User {
 	}
 	/**
 	 * @param {string} minAuth
-	 * @param {Room?} room
+	 * @param {BasicChatRoom?} room
 	 */
 	authAtLeast(minAuth, room = null) {
 		if (!minAuth || minAuth === ' ') return true;
@@ -583,7 +592,7 @@ class User {
 	/**
 	 * @param {string} permission
 	 * @param {string | User?} target user or group symbol
-	 * @param {Room?} room
+	 * @param {BasicChatRoom?} room
 	 * @return {boolean}
 	 */
 	can(permission, target = null, room = null) {
@@ -595,7 +604,7 @@ class User {
 		}
 
 		let group = ' ';
-		let targetGroup = ' ';
+		let targetGroup = '';
 		let targetUser = null;
 
 		if (typeof target === 'string') {
@@ -616,11 +625,11 @@ class User {
 
 		if (groupData && groupData[permission]) {
 			let jurisdiction = groupData[permission];
-			if (!targetUser) {
+			if (!targetUser && !targetGroup) {
 				return !!jurisdiction;
 			}
 			if (jurisdiction === true && permission !== 'jurisdiction') {
-				return this.can('jurisdiction', targetUser, room);
+				return this.can('jurisdiction', (targetUser || targetGroup), room);
 			}
 			if (typeof jurisdiction !== 'string') {
 				return !!jurisdiction;
@@ -1238,12 +1247,14 @@ class User {
 		this.inRooms.clear();
 	}
 	/**
+	 * If this user is included in the returned list of alts (i.e. when forPunishment is true), they will always be the first element of that list.
 	 * @param {boolean} includeTrusted
 	 * @param {boolean} forPunishment
 	 */
 	getAltUsers(includeTrusted, forPunishment) {
 		let alts = findUsers([this.getLastId()], Object.keys(this.ips), {includeTrusted: includeTrusted, forPunishment: forPunishment});
-		if (!forPunishment) alts = alts.filter(user => user !== this);
+		alts = alts.filter(user => user !== this);
+		if (forPunishment) alts.unshift(this);
 		return alts;
 	}
 	getLastName() {
@@ -1267,6 +1278,7 @@ class User {
 		if (!room && roomid.startsWith('view-')) {
 			// it's a page!
 			let parts = roomid.split('-');
+			/** @type {any} */
 			let handler = Chat.pages;
 			parts.shift();
 			while (handler) {
@@ -1305,39 +1317,25 @@ class User {
 			}
 		}
 
+		if (!this.can('bypassall') && Punishments.isRoomBanned(this, room.id)) {
+			connection.sendTo(roomid, `|noinit|joinfailed|You are banned from the room "${roomid}".`);
+			return false;
+		}
+
 		if (Rooms.aliases.get(roomid) === room.id) {
 			connection.send(`>${roomid}\n|deinit`);
 		}
 
-		let joinResult = this.joinRoom(room, connection);
-		if (!joinResult) {
-			if (joinResult === null) {
-				connection.sendTo(roomid, `|noinit|joinfailed|You are banned from the room "${roomid}".`);
-				return false;
-			}
-			connection.sendTo(roomid, `|noinit|joinfailed|You do not have permission to join "${roomid}".`);
-			return false;
-		}
+		this.joinRoom(room, connection);
 		return true;
 	}
 	/**
-	 * @param {string | GlobalRoom | GameRoom | ChatRoom} room
-	 * @param {Connection} connection
+	 * @param {string | Room} roomid
+	 * @param {Connection?} connection
 	 */
-	joinRoom(room, connection) {
-		room = Rooms(room);
-		if (!this.shownNews) {
-			this.popup(`|html|${Chat.news()}`);
-			this.shownNews = true;
-		}
-		if (!room) return false;
-		if (!this.can('bypassall')) {
-			// check if user has permission to join
-			if (room.staffRoom && !this.isStaff) return false;
-			if (Punishments.isRoomBanned(this, room.id)) {
-				return null;
-			}
-		}
+	joinRoom(roomid, connection = null) {
+		const room = Rooms(roomid);
+		if (!room) throw new Error(`Room not found: ${roomid}`);
 		if (!connection) {
 			for (const curConnection of this.connections) {
 				// only join full clients, not pop-out single-room
@@ -1347,7 +1345,7 @@ class User {
 					this.joinRoom(room, curConnection);
 				}
 			}
-			return true;
+			return;
 		}
 		if (!connection.inRooms.has(room.id)) {
 			if (!this.inRooms.has(room.id)) {
@@ -1357,11 +1355,10 @@ class User {
 			connection.joinRoom(room);
 			room.onConnect(this, connection);
 		}
-		return true;
 	}
 	/**
 	 * @param {GlobalRoom | GameRoom | ChatRoom | string} room
-	 * @param {?Connection} connection
+	 * @param {Connection?} connection
 	 * @param {boolean} force
 	 */
 	leaveRoom(room, connection = null, force = false) {
@@ -1663,7 +1660,7 @@ function socketReceive(worker, workerid, socketid, message) {
 
 	const lines = message.split('\n');
 	if (!lines[lines.length - 1]) lines.pop();
-	if (lines.length > (user.isStaff ? THROTTLE_MULTILINE_WARN_STAFF : THROTTLE_MULTILINE_WARN)) {
+	if (lines.length > (user.isStaff || (room.auth && room.auth[user.userid] && room.auth[user.userid] !== '+') ? THROTTLE_MULTILINE_WARN_STAFF : THROTTLE_MULTILINE_WARN)) {
 		connection.popup(`You're sending too many lines at once. Try using a paste service like [[Pastebin]].`);
 		return;
 	}

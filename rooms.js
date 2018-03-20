@@ -453,7 +453,7 @@ class GlobalRoom extends BasicRoom {
 		} else {
 			// Prevent there from being two possible hidden classes an instance
 			// of GlobalRoom can have.
-			this.ladderIpLog = new (require('stream')).Writable();
+			this.ladderIpLog = new (require('./lib/streams')).WriteStream({write() {}});
 		}
 
 		let lastBattle;
@@ -863,6 +863,7 @@ class GlobalRoom extends BasicRoom {
 	startLockdown(err, slow = false) {
 		if (this.lockdown && err) return;
 		let devRoom = Rooms('development');
+		// @ts-ignore
 		const stack = (err ? Chat.escapeHTML(err.stack).split(`\n`).slice(0, 2).join(`<br />`) : ``);
 		for (const [id, curRoom] of Rooms.rooms) {
 			if (id === 'global') continue;
@@ -944,6 +945,7 @@ class GlobalRoom extends BasicRoom {
 			return;
 		}
 		this.lastReportedCrash = time;
+		// @ts-ignore
 		const stack = (err ? Chat.escapeHTML(err.stack).split(`\n`).slice(0, 2).join(`<br />`) : ``);
 		const crashMessage = `|html|<div class="broadcast-red"><b>The server has crashed:</b> ${stack}</div>`;
 		const devRoom = Rooms('development');
@@ -965,20 +967,248 @@ class BasicChatRoom extends BasicRoom {
 	 */
 	constructor(roomid, title, options = {}) {
 		super(roomid, title);
+==== BASE ====
+		this.modchat = (Config.battlemodchat || false);
+		this.reportJoins = Config.reportbattlejoins;
 
-		if (options.logTimes === undefined) options.logTimes = true;
-		if (options.autoTruncate === undefined) options.autoTruncate = !options.isHelp;
-		if (options.reportJoins === undefined) {
-			options.reportJoins = !!Config.reportjoins || options.isPersonal;
-		}
-		if (options.batchJoins === undefined) {
-			options.batchJoins = options.isPersonal ? 0 : Config.reportjoinsperiod || 0;
-		}
-		this.log = Roomlogs.create(this, options);
+		/** @type {'battle'} */
+		this.type = 'battle';
+		// TypeScript bug: subclass null
+		this.muteTimer = /** @type {NodeJS.Timer?} */ (null);
+		this.lastUpdate = 0;
 
-		/** @type {any} */
-		// TODO: strongly type polls
-		this.poll = null;
+		this.modchatUser = '';
+		this.expireTimer = null;
+		this.active = false;
+
+		this.format = options.format || '';
+		this.auth = Object.create(null);
+		//console.log("NEW BATTLE");
+
+		this.tour = options.tour || null;
+		this.parent = options.parent || (this.tour && this.tour.room) || null;
+
+		this.p1 = null;
+		this.p2 = null;
+
+		/**
+		 * The lower player's rating, for searching purposes.
+		 * 0 for unrated battles. 1 for unknown ratings.
+		 * @type {number}
+		 */
+		this.rated = options.rated || 0;
+		/** @type {RoomBattle?} */
+		this.battle = null;
+		/** @type {RoomGame} */
+		// @ts-ignore
+		this.game = null;
+
+		this.modlogStream = Rooms.battleModlogStream;
+	}
+	/**
+	 * - logNum = 0    : spectator log (no exact HP)
+	 * - logNum = 1, 2 : player log (exact HP for that player)
+	 * - logNum = 3    : debug log (exact HP for all players)
+	 * @param {0 | 1 | 2 | 3} logNum
+	 */
+	getLog(logNum) {
+		let log = [];
+		for (let i = 0; i < this.log.length; ++i) {
+			let line = this.log[i];
+			if (line === '|split') {
+				log.push(this.log[i + logNum + 1]);
+				i += 4;
+			} else {
+				log.push(line);
+			}
+		}
+		return log;
+	}
+	/**
+	 * @param {User} user
+	 */
+	getLogForUser(user) {
+		if (!(user in this.game.players)) return this.getLog(0);
+		return this.getLog(this.game.players[user].slotNum + 1);
+	}
+	/**
+	 * @param {User?} excludeUser
+	 */
+	update(excludeUser = null) {
+		if (this.log.length <= this.lastUpdate) return;
+
+		if (this.userCount) {
+			Sockets.subchannelBroadcast(this.id, '>' + this.id + '\n\n' + this.log.slice(this.lastUpdate).join('\n'));
+		}
+
+		this.lastUpdate = this.log.length;
+
+		// empty rooms time out after ten minutes
+		let hasUsers = false;
+		for (let i in this.users) { // eslint-disable-line no-unused-vars
+			hasUsers = true;
+			break;
+		}
+		if (!hasUsers) {
+			if (this.expireTimer) clearTimeout(this.expireTimer);
+			this.expireTimer = setTimeout(() => this.tryExpire(), TIMEOUT_EMPTY_DEALLOCATE);
+		} else {
+			if (this.expireTimer) clearTimeout(this.expireTimer);
+			this.expireTimer = setTimeout(() => this.tryExpire(), TIMEOUT_INACTIVE_DEALLOCATE);
+		}
+	}
+	tryExpire() {
+		this.expire();
+	}
+	/**
+	 * @param {0 | 1} num
+	 * @param {string} message
+	 */
+	sendPlayer(num, message) {
+		let player = this.getPlayer(num);
+		if (!player) return false;
+		player.sendRoom(message);
+	}
+	/**
+	 * @param {0 | 1} num
+	 */
+	getPlayer(num) {
+		return this.battle['p' + (num + 1)];
+	}
+	/**
+	 * @param {User} user
+	 */
+	requestModchat(user) {
+		if (user === null) {
+			this.modchatUser = '';
+			return;
+		} else if (user.can('modchat') || !this.modchatUser || this.modchatUser === user.userid) {
+			this.modchatUser = user.userid;
+			return;
+		} else {
+			return "Invite-only can only be turned off by the user who turned it on, or staff";
+		}
+	}
+	/**
+	 * @param {User} user
+	 * @param {Connection} connection
+	 */
+	onConnect(user, connection) {
+		this.sendUser(connection, '|init|battle\n|title|' + this.title + '\n' + this.getLogForUser(user).join('\n'));
+		if (this.game && this.game.onConnect) this.game.onConnect(user, connection);
+	}
+	/**
+	 * @param {User} user
+	 * @param {Connection} connection
+	 */
+	onJoin(user, connection) {
+		if (!user) return false;
+		if (this.users[user.userid]) return user;
+
+		if (user.named) {
+			this.add((this.reportJoins && !user.locked ? '|j|' : '|J|') + user.name).update();
+		}
+
+		this.users[user.userid] = user;
+		this.userCount++;
+
+		if (this.game && this.game.onJoin) {
+			this.game.onJoin(user, connection);
+		}
+		return user;
+	}
+	/**
+	 * @param {User} user
+	 * @param {string} oldid
+	 * @param {boolean} joining
+	 */
+	onRename(user, oldid, joining) {
+		if (joining) {
+			this.add((this.reportJoins && !user.locked ? '|j|' : '|J|') + user.name);
+		}
+		delete this.users[oldid];
+		this.users[user.userid] = user;
+		this.update();
+		return user;
+	}
+	/**
+	 * @param {User} user
+	 */
+	onLeave(user) {
+		if (!user) return; // ...
+		if (!user.named) {
+			delete this.users[user.userid];
+			return;
+		}
+		delete this.users[user.userid];
+		this.userCount--;
+		this.add((this.reportJoins && !user.locked ? '|l|' : '|L|') + user.name);
+
+		if (this.game && this.game.onLeave) {
+			this.game.onLeave(user);
+		}
+		this.update();
+	}
+	expire() {
+		this.send('|expire|');
+		this.destroy();
+	}
+	destroy() {
+		// deallocate ourself
+==== BASE ====
+
+==== BASE ====
+		if (this.tour) {
+			// resolve state of the tournament;
+			if (!this.battle.ended) this.tour.onBattleWin(this, '');
+			this.tour = null;
+		}
+
+		// remove references to ourself
+		for (let i in this.users) {
+			this.users[i].leaveRoom(this, null, true);
+			delete this.users[i];
+		}
+
+		// deallocate children and get rid of references to them
+		if (this.game) {
+			this.game.destroy();
+		}
+		this.battle = null;
+		// @ts-ignore
+		this.game = null;
+
+		this.active = false;
+
+		if (this.expireTimer) {
+			clearTimeout(this.expireTimer);
+		}
+		this.expireTimer = null;
+
+		if (this.muteTimer) {
+			clearTimeout(this.muteTimer);
+		}
+		this.muteTimer = null;
+
+		// get rid of some possibly-circular references
+		Rooms.rooms.delete(this.id);
+	}
+}
+
+class ChatRoom extends BasicRoom {
+	/**
+	 * @param {string} roomid
+	 * @param {string} [title]
+	 * @param {AnyObject} [options]
+	 */
+	constructor(roomid, title, options = {}) {
+		super(roomid, title);
+
+		this.logTimes = true;
+		this.logFile = null;
+		this.logFilename = '';
+		this.destroyingLog = false;
+==== BASE ====
 
 		// room settings
 		this.desc = '';
@@ -1198,6 +1428,7 @@ class BasicChatRoom extends BasicRoom {
 		this.users[user.userid] = user;
 		this.userCount++;
 
+		if (this.poll) this.poll.onConnect(user, connection);
 		if (this.game && this.game.onJoin) this.game.onJoin(user, connection);
 		return true;
 	}
@@ -1357,8 +1588,8 @@ class GameRoom extends BasicChatRoom {
 		this.tour = options.tour || null;
 		this.parent = options.parent || (this.tour && this.tour.room) || null;
 
-		this.p1 = null;
-		this.p2 = null;
+		this.p1 = options.p1 || null;
+		this.p2 = options.p2 || null;
 
 		/**
 		 * The lower player's rating, for searching purposes.
@@ -1464,9 +1695,6 @@ function getRoom(roomid) {
 
 /** @typedef {GlobalRoom | GameRoom | ChatRoom} Room */
 
-// workaround to stop TypeScript from checking room-battle
-let roomBattleLoc = './room-battle';
-
 let Rooms = Object.assign(getRoom, {
 	/**
 	 * The main roomid:Room table. Please do not hold a reference to a
@@ -1515,17 +1743,15 @@ let Rooms = Object.assign(getRoom, {
 	 * @param {AnyObject} options
 	 */
 	createBattle(formatid, options) {
-		const p1 = options.p1;
-		const p2 = options.p2;
-		if (p1 === p2) throw new Error(`Players can't battle themselves`);
-		if (!p1) throw new Error(`p1 required`);
-		if (!p2) throw new Error(`p2 required`);
-		Ladders.cancelSearches(p1);
-		Ladders.cancelSearches(p2);
+		const p1 = /** @type {User?} */ (options.p1);
+		const p2 = /** @type {User?} */ (options.p2);
+		if (p1 && p1 === p2) throw new Error(`Players can't battle themselves`);
+		if (p1) Ladders.cancelSearches(p1);
+		if (p2) Ladders.cancelSearches(p2);
 
 		if (Rooms.global.lockdown === true) {
-			p1.popup("The server is restarting. Battles will be available again in a few minutes.");
-			p2.popup("The server is restarting. Battles will be available again in a few minutes.");
+			if (p1) p1.popup("The server is restarting. Battles will be available again in a few minutes.");
+			if (p2) p2.popup("The server is restarting. Battles will be available again in a few minutes.");
 			return;
 		}
 
@@ -1535,19 +1761,18 @@ let Rooms = Object.assign(getRoom, {
 		// options.rated < 0 or falsy means "unrated", and will be converted to 0 here
 		// options.rated === true is converted to 1 (used in tests sometimes)
 		options.rated = Math.max(+options.rated || 0, 0);
-		const room = Rooms.createGameRoom(roomid, "" + p1.name + " vs. " + p2.name, options);
+		const p1name = p1 ? p1.name : "Player 1";
+		const p2name = p2 ? p2.name : "Player 2";
+		const room = Rooms.createGameRoom(roomid, "" + p1name + " vs. " + p2name, options);
 		// @ts-ignore TODO: make RoomBattle a subclass of RoomGame
-		const game = room.game = new Rooms.RoomBattle(room, formatid, options);
-		room.p1 = p1;
-		room.p2 = p2;
-		room.battle = room.game;
+		room.game = new Rooms.RoomBattle(room, formatid, options);
 
 		let inviteOnly = (options.inviteOnly || []);
-		if (p1.inviteOnlyNextBattle) {
+		if (p1 && p1.inviteOnlyNextBattle) {
 			inviteOnly.push(p1.userid);
 			p1.inviteOnlyNextBattle = false;
 		}
-		if (p2.inviteOnlyNextBattle) {
+		if (p2 && p2.inviteOnlyNextBattle) {
 			inviteOnly.push(p2.userid);
 			p2.inviteOnlyNextBattle = false;
 		}
@@ -1559,21 +1784,17 @@ let Rooms = Object.assign(getRoom, {
 			room.add(`|raw|<div class="broadcast-red"><strong>This battle is invite-only!</strong><br />Users must be rank + or invited with <code>/invite</code> to join</div>`);
 		}
 
-		game.addPlayer(p1, options.p1team);
-		game.addPlayer(p2, options.p2team);
-		p1.joinRoom(room);
-		p2.joinRoom(room);
-		Monitor.countBattle(p1.latestIp, p1.name);
-		Monitor.countBattle(p2.latestIp, p2.name);
-		Rooms.global.onCreateBattleRoom(p1, p2, room, options);
+		if (p1) p1.joinRoom(room);
+		if (p2) p2.joinRoom(room);
+		if (p1) Monitor.countBattle(p1.latestIp, p1.name);
+		if (p2) Monitor.countBattle(p2.latestIp, p2.name);
 		return room;
 	},
 
 	battleModlogStream: FS('logs/modlog/modlog_battle.txt').createAppendStream(),
 	groupchatModlogStream: FS('logs/modlog/modlog_groupchat.txt').createAppendStream(),
 
-	/** @type {GlobalRoom} */
-	global: /** @type {any} */ (null),
+	global: (/** @type {any} */ (null)),
 	/** @type {?ChatRoom} */
 	lobby: null,
 
@@ -1590,10 +1811,9 @@ let Rooms = Object.assign(getRoom, {
 
 	Roomlogs: Roomlogs,
 
-	RoomBattle: require(roomBattleLoc).RoomBattle,
-	RoomBattlePlayer: require(roomBattleLoc).RoomBattlePlayer,
-	SimulatorManager: require(roomBattleLoc).SimulatorManager,
-	SimulatorProcess: require(roomBattleLoc).SimulatorProcess,
+	RoomBattle: require('./room-battle').RoomBattle,
+	RoomBattlePlayer: require('./room-battle').RoomBattlePlayer,
+	PM: require('./room-battle').PM,
 });
 
 // initialize

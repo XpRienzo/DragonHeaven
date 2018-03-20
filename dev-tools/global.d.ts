@@ -1,4 +1,5 @@
 import * as BattleType from './../sim/battle'
+import * as BattleStreamType from './../sim/battle-stream'
 import * as DataType from './../sim/dex-data'
 import * as DexType from './../sim/dex'
 import * as PokemonType from './../sim/pokemon'
@@ -11,22 +12,38 @@ import * as LadderStoreType from './../ladders-remote'
 import * as LaddersType from './../ladders'
 import * as UsersType from './../users'
 import * as PunishmentsType from './../punishments'
+import * as StreamsType from './../lib/streams'
+import * as child_process from 'child_process'
+import * as ChatType from './../chat'
 
 declare global {
 	// modules
 	const Dex: typeof DexType
-	const Chat: any
+	const Chat: typeof ChatType
 	const Punishments: typeof PunishmentsType
 	const Ladders: typeof LaddersType
 	const LadderStoreT: typeof LadderStoreType
 
+	const WriteStream: typeof StreamsType.WriteStream
+	const ReadStream: typeof StreamsType.ReadStream
+	const ReadWriteStream: typeof StreamsType.ReadWriteStream
+	const ObjectWriteStream: typeof StreamsType.ObjectWriteStream
+	const ObjectReadStream: typeof StreamsType.ObjectReadStream
+	const ObjectReadWriteStream: typeof StreamsType.ObjectReadWriteStream
+
+	type ChildProcess = child_process.ChildProcess
+
 	// sim
+	type PlayerSlot = 'p1' | 'p2'
+	type PRNGSeed = [number, number, number, number]
 	const Battle: typeof BattleType
 	const ModdedDex: typeof DexType
 	const Pokemon: typeof PokemonType
 	const PRNG: typeof PRNGType
 	const Side: typeof SideType
+	const TeamValidator: typeof TeamValidatorType
 	const Validator: typeof TeamValidatorType.Validator
+	const BattleStream: typeof BattleStreamType.BattleStream
 
 	// dex data
 	const Ability: typeof DataType.Ability
@@ -45,8 +62,8 @@ declare global {
 	const GlobalRoom: typeof RoomsType.GlobalRoom
 	const ChatRoom: typeof RoomsType.ChatRoomTypeForTS
 	const GameRoom: typeof RoomsType.GameRoom
-	const Room: typeof RoomsType.ChatRoom
 	const BasicRoom: typeof RoomsType.BasicRoom
+	const BasicChatRoom: typeof RoomsType.ChatRoom
 	const RoomGame: typeof RoomsType.RoomGame
 	const RoomBattle: typeof RoomsType.RoomBattle
 	const Rooms: typeof RoomsType
