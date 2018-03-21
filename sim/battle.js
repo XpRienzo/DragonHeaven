@@ -3340,14 +3340,13 @@ class Battle extends Dex.ModdedDex {
 			team: team,
 		});
 
-		case 'win':
-		case 'tie':
-			this.win(data[2]);
-			break;
+		return this[slot];
+	}
 
-		case 'tiebreak':
-			this.tiebreak();
-			break;
+	sendUpdates() {
+		if (this.sentLogPos >= this.log.length) return;
+		this.send('update', this.log.slice(this.sentLogPos));
+		this.sentLogPos = this.log.length;
 
 		if (!this.sentEnd && this.ended) {
 			let log = {
