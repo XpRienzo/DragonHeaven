@@ -21,6 +21,7 @@ const RETRY_AFTER_LOGIN = null;
 
 const FS = require('./lib/fs');
 const Roomlogs = require('./roomlogs');
+const MSort = require('./mergesort');
 
 /*********************************************************
  * the Room object.
@@ -563,7 +564,7 @@ class GlobalRoom extends BasicRoom {
 
 		const typeOrder = ['punishment', 'normal', 'staff', 'leadership'];
 
-		rankList = rankList.sort((a, b) => typeOrder.indexOf(b.type) - typeOrder.indexOf(a.type));
+		rankList = MSort(rankList, function (a, b) { return typeOrder.indexOf(b.type) - typeOrder.indexOf(a.type); });
 
 		// add the punishment types at the very end.
 		for (let rank in Config.punishgroups) {
