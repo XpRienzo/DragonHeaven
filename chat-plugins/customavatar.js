@@ -48,6 +48,10 @@ exports.commands = {
 			if (parts.length < 2) return this.parse('/help customavatar');
 
 			const name = toId(parts[0]);
+			const image = Config.customavatars[name];
+
+			if (image) delete Config.customavatars[name];
+
 			let image_url = parts[1];
 			if(!(image_url.startsWith("https") || image_url.startsWith("https"))) {
 				image_url = "https://"+image_url;
@@ -95,6 +99,6 @@ exports.commands = {
 		},
 	},
 	customavatarhelp: ["Commands for /customavatar are:",
-	"/customavatar set [username], [image link] - Set a user's avatar.",
-	"/customavatar delete [username] - Delete a user's avatar."],
+		"/customavatar set [username], [image link] - Set a user's avatar.",
+		"/customavatar delete [username] - Delete a user's avatar."],
 };
