@@ -2,7 +2,7 @@
 
 exports.commands = {
     roomlist: function (target, room, user) {
-		if (!this.can('pban')) return;
+		if (!this.can('forcewin')) return;
 
 		let header = ['<b><font color="#b30000" size="2">Total users connected: ' + Rooms.global.userCount + '</font></b><br />'];
 		let official = ['<b><font color="#1a5e00" size="2">Official chat rooms:</font></b><br />'];
