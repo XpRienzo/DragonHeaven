@@ -194,7 +194,7 @@ class RandomSeasonalTeams extends RandomTeams {
 				species: 'Haxorus', ability: 'Blessed Hax', item: 'Life Orb', gender: 'M',
 				moves: ['ironhead', 'diamondstorm', 'sacredfire'],
 				signatureMove: "Haxing Rage",
-				evs: {atk:252, spe:252, spd:252, def:252}, nature: 'Adamant',
+				evs: {atk:252, spe:252, spd:252, def:250}, nature: 'Adamant',
 			},
 			'XpRienzo ☑-☑': {
 				species: 'Reshiram', ability: 'Adaptability', item: 'Charcoal', gender: 'M',
