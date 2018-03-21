@@ -773,17 +773,17 @@ exports.commands = {
 			return this.errorReply(`This room can't be deleted.`);
 		}
 
-		if (targetRoom.chatRoomData) {
-			if (targetRoom.isPrivate) {
-				if (Rooms.get('theadminchat')) {
-					Rooms.get('theadminchat').add(`|raw|<div class="broadcast-red">Private chat room deleted by ${user.userid}: <b>${Chat.escapeHTML(target)}</b></div>`).update();
+		if (room.chatRoomData) {
+			if (room.isPrivate) {
+				if (Rooms.get('upperstaff')) {
+					Rooms.get('upperstaff').add(Chat.html`|raw|<div class="broadcast-red">Private chat room deleted by ${user.userid}: <b>${title}</b></div>`).update();
 				}
 			} else {
 				if (Rooms.get('staff')) {
 					Rooms.get('staff').add(Chat.html`|raw|<div class="broadcast-red">Public chat room deleted: <b>${title}</b></div>`).update();
 				}
-				if (Rooms.get('upperstaff')) {
-					Rooms.get('upperstaff').add(Chat.html`|raw|<div class="broadcast-red">Public chat room deleted by ${user.userid}: <b>${title}</b></div>`).update();
+				if (Rooms.get('theadminchat')) {
+					Rooms.get('theadminchat').add(Chat.html`|raw|<div class="broadcast-red">Public chat room deleted by ${user.userid}: <b>${title}</b></div>`).update();
 				}
 			}
 		}
