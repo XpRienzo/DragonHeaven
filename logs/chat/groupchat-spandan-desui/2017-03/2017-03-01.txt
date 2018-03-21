@@ -1,7 +1,0 @@
-13:49:47 NEW CHATROOM: groupchat-spandan-desui
-13:49:47 |j|#Spandan
-13:50:09 |l|#Spandan
-13:50:14 |j|#Spandan
-13:50:20 |raw|<div class="broadcast-red"><b>This room has been deleted.</b></div>
-13:50:20 |expire|This room has been deleted.
-13:50:20 |l|#Spandan

@@ -1,9 +1,0 @@
-15:56:15 NEW CHATROOM: groupchat-flufi-17555340
-15:56:15 |j|#flufi
-15:56:50 |c|#flufi|!htmlbox
-15:56:50 |html|<div class="infobox"><DIV ID=”waveText”style=”width:707px; height:130px;font-size:20pt;color:blue; filter:wave(add=0,phase=10,freq=5, strength=3)”> 			<p align=”center”>Make your Text Wavy</DIV></div>
-15:57:17 |c|#flufi|!htmlbox
-15:57:17 |html|<div class="infobox"><marquee behavior=alternate width=”202″ scrollamount=”8″ scrolldelay=”95″ height=”37″ bgcolor=”#00FFFF”>Make your Text Bouncy</marquee></div>
-16:36:29 |l|#flufi
-16:56:15 |userstats|total:0|guests:0| :0|+:0|$:0|%:0|@:0|*:0|★:0|#:0|&:0|~:0|⚔:0
-17:07:00 |raw|<div class="broadcast-red"><b>The server is restarting soon.</b><br />Please finish your battles quickly. No new battles can be started until the server resets in a few minutes.</div>

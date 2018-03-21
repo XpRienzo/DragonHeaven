@@ -1,5 +1,0 @@
-14:44:42 NEW CHATROOM: groupchat-cellwar-a
-14:44:42 |j|#cELLWAr
-14:45:00 |raw|<div class="broadcast-red"><b>This room has been deleted.</b></div>
-14:45:00 |expire|This room has been deleted.
-14:45:00 |l|#cELLWAr

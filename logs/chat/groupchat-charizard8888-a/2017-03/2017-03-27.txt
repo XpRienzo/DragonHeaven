@@ -1,4 +1,0 @@
-06:20:28 NEW CHATROOM: groupchat-charizard8888-a
-06:20:28 |j|#charizard8888
-06:20:29 |raw|<div class="broadcast-blue"><b>test</b></div>
-06:20:31 |l|#charizard8888

@@ -1,5 +1,0 @@
-[2016-09-04T09:17:34.595Z] (help) (Spandan added the room alias 'a'.)
-[2016-09-08T06:46:48.285Z] (help) (Spandan set modchat to autoconfirmed)
-[2017-02-20T15:59:15.668Z] (help) ggdaca was promoted to Room Voice by Spandan.
-[2017-02-20T16:00:11.546Z] (help) (ggdaca was demoted to Room regular user by Spandan.)
-[2017-03-17T11:26:37.299Z] (help) (Spandan set modchat to #)

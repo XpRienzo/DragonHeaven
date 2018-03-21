@@ -1,9 +1,0 @@
-[2016-09-04T09:11:48.382Z] (theflamingforest) (Spandan added the room alias 'a'.)
-[2016-09-08T06:49:24.916Z] (theflamingforest) (Spandan set modchat to autoconfirmed)
-[2016-10-07T13:05:50.620Z] (theflamingforest) charizard8888 made this room hidden.
-[2016-10-28T16:12:08.335Z] (theflamingforest) charizard8888 made this room public.
-[2016-10-28T16:12:28.934Z] (theflamingforest) Flufiツ was appointed Room Owner by charizard8888.
-[2016-11-19T14:04:42.285Z] (theflamingforest) (flufi changed the roomintro.)
-[2016-11-19T14:04:55.364Z] (theflamingforest) (flufi changed the roomintro.)
-[2016-11-29T11:28:56.339Z] (theflamingforest) A Helpful Rayquaza was appointed Room Owner by charizard8888.
-[2016-11-29T13:15:05.842Z] (theflamingforest) (Mareanie added the room alias 'a'.)

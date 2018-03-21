@@ -1,7 +1,0 @@
-[2016-08-19T08:58:52.069Z] (contesting) Configjs was appointed to Room Founder by charizard8888.
-[2016-08-19T09:02:32.280Z] (contesting) M⍺di was promoted to Room Voice by ConfigJS.
-[2016-08-19T09:02:49.777Z] (contesting) M⍺di was promoted to Room Operator by ConfigJS.
-[2016-08-19T09:03:04.035Z] (contesting) charizard8888 was promoted to Room Esteemed Meme by ConfigJS.
-[2016-08-19T09:03:15.347Z] (contesting) (charizard8888 was demoted to Room regular user by ConfigJS.)
-[2016-08-19T09:03:21.406Z] (contesting) charizard8888 was kicked from the room by ConfigJS.
-[2016-08-19T09:03:24.961Z] (contesting) XpRienzo ☑◡☑ was kicked from the room by ConfigJS.

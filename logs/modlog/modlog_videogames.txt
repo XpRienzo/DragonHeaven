@@ -1,5 +1,0 @@
-[2016-08-19T03:21:41.099Z] (videogames) ClassyZ was appointed to Room Founder by ClassyZ.
-[2016-08-19T03:22:30.598Z] (videogames) (ClassyZ changed the roomdesc to: "The room where we discuss about Video Games.".)
-[2016-08-19T05:49:33.908Z] (videogames) (ClassyZ added the room alias 'vg'.)
-[2016-08-19T05:49:39.421Z] (videogames) (ClassyZ added the room alias 'game'.)
-[2016-08-19T05:49:44.991Z] (videogames) (ClassyZ added the room alias 'games'.)

@@ -1,5 +1,0 @@
-[2017-04-30T10:02:04.854Z] (12dragonheaven) (Spandan changed the roomintro.)
-[2017-04-30T10:02:48.811Z] (12dragonheaven) spandan used "/a |htmL|New Game of 1-2-DragonHeaven is starting!" in 12dragonheaven
-[2017-04-30T10:02:59.362Z] (12dragonheaven) spandan used "/a |html|<b>New Game of 1-2-DragonHeaven is starting!</b>" in 12dragonheaven
-[2017-04-30T10:03:22.083Z] (12dragonheaven) spandan used "/a |html|<b>Grats Scribblium</b>" in 12dragonheaven
-[2017-04-30T10:23:27.939Z] (12dragonheaven) (Spandan added the room alias '12dh'.)

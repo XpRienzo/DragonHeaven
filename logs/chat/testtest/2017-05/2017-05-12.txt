@@ -1,5 +1,0 @@
-06:09:50 NEW CHATROOM: testtest
-06:09:54 |j|&Spandan
-06:15:59 |raw|<div class="broadcast-red"><b>This room has been deleted.</b></div>
-06:15:59 |expire|This room has been deleted.
-06:15:59 |l|&Spandan

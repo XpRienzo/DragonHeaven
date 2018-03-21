@@ -1,4 +1,0 @@
-[2017-01-19T14:06:24.238Z] (policy) Spandan set modjoin to ~.
-[2017-01-19T14:14:28.356Z] (policy) Spandan turned off modjoin.
-[2017-01-21T07:25:58.951Z] (policy) (A poll was started by Spandan.)
-[2017-01-21T16:11:57.985Z] (policy) (The poll was ended by Snaquaza - ⒶⒻⓀ.)
