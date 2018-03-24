@@ -960,4 +960,10 @@ mightyena: {
 		},
 		abilities: {0: "Strong Jaw", 1: "Guts", H: "Moxie"},
 	},
+sandslashalola: {
+inherit: true,
+types: ["Ice", "Bug"],
+baseStats: {hp: 75, atk: 115, def: 95, spa: 70, spd: 85, spe: 30},
+abilties: {0: "Slush Rush", 1: "Skill Link", H: "Tough Claws"},
+},
 };
