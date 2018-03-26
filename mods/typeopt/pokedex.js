@@ -966,4 +966,23 @@ types: ["Ice", "Bug"],
 baseStats: {hp: 75, atk: 115, def: 95, spa: 70, spd: 85, spe: 30},
 abilties: {0: "Slush Rush", 1: "Skill Link", H: "Tough Claws"},
 },
+mandibuzz: {
+inherit: true,
+types: ["Flying", "Ghost"],
+baseStats: {hp: 110, atk: 105, def: 105, spa: 55, spd: 95, spe: 100},
+abilities: {0: "Prankster", 1: "Intimidate", H: "Rattled"},
+},
+toucannon: {
+inherit: true,
+types: ["Flying", "Normal"],
+baseStats: {hp: 100, atk: 140, def: 110, spa: 65, spd: 90, spe: 65},
+abilities: {0: "Intimidate", 1: "Skill Link", H: "Sheer Force"},
+},
+wigglytuff: {
+inherit: true,
+types: ["Flying", "Fairy"],
+baseStats: {hp: 140, atk: 60, def: 80, spa: 130, spd: 100, spe: 65},
+abilities: {0: "Competitive", 1: "Aerilate", H: "Technician"},
+},
+
 };
