@@ -984,5 +984,41 @@ types: ["Flying", "Fairy"],
 baseStats: {hp: 140, atk: 60, def: 80, spa: 130, spd: 100, spe: 65},
 abilities: {0: "Competitive", 1: "Aerilate", H: "Technician"},
 },
+poliwrath: {
+inherit: true,
+types: ["Fighting", "Water"],
+baseStats: {hp: 100, atk: 135, def: 110, spa: 50, spd: 105, spe: 70},
+abilities: {0: "Water Veil", 1: "Swift Swim", H: "No Guard"},
+},
+toxicroak: {
+inherit: true,
+types: ["Fighting", "Poison"],
+baseStats: {hp: 85, atk: 125, def: 75, spa: 105, spd: 75, spe: 105},
+abilities: {0: "Merciless", 1: "No Guard", H: "Tough Claws"},
+},
+gallade: {
+inherit: true,
+types: ["Fighting", "Fairy"],
+baseStats: {hp: 90, atk: 132, def: 80, spa: 67, spd: 95, spe: 106},
+abilities: {0: "Analytic", 1: "Iron Fist", H: "Justified"},
+},
+parasect: {
+inherit: true,
+types: ["Bug", "Grass"],
+baseStats: {hp: 105, atk: 135, def: 90, spa: 50, spd: 90, spe: 100},
+abilities: {0: "Triage", 1: "Tinted Lens", H: "Prankster"},
+},
+golisopod: {
+inherit: true,
+types: ["Bug", "Ghost"],
+baseStats: {hp: 79, atk: 125, def: 120, spa: 45, spd: 85, spe: 111},
+abilities: {0: "Emergency Exit", 1: "Magic Guard", H: "Stakeout"},
+},
+magcargo: {
+inherit: true,
+types: ["Bug", "Fire"],
+baseStats: {hp: 60, atk: 70, def: 140, spa: 130, spd: 140, spe: 30},
+abilities: {0: "Magma Armor", 1: "Drought", H: "Weak Armor"},
+},
 
 };
