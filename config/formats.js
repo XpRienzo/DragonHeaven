@@ -3449,7 +3449,7 @@ exports.Formats = [
 			return problems;
 		},
 		onResidual: function () {
-			for (const side of sides) {
+			for (const side of this.sides) {
 				delete side.active[0].turnMoveFlag;
 			}
 		},
