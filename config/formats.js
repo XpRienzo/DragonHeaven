@@ -3449,13 +3449,14 @@ exports.Formats = [
 			return problems;
 		},
 		onResidual: function () {
-			delete p1.active[0].turnMoveFlag;
-			delete p2.active[0].turnMoveFlag;
+			for (const side of sides) {
+				delete side.active[0].turnMoveFlag;
+			}
 		},
 		onModifyPriority: function (priority, pokemon, target, move) {
 			let linkedMoves = pokemon.getLinkedMoves();
 			if (!linkedMoves.includes(move.id)) return priority;
-			return Math.min(this.getMove(linkedMoves[0]).priority, this.getMove(linkedMoves[1].priority));
+			return Math.min(this.getMove(linkedMoves[0]).priority, this.getMove(linkedMoves[1]).priority);
 		},
 	},
 	{
