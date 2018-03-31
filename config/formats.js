@@ -3426,39 +3426,33 @@ exports.Formats = [
 			this.runMove(pokemon.moves[pokemon.moves.length - 1], pokemon);
 		},
 	},
-	/*{
+	{	//creds: Kris n me
 		name: "[Gen 7] Linked [WIP]",
-		desc: [
-			"The selection of a Pokemon's first or second move will cause it to use both of those moves in a row on that same turn.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3627804/\">Linked</a>",
+		desc: `The first two moves in a Pok&eacute;mon's moveset are used simultaneously.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3627804/">Linked</a>`,
 		],
-		mod: 'gen7',
-		ruleset: ['[Gen 7] OU'],
-		//banlist: ['King\'s Rock', 'Razor Fang'],
-		team: 'random',
-		\onValidateSet: function (set) {
-			let resMoves = ['banefulbunker', 'detect', 'dig', 'naturesmadness', 'nightshade', 'protect', 'seismictoss', 'skydrop', 'spikyshield', 'superfang'];
+
+		mod: 'linked',
+		ruleset: ['Gen 7] OU'],
+		banlist: ['King\'s Rock', 'Razor Fang'],
+		restrictedMoves: ['Baneful Bunker', 'Detect', 'Nature\'s Madness', 'Night Shade', 'Protect', 'Seismic Toss', 'Spiky Shield', 'Super Fang'],
+		onValidateSet: function (set, format) {
+			const restrictedMoves = format.restrictedMoves || [];
 			let problems = [];
-			for (let i = 0; i < 2; i++) {
-				let move = this.getMove(set.moves[i]);
-				if (resMoves.includes(move.id)) problems.push(`${set.name || set.species} cannot have ${move.name} in Slot ${i + 1}.`);
+			for (const [i, moveid] of set.moves.entries()) {
+				let move = this.getMove(moveid);
+				if ((i === 0 || i === 1) && restrictedMoves.includes(move.name)) {
+					problems.push(`${set.name || set.species}'s move ${move.name} is banned from being in a link.`);
+				}
 			}
 			return problems;
 		},
-		onAfterMove: function (source, target, move) {
-			if (!move.isZ && source.moves.indexOf(move.id) < 2 && !source.getItem().isChoice && !source.linky) {
-				source.linky = true;
-				let linkMove = source.moves[1 ^ source.moves.indexOf(move.id)];
-				this.runMove(linkMove, source);
-			}
-		},
 		onResidual: function () {
-			for (let i = 0; i < p2.pokemon.length; i++) {
-				delete p2.pokemon[i].linky;
-				delete p1.pokemon[i].linky;
-			}
+			delete p1.active[0].turnMoveFlag;
+			delete p2.active[0].turnMoveFlag;
 		},
-	},*/
+	},
 	{
 		name: "[Gen 7] Lockdown",
 		desc: [
