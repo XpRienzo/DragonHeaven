@@ -249,12 +249,13 @@ exports.BattleAbilities = {
 		onModifyMove: function (move) {
 			if (!move || !move.flags['contact']) return;
 			if (!move.secondaries) {
+				move.secondaries = [];
+			}
 				move.secondaries.push({
 					chance: 30,
 					Status: 'par',
 					ability: this.getAbility('petrifyingtouch'),
-				}
-			}
+				});
 		 },
 		id: "petrifyingtouch",
 		name: "Petrifying Touch",
