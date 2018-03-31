@@ -3455,8 +3455,7 @@ exports.Formats = [
 		onModifyPriority: function (priority, pokemon, target, move) {
 			let linkedMoves = pokemon.getLinkedMoves();
 			if (!linkedMoves.includes(move.id)) return priority;
-			linkedMoves.map(this.getMove);
-			return Math.min(linkedMoves[0].priority, linkedMoves[1].priority);
+			return Math.min(this.getMove(linkedMoves[0]).priority, this.getMove(linkedMoves[1].priority));
 		},
 	},
 	{
