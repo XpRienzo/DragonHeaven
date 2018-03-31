@@ -78,7 +78,7 @@ exports.BattleScripts = {
 		}
 		let moveDidSomething = this.useMove(baseMove, pokemon, target, sourceEffect, zMove);
 		let linkedMoves = pokemon.getLinkedMoves();
-		if (!pokemon.turnMoveFlag && linkedMoves.includes(move.id)) {
+		if (!move.isZ && !pokemon.getItem().isChoice && !pokemon.turnMoveFlag && linkedMoves.includes(move.id)) {
 			pokemon.turnMoveFlag = true;
 			this.runMove(this.getMove(linkedMoves[1 ^ linkedMoves.indexOf(move.id)]), pokemon);
 		}

@@ -3452,6 +3452,12 @@ exports.Formats = [
 			delete p1.active[0].turnMoveFlag;
 			delete p2.active[0].turnMoveFlag;
 		},
+		onModifyPriority: function (priority, pokemon, target, move) {
+			let linkedMoves = pokemon.getLinkedMoves();
+			if (!linkedMoves.includes(move.id)) return priority;
+			linkedMoves.map(this.getMove);
+			return Math.min(linkedMoves[0].priority, linkedMoves[1].priority);
+		},
 	},
 	{
 		name: "[Gen 7] Lockdown",
