@@ -77,6 +77,11 @@ exports.BattleScripts = {
 			pokemon.side.zMoveUsed = true;
 		}
 		let moveDidSomething = this.useMove(baseMove, pokemon, target, sourceEffect, zMove);
+		let linkedMoves = pokemon.getLinkedMoves();
+		if (!pokemon.turnMoveFlag && linkedMoves.includes(move.id)) {
+			pokemon.turnMoveFlag = true;
+			this.runMove(this.getMove(linkedMoves[1 ^ linkedMoves.indexOf(move.id)]), pokemon);
+		}
 		this.singleEvent('AfterMove', move, null, pokemon, target, move);
 		this.runEvent('AfterMove', pokemon, target, move);
 
@@ -101,11 +106,6 @@ exports.BattleScripts = {
 			}
 		}
 		if (noLock && pokemon.volatiles.lockedmove) delete pokemon.volatiles.lockedmove;
-		let linkedMoves = pokemon.getLinkedMoves();
-		if (!pokemon.turnMoveFlag && linkedMoves.includes(move.id)) {
-			pokemon.turnMoveFlag = true;
-			this.runMove(this.getMove(linkedMoves[1 ^ linkedMoves.indexOf(move.id)]), pokemon);
-		}
 	},
 
 	pokemon: {
