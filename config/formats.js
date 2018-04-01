@@ -62,7 +62,7 @@ exports.Formats = [
 			`The first two moves in a Pok&eacute;mon's moveset are used simultaneously.`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3627804/">Linked</a>`,
 		],
-		team: 'random',
+		team: 'randomFactory',
 		mod: 'linked',
 		ruleset: ['Gen 7] Random Battle'],
 	},
