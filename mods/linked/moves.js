@@ -68,14 +68,15 @@ exports.BattleMovedex = {
 				this.add('-fail', source);
 				return null;
 			}
-
-			for (let i = 0; i < target.linked.length; i++) {
-				let linkedMove = this.getMove(target.linked[i]);
-				if (linkedMove.category !== 'Status' || linkedMove.id === 'mefirst') return;
+			if (target.linked) {
+				for (let i = 0; i < target.linked.length; i++) {
+					let linkedMove = this.getMove(target.linked[i]);
+					if (linkedMove.category !== 'Status' || linkedMove.id === 'mefirst') return;
+				}
+				this.attrLastMove('[still]');
+				this.add('-fail', source);
+				return null;
 			}
-			this.attrLastMove('[still]');
-			this.add('-fail', source);
-			return null;
 		},
 	},
 
