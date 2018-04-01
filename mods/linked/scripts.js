@@ -475,6 +475,12 @@ exports.BattleScripts = {
 	},
 
 	pokemon: {
+		moveUsed: function (move, targetLoc) {
+			let lastMove = this.moveThisTurn ? [this.moveThisTurn, this.battle.getMove(move).id] : this.battle.getMove(move).id;
+            this.lastMove = lastMove;
+            this.moveThisTurn = lastMove;
+			this.lastMoveTargetLoc = targetLoc;
+		},
 		getLastMoveAbsolute: function () { // used
             if (Array.isArray(this.lastMove)) return this.lastMove[1];
             return this.lastMove;
