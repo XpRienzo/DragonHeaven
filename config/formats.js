@@ -56,6 +56,29 @@ exports.Formats = [
 		team: 'randomCC',
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
+	{	//creds: Kris n me
+		name: "[Gen 7] Linked [WIP]",
+		desc: [
+			`The first two moves in a Pok&eacute;mon's moveset are used simultaneously.`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3627804/">Linked</a>`,
+		],
+		team: 'random',
+		mod: 'linked',
+		ruleset: ['Gen 7] Random Battle'],
+		banlist: ['King\'s Rock', 'Razor Fang'],
+		restrictedMoves: ['Baneful Bunker', 'Detect', 'Nature\'s Madness', 'Night Shade', 'Protect', 'Seismic Toss', 'Spiky Shield', 'Super Fang'],
+		onValidateSet: function (set, format) {
+			const restrictedMoves = format.restrictedMoves || [];
+			let problems = [];
+			for (const [i, moveid] of set.moves.entries()) {
+				let move = this.getMove(moveid);
+				if ((i === 0 || i === 1) && restrictedMoves.includes(move.name)) {
+					problems.push(`${set.name || set.species}'s move ${move.name} is banned from being in a link.`);
+				}
+			}
+			return problems;
+		},
+	},
 	{
 		name: "[Gen 7] Shared Power [Random]",
 		desc: [
