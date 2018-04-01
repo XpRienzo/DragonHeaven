@@ -64,7 +64,7 @@ exports.Formats = [
 		],
 		team: 'randomFactory',
 		mod: 'linked',
-		ruleset: ['Gen 7] Random Battle'],
+		ruleset: ['[Gen 7] OU'],
 	},
 	{
 		name: "[Gen 7] Shared Power [Random]",
