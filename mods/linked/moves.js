@@ -63,14 +63,14 @@ exports.BattleMovedex = {
 				this.add('-fail', source);
 				return null;
 			}
-			if (!action.linked && action.move.category === 'Status' && action.move.id !== 'mefirst') {
+			if (!target.linked && action.move.category === 'Status' && action.move.id !== 'mefirst') {
 				this.attrLastMove('[still]');
 				this.add('-fail', source);
 				return null;
 			}
 
-			for (let i = 0; i < action.linked.length; i++) {
-				let linkedMove = this.getMove(action.linked[i]);
+			for (let i = 0; i < target.linked.length; i++) {
+				let linkedMove = this.getMove(target.linked[i]);
 				if (linkedMove.category !== 'Status' || linkedMove.id === 'mefirst') return;
 			}
 			this.attrLastMove('[still]');
