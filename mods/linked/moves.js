@@ -23,25 +23,22 @@ exports.BattleMovedex = {
 	},
 	mefirst: {
 		inherit: true,
-		onHit: function (target, pokemon) {
-			let decision = this.willMove(target);
-			if (!decision) return false;
-			let noMeFirst = {
-				chatter:1, counter:1, covet:1, focuspunch:1, mefirst:1, metalburst:1, mirrorcoat:1, struggle:1, thief:1,
-			};
-			// Mod-specific: Me First copies the first move in the link
-			let move = this.getMove(decision.linked ? decision.linked[0] : decision.move);
-			if (move.category !== 'Status' && !noMeFirst[move]) {
-				pokemon.addVolatile('mefirst');
-				this.useMove(move, pokemon);
-				return;
+		onTryHit: function (target, pokemon) {
+			let action = this.willMove(target);
+			if (action) {
+				let noMeFirst = [
+					'chatter', 'counter', 'covet', 'focuspunch', 'mefirst', 'metalburst', 'mirrorcoat', 'struggle', 'thief',
+				];
+				// Mod-specific: Me First copies the first move in the link
+				let move = this.getMove(action.linked ? action.linked[0] : action.move);
+				if (move.category !== 'Status' && !noMeFirst.includes(move)) {
+					pokemon.addVolatile('mefirst');
+					this.useMove(move, pokemon, target);
+					return null;
+				}
 			}
 			return false;
 		},
-	},
-	quash: {
-		inherit: true,
-		// Mod-specific: default mechanics
 	},
 
 	/**
@@ -53,50 +50,33 @@ exports.BattleMovedex = {
 	suckerpunch: {
 		inherit: true,
 		onTry: function (source, target) {
-			let decision = this.willMove(target);
-			if (!decision || decision.choice !== 'move') {
+			let action = this.willMove(target);
+			if (!action || action.choice !== 'move') {
+				this.attrLastMove('[still]');
 				this.add('-fail', source);
-				return false;
+				return null;
 			}
-			if (target.volatiles['mustrecharge'] && target.volatiles['mustrecharge'].duration < 2) {
+			if (target.volatiles.mustrecharge && target.volatiles.mustrecharge.duration < 2) {
 				// Duration may not be lower than 2 if Sucker Punch is used as a low-priority move
 				// i.e. if Sucker Punch is linked with a negative priority move
+				this.attrLastMove('[still]');
 				this.add('-fail', source);
-				return false;
+				return null;
 			}
-			if (!decision.linked) {
-				if (decision.move.category !== 'Status' || decision.move.id === 'mefirst') return;
+			if (!action.linked && action.move.category === 'Status' && action.move.id !== 'mefirst') {
+				this.attrLastMove('[still]');
 				this.add('-fail', source);
-				return false;
+				return null;
 			}
 
-			for (let i = 0; i < decision.linked.length; i++) {
-				let linkedMove = this.getMove(decision.linked[i]);
+			for (let i = 0; i < action.linked.length; i++) {
+				let linkedMove = this.getMove(action.linked[i]);
 				if (linkedMove.category !== 'Status' || linkedMove.id === 'mefirst') return;
 			}
+			this.attrLastMove('[still]');
 			this.add('-fail', source);
-			return false;
+			return null;
 		},
-	},
-
-
-	/**
-	 * Pledges
-	 * If two Pledge moves are linked, the joint effect is triggered
-	 *
-	 **/
-
-	firepledge: {
-		inherit: true,
-		// Mod-specific: default mechanics
-	},
-	grasspledge: {
-		inherit: true,
-		// Mod-specific: default mechanics
-	},
-	waterpledge: {
-		inherit: true,
-		// Mod-specific: default mechanics
 	},
 
 	/**
@@ -109,12 +89,12 @@ exports.BattleMovedex = {
 	sketch: {
 		inherit: true,
 		onHit: function (target, source) {
-			let disallowedMoves = {chatter:1, sketch:1, struggle:1};
+			let disallowedMoves = ['chatter', 'sketch', 'struggle'];
 			let lastMove = target.getLastMoveAbsolute();
-			if (source.transformed || !lastMove || disallowedMoves[lastMove] || source.moves.indexOf(lastMove) !== -1) return false;
-			let moveslot = source.moves.indexOf('sketch');
-			if (moveslot === -1) return false;
-			let move = Tools.getMove(lastMove);
+			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove) || source.moves.indexOf(lastMove) >= 0) return false;
+			let sketchIndex = source.moves.indexOf('sketch');
+			if (sketchIndex < 0) return false;
+			let move = this.getMove(lastMove);
 			let sketchedMove = {
 				move: move.name,
 				id: move.id,
@@ -124,22 +104,21 @@ exports.BattleMovedex = {
 				disabled: false,
 				used: false,
 			};
-			source.moveset[moveslot] = sketchedMove;
-			source.baseMoveset[moveslot] = sketchedMove;
-			source.moves[moveslot] = toId(move.name);
+			source.moveSlots[sketchIndex] = sketchedMove;
+			source.baseMoveSlots[sketchIndex] = sketchedMove;
 			this.add('-activate', source, 'move: Sketch', move.name);
 		},
 	},
 	mimic: {
 		inherit: true,
 		onHit: function (target, source) {
-			let disallowedMoves = {chatter:1, mimic:1, sketch:1, struggle:1, transform:1};
+			let disallowedMoves = ['chatter', 'mimic', 'sketch', 'struggle', 'transform'];
 			let lastMove = target.getLastMoveAbsolute();
-			if (source.transformed || !lastMove || disallowedMoves[lastMove] || source.moves.indexOf(lastMove) !== -1) return false;
-			let moveslot = source.moves.indexOf('mimic');
-			if (moveslot === -1) return false;
-			let move = Tools.getMove(lastMove);
-			source.moveset[moveslot] = {
+			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove) || source.moves.indexOf(lastMove) >= 0) return false;
+			let mimicIndex = source.moves.indexOf('mimic');
+			if (mimicIndex < 0) return false;
+			let move = this.getMove(lastMove);
+			source.moveSlots[mimicIndex] = {
 				move: move.name,
 				id: move.id,
 				pp: move.pp,
@@ -147,8 +126,8 @@ exports.BattleMovedex = {
 				target: move.target,
 				disabled: false,
 				used: false,
+				virtual: true,
 			};
-			source.moves[moveslot] = toId(move.name);
 			this.add('-start', source, 'Mimic', move.name);
 		},
 	},
@@ -162,25 +141,26 @@ exports.BattleMovedex = {
 	copycat: {
 		inherit: true,
 		onHit: function (pokemon) {
-			let noCopycat = {assist:1, bestow:1, chatter:1, circlethrow:1, copycat:1, counter:1, covet:1, destinybond:1, detect:1, dragontail:1, endure:1, feint:1, focuspunch:1, followme:1, helpinghand:1, mefirst:1, metronome:1, mimic:1, mirrorcoat:1, mirrormove:1, naturepower:1, protect:1, ragepowder:1, roar:1, sketch:1, sleeptalk:1, snatch:1, struggle:1, switcheroo:1, thief:1, transform:1, trick:1, whirlwind:1};
+			let noCopycat = ['assist', 'banefulbunker', 'bestow', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dragontail', 'endure', 'feint', 'focuspunch', 'followme', 'helpinghand', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'protect', 'ragepowder', 'roar', 'sketch', 'sleeptalk', 'snatch', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind'];
 			let lastMove = pokemon.getLastMoveAbsolute();
-			if (!lastMove || noCopycat[lastMove]) return false;
+			if (!lastMove || noCopycat.includes(lastMove) || this.getMove(lastMove).isZ) {
+				return false;
+			}
 			this.useMove(lastMove, pokemon);
 		},
 	},
 	mirrormove: {
 		inherit: true,
-		onTryHit: function (target) {
+		onTryHit: function (target, pokemon) {
 			let lastMove = target.getLastMoveAbsolute();
 			if (!lastMove || !this.getMove(lastMove).flags['mirror']) {
 				return false;
 			}
-		},
-		onHit: function (target, source) {
-			this.useMove(target.getLastMoveAbsolute(), source);
+			this.useMove(lastMove, pokemon, target);
+			return null;
 		},
 	},
-
+	// Yo Kris fam, i've updated the code till here; mind doin the rest?
 	/**
 	 * Disable, Encore and Torment
 	 * Disabling effects

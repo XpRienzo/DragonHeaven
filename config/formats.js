@@ -3428,8 +3428,8 @@ exports.Formats = [
 	},
 	{	//creds: Kris n me
 		name: "[Gen 7] Linked [WIP]",
-		desc: `The first two moves in a Pok&eacute;mon's moveset are used simultaneously.`,
-		threads: [
+		desc: [
+			`The first two moves in a Pok&eacute;mon's moveset are used simultaneously.`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3627804/">Linked</a>`,
 		],
 
@@ -3447,20 +3447,6 @@ exports.Formats = [
 				}
 			}
 			return problems;
-		},
-		onResidual: function () {
-			for (const side of this.sides) {
-				delete side.active[0].turnMoveFlag;
-			}
-		},
-		onModifyPriority: function (priority, pokemon, target, move) {
-			let linkedMoves = pokemon.getLinkedMoves();
-			if (!linkedMoves.includes(move.id)) return priority;
-			linkedMoves = [
-				this.runEvent('ModifyMove', pokemon, target, this.getMove(linkedMoves[0]), this.getMove(linkedMoves[0])), 
-				this.runEvent('ModifyMove', pokemon, target, this.getMove(linkedMoves[1]), this.getMove(linkedMoves[1]))
-			];
-			return Math.min(linkedMoves[0].priority, linkedMoves[1].priority);
 		},
 	},
 	{
