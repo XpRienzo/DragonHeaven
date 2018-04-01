@@ -57,7 +57,7 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{	//creds: Kris n me
-		name: "[Gen 7] Linked [WIP]",
+		name: "[Gen 7] Linked Randoms [WIP]",
 		desc: [
 			`The first two moves in a Pok&eacute;mon's moveset are used simultaneously.`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3627804/">Linked</a>`,
