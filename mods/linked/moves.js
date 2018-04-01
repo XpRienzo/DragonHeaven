@@ -139,17 +139,6 @@ exports.BattleMovedex = {
 	 *
 	 */
 
-	copycat: {
-		inherit: true,
-		onHit: function (pokemon) {
-			let noCopycat = ['assist', 'banefulbunker', 'bestow', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dragontail', 'endure', 'feint', 'focuspunch', 'followme', 'helpinghand', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'protect', 'ragepowder', 'roar', 'sketch', 'sleeptalk', 'snatch', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind'];
-			let lastMove = pokemon.getLastMoveAbsolute();
-			if (!lastMove || noCopycat.includes(lastMove) || this.getMove(lastMove).isZ) {
-				return false;
-			}
-			this.useMove(lastMove, pokemon);
-		},
-	},
 	mirrormove: {
 		inherit: true,
 		onTryHit: function (target, pokemon) {
