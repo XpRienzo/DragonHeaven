@@ -151,7 +151,7 @@ exports.BattleScripts = {
 						// flag the move as linked here
 						action.linked = linkedMoves;
 						if (this.getMove(linkedMoves[1 - linkedMoves.indexOf(decisionMove)]).beforeTurnCallback) {
-							decisions.unshift({choice: 'beforeTurnMove', pokemon: action.pokemon, move: linkedMoves[1 - index], targetLoc: action.targetLoc});
+							this.addToQueue({choice: 'beforeTurnMove', pokemon: action.pokemon, move: linkedMoves[1 - index], targetLoc: action.targetLoc});
 						}
 					}
 				}
