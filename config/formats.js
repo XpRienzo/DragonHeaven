@@ -3444,7 +3444,7 @@ exports.Formats = [
 		],
 
 		mod: 'linked',
-		ruleset: ['Gen 7] OU'],
+		ruleset: ['[Gen 7] OU'],
 		banlist: ['King\'s Rock', 'Razor Fang'],
 		restrictedMoves: ['Baneful Bunker', 'Detect', 'Nature\'s Madness', 'Night Shade', 'Protect', 'Seismic Toss', 'Spiky Shield', 'Super Fang'],
 		onValidateSet: function (set, format) {
