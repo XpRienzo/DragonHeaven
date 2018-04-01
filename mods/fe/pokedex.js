@@ -13585,4 +13585,23 @@ abilities: {0: "Laser Beam"},
         eggGroups: ["Field", "Grass"],
     },
 // Cat Bed: 75004348
+	catbed: {
+        num: 7500438,
+        species: "Cat Bed",
+        types: ["Fire", "Fairy"],
+        baseStats: { // 85	65	120	120	112	82
+            hp: 85,
+            atk: 65,
+            def: 120,
+            spa: 120,
+            spd: 112,
+            spe: 82
+        },
+        abilities: {
+            0: "Beautiful Obliteration Weapon"
+        },
+        heightm: 5.3,
+        weightkg: 529.8,
+    },
+	
 };
