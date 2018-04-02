@@ -213,6 +213,59 @@ exports.BattleMovedex = {
 		inherit: true,
 		effect: {
 			duration: 3,
+			noCopy: true,
+			onStart: function (target) {
+				let noEncore = ['assist', 'copycat', 'encore', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'sketch', 'sleeptalk', 'struggle', 'transform'];
+				let linkedMoves = target.getLinkedMoves();
+				let lastMove = target.getLastMoveAbsolute();
+				let moveIndex = target.moves.indexOf(lastMove);
+				if (linkedMoves.includes(lastMove)) {
+					if (noEncore.includes(linkedMoves[0]) && noEncore.includes(linkedMoves[1])) {
+						// both moves are unencoreable
+						delete target.volatiles['encore'];
+						return false;
+					}
+					this.effectData.linked = linkedMoves;
+				} else if (!lastMove || this.getMove(lastMove).isZ || noEncore.includes(lastMove) || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
+					// it failed
+					delete target.volatiles['encore'];
+					return false;
+				}
+				this.effectData.move = target.lastMove;
+				this.add('-start', target, 'Encore');
+				if (!this.willMove(target)) {
+					this.effectData.duration++;
+				}
+			},
+			onOverrideAction: function (pokemon, target, move) {
+				if (this.effectData.linked && !this.effectData.linked.includes(move.id)) return this.effectData.linked[1];
+				if (move.id !== this.effectData.move) return this.effectData.move;
+			},
+			onResidualOrder: 13,
+			onResidual: function (target) {
+				if (target.moves.indexOf(target.lastMove) >= 0 && target.moveSlots[target.moves.indexOf(target.lastMove)].pp <= 0) { // early termination if you run out of PP
+					delete target.volatiles.encore;
+					this.add('-end', target, 'Encore');
+				}
+			},
+			onEnd: function (target) {
+				this.add('-end', target, 'Encore');
+			},
+			onDisableMove: function (pokemon) {
+				if (!this.effectData.move || !pokemon.hasMove(this.effectData.move)) {
+					return;
+				}
+				for (const moveSlot of pokemon.moveSlots) {
+					if (this.effectData.linked && !this.effectData.linked.includes(moveSlot.id)) {
+						pokemon.disableMove(moveSlot.id);
+					} else if (moveSlot.id !== this.effectData.move) {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+		},
+		effect: {
+			duration: 3,
 			noCopy: true, // doesn't get copied by Z-Baton Pass
 			onStart: function (target) {
 				let noEncore = ['assist', 'copycat', 'encore', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'sketch', 'sleeptalk', 'struggle', 'transform'];

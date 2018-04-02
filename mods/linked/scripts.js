@@ -495,6 +495,10 @@ exports.BattleScripts = {
                 ret.disabled = true;
             } else if (this.hasItem('assaultvest') && (this.battle.getMove(ret[0]).category === 'Status' || this.battle.getMove(ret[1]).category === 'Status')) {
                 ret.disabled = true;
+            } else if (this.volatiles.encore && ret.includes(this.volatiles.encore.move)) {
+            	//sever the link if one of the moves is not encoreable
+            	let noEncore = ['assist', 'copycat', 'encore', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'sketch', 'sleeptalk', 'struggle', 'transform'];
+            	if (noEncore.includes(ret[0]) || noEncore.includes(ret[1])) ret.disabled = true;
             }
             return ret;
         },
