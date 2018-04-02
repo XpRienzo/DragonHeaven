@@ -171,7 +171,7 @@ exports.BattleMovedex = {
 					this.debug('pokemon hasn\'t moved yet');
 					return false;
 				}
-				let moves = pokemon.moveset;
+				let moves = pokemon.moveSlots;
 				for (let i = 0; i < moves.length; i++) {
 					if (moves[i].id === lastMove) {
 						if (!moves[i].pp) {
@@ -199,7 +199,7 @@ exports.BattleMovedex = {
 				}
 			},
 			onDisableMove: function (pokemon) {
-				let moves = pokemon.moveset;
+				let moves = pokemon.moveSlots;
 				for (let i = 0; i < moves.length; i++) {
 					if (moves[i].id === this.effectData.move) {
 						pokemon.disableMove(moves[i].id);
