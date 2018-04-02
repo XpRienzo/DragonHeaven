@@ -229,6 +229,8 @@ exports.BattleMovedex = {
 					delete target.volatiles['encore'];
 					return false;
 				}
+				
+                this.effectData.turnsActivated = {};
 				this.effectData.move = lastMove;
 				this.add('-start', target, 'Encore');
 				if (linkedMoves.includes(lastMove)) {
