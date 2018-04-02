@@ -209,94 +209,112 @@ exports.BattleMovedex = {
 			},
 		},
 	},
-	/*encore: {
+	encore: {
 		inherit: true,
 		effect: {
 			duration: 3,
-			noCopy: true,
+			noCopy: true, // doesn't get copied by Z-Baton Pass
 			onStart: function (target) {
 				let noEncore = ['assist', 'copycat', 'encore', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'sketch', 'sleeptalk', 'struggle', 'transform'];
-				let linkedMoves = target.getLinkedMoves();
 				let lastMove = target.getLastMoveAbsolute();
-				let moveIndex = target.moves.indexOf(lastMove);
-				if (linkedMoves.includes(lastMove)) {
-					if (noEncore.includes(linkedMoves[0]) && noEncore.includes(linkedMoves[1])) {
-						// both moves are unencoreable
-						delete target.volatiles['encore'];
-						return false;
-					}
-					this.effectData.linked = linkedMoves;
-				} else if (!lastMove || this.getMove(lastMove).isZ || noEncore.includes(lastMove) || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
+				let linkedMoves = target.getLinkedMoves();
+				let moveIndex = lastMove ? target.moves.indexOf(target.lastMove) : -1;
+				if (linkedMoves.includes(lastMove) && noEncore.includes(linkedMoves[0]) && noEncore.includes(linkedMoves[1])) {
+					// both moves are ones which cannot be encored
+					delete target.volatiles['encore'];;
+					return false;
+				}
+				if (!target.lastMove || target.lastMove.isZ || noEncore.includes(target.lastMove.id) || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
 					// it failed
 					delete target.volatiles['encore'];
 					return false;
 				}
-				this.effectData.move = target.lastMove;
+				this.effectData.move = lastMove;
 				this.add('-start', target, 'Encore');
+				if (linkedMoves.includes(lastMove)) {
+					this.effectData.move = linkedMoves;
+				}
 				if (!this.willMove(target)) {
 					this.effectData.duration++;
 				}
 			},
 			onOverrideAction: function (pokemon, target, move) {
-				if (this.effectData.linked && !this.effectData.linked.includes(move.id)) return this.effectData.linked[1];
-				if (move.id !== this.effectData.move) return this.effectData.move;
+				if (!this.effectData.turnsActivated[this.turn]) {
+					// Initialize Encore effect for this turn
+					this.effectData.turnsActivated[this.turn] = 0;
+				} else if (this.effectData.turnsActivated[this.turn] >= (Array.isArray(this.effectData.move) ? this.effectData.move.length : 1)) {
+					// Finish Encore effect for this turn
+					return;
+				}
+				this.effectData.turnsActivated[this.turn]++;
+				if (!Array.isArray(this.effectData.move)) {
+					let nextAction = this.willMove(pokemon);
+					if (nextAction) this.queue.splice(this.queue.indexOf(nextAction), 1);
+					if (move.id !== this.effectData.move) return this.effectData.move;
+					return;
+				}
+
+				// Locked into a link
+				switch (this.effectData.turnsActivated[this.turn]) {
+				case 1: {
+					if (!this.willMove(pokemon)) {
+						for (const source of this.effectData.sources) {
+							let pseudoDecision = {choice: 'move', move: this.effectData.move[1], targetLoc: this.getTargetLoc(pokemon, source), pokemon: this.willMove(pokemon).pokemon, targetPosition: this.willMove(pokemon).targetPosition, targetSide: this.willMove(pokemon).targetSide};
+							this.queue.unshift(pseudoDecision);
+						}
+					}
+					if (this.effectData.move[0] !== move.id) return this.effectData.move[0];
+					return;
+				}
+
+				case 2:
+					if (this.effectData.move[1] !== move.id) return this.effectData.move[1];
+					return;
+				}
 			},
-            onOverrideAction: function (pokemon, target, move) {
-                if (!this.effectData.turnsActivated[this.turn]) {
-                    // Initialize Encore effect for this turn
-                    this.effectData.turnsActivated[this.turn] = 0;
-                } else if (this.effectData.turnsActivated[this.turn] >= (Array.isArray(this.effectData.move) ? this.effectData.move.length : 1)) {
-                    // Finish Encore effect for this turn
-                    return;
-                }
-                this.effectData.turnsActivated[this.turn]++;
-                if (!Array.isArray(this.effectData.move)) {
-                    let nextDecision = this.willMove(pokemon);
-                    if (nextDecision) this.queue.splice(this.queue.indexOf(nextDecision), 1);
-                    if (move.id !== this.effectData.move) return this.effectData.move;
-                    return;
-                }
- 
-                // Locked into a link
-                switch (this.effectData.turnsActivated[this.turn]) {
-                case 1: {
-                    if (!this.willMove(pokemon)) {
-                        let pseudoDecision = {choice: 'move', move: this.effectData.move[1], targetLoc: this.currentDecision.targetLoc, pokemon: this.currentDecision.pokemon, targetPosition: this.currentDecision.targetPosition, targetSide: this.currentDecision.targetSide};
-                        this.queue.unshift(pseudoDecision);
-                    }
-                    if (this.effectData.move[0] !== move.id) return this.effectData.move[0];
-                    return;
-                }
- 
-                case 2:
-                    if (this.effectData.move[1] !== move.id) return this.effectData.move[1];
-                    return;
-                }
-            },
 			onResidualOrder: 13,
 			onResidual: function (target) {
-				if (target.moves.indexOf(target.lastMove) >= 0 && target.moveSlots[target.moves.indexOf(target.lastMove)].pp <= 0) { // early termination if you run out of PP
-					delete target.volatiles.encore;
-					this.add('-end', target, 'Encore');
+				// early termination if you run out of PP
+				let lastMove = target.getLastMoveAbsolute();
+
+				let index = target.moves.indexOf(lastMove.id);
+				if (index === -1) return; // no last move
+
+				if (target.hasLinkedMove(lastMove.id)) {
+					// TODO: Check instead whether the last executed move was linked
+					if (target.moveSlots[0].pp <= 0 || target.moveSlots[1].pp <= 0) {
+						delete target.volatiles.encore;
+						this.add('-end', target, 'Encore');
+					}
+				} else {
+					if (target.moveSlots[index].pp <= 0) {
+						delete target.volatiles.encore;
+						this.add('-end', target, 'Encore');
+					}
 				}
 			},
 			onEnd: function (target) {
 				this.add('-end', target, 'Encore');
 			},
 			onDisableMove: function (pokemon) {
+				if (Array.isArray(this.effectData.move)) {
+					for (const moveSlot of pokemon.moveSlots) {
+						if (moveSlot.id !== this.effectData.move[0] && moveSlot.id !== this.effectData.move[1]) {
+							pokemon.disableMove(moveSlot.id);
+						}
+					}
+				}
 				if (!this.effectData.move || !pokemon.hasMove(this.effectData.move)) {
 					return;
 				}
 				for (const moveSlot of pokemon.moveSlots) {
-					if (this.effectData.linked && !this.effectData.linked.includes(moveSlot.id)) {
-						pokemon.disableMove(moveSlot.id);
-					} else if (moveSlot.id !== this.effectData.move) {
+					if (moveSlot.id !== this.effectData.move) {
 						pokemon.disableMove(moveSlot.id);
 					}
 				}
 			},
 		},
-	},*/
+	},
 	torment: {
 		inherit: true,
 		effect: {
