@@ -224,14 +224,14 @@ exports.BattleMovedex = {
 				if (target.hasLinkedMove(lastMove)) {
 					// TODO: Check instead whether the last executed move was linked
 					let linkedMoves = target.getLinkedMoves();
-					if (noEncore[linkedMoves[0]] || noEncore[linkedMoves[1]] || target.moveset[0].pp <= 0 || target.moveset[1].pp <= 0) {
+					if (noEncore[linkedMoves[0]] || noEncore[linkedMoves[1]] || target.moveSlots[0].pp <= 0 || target.moveSlots[1].pp <= 0) {
 						// it failed
 						delete target.volatiles['encore'];
 						return false;
 					}
 					this.effectData.move = linkedMoves;
 				} else {
-					if (noEncore[lastMove] || (target.moveset[moveIndex] && target.moveset[moveIndex].pp <= 0)) {
+					if (noEncore[lastMove] || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
 						// it failed
 						delete target.volatiles['encore'];
 						return false;
@@ -286,12 +286,12 @@ exports.BattleMovedex = {
 
 				if (target.hasLinkedMove(lastMove)) {
 					// TODO: Check instead whether the last executed move was linked
-					if (target.moveset[0].pp <= 0 || target.moveset[1].pp <= 0) {
+					if (target.moveSlots[0].pp <= 0 || target.moveSlots[1].pp <= 0) {
 						delete target.volatiles.encore;
 						this.add('-end', target, 'Encore');
 					}
 				} else {
-					if (target.moveset[index].pp <= 0) {
+					if (target.moveSlots[index].pp <= 0) {
 						delete target.volatiles.encore;
 						this.add('-end', target, 'Encore');
 					}
@@ -304,18 +304,18 @@ exports.BattleMovedex = {
 				if (!this.effectData.move) return; // ??
 				if (!Array.isArray(this.effectData.move)) {
 					if (!pokemon.hasMove(this.effectData.move)) return;
-					for (let i = 0; i < pokemon.moveset.length; i++) {
-						if (pokemon.moveset[i].id !== this.effectData.move) {
-							pokemon.disableMove(pokemon.moveset[i].id);
+					for (let i = 0; i < pokemon.moveSlots.length; i++) {
+						if (pokemon.moveSlots[i].id !== this.effectData.move) {
+							pokemon.disableMove(pokemon.moveSlots[i].id);
 						}
 					}
 				} else {
 					for (let i = 0; i < this.effectData.move.length; i++) {
 						if (!pokemon.hasMove(this.effectData.move[i])) return;
 					}
-					for (let i = this.effectData.move.length; i < pokemon.moveset.length; i++) {
-						if (this.effectData.move.indexOf(pokemon.moveset[i].id) >= 0) continue;
-						pokemon.disableMove(pokemon.moveset[i].id);
+					for (let i = this.effectData.move.length; i < pokemon.moveSlots.length; i++) {
+						if (this.effectData.move.indexOf(pokemon.moveSlots[i].id) >= 0) continue;
+						pokemon.disableMove(pokemon.moveSlots[i].id);
 					}
 				}
 			},
@@ -363,9 +363,9 @@ exports.BattleMovedex = {
 				if (!source || !effect) return;
 				if (effect.effectType === 'Move') {
 					let lastMove = source.getLastMoveAbsolute();
-					for (let i = 0; i < source.moveset.length; i++) {
-						if (source.moveset[i].id === lastMove) {
-							source.moveset[i].pp = 0;
+					for (let i = 0; i < source.moveSlots.length; i++) {
+						if (source.moveSlots[i].id === lastMove) {
+							source.moveSlots[i].pp = 0;
 							this.add('-activate', source, 'Grudge', this.getMove(lastMove).name);
 						}
 					}
