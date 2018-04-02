@@ -116,6 +116,14 @@ if (typeof demFeels.extendEmotes === 'function') {
 		'doge':'http://i.imgur.com/cUWrvHv.png',
 		'feelsweird':'https://cdn.betterttv.net/emote/5603731ce5fc5eff1de93229/2x',
 		'feelspika':'http://i.imgur.com/mBq3BAW.png',
+		'PogChamp':'http://i.imgur.com/DaamYkA.png',
+		'feelspuke':'http://i.imgur.com/npVJ6AP.jpg',
+		'feelssosad':'https://memegenerator.net/img/images/600x600/16688797/o-face-pepe.jpg',
+		'feelsinsane':'https://data.whicdn.com/images/165233603/large.jpg',
+		'ayok':'https://vignette.wikia.nocookie.net/dragonvale/images/3/39/Aok_pepe.jpg/revision/latest?cb=20160728071804',
+		'nolife':'http://i.imgur.com/VYkfmJJ.jpg',
+		'feelsya':'https://cdn.betterttv.net/emote/5678a310bf317838643c8188/2x',
+		'kirbysmile':'https://68.media.tumblr.com/tumblr_opjr1kUk7o1w4zcfto1_1494100136_cover.png',
 	});
 }
 
