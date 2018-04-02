@@ -264,65 +264,6 @@ exports.BattleMovedex = {
 				}
 			},
 		},
-		effect: {
-			duration: 3,
-			noCopy: true, // doesn't get copied by Z-Baton Pass
-			onStart: function (target) {
-				let noEncore = ['assist', 'copycat', 'encore', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'sketch', 'sleeptalk', 'struggle', 'transform'];
-				let lastMove = target.getLastMoveAbsolute();
-				let linkedMoves = target.getLinkedMoves();
-				let moveIndex = lastMove ? target.moves.indexOf(target.lastMove) : -1;
-				if (linkedMoves.includes(lastMove) && noEncore.includes(linkedMoves[0]) && noEncore.includes(linkedMoves[1])) {
-					// both moves are ones which cannot be encored
-					delete target.volatiles['encore'];;
-					return false;
-				}
-				if (!target.lastMove || target.lastMove.isZ || noEncore.includes(target.lastMove.id) || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
-					// it failed
-					delete target.volatiles['encore'];
-					return false;
-				}
-				this.effectData.move = lastMove;
-				this.add('-start', target, 'Encore');
-				if (linkedMoves.includes(lastMove)) {
-					this.effectData.move = linkedMoves;
-				}
-				if (!this.willMove(target)) {
-					this.effectData.duration++;
-				}
-			},
-			onOverrideAction: function (pokemon, target, move) {
-				if (Array.isArray(this.effectData.move) && this.effectData.move[0] !== move.id && this.effectData.move[1] !== move.id) return this.effectData.move[0];
-				if (move.id !== this.effectData.move) return this.effectData.move;
-			},
-			onResidualOrder: 13,
-			onResidual: function (target) {
-				if (target.moves.includes(this.effectData.move) && target.moveSlots[target.moves.indexOf(this.effectData.move)].pp <= 0) { // early termination if you run out of PP
-					delete target.volatiles.encore;
-					this.add('-end', target, 'Encore');
-				}
-			},
-			onEnd: function (target) {
-				this.add('-end', target, 'Encore');
-			},
-			onDisableMove: function (pokemon) {
-				if (Array.isArray(this.effectData.move)) {
-					for (const moveSlot of pokemon.moveSlots) {
-						if (moveSlot.id !== this.effectData.move[0] && moveSlot.id !== this.effectData.move[1]) {
-							pokemon.disableMove(moveSlot.id);
-						}
-					}
-				}
-				if (!this.effectData.move || !pokemon.hasMove(this.effectData.move)) {
-					return;
-				}
-				for (const moveSlot of pokemon.moveSlots) {
-					if (moveSlot.id !== this.effectData.move) {
-						pokemon.disableMove(moveSlot.id);
-					}
-				}
-			},
-		},
 	},
 	torment: {
 		inherit: true,
