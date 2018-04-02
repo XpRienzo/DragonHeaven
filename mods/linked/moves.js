@@ -209,7 +209,7 @@ exports.BattleMovedex = {
 			},
 		},
 	},
-	encore: {
+	/*encore: {
 		inherit: true,
 		effect: {
 			duration: 3,
@@ -241,6 +241,38 @@ exports.BattleMovedex = {
 				if (this.effectData.linked && !this.effectData.linked.includes(move.id)) return this.effectData.linked[1];
 				if (move.id !== this.effectData.move) return this.effectData.move;
 			},
+            onOverrideAction: function (pokemon, target, move) {
+                if (!this.effectData.turnsActivated[this.turn]) {
+                    // Initialize Encore effect for this turn
+                    this.effectData.turnsActivated[this.turn] = 0;
+                } else if (this.effectData.turnsActivated[this.turn] >= (Array.isArray(this.effectData.move) ? this.effectData.move.length : 1)) {
+                    // Finish Encore effect for this turn
+                    return;
+                }
+                this.effectData.turnsActivated[this.turn]++;
+                if (!Array.isArray(this.effectData.move)) {
+                    let nextDecision = this.willMove(pokemon);
+                    if (nextDecision) this.queue.splice(this.queue.indexOf(nextDecision), 1);
+                    if (move.id !== this.effectData.move) return this.effectData.move;
+                    return;
+                }
+ 
+                // Locked into a link
+                switch (this.effectData.turnsActivated[this.turn]) {
+                case 1: {
+                    if (!this.willMove(pokemon)) {
+                        let pseudoDecision = {choice: 'move', move: this.effectData.move[1], targetLoc: this.currentDecision.targetLoc, pokemon: this.currentDecision.pokemon, targetPosition: this.currentDecision.targetPosition, targetSide: this.currentDecision.targetSide};
+                        this.queue.unshift(pseudoDecision);
+                    }
+                    if (this.effectData.move[0] !== move.id) return this.effectData.move[0];
+                    return;
+                }
+ 
+                case 2:
+                    if (this.effectData.move[1] !== move.id) return this.effectData.move[1];
+                    return;
+                }
+            },
 			onResidualOrder: 13,
 			onResidual: function (target) {
 				if (target.moves.indexOf(target.lastMove) >= 0 && target.moveSlots[target.moves.indexOf(target.lastMove)].pp <= 0) { // early termination if you run out of PP
@@ -264,7 +296,7 @@ exports.BattleMovedex = {
 				}
 			},
 		},
-	},
+	},*/
 	torment: {
 		inherit: true,
 		effect: {
