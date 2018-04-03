@@ -13775,7 +13775,7 @@ auroritar: {
     },
 
 auroritarmega: {
-        num: 7500439,
+        num: 7500447,
         species: "Auroritar-Mega",
         baseSpecies: "Auroritar",
         forme: "Mega",
