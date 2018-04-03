@@ -20,7 +20,7 @@ class RandomSeasonalTeams extends RandomTeams {
 				nature:'Modest',
 			},
 			'UncleFlacco' : {
-				species: 'Shuckle', ability: 'Juice Drink', item: 'Binding Band', gender: 'M', 
+				species: 'Shuckle', ability: 'Immunity', item: 'Binding Band', gender: 'M', 
 				moves: ['defendorder', 'shoreup', 'stickyweb'],
 				signatureMove: "Stone Wrap",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
 				nature:'Bold',
