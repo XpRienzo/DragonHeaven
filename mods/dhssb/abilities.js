@@ -676,7 +676,7 @@ exports.BattleAbilities = {
 		id:'girlpower',
 		name:'Girl Power', 
 	},
-   'juicedrink': {
+   /*'juicedrink': {
 		shortDesc: "Immunity + Unaware",
 		onAnyModifyBoost: function (boosts, target) {
             let source = this.effectData.target;
@@ -706,5 +706,5 @@ exports.BattleAbilities = {
       },
 		id: "juicedrink",
 		name: "Juice Drink",
-	},
+	},*/
 };
