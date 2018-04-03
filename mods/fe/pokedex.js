@@ -13603,5 +13603,193 @@ abilities: {0: "Laser Beam"},
         heightm: 5.3,
         weightkg: 529.8,
     },
+	 trampoline: {
+        num: 7500439,
+        species: "Trampoline",
+        types: ["Electric", "Dark"], 
+        baseStats: {
+            hp: 102,
+            atk: 105,
+            def: 97,
+            spa: 107,
+            spd: 100,
+            spe: 67
+        },
+         abilities: {0: "Scarily Adorable"},
+    },
+    
+trampolinemega: {
+        num: 7500439,
+        species: "Trampoline-Mega",
+        baseSpecies: "Trampoline",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Electric", "Dark"], 
+        baseStats: {
+            hp: 102,
+            atk: 125,
+            def: 117,
+            spa: 157,
+            spd: 120,
+            spe: 57
+        },
+        abilities: {0: "Mold Breaker"},
+    }, 
+
+arcalie: {
+        num: 7500440,
+        species: "Arcalie",
+        types: ["Fire", "Dark"],
+        baseStats: {
+            hp: 87,
+            atk: 109,
+            def: 75,
+            spa: 104,
+            spd: 75,
+            spe: 110
+        },
+         abilities: {0: "Creepy"},
+    },
+
+stakeyestakataka: {
+        num: 7500441,
+        species: "Stakeye Stakataka",
+        types: ["Steel", "Ghost"],
+        baseStats: {
+            hp: 75,
+            atk: 123,
+            def: 143,
+            spa: 59,
+            spd: 83,
+            spe: 31
+        },
+         abilities: {0: "Beast Eye"},
+    },
+    
+stakeyemega: {
+        num: 7500441,
+        species: "Stakeye-Mega",
+        baseSpecies: "Stakeye Stakataka",
+        forme: "Mega",
+        formeLetter: "M",
+       types: ["Steel", "Ghost"],
+        baseStats: {
+            hp: 75,
+            atk: 133,
+            def: 193,
+            spa: 79,
+            spd: 133,
+            spe: 1
+        },
+         abilities: {0: "Magic Bounce"},
+    },
+
+lycanperiordusk: {
+        num: 7500442,
+        species: "Lycanperior-Dusk",
+        types: ["Rock", "Grass"],
+        baseStats: {
+            hp: 85,
+            atk: 106,
+            def: 90,
+            spa: 75,
+            spd: 90,
+            spe: 121
+        },
+         abilities: {0: "Lethal Leafage"},
+    },
+
+gigafini: {
+        num: 7500443,
+        species: "Giga Fini",
+        types: ["Rock", "Water"],
+        baseStats: {
+            hp: 97,
+            atk: 105,
+            def: 142,
+            spa: 77,
+            spd: 105,
+            spe: 55
+        },
+         abilities: {0: "Sandmist Surge"},
+    },
+
+stalossaka: {
+        num: 7500444,
+        species: "Stalossaka",
+        types: ["Steel", "Ghost"],
+        baseStats: {
+            hp: 83,
+            atk: 113,
+            def: 160,
+            spa: 76,
+            spd: 108,
+            spe: 24
+        },
+         abilities: {0: "Compact Boost"},
+    },
+
+Stakamise: {
+        num: 7500444,
+        species: "Stalossaka",
+        types: ["Steel", "Grass"],
+        baseStats: {
+            hp: 85,
+            atk: 136,
+            def: 155,
+            spa: 69,
+            spd: 110,
+            spe: 26
+        },
+         abilities: {0: "Metal Monster"},
+    },
+
+deoxysconfused : {
+        num: 7500446,
+        species: "Deoxys-Confused",
+        types: ["Psychic"],
+        baseStats: {
+            hp: 75,
+            atk: 130,
+            def: 105,
+            spa: 130,
+            spd: 105,
+            spe: 125
+        },
+         abilities: {0: "Pressure"},
+    },
+
+auroritar: {
+        num: 7500447,
+        species: "Auroritar",
+        types: ["Rock"],
+        baseStats: {
+            hp: 121,
+            atk: 115,
+            def: 101,
+            spa: 107,
+            spd: 106,
+            spe: 69
+        },
+         abilities: {0: "Meteor Shower"},
+    },
+
+auroritarmega: {
+        num: 7500439,
+        species: "Auroritar-Mega",
+        baseSpecies: "Auroritar",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Rock"],
+        baseStats: {
+            hp: 121,
+            atk: 145,
+            def: 141,
+            spa: 107,
+            spd: 106,
+            spe: 69
+        },
+        abilities: {0: "Meteor Shower"},
+    }, 
 	
 };
