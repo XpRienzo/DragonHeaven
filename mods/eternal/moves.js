@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 exports.BattleMovedex = {
 	"wrathofnature": {
@@ -1356,7 +1356,113 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		zMovePower: 140,
 		contestType: "Cool",
 	},
-	
+	"pinpointsmash": {
+		accuracy: 100,
+		basePower: 110,
+		category: "Physical",
+		desc: "Sets 3 layers of Spikes.",
+		shortDesc: "Sets 3 layers of Spikes.",
+		id: "pinpointsmash",
+		isViable: true,
+		name: "Pinpoint Smash",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onHit: function (target, source) {
+			target.side.addSideCondition('spikes', source);
+			target.side.addSideCondition('spikes', source);
+			target.side.addSideCondition('spikes', source);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Ice",
+		zMoveBoost: {def: 1},
+		contestType: "Cool",
+	},
+	"shadowbrambles": { 
+		accuracy: 75,
+		basePower: 100,
+		category: "Special",
+		desc: "Prevents the target from switching for four or five turns; seven turns if the user is holding Grip Claw. Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute. This effect is not stackable or reset by using this or another partial-trapping move.",
+		shortDesc: "Traps and damages the target for 4-5 turns.",
+		id: "magmastorm",
+		isViable: true,
+		name: "Shadow Brambles",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		volatileStatus: 'partiallytrapped',
+		secondary: false,
+		target: "normal",
+		type: "Ghost",
+		zMovePower: 180,
+		contestType: "Tough",
+	},
+"turbospin": {
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		desc: "If this move is successful and the user has not fainted, the effects of Leech Seed and partial-trapping moves end for the user, and all hazards are removed from the user's side of the field. Then switches out.",
+		shortDesc: "Frees user from hazards/partial trap/Leech Seed. User switches out.",
+		id: "turbospin",
+		isViable: true,
+		name: "Turbo Spin",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			onHit: function (pokemon) {
+				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
+					this.add('-end', pokemon, 'Leech Seed', '[from] move: Turbo Spin', '[of] ' + pokemon);
+				}
+				let sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+				for (const condition of sideConditions) {
+					if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+						this.add('-sideend', pokemon.side, this.getEffect(condition).name, '[from] move: Rapid Spin', '[of] ' + pokemon);
+					}
+				}
+				if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+					pokemon.removeVolatile('partiallytrapped');
+				}
+			},
+		},
+		selfSwitch: true,
+		secondary: false,
+		target: "normal",
+		type: "Fire",
+		zMovePower: 100,
+		contestType: "Cool",
+	},
+	"breakthrough": {
+		accuracy: 100,
+		basePower: 135,
+		category: "Special",
+		desc: "Fails unless the user is a Rock type. If this move is successful, the user's Rock type becomes typeless as long as it remains active.",
+		shortDesc: "User's Rock type becomes typeless; must be Rock.",
+		id: "breakthrough",
+		name: "Breakthrough",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMove: function (pokemon, target, move) {
+			if (pokemon.hasType('Rock')) return;
+			this.add('-fail', pokemon, 'move: Breakthrough');
+			return null;
+		},
+		self: {
+			onHit: function (pokemon) {
+				pokemon.setType(pokemon.getTypes(true).map(type => type === "Rock" ? "???" : type));
+				this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[from] move: Breakthrough');
+			},
+		},
+		recoil: [1, 3],
+		secondary: false,
+		target: "normal",
+		type: "Rock",
+		zMovePower: 200,
+		contestType: "Clever",
+	},
+
 	   /*"sundance": {
     num: 1001,
     accuracy: true,
@@ -1545,23 +1651,21 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 	/* 
 	Signature Move: Gear Overload |   |   | 20 BP | 20 PP | 100 Acc | "The user attacks it's foe using it's gears, the more charged it's gears are the more damage this move deals" | Hits 1 + X times, where X is the number of stat boosts the user has (à la Stored Power). If this move has hits 6 times or more, it replaces the user's ability with Steelworker before doing damage. If the move hits 11 times or more, it replaces the user's ability with Huge Power before doing damage. | Z Move - 160 BP Corkscrew Crash | Physical
 	Signature Move: Injection |   |   | 90 BP | 10 PP | 100 Acc | "The user bites it's prey and injects venom and electrifies it simmoultaneously" | Deals either Poison- or Electric-type damage, whichever is most effective. Either badly poisons, flinches, or paralyzes it's foe, 1/3 chance for each. | Z Move - 175 BP Acid Downpour | Physical
-	Signature Move: Shadow Brambles |   |   | 100 BP | 5 PP | 75 Acc | Traps the opponent in a dark orgy of brambles, dealing 1/8 of the opponent's max HP per turn for 4 to 5 turns (Magma Storm Clone) | Z-Move: 180 BP Never-Ending Nightmare | Ghost
 	Signature Move: Electrophage |   |   | 90 BP | 5 PP | 100 Acc | Latching onto the target, Joltik drains them of all potential energy, increasing its own in the process. Increases Joltik's critical hit ratio by 1, and ignores immunities. Heals by half of the damage done. | Z-Move: 175 BP Gigavolt Havoc | Physical
  Molten Iron Spout - Steel, Special, 130 BP, 24 PP, 100% Acc | Hits all adiacent oppos, independent 40% chance of flinching, burning and/or confusing them.
- Pinpoint Smash - Ice, Physical, 110 BP, 5 PP, 100% Accuracy | The user smashes through the ground with a large horn, causing a mountain of debris. | Sets 3 layers of Spikes. 
+
  Signature Move: Good Tidings |   |   | 10 PP | Chingling switches out, healing the switch-in for half of Chingling's max HP. | Z-Move: Fully heals switch-in
 
 	Swirling Punch - Psychic, Physical, 90 BP, 15 PP, 100% Acc | The user spirals in a mesmerizing fashion while charging at the target with its fist. Has a 20% chance of inducing sleep or confusion (à la Fire Fang). | Z-Move: 175 BP Shattered Psyche
-	Turbo Spin - Fire, Special, 70 BP, 15 PP, 100% Acc | The user cloaks itself in flame and spins rapidly. Behaves like Rapid Spin, and causes the user to switch out. | Z-Move: 140 BP Inferno Overdrive
+	
 	 Rainbow Burst | 60 BP | Fire | Special | 15 PP | The user calls a rainbow on the user's side of the field, this rainbow doubles the effect of secondary effects taking place (It's the same effect if you mix Water and Fire Pledge). If this rainbow is in the field, this attack has a 30% of chance of dropping target's special defense one level. | Z-Move: Inferno Overdrive 120 BP
 	Spore Burst - Dark, Special, 100 BP, 5 PP, 100% Accuracy (spread move) | The user releases a cloud of spores that darken the sky. Switches out turn 1, hits target turn 2, heals a team member for 50% damage dealt to the corresponding target. | Z-move: Black Hole Eclipse, 190 BP
 	Searing Screen - Fire, Other, -, 20 PP, - | Increase the power of physical and special attacks by 1,33% during 5 turns, but it can be used only during Sun. It lasts 8 if you use Light Clay. | Z-move: +1 Speed
 	Misdirection |  Dark |Physical   | 60 BP | 15 PP | 100 Acc | Throwing out a set of caltrops, Nuzleaf distracts the opponents and uses it as a chance to escape, but not before a cheap attack. Sets up a layer of Spikes, and then attacks the opponent. Switches out after attacking. | Z-Move: 120 BP Black Hole Eclipse
 	
-	Signature Move: Beauty Drain | Status | Water | 100% Acc | 10 PP | The user heals its HP by the same amount as the target's Special Defense stat (after modifiers). It also lowers target's Special Defense by one stage 
 Signature Move: Nuclear Pollen - Grass, Other, 5 PP | For 5 turns, all Pokémon on the field are resistant to normally super-effective types and weak to normally not-very-effective or ineffective types (as in Inverse Battles) | Z-Move: Resets negative stat boosts
 Signature Move: Phantasmal Break /   / Physical / 80 BP / 15 PP / 100 Acc / Damage dealt cannot be restored until switched out / Z-Move: 160 BP Never-Ending Nightmare
-Signature Move: Breakthrough - Rock, Special, 135 BP, 5 PP, 100% Acc | The user takes 1/3 recoil and loses its Rock typing for the rest of the battle. Can only be used if the user is Rock-type. | Z-Move: 200 BP Continental Crush
+
 Signature Move: Mineral Bath - Water, Other, 10 PP | If there are entry hazards on the user's side of the field, the user recovers 2/3 HP, and the hazards are removed. Otherwise, the user simply recovers 1/2 HP. | Z-Effect: +1 Defense
 Signature Move: Bounce Shield |  Psychic | Status   | 10 PP | Similar to protect but also deals exactly the damage it would take to the opponent attacking it | Z Move - Fully Heals the user
 Signature Move: Divine Luster |  Fairy | SPecial   | 15 PP | 90 BP | 100 Acc | If the attack is used on an foe, the attack will make damage and it'll make 1,5 times more damage, then it removes any negative status. If it targets user or an ally, it's heal 50% of max Health Points and will remove all negative stats
