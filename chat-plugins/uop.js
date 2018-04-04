@@ -60,8 +60,9 @@ exports.commands = {
         }
         if (color === "delete" && username in UOP.colors) delete UOP.colors[username];
         else UOP.colors[username] = color;
-        fs.writeFileSync(UOP.CONFIG_PATH + "/colors.json", JSON.stringify(UOP.colors));
+        fs.writeFileSync(UOP.CONFIG_PATH + "/colors.json", JSON.stringify(UOP.colors,null,4));
         csshelper.buildCustomCss();
+        return this.sendReply("Custom color updated.")
 	},
 	customcolorhelp: [
         "/customcolor [user], [color] - Sets a custom username color for the specified user. Requires ~",
