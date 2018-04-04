@@ -19,6 +19,7 @@ function load () {
 load();
 
 function updateColor() {
+    return;
     fs.writeFileSync(filepath, JSON.stringify(customColors));
 
     var newCss = '/* COLORS START */\n';
@@ -55,7 +56,7 @@ function generateCSS(name, color) {
 }
 
 exports.commands = {
-    customcolour: 'customcolor',
+    /*customcolour: 'customcolor',
     customcolor: function (target, room, user) {
         if (!this.can('forcewin')) return false;
         target = target.split(',');
@@ -79,29 +80,29 @@ exports.commands = {
     },
     customcolorhelp: ["Commands Include:",
                 "/customcolor [user], [hex] - Gives the user a custom color of [hex]. Requires: ~",
-                "/customcolor [user], delete - Deletes a user's custom color. Requires: ~"],
+                "/customcolor [user], delete - Deletes a user's custom color. Requires: ~"],*/
 
 
 
 
 
-        symbolcolor: function (target, room, user) {
-                if (!this.can('eval'));
+    symbolcolor: function (target, room, user) {
+            if (!this.can('eval'));
 
-                var args = target.split(',');
-                if (args.length < 3) return this.parse('/help symbolcolor');
-                var username = toId(args.shift());
-                var color = 'color:' + args.shift().trim() + ';';
-                selectors = '\n\n' + '  #' + toId(args.shift()) + '-userlist-user-' + username +   '  em.group';
-                args.forEach(function (room) {
-                        selectors += ', #' + toId(room) + '-userlist-user-'+ username + '  em.group';
-                });
-                selectors += ' { \n' + '    ' + color +  '\n  }';
+            var args = target.split(',');
+            if (args.length < 3) return this.parse('/help symbolcolor');
+            var username = toId(args.shift());
+            var color = 'color:' + args.shift().trim() + ';';
+            selectors = '\n\n' + '  #' + toId(args.shift()) + '-userlist-user-' + username +   '  em.group';
+            args.forEach(function (room) {
+                    selectors += ', #' + toId(room) + '-userlist-user-'+ username + '  em.group';
+            });
+            selectors += ' { \n' + '    ' + color +  '\n  }';
 
-                this.privateModCommand("(" + user.name + " has set an symbol color to " + username + ")");
-                writeIconCSS();
-        },
-        symbolcolorhelp: ["/symbolcolor [user], [color hex], [room 1], etc. - Sets an symbol color to a user in chosen rooms."],
+            this.privateModCommand("(" + user.name + " has set an symbol color to " + username + ")");
+            writeIconCSS();
+    },
+    symbolcolorhelp: ["/symbolcolor [user], [color hex], [room 1], etc. - Sets an symbol color to a user in chosen rooms."],
 
     colorpreview: function (target, room, user) {
         if (!this.canBroadcast()) return;
