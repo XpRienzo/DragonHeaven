@@ -15,7 +15,7 @@ let fs = require('fs');
 UOP.CONFIG_PATH = "./config/"
 UOP.usercolorstring = function (user) {
     let color = UOP.colors[user];
-    return `li[id*="${user}"] strong em,[id*="${user}"] strong,[id*="${user}"] span {\n    color: ${color} !important;\n}\n.chat.chatmessage-${user} strong {\n    color: ${color} !important;\n}\n`
+    return `li[id$="-${user}"] strong em,[id$="-${user}"] strong,[id$="-${user}"] span {\n    color: ${color} !important;\n}\n.chat.chatmessage-${user} strong {\n    color: ${color} !important;\n}\n`
 }
 
 UOP.colors = JSON.parse(fs.readFileSync(UOP.CONFIG_PATH + "colors.json", "utf8"));
