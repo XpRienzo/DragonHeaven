@@ -49,7 +49,7 @@ UOP.isColor = function(color) {
 exports.commands = {
     customcolour: 'customcolor',
     customcolor: function (target, room, user) {
-		if (!this.can('addhtml')) return false;
+		if (!this.can('hotpatch')) return false;
 		if (!target || target.indexOf(',') < 0) return this.parse('/help customcolor');
 
 		let parts = target.split(',');
