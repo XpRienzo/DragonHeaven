@@ -13791,5 +13791,1451 @@ auroritarmega: {
         },
         abilities: {0: "Meteor Shower"},
     }, 
+ necrynxcutewig: {
+		num: 7500448,
+		species: "Necrynx-Cute-Wig",
+		types: ["Ice", "Psychic"],
+		baseStats: {
+			hp: 90,
+			atk: 81,
+			def: 72,
+			spa: 155,
+			spd: 111,
+			spe: 98
+		},
+		abilities: {
+			0: "Prism Skin"
+		},
+	},
+	necrynxultra: {
+		num: 7500448,
+		species: "Necrynx-Ultra",
+		baseSpecies: "Necrynx-Cute-Wig",
+		forme: "Ultra",
+		formeLetter: "U",
+		types: ["Ice", "Dragon"],
+		baseStats: { // 90  165 81  165 81  150
+			hp: 90,
+			atk: 165,
+			def: 81,
+			spa: 165,
+			spd: 81,
+			spe: 150,
+		},
+		abilities: {
+			0: "Neuroforce"
+		},
+	},
+	hippally: {
+		num: 7500449,
+		species: "Hippally",
+		types: ["Ground", "Normal"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71,
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyfire: {
+		num: 7500450,
+		species: "Hippally-Fire",
+		baseSpecies: "Hippally",
+		forme: "Fire",
+		formeLetter: "F",
+		types: ["Ground", "Fire"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallywater: {
+		num: 7500450,
+		species: "Hippally-Water",
+		baseSpecies: "Hippally",
+		forme: "Water",
+		formeLetter: "W",
+		types: ["Ground", "Water"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyelectric: {
+		num: 7500450,
+		species: "Hippally-Electric",
+		baseSpecies: "Hippally",
+		forme: "Electric",
+		formeLetter: "E",
+		types: ["Ground", "Electric"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallygrass: {
+		num: 7500450,
+		species: "Hippally-Grass",
+		baseSpecies: "Hippally",
+		forme: "Grass",
+		formeLetter: "G",
+		types: ["Ground", "Grass"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyice: {
+		num: 7500450,
+		species: "Hippally-Ice",
+		baseSpecies: "Hippally",
+		forme: "Ice",
+		formeLetter: "I",
+		types: ["Ground", "Ice"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyfighting: {
+		num: 7500450,
+		species: "Hippally-Fighting",
+		baseSpecies: "Hippally",
+		forme: "Fighting",
+		formeLetter: "F",
+		types: ["Ground", "Fighting"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyground: {
+		num: 7500450,
+		species: "Hippally-Ground",
+		baseSpecies: "Hippally",
+		forme: "Fighting",
+		formeLetter: "F",
+		types: ["Ground"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallypoison: {
+		num: 7500450,
+		species: "Hippally-Poison",
+		baseSpecies: "Hippally",
+		forme: "Poison",
+		formeLetter: "P",
+		types: ["Ground", "Poison"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyflying: {
+		num: 7500450,
+		species: "Hippally-Flying",
+		baseSpecies: "Hippally",
+		forme: "Flying",
+		formeLetter: "F",
+		types: ["Ground", "Flying"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallypsychic: {
+		num: 7500450,
+		species: "Hippally-Psychic",
+		baseSpecies: "Hippally",
+		forme: "Psychic",
+		formeLetter: "P",
+		types: ["Ground", "Psychic"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallybug: {
+		num: 7500450,
+		species: "Hippally-Bug",
+		baseSpecies: "Hippally",
+		forme: "Bug",
+		formeLetter: "B",
+		types: ["Ground", "Bug"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyrock: {
+		num: 7500450,
+		species: "Hippally-Rock",
+		baseSpecies: "Hippally",
+		forme: "Rock",
+		formeLetter: "R",
+		types: ["Ground", "Rock"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyghost: {
+		num: 7500450,
+		species: "Hippally-Ghost",
+		baseSpecies: "Hippally",
+		forme: "Ghost",
+		formeLetter: "G",
+		types: ["Ground", "Ghost"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallydragon: {
+		num: 7500450,
+		species: "Hippally-Dragon",
+		baseSpecies: "Hippally",
+		forme: "Dragon",
+		formeLetter: "D",
+		types: ["Ground", "Dragon"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallydark: {
+		num: 7500450,
+		species: "Hippally-Dark",
+		baseSpecies: "Hippally",
+		forme: "Dark",
+		formeLetter: "D",
+		types: ["Ground", "Dark"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallysteel: {
+		num: 7500450,
+		species: "Hippally-Psychic",
+		baseSpecies: "Hippally",
+		forme: "Psychic",
+		formeLetter: "P",
+		types: ["Ground", "Psychic"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	hippallyfairy: {
+		num: 7500450,
+		species: "Hippally-Fairy",
+		baseSpecies: "Hippally",
+		forme: "Fairy",
+		formeLetter: "F",
+		types: ["Ground", "Fairy"],
+		baseStats: {
+			hp: 101,
+			atk: 123,
+			def: 106,
+			spa: 81,
+			spd: 103,
+			spe: 71
+		},
+		abilities: {
+			0: "Effect Setter"
+		},
+	},
+	necroquaduskbubble: {
+		num: 7500451,
+		species: "Necroqua-Dusk-Bubble",
+		types: ["Steel", "Water"],
+		baseStats: {
+			hp: 102,
+			atk: 120,
+			def: 109,
+			spa: 81,
+			spd: 125,
+			spe: 69
+		},
+		abilities: {
+			0: "Black Hole"
+		},
+	},
+	necrynxultra: {
+		num: 7500451,
+		species: "Necroqua-Ultra",
+		baseSpecies: "Necroqua-Dusk-Bubble",
+		forme: "Ultra",
+		formeLetter: "U",
+		types: ["Steel", "Dragon"],
+		baseStats: {
+			hp: 102,
+			atk: 130,
+			def: 95,
+			spa: 130,
+			spd: 95,
+			spe: 121,
+		},
+		abilities: {
+			0: "Neuroforce"
+		},
+	},
+	poize: {
+		num: 7500452,
+		species: "Poize",
+		types: ["Electric", "Poison"],
+		baseStats: {
+			hp: 83,
+			atk: 111,
+			def: 93,
+			spa: 116,
+			spd: 83,
+			spe: 101
+		},
+		abilities: {
+			0: "Terabeast"
+		},
+	},
+	magnettanorth: {
+		num: 7500453,
+		species: "Magnetta-North",
+		types: ["Steel", "Fighting"],
+		baseStats: {
+			hp: 85,
+			atk: 75,
+			def: 96,
+			spa: 145,
+			spd: 118,
+			spe: 90,
+		},
+		abilities: {
+			0: "Graceful Analyst"
+		},
+	},
+	magnettasouth: {
+		num: 7500453,
+		species: "Magnetta-South",
+		baseSpecies: "Magnetta-North",
+		forme: "South",
+		formeLetter: "S",
+		types: ["Steel", "Fighting"],
+		baseStats: {
+			hp: 85,
+			atk: 145,
+			def: 90,
+			spa: 73,
+			spd: 96,
+			spe: 118,
+		},
+		abilities: {
+			0: "Graceful Analyst"
+		},
+	},
+	kromork: {
+		num: 7500454,
+		species: "Kromork",
+		types: ["Electric", "Ground"],
+		baseStats: {
+			hp: 80,
+			atk: 115,
+			def: 115,
+			spa: 101,
+			spd: 101,
+			spe: 80,
+		},
+		abilities: {
+			0: "Tera Armor"
+		},
+	},
+	watafak: {
+		num: 7500455,
+		species: "Watafak",
+		types: ["Steel", "Psychic"],
+		baseStats: {
+			hp: 145,
+			atk: 102,
+			def: 134,
+			spa: 43,
+			spd: 79,
+			spe: 23
+		},
+		abilities: {
+			0: "Sadistic"
+		},
+	},
+	necrozeraindawndisguise: {
+		num: 7500456,
+		species: "Necrozerain-Dawn-Disguise",
+		types: ["Bug", "Ghost"],
+		baseStats: { // 83  86  85  148 104 98
+			hp: 83,
+			atk: 86,
+			def: 85,
+			spa: 148,
+			spd: 104,
+			spe: 98,
+		},
+		abilities: {
+			0: "Fearmonger"
+		},
+	},
+	necrozrainultra: {
+		num: 7500456,
+		species: "Necrozerain-Ultra",
+		baseSpecies: "Necrozerain-Dawn-Disguise",
+		forme: "Ultra",
+		formeLetter: "U",
+		types: ["Bug", "Dragon"],
+		baseStats: { //83  158 74  158 74  150 697
+			hp: 83,
+			atk: 158,
+			def: 74,
+			spa: 158,
+			spd: 74,
+			spe: 150,
+		},
+		abilities: {
+			0: "Neuroforce"
+		},
+	},
+	quagsirom: {
+		num: 7500457,
+		species: "Quagsirom",
+		types: ["Water", "Electric"],
+		baseStats: { // 117 117 102 92  102 62  592
+			hp: 117,
+			atk: 117,
+			def: 102,
+			spa: 92,
+			spd: 102,
+			spe: 62,
+		},
+		abilities: {
+			0: "Unamazed"
+		},
+	},
+	bunny: {
+		num: 7500458,
+		species: "Bunny",
+		types: ["Dragon", "Normal"],
+		baseStats: {
+			hp: 70,
+			atk: 85,
+			def: 70,
+			spa: 60,
+			spd: 70,
+			spe: 101,
+		},
+		abilities: {
+			0: "What Does This Do?"
+		},
+	},
+	kingrat: {
+		num: 7500459,
+		species: "King Rat",
+		types: ["Normal"],
+		baseStats: {
+			hp: 113,
+			atk: 131,
+			def: 90,
+			spa: 83,
+			spd: 78,
+			spe: 109,
+		},
+		abilities: {
+			0: "Power Saver"
+		},
+	},
+	gamera: {
+		num: 7500460,
+		species: "Gamera",
+		types: ["Water", "Dark"],
+		baseStats: {
+			hp: 99,
+			atk: 118,
+			def: 115,
+			spa: 100,
+			spd: 112,
+			spe: 79,
+		},
+		abilities: {
+			0: "Underwater Screen"
+		},
+	},
+	gameramegax: {
+		num: 7500460,
+		species: "Gamera-Mega-X",
+		baseSpecies: "Gamera",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Water", "Dark"],
+		baseStats: {
+			hp: 99,
+			atk: 148,
+			def: 155,
+			spa: 100,
+			spd: 132,
+			spe: 89,
+		},
+		abilities: {
+			0: "Sand Stream"
+		},
+	},
+	gameramegay: {
+		num: 7500460,
+		species: "Gamera-Mega-Y",
+		baseSpecies: "Gamera",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Water", "Dark"],
+		baseStats: {
+			hp: 99,
+			atk: 138,
+			def: 135,
+			spa: 150,
+			spd: 122,
+			spe: 79,
+		},
+		abilities: {
+			0: "Mega Launcher"
+		},
+	},
+	sandslashprime: {
+		num: 7500461,
+		species: "Sandslash-Prime",
+		types: ["Ground", "Ice"],
+		baseStats: {
+			hp: 85,
+			atk: 110,
+			def: 125,
+			spa: 45,
+			spd: 70,
+			spe: 75,
+		},
+		abilities: {
+			0: "Mountain Climber"
+		},
+	},
+	suiceon: {
+		num: 7500462,
+		species: "Suiceon",
+		types: ["Water"],
+		baseStats: {
+			hp: 125,
+			atk: 75,
+			def: 94,
+			spa: 100,
+			spd: 112,
+			spe: 86,
+		},
+		abilities: {
+			0: "Monarch of the Rain"
+		},
+	},
+	raikeon: {
+		num: 7500463,
+		species: "Raikeon",
+		types: ["Electric"],
+		baseStats: {
+			hp: 93,
+			atk: 85,
+			def: 75,
+			spa: 112,
+			spd: 100,
+			spe: 125,
+		},
+		abilities: {
+			0: "Duke of the Lightning"
+		},
+	},
+	enteon: {
+		num: 7500464,
+		species: "Enteon",
+		types: ["Fire"],
+		baseStats: {
+			hp: 93,
+			atk: 125,
+			def: 75,
+			spa: 100,
+			spd: 112,
+			spe: 85,
+		},
+		abilities: {
+			0: "Emperor of the Fire"
+		},
+	},
+	vilossom: {
+		num: 7500465,
+		species: "Vilossom",
+		types: ["Poison", "Grass"],
+		baseStats: {
+			hp: 90,
+			atk: 95,
+			def: 105,
+			spa: 115,
+			spd: 110,
+			spe: 65,
+		},
+		abilities: {
+			0: "Chlorophyll"
+		},
+	},
+	gholemisealola: {
+		num: 7500466,
+		species: "Gholemise-Alola",
+		types: ["Electric", "Grass"],
+		baseStats: {
+			hp: 85,
+			atk: 135,
+			def: 125,
+			spa: 70,
+			spd: 87,
+			spe: 42,
+		},
+		abilities: {
+			0: "Overloaded Helm"
+		},
+	},
+	tallsteelegg: {
+		num: 7500467,
+		species: "Tall Steel Egg",
+		types: ["Dragon", "Steel"],
+		baseStats: {
+			hp: 106,
+			atk: 103,
+			def: 104,
+			spa: 116,
+			spd: 108,
+			spe: 53,
+		},
+		abilities: {
+			0: "Farmer's Delight"
+		},
+	},
+	zerpuff: {
+		num: 7500468,
+		species: "Zerpuff",
+		types: ["Electric", "Fairy"],
+		baseStats: {
+			hp: 85,
+			atk: 116,
+			def: 80,
+			spa: 93,
+			spd: 77,
+			spe: 127,
+		},
+		abilities: {
+			0: "Lightening Lightning"
+		},
+	},
+	lycakingdusk: {
+		num: 7500469,
+		species: "Lycaking-Dusk",
+		types: ["Rock", "Ground"],
+		baseStats: {
+			hp: 88,
+			atk: 119,
+			def: 81,
+			spa: 80,
+			spd: 80,
+			spe: 107,
+		},
+		abilities: {
+			0: "Unrivaled Claws"
+		},
+	},
+	tornadelnaga: {
+		num: 7500470,
+		species: "Tornadel-Naga",
+		types: ["Flying", "Poison"],
+		baseStats: {
+			hp: 83,
+			atk: 89,
+			def: 79,
+			spa: 127,
+			spd: 83,
+			spe: 127,
+		},
+		abilities: {
+			0: "Ouroboros"
+		},
+	},
+	necropurugly: {
+		num: 7500471,
+		species: "Necropur-Ugly",
+		types: ["Steel", "Normal"],
+		baseStats: {
+			hp: 84,
+			atk: 139,
+			def: 109,
+			spa: 88,
+			spd: 84,
+			spe: 100,
+		},
+		abilities: {
+			0: "Braveheart"
+		},
+	},
+	necropurbeautiful: {
+		num: 7500471,
+		species: "Necropur-Beautiful",
+		baseSpecies: "Necropur-Ugly",
+		forme: "Beautiful",
+		formeLetter: "B",
+		types: ["Steel", "Dragon"],
+		baseStats: {
+			hp: 84,
+			atk: 149,
+			def: 79,
+			spa: 149,
+			spd: 79,
+			spe: 152,
+		},
+		abilities: {
+			0: "Neuroforce"
+		},
+	},
+	flyorusguard: {
+		num: 7500472,
+		species: "Flyorus Guard",
+		types: ["Ground", "Dragon"],
+		baseStats: {
+			hp: 84,
+			atk: 122,
+			def: 105,
+			spa: 92,
+			spd: 80,
+			spe: 115,
+		},
+		abilities: {
+			0: "Guard's Shield"
+		},
+	},
+	lamparadenoche: {
+		num: 7500473,
+		species: "Lampara-De-Noche",
+		types: ["Water", "Psychic"],
+		baseStats: {
+			hp: 113,
+			atk: 89,
+			def: 103,
+			spa: 119,
+			spd: 113,
+			spe: 73,
+		},
+		abilities: {
+			0: "Dark Light"
+		},
+	},
+	lamparadelava: {
+		num: 7500473,
+		species: "Lampara-De-Lava",
+		baseSpecies: "Lampara-De-Noche",
+		forme: "Ultra",
+		formeLetter: "U",
+		types: ["Water", "Dragon"],
+		baseStats: {
+			hp: 113,
+			atk: 129,
+			def: 83,
+			spa: 129,
+			spd: 83,
+			spe: 125
+		},
+		abilities: {
+			0: "Neuroforce"
+		},
+	},
+	balloon: {
+		num: 7500474,
+		species: "Balloon",
+		types: ["Ghost", "Fire"],
+		baseStats: {
+			hp: 101,
+			atk: 103,
+			def: 68,
+			spa: 120,
+			spd: 66,
+			spe: 113,
+		},
+		abilities: {
+			0: "Hot Air Balloon"
+		},
+	},
+	tyrannosaurus: {
+		num: 7500475,
+		species: "Tyrannosaurus",
+		types: ["Grass", "Rock"],
+		baseStats: {
+			hp: 100,
+			atk: 118,
+			def: 106,
+			spa: 107,
+			spd: 110,
+			spe: 80,
+		},
+		abilities: {
+			0: "Ancient Foliage"
+		},
+	},
+	tyrannosaurusmegax: {
+		num: 7500475,
+		species: "Tyrannosaurus-Mega-X",
+		baseSpecies: "Tyrannosaurus",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Grass", "Rock"],
+		baseStats: {
+			hp: 100,
+			atk: 138,
+			def: 146,
+			spa: 127,
+			spd: 130,
+			spe: 80
+		},
+		abilities: {
+			0: "Thick Fat"
+		},
+	},
+	tyrannosaurusmegay: {
+		num: 7500475,
+		species: "Tyrannosaurus-Mega-Y",
+		baseSpecies: "Tyrannosaurus",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Grass", "Rock"],
+		baseStats: {
+			hp: 100,
+			atk: 148,
+			def: 146,
+			spa: 107,
+			spd: 130,
+			spe: 90,
+		},
+		abilities: {
+			0: "Sand Stream"
+		},
+	},
+	espeord: {
+		num: 7500476,
+		species: "Espeord",
+		types: ["Psychic", "Water"],
+		baseStats: {
+			hp: 127,
+			atk: 87,
+			def: 62,
+			spa: 120,
+			spd: 80,
+			spe: 95,
+		},
+		abilities: {
+			0: "Synchro Veil"
+		},
+	},
+	glacord: {
+		num: 7500477,
+		species: "Glacord",
+		types: ["Ice", "Water"],
+		baseStats: {
+			hp: 127,
+			atk: 85,
+			def: 87,
+			spa: 120,
+			spd: 80,
+			spe: 72,
+		},
+		abilities: {
+			0: "Hail Veil"
+		},
+	},
+	hypango: {
+		num: 7500478,
+		species: "Hypango",
+		types: ["Psychic", "Fighting"],
+		baseStats: {
+			hp: 100,
+			atk: 108,
+			def: 84,
+			spa: 81,
+			spd: 103,
+			spe: 72,
+		},
+		abilities: {
+			0: "Sensei"
+		},
+	},
+	scizion: {
+		num: 7500479,
+		species: "Scizion",
+		types: ["Bug", "Poison"],
+		baseStats: {
+			hp: 80,
+			atk: 120,
+			def: 115,
+			spa: 67,
+			spd: 87,
+			spe: 90
+		},
+		abilities: {
+			0: "Prodigy"
+		},
+	},
+	scizionmega: {
+		num: 7500479,
+		species: "Scizion-Mega",
+		baseSpecies: "Scizion",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Bug", "Poison"],
+		baseStats: {
+			hp: 80,
+			atk: 140,
+			def: 155,
+			spa: 77,
+			spd: 107,
+			spe: 100,
+		},
+		abilities: {
+			0: "Technician"
+		},
+	},
+	fluorine: {
+		num: 7500480,
+		species: "Fluorine",
+		types: ["Fairy", "Normal"],
+		baseStats: {
+			hp: 100,
+			atk: 72,
+			def: 87,
+			spa: 96,
+			spd: 130,
+			spe: 72,
+		},
+		abilities: {
+			0: "Titanium Toothpaste"
+		},
+	},
+	fluorinemega: {
+		num: 7500480,
+		species: "Fluorine-Mega",
+		baseSpecies: "Fluorine",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Fairy"],
+		baseStats: {
+			hp: 100,
+			atk: 72,
+			def: 127,
+			spa: 116,
+			spd: 170,
+			spe: 72,
+		},
+		abilities: {
+			0: "Healer"
+		},
+	},
+	wallray: {
+		num: 7500481,
+		species: "Wallray",
+		types: ["Ice", "Electric"],
+		baseStats: {
+			hp: 105,
+			atk: 110,
+			def: 94,
+			spa: 105,
+			spd: 94,
+			spe: 77,
+		},
+		abilities: {
+			0: "Too Thick"
+		},
+	},
+	persianprime: {
+		num: 7500482,
+		species: "Persian-Prime",
+		types: ["Normal", "Dark"],
+		baseStats: {
+			hp: 75,
+			atk: 75,
+			def: 70,
+			spa: 80,
+			spd: 75,
+			spe: 125,
+		},
+		abilities: {
+			0: "Tech Fur"
+		},
+	},
+	octapex: {
+		num: 7500483,
+		species: "Octapex",
+		types: ["Water", "Poison"],
+		baseStats: {
+			hp: 72,
+			atk: 94,
+			def: 123,
+			spa: 89,
+			spd: 118,
+			spe: 50,
+		},
+		abilities: {
+			0: "Veteran"
+		},
+	},
+	gooo: {
+		num: 7500484,
+		species: "Goo-o",
+		types: ["Dragon"],
+		baseStats: {
+			hp: 92,
+			atk: 115,
+			def: 107,
+			spa: 115,
+			spd: 137,
+			spe: 92
+		},
+		abilities: {
+			0: "Sound Soul"
+		},
+	},
+	noivian: {
+		num: 7500485,
+		species: "Noivian",
+		types: ["Flying", "Dragon"],
+		baseStats: {
+			hp: 90,
+			atk: 80,
+			def: 95,
+			spa: 90,
+			spd: 102,
+			spe: 120,
+		},
+		abilities: {
+			0: "Phase Through"
+		},
+	},
+	novianmega: {
+		num: 7500485,
+		species: "Noivian-Mega",
+		baseSpecies: "Noivian",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Flying", "Fairy"],
+		baseStats: {
+			hp: 90,
+			atk: 120,
+			def: 115,
+			spa: 130,
+			spd: 102,
+			spe: 120,
+		},
+		abilities: {
+			0: "Pixilate"
+		},
+	},
+	cruski: {
+		num: 7500486,
+		species: "Cruski",
+		types: ["Steel", "Bug"],
+		baseStats: {
+			hp: 73,
+			atk: 102,
+			def: 118,
+			spa: 82,
+			spd: 91,
+			spe: 70,
+		},
+		abilities: {
+			0: "Locked Shell"
+		},
+	},
+	periurora: {
+		num: 7500487,
+		species: "Periurora",
+		types: ["Ice", "Rock"],
+		baseStats: {
+			hp: 129,
+			atk: 118,
+			def: 111,
+			spa: 87,
+			spd: 83,
+			spe: 59,
+		},
+		abilities: {
+			0: "Christmas Parade"
+		},
+	},
+	apouprobo: {
+		num: 7500488,
+		species: "Apou Probo",
+		types: ["Steel", "Fairy"],
+		baseStats: {
+			hp: 85,
+			atk: 85,
+			def: 115,
+			spa: 105,
+			spd: 112,
+			spe: 85,
+		},
+		abilities: {
+			0: "Magnetic Surge"
+		},
+	},
+	shedigigas: {
+		num: 7500489,
+		species: "Shedigigas",
+		types: ["Bug", "Normal"],
+		baseStats: {
+			hp: 75,
+			atk: 140,
+			def: 77,
+			spa: 55,
+			spd: 75,
+			spe: 70,
+		},
+		abilities: {
+			0: "Temporary Guard"
+		},
+	},
+	chazmaegg: {
+		num: 7500490,
+		species: "Chazma-Egg",
+		types: ["Normal", "Ghost"],
+		baseStats: {
+			hp: 193,
+			atk: 59,
+			def: 57,
+			spa: 96,
+			spd: 136,
+			spe: 63,
+		},
+		abilities: {
+			0: "Healthy Meal"
+		},
+	},
+	chazmahatched: {
+		num: 7500490,
+		species: "Chazma-Hatched",
+		baseSpecies: "Chazma",
+		forme: "Hatched",
+		formeLetter: "H",
+		types: ["Normal", "Dragon"],
+		baseStats: {
+			hp: 193,
+			atk: 106,
+			def: 106,
+			spa: 106,
+			spd: 106,
+			spe: 115,
+		},
+		abilities: {
+			0: "Neuroforce"
+		},
+	},
+	smolitizer: {
+		num: 7500491,
+		species: "Smolitizer",
+		types: ["Ice", "Steel"],
+		baseStats: {
+			hp: 118,
+			atk: 148,
+			def: 103,
+			spa: 86,
+			spd: 84,
+			spe: 63,
+		},
+		abilities: {
+			0: "Christmas Spirit"
+		},
+	},
+	smolitizerultra: {
+		num: 7500491,
+		species: "Smolitizer-Ultra",
+		baseSpecies: "Smolitizer",
+		forme: "Ultra",
+		formeLetter: "U",
+		types: ["Ice", "Dragon"],
+		baseStats: {
+			hp: 118,
+			atk: 158,
+			def: 73,
+			spa: 158,
+			spd: 73,
+			spe: 115,
+		},
+		abilities: {
+			0: "Neuroforce"
+		},
+	},
+	noirtic: {
+		num: 7500492,
+		species: "Noirtic",
+		types: ["Ghost", "Flying"],
+		baseStats: {
+			hp: 93,
+			atk: 95,
+			def: 125,
+			spa: 85,
+			spd: 145,
+			spe: 76,
+		},
+		abilities: {
+			0: "Pressure"
+		},
+	},
+	casserole: {
+		num: 7500493,
+		species: "Casserole",
+		types: ["Flying", "Normal"],
+		baseStats: {
+			hp: 87,
+			atk: 122,
+			def: 72,
+			spa: 103,
+			spd: 67,
+			spe: 127,
+		},
+		abilities: {
+			0: "Scrumptious"
+		},
+	},
+	blazel: {
+		num: 7500494,
+		species: "Blazel",
+		types: ["Fire", "Water"],
+		baseStats: {
+			hp: 92,
+			atk: 122,
+			def: 72,
+			spa: 107,
+			spd: 70,
+			spe: 107,
+		},
+		abilities: {
+			0: "Heat Seeker"
+		},
+	},
+	blazelmega: {
+		num: 7500494,
+		species: "Blazel-Mega",
+		baseSpecies: "Pokemon",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Fire", "Water"],
+		baseStats: {
+			hp: 92,
+			atk: 162,
+			def: 82,
+			spa: 127,
+			spd: 80,
+			spe: 127,
+		},
+		abilities: {
+			0: "Speed Boost"
+		},
+	},
+	funsparret: {
+		num: 7500495,
+		species: "Funsparret",
+		types: ["Normal"],
+		baseStats: {
+			hp: 102,
+			atk: 83,
+			def: 77,
+			spa: 65,
+			spd: 70,
+			spe: 77,
+		},
+		abilities: {
+			0: "Effective Strategy"
+		},
+	},
+	claytar: {
+		num: 7500496,
+		species: "Claytar",
+		types: ["Ground", "Dark"],
+		baseStats: {
+			hp: 100,
+			atk: 102,
+			def: 127,
+			spa: 82,
+			spd: 110,
+			spe: 68,
+		},
+		abilities: {
+			0: "Floating Grounds"
+		},
+	},
+	claytarmega: {
+		num: 7500496,
+		species: "Claytar-Mega",
+		baseSpecies: "Claytar",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Ground", "Dark"],
+		baseStats: {
+			hp: 100,
+			atk: 132,
+			def: 167,
+			spa: 82,
+			spd: 130,
+			spe: 78,
+		},
+		abilities: {
+			0: "Sand Stream"
+		},
+	},
+	komally: {
+		num: 7500497,
+		species: "Komally",
+		types: ["Normal"],
+		baseStats: {
+			hp: 85,
+			atk: 105,
+			def: 95,
+			spa: 105,
+			spd: 95,
+			spe: 80,
+		},
+		abilities: {
+			0: "Sleeping System"
+		},
+	},
+	joltalesalola: {
+		num: 7500498,
+		species: "Joltales-Alola",
+		types: ["Electric", "Ice"],
+		baseStats: {
+			hp: 79,
+			atk: 76,
+			def: 77,
+			spa: 105,
+			spd: 107,
+			spe: 129,
+		},
+		abilities: {
+			0: "Snow Sucker"
+		},
+	},
 	
 };
