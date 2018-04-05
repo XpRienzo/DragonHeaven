@@ -558,10 +558,92 @@ exports.BattleMovedex = {
 		pp: 16,
 		zMovePower: 100,
 	},
+	"seedbomb": { // 50% chance to seed the target
+		num: 402,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "No additional effect.",
+		shortDesc: "No additional effect.",
+		id: "seedbomb",
+		isViable: true,
+		name: "Seed Bomb",
+		pp: 15,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		secondary: false,
+		target: "normal",
+		type: "Grass",
+		zMovePower: 160,
+		contestType: "Tough",
+	},
+	"dragonrage": {
+		num: 82,
+		accuracy: 100,
+		basePower: 0,
+		damage: 'level',
+		category: "Special",
+		desc: "Deals fixed damage equal to the user's level",
+		shortDesc: "Deals fixed damage equal to the user's level",
+		id: "dragonrage",
+		name: "Dragon Rage",
+		pp: 16,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: false,
+		target: "normal",
+		type: "Dragon",
+		zMovePower: 100,
+		contestType: "Cool",
+	},
+	"sonicboom": {
+		num: 49,
+		accuracy: 90,
+		basePower: 0,
+		damage: 'level',
+		category: "Special",
+		desc: "Deals fixed damage equal to the user's level",
+		shortDesc: "Deals fixed damage equal to the user's level",
+		id: "sonicboom",
+		name: "Sonic Boom",
+		pp: 32,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 100,
+		contestType: "Cool",
+	},
+	"psywave": {
+		num: 149,
+		accuracy: 100,
+		basePower: 0,
+		damage: 'level',
+		category: "Special",
+		desc: "Deals fixed damage equal to the user's level",
+		shortDesc: "Deals fixed damage equal to the user's level",
+		id: "psywave",
+		name: "Psywave",
+		pp: 24,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: false,
+		target: "normal",
+		type: "Psychic",
+		zMovePower: 100,
+		contestType: "Clever",
+	},
 	/* Haunting Scream	Ghost	Special	90, 100%	16 Max	Inflicts the Perish Song  effect on the opponent 30% of the time. (Sound)	Never-Ending Nightmare (175 BP)
 	Air Current	Flying	Status	--	16 Max	See abilities page under "Air Stream"	Raises the user's Speed by 1
 	Swampland	Water	Status	--	16 Max	Envelops the opponent’s side of the field in a Swamp (halves the opponent's team's Speed for 4 turns)	Raises the user's Special Attack by 1
 	Shadow Charge	Ghost	Physical	85, 95%	24 Max	Power is boosted 1.5x if target is switching in. (Contact)	Never-Ending Nightmare (160 BP)
-	
+	All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain
+Storm Strike	Normal	Physical	50, 100%	16 Max	Does double damage in weathers and becomes the same type of the weather
+Trick Room	Psychic	Status	--	8 Max	Mechanice changes: Rooms replace each other, removable by Splintered Stormshard / Defog / Haze / Bulldoze  / Housekeeper, if a Room move is used while the same Room is still up, it will fail
+Magic Room	Psychic	Status	--	16 Max	Read Trick Room
+Wonder Room	Psychic	Status	--	16 Max	Read Trick Room
+Inverse Room	Psychic	Status	--	8 Max	Makes the field act like an Inverse Battle (excluding immunities). (Mechanics: Read Trick Room)
+Seed Bomb
 	*/
 }; 
