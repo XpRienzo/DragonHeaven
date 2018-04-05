@@ -140,6 +140,24 @@ exports.BattleItems = {
 		gen: 2,
 		desc: "If held by a Pichu, Pikachu, Raichu, Plusle, Minun, Pachirisu, Emolga, Dedenne or a Togedemaru, its Attack and Sp. Atk are doubled.",
 	},
+	"weatherwarriorscrystal": {
+		shortDesc: "hen a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each.",
+		onModifyAtk: function (atk, pokemon) {
+			if (this.isWeather('hail') || this.isWeather('sunnyday') || this.isWeather('desolateland') || this.isWeather('raindance') || this.isWeather('primordialsea') || this.isWeather('sandstream')) {
+				return this.chainModify(1.5);
+			}
+		},
+                onModifySpA: function (spa, pokemon) {
+			if (this.isWeather('hail') || this.isWeather('sunnyday') || this.isWeather('desolateland') || this.isWeather('raindance') || this.isWeather('primordialsea') || this.isWeather('sandstream')) {
+				return this.chainModify(1.5);
+			}
+		},
+		fling: {
+			basePower: 50,
+		},
+		id: "weatherwarriorscrystal",
+		name: "Weather Warriors Crystal",
+	},
 	/* Adrenaline Orb	If the user has any of its stats lowered, its highest stat gets raised by one stage. Item does not get consumed.	80, Raises the targets highest stat by 1 stage
 Agony Boots	Holder's Speed is 1.33x, but it can't use the same move twice in a row	10, N/A
 Anguish Bandanna	Holders Attack is 1.33x, but it can't use the same move twice in a row	10, N/A
@@ -149,7 +167,6 @@ Distress Glass	Holders Special Attack is 1.33x, but it can't use the same move t
 Graduation Scale	If holder is a Wishiwashi, it becomes School Form and will not change back. It's ability becomes Intimidate rather than Schooling. Water moves are boosted by 1.2x	30, N/A
 Home-Run Bat	Reflects Sticky Web, Stealth Rock, Spikes, and Toxic Spikes when an opponent would use it. Single-use. Does NOT break after any uses of Spikes or Toxic Spikes (Otherwise consumable). 	60, N/A
 Hot Potato	When the holder comes into contact with another Pokemon, their hold item is switched with the Hot Potato.	60, Burns the opponent
-Light Ball	If held by a Pichu, Pikachu, Raichu, Plusle, Minun, Pachirisu, Emolga, Dedenne or a Togedemaru, its Attack and Sp. Atk are doubled.	30, Paralyzes the target
 Mimic Orb	When held, the first move that the holder is targeted with gets added to this Pokemon's moveset until switched out. Displays the same message as Mimic does when activated.	30, N/A
 Mulp Berry	When at 1/4 HP or less, consumes Berry and sets Stealth Rock on the foe's side	10, N/A
 Photocopier	Copies the opponent's stat changes upon first encountering an opponent with a stat boost. (Consumable)	80, N/A
