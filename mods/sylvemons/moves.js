@@ -629,6 +629,26 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Clever",
 	},
+		"geargrind": {
+		num: 544,
+		accuracy: 85,
+		basePower: 50,
+		category: "Physical",
+		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit.",
+		shortDesc: "Hits 2 times in one turn.",
+		id: "geargrind",
+		isViable: true,
+		name: "Gear Grind",
+		pp: 16,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		multihit: 2,
+		secondary: false,
+		target: "normal",
+		type: "Steel",
+		zMovePower: 180,
+		contestType: "Clever",
+	},
 	/*Air Current	Flying	Status	--	16 Max	See abilities page under "Air Stream"	Raises the user's Speed by 1
 All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain	Breakneck Blitz (160 BP), will turn into the appropriate Z-Move that matches the terrain
 Gear Grind	Steel	Physical	50, 90%	16 Max	Hits twice (Contact)	Corkscrew Crash (100 BP)
