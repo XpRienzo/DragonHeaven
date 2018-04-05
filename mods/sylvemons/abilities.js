@@ -3,18 +3,18 @@
 exports.BattleAbilities = {
 
 /* 
-Disperal	Boosts Bullet Seed, Seed Bomb, and Seed Flare by 1.2x power, and Leech Seed deals 20% more damage and heals 30% more HP each turn.
-
-
-
-Knight's Blade	Boosts the power of sword, cut, slash, and blade moves by 1.5x (List: Psycho Cut, Cut, Slash, Night Slash, Solar Blade, Leaf Blade, X-Scissor, Cross Poison, Air Slash, Air Cutter, Fury Cutter, Sacred Sword, Secret Sword, Razor Shell)
-Forecast	If this Pokémon is holding a Weather Rock, its secondary typing becomes Water/Fire/Rock/Ice (depending on the rock) and summon the corresponding weather upon entering the field. Under Strong Winds, this mon gains the added Flying type. These items cannot be removed
-Time Warp	Sets Trick Room upon entry
-Corrosion	This Pokemon can poison any Pokemon, and attack any Pokemon with Poison moves, regardless of immunities.
 Air Stream	Summons the new weather Air Current for 5 turns. In this weather, Flying-Types take 0.75* damage from Electric, Rock, and Ice-Type moves (kinda like Solid Rock), and the move Hurricane has perfect accuracy. Weather Ball doubles in power and becomes Flying-Type.
-Guard Up	Upon switch-in, this Pokemon's Defense or Special Defense goes up by 1 stage depending on the opponent's higher attacking stat (Download clone).
-Scrappy	Ignores every type inmunity when attacking.
+Bulletproof	Protects the Pokémon from some ball, bomb, cannon and blast moves. (List of "cannon" and "blast" moves: Steam Eruption, Flash Cannon, Techno Blast, Fire Blast, Moonblast, Aeroblast, Bullet Fire, Twineedle, Plume Cannon, Draco Meteor, Bullet Punch, Spike Cannon, Fleur Cannon, Meteor Shower, Hydro Cannon) 
+Dimension Warp	Sets up Inverse Room upon switchin. Under Inverse Room, Weakness and Resistances (Not immunities) are reversed
+Disperal	Boosts Bullet Seed, Seed Bomb, and Seed Flare by 1.2x power, and Leech Seed deals 20% more damage and heals 30% more HP each turn.
+Forecast	If this Pokémon is holding a Weather Rock, its secondary typing becomes Water/Fire/Rock/Ice/Flying/Dark (depending on the rock) and summon the corresponding weather upon entering the field. Under Strong Winds, this mon gains the added Flying type.
+Knight's Blade	Boosts the power of sword, cut, slash, and blade moves by 1.5x (List: Psycho Cut, Cut, Slash, Night Slash, Solar Blade, Leaf Blade, X-Scissor, Cross Poison, Air Slash, Air Cutter, Fury Cutter, Sacred Sword, Secret Sword, Razor Shell)
+Mega Launcher	Boosts the power of Pulse and Ballistic moves by 1.5x. (List: Steam Eruption, Flash Cannon, Techno Blast, Fire Blast, Moonblast, Aeroblast, Bullet Fire, Twineedle, Plume Cannon, Draco Meteor, Bullet Punch, Spike Cannon, Fleur Cannon, Meteor Shower, Hydro Cannon, Blast Burn)
+Misty Surge	Summons Misty Terrain upon switching-in. Misty Terrain now boosts Fairy-type moves by 1.5x.
 Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.0 - [Current percentage of HP in decimal form]) + 1.0
+Shadow Surge	Summons Shadow Sky upon switching in, which boosts the power of Dark and Ghost moves by 1.5x.
+Snow Warning	Summons Hail upon switching-in. Hail grants Ice-types a 1.5x boost to their defense and Water, Ice, and Fire-type no longer take Hail damage.
+Time Warp	Sets Trick Room upon entry
 */
 	"timewarp": {
 		shortDesc: "On switch-in, this Pokemon summons Trick Room.",
