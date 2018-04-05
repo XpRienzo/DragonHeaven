@@ -646,7 +646,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Steel",
-		zMovePower: 180,
+		zMovePower: 100,
 		contestType: "Clever",
 	},
 	/*Air Current	Flying	Status	--	16 Max	See abilities page under "Air Stream"	Raises the user's Speed by 1
