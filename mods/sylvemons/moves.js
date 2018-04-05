@@ -51,15 +51,15 @@ exports.BattleMovedex = {
                 shortDesc: "Has 1/2 recoil",
                 zMovePower: 200,
         },
-        "stalwartsword": {
+        "meteorshower": {
                 accuracy: 100,
                 basePower: 130,
                 category: "Special",
                 desc: "Lowers the user's Special Attack by 2 stages.",
                 shortDesc: "Lowers the user's Sp. Atk by 2.",
-                id: "stalwartsword",
+                id: "meteorshower",
                 isViable: true,
-                name: "Stalwart Sword",
+                name: "Meteor Shower",
                 pp: 5,
                 priority: 0,
                 flags: {mirror: 1, protect: 1},
@@ -526,11 +526,6 @@ exports.BattleMovedex = {
 		pp: 16,
 		zMovePower: 100,
 	},
-		doublekick: {
-		inherit: true,
-		pp: 16,
-		zMovePower: 100,
-	},
 	"twineedle": {
 		num: 41,
 		accuracy: 100,
@@ -634,16 +629,14 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Clever",
 	},
-	/* Haunting Scream	Ghost	Special	90, 100%	16 Max	Inflicts the Perish Song  effect on the opponent 30% of the time. (Sound)	Never-Ending Nightmare (175 BP)
-	Air Current	Flying	Status	--	16 Max	See abilities page under "Air Stream"	Raises the user's Speed by 1
-	Swampland	Water	Status	--	16 Max	Envelops the opponent’s side of the field in a Swamp (halves the opponent's team's Speed for 4 turns)	Raises the user's Special Attack by 1
-	Shadow Charge	Ghost	Physical	85, 95%	24 Max	Power is boosted 1.5x if target is switching in. (Contact)	Never-Ending Nightmare (160 BP)
-	All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain
-Storm Strike	Normal	Physical	50, 100%	16 Max	Does double damage in weathers and becomes the same type of the weather
-Trick Room	Psychic	Status	--	8 Max	Mechanice changes: Rooms replace each other, removable by Splintered Stormshard / Defog / Haze / Bulldoze  / Housekeeper, if a Room move is used while the same Room is still up, it will fail
-Magic Room	Psychic	Status	--	16 Max	Read Trick Room
-Wonder Room	Psychic	Status	--	16 Max	Read Trick Room
-Inverse Room	Psychic	Status	--	8 Max	Makes the field act like an Inverse Battle (excluding immunities). (Mechanics: Read Trick Room)
-Seed Bomb
-	*/
+	/*Air Current	Flying	Status	--	16 Max	See abilities page under "Air Stream"	Raises the user's Speed by 1
+All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain	Breakneck Blitz (160 BP), will turn into the appropriate Z-Move that matches the terrain
+Gear Grind	Steel	Physical	50, 90%	16 Max	Hits twice (Contact)	Corkscrew Crash (100 BP)
+Haunting Scream	Ghost	Special	90, 100%	16 Max	Inflicts the Perish Song  effect on the opponent 30% of the time. (Sound)	Never-Ending Nightmare (175 BP)
+Meteor Shower	Rock	Special	130, 100%	8 Max	User's Special Attack goes down by 2 stages after use	Continental Crush (195 BP)
+Seed Bomb	Grass	Physical	80, 100%	24 Max	50% Chance to seed target (Ballistic, non-contact)	Bloom Doom (160 BP)
+Shadow Charge	Ghost	Physical	85, 95%	24 Max	Power is boosted 1.5x if target is switching in. (Contact)	Never-Ending Nightmare (160 BP)
+Shadow Sky	Ghost	Status	--	16 Max	See abilities page under "Shadow Surge"	Raises the user's Speed by 1
+Swampland	Water	Status	--	16 Max	Envelops the opponent’s side of the field in a Swamp (halves the opponent's team's Speed for 4 turns)	Raises the user's Special Attack by 1
+*/
 }; 
