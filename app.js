@@ -98,6 +98,11 @@ if (Config.watchconfig) {
  * Set up most of our globals
  *********************************************************/
 
+global.UOP = {};
+global.csshelper = require("./css-helper.js");
+
+csshelper.buildCustomCss();
+
 global.Dex = require('./sim/dex');
 global.toId = Dex.getId;
 
