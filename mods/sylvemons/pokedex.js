@@ -70,12 +70,70 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Grass", "Dragon"],
 	},
-	mawile : {
+	parasect: {
+		inherit: true,
+		types: ["Bug", "Ghost"],
+		abilities: {0: "Effect Spore", 1: "Cursed Body", H: "Prankster"},
+	},
+	mawile: {
 		inherit: true,
 		types: ["Dark", "Fairy"],
 	},
 	mawilemega: {
 		inherit: true,
 		types: ["Dark", "Fairy"],
+	},
+	vespiquen: {
+		inherit: true,
+		types: ["Bug", "Poison"],
+		abilities: {0: "Poison Point", 1: "Intimidate", H: "Prankster"},
+	},
+	lugia: {
+		inherit: true,
+		types: ["Water", "Dragon"],
+	},
+	rotomfan: {
+		inherit: true,
+		types: ["Electric", "Steel"],
+	},
+	granbull: {
+		inherit: true,
+		types: ["Fairy", "Dark"],
+		abilities: {0: "Intimidate", 1: "Strong Jaw", H: "Rattled"},
+	},
+	celebi: {
+		inherit: true,
+		types: ["Grass", "Fairy"],
+	},
+	jirachi: {
+		inherit: true,
+		types: ["Steel", "Fairy"],
+	},
+	manaphy: {
+		inherit: true,
+		types: ["Water", "Fairy"],
+	},
+	phione: {
+		inherit: true,
+		types: ["Water", "Fairy"],
+	},
+	victini: {
+		inherit: true,
+		types: ["Fire", "Fairy"],
+	},
+	lycanroc: {
+		inherit: true,
+		types: ["Rock", "Normal"],
+		abilities: {0: "Rock Head", 1: "Sand Rush", H: "Adaptability"},
+	},
+	lycanrocmidnight: {
+		inherit: true,
+		types: ["Rock", "Dark"],
+		abilities: {0: "Keen Eye", 1: "Vital Spirit", H: "Adaptability"},
+	},
+	lycanrocdusk: {
+		inherit: true,
+		types: ["Rock", "Fire"],
+		abilities: {0: "Tough Claws", 1: "Technician", H: "Adaptability"},
 	},
 };
