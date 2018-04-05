@@ -1161,4 +1161,5 @@ exports.BattleMovedex = {
 				} else {
 					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
 				}
+},
 };
