@@ -1,6 +1,20 @@
 'use strict';
 
 exports.BattleItems = {
+	"voodoodoll": {
+		id: "voodoodoll",
+		name: "Voodoo Doll",
+		spritenum: 417,
+		fling: {
+			basePower: 60,
+		},
+     onModifyMove: function (move, target, source, pokemon) {
+     if (source && source !== target && move && move.flags['contact']) {
+			pokemon.addVolatile('torment');
+	  }
+		},
+		desc: "When the opponent attacks the holder with a contact move, this item is consumed and the opponent is tormented.",
+	},
 	"mulpberry": {
 		id: "mulpberry",
 		name: "Mulp Berry",
