@@ -101,20 +101,23 @@ exports.BattleItems = {
 		desc: "After an attack, holder gains 1/4 of the damage in HP dealt to other Pokemon.",
 	},
 	"iceskates": {
-		shortDesc: "If Hail is active, holder's Speed is doubled. Immune to hail.",
-		onModifySpe: function (spe, pokemon) {
-			if (this.isWeather('hail')) {
-				return this.chainModify(2);
+		id: "iceskates",
+		name: "Ice Skates",
+		spritenum: 664,
+		onUpdate: function (pokemon) {
+			if (this.isWeather('hail') && pokemon.useItem()) {
+				this.boost({spe: 2});
 			}
-		},
-		onImmunity: function (type, pokemon) {
+			},
+        onImmunity: function (type, pokemon) {
 			if (type === 'hail') return false;
 		},
 		fling: {
 			basePower: 80,
 		},
-		id: "iceskates",
-		name: "Ice Skates",
+		num: 881,
+		gen: 7,
+		desc: "If Hail is active, holder's Speed is doubled. Immune to hail.",
 	},
 		"lightball": {
 		id: "lightball",
@@ -140,20 +143,15 @@ exports.BattleItems = {
 		gen: 2,
 		desc: "If held by a Pichu, Pikachu, Raichu, Plusle, Minun, Pachirisu, Emolga, Dedenne or a Togedemaru, its Attack and Sp. Atk are doubled.",
 	},
-	"weatherwarriorscrystal": {
-		shortDesc: "hen a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each.",
-		onModifyAtk: function (atk, pokemon) {
-			if (this.isWeather('hail') || this.isWeather('sunnyday') || this.isWeather('desolateland') || this.isWeather('raindance') || this.isWeather('primordialsea') || this.isWeather('sandstream')) {
-				return this.chainModify(1.5);
-			}
-		},
-                onModifySpA: function (spa, pokemon) {
-			if (this.isWeather('hail') || this.isWeather('sunnyday') || this.isWeather('desolateland') || this.isWeather('raindance') || this.isWeather('primordialsea') || this.isWeather('sandstream')) {
-				return this.chainModify(1.5);
+		"weatherwarriorscrystal": {
+		shortDesc: "When a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each.",
+		onUpdate: function (pokemon) {
+			if (this.isWeather('hail') || this.isWeather('sunnyday') || this.isWeather('desolateland') || this.isWeather('raindance') || this.isWeather('primordialsea') || this.isWeather('sandstream') && pokemon.useItem()) {
+				this.boost({atk:2, spa: 2});
 			}
 		},
 		fling: {
-			basePower: 50,
+			basePower: 60,
 		},
 		id: "weatherwarriorscrystal",
 		name: "Weather Warriors Crystal",
