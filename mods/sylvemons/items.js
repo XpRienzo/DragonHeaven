@@ -8,10 +8,8 @@ exports.BattleItems = {
 		fling: {
 			basePower: 60,
 		},
-     onModifyMove: function (source, target, move, pokemon) {
-     if (source && source !== target && move && move.flags['contact']) {
+     onModifyMove: function (move, pokemon) {
 			pokemon.addVolatile('torment');
-	  }
 		},
 		desc: "When the opponent attacks the holder with a contact move, this item is consumed and the opponent is tormented.",
 	},
