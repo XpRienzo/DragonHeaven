@@ -13,7 +13,7 @@ exports.BattleItems = {
 				pokemon.eatItem();
 			}
 		},
-		onEat: function (pokemon) {
+		onEat: function (source) {
 			this.useMove('Stealth Rock', source);		
 		},
       desc: "When at 1/4 HP or less, consumes Berry and sets Stealth Rock on the foe's side",
