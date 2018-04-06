@@ -9,7 +9,7 @@ exports.BattleItems = {
 			basePower: 10,
 		},
 		onModifyMove: function (move, pokemon) {
-			pokemon.addVolatile('torment');
+			pokemon.addVolatile('torment', '[silent]');
 		},
 		onModifySpe: function (spe) {
 			return this.chainModify(1.33);
