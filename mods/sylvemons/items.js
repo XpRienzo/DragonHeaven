@@ -1,6 +1,22 @@
 'use strict';
 
 exports.BattleItems = {
+	"ringtarget": {
+		id: "ringtarget",
+		name: "Ring Target",
+		spritenum: 69,
+		fling: {
+			basePower: 10,
+		},
+      onModifyMovePriority: -5,
+		onModifyMove: function (move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity = true;
+			}
+		},
+        desc: "If a Pokémon holds this item, it will ignore any type-based immunity when attacking.",
+	},
 	"agonyboots": {
 		id: "agonyboots",
 		name: "Agony Boots",
