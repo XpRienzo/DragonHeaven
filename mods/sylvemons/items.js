@@ -1,6 +1,27 @@
 'use strict';
 
 exports.BattleItems = {
+	"agonyboots": {
+		id: "agonyboots",
+		name: "Agony Boots",
+		spritenum: 69,
+		fling: {
+			basePower: 10,
+		},
+		onStart: function (pokemon) {
+			if (pokemon.volatiles['torment']) {
+				this.debug('removing torment: ' + pokemon.volatiles.torment);
+			}
+			pokemon.removeVolatile('torment');
+		},
+		onModifyMove: function (move, pokemon) {
+			pokemon.addVolatile('torment');
+		},
+		onModifySpe: function (spe) {
+			return this.chainModify(1.33);
+		},
+		desc: "Holder's Speed is 1.33x, but it can't use the same move twice in a row",
+	},
         "roomextender": {
 		            id: "roomextender",
 		            name: "Room Extender",
