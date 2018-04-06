@@ -366,7 +366,7 @@ gutter: function (target, room, user) {
 		let jillianDex = require('../data/pokedex.js').BattlePokedex;
 		if (!jillianDex) return this.errorReply("Error Fetching Istor Data.");
 		Object.values(jillianDex).forEach(mon => {
-			buf += `&lt;option value=&quot;${mon.Species}&quot;&gt;`;
+			buf += `&lt;option value=&quot;${mon.species}&quot;&gt;`;
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
