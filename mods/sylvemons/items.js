@@ -147,12 +147,13 @@ exports.BattleItems = {
 		shortDesc: "When a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each.",
 		onUpdate: function (pokemon) {
 			if (this.isWeather('hail') || this.isWeather('sunnyday') || this.isWeather('desolateland') || this.isWeather('raindance') || this.isWeather('primordialsea') || this.isWeather('sandstream') && pokemon.useItem()) {
-				this.boost({atk:2, spa: 2});
+				this.boost({atk:1, spa: 1});
 			}
 		},
 		fling: {
 			basePower: 60,
 		},
+		gen: 7,
 		id: "weatherwarriorscrystal",
 		name: "Weather Warriors Crystal",
 	},
