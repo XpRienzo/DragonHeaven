@@ -363,10 +363,12 @@ gutter: function (target, room, user) {
 	datalistool: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
-		let feDex = require('../data/moves.js').BattleMovedex;
+		let feDex = require('../data/pokedex.js').BattleMovedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
-		Object.values(feDex).forEach(move => {
-			buf += `&lt;option value=&quot;${move.name}&quot;&gt;`;
+		Object.values(feDex).forEach(mon => {
+			if (mon.forme !=== 'Mega') {
+			buf += `&lt;option value=&quot;${mon.species}&quot;&gt;`;
+			}
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
