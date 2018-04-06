@@ -362,7 +362,7 @@ gutter: function (target, room, user) {
 	},
 	datalistool: function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		let buf = `<div class=infobox-limited><center><h2>List Of Coded Fusion Evolution Abilities</h2></center>`;
+		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
 		let feDex = require('../data/moves.js').BattleMovedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(move => {
