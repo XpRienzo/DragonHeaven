@@ -104,14 +104,14 @@ exports.BattleItems = {
 		id: "iceskates",
 		name: "Ice Skates",
 		spritenum: 664,
+		onImmunity: function (type, pokemon) {
+			if (type === 'hail') return false;
+		},
 		onUpdate: function (pokemon) {
 			if (this.isWeather('hail') && pokemon.useItem()) {
 				this.boost({spe: 2});
 			}
 			},
-        onImmunity: function (type, pokemon) {
-			if (type === 'hail') return false;
-		},
 		fling: {
 			basePower: 80,
 		},
@@ -146,7 +146,7 @@ exports.BattleItems = {
 		"weatherwarriorscrystal": {
 		shortDesc: "When a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each.",
 		onUpdate: function (pokemon) {
-			if (this.isWeather('hail') || this.isWeather('sunnyday') || this.isWeather('desolateland') || this.isWeather('raindance') || this.isWeather('primordialsea') || this.isWeather('sandstream') && pokemon.useItem()) {
+			if (this.isWeather(['sunnyday', 'desolateland', 'hail', 'rainyday', 'primordialsea', 'sandstream']) && pokemon.useItem()) {
 				this.boost({atk:1, spa: 1});
 			}
 		},
