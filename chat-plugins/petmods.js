@@ -366,7 +366,7 @@ gutter: function (target, room, user) {
 		let feDex = require('../data/pokedex.js').BattlePokedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(mon => {
-			if (mon.forme === 'Mega') {
+			if (mon.forme !=== 'Mega') {
 			buf += `&lt;option value=&quot;${mon.species}&quot;&gt;`;
 			}
 		}
