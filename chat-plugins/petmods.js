@@ -363,10 +363,10 @@ gutter: function (target, room, user) {
 	datalistool: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Alola Formes Pokemon</h2></center>`;
-		let jillianDex = require('../data/pokedex.js').BattlePokedex;
+		let jillianDex = require('../data/abilities.js').BattlePokedex;
 		if (!jillianDex) return this.errorReply("Error Fetching Istor Data.");
-		Object.values(jillianDex).forEach(mon => {
-			buf += `&lt;option value=&quot;${mon.species}&quot;&gt;`;
+		Object.values(jillianDex).forEach(ability => {
+			buf += `&lt;option value=&quot;${ability.name}&quot;&gt;`;
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
