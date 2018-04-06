@@ -1,6 +1,20 @@
 'use strict';
 
 exports.BattleItems = {
+		"trickyseed": {
+		id: "trickyseed",
+		name: "Tricky Seed",
+		spritenum: 664,
+		fling: {
+			basePower: 10,
+		},
+		onUpdate: function (pokemon) {
+			if (this.isPseudoWeather('trickroom') && pokemon.useItem()) {
+				this.boost({spe: -1});
+			}
+		},
+		desc: "If Trick Room is in play, lowers user's Speed by one stage (Consumable)",
+	},
 	"agonyboots": {
 		id: "agonyboots",
 		name: "Agony Boots",
@@ -8,11 +22,8 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		effect: {
-			noCopy: true,
-			onDisableMove: function (pokemon) {
-				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
-			},
+		onModifyMove: function (move, pokemon) {
+			pokemon.addVolatile('torment');
 		},
 		onModifySpe: function (spe) {
 			return this.chainModify(1.33);
