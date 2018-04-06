@@ -1,20 +1,6 @@
 'use strict';
 
 exports.BattleItems = {
-		"trickyseed": {
-		id: "trickyseed",
-		name: "Tricky Seed",
-		spritenum: 664,
-		fling: {
-			basePower: 10,
-		},
-		onUpdate: function (pokemon) {
-			if (this.isPseudoWeather('trickroom') && pokemon.useItem()) {
-				this.boost({spe: -1});
-			}
-		},
-		desc: "If Trick Room is in play, lowers user's Speed by one stage (Consumable)",
-	},
 	"agonyboots": {
 		id: "agonyboots",
 		name: "Agony Boots",
