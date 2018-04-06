@@ -10,8 +10,8 @@ exports.BattleItems = {
 		},
      onModifyMove: function (move, target, source) {
          if (source && source !== target && move && move.flags['contact']) {
-			target.addVolatile('torment');
-								}
+			source.addVolatile('torment');
+			}
 		},
 		desc: "When the opponent attacks the holder with a contact move, this item is consumed and the opponent is tormented.",
 	},
