@@ -8,12 +8,6 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		onStart: function (pokemon) {
-			if (pokemon.volatiles['torment']) {
-				this.debug('removing torment: ' + pokemon.volatiles.torment);
-			}
-			pokemon.removeVolatile('torment');
-		},
 		onModifyMove: function (move, pokemon) {
 			pokemon.addVolatile('torment');
 		},
@@ -21,6 +15,36 @@ exports.BattleItems = {
 			return this.chainModify(1.33);
 		},
 		desc: "Holder's Speed is 1.33x, but it can't use the same move twice in a row",
+	},
+	"anguishbandanna": {
+		id: "anguishbandanna",
+		name: "Anguish Bandanna",
+		spritenum: 69,
+		fling: {
+			basePower: 10,
+		},
+		onModifyMove: function (move, pokemon) {
+			pokemon.addVolatile('torment');
+		},
+		onModifyAtk: function (atk) {
+			return this.chainModify(1.33);
+		},
+		desc: "Holder's Attack is 1.33x, but it can't use the same move twice in a row",
+	},
+		"distressglass": {
+		id: "distressglass",
+		name: "Distress Glass",
+		spritenum: 69,
+		fling: {
+			basePower: 10,
+		},
+		onModifyMove: function (move, pokemon) {
+			pokemon.addVolatile('torment');
+		},
+		onModifySpA: function (spa) {
+			return this.chainModify(1.33);
+		},
+		desc: "Holder's Attack is 1.33x, but it can't use the same move twice in a row",
 	},
         "roomextender": {
 		            id: "roomextender",
