@@ -360,3 +360,4 @@ gutter: function (target, room, user) {
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
+};
