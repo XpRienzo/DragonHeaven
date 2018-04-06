@@ -105,7 +105,7 @@ exports.BattleItems = {
 			basePower: 10,
 		},
 		onUpdate: function (pokemon) {
-			if (this.isTerrain('trickroom') && pokemon.useItem()) {
+			if (this.isPseudoWeather('trickroom') && pokemon.useItem()) {
 				this.boost({spe: -1});
 			}
 		},
