@@ -362,10 +362,10 @@ gutter: function (target, room, user) {
 	},
 	datalistool: function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		let buf = `<div class=infobox-limited><center><h2>List Of Alola Formes Pokemon</h2></center>`;
-		let jillianDex = require('../data/abilities.js').BattlePokedex;
-		if (!jillianDex) return this.errorReply("Error Fetching Istor Data.");
-		Object.values(jillianDex).forEach(ability => {
+		let buf = `<div class=infobox-limited><center><h2>List Of Coded Fusion Evolution Abilities</h2></center>`;
+		let feDex = require('../data/abilities.js').BattleAbilities;
+		if (!feDex) return this.errorReply("Error Fetching FE Data.");
+		Object.values(feDex).forEach(ability => {
 			buf += `&lt;option value=&quot;${ability.name}&quot;&gt;`;
 		});
 		this.sendReplyBox(`${buf}</div>`);
