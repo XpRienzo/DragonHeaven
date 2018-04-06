@@ -8,7 +8,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 60,
 		},
-     onModifyMove: function (move, target, source, pokemon) {
+     onModifyMove: function (source, target, move, pokemon) {
      if (source && source !== target && move && move.flags['contact']) {
 			pokemon.addVolatile('torment');
 	  }
