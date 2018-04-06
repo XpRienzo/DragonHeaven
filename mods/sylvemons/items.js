@@ -1,6 +1,23 @@
 'use strict';
 
 exports.BattleItems = {
+	"mulpberry": {
+		id: "mulpberry",
+		name: "Mulp Berry",
+		spritenum: 69,
+		fling: {
+			basePower: 10,
+		},
+       onUpdate: function (pokemon) {
+			if (pokemon.hp <= pokemon.maxhp / 4 || (pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility('gluttony'))) {
+				pokemon.eatItem();
+			}
+		},
+		onEat: function (pokemon) {
+			this.useMove('Stealth Rock', source);		
+		},
+      desc: "When at 1/4 HP or less, consumes Berry and sets Stealth Rock on the foe's side",
+	        },
 	"ringtarget": {
 		id: "ringtarget",
 		name: "Ring Target",
