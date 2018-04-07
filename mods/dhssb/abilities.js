@@ -507,6 +507,27 @@ exports.BattleAbilities = {
 		effect: {
 			duration: 1,
 		},
+		onModifyMovePriority: -2,
+		onModifyMove: function (move) {
+			if (move.secondaries) {
+				this.debug('doubling secondary chance');
+				for (let i = 0; i < move.secondaries.length; i++) {
+					move.secondaries[i].chance *= 2;
+				}
+			}
+		},
+		onUpdate: function (pokemon) {
+			if (pokemon.status === 'slp') {
+				this.add('Sleep is for the weak');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'slp') return;
+			if (!effect || !effect.status) return false;
+			this.add('Sleep is for the weak');
+			return false;
+		},
 		id: "epicclaws",
 		name: "Epic Claws",
 		rating: 2,
