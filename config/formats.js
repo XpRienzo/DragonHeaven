@@ -7887,7 +7887,8 @@ exports.Formats = [
         desc: [
             "Bring three Pok&eacute;mon to Team Preview and choose one to battle.",
             "&bullet; <a href=\"http://www.smogon.com/forums/threads/oras-1v1-3v3-team-preview.3496773/\">ORAS 1v1</a>",
-            "&bullet; <a href=\"http://www.smogon.com/forums/threads/1v1-resources-thread.3536109/\">ORAS 1v1 Resources</a>"
+            "&bullet; <a href=\"http://www.smogon.com/forums/threads/1v1-resources-thread.3536109/\">ORAS 1v1 Resources</a>",
+			  "&bullet; <a href=http://1v1.boards.net/thread/131/oras-1v1>New 1v1 ORAS Thread</a>",
         ],
  
         mod: 'gen6',
@@ -7899,7 +7900,7 @@ exports.Formats = [
         banlist: [
             'Illegal', 'Unreleased', 'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre',
             'Kyurem-White', 'Lugia', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Xerneas', 'Yveltal', 'Zekrom',
-            'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss',
+            'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss', 'Soul Dew',
             'Flash', 'Kinesis', 'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud-Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen'
         ],
     },
