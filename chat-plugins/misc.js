@@ -108,7 +108,8 @@ exports.commands = {
 		if (!targetUser || !targetUser.connected) return this.sendReply("User \"" + this.targetUsername + "\" not found.");
 		if (!this.can('mute', targetUser, room)) return false;
 
-		this.addModCommand(targetUser.name + " was kicked from the room by " + user.name + ".");
+		this.addModAction(targetUser.name + " was kicked from the room by " + user.name + ".");
+		this.modlog('KICK');
 		targetUser.popup("You were kicked from " + room.id + " by " + user.name + ".");
 		targetUser.leaveRoom(room.id);
 	},
