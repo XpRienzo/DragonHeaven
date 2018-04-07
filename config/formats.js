@@ -8205,7 +8205,8 @@ exports.Formats = [
 			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
 			'Power Construct', 'Perish Song', 'Focus Sash', 'Kangaskhanite', 'Salamencite', 'Chansey + Charm + Seismic Toss', 'Chansey + Charm + Psywave',
 			'Flash', 'Kinesis', 'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud-Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen',
- 			'Gyaradosite', 'Kyurem-B', 'Charizardite X', 'Charizardite Y', 'Tapu Koko', 'Mimikyu', 'Metagrossite', 'Zygarde', 'Porygon-Z', 'Dragonite', 'Lopunnite', 'Magearna', 'Greninja', 'Venusaurite', 'Blacephalon', 'Tapu Lele', 'Naganadel',
+			'Gyaradosite', 'Charizardite X', 'Mimikyu', 'Tapu Koko', 'Charizardite Y', 'Metagrossite', 'Zygarde', 'Greninja', 'Porygon-Z', 'Magearna', 'Lopunnite', 'Landorus-Therian', 'Tapu Lele', 'Naganadel', 'Magnezone', 'Venusaurite',
+			'Dragonite',
  		],
  	},
 ];
