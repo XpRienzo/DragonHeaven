@@ -7788,7 +7788,7 @@ exports.Formats = [
 		column:4,
 	},
 	{
-    name: "[Gen 7] AAA 1v1",
+    name: "[Gen 7] 1v1 AAA",
     desc: [
         "Almost Any Ability 1v1",
         "&bullet; Pokémon can have almost any ability they don't normally get, with a few exceptions"
