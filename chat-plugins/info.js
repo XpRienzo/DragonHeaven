@@ -1255,6 +1255,7 @@ exports.commands = {
 		this.sendReplyBox(
 			`Pok&eacute;mon Showdown is open source:<br />` +
 			`- Language: JavaScript (Node.js)<br />` +
+			`- <a href="https://github.com/XpRienzo/DragonHeaven">Dragon Heaven source code</a><br />` +
 			`- <a href="https://github.com/Zarel/Pokemon-Showdown/commits/master">What's new?</a><br />` +
 			`- <a href="https://github.com/Zarel/Pokemon-Showdown">Server source code</a><br />` +
 			`- <a href="https://github.com/Zarel/Pokemon-Showdown-Client">Client source code</a><br />` +
