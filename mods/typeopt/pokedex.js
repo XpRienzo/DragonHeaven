@@ -1020,5 +1020,10 @@ types: ["Bug", "Fire"],
 baseStats: {hp: 60, atk: 70, def: 140, spa: 130, spd: 140, spe: 30},
 abilities: {0: "Magma Armor", 1: "Drought", H: "Weak Armor"},
 },
-
+shiftry: { 
+inherit: true,
+types: ["Grass", "Flying"],
+baseStats: {hp: 105, atk: 135, def: 60, spa: 130, spd: 60, spe: 80},
+abilities: {0: "Swift Swim", 1: "Reckless", H: "Rock Head"},
+},
 };
