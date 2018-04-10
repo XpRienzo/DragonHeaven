@@ -1026,4 +1026,16 @@ types: ["Grass", "Flying"],
 baseStats: {hp: 105, atk: 135, def: 60, spa: 130, spd: 60, spe: 80},
 abilities: {0: "Swift Swim", 1: "Reckless", H: "Rock Head"},
 },
+victreebel: {
+inherit: true,
+types: ["Grass", "Water "],
+baseStats: {hp: 80, atk: 105, def: 105, spa: 100, spd: 100, spe: 80},
+abilities: {0: "Thick Fat", 1: "Rain Dish", H: "Water Compaction"},
+},
+meganium: {
+inherit: true,
+types: ["Grass", "Dragon"],
+baseStats: {hp: 120, atk: 70, def: 120, spa: 90, spd: 120, spe: 50},
+abilities: {0: "Contrary", 1: "Bulletproof", H: "Poison Heal"},
+},
 };
