@@ -161,4 +161,40 @@ decidueye: {
 		eggGroups: ["Bug"],
 		spritenum: 848,
 	},
+hitmonchan: {
+inherit: true,
+types: ["Fighting", "Fire"],
+baseStats: {hp: 50, atk: 120, def: 105, spa: 35, spd: 105, spe: 85},
+abilities: {0: "Blaze", 1: "Iron Fist", H: "Inner Focus"},
+},
+hitmonlee: {
+inherit: true,
+types: ["Fighting", "Water"],
+baseStats: {hp: 50, atk: 140, def: 63, spa: 35, spd: 112, spe: 100},
+abilities: {0: "Fluid", 1: "Limber", H: "Unburden"},
+},
+dragalge: {
+inherit: true,
+types: ["Poison", "Dragon"],
+baseStats: {hp: 100, atk: 65, def: 100, spa: 110, spd: 125, spe: 70},
+abilities: {0: "Poison Point", 1: "Corrosion", H: "Adaptability"},
+},
+clawitzer: {
+inherit: true,
+types: ["Water", "Dragon"],
+baseStats: {hp: 72, atk: 60, def: 96, spa: 120, spd: 96, spe: 96},
+abilities: {0: "Mega Launcher"},
+},
+ambipom: {
+inherit: true,
+types: ["Normal", "Fighting"],
+baseStats: {hp: 75, atk: 125, def: 76, spa: 60, spd: 76, spe: 115},
+abilities: {0: "Technician", 1: "Skill Link"},
+},
+cinccino: {
+inherit: true,
+types: ["Normal"],
+baseStats: {hp: 85, atk: 115, def: 100, spa: 65, spd: 70, spe: 135},
+abilities: {0: "Skill Link", 1: "Technician", H: "Serene Grace"},
+},
   };
