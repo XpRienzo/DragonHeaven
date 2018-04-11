@@ -12,12 +12,7 @@ exports.BattleAbilities = {
 			if (move.type === 'Water') {
 				move.breaksProtect = true;
 			}
-		},
-    onAnyAccuracy: function (accuracy, target, source, move) {
-			if (move.type === 'Water' && (source === this.effectData.target || target === this.effectData.target)) {
-				return true;
-			}
-			return accuracy;
+			if (move.type === 'Water') move.accuracy = true;
 		},
 		id: "fluid",
 		name: "Fluid",
