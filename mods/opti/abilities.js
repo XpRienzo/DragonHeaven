@@ -10,7 +10,7 @@ exports.BattleAbilities = {
 				move.refrigerateBoosted = true;
 			}
 			if (move.type === 'Water') {
-				move.breaksProtect = true;
+				this.moveBreaksProtect;
 			}
 			if (move.type === 'Water') move.accuracy = true;
 		},
