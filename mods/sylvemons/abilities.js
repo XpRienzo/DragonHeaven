@@ -19,7 +19,7 @@ Time Warp	Sets Trick Room upon entry
 	"timewarp": {
 		shortDesc: "On switch-in, this Pokemon summons Trick Room.",
 		onStart: function (source) {
-			if (!this.ispseudoWeather(['trickroom'])) {
+			if (!this.isPseudoWeather(['trickroom'])) {
 			this.useMove('Trick Room', source);
 			}
 		},
