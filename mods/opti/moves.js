@@ -11,11 +11,11 @@ exports.BattleMovedex = {
         priority: 0,
         flags: {protect: 1, mirror: 1, contact: 1},
         secondary: false,
-		onUpdate: function (pokemon, target) {
+			onUpdate: function (pokemon, target) {
 			if (target.type !== 'Fire') {
 				this.boost({atk: 1});
 			}
-			else {
+			else if (target.type === 'Fire') { 
 				this.boost({atk: 2});
 			}
 		},
