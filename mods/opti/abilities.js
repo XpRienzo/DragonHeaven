@@ -10,11 +10,11 @@ exports.BattleAbilities = {
 				move.refrigerateBoosted = true;
 			}
 		},
-    onAnyAccuracy: function (accuracy, target, source, move) {
-			if (move && (source === this.effectData.target || target === this.effectData.target)) {
-				return true;
-			}
-			return accuracy;
+    onModifyAccuracy: function (accuracy, move) {
+			if (typeof accuracy !== 'number') return;
+		  if (move.type === 'Water') {
+      move.accuracy = true;
+      }
 		},
 		id: "fluid",
 		name: "Fluid",
