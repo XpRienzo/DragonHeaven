@@ -13,7 +13,7 @@ exports.BattleAbilities = {
     onModifyAccuracy: function (accuracy, move) {
 			if (typeof accuracy !== 'number') return;
 		  if (move.type === 'Water') {
-      return accuracy = true
+       move.accuracy = true;
       }
 		},
 		id: "fluid",
