@@ -1,6 +1,27 @@
 'use strict';
 
 exports.BattleItems = {
+	"ragecandybar": {
+		id: "ragecandybar",
+		name: "Rage Candy Bar",
+      onStart: function(pokemon) {
+			this.add('-item', pokemon, 'Rage Candy Bar');
+         if (pokemon.baseTemplate.baseSpecies === 'Darmanitan') {
+			pokemon.formeChange("Darmanitan-Zen");
+        }
+		},
+		fling: {
+			basePower: 20,
+		},
+                onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && (user.baseTemplate.num === 555) && (move.type === 'Psychic')) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		gen: 7,
+		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power",
+	},
 	"shadowrock": {
 		id: "shadowrock",
 		name: "Shadow Rock",
