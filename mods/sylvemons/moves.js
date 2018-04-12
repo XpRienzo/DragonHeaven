@@ -665,7 +665,23 @@ exports.BattleMovedex = {
 		type: "Ghost",
 		zMoveBoost: {spe: 1},
 	},
-	/*Air Current	Flying	Status	--	16 Max	See abilities page under "Air Stream"	Raises the user's Speed by 1
+	"aircurrent": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Summons Air Current",
+		id: "aircurrent",
+		name: "Air Current",
+		pp: 16,
+		priority: 0,
+		flags: {},
+		weather: 'aircurrent',
+		secondary: false,
+		target: "all",
+		type: "Flying",
+		zMoveBoost: {spe: 1},
+	},
+	/*
 All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain	Breakneck Blitz (160 BP), will turn into the appropriate Z-Move that matches the terrain
 Gear Grind	Steel	Physical	50, 90%	16 Max	Hits twice (Contact)	Corkscrew Crash (100 BP)
 Haunting Scream	Ghost	Special	90, 100%	16 Max	Inflicts the Perish Song  effect on the opponent 30% of the time. (Sound)	Never-Ending Nightmare (175 BP)
