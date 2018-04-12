@@ -753,6 +753,44 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Beautiful",
 	},
+	"trickroom": {
+		num: 433,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "For 5 turns, all active Pokemon with lower Speed will move before those with higher Speed, within their priority brackets. If this move is used during the effect, the effect ends.",
+		shortDesc: "For 5 turns, slower Pokemon move first.",
+		id: "trickroom",
+		name: "Trick Room",
+		pp: 5,
+		priority: -7,
+		flags: {mirror: 1},
+		pseudoWeather: 'trickroom',
+		effect: {
+			duration: 5,
+			durationCallback: function (source, effect) {
+				if (source && source.hasAbility('persistent')) {
+					return 7;
+				}
+				return 5;
+			},
+			onStart: function (target, source) {
+				this.add('-fieldstart', 'move: Trick Room', '[of] ' + source);
+			},
+			onRestart: function (target, source) {
+				return null;
+			},
+			onResidualOrder: 23,
+			onEnd: function () {
+				this.add('-fieldend', 'move: Trick Room');
+			},
+		},
+		secondary: false,
+		target: "all",
+		type: "Psychic",
+		zMoveBoost: {accuracy: 1},
+		contestType: "Clever",
+	},
 	/*
 All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain	Breakneck Blitz (160 BP), will turn into the appropriate Z-Move that matches the terrain
 Gear Grind	Steel	Physical	50, 90%	16 Max	Hits twice (Contact)	Corkscrew Crash (100 BP)
