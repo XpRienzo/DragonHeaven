@@ -20,7 +20,7 @@ Time Warp	Sets Trick Room upon entry
 		shortDesc: "Summons Shadow Sky upon switching in.",
 		onStart: function (source) {
 			this.setWeather('shadowsky');
-			this.add('[Shadow Surge]');
+			this.add('Shadow Surge');
 		},
 		id: "shadowsurge",
 		name: "Shadow Surge",
