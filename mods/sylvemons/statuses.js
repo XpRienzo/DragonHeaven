@@ -24,7 +24,7 @@ exports.BattleStatuses = {
 			if (this.isWeather('hail')) this.eachEvent('Weather');
 		},
 		onModifyDef: function (def, pokemon) {
-			if (pokemon.hasType('Water', 'Ice', 'Fire') && this.isWeather('hail')) {
+			if (pokemon.hasType('Ice') && this.isWeather('hail')) {
 				return this.modify(def, 1.5);
 			}
 		},
