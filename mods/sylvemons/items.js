@@ -23,6 +23,28 @@ exports.BattleItems = {
 		gen: 7,
 		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power",
 	},
+		"reliccharm": {
+		id: "reliccharm",
+		name: "Relic Charm",
+      onStart: function(pokemon) {
+			this.add('-item', pokemon, 'Relic Charm');
+        if (pokemon.baseTemplate.baseSpecies === 'Meloetta') {
+			this.add('-formechange', pokemon, 'Meloetta-Piroutte', '[msg]');
+			pokemon.formeChange("Meloetta-Piroutte");
+ }
+		},
+		fling: {
+			basePower: 40,
+		},
+                onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && (user.baseTemplate.num === 648) && (move.type === 'Fighting')) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		gen: 7,
+		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power",
+	},
 	"shadowrock": {
 		id: "shadowrock",
 		name: "Shadow Rock",
