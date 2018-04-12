@@ -35,7 +35,39 @@ exports.BattleStatuses = {
 			this.add('-weather', 'none');
 		},
 	},*/
-shadowsky: {
+	aircurrent: {
+		effectType: 'Weather',
+		duration: 5,
+		durationCallback: function (source, effect) {
+			if (source && source.hasItem('breezerock')) {
+				return 8;
+			}
+			return 5;
+		},
+		onWeatherModifyDamage: function (damage, attacker, defender, move) {
+			if (move.type === 'Rock' || move.type === 'Electric' || move.type === 'Ice' && defender.type === 'Flying') {
+				this.debug('Air Current suppress');
+				return this.chainModify(0.75);
+			}
+		},
+		onStart: function (battle, source, effect) {
+			if (effect && effect.effectType === 'Ability') {
+				if (this.gen <= 5) this.effectData.duration = 0;
+				this.add('-weather', 'AirCurrent', '[from] ability: ' + effect, '[of] ' + source);
+			} else {
+				this.add('-weather', 'AirCurrent');
+			}
+		},
+		onResidualOrder: 1,
+		onResidual: function () {
+			this.add('-weather', 'AirCurrent', '[upkeep]');
+			this.eachEvent('Weather');
+		},
+		onEnd: function () {
+			this.add('-weather', 'none');
+		},
+	},
+	shadowsky: {
 		effectType: 'Weather',
 		duration: 5,
 		durationCallback: function (source, effect) {
@@ -61,38 +93,6 @@ shadowsky: {
 		onResidualOrder: 1,
 		onResidual: function () {
 			this.add('-weather', 'ShadowSky', '[upkeep]');
-			this.eachEvent('Weather');
-		},
-		onEnd: function () {
-			this.add('-weather', 'none');
-		},
-	},
-	aircurrent: {
-		effectType: 'Weather',
-		duration: 5,
-		durationCallback: function (source, effect) {
-			if (source && source.hasItem('breezerock')) {
-				return 8;
-			}
-			return 5;
-		},
-		onWeatherModifyDamage: function (damage, attacker, defender, move) {
-			if (move.type === 'Rock' || move.type === 'Electric' || move.type === 'Ice' && defender.type === 'Flying) {
-				this.debug('Air Current suppress');
-				return this.chainModify(0.75);
-			}
-		},
-		onStart: function (battle, source, effect) {
-			if (effect && effect.effectType === 'Ability') {
-				if (this.gen <= 5) this.effectData.duration = 0;
-				this.add('-weather', 'AirCurrent', '[from] ability: ' + effect, '[of] ' + source);
-			} else {
-				this.add('-weather', 'AirCurrent');
-			}
-		},
-		onResidualOrder: 1,
-		onResidual: function () {
-			this.add('-weather', 'AirCurrent', '[upkeep]');
 			this.eachEvent('Weather');
 		},
 		onEnd: function () {
