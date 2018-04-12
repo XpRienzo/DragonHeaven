@@ -659,7 +659,7 @@ exports.BattleMovedex = {
 		pp: 16,
 		priority: 0,
 		flags: {},
-		weather: 'sunnyday',
+		weather: 'shadowsky',
 		secondary: false,
 		target: "all",
 		type: "Ghost",
