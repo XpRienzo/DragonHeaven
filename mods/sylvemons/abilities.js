@@ -16,6 +16,22 @@ Shadow Surge	Summons Shadow Sky upon switching in, which boosts the power of Dar
 Snow Warning	Summons Hail upon switching-in. Hail grants Ice-types a 1.5x boost to their defense and Water, Ice, and Fire-type no longer take Hail damage.
 Time Warp	Sets Trick Room upon entry
 */
+	"shadowsurge": {
+		shortDesc: "Summons Shadow Sky upon switching in.",
+		onStart: function (source) {
+			this.setWeather('shadowsky');
+		},
+		id: "shadowsurge",
+		name: "Shadow Surge",
+	},
+	"airstream": {
+		shortDesc: "Summons Air Current upon switching in.",
+		onStart: function (source) {
+			this.setWeather('aircurrent');
+		},
+		id: "airstream",
+		name: "Air Stream",
+	},
 	"timewarp": {
 		shortDesc: "On switch-in, this Pokemon summons Trick Room.",
 		onStart: function (source) {
