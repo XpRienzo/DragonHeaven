@@ -12,7 +12,7 @@ init: function () {
   this.modData('Learnsets', 'charmander').learnset.flamebullet = ['7L1'];
   this.modData('Learnsets', 'charmeleon').learnset.flamebullet = ['7L1'];
   this.modData('Learnsets', 'charizard').learnset.flamebullet = ['7L1'];
-  this.modData('Learnsets', 'magy').learnset.flamebullet = ['7L1'];
+  this.modData('Learnsets', 'magby').learnset.flamebullet = ['7L1'];
   this.modData('Learnsets', 'magmar').learnset.flamebullet = ['7L1'];
   this.modData('Learnsets', 'magmortar').learnset.flamebullet = ['7L1'];
   this.modData('Learnsets', 'numel').learnset.flamebullet = ['7L1'];
