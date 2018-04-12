@@ -681,6 +681,78 @@ exports.BattleMovedex = {
 		type: "Flying",
 		zMoveBoost: {spe: 1},
 	},
+	"hurricane": {
+		num: 542,
+		accuracy: 70,
+		basePower: 110,
+		category: "Special",
+		desc: "Has a 30% chance to confuse the target. This move can hit a target using Bounce, Fly, or Sky Drop. If the weather is Rain Dance, this move does not check accuracy. If the weather is Sunny Day, this move's accuracy is 50%.",
+		shortDesc: "30% chance to confuse target. Can't miss in rain.",
+		id: "hurricane",
+		isViable: true,
+		name: "Hurricane",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, distance: 1},
+		onModifyMove: function (move) {
+			if (this.isWeather(['raindance', 'primordialsea', 'aircurrent'])) {
+				move.accuracy = true;
+			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
+				move.accuracy = 50;
+			}
+		},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'confusion',
+		},
+		target: "any",
+		type: "Flying",
+		zMovePower: 185,
+		contestType: "Tough",
+	},
+	"weatherball": {
+		num: 311,
+		accuracy: 100,
+		basePower: 50,
+		basePowerCallback: function (pokemon, target, move) {
+			if (this.weather) return move.basePower * 2;
+			return move.basePower;
+		},
+		category: "Special",
+		desc: "Power doubles during weather effects and this move's type changes to match; Ice type during Hail, Water type during Rain Dance, Rock type during Sandstorm, and Fire type during Sunny Day.",
+		shortDesc: "Power doubles and type varies in each weather.",
+		id: "weatherball",
+		name: "Weather Ball",
+		pp: 10,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		onModifyMove: function (move) {
+			switch (this.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				break;
+			case 'hail':
+				move.type = 'Ice';
+				break;
+			case 'aircurrent':
+				move.type = 'Flying';
+				break;
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 160,
+		contestType: "Beautiful",
+	},
 	/*
 All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain	Breakneck Blitz (160 BP), will turn into the appropriate Z-Move that matches the terrain
 Gear Grind	Steel	Physical	50, 90%	16 Max	Hits twice (Contact)	Corkscrew Crash (100 BP)
