@@ -12,7 +12,7 @@ shadowsky: {
 		},
 		onWeatherModifyDamage: function (damage, attacker, defender, move) {
 			if (move.type === 'Dark' || move.type === 'Ghost') {
-			//	this.debug('Sunny Day fire boost');
+				this.debug('Shadow Sky boost');
 				return this.chainModify(1.5);
 			}
 		},
