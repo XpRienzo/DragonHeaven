@@ -5,7 +5,7 @@ shadowsky: {
 		effectType: 'Weather',
 		duration: 5,
 		durationCallback: function (source, effect) {
-			if (source && source.hasItem('shadowrock')) {
+		if (source && source.hasItem('shadowrock')) {
 				return 8;
 			}
 			return 5;
