@@ -1,7 +1,7 @@
 'use strict';
 
 exports.BattleStatuses = {
-	hail: {
+	/*hail: {
 		effectType: 'Weather',
 		duration: 5,
 		durationCallback: function (source, effect) {
@@ -34,7 +34,7 @@ exports.BattleStatuses = {
 		onEnd: function () {
 			this.add('-weather', 'none');
 		},
-	},
+	},*/
 shadowsky: {
 		effectType: 'Weather',
 		duration: 5,
