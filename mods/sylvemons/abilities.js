@@ -26,7 +26,7 @@ Time Warp	Sets Trick Room upon entry
 		shortDesc: "Summons Air Current upon switching in.",
 		onStart: function (source) {
 			this.setWeather('aircurrent');
-			this.add('Air Stream');
+			this.add('-ability', source, 'Air Stream');
 		},
 		id: "airstream",
 		name: "Air Stream",
