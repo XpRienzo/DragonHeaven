@@ -33,6 +33,15 @@ exports.BattleMovedex = {
 			if (type === 'Steel') return 1;
 			if (type === 'Electric') return 1;
 		},
+		onTryHit: function (target, pokemon, source) {
+			this.add('-anim', pokemon, "Imprison", source);
+			this.add('-anim', pokemon, "Dark Void", target);
+			this.add('-anim', pokemon, "Shell Smash", source);
+			this.add('-anim', pokemon, "Catastropika", target);
+			this.add('-anim', pokemon, "Dragon Ascent", target);
+			this.add('-anim', pokemon, "Sunsteel Strike", target);
+			this.add('-anim', pokemon, "All-Out Pummeling", target);
+		},
 		target: "normal",
 		type: "Steel",
 	},
