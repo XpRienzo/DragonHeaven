@@ -6,9 +6,10 @@ exports.BattleItems = {
 		name: "Rage Candy Bar",
       onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Rage Candy Bar');
-         if (pokemon.baseTemplate.baseSpecies === 'Darmanitan') {
+       //  if (pokemon.baseTemplate.baseSpecies === 'Darmanitan') {
+			this.add('-formechange', pokemon, 'Darmanitan-Zen', '[msg]');
 			pokemon.formeChange("Darmanitan-Zen");
-        }
+// }
 		},
 		fling: {
 			basePower: 20,
