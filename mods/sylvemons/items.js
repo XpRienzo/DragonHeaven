@@ -10,6 +10,15 @@ exports.BattleItems = {
 		gen: 7,
 		desc: "Holder's use of Shadow Sky lasts 8 turns instead of 5.",
 	},
+	"breezerock": {
+		id: "breezerock",
+		name: "Breeze Rock",
+		fling: {
+			basePower: 60,
+		},
+		gen: 7,
+		desc: "Holder's use of Air Current lasts 8 turns instead of 5.",
+	},
 	"voodoodoll": {
 		id: "voodoodoll",
 		name: "Voodoo Doll",
