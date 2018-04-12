@@ -1,6 +1,15 @@
 'use strict';
 
 exports.BattleItems = {
+	"shadowrock": {
+		id: "shadowrock",
+		name: "Shadow Rock",
+		fling: {
+			basePower: 60,
+		},
+		gen: 7,
+		desc: "Holder's use of Shadow Sky lasts 8 turns instead of 5.",
+	},
 	"voodoodoll": {
 		id: "voodoodoll",
 		name: "Voodoo Doll",
