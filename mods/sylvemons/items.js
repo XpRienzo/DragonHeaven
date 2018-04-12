@@ -247,7 +247,7 @@ exports.BattleItems = {
 		"weatherwarriorscrystal": {
 		shortDesc: "When a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each.",
 			onUpdate: function (pokemon) {
-			if (this.isWeather(['sunnyday', 'desolateland', 'hail', 'rainyday', 'primordialsea', 'sandstream']) && pokemon.useItem()) {
+			if (this.isWeather(['sunnyday', 'desolateland', 'hail', 'rainyday', 'primordialsea', 'sandstream', 'shadowsky']) && pokemon.useItem()) {
 				this.boost({atk:1, spa: 1});
 			}
 		},
