@@ -1,6 +1,41 @@
 "use strict";
 
 exports.BattleMovedex = {
+	"buildup": {
+		accuracy: true,
+		basePower: 190,
+		category: "Physical",
+		id: "buildup",
+		isViable: true,
+		name: "Build Up",
+		pp: 15,
+		priority: 2,
+		flags: {protect: 1, contact: 1, mirror: 1, authentic: 1},
+		shortDesc: "Does many things!",
+		drain: [3, 4],
+		ignoreAbility: true,
+		breaksProtect: true,
+		willCrit: true,
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					atk: 1,
+					spe: 2,
+					def: 2,
+					spd: 2,
+				},
+			},
+		},
+		onEffectiveness: function (typeMod, type) {
+			if (type === 'Water') return 1;
+			if (type === 'Fire') return 1;
+			if (type === 'Steel') return 1;
+			if (type === 'Electric') return 1;
+		},
+		target: "normal",
+		type: "Steel",
+	},
 	"smackaround": {
 		accuracy: 100,
 		category: "Physical",
