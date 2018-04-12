@@ -649,6 +649,22 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Clever",
 	},
+	"shadowsky": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Summons Shadow Sky",
+		id: "shadowsky",
+		name: "Shadow Sky",
+		pp: 16,
+		priority: 0,
+		flags: {},
+		weather: 'sunnyday',
+		secondary: false,
+		target: "all",
+		type: "Ghost",
+		zMoveBoost: {spe: 1},
+	},
 	/*Air Current	Flying	Status	--	16 Max	See abilities page under "Air Stream"	Raises the user's Speed by 1
 All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain	Breakneck Blitz (160 BP), will turn into the appropriate Z-Move that matches the terrain
 Gear Grind	Steel	Physical	50, 90%	16 Max	Hits twice (Contact)	Corkscrew Crash (100 BP)
@@ -656,7 +672,6 @@ Haunting Scream	Ghost	Special	90, 100%	16 Max	Inflicts the Perish Song  effect o
 Meteor Shower	Rock	Special	130, 100%	8 Max	User's Special Attack goes down by 2 stages after use	Continental Crush (195 BP)
 Seed Bomb	Grass	Physical	80, 100%	24 Max	50% Chance to seed target (Ballistic, non-contact)	Bloom Doom (160 BP)
 Shadow Charge	Ghost	Physical	85, 95%	24 Max	Power is boosted 1.5x if target is switching in. (Contact)	Never-Ending Nightmare (160 BP)
-Shadow Sky	Ghost	Status	--	16 Max	See abilities page under "Shadow Surge"	Raises the user's Speed by 1
 Swampland	Water	Status	--	16 Max	Envelops the opponent’s side of the field in a Swamp (halves the opponent's team's Speed for 4 turns)	Raises the user's Special Attack by 1
 */
 }; 
