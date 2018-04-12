@@ -20,7 +20,7 @@ Time Warp	Sets Trick Room upon entry
 		shortDesc: "Summons Shadow Sky upon switching in.",
 		onStart: function (source) {
 			this.setWeather('shadowsky');
-			this.add('-ability', 'Shadow Surge');
+			this.add('Shadow Surge');
 		},
 		id: "shadowsurge",
 		name: "Shadow Surge",
@@ -29,7 +29,7 @@ Time Warp	Sets Trick Room upon entry
 		shortDesc: "Summons Air Current upon switching in.",
 		onStart: function (source) {
 			this.setWeather('aircurrent');
-			this.add('-ability', 'Air Stream');
+			this.add('Air Stream');
 		},
 		id: "airstream",
 		name: "Air Stream",
