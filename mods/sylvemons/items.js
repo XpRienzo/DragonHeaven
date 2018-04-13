@@ -93,6 +93,21 @@ exports.BattleItems = {
 		},
 		desc: "When the opponent attacks the holder with a contact move, this item is consumed and the opponent is tormented.",
 	},
+	"poppy": {
+		id: "poppy",
+		name: "Poppy",
+		spritenum: 417,
+		fling: {
+			basePower: 10,
+		},
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.flags['contact'] && target.useItem()) {
+				this.add('-item', target, 'Poppy');
+				source.addVolatile('yawn');
+			}
+		},
+		desc: "When the user is hit by a contact move, this item is consumed and the opponent becomes drowsy",
+	},
 	"mulpberry": {
 		id: "mulpberry",
 		name: "Mulp Berry",
