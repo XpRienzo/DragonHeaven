@@ -270,9 +270,8 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
-		num: 881,
 		gen: 7,
-		desc: "If Hail is active, holder's Speed is doubled. Immune to hail.",
+		desc: "If Hail is active, holder's Speed is doubled. Immune to hail damage.",
 	},
 		"lightball": {
 		id: "lightball",
