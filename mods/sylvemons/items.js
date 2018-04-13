@@ -70,9 +70,10 @@ exports.BattleItems = {
 		fling: {
 			basePower: 60,
 		},
-     onModifyMove: function (move, attacker, defender) {
-         if (defender && defender !== attacker && move && move.flags['contact']) {
-			defender.addVolatile('torment');
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.flags['contact']) {
+				this.add('-item', target, 'Voodoo Doll');
+				source.addVolatile('torment');
 			}
 		},
 		desc: "When the opponent attacks the holder with a contact move, this item is consumed and the opponent is tormented.",
