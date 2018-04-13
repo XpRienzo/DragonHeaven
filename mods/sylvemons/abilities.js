@@ -13,6 +13,27 @@ Misty Surge	Summons Misty Terrain upon switching-in. Misty Terrain now boosts Fa
 Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.0 - [Current percentage of HP in decimal form]) + 1.0
 Time Warp	Sets Trick Room upon entry
 */
+		"mistysurge": {
+		shortDesc: "On switch-in, this Pokemon summons Misty Terrain.",
+		onStart: function (source) {
+			this.setTerrain('mistyterrain');
+		},
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Fairy') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Fairy') {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "mistysurge",
+		name: "Misty Surge",
+		rating: 4,
+		num: 228,
+	},
 	"shadowsurge": {
 		shortDesc: "Summons Shadow Sky upon switching in.",
 		onStart: function (source) {
