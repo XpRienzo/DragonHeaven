@@ -29,8 +29,8 @@ exports.BattleItems = {
       onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Relic Charm');
         if (pokemon.baseTemplate.baseSpecies === 'Meloetta') {
-			this.add('-formechange', pokemon, 'Meloetta-Piroutte', '[msg]');
-			pokemon.formeChange("Meloetta-Piroutte");
+			this.add('-formechange', pokemon, 'Meloetta-Pirouette', '[msg]');
+			pokemon.formeChange("Meloetta-Pirouette");
  }
 		},
 		fling: {
