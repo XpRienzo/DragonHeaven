@@ -58,5 +58,15 @@ init: function () {
 	this.modData('Learnsets', 'meganium').learnset.dracometeor = ['6L1'];
 	this.modData('Learnsets', 'meganium').learnset.earthpower = ['6L1'];
 	this.modData('Learnsets', 'meganium').learnset.calmmind = ['6L1'];
+	
+	this.modData('Learnsets', 'jynx').learnset.thunderbolt = ['6L1'];
+	
+	this.modData('Learnsets', 'porygonz').learnset.hex = ['6L1'];
+	this.modData('Learnsets', 'porygonz').learnset.willowisp = ['6L1'];
+	this.modData('Learnsets', 'porygonz').learnset.volstswitch = ['6L1'];
+	
+	this.modData('Learnsets', 'guzzlord').learnset.shadowball = ['7L1'];
+	this.modData('Learnsets', 'guzzlord').learnset.bellydrum = ['7L1'];
+	this.modData('Learnsets', 'guzzlord').learnset.slackoff = ['7L1'];
 	},
 };
