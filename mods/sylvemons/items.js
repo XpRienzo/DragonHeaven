@@ -71,7 +71,7 @@ exports.BattleItems = {
 			basePower: 60,
 		},
 		onAfterDamage: function (damage, target, source, effect) {
-			if (effect && effect.flags['contact']) {
+			if (effect && effect.flags['contact'] && target.useItem()) {
 				this.add('-item', target, 'Voodoo Doll');
 				source.addVolatile('torment');
 			}
