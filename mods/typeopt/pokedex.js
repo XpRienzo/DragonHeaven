@@ -1038,4 +1038,23 @@ types: ["Grass", "Dragon"],
 baseStats: {hp: 120, atk: 70, def: 120, spa: 90, spd: 120, spe: 50},
 abilities: {0: "Contrary", 1: "Bulletproof", H: "Poison Heal"},
 },
+// Break
+jynx: {
+inherit: true,
+types: ["Ghost", "Ice"],
+baseStats: {hp: 115, atk: 50, def: 55, spa: 130, spd: 110, spe: 110},
+abilities: {0: "Prankster", 1: "Snow Warning", H: "Dry Skin"},
+},
+porygonz: {
+inherit: true,
+types: ["Ghost", "Electric"],
+baseStats: {hp: 95, atk: 40, def: 80, spa: 145, spd: 105, spe: 105},
+abilities: {0: "Compound Eyes", 1: "Download", H: "Levitate"},
+},
+guzzlord: {
+inherit: true,
+types: ["Ghost", "Dragon"],
+baseStats: {hp: 173, atk: 111, def: 73, spa: 97, spd: 73, spe: 43},
+abilities: {0: "Beast Boost", 1: "Gluttony", H: "Sap Sipper"},
+},
 };
