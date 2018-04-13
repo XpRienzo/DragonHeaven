@@ -63,6 +63,21 @@ exports.BattleItems = {
 		gen: 7,
 		desc: "Holder's use of Air Current lasts 8 turns instead of 5.",
 	},
+	"mimicorb": {
+		id: "mimicorb",
+		name: "Mimic Orb",
+		spritenum: 417,
+		fling: {
+			basePower: 30,
+		},
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && target.useItem()) {
+				this.add('-item', target, 'Mimic Orb');
+				this.useMove('Mimic', source);
+			}
+		},
+		desc: "When held, the first move that the holder is targeted with gets added to this Pokemon's moveset until switched out. Displays the same message as Mimic does when activated.",
+	},
 	"voodoodoll": {
 		id: "voodoodoll",
 		name: "Voodoo Doll",
@@ -312,26 +327,17 @@ exports.BattleItems = {
 		name: "Weather Warriors Crystal",
 	},
 	/* Adrenaline Orb	If the user has any of its stats lowered, its highest stat gets raised by one stage. Item does not get consumed.	80, Raises the targets highest stat by 1 stage
-Agony Boots	Holder's Speed is 1.33x, but it can't use the same move twice in a row	10, N/A
-Anguish Bandanna	Holders Attack is 1.33x, but it can't use the same move twice in a row	10, N/A
 Blue Herb	When held, if this Pokemon has it's stats lowered, all of it's stat changes will immediately be inverted. (Consumable)	10, N/A
-Breeze Rock	Allows the holder to summon an Air Current for eight turns rather than five.	60, N/A
-Distress Glass	Holders Special Attack is 1.33x, but it can't use the same move twice in a row	10, N/A
+
 Graduation Scale	If holder is a Wishiwashi, it becomes School Form and will not change back. It's ability becomes Intimidate rather than Schooling. Water moves are boosted by 1.2x	30, N/A
 Home-Run Bat	Reflects Sticky Web, Stealth Rock, Spikes, and Toxic Spikes when an opponent would use it. Single-use. Does NOT break after any uses of Spikes or Toxic Spikes (Otherwise consumable). 	60, N/A
 Hot Potato	When the holder comes into contact with another Pokemon, their hold item is switched with the Hot Potato.	60, Burns the opponent
 Mimic Orb	When held, the first move that the holder is targeted with gets added to this Pokemon's moveset until switched out. Displays the same message as Mimic does when activated.	30, N/A
-Mulp Berry	When at 1/4 HP or less, consumes Berry and sets Stealth Rock on the foe's side	10, N/A
 Photocopier	Copies the opponent's stat changes upon first encountering an opponent with a stat boost. (Consumable)	80, N/A
 Poppy	When the user is hit by a contact move, this item is consumed and the opponent becomes drowsy. (Consumable)	10, Makes the opponent drowsy
-Rage Candy Bar	If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power (Doesn't need the Zen Mode ability)	20, N/A
-Relic Charm	If Meloetta holds this item, it will enter the battle in its Pirouette form and boosts the power of Fighting-type moves by 1.2x. If anything else holds this item, no effect	40, Confuses the opponent
 Reverse Core	Holder's weaknesses and resistances (including immunities) are swapped like in an Inverse Battle. On switchin, displays message "[holder] is cloaked in a mysterious power!"	TBD
-Ring Target	If a Pokémon holds this item, it will ignore any type-based immunity when attacking.	10, N/A
 Room Extender	Extends Trick Room, Magic Room and Wonder Room to 8 turns, instead of 5	60, N/A
 Serenity Brace	Protects the holder from the secondary effects of opponent’s moves.	50, N/A
-Shadow Rock	Extends duration of Shadow Sky from 5 turns to 8.	60, N/A
 Signature Items (Mechanic Change)	Cannot be removed if their holder is the respective species the item is supposed to work with (Light Ball is a bit suspect for this mechanic)	Varies
-Voodoo Doll	When the opponent attacks the holder with a contact move, this item is consumed and the opponent is tormented. (Consumable)	30, Torments opponent
-Weather Warrior's Crystal	When a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each. (Consumable)	60, N/A*/
+*/
 };
