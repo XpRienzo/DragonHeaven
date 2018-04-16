@@ -126,6 +126,7 @@ if (typeof demFeels.extendEmotes === 'function') {
 		'kirbysmile':'https://68.media.tumblr.com/tumblr_opjr1kUk7o1w4zcfto1_1494100136_cover.png',
 		'efforT':'https://imgur.com/gnLNqaR.png',
 		'supergoku': 'https://i.imgur.com/OaynEr8.gif',
+		'canttouchthis': 'https://vignette.wikia.nocookie.net/powerlisting/images/9/9b/Ultra_Instinct.gif/revision/latest?cb=20180223205757',
 	});
 }
 
