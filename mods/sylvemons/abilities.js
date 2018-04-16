@@ -16,7 +16,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 		desc: "This Pokemon is immune to ballistic moves. Ballistic moves include Bullet Seed, Octazooka, Barrage, Rock Wrecker, Zap Cannon, Acid Spray, Aura Sphere, Focus Blast, and all moves with Ball or Bomb in their name.",
 		shortDesc: "Makes user immune to ballistic moves (Shadow Ball, Sludge Bomb, Focus Blast, etc).",
 		onTryHit: function (pokemon, target, move) {
-			if (move.flags['bullet'] || move === 'Flash Cannon') {
+			if (move.flags['bullet'] || move.name === 'Flash Cannon') {
 				this.add('-immune', pokemon, '[msg]', '[from] ability: Bulletproof');
 				return null;
 			}
