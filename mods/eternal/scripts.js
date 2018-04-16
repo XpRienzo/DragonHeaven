@@ -89,6 +89,10 @@ this.modData('Learnsets', 'klang').learnset.gearoverload = ['7L1'];
 this.modData('Learnsets', 'eelektrik').learnset.injection = ['7L1'];
 this.modData('Learnsets', 'ferroseed').learnset.shadowbrambles = ['7L1'];
 this.modData('Learnsets', 'joltik').learnset.electrophage = ['7L1'];
+this.modData('Learnsets', 'omanyte').learnset.rewind = ['7L1'];
+this.modData('Learnsets', 'kabuto').learnset.squeakywheel = ['7L1'];
+this.modData('Learnsets', 'lileep').learnset.algaeallure = ['7L1'];
+this.modData('Learnsets', 'anorith').learnset.aquaticambush = ['7L1'];
 */
 	},
 };
