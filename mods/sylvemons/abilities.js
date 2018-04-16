@@ -3,7 +3,6 @@
 exports.BattleAbilities = {
 
 /* 
-Bulletproof	Protects the Pokémon from some ball, bomb, cannon and blast moves. (List of "cannon" and "blast" moves: Steam Eruption, Flash Cannon, Techno Blast, Fire Blast, Moonblast, Aeroblast, Bullet Fire, Twineedle, Plume Cannon, Draco Meteor, Bullet Punch, Spike Cannon, Fleur Cannon, Meteor Shower, Hydro Cannon) 
 Dimension Warp	Sets up Inverse Room upon switchin. Under Inverse Room, Weakness and Resistances (Not immunities) are reversed
 Disperal	Boosts Bullet Seed, Seed Bomb, and Seed Flare by 1.2x power, and Leech Seed deals 20% more damage and heals 30% more HP each turn.
 Forecast	If this Pokémon is holding a Weather Rock, its secondary typing becomes Water/Fire/Rock/Ice/Flying/Dark (depending on the rock) and summon the corresponding weather upon entering the field. Under Strong Winds, this mon gains the added Flying type.
@@ -12,11 +11,11 @@ Mega Launcher	Boosts the power of Pulse and Ballistic moves by 1.5x. (List: Stea
 Misty Surge	Summons Misty Terrain upon switching-in. Misty Terrain now boosts Fairy-type moves by 1.5x.
 Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.0 - [Current percentage of HP in decimal form]) + 1.0
 */
-	"bulletproof": {
+		"bulletproof": {
 		desc: "This Pokemon is immune to ballistic moves. Ballistic moves include Bullet Seed, Octazooka, Barrage, Rock Wrecker, Zap Cannon, Acid Spray, Aura Sphere, Focus Blast, and all moves with Ball or Bomb in their name.",
 		shortDesc: "Makes user immune to ballistic moves (Shadow Ball, Sludge Bomb, Focus Blast, etc).",
 		onTryHit: function (pokemon, target, move) {
-			if (move.flags['bullet'] || move.name === 'Flash Cannon') {
+			if (move.flags['bullet'] || move.id === 'Steam Eruption' || move.id === 'Flash Cannon' || move.id === 'Techno Blast' || move.id === 'Fire Blast' || move.id === 'Moonblast' || move.id === 'Aeroblast' || move.id === 'Bullet Fire' || move.id === 'Twineedle' || move.id === 'Plume Cannon' || move.id === 'Draco Meteor' || move.id === 'Bullet Punch' || move.id === 'Spike Cannon' || move.id === 'Fleur Cannon' || move.id === 'Meteor Shower' || move.id === 'Hydro Cannon') {
 				this.add('-immune', pokemon, '[msg]', '[from] ability: Bulletproof');
 				return null;
 			}
