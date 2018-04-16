@@ -18,6 +18,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "V-Create", target);
 			this.add('-anim', source, "Dark Void", target);
+			this.add('-anim', source, "Swords Dance", target);
 			this.add('-anim', source, "Extreme Speed", target);
 			this.add('-anim', source, "Gigavolt Havoc", target);
 			this.add('-anim', source, "Explosion", target);
