@@ -125,6 +125,7 @@ if (typeof demFeels.extendEmotes === 'function') {
 		'feelsya':'https://cdn.betterttv.net/emote/5678a310bf317838643c8188/2x',
 		'kirbysmile':'https://68.media.tumblr.com/tumblr_opjr1kUk7o1w4zcfto1_1494100136_cover.png',
 		'efforT':'https://imgur.com/gnLNqaR.png',
+		'supergoku': 'https://i.imgur.com/OaynEr8.gif',
 	});
 }
 
