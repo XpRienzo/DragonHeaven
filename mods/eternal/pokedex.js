@@ -1588,13 +1588,13 @@ abilities: {0: "Compound Eyes", 1: "Unnerve", H: "Swarm"},
 },
 /*	eternal: {
 num: 44,
-species: "Gloom-Eternal",
-baseSpecies: "Gloom",
+species: "Pokemon-Eternal",
+baseSpecies: "Pokemon",
 forme: "Eternal",
 formeLetter: "E", 
 types: ["Dark", "Poison"], 
 baseStats:{hp: 80, atk: 70, def: 90, spa: 110, spd: 95, spe: 44},
-abilities: {0: "Chlorophyll", H: "Stench"}, 
+abilities: {0: "A1", 1: "A2", H: "A2"}, 
 }, */
 };
 
