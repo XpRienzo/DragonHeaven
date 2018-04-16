@@ -11,9 +11,21 @@ Knight's Blade	Boosts the power of sword, cut, slash, and blade moves by 1.5x (L
 Mega Launcher	Boosts the power of Pulse and Ballistic moves by 1.5x. (List: Steam Eruption, Flash Cannon, Techno Blast, Fire Blast, Moonblast, Aeroblast, Bullet Fire, Twineedle, Plume Cannon, Draco Meteor, Bullet Punch, Spike Cannon, Fleur Cannon, Meteor Shower, Hydro Cannon, Blast Burn)
 Misty Surge	Summons Misty Terrain upon switching-in. Misty Terrain now boosts Fairy-type moves by 1.5x.
 Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.0 - [Current percentage of HP in decimal form]) + 1.0
-Time Warp	Sets Trick Room upon entry
 */
-
+	"bulletproof": {
+		desc: "This Pokemon is immune to ballistic moves. Ballistic moves include Bullet Seed, Octazooka, Barrage, Rock Wrecker, Zap Cannon, Acid Spray, Aura Sphere, Focus Blast, and all moves with Ball or Bomb in their name.",
+		shortDesc: "Makes user immune to ballistic moves (Shadow Ball, Sludge Bomb, Focus Blast, etc).",
+		onTryHit: function (pokemon, target, move) {
+			if (move.flags['bullet'] || move === 'Flash Cannon') {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Bulletproof');
+				return null;
+			}
+		},
+		id: "bulletproof",
+		name: "Bulletproof",
+		rating: 3.5,
+		num: 171,
+	},
 	"shadowsurge": {
 		shortDesc: "Summons Shadow Sky upon switching in.",
 		onStart: function (source) {
