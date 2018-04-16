@@ -14,6 +14,14 @@ exports.BattleMovedex = {
 		onEffectiveness: function (typeMod, type, move) {
 			return typeMod + this.getEffectiveness('Fighting', type);
 		},
+		onPrepareHit: function (target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "V-Create", target);
+			this.add('-anim', source, "Dark Void", target);
+			this.add('-anim', source, "Extreme Speed", target);
+			this.add('-anim', source, "Gigavolt Havoc", target);
+			this.add('-anim', source, "Explosion", target);
+		},
 		priority: 0,
 		secondary: false,
 		target: "normal",
