@@ -124,28 +124,36 @@ exports.BattleMovedex = {
 		contestType: "Clever",
 	},
 	"corruptaura": {
-		accuracy: 80,
-		basePower: 140,
+		accuracy: true,
+		basePower: 50,
 		category: "Physical",
-		desc: "Can hit Ghost Types.",
-		shortDesc: "Can hit Ghost Types.",
+		desc: "Replaces the foes ability with Illusion. Heals the user for 25% of its max HP",
+		shortDesc: "Replaces the foes ability with Illusion. Heals the user for 25% of its max HP",
 		id: "corruptaura",
 		isViable: true,
 		name: "Corrupt Aura",
-		pp: 5,
+		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, gravity: 1},
-		onPrepareHit: function (target, source) {
-			this.attrLastMove('[still]');
-			this.add('-anim', source, "High Jump Kick", target);
+		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
+		heal: [1, 4],
+		onTryHit: function (pokemon) {
+			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'simple', 'stancechange', 'truant'];
+			if (bannedAbilities.includes(pokemon.ability)) {
+				return false;
+			}
 		},
-		onEffectiveness: function (typeMod, type) {
-			if (type === 'Ghost') return 0;
+		onHit: function (pokemon) {
+			let oldAbility = pokemon.setAbility('illusion');
+			if (oldAbility) {
+				this.add('-ability', pokemon, 'Illusion', '[from] move: Corrupt Aura');
+				return;
+			}
+			return false;
 		},
 		secondary: false,
 		target: "normal",
-		type: "Fighting",
-		zMovePower: 195,
+		type: "Dark",
+		zMovePower: 100,
 		contestType: "Cool",
 	},
 		"shitpost": {
