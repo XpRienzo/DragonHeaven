@@ -40,7 +40,7 @@ exports.BattleStatuses = {
 			this.add('c|&Ludicrousity|Bow before me foolish mortals xaa');
 		},
 		onFaint: function(pokemon) {
-			this.add('c|%Pika Xreme|Ill be.... Wait, crap wrong quote');
+			this.add('c|%Ludicrousity|Praise Snaq!!!');
 		},
 	},
 	pikaxreme: {
