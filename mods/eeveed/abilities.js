@@ -11,6 +11,12 @@ exports.BattleAbilities = {
 		            id: "torridsand",
 		            name: "Torrid Sand",
 	      },*/
+		"electrojection": {
+		shortDesc: "This Pokemon can paralyze other Pokemon regardless of their typing.",
+		// Implemented in sim/pokemon.js:Pokemon#setStatus
+		id: "electrojection",
+		name: "Electrojection",
+	},
         "miracledash": {
                 shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
 		            onModifySpe: function (spe) {
