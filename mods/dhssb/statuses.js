@@ -264,7 +264,7 @@ exports.BattleStatuses = {
 				this.add('c|&PI★EddyChomp|Hey guys, watch me KO this guy lmao xaa :)');
 		},
 		onFaint: function(pokemon) {
-				this.add("c|&PI★EddyChomp|Fuck this shit, I got rekt. I\'ll get MY REVENGE! RAWR!!!!");
+				this.add("c|&PI★EddyChomp|ripchomp");
 		},
 		onSwitchOut: function(pokemon) {
 		},
