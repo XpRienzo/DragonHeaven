@@ -23,7 +23,7 @@ exports.BattleAbilities = {
 		name: "Crystal Reflection",
 	},
 	"torridsand": {
-		shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled."
+		shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
 		onModifyMove: function(move) {
 			if (move.type !== "Ground") return;
 			move.onEffectiveness = function(typeMod, type) {
