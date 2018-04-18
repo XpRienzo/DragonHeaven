@@ -3,7 +3,6 @@
 exports.BattleAbilities = {
 	"inverseivy": {
 		shortDesc: "The Pokemon's Grass type moves work like in inverse battles.",
-		desc: shortDesc,
 		onEffectiveness: function (typeMod, target, type, move) {
 			if (move && move.type !== "Grass") return;
 			if (move && !this.getImmunity(move, type)) return 1;
@@ -14,7 +13,6 @@ exports.BattleAbilities = {
 	},
 	"crystalreflection": {
 		shortDesc: "Any special move has 50% of the damage dealt back to the user.",
-		desc: shortDesc,
 		onAfterDamageOrder: 1,
 		onAfterDamage: function (damage, target, source, move) {
 			if (source && source !== target && move && move.category === "Special") {
@@ -25,8 +23,7 @@ exports.BattleAbilities = {
 		name: "Crystal Reflection",
 	},
 	"torridsand": {
-		shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
-		desc: shortDesc,
+		shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled."
 		onModifyMove: function(move) {
 			if (move.type !== "Ground") return;
 			move.onEffectiveness = function(typeMod, type) {
@@ -38,7 +35,6 @@ exports.BattleAbilities = {
 	},
 	"acidictouch": {
 		shortDesc: "The user's Poison moves deal Super Effective damage to Steel, Rock, and Water.",
-		desc: shortDesc,
 		onModifyMove: function(move) {
 			if (move.type !== "Poison") return;
 			move.onEffectiveness = function(typeMod, type) {
@@ -50,7 +46,6 @@ exports.BattleAbilities = {
 	},
 	"electrojection": {
 		shortDesc: "This Pokemon can paralyze other Pokemon regardless of their typing.",
-		desc: shortDesc,
 		// Implemented in sim/pokemon.js:Pokemon#setStatus
 		id: "electrojection",
 		name: "Electrojection",
