@@ -4,7 +4,7 @@ exports.BattleAbilities = {
 	"bruteforce": {
 		shortDesc: "Combo of a lot of abilities",
 		onModifyMove: function (move) {
-			move.stab = 4;
+			move.stab = 2;
 		},
 		onSourceModifyDamage: function (damage, source, target, move) {
 			if (target.hp >= target.maxhp) {
@@ -556,7 +556,7 @@ exports.BattleAbilities = {
 		name: "The Underlord",
 	},
 	epicclaws: {
-		shortDesc: "Tough Claws + Magic Bounce",
+		shortDesc: "Tough Claws + Magic Bounce + Insomnia + Serene Grace",
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk) {
 			return this.chainModify(1.5);
