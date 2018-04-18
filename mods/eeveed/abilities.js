@@ -31,7 +31,7 @@ exports.BattleAbilities = {
 			if (move.type !== "Ground") return;
 			move.onEffectiveness = function(typeMod, type) {
 				if (type === 'Water') return 1;
-			},
+			};
 		},
 		id: "torridsand",
 		name: "Torrid Sand",
@@ -43,7 +43,7 @@ exports.BattleAbilities = {
 			if (move.type !== "Poison") return;
 			move.onEffectiveness = function(typeMod, type) {
 				if (type === 'Steel' || type === 'Water' || type === 'Rock') return 1;
-			},
+			};
 		},
 		id: "acidictouch",
 		name: "Acidic Touch",
