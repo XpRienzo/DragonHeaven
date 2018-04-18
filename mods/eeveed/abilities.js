@@ -24,6 +24,17 @@ exports.BattleAbilities = {
 		id: "torridsand",
 		name: "Torrid Sand",
 	},
+	"acidictouch": {
+		shortDesc: "The user's Poison moves deal Super Effective damage to Steel, Rock, and Water.",
+		onModifyMove: function(move) {
+			if (move.type !== "Poison") return;
+			move.onEffectiveness: function(typeMod, type) {
+				if (type === 'Steel' || type === 'Water' || type === 'Rock') return 1;
+			},
+		},
+		id: "acidictouch",
+		name: "Acidic Touch",
+	},
 	"electrojection": {
 		shortDesc: "This Pokemon can paralyze other Pokemon regardless of their typing.",
 		// Implemented in sim/pokemon.js:Pokemon#setStatus
