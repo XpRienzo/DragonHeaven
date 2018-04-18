@@ -138,16 +138,34 @@ exports.BattleAbilities = {
 		rating: 3,
 		num: 210,
 	},
-	"moonlightguard": {
+	"moonlightaura": {
 		name:"Moonlight Aura",
 		id: "moonlightaura",
-		shortDesc: "Raises SpD and Def by 2 stages upon switchin and removes all status conditions after the end of the turn",
-		desc: "Raises SpD and Def by 2 stages upon switchin and removes all status conditions after the end of the turn",
-		onStart: function(pokemon) {
-			this.add('-ability', pokemon, 'Moonlight Aura');
-			this.boost({def:2, spd:2});
+		shortDesc: "Doubles Def and SpD. Heals users status at the end of each turn. Halves all damage from SE hits.",
+		desc: "Doubles Def and SpD. Heals users status at the end of each turn. Halves all damage from SE hits.",
+      onModifyDefPriority: 6,
+		onModifyDef: function (def) {
+			return this.chainModify(2);
 		},
-		
+		onModifySpDPriority: 6,
+		onModifySpD: function (spd) {
+			return this.chainModify(2);
+		},
+		onResidualOrder: 5,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			if (pokemon.hp && pokemon.status) {
+				this.debug('moonlight aura');
+				this.add('-activate', pokemon, 'ability: Moonlight Aura');
+				pokemon.cureStatus();
+			}
+		},
+     	onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				this.debug('Moonlight Aura neutralize');
+				return this.chainModify(0.5);
+			}
+		},	
 	},
 	"extremeintimidate": { /* Fix this On switchin --> Haze --> Lower all of th foe's stats by one*/
 		name:"Extreme Intimidate",
