@@ -29,7 +29,7 @@ exports.BattleAbilities = {
 		shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
 		onModifyMove: function(move) {
 			if (move.type !== "Ground") return;
-			move.onEffectiveness: function(typeMod, type) {
+			move.onEffectiveness = function(typeMod, type) {
 				if (type === 'Water') return 1;
 			},
 		},
@@ -41,7 +41,7 @@ exports.BattleAbilities = {
 		shortDesc: "The user's Poison moves deal Super Effective damage to Steel, Rock, and Water.",
 		onModifyMove: function(move) {
 			if (move.type !== "Poison") return;
-			move.onEffectiveness: function(typeMod, type) {
+			move.onEffectiveness = function(typeMod, type) {
 				if (type === 'Steel' || type === 'Water' || type === 'Rock') return 1;
 			},
 		},
