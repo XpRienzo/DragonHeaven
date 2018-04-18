@@ -1,7 +1,7 @@
 'use strict';
 
 exports.BattleAbilities = {
-	"torridsand": {
+	/*"torridsand": {
                 shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
 		            onEffectiveness: function (typeMod, type, move, target) {
 						if (move.type === 'Ground' && target.type === 'Water') {
@@ -10,7 +10,7 @@ exports.BattleAbilities = {
 						},
 		            id: "torridsand",
 		            name: "Torrid Sand",
-	      },
+	      },*/
         "miracledash": {
                 shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
 		            onModifySpe: function (spe) {
