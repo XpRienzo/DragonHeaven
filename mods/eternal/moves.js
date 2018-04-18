@@ -16,12 +16,8 @@ exports.BattleMovedex = {
 		},
 		onPrepareHit: function (target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "V-Create", target);
-			this.add('-anim', source, "Dark Void", target);
-			this.add('-anim', target, "Swords Dance", source);
-			this.add('-anim', source, "Extreme Speed", target);
-			this.add('-anim', source, "Gigavolt Havoc", target);
-			this.add('-anim', source, "Explosion", target);
+			this.add('-anim', source, "Frenzy Plant", target);
+			this.add('-anim', source, "Close Combat", target);
 		},
 		priority: 0,
 		secondary: false,
@@ -1471,7 +1467,6 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		zMovePower: 200,
 		contestType: "Clever",
 	},
-
 	   /*"sundance": {
     num: 1001,
     accuracy: true,
@@ -1501,9 +1496,9 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
     target: "normal",
     type: "Fire",
     zMovePower: 180,
-  },*/
+  },
 	
-	/*"tranquillity": {
+	"tranquillity": {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -1559,8 +1554,8 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		type: "Flying",
 		zMoveEffect: 'healreplacement',
 		contestType: "Cool",
-	},*/
-	/*"magneticcharge": {
+	},
+	"magneticcharge": {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -1597,8 +1592,8 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		type: "Electric",
 		zMoveBoost: 'clearnegativeboosts',
 		contestType: "Tough",
-	},*/
-	/*"aerialsmash": {
+	},
+	"aerialsmash": {
 		accuracy: 100,
 		basePower: 170,
 		category: "Physical",
@@ -1657,35 +1652,4 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		zMovePower: 150,
 		contestType: "Clever",
 	}, */
-	/* 
-	Signature Move: Gear Overload |   |   | 20 BP | 20 PP | 100 Acc | "The user attacks it's foe using it's gears, the more charged it's gears are the more damage this move deals" | Hits 1 + X times, where X is the number of stat boosts the user has (à la Stored Power). If this move has hits 6 times or more, it replaces the user's ability with Steelworker before doing damage. If the move hits 11 times or more, it replaces the user's ability with Huge Power before doing damage. | Z Move - 160 BP Corkscrew Crash | Physical
-	Signature Move: Injection |   |   | 90 BP | 10 PP | 100 Acc | "The user bites it's prey and injects venom and electrifies it simmoultaneously" | Deals either Poison- or Electric-type damage, whichever is most effective. Either badly poisons, flinches, or paralyzes it's foe, 1/3 chance for each. | Z Move - 175 BP Acid Downpour | Physical
-	Signature Move: Electrophage |   |   | 90 BP | 5 PP | 100 Acc | Latching onto the target, Joltik drains them of all potential energy, increasing its own in the process. Increases Joltik's critical hit ratio by 1, and ignores immunities. Heals by half of the damage done. | Z-Move: 175 BP Gigavolt Havoc | Physical
- Molten Iron Spout - Steel, Special, 130 BP, 24 PP, 100% Acc | Hits all adiacent oppos, independent 40% chance of flinching, burning and/or confusing them.
-
- Signature Move: Good Tidings |   |   | 10 PP | Chingling switches out, healing the switch-in for half of Chingling's max HP. | Z-Move: Fully heals switch-in
-
-	Swirling Punch - Psychic, Physical, 90 BP, 15 PP, 100% Acc | The user spirals in a mesmerizing fashion while charging at the target with its fist. Has a 20% chance of inducing sleep or confusion (à la Fire Fang). | Z-Move: 175 BP Shattered Psyche
-	
-	 Rainbow Burst | 60 BP | Fire | Special | 15 PP | The user calls a rainbow on the user's side of the field, this rainbow doubles the effect of secondary effects taking place (It's the same effect if you mix Water and Fire Pledge). If this rainbow is in the field, this attack has a 30% of chance of dropping target's special defense one level. | Z-Move: Inferno Overdrive 120 BP
-	Spore Burst - Dark, Special, 100 BP, 5 PP, 100% Accuracy (spread move) | The user releases a cloud of spores that darken the sky. Switches out turn 1, hits target turn 2, heals a team member for 50% damage dealt to the corresponding target. | Z-move: Black Hole Eclipse, 190 BP
-	Searing Screen - Fire, Other, -, 20 PP, - | Increase the power of physical and special attacks by 1,33% during 5 turns, but it can be used only during Sun. It lasts 8 if you use Light Clay. | Z-move: +1 Speed
-	Misdirection |  Dark |Physical   | 60 BP | 15 PP | 100 Acc | Throwing out a set of caltrops, Nuzleaf distracts the opponents and uses it as a chance to escape, but not before a cheap attack. Sets up a layer of Spikes, and then attacks the opponent. Switches out after attacking. | Z-Move: 120 BP Black Hole Eclipse
-	
-Signature Move: Nuclear Pollen - Grass, Other, 5 PP | For 5 turns, all Pokémon on the field are resistant to normally super-effective types and weak to normally not-very-effective or ineffective types (as in Inverse Battles) | Z-Move: Resets negative stat boosts
-Signature Move: Phantasmal Break /   / Physical / 80 BP / 15 PP / 100 Acc / Damage dealt cannot be restored until switched out / Z-Move: 160 BP Never-Ending Nightmare
-
-Signature Move: Mineral Bath - Water, Other, 10 PP | If there are entry hazards on the user's side of the field, the user recovers 2/3 HP, and the hazards are removed. Otherwise, the user simply recovers 1/2 HP. | Z-Effect: +1 Defense
-Signature Move: Bounce Shield |  Psychic | Status   | 10 PP | Similar to protect but also deals exactly the damage it would take to the opponent attacking it | Z Move - Fully Heals the user
-Signature Move: Divine Luster |  Fairy | SPecial   | 15 PP | 90 BP | 100 Acc | If the attack is used on an foe, the attack will make damage and it'll make 1,5 times more damage, then it removes any negative status. If it targets user or an ally, it's heal 50% of max Health Points and will remove all negative stats
-Signature Move: Doldrum |  Flying | Physical   | 5 PP | - | The users summons Deltra Stream in first turn, the next turn will increase attack by one level, and defense and special defense by two levels
-Signature Move: Mythical Power (Status | Fairy | 10 PP | Resets the user's lowered stats and then boosts Special Attack by two stages)
-Signature Move: Napalm /   /   / 40 BP / 10 PP / 100 Acc / Fletchinder sideswipes the target, attaching a glob of napalm to them that detonates at the end of the next turn, dealing 100 physical Dark damage. Fletchinder switches out after the initial attack. The explosion will also trigger if the opponent is burned, a Fire-type, or when hit by a Fire-type attack. / Z-Move: 100 BP Black Hole Eclipse
-Signature Move: Egg Overboil |   |   | 45 BP | 10 PP | 90% Acc | Hits twice, the first hit has a 50% chance to Soak its foe, and the second hit a 50% chance to burn it. | Z Move - 175 BP Hydro Vortex
-Signature Move: Nosokinesis |   |   | 5 PP | 100 BP | 100 Acc | This move's power is increased by 1,5x if it has a status move, and it transfer the status problem to the enemy. if it transfer the status, the user regains 25% of max HP.
-Signature Move: Ancient Ritual - Special, Dragon, 150 BP, 100% Accuracy, 5 PP | The user chants a cataclysmic tune. Calls for an attack turn 1, hits turn 4. If the opponent has been KOd by this attack, apply the Wish effect to the current Pokemon on the field. | Z-move: Devastating Drake, 210 BP
-Signature Move: Pumpkin Flare - Fire, Special, 10 PP, - BP, 100% Accuracy | The user bursts its body and fires an array of seeds at the opponent. BP is dependent on form (20 BP for small, 22 BP for medium, 25 BP for large, 30 BP for XL), burn chance is dependent on form (8% for small, 11% for medium, 14% for large, 20% for XL), and amount of hits are based on size (6 for small, 5 for medium, 4 for large, 3 for XL). | Z-move: Inferno Overdrive, 190 BP
-Signature Move: Manifest Destiny /   /   / 90 BP / 90 Acc / 10 PP / Grasping at the chance to gain power in justice, Rufflet assaults the target. Deals 50% more damage and never misses if Rufflet is hit on the turn of the attack. / Z-Move: 170 BP Supersonic Skystrike
-Signature Move: Sun Dance |   |   | -- BP | 5 PP | -- Acc | "The user sacrifices its vital energy as a gift for the sun, therefore summoning stronger daylight along with a boost to its power." | -5 Priority. User decreases it HP until it's left with one hit point, the exact number of hit points is lot by the foe as well (à la Final Gambit). Sets up Sunny Day, and Boosts user's Special Attack, Special Defense, and Speed by one stage each. Never Misses. | Z Move - 180 BP Inferno Overdrive
-*/
 };
