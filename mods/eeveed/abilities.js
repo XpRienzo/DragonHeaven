@@ -1,6 +1,18 @@
 'use strict';
 
 exports.BattleAbilities = {
+	"crystalreflection": {
+		desc: shortDesc,
+		shortDesc: "Any special move has 50% of the damage dealt back to the user.",
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move && move.category === "Special") {
+				this.damage(damage / 2, source, target);
+			}
+		},
+		id: "crystalreflection",
+		name: "Crystal Reflection",
+	},
 	"torridsand": {
 		shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
 		onModifyMove: function(move) {
