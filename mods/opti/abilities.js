@@ -7,7 +7,6 @@ exports.BattleAbilities = {
 		onModifyMove: function (move, pokemon) {
 			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Water';
-				move.refrigerateBoosted = true;
 			}
 			if (move.type === 'Water') {
 				move.accuracy = true; // Add protection break
