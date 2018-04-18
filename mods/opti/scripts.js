@@ -1,6 +1,17 @@
 'use strict';
 
 exports.BattleScripts = {
+pokemon: { 
+setStatus(status, source = null, sourceEffect = null, ignoreImmunities = false) {
+if (!ignoreImmunities && status.id && !(source && source.hasAbility('electrojection') && ['par'].includes(status.id))) {
+			// the game currently never ignores immunities
+			if (!this.runStatusImmunity(status.id === 'par' ? 'par' : status.id)) {
+				this.battle.debug('immune to status');
+				if (sourceEffect && sourceEffect.status) this.battle.add('-immune', this, '[msg]');
+				return false;
+			}
+		}
+},
 init: function () {
 
 this.modData('Learnsets', 'hitmonchan').learnset.backdraft = ['6L1'];
