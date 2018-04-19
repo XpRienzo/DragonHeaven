@@ -26,6 +26,102 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 'use strict';
 
 exports.BattleMovedex = {
+	"defog": {
+		num: 432,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Lowers the target's evasiveness by 1 stage. If this move is successful and whether or not the target's evasiveness was affected, the effects of Reflect, Light Screen, Aurora Veil, Safeguard, Mist, Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the target's side, and the effects of Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the user's side. Ignores a target's substitute, although a substitute will still block the lowering of evasiveness.",
+		shortDesc: "-1 evasion; clears user and target side's hazards.",
+		id: "defog",
+		isViable: true,
+		name: "Defog",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		onHit: function (target, source, move) {
+			if (!target.volatiles['substitute'] || move.infiltrates) this.boost({evasion: -1});
+			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			let success = false;
+			for (let targetCondition of removeTarget) {
+				if (target.side.removeSideCondition(targetCondition)) {
+					if (!removeAll.includes(targetCondition)) continue;
+					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + target);
+					success = true;
+				}
+			}
+			for (let sideCondition of removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					success = true;
+				}
+			}
+			return success;
+		},
+		onTryHit: function (target, source) {
+				this.removePseudoWeather('trickroom');
+			},
+		secondary: false,
+		target: "normal",
+		type: "Flying",
+		zMoveBoost: {accuracy: 1},
+		contestType: "Cool",
+	},
+	"splinteredstormshards": {
+		num: 727,
+		accuracy: true,
+		basePower: 190,
+		category: "Physical",
+		desc: "Ends the effects of Electric Terrain, Grassy Terrain, Misty Terrain, and Psychic Terrain.",
+		shortDesc: "Ends the effects of Terrain.",
+		id: "splinteredstormshards",
+		name: "Splintered Stormshards",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		onTryHit: function (target, source) {
+				this.removePseudoWeather('trickroom');
+			},
+		onHit: function () {
+			this.clearTerrain();
+		},
+		isZ: "lycaniumz",
+		secondary: false,
+		target: "normal",
+		type: "Rock",
+		contestType: "Cool",
+	},
+	"haze": {
+		num: 114,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Resets the stat stages of all active Pokemon to 0.",
+		shortDesc: "Eliminates all stat changes.",
+		id: "haze",
+		isViable: true,
+		name: "Haze",
+		pp: 30,
+		priority: 0,
+		flags: {authentic: 1},
+		onHitField: function () {
+			this.add('-clearallboost');
+			for (let i = 0; i < this.sides.length; i++) {
+				for (let j = 0; j < this.sides[i].active.length; j++) {
+					if (this.sides[i].active[j] && this.sides[i].active[j].isActive) this.sides[i].active[j].clearBoosts();
+				}
+			}
+		},
+		onTryHit: function (target, source) {
+				this.removePseudoWeather('trickroom');
+			},
+		secondary: false,
+		target: "all",
+		type: "Ice",
+		zMoveEffect: 'heal',
+		contestType: "Beautiful",
+	},
 	"bulldoze": {
 		num: 523,
 		accuracy: 100,
@@ -45,7 +141,7 @@ exports.BattleMovedex = {
 			},
 		},
 		onTryHit: function (target, source) {
-				this.removePseudoWeather('trickroom');
+				this.removePseudoWeather('trickroom', 'magicroom');
 			},
 		target: "allAdjacent",
 		type: "Ground",
@@ -509,7 +605,7 @@ exports.BattleMovedex = {
 		onHit: function (target, source) {
 			let item = target.getItem();
 			if (source.hp && item.isBerry && target.takeItem(source)) {
-				this.add('-enditem', target, item.name, '[from] stealeat', '[move] Bug Bite', '[of] ' + source);
+				this.add('-enditem', target, item.name, '[from] stealeat', '[move] Pluck', '[of] ' + source);
 				if (this.singleEvent('Eat', item, null, source, null, null)) {
 					this.runEvent('EatItem', source, null, null, item);
 				}
