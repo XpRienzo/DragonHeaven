@@ -201,8 +201,8 @@ exports.BattleItems = {
 	            	fling: {
                    			basePower: 80,
             		},
-            		onModifySpDPriority: 1,
-            		onModifySpD: function (def) {
+            		onModifyDefPriority: 1,
+            		onModifyDef: function (def) {
                   			return this.chainModify(1.5);
              		},
             		onDisableMove: function (pokemon) {
