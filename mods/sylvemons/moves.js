@@ -314,7 +314,7 @@ exports.BattleMovedex = {
 		//if (pokemon.sideCondition('tailwind')) {
 		//		return this.chainModify(2);
 		//	}
-		},
+		//},
 		selfSwitch: true,
 		secondary: false,
 		target: "normal",
