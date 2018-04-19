@@ -330,9 +330,9 @@ etheralfist: {
 				totalatk += foeactive[i].getStat('atk', false, true);
 				totalspa += foeactive[i].getStat('spa', false, true);
 			}
-			if (totalatk && totalspa >= totalspa) {
+			if (totalspa >= totalatk) {
 				this.boost({spd: 1});
-			} else if (totalspa) {
+			} else if (totalatk > totalspa) {
 				this.boost({def: 1});
 			}
 		},
