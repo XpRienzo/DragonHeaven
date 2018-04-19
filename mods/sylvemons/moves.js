@@ -86,7 +86,6 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		selfSwitch: true,
-		onTryHit: false,
 		secondary: false,
 		target: "normal",
 		type: "Psychic",
