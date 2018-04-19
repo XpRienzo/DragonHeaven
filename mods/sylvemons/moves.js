@@ -66,6 +66,10 @@ exports.BattleMovedex = {
 					this.debug('misty terrain weaken');
 					return this.chainModify(0.5);
 				}
+				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					this.debug('electric terrain boost');
+					return this.chainModify(1.5);
+				}
 			},
 			onStart: function (battle, source, effect) {
 				if (effect && effect.effectType === 'Ability') {
