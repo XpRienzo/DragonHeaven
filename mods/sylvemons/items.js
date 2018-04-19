@@ -195,7 +195,7 @@ exports.BattleItems = {
             		desc: "Holder's use of Electric/Grassy/Misty/Psychic Terrain lasts 8 turns instead of 5.",
        	},
         "assaultshield": {
-	             	id: "assaultshieldt",
+	             	id: "assaultshield",
 		            name: "Assault Shield",
             		spritenum: 581,
 	            	fling: {
