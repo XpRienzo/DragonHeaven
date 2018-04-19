@@ -26,6 +26,32 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 'use strict';
 
 exports.BattleMovedex = {
+	"bulldoze": {
+		num: 523,
+		accuracy: 100,
+		basePower: 60,
+		category: "Physical",
+		desc: "Has a 100% chance to lower the target's Speed by 1 stage.",
+		shortDesc: "100% chance to lower adjacent Pkmn Speed by 1.",
+		id: "bulldoze",
+		name: "Bulldoze",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, nonsky: 1},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spe: -1,
+			},
+		},
+		onTryHit: function (target, source) {
+				this.removePseudoWeather('trickroom');
+			},
+		target: "allAdjacent",
+		type: "Ground",
+		zMovePower: 120,
+		contestType: "Tough",
+	},
         "flamebullet": {
                 accuracy: 100,
                 basePower: 40,
