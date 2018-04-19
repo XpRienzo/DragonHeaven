@@ -9,6 +9,13 @@ exports.BattleItems = {
         if (pokemon.baseTemplate.baseSpecies === 'Wishiwashi') {
 			this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
 			pokemon.formeChange("Wishiwashi-School");
+			let oldAbility = pokemon.setAbility('intimidate');
+			if (oldAbility) {
+				this.add('-item', pokemon, 'Intimidate', '[from] move: Graduation Scale');
+				return;
+			}
+			return false;
+		},
  }
 			
 		},
