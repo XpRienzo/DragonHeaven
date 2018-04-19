@@ -10,6 +10,7 @@ exports.BattleItems = {
 			this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
 			pokemon.formeChange("Wishiwashi-School");
  }
+			
 		},
 		fling: {
 			basePower: 20,
