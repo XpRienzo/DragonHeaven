@@ -9,7 +9,7 @@ Forecast	If this Pokémon is holding a Weather Rock, its secondary typing become
 Misty Surge	Summons Misty Terrain upon switching-in. Misty Terrain now boosts Fairy-type moves by 1.5x.
 Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.0 - [Current percentage of HP in decimal form]) + 1.0
 */
-	/*"schooling": {
+	"schooling": {
 		desc: "On switch-in, if this Pokemon is a Wishiwashi that is level 20 or above and has more than 1/4 of its maximum HP left, it changes to School Form. If it is in School Form and its HP drops to 1/4 of its maximum HP or less, it changes to Solo Form at the end of the turn. If it is in Solo Form and its HP is greater than 1/4 its maximum HP at the end of the turn, it changes to School Form.",
 		shortDesc: "If user is Wishiwashi, changes to School Form if it has > 1/4 max HP, else Solo Form.",
 		onStart: function (pokemon) {
@@ -21,7 +21,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 					this.add('-formechange', pokemon, 'Wishiwashi-School', '[from] ability: Schooling');
 				}
 			} else {
-				if (pokemon.template.speciesid === 'wishiwashischool'/*&& sourceItem !== 'Graduation Scale') {
+				if (pokemon.template.speciesid === 'wishiwashischool'&& sourceItem.name !== 'Graduation Scale') {
 					pokemon.formeChange('Wishiwashi');
 					this.add('-formechange', pokemon, 'Wishiwashi', '[from] ability: Schooling');
 				}
@@ -29,7 +29,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 		//	if (sourceItem === 'Graduation Scale') {
 			//	this.pokemon.ability === 'Intimidate';
 		//	}
-		},*/
+		},
 	"knightsblade": {
 		shortDesc: "Boosts the power of sword, cut, slash, and blade moves by 1.5x",
 		onBasePowerPriority: 8,
