@@ -1,6 +1,28 @@
 'use strict';
 
 exports.BattleItems = {
+	"graduationscale": {
+		id: "graduationscale",
+		name: "Graduation Scale",
+      onStart: function(pokemon) {
+			this.add('-item', pokemon, 'Graduation Scale');
+        if (pokemon.baseTemplate.baseSpecies === 'Wishiwashi') {
+			this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
+			pokemon.formeChange("Darmanitan-School");
+ }
+		},
+		fling: {
+			basePower: 20,
+		},
+                onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && (user.baseTemplate.num === 555) && (move.type === 'Water')) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		gen: 7,
+		desc: "If holder is a Wishiwashi, it becomes School Form and will not change back. It's ability becomes Intimidate rather than Schooling. Water moves are boosted by 1.2x",
+	},
 	"ragecandybar": {
 		id: "ragecandybar",
 		name: "Rage Candy Bar",
