@@ -141,7 +141,8 @@ exports.BattleMovedex = {
 			},
 		},
 		onTryHit: function (target, source) {
-				this.removePseudoWeather('trickroom', 'magicroom');
+				this.removePseudoWeather('trickroom');
+			   this.removePseudoWeather('magicroom');
 			},
 		target: "allAdjacent",
 		type: "Ground",
