@@ -74,7 +74,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 		id: "timewarp",
 		name: "Time Warp",
 	},
-	mindtrick: {
+/*	mindtrick: {
 		shortDesc: "Stat changes are received by the opposing pokemon and vice versa",
 		onUpdate: function (target, source) {
 			let targetBoosts = {};
@@ -92,7 +92,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 		},
 		id: "mindtrick",
 	name: "Mind Trick",
-	},
+	},*/
 	housekeeping: {
 		shortDesc: "Removes hazards upon switch-in.",
 	onStart: function (pokemon) {
