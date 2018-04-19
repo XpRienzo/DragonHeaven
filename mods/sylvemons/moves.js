@@ -26,7 +26,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 'use strict';
 
 exports.BattleMovedex = {
-"mistyterrain": {
+/*"mistyterrain": {
 		num: 581,
 		accuracy: true,
 		basePower: 0,
@@ -67,7 +67,6 @@ exports.BattleMovedex = {
 					return this.chainModify(0.5);
 				}
 				if (move.type === 'Fairy' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
-					this.debug('misty terrain boost');
 					return this.chainModify(1.5);
 				}
 			},
@@ -77,7 +76,7 @@ exports.BattleMovedex = {
 				} else {
 					this.add('-fieldstart', 'move: Misty Terrain');
 				}
-			},
+			},*/
 	"defog": {
 		num: 432,
 		accuracy: true,
