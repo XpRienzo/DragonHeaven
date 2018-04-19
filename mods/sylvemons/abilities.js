@@ -38,7 +38,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 		desc: "This Pokemon is immune to ballistic moves. Ballistic moves include Bullet Seed, Octazooka, Barrage, Rock Wrecker, Zap Cannon, Acid Spray, Aura Sphere, Focus Blast, and all moves with Ball or Bomb in their name.",
 		shortDesc: "Makes user immune to ballistic moves (Shadow Ball, Sludge Bomb, Focus Blast, etc).",
 		onTryHit: function (pokemon, target, move) {
-			if (move.flags['bullet'] || move.id === 'Steam Eruption' || move.id === 'Flash Cannon' || move.id === 'Techno Blast' || move.id === 'Fire Blast' || move.id === 'Moonblast' || move.id === 'Aeroblast' || move.id === 'Bullet Fire' || move.id === 'Twineedle' || move.id === 'Plume Cannon' || move.id === 'Draco Meteor' || move.id === 'Bullet Punch' || move.id === 'Spike Cannon' || move.id === 'Fleur Cannon' || move.id === 'Meteor Shower' || move.id === 'Hydro Cannon') {
+			if (move.flags['bullet'] || move.name === 'Steam Eruption' || move.name === 'Flash Cannon' || move.name === 'Techno Blast' || move.name === 'Fire Blast' || move.name === 'Moonblast' || move.name === 'Aeroblast' || move.name === 'Bullet Fire' || move.name === 'Twineedle' || move.name === 'Plume Cannon' || move.name === 'Draco Meteor' || move.name === 'Bullet Punch' || move.name === 'Spike Cannon' || move.name === 'Fleur Cannon' || move.name === 'Meteor Shower' || move.name === 'Hydro Cannon') {
 				this.add('-immune', pokemon, '[msg]', '[from] ability: Bulletproof');
 				return null;
 			}
