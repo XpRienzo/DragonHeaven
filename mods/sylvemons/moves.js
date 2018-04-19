@@ -311,7 +311,7 @@ exports.BattleMovedex = {
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon) {
-			if (pokemon.sideCondition === 'tailwind') {
+			if (pokemon.sideCondition('tailwind')) {
 				return this.chainModify(2);
 			}
 		},
