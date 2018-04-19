@@ -11,7 +11,6 @@ exports.BattleItems = {
 			pokemon.formeChange("Wishiwashi-School");
 			let oldAbility = pokemon.setAbility('intimidate');
 			if (oldAbility) {
-				this.add('-item', pokemon, 'Intimidate', '[from] move: Graduation Scale');
 				return;
 			}
 			return false;
