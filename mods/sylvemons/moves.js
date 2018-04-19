@@ -26,7 +26,7 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 'use strict';
 
 exports.BattleMovedex = {
-/*	"mistyterrain": {
+"mistyterrain": {
 		num: 581,
 		accuracy: true,
 		basePower: 0,
@@ -77,7 +77,7 @@ exports.BattleMovedex = {
 				} else {
 					this.add('-fieldstart', 'move: Misty Terrain');
 				}
-			},*/
+			},
 	"defog": {
 		num: 432,
 		accuracy: true,
