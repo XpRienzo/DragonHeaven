@@ -76,7 +76,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 	},
 	mindtrick: {
 		shortDesc: "Stat changes are received by the opposing pokemon and vice versa",
-		onStart: function (target, source) {
+		onUpdate: function (target, source) {
 			let targetBoosts = {};
 			let sourceBoosts = {};
 
