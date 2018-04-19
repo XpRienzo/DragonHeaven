@@ -66,9 +66,6 @@ exports.BattleMovedex = {
 					this.debug('misty terrain weaken');
 					return this.chainModify(0.5);
 				}
-				/*if (move.type === 'Fairy' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
-					return this.chainModify(1.5);
-				}*/
 			},
 			onStart: function (battle, source, effect) {
 				if (effect && effect.effectType === 'Ability') {
@@ -77,6 +74,18 @@ exports.BattleMovedex = {
 					this.add('-fieldstart', 'move: Misty Terrain');
 				}
 			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd: function (side) {
+				this.add('-fieldend', 'Misty Terrain');
+			},
+		},
+		secondary: false,
+		target: "all",
+		type: "Fairy",
+		zMoveBoost: {spd: 1},
+		contestType: "Beautiful",
+	},
 	"defog": {
 		num: 432,
 		accuracy: true,
