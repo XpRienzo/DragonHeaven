@@ -21,7 +21,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 					this.add('-formechange', pokemon, 'Wishiwashi-School', '[from] ability: Schooling');
 				}
 			} else {
-				if (pokemon.template.speciesid === 'wishiwashischool' && !pokemon.hasItem('Graduation Scale')) {
+				if (pokemon.template.speciesid === 'wishiwashischool' && pokemon.hasItem('Graduation Scale')) {
 					pokemon.formeChange('Wishiwashi');
 					this.add('-formechange', pokemon, 'Wishiwashi', '[from] ability: Schooling');
 				}
