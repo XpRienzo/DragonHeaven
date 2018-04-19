@@ -125,7 +125,7 @@ exports.BattleMovedex = {
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon) {
-			if (this.issideCondition(['tailwind'])) {
+			if (this.isSideCondition(['tailwind'])) {
 				return this.chainModify(2);
 			}
 		},
@@ -193,6 +193,14 @@ exports.BattleMovedex = {
 		pp: 32,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyMovePriority: -5,
+		onModifyMove: function (move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Steel'] = true;
+				move.ignoreImmunity['Poison'] = true;
+			}
+		},
 		onEffectiveness: function (typeMod, type) {
 			if (type === 'Steel') return 1;
 		},
@@ -439,6 +447,14 @@ exports.BattleMovedex = {
 				if (item.onEat) source.ateBerry = true;
 			}
 		},
+		onAfterHit: function (target, source) {
+			if (source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Bug Bite', '[of] ' + source);
+				}
+			}
+		},
 		secondary: false,
 		target: "normal",
 		type: "Bug",
@@ -474,6 +490,14 @@ exports.BattleMovedex = {
 				if (item.onEat) source.ateBerry = true;
 			}
 		},
+		onAfterHit: function (target, source) {
+			if (source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Pluck', '[of] ' + source);
+				}
+			}
+		},
 		secondary: false,
 		target: "normal",
 		type: "Flying",
@@ -506,6 +530,14 @@ exports.BattleMovedex = {
 					this.runEvent('EatItem', source, null, null, item);
 				}
 				if (item.onEat) source.ateBerry = true;
+			}
+		},
+		onAfterHit: function (target, source) {
+			if (source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Incinerate', '[of] ' + source);
+				}
 			}
 		},
 		secondary: false,
