@@ -195,26 +195,22 @@ exports.BattleItems = {
             		desc: "Holder's use of Electric/Grassy/Misty/Psychic Terrain lasts 8 turns instead of 5.",
        	},
         "assaultshield": {
-	             	id: "assaultshield",
-		            name: "Assault Shield",
-            		spritenum: 581,
-	            	fling: {
-                   			basePower: 80,
-            		},
-            		onModifyDefPriority: 1,
-            		onModifyDef: function (def) {
-                  			return this.chainModify(1.5);
-             		},
-            		onDisableMove: function (pokemon) {
-                   			let moves = pokemon.moveset;
-                   			for (let i = 0; i < moves.length; i++) {
-                        				if (this.getMove(moves[i].move).category === 'Status') {
-	                              				pokemon.disableMove(moves[i].id);
-	                        			}
-                   			}
-            		},
-             		desc: "Holder's Def is 1.5x, but it can only select damaging moves.",
-       	},
+	id: "assaultshield",
+	name: "assault Shield",
+	onModifyDefPriority: 1,
+	onModifyDef: function(def) {
+		return this.chainModify(1.5);
+	},
+	onDisableMove: function(pokemon) {
+		let moves = pokemon.moveset;
+		for (let i = 0; i < moves.length; i++) {
+			if (this.getMove(moves[i].move).category === 'Status') {
+				pokemon.disableMove(moves[i].id);
+			}
+		}
+	},
+	desc: "Holder's Def is 1.5x, but it can only select damaging moves.",
+},
 	"eviolith": {
 		id: "eviolith",
 		name: "Eviolith",
