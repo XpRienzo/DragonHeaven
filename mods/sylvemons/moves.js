@@ -150,8 +150,8 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onBasePowerPriority: 8,
-		onBasePower: function (basePower, pokemon) {
-			if (this.isSideCondition(['tailwind'])) {
+		onBasePower: function (basePower, pokemon, source, target) {
+			if (source.sideCondition === 'tailwind' || target.sideCondition === 'tailwind') {
 				return this.chainModify(2);
 			}
 		},
