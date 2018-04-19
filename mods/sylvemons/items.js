@@ -8,7 +8,7 @@ exports.BattleItems = {
 			this.add('-item', pokemon, 'Graduation Scale');
         if (pokemon.baseTemplate.baseSpecies === 'Wishiwashi') {
 			this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
-			pokemon.formeChange("Darmanitan-School");
+			pokemon.formeChange("Wishiwashi-School");
  }
 		},
 		fling: {
@@ -16,7 +16,7 @@ exports.BattleItems = {
 		},
                 onBasePowerPriority: 6,
 		onBasePower: function (basePower, user, target, move) {
-			if (move && (user.baseTemplate.num === 555) && (move.type === 'Water')) {
+			if (move && (user.baseTemplate.num === 746) && (move.type === 'Water')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
