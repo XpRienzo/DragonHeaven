@@ -265,6 +265,8 @@ exports.BattleAbilities = {
 				}
 			}
 		},
+		id: "snowforce",
+		name: "Snow Force",
 	},
 	"sandyskin": {
 		desc: "This Pokemon has its major status condition cured at the end of each turn if Rain Dance is active.",
@@ -703,7 +705,7 @@ exports.BattleAbilities = {
 		rating: 4,
 		num: 220,
 	},
-	"stickylevitation": {
+	"stickyfloat": {
 		shortDesc: "This Pokemon cannot lose its held item due to another Pokemon's attack.",
 		onTakeItem: function(item, pokemon, source) {
 			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon) return;
@@ -715,8 +717,8 @@ exports.BattleAbilities = {
 		onImmunity: function(type) {
 			if (type === 'Ground') return false;
 		},
-		id: "stickylevitation",
-		name: "Sticky Levitation",
+		id: "stickyfloat",
+		name: "Sticky Float",
 		rating: 1.5,
 		num: 221
 	},
@@ -972,6 +974,8 @@ exports.BattleAbilities = {
 				this.add('-end', target, 'ability: Flash Fire', '[silent]');
 			}
 		},
+		id: "evaporation",
+		name: "Evaporation",
 	},
 	"hardbody": {
 		shortDesc: "Prevents other Pokemon from lowering this Pokemon's stat stages.",
