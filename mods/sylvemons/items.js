@@ -9,12 +9,18 @@ exports.BattleItems = {
         if (pokemon.baseTemplate.baseSpecies === 'Wishiwashi') {
 			this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
 			pokemon.formeChange("Wishiwashi-School");
- }		
+			  let oldAbility = pokemon.setAbility('intimidate');
+		  }
+			if (oldAbility) {
+				this.add('-ability', pokemon, 'Intimidate');
+				return;
+			}
+			return false;
 		},
 		fling: {
 			basePower: 20,
 		},
-                onBasePowerPriority: 6,
+      onBasePowerPriority: 6,
 		onBasePower: function (basePower, user, target, move) {
 			if (move && (user.baseTemplate.num === 746) && (move.type === 'Water')) {
 				return this.chainModify([0x1333, 0x1000]);
