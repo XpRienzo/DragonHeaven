@@ -1887,6 +1887,149 @@ exports.BattleAbilities = {
 		id: "prankstar",
 		name: "Prankstar",
 	},
+	"sturdyfire": {
+		shortDesc: "Sturdy + Flash Fire",
+		onTryHit: function (pokemon, target, move) {
+			if (move.ohko) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Sturdy');
+				return null;
+			}
+		},
+		onDamagePriority: -100,
+		onDamage: function (damage, target, source, effect) {
+			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+				this.add('-ability', target, 'Sturdy');
+				return target.hp - 1;
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+				move.accuracy = true;
+				if (!target.addVolatile('flashfire')) {
+					this.add('-immune', target, '[msg]', '[from] ability: Flash Fire');
+				}
+				return null;
+			}
+		},
+		onEnd: function (pokemon) {
+			pokemon.removeVolatile('flashfire');
+		},
+		effect: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart: function (target) {
+				this.add('-start', target, 'ability: Flash Fire');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk: function (atk, attacker, defender, move) {
+				if (move.type === 'Fire') {
+					this.debug('Flash Fire boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA: function (atk, attacker, defender, move) {
+				if (move.type === 'Fire') {
+					this.debug('Flash Fire boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onEnd: function (target) {
+				this.add('-end', target, 'ability: Flash Fire', '[silent]');
+			},
+		},
+		id: "sturdyfire",
+		name: "Sturdy Fire",
+	},
+	"kindle": {
+		shortDesc: "During hail, it's Fire moves are powered up by 1.5x and recovers 1/16 HP every turn.",
+		onModifySpAPriority: 5,
+		onModifySpA: function (spa, pokemon) {
+			if (this.isWeather('sunnyday')) {
+				return this.chainModify(1.5);
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'hail') {
+				this.heal(target.maxhp / 16, target, target);
+			}
+		},
+		id: "kindle",
+		name: "Kindle",
+	},
+	"durablebarbs": {
+		shortDesc: "Sturdy + Iron Barbs",
+		onTryHit: function (pokemon, target, move) {
+			if (move.ohko) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Sturdy');
+				return null;
+			}
+		},
+		onDamagePriority: -100,
+		onDamage: function (damage, target, source, effect) {
+			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+				this.add('-ability', target, 'Sturdy');
+				return target.hp - 1;
+			}
+		},
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move && move.flags['contact']) {
+				this.damage(source.maxhp / 8, source, target);
+			}
+		},
+		id: "durablebarbs",
+		name: "Durable Barbs",
+	},
+	"rapidgrowth": {
+		shortDesc: "Grass-type moves have their priority increased by 1.",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.type === 'Grass') return priority + 1;
+		},
+		id: "rapidgrowth",
+		name: "Rapid Growth",
+		rating: 3,
+		num: 177,
+	},
+	"amazingbulk": {
+		shortDesc: "This Pokemon receives 1/2 damage from supereffective attacks.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				this.debug('Filter neutralize');
+				return this.chainModify(0.5);
+			}
+		},
+		id: "amazingbulk",
+		name: "Amazing Bulk",
+	},
+	"chargedup": {
+		shortDesc: "Users Special Attack is doubled.",
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk) {
+				return this.chainModify(2);
+		},
+		id: "chargedup",
+		name: "Charged Up",
+	},
+	"khanqueror": {
+		shortDesc: "Ignores type immunities while attacking",
+		onModifyMovePriority: -5,
+		onModifyMove: function (move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity = true;
+			}
+		},
+		id: "khanqueror",
+		name: "Khanqueror",
+	},
+	"synchrostall": {
+		shortDesc: "On switch-in, this Pokemon summons Trick Room.",
+		onStart: function (source) {
+			this.useMove('Trick Room', source);
+		},
+		id: "Synchrostall",
+		name: "Synchrostall",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
