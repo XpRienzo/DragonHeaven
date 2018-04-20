@@ -1987,8 +1987,6 @@ exports.BattleAbilities = {
 		},
 		id: "rapidgrowth",
 		name: "Rapid Growth",
-		rating: 3,
-		num: 177,
 	},
 	"amazingbulk": {
 		shortDesc: "This Pokemon receives 1/2 damage from supereffective attacks.",
@@ -2029,6 +2027,74 @@ exports.BattleAbilities = {
 		},
 		id: "Synchrostall",
 		name: "Synchrostall",
+	},
+	"permafrost": {
+		shortDesc: "Immune to Fire and Ground.",
+		onImmunity: function (type, pokemon) {
+			if (type === 'Fire' || type === 'Ground') return false;
+		},
+		id: "permafrost",
+		name: "Permafrost",
+	},
+	"heavyarmor": {
+		shortDesc: "If a physical attack hits this Pokemon, defense is raised by 1, speed is lowered by 1.",
+		onAfterDamage: function (damage, target, source, move) {
+			if (move.category === 'Physical') {
+				this.boost({def: 1, spe: -1}, target, target);
+			}
+		},
+		id: "heavyarmor",
+		name: "Heavy Armor",
+	},
+	'negativebody': {
+		shortDesc: "Resets all stat changes of the opponent upon switching in.",
+		onStart: function (source) {
+			this.useMove('Haze', source);
+		},
+		id: "negativebody",
+		name: "Negative Body",
+	},
+	"strikeandpass": {
+		shortDesc: "All moves at 60 base power or below get boosted by x1.5 and gain a U-Turn switching effect.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+				this.debug('Technician boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyMove: function(move) {
+			if (move.target && !move.nonGhostTarget && (move.target === "normal" || move.target === "any" || move.target === "randomNormal" || move.target === "allAdjacent" || move.target === "allAdjacentFoes")) {
+				move.selfSwitch = true;
+			}
+		},
+		id: "strikeandpass",
+		name: "Strike and Pass",
+	},
+	"stunningbug": {
+		shortDesc: "Bug-type moves have their priority increased by 1.",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.type === 'Bug') return priority + 1;
+		},
+		id: "stunningbug",
+		name: "Stunning Bug",
+	},
+	"champion": {
+		shortDesc: "Users Attack is 1.5x.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk) {
+				return this.chainModify(1.5);
+		},
+		id: "champion",
+		name: "Champion",
+	},
+	'venomstream': {
+		shortDesc: "Uses Toxic Spikes on switch in",
+		onStart: function (source) {
+			this.useMove('Toxic Spikes', source);
+		},
+		id: "venomstream",
+		name: "Venom Stream",
 	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
