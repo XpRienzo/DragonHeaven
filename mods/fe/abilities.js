@@ -2096,6 +2096,25 @@ exports.BattleAbilities = {
 		id: "venomstream",
 		name: "Venom Stream",
 	},
+	"sunaura": {
+		shortDesc: "Powers up each Pokemon's Fire-type moves by 33%.",
+		onBasePowerPriority: 8,
+		onBasePower: function (type, attacker, defender, move) {
+			if (type === 'Fire') {
+				return this.chainModify(1.3);
+			}
+		},
+		id: "sunaura",
+		name: "Sun Aura",
+	},
+	'tropicalstorm': {
+		shortDesc: "Tailwind on switch in",
+		onStart: function (source) {
+			this.useMove('Tailwind', source);
+		},
+		id: "tropicalstorm",
+		name: "Tropical Storm",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
