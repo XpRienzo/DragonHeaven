@@ -175,7 +175,11 @@ exports.BattleMovedex = {
 		pp: 30,
 		priority: 0,
 		flags: {authentic: 1},
-		onHitField: function () {
+		onHitField: function (target, source) {
+			this.removePseudoWeather('trickroom');
+			this.removePseudoWeather('magicroom');
+			this.removePseudoWeather('wonderroom');
+			//	this.removePseudoWeather('inverseroom');
 			this.add('-clearallboost');
 			for (let i = 0; i < this.sides.length; i++) {
 				for (let j = 0; j < this.sides[i].active.length; j++) {
@@ -183,12 +187,6 @@ exports.BattleMovedex = {
 				}
 			}
 		},
-		onTryHit: function (target, source) {
-				this.removePseudoWeather('trickroom');
-			   this.removePseudoWeather('magicroom');
-			 	this.removePseudoWeather('wonderroom');
-			//	this.removePseudoWeather('inverseroom');
-			},
 		secondary: false,
 		target: "all",
 		type: "Ice",
