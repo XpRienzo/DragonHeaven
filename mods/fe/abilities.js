@@ -1832,7 +1832,53 @@ exports.BattleAbilities = {
 		id: "fromashes",
 		name: "From Ashes",
 	},
-	
+	"sturdytech": {
+		shortDesc: "Sturdy + Technician",
+		onTryHit: function (pokemon, target, move) {
+			if (move.ohko) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Sturdy');
+				return null;
+			}
+		},
+		onDamagePriority: -100,
+		onDamage: function (damage, target, source, effect) {
+			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+				this.add('-ability', target, 'Sturdy');
+				return target.hp - 1;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+				this.debug('Technician boost');
+				return this.chainModify(1.5);
+			}
+		},
+		id: "sturdytech",
+		name: "Sturdy Tech",
+	},
+	"armoredguts": {
+		shortDesc: "When statused, this Pokemon gains a 1.5x Attack Boost and it cannot be struck by Critical hits.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		onCriticalHit: false,
+		id: "armoredguts",
+		name: "Armored Guts",
+	},
+	"shakeitoff": {
+		shortDesc: "Boosts the Special Attack stat by two stages when statused.",
+		onUpdate: function (spa, pokemon) {
+			if (pokemon.status) {
+				this.boost({spa: 1});
+			}
+		},
+		id: "shakeitoff",
+		name: "Shake it Off",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
