@@ -1879,6 +1879,17 @@ exports.BattleAbilities = {
 		id: "shakeitoff",
 		name: "Shake it Off",
 	},
+	"prankstar": {
+		shortDesc: "This pokemon's moves of 70% accuracy or less have +1 Priority.",
+		onModifyMovePriority: 8,
+		onModifyMove: function (basePower, move) {
+			if (basePower <= 75) {
+				move.priority +1;
+			}
+		},
+		id: "prankstar",
+		name: "Prankstar",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
