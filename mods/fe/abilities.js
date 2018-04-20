@@ -1881,11 +1881,8 @@ exports.BattleAbilities = {
 	},
 	"prankstar": {
 		shortDesc: "This pokemon's moves of 70% accuracy or less have +1 Priority.",
-		onModifyMovePriority: 8,
-		onModifyMove: function (basePower, move) {
-			if (basePower <= 75) {
-				move.priority +1;
-			}
+		onModifyPriority: function(priority, pokemon, target, move) {
+			if (move.accuracy <= 70) return priority + 1;
 		},
 		id: "prankstar",
 		name: "Prankstar",
