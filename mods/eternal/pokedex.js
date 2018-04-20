@@ -1586,7 +1586,7 @@ types: ["Electric", "Poison"],
 baseStats:{hp: 95, atk: 95, def: 75, spa: 78, spd: 93, spe: 35},
 abilities: {0: "Compound Eyes", 1: "Unnerve", H: "Swarm"},
 },
-omanyteeternal: {
+/*omanyteeternal: {
 num: 138, 
 types:["Water"],
 species: "Omanyte-Eternal", 
@@ -1596,7 +1596,7 @@ formeLetter: "E",
 baseStats: {hp:70, atk: 40, def, 130, spa: 95, spd: 115, spe: 44}, 
 abilities: {0: ""}, 
 weightkg: 7.5, 
-},
+},*/
 /*	eternal: {
 num: 44,
 species: "Pokemon-Eternal",
