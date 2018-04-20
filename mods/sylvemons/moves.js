@@ -551,11 +551,11 @@ exports.BattleMovedex = {
 		id: "morningsun",
 		isViable: true,
 		name: "Morning Sun",
-		pp: 5,
+		pp: 16,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onHit: function (pokemon) {
-			if (this.isWeather(['desolateland'])) {
+			if (this.isWeather(['desolateland', 'sunnyday'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
@@ -575,11 +575,11 @@ exports.BattleMovedex = {
 		id: "moonlight",
 		isViable: true,
 		name: "Moonlight",
-		pp: 5,
+		pp: 16,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onHit: function (pokemon) {
-			if (this.isWeather(['desolateland'])) {
+			if (this.isWeather(['desolateland', 'sunnyday'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
@@ -599,11 +599,11 @@ exports.BattleMovedex = {
 		id: "synthesis",
 		isViable: true,
 		name: "Synthesis",
-		pp: 5,
+		pp: 16,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onHit: function (pokemon) {
-			if (this.isWeather(['desolateland'])) {
+			if (this.isWeather(['desolateland', 'sunnyday'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
