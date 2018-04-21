@@ -2791,24 +2791,65 @@ exports.BattleAbilities = {
 		id: "peckingorder",
 		name: "Pecking Order",
 	},
-	"scout": {
-		shortDesc: "Exits the battle if it senses that the opposing Pokemon has super effective or OHKO moves.",
-		onStart: function (pokemon) {
-			for (const target of pokemon.side.foe.active) {
-				if (target.fainted) continue;
-				for (const moveSlot of target.moveSlots) {
-					let move = this.getMove(moveSlot.move);
-					if (move.category !== 'Status' && (this.getImmunity(move.type, pokemon) && this.getEffectiveness(move.type, pokemon) > 0 || move.ohko)) {
-						this.add('-ability', pokemon, 'Anticipation');
-						this.useMove('Baton Pass', pokemon);
-						return;
-					}
-				}
+	"hydrodynamic": {
+		shortDesc: "Aloha's Speed increases by one stage at the end of every turn, prevents opponent's moves and abilities from decreasing this Pokémon's Speed stat.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			if (pokemon.activeTurns) {
+				this.boost({spe: 1});
 			}
 		},
-		id: "scout",
-		name: "Scout",
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			if (boost['atk'] && boost['atk'] < 0) {
+				delete boost['spe'];
+				if (!effect.secondaries) this.add("-fail", target, "unboost", "Attack", "[from] ability: Hydrodynamic", "[of] " + target);
+			}
+		},
+		id: "hydrodynamic",
+		name: "Hydrodynamic",
 	},
+	"engineer": {
+		shortDesc: "60 or lower BP moves inflict 1.5x damage and ignore opponent's ability.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+				this.debug('Technician boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyMove: function(move) {
+		if (move.basePower <= 60) {
+				move.ignoreAbility = true;
+		}
+		},
+		id: "engineer",
+		name: "Engineer",
+	},
+	"soulpower": {
+		shortDesc: "Doubles the user's Special Attack stat.",
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, pokemon) {
+				return this.chainModify(2);
+		},
+		id: "soulpower",
+		name: "Soul Power",
+	},
+	/*"landsshield": {
+		shortDesc: "Halves damage taken if either at full health or hit Super Effectively, both stack.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (target.hp >= target.maxhp) {
+				return this.chainModify(0.5);
+			}
+			if (move.typeMod > 0) {
+				return this.chainModify(0.5);
+			}
+		},
+		},
+		id: "landsshield",
+		name: "Lands Shield",
+	},*/
 	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
