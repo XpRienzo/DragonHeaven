@@ -311,9 +311,9 @@ exports.BattleItems = {
 		onImmunity: function (type, pokemon) {
 			if (type === 'hail') return false;
 		},
-		onUpdate: function (pokemon) {
-			if (this.isWeather('hail') && pokemon.useItem()) {
-				this.boost({spe: 2});
+		onModifySpe: function (spe) {
+			if (this.isWeather('hail')) {
+				return this.chainModify(2);
 			}
 			},
 		fling: {
