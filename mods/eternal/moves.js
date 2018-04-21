@@ -1467,6 +1467,52 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		zMovePower: 200,
 		contestType: "Clever",
 	},
+/* squeakywheel: {
+basePower: 80, 
+accuracy: 100, 
+category: "Physical", 
+shortDesc: "Takes 2 PP from the target's last used move, if applicable.", 
+id: "squeaky wheel", 
+name: "Squeaky Wheel", 
+pp: 10,
+priority: 0, 
+flags: {protect: 1, mirror: 1, contact: 1}, 
+target: "normal",
+type: "Steel", 
+ZMovePower: 160,
+}, */
+	algaeallure: {
+basePower: 90, 
+accuracy: 100, 
+category: "Special", 
+shortDesc: "Lileep recovers 50% of the damage done.", 
+id: "algae allure", 
+name: "Algae Allure", 
+pp: 10,
+priority: 0, 
+flags: {protect: 1, mirror: 1}, 
+heal: [1, 2],
+target: "normal",
+type: "Water", 
+ZMovePower: 175,
+},
+
+/* Aquatic Ambush: {
+basePower: 90, 
+accuracy: 100, 
+category: "Special", 
+shortDesc: "On the following turn after using this move, Anorith is granted +1 Priority on any Bug-type move used or 50% extra power on any Water-type move used.", 
+id: "aquatic ambush", 
+name: "Aquatic Ambush", 
+pp: 10,
+priority: 0, 
+flags: {protect: 1, mirror: 1}, 
+target: "normal",
+type: "Water", 
+ZMovePower: 175, 
+}, */
+	
+	// Divider
 	   /*"sundance": {
     num: 1001,
     accuracy: true,
