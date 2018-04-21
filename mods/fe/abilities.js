@@ -2211,6 +2211,288 @@ exports.BattleAbilities = {
 		id: "indulgence",
 		name: "Indulgence",
 	},
+	"determination": {
+		shortDesc: "Prevents other Pokemon from lowering this Pokemon's Attack stat stage.",
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			if (boost['atk'] && boost['atk'] < 0 && target.hp <= target.maxhp / 2) {
+				delete boost['atk'];
+				if (!effect.secondaries) this.add("-fail", target, "unboost", "Attack", "[from] ability: Determination", "[of] " + target);
+			}
+		},
+		id: "determination",
+		name: "Determination",
+	},
+	"outrageous": {
+		shortDesc: "This Pokemon's SpA is 1.5x as long as it is confused.",
+		onModifySpA: function (spa, target) {
+			if (target && target.volatiles['confusion']) {
+				return spa * 1.5;
+				this.add('-ability', target, 'Outrageous');
+			}
+		},
+		id: "outrageous",
+		name: "Outrageous",
+	},
+	"woodhead": {
+		shortDesc: "This Pokémon does not take recoil damage; when this Pokémon's HP are under 33%, the power of recoil moves is raised by 50%.",
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'recoil' && this.activeMove.id !== 'struggle') return null;
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.recoil || move.hasCustomRecoil && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "woodhead",
+		name: "Wood Head",
+	},
+	"blazerush": {
+		shortDesc: "The Pokémon's Speed is doubled when its HP falls below 1/3 of the maximum.",
+		onModifySpe: function (spe, attacker) {
+			if (attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(2);
+			}
+		},
+		id: "blazerush",
+		name: "Blaze Rush",
+	},
+	"swiftretreat": {
+		shortDesc: "This Pokemon's speed is doubled until its HP falls below 50%, then it switches out.",
+			onModifySpe: function (spe, attacker) {
+			if (attacker.hp > attacker.maxhp / 2) {
+				return this.chainModify(2);
+			}
+		},
+		onAfterMoveSecondary: function (target, source, move) {
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			if (target.hp <= target.maxhp / 2 && target.hp + move.totalDamage > target.maxhp / 2) {
+				if (!this.canSwitch(target.side) || target.forceSwitchFlag || target.switchFlag) return;
+				target.switchFlag = true;
+				source.switchFlag = false;
+				this.add('-activate', target, 'ability: Emergency Exit');
+			}
+		},
+		onAfterDamage: function (damage, target, source, effect) {
+			if (!target.hp || effect.effectType === 'Move') return;
+			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+				if (!this.canSwitch(target.side) || target.forceSwitchFlag || target.switchFlag) return;
+				target.switchFlag = true;
+				this.add('-activate', target, 'ability: Emergency Exit');
+			}
+		},
+		id: "swiftretreat",
+		name: "Swift Retreat",
+	},
+	"championsspirit": {
+		shortDesc: "This Pokemon's Atk & Defense are raised by 1 stage after it is damaged by a move.",
+		onAfterDamage: function (damage, target, source, effect, move) {
+			if (effect && effect.effectType === 'Move' && effect.id !== 'confused' && !move.crit) {
+				this.boost({def: 1, atk: 1});
+			}
+		},
+		onHit: function (target, source, move) {
+			if (!target.hp) return;
+			if (move && move.effectType === 'Move' && move.crit) {
+				target.setBoost({atk: 3, def: 3});
+				this.add('-setboost', target, 'atk', 12, '[from] ability: Champions Spirit');
+			}
+		},
+		id: "championsspirit",
+		name: "Champions Spirit",
+	},
+	"Beasts Focus": {
+		shortDesc: "If Pokémon would be flinched, buffs highest non-HP stat instead.",
+		onFlinch: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		id: "beastsfocus",
+		name: "Beasts Focus",
+	},
+	"volttorrent": {
+		shortDesc: "At 1/3 or less of its max HP, this Pokemon's attacking stat is 1.5x with Electric attacks.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Electric' && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Electric' && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "volttorrent",
+		name: "Volt Torrent",
+	},
+	"ancientmariner": {
+		shortDesc: "Steelworker + No Guard.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Steel') {
+				this.debug('Steelworker boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Steel') {
+				this.debug('Steelworker boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onAnyAccuracy: function (accuracy, target, source, move) {
+			if (move && (source === this.effectData.target || target === this.effectData.target)) {
+				return true;
+			}
+			return accuracy;
+		},
+		id: "ancientmariner",
+		name: "Ancient Mariner",
+	},
+		"monkeyseemonkeydo": {
+		shortDesc: "On switch-in, or when it can, this Pokemon copies a random adjacent foe's Ability.",
+		onUpdate: function (pokemon) {
+			if (!pokemon.isStarted) return;
+			let possibleTargets = pokemon.side.foe.active.filter(foeActive => foeActive && this.isAdjacent(pokemon, foeActive));
+			while (possibleTargets.length) {
+				let rand = 0;
+				if (possibleTargets.length > 1) rand = this.random(possibleTargets.length);
+				let target = possibleTargets[rand];
+				let ability = this.getAbility(target.ability);
+				let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'zenmode'];
+				if (bannedAbilities.includes(target.ability)) {
+					possibleTargets.splice(rand, 1);
+					continue;
+				}
+				this.add('-ability', pokemon, ability, '[from] ability: Monkey See Monkey Do', '[of] ' + target);
+				pokemon.setAbility(ability);
+				return;
+			}
+		},
+		id: "monkeyseemonkeydo",
+		name: "Monkey See Monkey Do",
+	},
+	"overwhelming": {
+		shortDesc: "This Pokemon's moves ignore the immunities of the target. To any pokemon which resist the typing of this Pokemon's attack this Pokemon deals doubled damage.",
+		onModifyMovePriority: -5,
+		onModifyMove: function (move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity = true;
+			}
+		},
+		onModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0) {
+				return this.chainModify(2);
+			}
+		},
+		id: "overwhelming",
+		name: "Overwhelming",
+	},
+	"pixielure": {
+		shortDesc: "Prevents Fairy-types from switching out.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (!pokemon.hasAbility('shadowtag') && this.isAdjacent(pokemon, this.effectData.target) && pokemon.type === 'Fairy') {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if (!pokemon.hasAbility('shadowtag') && this.isAdjacent(pokemon, source) && pokemon.type === 'Fairy') {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		id: "pixielure",
+		name: "Pixie Lure",
+	},
+	"flowerpower": {
+		shortDesc: "Increases Attack and Special Defense by 1.5x, no ifs or buts about it.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+				return this.chainModify(1.5);
+		},
+		onModifyDefPriority: 5,
+		onModifyDef: function (def, pokemon) {
+				return this.chainModify(1.5);
+		},
+		isUnbreakable: true,
+		id: "flowerpower",
+		name: "Flower Power",
+	},
+	"guerillawarfare": {
+		shortDesc: "Attacks with 60 BP or less get a 50% power boost and have the added effect of causing the user to switch out.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyMove: function(move) {
+			if (move.basePower <= 60)) {
+				move.selfSwitch = true;
+			}
+		},
+		id: "guerillawarfare",
+		name: "Guerilla Warfare",
+	},
+	"lightspeed": {
+		shortDesc: "This Pokemon's Speed is doubled.",
+		onModifySpe: function (spe, pokemon) {
+				return this.chainModify(2);
+		},
+		id: "lightspeed",
+		name: "Light Speed",
+	},
+	"highstakes": {
+		shortDesc: "The Attack of this Pokemon is boosted by x2.5, at the cost of loosing 25% percent accuracy on Physical moves.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk) {
+			return this.modify(atk, 2.5);
+		},
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			if (move.category === 'Physical' && typeof move.accuracy === 'number') {
+				move.accuracy *= 0.75;
+			}
+		},
+		id: "highstakes",
+		name: "High Stakes",
+	},
+	"fearshield": {
+		shortDesc: "Immune to Ghost, Dark, and Bug-type moves.",
+		onImmunity: function(type) {
+			if (type === 'Bug' || type === 'Dark' || type === 'Ghost') return false;
+		},
+		id: "fearshield",
+		name: "Fear Shield",
+	},
+	"frenzy": {
+		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
+		onModifyMove: function (move) {
+			if (move.multihit && move.multihit.length) {
+				move.multihit = move.multihit[1];
+				move.basePower * 1.5;
+			}
+			if (move.multiaccuracy) {
+				delete move.multiaccuracy;
+			}
+		},
+		id: "frenzy",
+		name: "Frenzy",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
