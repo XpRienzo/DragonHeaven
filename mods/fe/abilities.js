@@ -2115,6 +2115,102 @@ exports.BattleAbilities = {
 		id: "tropicalstorm",
 		name: "Tropical Storm",
 	},
+	"flamedrive": {
+		shortDesc: "If this Pokemon is struck by a Fire type move, its speed is raised by one stage. Fire type immunity.",
+		onImmunity: function (type, pokemon) {
+			if (type === 'Fire') return false;
+			this.add('-ability', pokemon, 'Flame Drive');
+		},
+		onModifySpe: function (spe, attacker, defender, move) {
+				if (move.type === 'Fire') {
+					return this.chainModify(1.5);
+				}
+			},
+		id: "flamedrive",
+		name: "Flame Drive",
+	},
+	"flamedrive": {
+		shortDesc: "If this Pokemon is struck by a Fire type move, its speed is raised by one stage. Fire type immunity.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({spa: 1}, source);
+			}
+		},
+		onModifySpAPriority: 5,
+			onModifySpA: function (atk, attacker, defender, move) {
+				if (move.type === 'Flying') {
+					return this.chainModify(1.5);
+				}
+			},
+		id: "flamedrive",
+		name: "Flame Drive",
+	},
+	'boosttrace': {
+		shortDesc: "Copies opponent's stat boosts (not drops) on switch in.",
+		onStart: function (source) {
+			this.useMove('Psych Up', source);
+		},
+		id: "boosttrace",
+		name: "Boost Trace",
+	},
+	"masochist": {
+		shortDesc: "This Pokemon's Atk & Defense are raised by 1 stage after it is damaged by a move.",
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.effectType === 'Move' && effect.id !== 'confused') {
+				this.boost({def: 1, atk: 1});
+			}
+		},
+		id: "masochist",
+		name: "Masochist",
+	},
+	'flamingpresence': {
+		shortDesc: "Upon switching in, this pokemon burns all opposing pokemon that can be burned.",
+		onStart: function (source) {
+			this.useMove('Will-O-Wisp', source);
+		},
+		id: "flamingpresence",
+		name: "Flaming Presence",
+	},
+	"kaleidocope": {
+		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				this.debug('Filter neutralize');
+				return this.chainModify(0.5);
+			}
+		},
+		onModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0) {
+				return this.chainModify(2);
+			}
+		},
+		id: "kaleidocope",
+		name: "Kaleidocope",
+	},
+	"hazmatfur": {
+		shortDesc: "This Pokemon takes 1/2 damage from contact and Fire moves.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			let mod = 1;
+			if (move.type === 'Fire') mod /= 2;
+			if (move.flags['contact']) mod /= 2;
+			return this.chainModify(mod);
+		},
+		id: "hazmatfur",
+		name: "Hazmat Fur",
+	},
+	"indulgence": {
+		shortDesc: "This Pokemon's healing moves have their priority increased by 3.",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.category === 'Status' || move && move.flags['heal']) return priority + 3;
+		},
+		onModifyMove: function (move) {
+			if (move && move.category === 'Status') {
+				move.pranksterBoosted = true;
+			}
+		},
+		id: "indulgence",
+		name: "Indulgence",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
