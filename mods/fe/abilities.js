@@ -2836,7 +2836,7 @@ exports.BattleAbilities = {
 		id: "soulpower",
 		name: "Soul Power",
 	},
-	/*"landsshield": {
+	"landsshield": {
 		shortDesc: "Halves damage taken if either at full health or hit Super Effectively, both stack.",
 		onSourceModifyDamage: function (damage, source, target, move) {
 			if (target.hp >= target.maxhp) {
@@ -2849,7 +2849,7 @@ exports.BattleAbilities = {
 		},
 		id: "landsshield",
 		name: "Lands Shield",
-	},*/
+	},
 	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
