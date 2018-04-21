@@ -14,9 +14,13 @@ exports.BattleItems = {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
-		onTakeItem: function (pokemon, item) {
-		if (pokemon.baseTemplate.baseSpecies === 'Dialga') return false;
+		onTakeItem: function (pokemon) {
+		if (pokemon.baseTemplate.baseSpecies === 'Dialga') {
+			return false;
+		}
+			else {
 			return true;
+			}
 		},
 		num: 135,
 		gen: 4,
