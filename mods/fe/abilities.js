@@ -1536,12 +1536,11 @@ exports.BattleAbilities = {
 		onModifyMove: function (move, pokemon) {
 			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Water';
-				move.refrigerateBoosted = true;
 			}
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-			if (move.refrigerateBoosted) return this.chainModify([0x1333, 0x1000]);
+		return this.chainModify([0x1333, 0x1000]);
 		},
 		id: "hydrate",
 		name: "Hydrate",
@@ -2648,7 +2647,7 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-			if (move.pixilateBoosted) return this.chainModify(1.3);
+		return this.chainModify(1.3);
 		},
 		onStart: function (source) {
 			this.setTerrain('mistyterrain');
@@ -3033,7 +3032,7 @@ exports.BattleAbilities = {
 		name: "Chlorocoat",
 	},
 	"photosynthesissurge": {
-		shortDesc: "On switch-in, this Pokemon summons Sunny Day.",
+		shortDesc: "On switch-in, this Pokemon summons Sun + Grassy Terrain.",
 		onStart: function (source) {
 			this.setTerrain('grassyterrain');
 				for (let i = 0; i < this.queue.length; i++) {
@@ -3189,6 +3188,57 @@ exports.BattleAbilities = {
 		},
 		id: "planinaction",
 		name: "Plan In Action",
+	},
+	"enchantedskull": {
+		shortDesc: "This Pokemon's attacks with recoil damage have 1.5x power and the recoil damage is nullified.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.recoil || move.hasCustomRecoil) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'recoil' && this.activeMove.id !== 'struggle') return null;
+		},
+		id: "enchantedskull",
+		name: "Enchanted Skull",
+	},
+	"thunderstormsurge": {
+		shortDesc: "On switch-in, this Pokemon summons Rain + Electric Terrain.",
+		onStart: function (source) {
+			this.setTerrain('electricterrain');
+			for (let i = 0; i < this.queue.length; i++) {
+				if (this.queue[i].choice === 'runPrimal' && this.queue[i].pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (this.queue[i].choice !== 'runSwitch' && this.queue[i].choice !== 'runPrimal') break;
+			}
+			this.setWeather('raindance');
+		},
+		id: "thunderstormsurge",
+		name: "Thunderstorm Surge",
+	},
+	"movemadness": {
+		shortDesc: "This Pokemon's moves of the following types change types and get a 1.5x power boost: Normal type moves become Ground type, Ground type moves become Electric type, Electric type moves become Steel type, -Steel type moves become Rock type and Rock type moves become Normal type.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Ground';
+			}
+			else if (move.type === 'Ground' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Electric';
+			}
+			else if (move.type === 'Electric' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Steel';
+			}
+			else if (move.type === 'Steel' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Normal';
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+		return this.chainModify(1.5);
+		},
+		id: "movemadness",
+		name: "Move Madness",
 	},
 	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
