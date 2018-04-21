@@ -2441,7 +2441,7 @@ exports.BattleAbilities = {
 			}
 		},
 		onModifyMove: function(move) {
-			if (move.basePower <= 60)) {
+			if (move.basePower <= 60) {
 				move.selfSwitch = true;
 			}
 		},
