@@ -2,27 +2,13 @@
 
 exports.BattleItems = {
 	"adamantorb": {
-		id: "adamantorb",
-		name: "Adamant Orb",
-		spritenum: 4,
-		fling: {
-			basePower: 60,
-		},
-		onBasePowerPriority: 6,
-		onBasePower: function (basePower, user, target, move) {
-			if (move && user.baseTemplate.species === 'Dialga' && (move.type === 'Steel' || move.type === 'Dragon')) {
-				return this.chainModify([0x1333, 0x1000]);
-			}
-		},
+		inherit: true,
 		onTakeItem: function (item, pokemon, source) {
 			if ((source && source.baseTemplate.num === 483) || pokemon.baseTemplate.num === 483) {
 				return false;
 			}
 			return true;
 		},
-		num: 135,
-		gen: 4,
-		desc: "If held by a Dialga, its Steel- and Dragon-type attacks have 1.2x power.",
 	},
 	"graduationscale": {
 		id: "graduationscale",
