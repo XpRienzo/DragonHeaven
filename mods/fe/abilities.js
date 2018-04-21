@@ -2800,7 +2800,7 @@ exports.BattleAbilities = {
 					let move = this.getMove(moveSlot.move);
 					if (move.category !== 'Status' && (this.getImmunity(move.type, pokemon) && this.getEffectiveness(move.type, pokemon) > 0 || move.ohko)) {
 						this.add('-ability', pokemon, 'Anticipation');
-						this.pokemon.switchFlag = true;
+						this.useMove('Baton Pass', pokemon);
 						return;
 					}
 				}
