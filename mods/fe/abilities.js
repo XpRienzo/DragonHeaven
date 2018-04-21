@@ -3176,9 +3176,10 @@ exports.BattleAbilities = {
 		id: "thermophilic",
 		name: "Thermophilic",
 	},
-	/*"justified": {
+	"planinaction": {
 		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move.",
 		onStart: function (pokemon) {
+				this.add('-ability', pokemon, 'Plan In Action');
 				this.boost({atk: 1});
 		},
 		onAnyBasePower: function (basePower, source, target, move) {
@@ -3186,9 +3187,9 @@ exports.BattleAbilities = {
 			move.auraBoost = move.hasAuraBreak ? 0x0C00 : 0x1547;
 			return this.chainModify([move.auraBoost, 0x1000]);
 		},
-		id: "justified",
-		name: "Justified",
-	},*/
+		id: "planinaction",
+		name: "Plan In Action",
+	},
 	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
