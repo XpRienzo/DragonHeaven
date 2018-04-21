@@ -13651,9 +13651,9 @@ arcalie: {
          abilities: {0: "Creepy"},
     },
 
-stakeyestakataka: {
+stakeye: {
         num: 7500441,
-        species: "Stakeye Stakataka",
+        species: "Stakeye",
         types: ["Steel", "Ghost"],
         baseStats: {
             hp: 75,
@@ -13669,7 +13669,7 @@ stakeyestakataka: {
 stakeyemega: {
         num: 7500441,
         species: "Stakeye-Mega",
-        baseSpecies: "Stakeye Stakataka",
+        baseSpecies: "Stakeye",
         forme: "Mega",
         formeLetter: "M",
        types: ["Steel", "Ghost"],
