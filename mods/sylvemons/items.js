@@ -14,8 +14,8 @@ exports.BattleItems = {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
-		onTakeItem: function (user, item) {
-		if (user.baseTemplate.species === 'Dialga') return false;
+		onTakeItem: function (pokemon, item) {
+		if (pokemon.baseTemplate.baseSpecies === 'Dialga') return false;
 			return true;
 		},
 		num: 135,
