@@ -2852,6 +2852,82 @@ exports.BattleAbilities = {
 		id: "landsshield",
 		name: "Lands Shield",
 	},
+	"godlikepowers": {
+		shortDesc: "This Pokemon's Attack is doubled.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk) {
+			return this.chainModify(2);
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (spa) {
+			return this.chainModify(2);
+		},
+		onModifyDefPriority: 5,
+		onModifyDef: function (def) {
+			return this.chainModify(2);
+		},
+		onModifySpDPriority: 5,
+		onModifySpD: function (spd) {
+			return this.chainModify(2);
+		},
+		onModifySpe: function (spe) {
+			return this.chainModify(2);
+		},
+		id: "godlikepowers",
+		name: "Godlike Powers",
+	},
+	"softenup": {
+		shortDesc: "On switch-in, the foe's Attack and Special Attack are lowered by one stage. When this Pokémon knocks out an opponent, its Attack and Special Attack are raised by one stage.",
+		onStart: function (pokemon) {
+			let foeactive = pokemon.side.foe.active;
+			let activated = false;
+			for (let i = 0; i < foeactive.length; i++) {
+				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Soften Up', 'boost');
+					activated = true;
+				}
+				if (foeactive[i].volatiles['substitute']) {
+					this.add('-immune', foeactive[i], '[msg]');
+				} else {
+					this.boost({atk: -1, spa: -1}, foeactive[i], pokemon);
+				}
+			}
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({atk: 1, spa: 1}, source);
+			}
+		},
+		id: "softenup",
+		name: "Soften Up",
+	},
+	"mistymind": {
+		desc: "This Pokemon ignores other Pokemon's Attack, Special Attack, and accuracy stat stages when taking damage, and ignores other Pokemon's Defense, Special Defense, and evasiveness stat stages when dealing damage.",
+		shortDesc: "This Pokemon ignores other Pokemon's stat stages when taking or doing damage.",
+		id: "mistymind",
+		name: "Misty Mind",
+		onSetStatus: function (status, target, source, effect) {
+				if (effect && effect.status) {
+					this.add('-activate', target, 'move: Misty Mind');
+				}
+				return false;
+			},
+		onAnyModifyBoost: function (boosts, target) {
+			let source = this.effectData.target;
+			if (source === target) return;
+			if (source === this.activePokemon && target === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (target === this.activePokemon && source === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+	},
 	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
