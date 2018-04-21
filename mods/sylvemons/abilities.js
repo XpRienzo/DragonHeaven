@@ -12,13 +12,13 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 "schooling": {
 		desc: "On switch-in, if this Pokemon is a Wishiwashi that is level 20 or above and has more than 1/4 of its maximum HP left, it changes to School Form. If it is in School Form and its HP drops to 1/4 of its maximum HP or less, it changes to Solo Form at the end of the turn. If it is in Solo Form and its HP is greater than 1/4 its maximum HP at the end of the turn, it changes to School Form.",
 		shortDesc: "If user is Wishiwashi, changes to School Form if it has > 1/4 max HP, else Solo Form.",
-		onStart: function (pokemon, source) {
+		onStart: function (pokemon) {
 			if (pokemon.baseTemplate.baseSpecies !== 'Wishiwashi' || pokemon.level < 20 || pokemon.transformed) return;
 			if (pokemon.hp > pokemon.maxhp / 4) {
 				if (pokemon.template.speciesid === 'wishiwashi') {
 					pokemon.formeChange('Wishiwashi-School');
 					this.add('-formechange', pokemon, 'Wishiwashi-School', '[from] ability: Schooling');
-					pokemon.setAbility('intimidate', source);
+					pokemon.setAbility('intimidate');
 				}
 			} else {
 				if (pokemon.template.speciesid === 'wishiwashischool') {
