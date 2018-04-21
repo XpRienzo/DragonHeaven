@@ -2205,7 +2205,6 @@ exports.BattleAbilities = {
 		},
 		onModifyMove: function (move) {
 			if (move && move.category === 'Status') {
-				move.pranksterBoosted = true;
 			}
 		},
 		id: "indulgence",
@@ -2478,6 +2477,319 @@ exports.BattleAbilities = {
 		},
 		id: "fearshield",
 		name: "Fear Shield",
+	},
+	"puffycloud": {
+		shortDesc: "Negates weather effects. Powers up physical attacks by a factor of 1.5 while any weather is in play.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Puffy Cloud');
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (pokemon, atk) {
+			if (this.isWeather(['sunnyday', 'desolateland', 'hail', 'rainyday', 'primordialsea', 'sandstream', 'shadowsky', 'aircurrent']) && pokemon.useItem()) {
+				return this.chainModify(1.5);
+			}
+		},
+		suppressWeather: true,
+		id: "puffycloud",
+		name: "Puffy Cloud",
+	},
+	"tinkering": {
+		shortDesc: "This Pokemon's status moves and moves that switch the user out have +1 priority. this Pokemon heals status conditions upon switching out..",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.category === 'Status' || move.selfSwitch === 'true') {
+				return priority + 1;
+			}
+		},
+		onModifyMove: function (move) {
+			if (move && move.category === 'Status' || move.selfSwitch === 'true') {
+			}
+		},
+		onCheckShow: function (pokemon) {
+			// This is complicated
+			// For the most part, in-game, it's obvious whether or not Natural Cure activated,
+			// since you can see how many of your opponent's pokemon are statused.
+			// The only ambiguous situation happens in Doubles/Triples, where multiple pokemon
+			// that could have Natural Cure switch out, but only some of them get cured.
+			if (pokemon.side.active.length === 1) return;
+			if (pokemon.showCure === true || pokemon.showCure === false) return;
+
+			let active = pokemon.side.active;
+			let cureList = [];
+			let noCureCount = 0;
+			for (let i = 0; i < active.length; i++) {
+				let curPoke = active[i];
+				// pokemon not statused
+				if (!curPoke || !curPoke.status) {
+					// this.add('-message', "" + curPoke + " skipped: not statused or doesn't exist");
+					continue;
+				}
+				if (curPoke.showCure) {
+					// this.add('-message', "" + curPoke + " skipped: Natural Cure already known");
+					continue;
+				}
+				let template = this.getTemplate(curPoke.species);
+				// pokemon can't get Natural Cure
+				if (Object.values(template.abilities).indexOf('Natural Cure') < 0) {
+					// this.add('-message', "" + curPoke + " skipped: no Natural Cure");
+					continue;
+				}
+				// pokemon's ability is known to be Natural Cure
+				if (!template.abilities['1'] && !template.abilities['H']) {
+					// this.add('-message', "" + curPoke + " skipped: only one ability");
+					continue;
+				}
+				// pokemon isn't switching this turn
+				if (curPoke !== pokemon && !this.willSwitch(curPoke)) {
+					// this.add('-message', "" + curPoke + " skipped: not switching");
+					continue;
+				}
+
+				if (curPoke.hasAbility('naturalcure')) {
+					// this.add('-message', "" + curPoke + " confirmed: could be Natural Cure (and is)");
+					cureList.push(curPoke);
+				} else {
+					// this.add('-message', "" + curPoke + " confirmed: could be Natural Cure (but isn't)");
+					noCureCount++;
+				}
+			}
+
+			if (!cureList.length || !noCureCount) {
+				// It's possible to know what pokemon were cured
+				for (let i = 0; i < cureList.length; i++) {
+					cureList[i].showCure = true;
+				}
+			} else {
+				// It's not possible to know what pokemon were cured
+
+				// Unlike a -hint, this is real information that battlers need, so we use a -message
+				this.add('-message', "(" + cureList.length + " of " + pokemon.side.name + "'s pokemon " + (cureList.length === 1 ? "was" : "were") + " cured by Natural Cure.)");
+
+				for (let i = 0; i < cureList.length; i++) {
+					cureList[i].showCure = false;
+				}
+			}
+		},
+		onSwitchOut: function (pokemon) {
+			if (!pokemon.status) return;
+
+			// if pokemon.showCure is undefined, it was skipped because its ability
+			// is known
+			if (pokemon.showCure === undefined) pokemon.showCure = true;
+
+			if (pokemon.showCure) this.add('-curestatus', pokemon, pokemon.status, '[from] ability: Natural Cure');
+			pokemon.setStatus('');
+
+			// only reset .showCure if it's false
+			// (once you know a Pokemon has Natural Cure, its cures are always known)
+			if (!pokemon.showCure) delete pokemon.showCure;
+		},
+		id: "tinkering",
+		name: "Tinkering",
+	},
+	"bamboozled": {
+		shortDesc: "Immune to status moves. Status moves used by this fusion have +1 priority.",
+		onImmunity: function (pokemon, move) {
+			if (move.category === 'Status') return false;
+		},
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.category === 'Status') {
+				return priority + 1;
+			}
+		},
+		onModifyMove: function (move) {
+			if (move && move.category === 'Status') {
+			}
+		},
+		id: "bamboozled",
+		name: "Bamboozled",
+	},
+	"electronrain": {
+		shortDesc: "Sp. Atk under Rain is 1.5x. Summons Rain upon switching in.",
+		onStart: function (source) {
+			for (let i = 0; i < this.queue.length; i++) {
+				if (this.queue[i].choice === 'runPrimal' && this.queue[i].pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (this.queue[i].choice !== 'runSwitch' && this.queue[i].choice !== 'runPrimal') break;
+			}
+			this.setWeather('raindance');
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (spa, pokemon) {
+			if (this.isWeather(['rainyday', 'primordialsea'])) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "electronrain",
+		name: "Electron Rain",
+	},	
+	'prestidigitation': {
+		shortDesc: "Switches item on switch in",
+		onStart: function (source) {
+			this.useMove('Switcheroo', source);
+		},
+		id: "prestidigitation",
+		name: "Prestidigitation",
+	},
+	"revvedup": {
+		shortDesc: "Users Speed is double upon switch-in.",
+		onModifySpe: function (spe) {
+				return this.chainModify(2);
+		},
+		id: "revvedup",
+		name: "Revved Up",
+	},
+	"mistysupercharge": {
+		desc: "This Pokemon's Normal-type moves become Fairy-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
+		shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.2x power.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Normal' || move.type === 'Electric' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Fairy';
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+			if (move.pixilateBoosted) return this.chainModify(1.3);
+		},
+		onStart: function (source) {
+			this.setTerrain('mistyterrain');
+		},
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Fairy' && this.isTerrain('mistyterrain')) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Fairy' && this.isTerrain('mistyterrain')) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "mistysupercharge",
+		name: "Misty Supercharge",
+	},
+	"grassworker": {
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Grass-type attack.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Grass') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Grass') {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "grassworker",
+		name: "Grassworker",
+	},
+	"bubbleslip": {
+		shortDesc: "This Pokemon's Water power is 2x; it can't be burned; Fire power against it is halved.",
+		onModifyAtkPriority: 5,
+		onSourceModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onSourceModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Water') {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Water') {
+				return this.chainModify(2);
+			}
+		},
+		onUpdate: function (pokemon) {
+			if (pokemon.status === 'brn') {
+				this.add('-activate', pokemon, 'ability: Water Bubble');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Water Bubble');
+			return false;
+		},
+		onModifyMove: function(move) {
+			if (move.type === 'Water') {
+				move.selfSwitch = true;
+			}
+		},
+		id: "bubbleslip",
+		name: "Bubble Slip",
+	},
+	"operationovergrow": {
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.75 while using a Grass-type attack.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Grass') {
+				return this.chainModify(1.75);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Grass') {
+				return this.chainModify(1.75);
+			}
+		},
+		id: "operationovergrow",
+		name: "Operation: Overgrow",
+	},
+	"lightningfist": {
+		shortDesc: "This Pokemon's punch-based attacks have their priorities increased by 1.",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move.flags['punch']) return priority + 1;
+		},
+		id: "lightningfist",
+		name: "Lightning Fist",
+	},
+	"flarewings": {
+		shortDesc: "While Burned, holder's Speed is doubled; immune to Burn damage..",
+		onModifySpe: function (spe, pokemon) {
+			if (pokemon.status === 'brn') {
+				return this.chainModify(2);
+			}
+		},
+		onDamagePriority: 1,
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'brn') {
+				return false;
+			}
+		},
+		id: "flarewings",
+		name: "Flare Wings",
+	},
+	"peckingorder": {
+		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the Attack of adjacent opponents by 1 stage.",
+		onStart: function (pokemon) {
+			let foeactive = pokemon.side.foe.active;
+			let activated = false;
+			for (let i = 0; i < foeactive.length; i++) {
+				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Intimidate', 'boost');
+					activated = true;
+				}
+				if (foeactive[i].volatiles['substitute']) {
+					this.add('-immune', foeactive[i], '[msg]');
+				} else {
+					this.boost({def: -1}, foeactive[i], pokemon);
+				}
+			}
+		},
+		id: "peckingorder",
+		name: "Pecking Order",
 	},
 	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
