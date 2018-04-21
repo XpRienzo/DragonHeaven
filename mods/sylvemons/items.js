@@ -14,10 +14,9 @@ exports.BattleItems = {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
-		onTakeItem: function (source, item) {
-		if (source.baseTemplate.species === 'Dialga') {
-			return false;
-		}
+		onTakeItem: function (user, item) {
+		if (user.baseTemplate.species === 'Dialga') return false;
+			return true;
 		},
 		num: 135,
 		gen: 4,
