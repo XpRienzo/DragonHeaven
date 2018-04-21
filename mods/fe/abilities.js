@@ -3240,7 +3240,7 @@ exports.BattleAbilities = {
 		id: "movemadness",
 		name: "Move Madness",
 	},
-	"lightarmor": {
+	/*"lightarmor": {
 		shortDesc: "Boosts defense by 1.5x when over 1/3 HP. Doubles speed when under 1/3 HP.",
 		onModifyDefPriority: 5,
 		onModifyDef: function (def, pokemon) {
@@ -3256,7 +3256,7 @@ exports.BattleAbilities = {
 		id: "lightarmor",
 		name: "Light Armor",
 	},
-	/*"cleanaura": {
+	"cleanaura": {
 		shortDesc: "This Pokemon is immune to major status conditions.",
 		id: "cleanaura",
 		name: "Clean Aura",
@@ -3265,7 +3265,7 @@ exports.BattleAbilities = {
 					this.add('-activate', target, 'move: Clean Aura');
 				}
 				return false;
-			},*/
+			},
 	"brainfreezesurge": {
 		shortDesc: "On switch-in, this Pokemon summons Hail + Psychic Terrain.",
 		onStart: function (source) {
@@ -3278,7 +3278,7 @@ exports.BattleAbilities = {
 		},
 		id: "brainfreezesurge",
 		name: "Brainfreeze Surge",
-	},
+	},*/
 			/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
