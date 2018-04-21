@@ -1,6 +1,14 @@
 'use strict';
 
 exports.BattleItems = {
+	"adamantorb": {
+		inherit: true,
+		onTakeItem: function (source) {
+		if (source.name === 'Dialga') {
+			return false;
+		}
+	},
+	},
 	"graduationscale": {
 		id: "graduationscale",
 		name: "Graduation Scale",
