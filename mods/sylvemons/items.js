@@ -4,7 +4,7 @@ exports.BattleItems = {
 	"adamantorb": {
 		inherit: true,
 		onTakeItem: function (source, item) {
-		if (source.baseTemplate.baseSpecies === 'Dialga') {
+		if (source.baseTemplate.species === 'Dialga') {
 			return false;
 		}
 	},
