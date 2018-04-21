@@ -3053,7 +3053,7 @@ exports.BattleAbilities = {
 		},
 		onFoeMaybeTrapPokemon: function (pokemon, source) {
 			if (!source) source = this.effectData.target;
-			if ((!pokemon.knownType || pokemon.hasType('Steel')) && this.isAdjacent(pokemon, source)) {
+			if ((!pokemon.knownType || pokemon.hasType('Steel') || pokemon.hasType('Fire')) && this.isAdjacent(pokemon, source)) {
 				pokemon.maybeTrapped = true;
 			}
 		},
@@ -3240,7 +3240,23 @@ exports.BattleAbilities = {
 		id: "movemadness",
 		name: "Move Madness",
 	},
-	/*"frenzy": {
+	"lightarmor": {
+		shortDesc: "Boosts defense by 1.5x when over 1/3 HP. Doubles speed when under 1/3 HP.",
+		onModifyDefPriority: 5,
+		onModifyDef: function (def, pokemon) {
+			if (pokemon.hp => pokemon.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpe: function (spe, pokemon) {
+			if (pokemon.hp <= pokemon.maxhp / 3) {
+				return this.chainModify(2);
+			}
+		},
+		id: "lightarmor",
+		name: "Light Armor",
+	},
+	"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
 			if (move.multihit && move.multihit.length) {
@@ -3253,7 +3269,30 @@ exports.BattleAbilities = {
 		},
 		id: "frenzy",
 		name: "Frenzy",
-	},*/
+	},
+	"cleanaura": {
+		shortDesc: "This Pokemon is immune to major status conditions.",
+		id: "cleanaura",
+		name: "Clean Aura",
+		onSetStatus: function (status, target, source, effect) {
+				if (effect && effect.status) {
+					this.add('-activate', target, 'move: Clean Aura');
+				}
+				return false;
+			},
+	"brainfreezesurge": {
+		shortDesc: "On switch-in, this Pokemon summons Hail + Psychic Terrain.",
+		onStart: function (source) {
+			this.setTerrain('psychicterrain');
+			for (let i = 0; i < this.queue.length; i++) {
+				if (this.queue[i].choice === 'runPrimal' && this.queue[i].pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (this.queue[i].choice !== 'runSwitch' && this.queue[i].choice !== 'runPrimal') break;
+			}
+			this.setWeather('hail');
+		},
+		id: "brainfreezesurge",
+		name: "Brainfreeze Surge",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
