@@ -2928,6 +2928,267 @@ exports.BattleAbilities = {
 			}
 		},
 	},
+	"unstablevoltage": {
+		shortDesc: "Attacks that either target this Pokémon or are used by it have perfect accuracy. Ignores abilities when attacking and attacked.",
+		onAnyAccuracy: function (accuracy, target, source, move) {
+			if (move && (source === this.effectData.target || target === this.effectData.target)) {
+				return true;
+			}
+			return accuracy;
+		},
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Unstable Voltage');
+		},
+		onModifyMove: function (move) {
+			move.ignoreAbility = true;
+		},
+		id: "unstablevoltage",
+		name: "Unstable Voltage",
+	},
+	"hugebubble": {
+		shortDesc: "This Pokemon's Water power is 2x; it can't be burned; Fire power against it is halved. When it has 1/3 or less of its max HP, its Water power is 3x instead of 2x.",
+		onModifyAtkPriority: 5,
+		onSourceModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onSourceModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Water') {
+				return this.chainModify(2);
+			}
+			else if (move.type === 'Water' & attacker.hp <= attacker.maxhp /3) {
+				return this.chainModify(3);
+			}
+		},
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Water') {
+				return this.chainModify(2);
+			}
+			else if (move.type === 'Water' & attacker.hp <= attacker.maxhp /3) {
+				return this.chainModify(3);
+			}
+		},
+		onUpdate: function (pokemon) {
+			if (pokemon.status === 'brn') {
+				this.add('-activate', pokemon, 'ability: Huge Bubble');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Water Bubble');
+			return false;
+		},
+		id: "hugebubble",
+		name: "Huge Bubble",
+	},
+	"ambition": {
+		shortDesc: "This Pokemon's moves ignore screens, Aurora Veil, Substitutes, Mist, Safeguard, accuracy drops, and evasion boosts.",
+		onModifyMove: function (move) {
+			move.infiltrates = true;
+		},
+		onModifyMove: function (move) {
+			move.ignoreEvasion = true;
+		},
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			if (boost['accuracy'] && boost['accuracy'] < 0) {
+				delete boost['accuracy'];
+				if (!effect.secondaries) this.add("-fail", target, "unboost", "accuracy", "[from] ability: Ambition", "[of] " + target);
+			}
+		},
+		id: "ambition",
+		name: "Ambition",
+	},
+	"poweroftwo": {
+		shortDesc: "This Pokemon's Attack and Speed is doubled.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk) {
+			return this.chainModify(2);
+		},
+		onModifySpe: function (spe) {
+			return this.chainModify(2);
+		},
+		id: "poweroftwo",
+		name: "Power of Two",
+	},
+	"chlorocoat": {
+		shortDesc: "This Pokemon's Speed and Defense is doubled.",
+		onModifyDefPriority: 5,
+		onModifyDef: function (def) {
+			return this.chainModify(2);
+		},
+		onModifySpe: function (spe) {
+			return this.chainModify(2);
+		},
+		id: "chlorocoat",
+		name: "Chlorocoat",
+	},
+	"photosynthesissurge": {
+		shortDesc: "On switch-in, this Pokemon summons Sunny Day.",
+		onStart: function (source) {
+			this.setTerrain('grassyterrain');
+				for (let i = 0; i < this.queue.length; i++) {
+				if (this.queue[i].choice === 'runPrimal' && this.queue[i].pokemon === source && source.template.speciesid === 'groudon') return;
+				if (this.queue[i].choice !== 'runSwitch' && this.queue[i].choice !== 'runPrimal') break;
+			}
+			this.setWeather('sunnyday');
+		},
+		id: "photosynthesissurge",
+		name: "Photosynthesis Surge",
+	},
+	"blacksmith": {
+		shortDesc: "Traps in Fire and Steel types, and absorbs moves of these typed to get a boost on it's Fire-Type attacks.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (pokemon.hasType('Steel') || pokemon.hasType('Fire') && this.isAdjacent(pokemon, this.effectData.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if ((!pokemon.knownType || pokemon.hasType('Steel')) && this.isAdjacent(pokemon, source)) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fire' || move.type === 'Fire') {
+				move.accuracy = true;
+				if (!target.addVolatile('flashfire')) {
+					this.add('-immune', target, '[msg]', '[from] ability: Blacksmith');
+				}
+				return null;
+			}
+		},
+		onEnd: function (pokemon) {
+			pokemon.removeVolatile('flashfire');
+		},
+		effect: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart: function (target) {
+				this.add('-start', target, 'ability: Blacksmith');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk: function (atk, attacker, defender, move) {
+				if (move.type === 'Fire') {
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA: function (atk, attacker, defender, move) {
+				if (move.type === 'Fire') {
+					return this.chainModify(1.5);
+				}
+			},
+			onEnd: function (target) {
+				this.add('-end', target, 'ability: Blacksmith', '[silent]');
+			},
+		},
+		id: "blacksmith",
+		name: "Blacksmith",
+	},
+	"magicalice": {
+		shortDesc: "This pokemon is immune being confused and stats drop.",
+		onUpdate: function (pokemon) {
+			if (pokemon.volatiles['confusion']) {
+				this.add('-activate', pokemon, 'ability: Magical Ice');
+				pokemon.removeVolatile('confusion');
+			}
+		},
+		onTryAddVolatile: function (status, pokemon) {
+			if (status.id === 'confusion') return null;
+		},
+		onHit: function (target, source, move) {
+			if (move && move.volatileStatus === 'confusion') {
+				this.add('-immune', target, 'confusion', '[from] ability: Magical Ice');
+			}
+		},
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			for (let i in boost) {
+				if (boost[i] < 0) {
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: Magical Ice", "[of] " + target);
+		},
+		id: "magicalice",
+		name: "Magical Ice",
+	},
+	"codeunkown": {
+		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the Attack of adjacent opponents by 1 stage.",
+		onStart: function (pokemon) {
+			let foeactive = pokemon.side.foe.active;
+			let activated = false;
+			for (let i = 0; i < foeactive.length; i++) {
+				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Code Unknown', 'boost');
+					activated = true;
+				}
+				if (foeactive[i].volatiles['substitute']) {
+					this.add('-immune', foeactive[i], '[msg]');
+				} else {
+					this.boost({atk: -1, spa: -1}, foeactive[i], pokemon);
+				}
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (spa, pokemon) {
+			let allyActive = pokemon.side.active;
+			if (allyActive.length === 1) {
+				return;
+			}
+			for (let i = 0; i < allyActive.length; i++) {
+				if (allyActive[i] && allyActive[i].position !== pokemon.position && !allyActive[i].fainted && allyActive[i].hasAbility(['minus', 'plus'])) {
+					return this.chainModify(1.5);
+				}
+			}
+		},
+		id: "codeunkown",
+		name: "Code Unknown",
+	},
+	"thermophilic": {
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Fire moves; Fire immunity. It also heals 1/8 of its max HP every turn in Sun.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Thermophilic');
+				}
+				return null;
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'sunnyday' || effect.id === 'desolateland') {
+				this.heal(target.maxhp / 8, target, target);
+			}
+		},
+		id: "thermophilic",
+		name: "Thermophilic",
+	},
+	/*"justified": {
+		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move.",
+		onStart: function (pokemon) {
+				this.boost({atk: 1});
+		},
+		onAnyBasePower: function (basePower, source, target, move) {
+			if (target === source || move.category === 'Status' || move.type !== 'Dark' || move.auraBoost) return;
+			move.auraBoost = move.hasAuraBreak ? 0x0C00 : 0x1547;
+			return this.chainModify([move.auraBoost, 0x1000]);
+		},
+		id: "justified",
+		name: "Justified",
+	},*/
 	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
