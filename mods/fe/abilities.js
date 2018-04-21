@@ -3256,20 +3256,6 @@ exports.BattleAbilities = {
 		id: "lightarmor",
 		name: "Light Armor",
 	},
-	"frenzy": {
-		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
-		onModifyMove: function (move) {
-			if (move.multihit && move.multihit.length) {
-				move.multihit = move.multihit[1];
-				move.basePower * 1.5;
-			}
-			if (move.multiaccuracy) {
-				delete move.multiaccuracy;
-			}
-		},
-		id: "frenzy",
-		name: "Frenzy",
-	},
 	"cleanaura": {
 		shortDesc: "This Pokemon is immune to major status conditions.",
 		id: "cleanaura",
@@ -3293,6 +3279,20 @@ exports.BattleAbilities = {
 		id: "brainfreezesurge",
 		name: "Brainfreeze Surge",
 	},
+			/*"frenzy": {
+		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
+		onModifyMove: function (move) {
+			if (move.multihit && move.multihit.length) {
+				move.multihit = move.multihit[1];
+				move.basePower * 1.5;
+			}
+			if (move.multiaccuracy) {
+				delete move.multiaccuracy;
+			}
+		},
+		id: "frenzy",
+		name: "Frenzy",
+	},*/
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
