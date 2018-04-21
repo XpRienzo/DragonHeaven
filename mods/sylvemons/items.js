@@ -9,6 +9,7 @@ exports.BattleItems = {
         if (pokemon.baseTemplate.baseSpecies === 'Wishiwashi') {
 			this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
 			pokemon.formeChange("Wishiwashi-School");
+			pokemon.setAbility("Intimidate");
 		  }
 		},
 		fling: {
