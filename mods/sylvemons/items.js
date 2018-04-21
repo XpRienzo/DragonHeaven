@@ -7,8 +7,8 @@ exports.BattleItems = {
       onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Graduation Scale');
         if (pokemon.baseTemplate.baseSpecies === 'Wishiwashi') {
-			this.add('-formechange', pokemon, 'Wishiwashi-Graduate', '[msg]');
-			pokemon.formeChange("Wishiwashi-Graduate");
+			this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
+			pokemon.formeChange("Wishiwashi-School");
 		  }
 		},
 		fling: {
