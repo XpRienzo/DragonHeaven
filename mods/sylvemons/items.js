@@ -3,8 +3,73 @@
 exports.BattleItems = {
 	"adamantorb": {
 		inherit: true,
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Dialga') return false;
+			return true;
+		},
+	},
+	"deepseascale": {
+		inherit: true,
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Clamperl') return false;
+			return true;
+		},
+	},
+	"deepseatooth": {
+		inherit: true,
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Clamperl') return false;
+			return true;
+		},
+	},
+	"griseousorb": {
+		inherit: true,
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Giratina') return false;
+			return true;
+		},
+	},
+	"luckypunch": {
+		inherit: true,
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Chansey') return false;
+			return true;
+		},
+	},
+	"lustrousorb": {
+		inherit: true,
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Palkia') return false;
+			return true;
+		},
+	},
+	"metalpowder": {
+		inherit: true,
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Ditto') return false;
+			return true;
+		},
+	},
+	"quickpowder": {
+		inherit: true,
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Ditto') return false;
+			return true;
+		},
+	},
+	"stick": {
+		inherit: true,
 		onTakeItem: function (item, pokemon, source) {
-			if ((source && source.baseTemplate.num === 483) || pokemon.baseTemplate.num === 483) {
+			if ((source && source.baseTemplate.num === 83) || pokemon.baseTemplate.num === 83) {
+				return false;
+			}
+			return true;
+		},
+	},
+	"thickclub": {
+		inherit: true,
+		onTakeItem: function (item, pokemon, source) {
+			if ((source && source.baseTemplate.num === 105) || pokemon.baseTemplate.num === 105) {
 				return false;
 			}
 			return true;
@@ -349,6 +414,10 @@ exports.BattleItems = {
 			if (pokemon.baseTemplate.baseSpecies === 'Pikachu' || pokemon.baseTemplate.baseSpecies === 'Pichu' || pokemon.baseTemplate.baseSpecies === 'Raichu' || pokemon.baseTemplate.baseSpecies === 'Plusle' || pokemon.baseTemplate.baseSpecies === 'Minun' || pokemon.baseTemplate.baseSpecies === 'Pachirisu' || pokemon.baseTemplate.baseSpecies === 'Emolga' || pokemon.baseTemplate.baseSpecies === 'Dedenne' || pokemon.baseTemplate.baseSpecies === 'Togedemaru') {
 				return this.chainModify(2);
 			}
+		},
+		onTakeItem: function (item, source) {
+			if (source.baseTemplate.baseSpecies === 'Pikachu' || source.baseTemplate.baseSpecies === 'Pichu' || source.baseTemplate.baseSpecies === 'Raichu' || source.baseTemplate.baseSpecies === 'Plusle' || source.baseTemplate.baseSpecies === 'Minun' || source.baseTemplate.baseSpecies === 'Pachirisu' || source.baseTemplate.baseSpecies === 'Emolga' || source.baseTemplate.baseSpecies === 'Dedenne' || source.baseTemplate.baseSpecies === 'Togedemaru') return false;
+			return true;
 		},
 		num: 236,
 		gen: 2,
