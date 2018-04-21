@@ -756,7 +756,7 @@ exports.BattleMovedex = {
 	"twineedle": {
 		num: 41,
 		accuracy: 100,
-		basePower: 25,
+		basePower: 50,
 		category: "Physical",
 		desc: "Hits twice, with each hit having a 20% chance to poison the target. If the first hit breaks the target's substitute, it will take damage for the second hit.",
 		shortDesc: "Hits 2 times. Each hit has 20% chance to poison.",
@@ -777,6 +777,7 @@ exports.BattleMovedex = {
 	},
 	dualchop: {
 		inherit: true,
+		basePower: 50,
 		pp: 16,
 		zMovePower: 100,
 	},
