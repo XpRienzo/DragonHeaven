@@ -15,7 +15,7 @@ exports.BattleItems = {
 			}
 		},
 		onTakeItem: function (item, pokemon, source) {
-			if ((source && source.baseTemplate.num === 483)) {
+			if ((source && source.baseTemplate.num === 483) || pokemon.baseTemplate.num === 483) {
 				return false;
 			}
 			return true;
