@@ -2754,7 +2754,7 @@ exports.BattleAbilities = {
 		name: "Lightning Fist",
 	},
 	"flarewings": {
-		shortDesc: "While Burned, holder's Speed is doubled; immune to Burn damage..",
+		shortDesc: "While Burned, holder's Speed is doubled; immune to Burn damage.",
 		onModifySpe: function (spe, pokemon) {
 			if (pokemon.status === 'brn') {
 				return this.chainModify(2);
@@ -2790,6 +2790,24 @@ exports.BattleAbilities = {
 		},
 		id: "peckingorder",
 		name: "Pecking Order",
+	},
+	"scout": {
+		shortDesc: "Exits the battle if it senses that the opposing Pokemon has super effective or OHKO moves.",
+		onStart: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (target.fainted) continue;
+				for (const moveSlot of target.moveSlots) {
+					let move = this.getMove(moveSlot.move);
+					if (move.category !== 'Status' && (this.getImmunity(move.type, pokemon) && this.getEffectiveness(move.type, pokemon) > 0 || move.ohko)) {
+						this.add('-ability', pokemon, 'Anticipation');
+						this.pokemon.switchFlag = true;
+						return;
+					}
+				}
+			}
+		},
+		id: "scout",
+		name: "Scout",
 	},
 	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
