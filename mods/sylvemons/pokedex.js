@@ -138,8 +138,10 @@ exports.BattlePokedex = {
 	},
 	deerlingspring: {
 		num: 585,
-		species: "Deerling",
-		baseForme: "Spring",
+		species: "Deerling-Spring",
+		baseSpecies: "Deerling",
+		forme: "Spring",
+		formeLetter: "S",
 		types: ["Fairy", "Grass"],
 		baseStats: {hp: 60, atk: 60, def: 50, spa: 40, spd: 50, spe: 75},
 		abilities: {0: "Chlorophyll", 1: "Sap Sipper", H: "Misty Surge"},
