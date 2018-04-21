@@ -2842,10 +2842,12 @@ exports.BattleAbilities = {
 			if (target.hp >= target.maxhp) {
 				return this.chainModify(0.5);
 			}
-			if (move.typeMod > 0) {
+			else if (move.typeMod > 0) {
 				return this.chainModify(0.5);
 			}
-		},
+			else if (move.typeMod > 0 && target.hp >= target.maxhp) {
+				return this.chainModify(0.25);
+			}
 		},
 		id: "landsshield",
 		name: "Lands Shield",
