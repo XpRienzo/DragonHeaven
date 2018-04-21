@@ -2479,7 +2479,7 @@ exports.BattleAbilities = {
 		id: "fearshield",
 		name: "Fear Shield",
 	},
-	"frenzy": {
+	/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
 			if (move.multihit && move.multihit.length) {
@@ -2492,7 +2492,7 @@ exports.BattleAbilities = {
 		},
 		id: "frenzy",
 		name: "Frenzy",
-	},
+	},*/
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
