@@ -45,7 +45,7 @@ exports.BattleMovedex = {
 		num: 516,
 		accuracy: true,
 		basePower: 0,
-		category: "Status",
+		category: "Physical",
 		desc: "The target receives the user's phone, and loses its item.",
 		shortDesc: "User passes its held item to the target.",
 		id: "heresmyphone3",
