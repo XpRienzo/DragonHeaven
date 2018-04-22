@@ -1,6 +1,7 @@
 'use strict';
 
-exports.BattleMovedex = {
+/**@type {{[k: string]: ModdedMoveData}} */
+let BattleMovedex = {
 	acupressure: {
 		inherit: true,
 		desc: "Raises a random stat by 2 stages as long as the stat is not already at stage 6. The user can choose to use this move on itself or an ally. Fails if no stat stage can be raised or if the user or ally has a substitute.",
@@ -64,6 +65,7 @@ exports.BattleMovedex = {
 		inherit: true,
 		basePower: 10,
 		basePowerCallback: function (pokemon, target, move) {
+			// @ts-ignore
 			if (!move.allies.length) return null;
 			return 10;
 		},
@@ -79,8 +81,10 @@ exports.BattleMovedex = {
 			duration: 1,
 			onModifyAtkPriority: -101,
 			onModifyAtk: function (atk, pokemon, defender, move) {
+				// @ts-ignore
 				this.add('-activate', pokemon, 'move: Beat Up', '[of] ' + move.allies[0].name);
 				this.event.modifier = 1;
+				// @ts-ignore
 				return move.allies.shift().template.baseStats.atk;
 			},
 			onFoeModifyDefPriority: -101,
@@ -127,6 +131,8 @@ exports.BattleMovedex = {
 						this.add('-miss', pokemon, target);
 						return false;
 					}
+					/**@type {Move} */
+					// @ts-ignore
 					let moveData = {
 						id: 'bide',
 						name: "Bide",
@@ -232,6 +238,7 @@ exports.BattleMovedex = {
 				delete move.volatileStatus;
 				delete move.onHit;
 				move.self = {boosts: {atk: 1, def: 1, spe: -1}};
+				// @ts-ignore
 				move.target = move.nonGhostTarget;
 			} else if (target.volatiles['substitute']) {
 				delete move.volatileStatus;
@@ -327,14 +334,17 @@ exports.BattleMovedex = {
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
-			let damage = this.getDamage(source, target, {
+			/**@type {Move} */
+			// @ts-ignore
+			let moveData = {
 				name: "Doom Desire",
 				basePower: 120,
 				category: "Special",
 				flags: {},
 				willCrit: false,
 				type: '???',
-			}, true);
+			};
+			let damage = this.getDamage(source, target, moveData, true);
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 3,
 				move: 'doomdesire',
@@ -397,7 +407,7 @@ exports.BattleMovedex = {
 			onStart: function (target) {
 				let noEncore = ['encore', 'mimic', 'mirrormove', 'sketch', 'struggle', 'transform'];
 				let moveIndex = target.lastMove ? target.moves.indexOf(target.lastMove.id) : -1;
-				if (!target.lastMove || noEncore.includes(target.lastMove.id) || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
+				if (!target.lastMove || noEncore.includes(target.lastMove.id) || !target.moveSlots[moveIndex] || target.moveSlots[moveIndex].pp <= 0) {
 					// it failed
 					this.add('-fail', target);
 					delete target.volatiles['encore'];
@@ -530,14 +540,17 @@ exports.BattleMovedex = {
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
-			let damage = this.getDamage(source, target, {
+			/**@type {Move} */
+			// @ts-ignore
+			let moveData = {
 				name: "Future Sight",
 				basePower: 80,
 				category: "Special",
 				flags: {},
 				willCrit: false,
 				type: '???',
-			}, true);
+			};
+			let damage = this.getDamage(source, target, moveData, true);
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 3,
 				move: 'futuresight',
@@ -646,6 +659,7 @@ exports.BattleMovedex = {
 					target.setStatus('');
 					this.add('-heal', target, target.getHealth, '[from] move: Healing Wish');
 					target.side.removeSideCondition('healingwish');
+					target.lastMove = this.lastMove;
 				} else {
 					target.switchFlag = true;
 				}
@@ -756,6 +770,7 @@ exports.BattleMovedex = {
 					}
 					this.add('-heal', target, target.getHealth, '[from] move: Lunar Dance');
 					target.side.removeSideCondition('lunardance');
+					target.lastMove = this.lastMove;
 				} else {
 					target.switchFlag = true;
 				}
@@ -854,7 +869,7 @@ exports.BattleMovedex = {
 		onTryHit: function () { },
 		onHit: function (pokemon) {
 			let noMirror = ['acupressure', 'aromatherapy', 'assist', 'chatter', 'copycat', 'counter', 'curse', 'doomdesire', 'feint', 'focuspunch', 'futuresight', 'gravity', 'hail', 'haze', 'healbell', 'helpinghand', 'lightscreen', 'luckychant', 'magiccoat', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'mist', 'mudsport', 'naturepower', 'perishsong', 'psychup', 'raindance', 'reflect', 'roleplay', 'safeguard', 'sandstorm', 'sketch', 'sleeptalk', 'snatch', 'spikes', 'spitup', 'stealthrock', 'struggle', 'sunnyday', 'tailwind', 'toxicspikes', 'transform', 'watersport'];
-			if (!pokemon.lastAttackedBy || !pokemon.lastAttackedBy.pokemon.lastMove || noMirror.includes(pokemon.lastAttackedBy.move) || !pokemon.lastAttackedBy.pokemon.hasMove(pokemon.lastAttackedBy.move)) {
+			if (!pokemon.lastAttackedBy || !pokemon.lastAttackedBy.pokemon.lastMove || !pokemon.lastAttackedBy.move || noMirror.includes(pokemon.lastAttackedBy.move) || !pokemon.lastAttackedBy.pokemon.hasMove(pokemon.lastAttackedBy.move)) {
 				return false;
 			}
 			this.useMove(pokemon.lastAttackedBy.move, pokemon);
@@ -1254,6 +1269,7 @@ exports.BattleMovedex = {
 			duration: 2,
 			onResidualOrder: 0,
 			onEnd: function (side) {
+				// @ts-ignore
 				let target = side.active[this.effectData.sourcePosition];
 				if (!target.fainted) {
 					let source = this.effectData.source;
@@ -1287,3 +1303,5 @@ exports.BattleMovedex = {
 		},
 	},
 };
+
+exports.BattleMovedex = BattleMovedex;

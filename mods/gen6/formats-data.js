@@ -799,7 +799,7 @@ exports.BattleFormatsData = {
 	},
 	hitmontop: {
 		inherit: true,
-		randomBattleMoves: ["suckerpunch", "machpunch", "rapidspin", "closecombat", "toxic"],
+		randomBattleMoves: ["suckerpunch", "stoneedge", "rapidspin", "closecombat", "toxic"],
 		randomDoubleBattleMoves: ["fakeout", "feint", "suckerpunch", "closecombat", "helpinghand", "machpunch", "wideguard"],
 		tier: "RU",
 		doublesTier: "DOU",
@@ -2143,7 +2143,7 @@ exports.BattleFormatsData = {
 		doublesTier: "DUU",
 	},
 	aggronmega: {
-		randomBattleMoves: ["earthquake", "heavyslam", "icepunch", "stealthrock", "thunderwave", "roar", "toxic"],
+		randomBattleMoves: ["earthquake", "heavyslam", "rockslide", "stealthrock", "thunderwave", "roar", "toxic"],
 		randomDoubleBattleMoves: ["rockslide", "earthquake", "lowkick", "heavyslam", "aquatail", "protect"],
 		requiredItem: "Aggronite",
 		tier: "UU",
@@ -4097,7 +4097,7 @@ exports.BattleFormatsData = {
 		tier: "PU",
 	},
 	bisharp: {
-		randomBattleMoves: ["swordsdance", "substitute", "suckerpunch", "ironhead", "brickbreak", "knockoff"],
+		randomBattleMoves: ["swordsdance", "knockoff", "ironhead", "suckerpunch", "lowkick"],
 		randomDoubleBattleMoves: ["swordsdance", "substitute", "suckerpunch", "ironhead", "brickbreak", "knockoff", "protect"],
 		tier: "OU",
 		doublesTier: "DOU",

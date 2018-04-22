@@ -341,6 +341,8 @@ class CommandContext {
 			target = '';
 		}
 
+		if (cmd.endsWith(',')) cmd = cmd.slice(0, -1);
+
 		let curCommands = Chat.commands;
 		let commandHandler;
 		let fullCmd = cmd;
@@ -702,23 +704,24 @@ class CommandContext {
 	 */
 	canBroadcast(suppressMessage) {
 		if (!this.broadcasting && this.cmdToken === BROADCAST_TOKEN) {
+			// @ts-ignore
 			if (!this.pmTarget && !this.user.can('broadcast', null, this.room)) {
 				this.errorReply("You need to be voiced to broadcast this command's information.");
 				this.errorReply("To see it for yourself, use: /" + this.message.substr(1));
 				return false;
 			}
 
-			if (this.room && this.room.lastBroadcast === this.broadcastMessage &&
+			// broadcast cooldown
+			const broadcastMessage = (suppressMessage || this.message).toLowerCase().replace(/[^a-z0-9\s!,]/g, '');
+
+			if (this.room && this.room.lastBroadcast === broadcastMessage &&
 					this.room.lastBroadcastTime >= Date.now() - BROADCAST_COOLDOWN) {
 				this.errorReply("You can't broadcast this because it was just broadcasted.");
 				return false;
 			}
 
-			let message = this.canTalk(suppressMessage || this.message);
+			const message = this.canTalk(suppressMessage || this.message);
 			if (!message) return false;
-
-			// broadcast cooldown
-			let broadcastMessage = message.toLowerCase().replace(/[^a-z0-9\s!,]/g, '');
 
 			this.message = message;
 			this.broadcastMessage = broadcastMessage;
@@ -779,6 +782,7 @@ class CommandContext {
 	 * @param {User?} [targetUser]
 	 */
 	canTalk(message, room, targetUser) {
+		// @ts-ignore
 		if (!room) room = this.room;
 		if (!targetUser && this.pmTarget) {
 			room = null;
@@ -841,8 +845,8 @@ class CommandContext {
 				if (targetUser.ignorePMs && targetUser.ignorePMs !== user.group && !user.can('lock')) {
 					if (!targetUser.can('lock')) {
 						return this.errorReply(`This user is blocking private messages right now.`);
-					} else if (targetUser.can('bypassall')) {
-						return this.errorReply(`This admin is too busy to answer private messages right now. Please contact a different staff member.`);
+					} else if (targetUser.can('declare')) {
+						return this.errorReply(`This ${Config.groups[targetUser.group].name} is too busy to answer private messages right now. Please contact a different staff member.`);
 					}
 				}
 				if (user.ignorePMs && user.ignorePMs !== targetUser.group && !targetUser.can('lock')) {
@@ -1161,14 +1165,14 @@ Chat.uncacheTree = function (root) {
 	do {
 		/** @type {string[]} */
 		let newuncache = [];
-		for (let i = 0; i < uncache.length; ++i) {
-			if (require.cache[uncache[i]]) {
+		for (const target of uncache) {
+			if (require.cache[target]) {
 				newuncache.push.apply(newuncache,
-					require.cache[uncache[i]].children
+					require.cache[target].children
 						.filter(/** @param {{id: string}} cachedModule */ cachedModule => !cachedModule.id.endsWith('.node'))
 						.map(/** @param {{id: string}} cachedModule */ cachedModule => cachedModule.id)
 				);
-				delete require.cache[uncache[i]];
+				delete require.cache[target];
 			}
 		}
 		uncache = newuncache;
@@ -1539,6 +1543,7 @@ Chat.getDataPokemonHTML = function (template, gen = 7, tier = '') {
 	}
 	let bst = 0;
 	for (let i in template.baseStats) {
+		// @ts-ignore
 		bst += template.baseStats[i];
 	}
 	buf += '<span style="float:left;min-height:26px">';

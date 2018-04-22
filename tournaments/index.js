@@ -130,8 +130,7 @@ class Tournament {
 		let unbans = [];
 		let addedRules = [];
 		let removedRules = [];
-		for (let i = 0; i < this.customRules.length; i++) {
-			let ban = this.customRules[i];
+		for (const ban of this.customRules) {
 			let charAt0 = ban.charAt(0);
 			if (charAt0 === '+') {
 				unbans.push(ban.substr(1));
@@ -156,8 +155,8 @@ class Tournament {
 			if (this.autoDisqualifyTimer) clearTimeout(this.autoDisqualifyTimer);
 			this.inProgressMatches.forEach(match => {
 				if (match) {
-					delete match.room.tour;
-					delete match.room.parent;
+					match.room.tour = null;
+					match.room.parent = null;
 					match.room.addRaw("<div class=\"broadcast-red\"><b>The tournament was forcefully ended.</b><br />You can finish playing, but this battle is no longer considered a tournament battle.</div>");
 				}
 			});
@@ -780,6 +779,7 @@ class Tournament {
 		if (!this.pendingChallenges.get(player)) return;
 
 		let room = Rooms.createBattle(this.teambuilderFormat, {
+			isPrivate: this.room.isPrivate,
 			p1: from,
 			p1team: challenge.team,
 			p2: user,
@@ -828,15 +828,17 @@ class Tournament {
 	onBattleJoin(room, user) {
 		if (this.scouting || this.isEnded || user.latestIp === room.p1.latestIp || user.latestIp === room.p2.latestIp) return;
 		if (user.can('makeroom')) return;
-		let users = this.generator.getUsers(true);
-		for (let i = 0; i < users.length; i++) {
-			let otherUser = Users.get(users[i].userid);
+		for (const targetUser of this.generator.getUsers(true)) {
+			let otherUser = Users.get(targetUser.userid);
 			if (otherUser && otherUser.latestIp === user.latestIp) {
 				return "Scouting is banned: tournament players can't watch other tournament battles.";
 			}
 		}
 	}
 	onBattleWin(room, winnerid) {
+		room.tour = null;
+		room.parent = null;
+
 		let from = this.players[room.p1.userid];
 		let to = this.players[room.p2.userid];
 		let winner = this.players[winnerid];
@@ -1582,7 +1584,7 @@ Chat.commands.tournamenthelp = function (target, room, user) {
 		`- off/disable: Disables allowing drivers and mods to start tournaments in the current room.<br />` +
 		`- announce/announcements &lt;on|off>: Enables/disables tournament announcements for the current room.<br />` +
 		`- banuser/unbanuser &lt;user>: Bans/unbans a user from joining tournaments in this room. Lasts 2 weeks.<br />` +
-		`More detailed help can be found <a href="http://www.smogon.com/forums/threads/3570628/#post-6777489">here</a>`
+		`More detailed help can be found <a href="https://www.smogon.com/forums/threads/3570628/#post-6777489">here</a>`
 	);
 };
 

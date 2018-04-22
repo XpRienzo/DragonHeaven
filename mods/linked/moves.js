@@ -10,7 +10,6 @@ exports.BattleMovedex = {
 		beforeTurnCallback: function (pokemon, target) {
 			let linkedMoves = pokemon.getLinkedMoves();
 			if (linkedMoves.length && !linkedMoves.disabled) {
-				if (linkedMoves[0] === 'pursuit' && linkedMoves[1] !== 'pursuit') return;
 				if (linkedMoves[0] !== 'pursuit' && linkedMoves[1] === 'pursuit') return;
 			}
 
@@ -26,12 +25,10 @@ exports.BattleMovedex = {
 		onTryHit: function (target, pokemon) {
 			let action = this.willMove(target);
 			if (action) {
-				let noMeFirst = [
-					'chatter', 'counter', 'covet', 'focuspunch', 'mefirst', 'metalburst', 'mirrorcoat', 'struggle', 'thief',
-				];
+				let noMeFirst = ['chatter', 'counter', 'covet', 'focuspunch', 'mefirst', 'metalburst', 'mirrorcoat', 'struggle', 'thief'];
 				// Mod-specific: Me First copies the first move in the link
-				let move = this.getMove(action.linked ? action.linked[0] : action.move);
-				if (move.category !== 'Status' && !noMeFirst.includes(move)) {
+				let move = this.getMoveCopy(action.linked ? action.linked[0] : action.move);
+				if (move.category !== 'Status' && !noMeFirst.includes(move.id)) {
 					pokemon.addVolatile('mefirst');
 					this.useMove(move, pokemon, target);
 					return null;
@@ -63,14 +60,14 @@ exports.BattleMovedex = {
 				this.add('-fail', source);
 				return null;
 			}
-			if (!target.linked && action.move.category === 'Status' && action.move.id !== 'mefirst') {
-				this.attrLastMove('[still]');
-				this.add('-fail', source);
-				return null;
-			}
-			if (target.linked) {
-				for (let i = 0; i < target.linked.length; i++) {
-					let linkedMove = this.getMove(target.linked[i]);
+			if (!action.linked) {
+				if (action.move.category === 'Status' && action.move.id !== 'mefirst') {
+					this.attrLastMove('[still]');
+					this.add('-fail', source);
+					return null;
+				}
+			} else {
+				for (const linkedMove of action.linked) {
 					if (linkedMove.category !== 'Status' || linkedMove.id === 'mefirst') return;
 				}
 				this.attrLastMove('[still]');
@@ -92,7 +89,7 @@ exports.BattleMovedex = {
 		onHit: function (target, source) {
 			let disallowedMoves = ['chatter', 'sketch', 'struggle'];
 			let lastMove = target.getLastMoveAbsolute();
-			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove) || source.moves.indexOf(lastMove) >= 0) return false;
+			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove.id) || source.moves.indexOf(lastMove.id) >= 0 || lastMove.isZ) return false;
 			let sketchIndex = source.moves.indexOf('sketch');
 			if (sketchIndex < 0) return false;
 			let move = this.getMove(lastMove);
@@ -115,7 +112,7 @@ exports.BattleMovedex = {
 		onHit: function (target, source) {
 			let disallowedMoves = ['chatter', 'mimic', 'sketch', 'struggle', 'transform'];
 			let lastMove = target.getLastMoveAbsolute();
-			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove) || source.moves.indexOf(lastMove) >= 0) return false;
+			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove.id) || source.moves.indexOf(lastMove.id) >= 0 || lastMove.isZ) return false;
 			let mimicIndex = source.moves.indexOf('mimic');
 			if (mimicIndex < 0) return false;
 			let move = this.getMove(lastMove);
@@ -134,25 +131,39 @@ exports.BattleMovedex = {
 	},
 
 	/**
-	 * Copycat and Mirror Move
+	 * Instruct and Mirror Move
 	 * Copy/call the last absolute move used by the target
 	 *
 	 */
 
+	instruct: {
+		inherit: true,
+		onHit: function (target, source) {
+			let lastMove = target.getLastMoveAbsolute();
+			if (!lastMove) return false;
+			let moveIndex = target.moves.indexOf(lastMove.id);
+			let noInstruct = ['assist', 'beakblast', 'bide', 'copycat', 'focuspunch', 'iceball', 'instruct', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'outrage', 'petaldance', 'rollout', 'shelltrap', 'sketch', 'sleeptalk', 'thrash', 'transform'];
+			if (noInstruct.includes(lastMove.id) || lastMove.isZ || lastMove.flags['charge'] || lastMove.flags['recharge'] || target.volatiles['beakblast'] || target.volatiles['focuspunch'] || target.volatiles['shelltrap'] || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
+				return false;
+			}
+			this.add('-singleturn', target, 'move: Instruct', '[of] ' + source);
+			this.runMove(lastMove.id, target, target.lastMoveTargetLoc);
+		},
+	},
 	mirrormove: {
 		inherit: true,
 		onTryHit: function (target, pokemon) {
 			let lastMove = target.getLastMoveAbsolute();
-			if (!lastMove || !this.getMove(lastMove).flags['mirror']) {
+			if (!lastMove || !lastMove.flags['mirror']) {
 				return false;
 			}
-			this.useMove(lastMove, pokemon, target);
+			this.useMove(lastMove.id, pokemon, target);
 			return null;
 		},
 	},
-	// Yo Kris fam, i've updated the code till here; mind doin the rest?
+
 	/**
-	 * Disable, Encore and Torment
+	 * Disable, Encore, and Torment
 	 * Disabling effects
 	 *
 	 */
@@ -218,22 +229,21 @@ exports.BattleMovedex = {
 				let noEncore = ['assist', 'copycat', 'encore', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'sketch', 'sleeptalk', 'struggle', 'transform'];
 				let lastMove = target.getLastMoveAbsolute();
 				let linkedMoves = target.getLinkedMoves();
-				let moveIndex = lastMove ? target.moves.indexOf(target.lastMove) : -1;
-				if (linkedMoves.includes(lastMove) && noEncore.includes(linkedMoves[0]) && noEncore.includes(linkedMoves[1])) {
-					// both moves are ones which cannot be encored
-					delete target.volatiles['encore'];;
+				let moveIndex = lastMove ? target.moves.indexOf(lastMove.id) : -1;
+				if (lastMove && linkedMoves.includes(lastMove.id) && noEncore.includes(linkedMoves[0]) && noEncore.includes(linkedMoves[1])) {
+					// both moves cannot be encored
+					delete target.volatiles['encore'];
 					return false;
 				}
-				if (!target.lastMove || target.lastMove.isZ || noEncore.includes(target.lastMove.id) || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
+				if (!lastMove || lastMove.isZ || noEncore.includes(lastMove.id) || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
 					// it failed
 					delete target.volatiles['encore'];
 					return false;
 				}
-				
-                this.effectData.turnsActivated = {};
-				this.effectData.move = lastMove;
+				this.effectData.turnsActivated = {};
+				this.effectData.move = lastMove.id;
 				this.add('-start', target, 'Encore');
-				if (linkedMoves.includes(lastMove)) {
+				if (linkedMoves.includes(lastMove.id)) {
 					this.effectData.move = linkedMoves;
 				}
 				if (!this.willMove(target)) {
@@ -259,16 +269,9 @@ exports.BattleMovedex = {
 				// Locked into a link
 				switch (this.effectData.turnsActivated[this.turn]) {
 				case 1: {
-					if (!this.willMove(pokemon)) {
-						for (const source of this.effectData.sources) {
-							let pseudoDecision = {choice: 'move', move: this.effectData.move[1], targetLoc: this.getTargetLoc(pokemon, source), pokemon: this.willMove(pokemon).pokemon, targetPosition: this.willMove(pokemon).targetPosition, targetSide: this.willMove(pokemon).targetSide};
-							this.queue.unshift(pseudoDecision);
-						}
-					}
 					if (this.effectData.move[0] !== move.id) return this.effectData.move[0];
 					return;
 				}
-
 				case 2:
 					if (this.effectData.move[1] !== move.id) return this.effectData.move[1];
 					return;
@@ -278,7 +281,6 @@ exports.BattleMovedex = {
 			onResidual: function (target) {
 				// early termination if you run out of PP
 				let lastMove = target.getLastMoveAbsolute();
-
 				let index = target.moves.indexOf(lastMove.id);
 				if (index === -1) return; // no last move
 
@@ -328,7 +330,7 @@ exports.BattleMovedex = {
 			},
 			onDisableMove: function (pokemon) {
 				let lastMove = pokemon.lastMove;
-				if (lastMove.id === 'struggle') return;
+				if (!lastMove || lastMove.id === 'struggle') return;
 
 				if (Array.isArray(lastMove)) {
 					for (const move of lastMove) {
@@ -357,8 +359,7 @@ exports.BattleMovedex = {
 			onFaint: function (target, source, effect) {
 				if (!source || source.fainted || !effect) return;
 				let lastMove = source.getLastMoveAbsolute();
-				if (!lastMove) throw new Error("Pokemon.getLastMoveAbsolute() is null");
-				if (effect.effectType === 'Move' && !effect.isFutureMove) {
+				if (effect.effectType === 'Move' && !effect.isFutureMove && lastMove) {
 					for (const moveSlot of source.moveSlots) {
 						if (moveSlot.id === lastMove.id) {
 							moveSlot.pp = 0;
@@ -445,21 +446,78 @@ exports.BattleMovedex = {
 			},
 		},
 	},
-	trumpcard: {
+	iceball: {
 		inherit: true,
-		basePowerCallback: function (pokemon) {
-			let move = pokemon.getMoveData(pokemon.getLastMoveAbsolute()); // Account for calling Trump Card via other moves
-			switch (move.pp) {
-			case 0:
-				return 200;
-			case 1:
-				return 80;
-			case 2:
-				return 60;
-			case 3:
-				return 50;
-			default:
-				return 40;
+		effect: {
+			duration: 2,
+			onLockMove: 'iceball',
+			onStart: function () {
+				this.effectData.hitCount = 1;
+			},
+			onRestart: function () {
+				this.effectData.hitCount++;
+				if (this.effectData.hitCount < 5) {
+					this.effectData.duration = 2;
+				}
+			},
+			onResidual: function (target) {
+				// This is just to ensure the volatile is deleted correctly
+				let lastMove = target.getLastMoveAbsolute();
+				if (lastMove && lastMove.id === 'struggle') {
+					delete target.volatiles['iceball'];
+				}
+			},
+		},
+	},
+	rollout: {
+		inherit: true,
+		effect: {
+			duration: 2,
+			onLockMove: 'rollout',
+			onStart: function () {
+				this.effectData.hitCount = 1;
+			},
+			onRestart: function () {
+				this.effectData.hitCount++;
+				if (this.effectData.hitCount < 5) {
+					this.effectData.duration = 2;
+				}
+			},
+			onResidual: function (target) {
+				// This is just to ensure the volatile is deleted correctly
+				let lastMove = target.getLastMoveAbsolute();
+				if (lastMove && lastMove.id === 'struggle') {
+					delete target.volatiles['rollout'];
+				}
+			},
+		},
+	},
+
+	/**
+	 * Moves that check `pokemon.moveThisTurn`
+	 * (may behave counter-intuitively if left unmodded)
+	 *
+	 */
+
+	fusionbolt: {
+		inherit: true,
+		onBasePower: function (basePower, pokemon) {
+			for (const active of pokemon.side.active) {
+				if (active && active.checkMoveThisTurn('fusionflare')) {
+					this.debug('double power');
+					return this.chainModify(2);
+				}
+			}
+		},
+	},
+	fusionflare: {
+		inherit: true,
+		onBasePower: function (basePower, pokemon) {
+			for (const active of pokemon.side.active) {
+				if (active && active.checkMoveThisTurn('fusionbolt')) {
+					this.debug('double power');
+					return this.chainModify(2);
+				}
 			}
 		},
 	},

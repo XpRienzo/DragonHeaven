@@ -2,10 +2,10 @@
 
 exports.BattleStatuses = {
 	slp: {
-	inherit: true,
+		inherit: true,
 		onBeforeMove: function (pokemon, target, move) {
 			if (this.effectData.timerDecreased !== this.turn) {
-					this.effectData.timerDecreased = this.turn;
+				this.effectData.timerDecreased = this.turn;
 				if (pokemon.hasAbility('earlybird')) {
 					pokemon.statusData.time--;
 				}
@@ -15,7 +15,6 @@ exports.BattleStatuses = {
 					return;
 				}
 				this.add('cant', pokemon, 'slp');
-				
 			}
 			if (move.sleepUsable) {
 				return;
@@ -27,7 +26,7 @@ exports.BattleStatuses = {
 		inherit: true,
 		onBeforeMove: function (pokemon, target, move) {
 			if (move.flags['defrost']) return;
-			if (this.effectData.durationRolled !== this.turn && this.random(5) === 0) {
+			if (this.effectData.durationRolled !== this.turn && this.randomChance(1, 5)) {
 				pokemon.cureStatus();
 				return;
 			}
@@ -43,7 +42,7 @@ exports.BattleStatuses = {
 		inherit: true,
 		onBeforeMove: function (pokemon) {
 			if (this.effectData.timerDecreased !== this.turn) {
-					this.effectData.timerDecreased = this.turn;
+				this.effectData.timerDecreased = this.turn;
 				pokemon.volatiles.confusion.time--;
 				if (!pokemon.volatiles.confusion.time) {
 					pokemon.removeVolatile('confusion');
@@ -51,7 +50,7 @@ exports.BattleStatuses = {
 				}
 			}
 			this.add('-activate', pokemon, 'confusion');
-			if (this.random(3) > 0) {
+			if (!this.randomChance(1, 3)) {
 				return;
 			}
 			this.activeTarget = pokemon;
@@ -65,7 +64,7 @@ exports.BattleStatuses = {
 	},
 
 	/**
-	 * Gems and Auras
+	 * Gems
 	 * Make sure that they only boost a single move
 	 *
 	 */
@@ -74,12 +73,6 @@ exports.BattleStatuses = {
 		inherit: true,
 		onBeforeMove: function (pokemon) {
 			if (pokemon.moveThisTurn) pokemon.removeVolatile('gem');
-		},
-	},
-	aura: {
-		inherit: true,
-		onBeforeMove: function (pokemon) {
-			if (pokemon.moveThisTurn) pokemon.removeVolatile('aura');
 		},
 	},
 };

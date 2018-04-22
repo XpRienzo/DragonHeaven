@@ -76,6 +76,8 @@ class BasicRoom {
 		this.muteTimer = null;
 
 		this.lastUpdate = 0;
+		this.lastBroadcast = '';
+		this.lastBroadcastTime = 0;
 
 		// room settings
 
@@ -348,8 +350,7 @@ class BasicRoom {
 			autoconfirmed = user.autoconfirmed;
 		}
 
-		for (let i = 0; i < this.muteQueue.length; i++) {
-			let entry = this.muteQueue[i];
+		for (const [i, entry] of this.muteQueue.entries()) {
 			if (entry.userid === userid ||
 				(user && entry.guestNum === user.guestNum) ||
 				(autoconfirmed && entry.autoconfirmed === autoconfirmed)) {
@@ -392,6 +393,8 @@ class GlobalRoom extends BasicRoom {
 		this.active = false;
 		/** @type {null} */
 		this.chatRoomData = null;
+		/**@type {boolean | 'pre' | 'ddos'} */
+		this.lockdown = false;
 
 		this.battleCount = 0;
 		this.lastReportedCrash = 0;
@@ -429,14 +432,14 @@ class GlobalRoom extends BasicRoom {
 		 * @type {string[]}
 		 */
 		this.staffAutojoinList = [];
-		for (let i = 0; i < this.chatRoomDataList.length; i++) {
-			if (!this.chatRoomDataList[i] || !this.chatRoomDataList[i].title) {
+		for (const [i, chatRoomData] of this.chatRoomDataList.entries()) {
+			if (!chatRoomData || !chatRoomData.title) {
 				Monitor.warn(`ERROR: Room number ${i} has no data and could not be loaded.`);
 				continue;
 			}
-			let id = toId(this.chatRoomDataList[i].title);
+			let id = toId(chatRoomData.title);
 			Monitor.notice("NEW CHATROOM: " + id);
-			let room = Rooms.createChatRoom(id, this.chatRoomDataList[i].title, this.chatRoomDataList[i]);
+			let room = Rooms.createChatRoom(id, chatRoomData.title, chatRoomData);
 			if (room.aliases) {
 				for (const alias of room.aliases) {
 					Rooms.aliases.set(alias, id);
@@ -777,12 +780,12 @@ class GlobalRoom extends BasicRoom {
 	}
 	/**
 	 * @param {User} user
-	 * @param {Connection} connection
+	 * @param {Connection} [connection]
 	 */
 	checkAutojoin(user, connection) {
 		if (!user.named) return;
-		for (let i = 0; i < this.staffAutojoinList.length; i++) {
-			let room = /** @type {ChatRoom} */ (Rooms(this.staffAutojoinList[i]));
+		for (let [i, staffAutojoin] of this.staffAutojoinList.entries()) {
+			let room = /** @type {ChatRoom} */ (Rooms(staffAutojoin));
 			if (!room) {
 				this.staffAutojoinList.splice(i, 1);
 				i--;
@@ -932,7 +935,7 @@ class GlobalRoom extends BasicRoom {
 	 */
 	notifyRooms(rooms, message) {
 		if (!rooms || !message) return;
-		for (let roomid of rooms) {
+		for (const roomid of rooms) {
 			let curRoom = Rooms(roomid);
 			if (curRoom) curRoom.add(message).update();
 		}
@@ -1071,7 +1074,7 @@ class BasicChatRoom extends BasicRoom {
 		let total = 0;
 		let guests = 0;
 		let groups = {};
-		for (let group of Config.groupsranking) {
+		for (const group of Config.groupsranking) {
 			groups[group] = 0;
 		}
 		for (let i in this.users) {
@@ -1457,7 +1460,7 @@ class GameRoom extends BasicChatRoom {
 }
 
 /**
- * @param {string | Room | undefined} roomid
+ * @param {string | Room} [roomid]
  * @return {Room}
  */
 function getRoom(roomid) {
@@ -1568,7 +1571,8 @@ let Rooms = Object.assign(getRoom, {
 	battleModlogStream: FS('logs/modlog/modlog_battle.txt').createAppendStream(),
 	groupchatModlogStream: FS('logs/modlog/modlog_groupchat.txt').createAppendStream(),
 
-	global: (/** @type {any} */ (null)),
+	// @ts-ignore
+	global: (/** @type {GlobalRoom} */ (null)),
 	/** @type {?ChatRoom} */
 	lobby: null,
 

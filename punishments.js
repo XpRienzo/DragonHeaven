@@ -467,7 +467,7 @@ Punishments.punish = function (user, punishment, recursionKeys) {
 		Punishments.userids.set(user.trusted, punishment);
 		keys.add(user.trusted);
 		// @ts-ignore TODO: investigate if this is a bug
-		if (!PUNISH_TRUSTED) affected.unshift(user);
+		if (!PUNISH_TRUSTED && affected) affected.unshift(user);
 	}
 	if (!recursionKeys) {
 		const [punishType, id, ...rest] = punishment;
@@ -557,7 +557,7 @@ Punishments.unpunish = function (id, punishType) {
 Punishments.roomPunish = function (room, user, punishment, recursionKeys) {
 	let roomid = typeof room === 'string' ? room : room.id;
 	let keys = recursionKeys || new Set();
-	/** @type {User[]} */
+	/** @type {User[] | undefined} */
 	let affected;
 
 	if (!recursionKeys) {
@@ -581,8 +581,10 @@ Punishments.roomPunish = function (room, user, punishment, recursionKeys) {
 	if (user.trusted) {
 		Punishments.roomUserids.nestedSet(roomid, user.trusted, punishment);
 		keys.add(user.trusted);
-		// @ts-ignore TODO: investigate if this is a bug
-		if (!PUNISH_TRUSTED) affected.unshift(user);
+		if (!PUNISH_TRUSTED) {
+			if (!affected) affected = [];
+			affected.unshift(user);
+		}
 	}
 	if (!recursionKeys) {
 		const [punishType, id, ...rest] = punishment;
@@ -684,7 +686,7 @@ Punishments.roomUnpunish = function (room, id, punishType, ignoreWrite) {
  * @param {User} user
  * @param {number} expireTime
  * @param {string} id
- * @param {...string} [reason]
+ * @param {...string} reason
  * @return {PunishmentRow}
  */
 Punishments.ban = function (user, expireTime, id, ...reason) {
@@ -711,7 +713,7 @@ Punishments.unban = function (name) {
  * @param {User? | string} user
  * @param {number} expireTime
  * @param {string} id
- * @param {...string} [reason]
+ * @param {...string} reason
  * @return {PunishmentRow}
  */
 Punishments.lock = function (user, expireTime, id, ...reason) {
@@ -796,7 +798,7 @@ Punishments.unlock = function (name) {
  * @param {User} user
  * @param {number} expireTime
  * @param {string} id
- * @param {...string} [reason]
+ * @param {...string} reason
  * @return {PunishmentRow}
  */
 Punishments.namelock = function (user, expireTime, id, ...reason) {
@@ -852,7 +854,7 @@ Punishments.unnamelock = function (name) {
  * @param {User} user
  * @param {number} expireTime
  * @param {string} id
- * @param {...string} [reason]
+ * @param {...string} reason
  * @return {PunishmentRow}
  */
 Punishments.battleban = function (user, expireTime, id, ...reason) {
@@ -938,7 +940,7 @@ Punishments.banRange = function (range, reason) {
  * @param {User} user
  * @param {number} expireTime
  * @param {string} userId
- * @param {...string} [reason]
+ * @param {...string} reason
  * @return {PunishmentRow}
  */
 Punishments.roomBan = function (room, user, expireTime, userId, ...reason) {
@@ -974,7 +976,7 @@ Punishments.roomBan = function (room, user, expireTime, userId, ...reason) {
  * @param {User?} user
  * @param {number} expireTime
  * @param {string} userId
- * @param {...string} [reason]
+ * @param {...string} reason
  * @return {PunishmentRow}
  */
 Punishments.roomBlacklist = function (room, user, expireTime, userId, ...reason) {

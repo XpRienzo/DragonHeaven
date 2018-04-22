@@ -257,8 +257,8 @@ class ModdedDex {
 		// @ts-ignore
 		let targetTyping = target.getTypes && target.getTypes() || target.types || target;
 		if (Array.isArray(targetTyping)) {
-			for (let i = 0; i < targetTyping.length; i++) {
-				if (!this.getImmunity(sourceType, targetTyping[i])) return false;
+			for (const type of targetTyping) {
+				if (!this.getImmunity(sourceType, type)) return false;
 			}
 			return true;
 		}
@@ -280,8 +280,8 @@ class ModdedDex {
 		// @ts-ignore
 		let targetTyping = target.getTypes && target.getTypes() || target.types || target;
 		if (Array.isArray(targetTyping)) {
-			for (let i = 0; i < targetTyping.length; i++) {
-				totalTypeMod += this.getEffectiveness(sourceType, targetTyping[i]);
+			for (const type of targetTyping) {
+				totalTypeMod += this.getEffectiveness(sourceType, type);
 			}
 			return totalTypeMod;
 		}
@@ -316,7 +316,7 @@ class ModdedDex {
 	}
 
 	/**
-	 * @param {string | Template} name
+	 * @param {string | Template} [name]
 	 * @return {Template}
 	 */
 	getTemplate(name) {
@@ -374,7 +374,10 @@ class ModdedDex {
 			// Inherit any statuses from the base species (Arceus, Silvally).
 			const baseSpeciesStatuses = this.data.Statuses[toId(template.baseSpecies)];
 			if (baseSpeciesStatuses !== undefined) {
-				Object.assign(template, baseSpeciesStatuses);
+				for (const key in baseSpeciesStatuses) {
+					// @ts-ignore
+					if (!(key in template)) template[key] = baseSpeciesStatuses[key];
+				}
 			}
 			if (!template.tier && !template.doublesTier && template.baseSpecies !== template.species) {
 				if (template.baseSpecies === 'Mimikyu') {
@@ -406,7 +409,7 @@ class ModdedDex {
 		return this.data.Learnsets[id].learnset;
 	}
 	/**
-	 * @param {string | Move} name
+	 * @param {string | Move} [name]
 	 * @return {Move}
 	 */
 	getMove(name) {
@@ -458,7 +461,7 @@ class ModdedDex {
 		return moveCopy;
 	}
 	/**
-	 * @param {?string | Effect} name
+	 * @param {?string | Effect} [name]
 	 * @return {Effect}
 	 */
 	getEffect(name) {
@@ -521,7 +524,7 @@ class ModdedDex {
 		return validatedFormatid;
 	}
 	/**
-	 * @param {string | Format} name
+	 * @param {string | Format} [name]
 	 * @return {Format}
 	 */
 	getFormat(name, isTrusted = false) {
@@ -565,7 +568,7 @@ class ModdedDex {
 		return effect;
 	}
 	/**
-	 * @param {string | Item} name
+	 * @param {string | Item} [name]
 	 * @return {Item}
 	 */
 	getItem(name) {
@@ -598,7 +601,7 @@ class ModdedDex {
 		return item;
 	}
 	/**
-	 * @param {string | Ability} name
+	 * @param {string | Ability} [name]
 	 * @return {Ability}
 	 */
 	getAbility(name = '') {
@@ -995,13 +998,13 @@ class ModdedDex {
 	clampIntRange(num, min, max) {
 		if (typeof num !== 'number') num = 0;
 		num = Math.floor(num);
-		if (num < min) num = min;
+		if (min !== undefined && num < min) num = min;
 		if (max !== undefined && num > max) num = max;
 		return num;
 	}
 
 	/**
-	 * @param {Format} format
+	 * @param {Format | string} format
 	 * @param {PRNG | PRNGSeed?} [seed]
 	 */
 	getTeamGenerator(format, seed = null) {
@@ -1009,7 +1012,7 @@ class ModdedDex {
 		return new TeamGenerator(format, seed);
 	}
 	/**
-	 * @param {Format} format
+	 * @param {Format | string} format
 	 * @param {PRNG | PRNGSeed?} [seed]
 	 */
 	generateTeam(format, seed = null) {
@@ -1034,15 +1037,15 @@ class ModdedDex {
 		let searchTypes = {Pokedex: 'pokemon', Movedex: 'move', Abilities: 'ability', Items: 'item', Natures: 'nature'};
 		/** @type {AnyObject[] | false} */
 		let searchResults = [];
-		for (let i = 0; i < searchIn.length; i++) {
+		for (const result of searchIn) {
 			/** @type {AnyObject} */
 			// @ts-ignore
-			let res = this[searchFunctions[searchIn[i]]](target);
+			let res = this[searchFunctions[result]](target);
 			if (res.exists && res.gen <= this.gen) {
 				searchResults.push({
 					isInexact: isInexact,
-					searchType: searchTypes[searchIn[i]],
-					name: res.name,
+					searchType: searchTypes[result],
+					name: res.species ? res.species : res.name,
 				});
 			}
 		}
@@ -1095,8 +1098,7 @@ class ModdedDex {
 
 		let buf = '';
 
-		for (let i = 0; i < team.length; i++) {
-			let set = team[i];
+		for (const set of team) {
 			if (buf) buf += ']';
 
 			// name
@@ -1329,9 +1331,8 @@ class ModdedDex {
 		if (obj === null || typeof obj !== 'object') return obj;
 		if (Array.isArray(obj)) return obj.map(prop => this.deepClone(prop));
 		const clone = Object.create(Object.getPrototypeOf(obj));
-		const keys = Object.keys(obj);
-		for (let i = 0; i < keys.length; i++) {
-			clone[keys[i]] = this.deepClone(obj[keys[i]]);
+		for (const key of Object.keys(obj)) {
+			clone[key] = this.deepClone(obj[key]);
 		}
 		return clone;
 	}
@@ -1364,9 +1365,8 @@ class ModdedDex {
 		if (!this.isBase) throw new Error(`This must be called on the base Dex`);
 		if (this.modsLoaded) return this;
 
-		let modList = fs.readdirSync(MODS_DIR);
-		for (let i = 0; i < modList.length; i++) {
-			dexes[modList[i]] = new ModdedDex(modList[i], true);
+		for (const mod of fs.readdirSync(MODS_DIR)) {
+			dexes[mod] = new ModdedDex(mod, true);
 		}
 		this.modsLoaded = true;
 
@@ -1410,7 +1410,7 @@ class ModdedDex {
 		}
 
 		// @ts-ignore
-		for (let dataType of DATA_TYPES.concat('Aliases')) {
+		for (const dataType of DATA_TYPES.concat('Aliases')) {
 			if (dataType === 'Natures' && this.isBase) {
 				dataCache[dataType] = BattleNatures;
 				continue;
@@ -1424,7 +1424,7 @@ class ModdedDex {
 			// Formats are inherited by mods
 			this.includeFormats();
 		} else {
-			for (let dataType of DATA_TYPES) {
+			for (const dataType of DATA_TYPES) {
 				const parentTypedData = parentDex.data[dataType];
 				const childTypedData = dataCache[dataType] || (dataCache[dataType] = {});
 				for (let entryId in parentTypedData) {
@@ -1491,8 +1491,7 @@ class ModdedDex {
 
 		let section = '';
 		let column = 1;
-		for (let i = 0; i < Formats.length; i++) {
-			let format = Formats[i];
+		for (const [i, format] of Formats.entries()) {
 			let id = toId(format.name);
 			if (format.section) section = format.section;
 			if (format.column) column = format.column;

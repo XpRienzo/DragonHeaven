@@ -1,6 +1,7 @@
 'use strict';
 
-exports.BattlePokedex = {
+/**@type {{[k: string]: TemplateData}} */
+let BattlePokedex = {
 	bulbasaur: {
 		num: 1,
 		species: "Bulbasaur",
@@ -13640,6 +13641,8 @@ exports.BattlePokedex = {
 		heightm: 0.9,
 		weightkg: 45,
 		color: "Gray",
+		prevo: "tactite",
+		evoLevel: 28,
 		eggGroups: ["Undiscovered"],
 		spritenum: 1144,
 	},
@@ -13652,6 +13655,8 @@ exports.BattlePokedex = {
 		heightm: 1.7,
 		weightkg: 151,
 		color: "Green",
+		prevo: "privatyke",
+		evoLevel: 37,
 		eggGroups: ["Water 1", "Water 3"],
 		spritenum: 1145,
 	},
@@ -13712,6 +13717,8 @@ exports.BattlePokedex = {
 		heightm: 2,
 		weightkg: 75.5,
 		color: "Brown",
+		prevo: "voodoll",
+		evoLevel: 32,
 		eggGroups: ["Human-Like", "Ground"],
 		spritenum: 1150,
 	},
@@ -13916,6 +13923,58 @@ exports.BattlePokedex = {
 		evos: ["kerfluffle"],
 		eggGroups: ["Fairy", "Human-Like"],
 		spritenum: 1178,
+	},
+	rebble: {
+		num: -116,
+		species: "Rebble",
+		types: ["Rock"],
+		gender: "N",
+		baseStats: {hp: 45, atk: 25, def: 65, spa: 75, spd: 55, spe: 80},
+		abilities: {0: "Levitate", 1: "Solid Rock", H: "Sniper"},
+		heightm: 0.3,
+		weightkg: 7,
+		color: "Gray",
+		evos: ["tactite"],
+		eggGroups: ["Undiscovered"],
+	},
+	tactite: {
+		num: -117,
+		species: "Tactite",
+		types: ["Rock"],
+		gender: "N",
+		baseStats: {hp: 70, atk: 40, def: 65, spa: 100, spd: 65, spe: 95},
+		abilities: {0: "Levitate", 1: "Technician", H: "Sniper"},
+		heightm: 0.6,
+		weightkg: 16,
+		color: "Gray",
+		prevo: "rebble",
+		evos: ["stratagem"],
+		evoLevel: 28,
+		eggGroups: ["Undiscovered"],
+	},
+	privatyke: {
+		num: -118,
+		species: "Privatyke",
+		types: ["Water", "Fighting"],
+		baseStats: {hp: 65, atk: 75, def: 65, spa: 40, spd: 60, spe: 45},
+		abilities: {0: "Unaware", H: "Technician"},
+		heightm: 1,
+		weightkg: 35,
+		color: "Green",
+		evos: ["arghonaut"],
+		eggGroups: ["Water 1", "Water 3"],
+	},
+	voodoll: {
+		num: -119,
+		species: "Voodoll",
+		types: ["Normal", "Dark"],
+		baseStats: {hp: 55, atk: 40, def: 55, spa: 75, spd: 50, spe: 70},
+		abilities: {0: "Volt Absorb", 1: "Lightning Rod", H: "Cursed Body"},
+		heightm: 1,
+		weightkg: 25,
+		color: "Brown",
+		evos: ["voodoom"],
+		eggGroups: ["Human-Like", "Ground"],
 	},
 	pokestarsmeargle: {
 		num: -5000,
@@ -14136,3 +14195,5 @@ exports.BattlePokedex = {
 		eggGroups: ["Undiscovered"],
 	},
 };
+
+exports.BattlePokedex = BattlePokedex;
