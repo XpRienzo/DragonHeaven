@@ -3258,14 +3258,16 @@ exports.BattleAbilities = {
 	},
 	"cleanaura": {
 		shortDesc: "This Pokemon is immune to major status conditions.",
-		id: "cleanaura",
-		name: "Clean Aura",
 		onSetStatus: function (status, target, source, effect) {
 				if (effect && effect.status) {
 					this.add('-activate', target, 'move: Clean Aura');
 				}
 				return false;
-			},/*
+			},
+		id: "cleanaura",
+		name: "Clean Aura",
+	},
+	/*
 	"brainfreezesurge": {
 		shortDesc: "On switch-in, this Pokemon summons Hail + Psychic Terrain.",
 		onStart: function (source) {
