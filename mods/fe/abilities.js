@@ -3476,6 +3476,74 @@ exports.BattleAbilities = {
 		id: "compactboost",
 		name: "Compact Boost",
 	},
+	"meteorshower": {
+		shortDesc: "This Pokemon's Normal-type moves become Rock-type and have 1.5x power. All Rock-type Pokemon on the field have +50% Special Defense.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Rock';
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+		return this.chainModify(1.5);
+		},
+		onModifySpDPriority: 4,
+		onModifySpD: function (spd, pokemon) {
+			if (pokemon.type === 'Rock') {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "meteorshower",
+		name: "Meteor Shower",
+	},
+	"blackhole": {
+		shortDesc: "This Pokemon receives 1/2 damage from supereffective attacks. Immune to burn.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				return this.chainModify(0.5);
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Black Hole');
+			return false;
+		},
+		isUnbreakable: true,
+		id: "blackhole",
+		name: "Black Hole",
+	},
+	"gracefulanalyst": {
+		shortDesc: "60% power boosting Analytic + Serene Grace",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon) {
+			let boosted = true;
+			let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+				if (target === pokemon) continue;
+				if (this.willMove(target)) {
+					boosted = false;
+					break;
+				}
+			}
+			if (boosted) {
+				return this.chainModify(1.6);
+			}
+		},
+		onModifyMovePriority: -2,
+		onModifyMove: function (move) {
+			if (move.secondaries) {
+				this.debug('doubling secondary chance');
+				for (const secondary of move.secondaries) {
+					// @ts-ignore
+					secondary.chance *= 2;
+				}
+			}
+		},
+		id: "gracefulanalyst",
+		name: "Graceful Analyst",
+	},
 	
 			/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
