@@ -1,5 +1,14 @@
 'use strict';
 exports.BattleStatuses = {
+	mareanie: {
+		exists: true,
+		onStart: function () {
+			this.add('c|+Mareanie|I\'m cute');
+		},
+		onFaint: function(pokemon) {
+			this.add('c|+Mareanie|I\'m toxic');
+		},
+	},
 	ironcrusher: {
 		exists: true,
 		effectType: 'Ability',

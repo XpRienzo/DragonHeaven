@@ -1,6 +1,132 @@
 "use strict";
 
 exports.BattleMovedex = {
+	"imtoxicyoureslippinunder": {
+		accuracy: true,
+		basePower: 250,
+		category: "Physical",
+		desc: "Uses the target's attack to deal sum Poison damage.",
+		shortDesc: "User recovers the damage dealt.",
+		id: "imtoxicyoureslippinunder",
+		isViable: true,
+		name: "I'm Toxic You're Slippin Under",
+		pp: 1,
+		priority: 3,
+		ignoreEvasion: true,
+		ignoreDefensive: true,
+		useTargetOffensive: true,
+		flags: {heal: 1, authentic:1},
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					def: -2,
+					spd: -2,
+				},
+			},
+		},
+		drain: [4, 4],
+		onPrepareHit: function (target, source, move) {
+			this.attrLastMove('[still]');
+			this.add("c|+Mareanie|What, you think i'm cute?");
+			this.add('-anim', source, "Acid Downpour", target);
+			this.add("c|+Mareanie|Well, lemme show you what i can do");
+			this.add('-anim', source, "Giga Impact", target);
+			this.add("c|+Mareanie|Never underestimate a cutemon.");
+			this.add('-anim', source, "Charm", target);
+		},
+		onAfterMove: function(target, source, move) {
+			this.add("c|+Mareanie|I AM STRONK, OKAY?")
+		},
+		type: "Poison",
+		isZ: "spandansphone",
+	},
+	"heresmyphone3": {
+		num: 516,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The target receives the user's phone, and loses its item.",
+		shortDesc: "User passes its held item to the target.",
+		id: "heresmyphone3",
+		name: "heresmyphone3",
+		pp: 5,
+		priority: 1,
+		onHit: function (target, source, move) {
+			let yourItem = source.takeItem();
+			if (!yourItem) return false;
+			if (!this.singleEvent('TakeItem', yourItem, source.itemData, source, target, move, yourItem)) return;
+			if (!target.setItem(yourItem)) {
+				source.item = yourItem.id;
+				return false;
+			}
+			this.add('-item', target, yourItem.name, '[from] move: Here\'s my phone <3', '[of] ' + source);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Cute",
+	},
+	"getboostcode": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user codes some boosts into himself if he has his phone.",
+		shortDesc: "The user codes some boosts into himself if he has his phone.",
+		id: "getboostcode",
+		isViable: true,
+		name: "Get Boost Code",
+		pp: 25,
+		priority: 1,
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Charge", source);
+		},
+		onModifyMove: function (move, pokemon) {
+			if (pokemon.getItem().id === 'spandansphone') {
+				move.boosts = {def: 1, spd: 1, spe:1};
+			}
+		},
+		onHit: function (pokemon) {
+			if (pokemon.getItem().id === 'spandansphone') {
+				this.add('message', "Mareanie is using his phone to code some boosts into himself!");
+			} else {
+				this.add("c|+Mareanie|wtf where's my phone i cant boost myself");
+			}
+		},
+		secondary: false,
+		target: "self",
+		type: "Electric",
+	},
+	"gethpcode": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user restores 1/2 of his maximum HP if he has his phone, and 1/4 of his maximum HP if he doesn't.",
+		shortDesc: "Heals the user by a phone-dependent amount.",
+		id: "gethpcode",
+		isViable: true,
+		name: "Get HP Code",
+		pp: 25,
+		priority: 1,
+		flags: {heal: 1},
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tail Glow", source);
+		},
+		onHit: function (pokemon) {
+			if (pokemon.getItem().id === 'spandansphone') {
+				this.add('message', "Mareanie is using his phone to code some HP into himself!");
+				return this.heal(this.modify(pokemon.maxhp, 0.667));
+			} else {
+				this.add("c|+Mareanie|wtf where's my phone i cant restore much hp :(");
+				return this.heal(this.modify(pokemon.maxhp, 0.25));
+			}
+		},
+		secondary: false,
+		target: "self",
+		type: "Electric",
+	},
 	"buildup": {
 		accuracy: true,
 		basePower: 190,

@@ -7,6 +7,12 @@ class RandomSeasonalTeams extends RandomTeams {
 		let team = [];
 		let variant = (this.random(2) === 1);
 		let sets = {
+			'Mareanie': {
+				species: 'Mareanie', ability: 'Corrosion', item: 'Spandan\'s Phone', gender: 'M',
+				moves: ['toxic', 'gethpcode', 'getboostcode'],
+				signatureMove: "Here's my phone <3",
+				evs: {hp: 252, atk:252, def:252, spa:252, spd:252, spe:252}, nature: 'Bold',
+			},
 			'Iron Crusher' : {
 				species: 'Bastiodon', ability: 'Supreme Shield', item: 'Leftovers', gender: 'M', 
 				moves: ['stealthrock', 'toxic', 'shoreup'],
