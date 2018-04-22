@@ -147,7 +147,7 @@ exports.BattleAbilities = {
 		rating: 3.5,
 		num: 198,
 	},
-	"unburden": {
+	"armorcast": {
 		desc: "If this Pokemon loses its held item for any reason, its Speed is doubled. This boost is lost if it switches out or gains a new item or Ability.",
 		shortDesc: "Speed is doubled on held item loss; boost is lost if it switches, gets new item/Ability.",
 		onAfterUseItem: function(item, pokemon) {
@@ -344,6 +344,71 @@ exports.BattleAbilities = {
 		rating: 4,
 		num: 206
 	},
+	"normalveil": {
+		shortDesc: "This Pokemon is immune to Normal-type moves.",
+		onImmunity: function (type, pokemon) {
+			if (type === 'Normal') return false;
+		},
+		id: "normalveil",
+		name: "Normal Veil",
+	},
+	"landshark": {
+		shortDesc: "Lowers Opponent's defense on switch in and gets evasion boosted in sand.",
+		onStart: function (pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Land Shark', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({atk: -1}, target, pokemon);
+				}
+			}
+		},
+		onModifyAccuracy: function (accuracy) {
+			if (typeof accuracy !== 'number') return;
+			if (this.isWeather('sandstorm')) {
+				return accuracy * 0.8;
+			}
+		},
+		id: "landshark",
+		name: "Land Shark",
+	},
+	"serenefocus": {
+		shortDesc: "This Pokemon is not affected by the secondary effect of another Pokemon's attack.",
+		onModifySecondaries: function (secondaries) {
+			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
+		},
+		id: "serenefocus",
+		name: "Serene Focus",
+	},
+	"torrentveil": {
+		shortDesc: "At 1/3 or less of its max HP, this Pokemon's attacking stat is 1.5x with Water attacks and the Pokemon has 1.25x evasion.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyAccuracy: function (accuracy, target) {
+			if (typeof accuracy !== 'number') return;
+			if (target.hp <= target.maxhp / 3) {
+				return accuracy * 0.8;
+			}
+		},
+		id: "torrentveil",
+		name: "Torrent Veil",
+	},
 	"mummyfortitude": {
 		desc: "If this Pokemon is at full HP, it survives one hit with at least 1 HP. OHKO moves fail when used against this Pokemon.",
 		shortDesc: "If this Pokemon is at full HP, it survives one hit with at least 1 HP. Immune to OHKO.",
@@ -362,8 +427,6 @@ exports.BattleAbilities = {
 		},
 		id: "mummmyfortitude",
 		name: "Mummy Fortitude",
-		rating: 3,
-		num: 207
 	},
 	"blazingbody": {
 		desc: "If this Pokemon is at full HP, it survives one hit with at least 1 HP. OHKO moves fail when used against this Pokemon.",
@@ -399,6 +462,38 @@ exports.BattleAbilities = {
 		name: "blazing body",
 		rating: 3,
 		num: 208
+	},
+	"noskill": {
+		shortDesc: "Pressure + Super Luck.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Pressure');
+		},
+		onDeductPP: function (target, source) {
+			if (target.side === source.side) return;
+			return 1;
+		},
+		onModifyCritRatio: function (critRatio) {
+			return critRatio + 1;
+		},
+		id: "noskill",
+		name: "No Skill",
+	},
+	"sandaura": {
+		shortDesc: "Sandstream + Sand Veil.",
+		onStart: function (source) {
+			this.setWeather('sandstorm');
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'sandstorm') return false;
+		},
+		onModifyAccuracy: function (accuracy) {
+			if (typeof accuracy !== 'number') return;
+			if (this.isWeather('sandstorm')) {
+				return accuracy * 0.8;
+			}
+		},
+		id: "sandaura",
+		name: "Sand Aura",
 	},
 	"staticstorm": {
 		desc: "If Hail is active, this Pokemon restores 1/16 of its maximum HP, rounded down, at the end of each turn. This Pokemon takes no damage from Hail.",
@@ -3348,6 +3443,40 @@ exports.BattleAbilities = {
 		id: "lethalleafage",
 		name: "Lethal Leafage",
 	},
+	"sandmistsurge": {
+		shortDesc: "On switch-in, this Pokemon summons Sandstorm + Misty Terrain.",
+		onStart: function (source) {
+			this.setTerrain('mistyterrain');
+				for (let i = 0; i < this.queue.length; i++) {
+				if (this.queue[i].choice === 'runPrimal' && this.queue[i].pokemon === source && source.template.speciesid === 'groudon') return;
+				if (this.queue[i].choice !== 'runSwitch' && this.queue[i].choice !== 'runPrimal') break;
+			}
+			this.setWeather('sandstream');
+		},
+		id: "sandmistsurge",
+		name: "Sandmist Surge",
+	},
+	"compactboost": {
+		desc: "This Pokemon's highest stat is raised by 1 stage if it attacks and knocks out another Pokemon.",
+		shortDesc: "This Pokemon's highest stat is raised by 1 if it attacks and KOes another Pokemon.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+				this.boost({def: 1}, source);
+			}
+		},
+		id: "compactboost",
+		name: "Compact Boost",
+	},
+	
 			/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
