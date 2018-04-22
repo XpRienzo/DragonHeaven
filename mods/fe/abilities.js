@@ -3243,12 +3243,12 @@ exports.BattleAbilities = {
 	"lightarmor": {
 		shortDesc: "Boosts defense by 1.5x when over 1/3 HP. Doubles speed when under 1/3 HP.",
 		onModifyDefPriority: 5,
-		onModifyDef: function (pokemon, def) {
-			if (pokemon.hp => pokemon.maxhp / 3) {
+		onModifyDef: function (def, pokemon) {
+			if (pokemon.hp > pokemon.maxhp / 3) {
 				return this.chainModify(1.5);
 			}
 		},
-		onModifySpe: function (pokemon, spe) {
+		onModifySpe: function (spe, pokemon) {
 			if (pokemon.hp <= pokemon.maxhp / 3) {
 				return this.chainModify(2);
 			}
