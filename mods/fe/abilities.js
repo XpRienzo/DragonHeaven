@@ -3240,15 +3240,15 @@ exports.BattleAbilities = {
 		id: "movemadness",
 		name: "Move Madness",
 	},
-	/*"lightarmor": {
+	"lightarmor": {
 		shortDesc: "Boosts defense by 1.5x when over 1/3 HP. Doubles speed when under 1/3 HP.",
 		onModifyDefPriority: 5,
-		onModifyDef: function (def, pokemon) {
+		onModifyDef: function (pokemon, def) {
 			if (pokemon.hp => pokemon.maxhp / 3) {
 				return this.chainModify(1.5);
 			}
 		},
-		onModifySpe: function (spe, pokemon) {
+		onModifySpe: function (pokemon, spe) {
 			if (pokemon.hp <= pokemon.maxhp / 3) {
 				return this.chainModify(2);
 			}
@@ -3256,7 +3256,7 @@ exports.BattleAbilities = {
 		id: "lightarmor",
 		name: "Light Armor",
 	},
-	"cleanaura": {
+	/*"cleanaura": {
 		shortDesc: "This Pokemon is immune to major status conditions.",
 		id: "cleanaura",
 		name: "Clean Aura",
