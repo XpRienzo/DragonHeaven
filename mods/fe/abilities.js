@@ -3316,6 +3316,38 @@ exports.BattleAbilities = {
 		id: "authority",
 		name: "Authority",
 	},
+	"firebgone": {
+		shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.5x power; Fire Immunity.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Fire' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Fairy';
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+		return this.chainModify(1.5);
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'Fire') return false;
+		},
+		id: "firebgone",
+		name: "Fire-B-Gone",
+	},
+	"lethalleafage": {
+		shortDesc: "This Pokemon's contact and Grass-type moves are boost 1.3x. These boosts stack.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['contact'] || move.type === 'Grass') {
+				return this.chainModify(1.3);
+			}
+			else if (move.flags['contact'] && move.type === 'Grass') {
+				return this.chainModify(1.69);
+			}
+		},
+		id: "lethalleafage",
+		name: "Lethal Leafage",
+	},
 			/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
