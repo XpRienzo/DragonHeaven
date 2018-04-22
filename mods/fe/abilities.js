@@ -3267,7 +3267,7 @@ exports.BattleAbilities = {
 		id: "cleanaura",
 		name: "Clean Aura",
 	},
-	/*
+	
 	"brainfreezesurge": {
 		shortDesc: "On switch-in, this Pokemon summons Hail + Psychic Terrain.",
 		onStart: function (source) {
@@ -3280,7 +3280,74 @@ exports.BattleAbilities = {
 		},
 		id: "brainfreezesurge",
 		name: "Brainfreeze Surge",
-	},*/
+	},
+	"fattrap": {
+		shortDesc: "Traps Pokémon of the Fire, Ice or Steel types and takes half damage from moves of those types.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (pokemon.hasType('Steel') || pokemon.hasType('Fire') || pokemon.hasType('Ice') && this.isAdjacent(pokemon, this.effectData.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if ((!pokemon.knownType || pokemon.hasType('Steel') || pokemon.hasType('Fire') || pokemon.hasType('Ice')) && this.isAdjacent(pokemon, source)) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		onSourceModifyDamage: function (damage, source, target, move) {
+			let mod = 1;
+			if (move.type === 'Fire' || move.type === 'Steel' || move.type === 'Ice') mod /= 2;
+			return this.chainModify(mod);
+		},
+		id: "fattrap",
+		name: "Fat Trap",
+	},
+	"authority": {
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.category === 'Physical') {
+				return priority + 1;
+			}
+		},
+		onModifyMove: function (move) {
+			if (move && move.category === 'Physical') {
+				move.pranksterBoosted = true;
+			}
+		},
+		id: "authority",
+		name: "Authority",
+	},
+	"firebgone": {
+		shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.5x power; Fire Immunity.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Fire' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Fairy';
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+		return this.chainModify(1.5);
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'Fire') return false;
+		},
+		id: "firebgone",
+		name: "Fire-B-Gone",
+	},
+	"lethalleafage": {
+		shortDesc: "This Pokemon's contact and Grass-type moves are boost 1.3x. These boosts stack.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['contact'] || move.type === 'Grass') {
+				return this.chainModify(1.3);
+			}
+			else if (move.flags['contact'] && move.type === 'Grass') {
+				return this.chainModify(1.69);
+			}
+		},
+		id: "lethalleafage",
+		name: "Lethal Leafage",
+	},
 			/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
