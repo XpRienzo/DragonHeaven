@@ -3620,6 +3620,35 @@ exports.BattleAbilities = {
 		id: "emperorofthefire",
 		name: "Emperor of the Fire",
 	},
+	"overloadedhelm": {
+		shortDesc: "This Pokemon's Steel and Normal-type attacks have their power multiplied 1.5x and turns them into Electric moves.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Steel' || move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Electric';
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+		if (move.type === 'Electric') {
+			return this.chainModify(1.5);
+		}
+		},
+		id: "overloadedhelm",
+		name: "Overloaded Helm",
+	},
+	"unrivaledclaws": {
+		shortDesc: "This Pokemon's contact moves have their power multiplied by 1.67.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['contact']) {
+				return this.chainModify(1.67);
+			}
+		},
+		id: "unrivaledclaws",
+		name: "Unrivaled Claws",
+	},
+	
 			/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
