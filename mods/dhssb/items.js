@@ -4,7 +4,7 @@ exports.BattleItems = {
 	"spandansphone": {
 		id: "spandansphone",
 		name: "Spandan's Phone",
-		zMove: "I'm toxic you're slippin under",
+		zMove: "I'm Toxic You're Slippin Under",
 		zMoveFrom: "Here's my phone <3",
 		zMoveUser: ["Mareanie"],
 		spritenum: 537,

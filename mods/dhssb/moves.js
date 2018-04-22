@@ -49,7 +49,7 @@ exports.BattleMovedex = {
 		desc: "The target receives the user's phone, and loses its item.",
 		shortDesc: "User passes its held item to the target.",
 		id: "heresmyphone3",
-		name: "heresmyphone3",
+		name: "Here's my phone <3",
 		pp: 5,
 		priority: 1,
 		onHit: function (target, source, move) {
