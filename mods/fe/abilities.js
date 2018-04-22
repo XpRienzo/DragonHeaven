@@ -1635,7 +1635,9 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		return this.chainModify([0x1333, 0x1000]);
+		if (move.type === 'Water') {
+			return this.chainModify([0x1333, 0x1000]);
+		}
 		},
 		id: "hydrate",
 		name: "Hydrate",
@@ -2742,7 +2744,9 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		return this.chainModify(1.3);
+		if (move.type === 'Fairy') {
+			return this.chainModify(1.3);
+		}
 		},
 		onStart: function (source) {
 			this.setTerrain('mistyterrain');
@@ -3330,7 +3334,9 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
+		if (move.type === 'Ground' || move.type === 'Electric' || move.type === 'Steel' || move.type === 'Normal') {
 		return this.chainModify(1.5);
+		}
 		},
 		id: "movemadness",
 		name: "Move Madness",
@@ -3421,7 +3427,9 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
+		if (move.type === 'Fairy') {
 		return this.chainModify(1.5);
+		}
 		},
 		onImmunity: function (type, pokemon) {
 			if (type === 'Fire') return false;
@@ -3486,7 +3494,9 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		return this.chainModify(1.5);
+		if (move.type === 'Rock') {
+			return this.chainModify(1.5);
+		}
 		},
 		onModifySpDPriority: 4,
 		onModifySpD: function (spd, pokemon) {
@@ -3544,7 +3554,72 @@ exports.BattleAbilities = {
 		id: "gracefulanalyst",
 		name: "Graceful Analyst",
 	},
-	
+	"underwaterscreen": {
+		shortDesc: "While this Pokemon is active, Water and Rock-Type Pokemon Special Defense is boosted by 50%. Raises the power of Water and Rock-type moves by 50% when at 1/2 HP or less.",
+		onModifySpDPriority: 4,
+		onModifySpD: function (spd, pokemon) {
+			if (pokemon.type === 'Rock' || pokemon.type === 'Water') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' || move.type === 'Rock' && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' || move.type === 'Rock' && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "underwaterscreen",
+		name: "Underwater Screen",
+	},
+	"mountainclimber": {
+		shortDesc: "Speed under Hail or Sand is 2.5x, immunity to both.",
+		onModifySpe: function (spe, pokemon) {
+			if (this.isWeather('hail') || this.isWeather('sandstorm')) {
+				return this.chainModify(2.5);
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'hail' || type === 'sandstorm') return false;
+		},
+		id: "mountainclimber",
+		name: "Mountain Climber",
+	},
+	"monarchoftherain": {
+		shortDesc: "Speed under Hail or Sand is 2.5x, immunity to both.",
+		onModifySpe: function (spe, pokemon) {
+			if (this.isWeather('hail') || this.isWeather('sandstorm')) {
+				return this.chainModify(2.5);
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'hail' || type === 'sandstorm') return false;
+		},
+		id: "monarchoftherain",
+		name: "Monarch of the Rain",
+	},
+	"dukeofthelightning": {
+		shortDesc: "This Pokemon's Speed is doubled.",
+		onModifySpe: function (spe) {
+			return this.chainModify(2);
+		},
+		id: "dukeofthelightning",
+		name: "Duke of the Lightning",
+	},
+	"emperorofthefire": {
+		shortDesc: "This Pokemon's Attack is doubled.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk) {
+			return this.chainModify(2);
+		},
+		id: "emperorofthefire",
+		name: "Emperor of the Fire",
+	},
 			/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
