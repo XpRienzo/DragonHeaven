@@ -56,11 +56,11 @@ exports.BattleMovedex = {
 			let yourItem = source.takeItem();
 			if (!yourItem) return false;
 			if (!this.singleEvent('TakeItem', yourItem, source.itemData, source, target, move, yourItem)) return;
+			this.add('-item', target, yourItem.name, '[from] move: Here\'s my phone <3', '[of] ' + source);
 			if (!target.setItem(yourItem)) {
 				source.item = yourItem.id;
 				return false;
 			}
-			this.add('-item', target, yourItem.name, '[from] move: Here\'s my phone <3', '[of] ' + source);
 		},
 		secondary: false,
 		target: "normal",
