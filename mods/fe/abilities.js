@@ -3564,13 +3564,13 @@ exports.BattleAbilities = {
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk, attacker, defender, move) {
-			if (move.type === 'Water' || move.type === 'Rock' && attacker.hp <= attacker.maxhp / 3) {
+			if (move.type === 'Water' || move.type === 'Rock' && attacker.hp <= attacker.maxhp / 2) {
 				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function (atk, attacker, defender, move) {
-			if (move.type === 'Water' || move.type === 'Rock' && attacker.hp <= attacker.maxhp / 3) {
+			if (move.type === 'Water' || move.type === 'Rock' && attacker.hp <= attacker.maxhp / 2) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -3648,7 +3648,500 @@ exports.BattleAbilities = {
 		id: "unrivaledclaws",
 		name: "Unrivaled Claws",
 	},
-	
+	"ouroboros": {
+		shortDesc: "Upon scoring a KO or switching out, the user regains 1/3 max HP.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.heal(target.maxhp / 3);
+			}
+		},
+		id: "ouroboros",
+		name: "Ouroboros",
+	},
+	"braveheart": {
+		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				return this.chainModify(0.75);
+			}
+		},
+		onHit: function (target, source, move) {
+			if (move.typeMod > 0) {
+				target.setBoost({atk: 2});
+				this.add('-setboost', target, 'atk', 4, '[from] ability: Braveheart');
+			}
+		},
+		id: "braveheart",
+		name: "Braveheart",
+	},
+	"darklight": {
+		shortDesc: "Provides inmunity to super effective attacks and heals 25% of its health instead. This Ability cannot be ignored.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.typeMod > 0) {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Dark Light');
+				}
+				return null;
+			}
+		},
+		isUnbreakable: true,
+		id: "darklight",
+		name: "Dark Light",
+	},
+	"ancientfoilage": {
+		shortDesc: "While this Pokemon is active, Grass and Rock-Type Pokemon Special Defense is boosted by 50%. Raises the power of Grass and Rock-type moves by 50% when at 1/2 HP or less.",
+		onModifySpDPriority: 4,
+		onModifySpD: function (spd, pokemon) {
+			if (pokemon.type === 'Rock' || pokemon.type === 'Grass') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' || move.type === 'Rock' && attacker.hp <= attacker.maxhp / 2) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' || move.type === 'Rock' && attacker.hp <= attacker.maxhp / 2) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "ancientfoilage",
+		name: "Ancient Foliage",
+	},
+	"prodigy": {
+		desc: "This Pokemon's moves of 60 power or less have their power multiplied by 2.35. Does affect Struggle.",
+		shortDesc: "This Pokemon's moves of 60 power or less have 2.25x power. Includes Struggle.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+
+				return this.chainModify(2.25);
+			}
+		},
+		id: "prodigy",
+		name: "Prodigy",
+	},
+	"toothick": {
+		shortDesc: "This Pokemon takes half the damage from physical attacks.",
+		onModifyDefPriority: 6,
+		onModifyDef: function (def, move) {
+			if (move.category === 'Physical') {
+			return this.chainModify(2);
+			}
+		},
+		id: "toothick",
+		name: "Too Thick",
+	},
+	"techfur": {
+		shortDesc: "This Pokemon's moves of 60 power or less have 3x power. Includes Struggle.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+				return this.chainModify(3);
+			}
+		},
+		id: "techfur",
+		name: "Tech Fur",
+	},
+	"soundsoul": {
+		shortDesc: "Attack is raised by 1 stage when hit by sound-based moves. Receives no damage from sound-based moves.",
+		onImmunity: function (move, pokemon) {
+			if (move.flags['sound']) return false;
+		},
+		onHit: function (target, source, move) {
+			if (!target.hp) return;
+			if (move && move.effectType === 'Move' && move.flags['sound']) {
+				target.setBoost({atk: 1});
+				this.add('-setboost', target, 'atk', 1, '[from] ability: Anger Point');
+			}
+		},
+		id: "soundsoul",
+		name: "Sound Soul",
+	},
+	"phasethrough": {
+		shortDesc: "Frisk + Natural Care",
+		onStart: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				if (target.item) {
+					this.add('-item', target, target.getItem().name, '[from] ability: Phase Through', '[of] ' + pokemon, '[identify]');
+				}
+			}
+		},
+		onCheckShow: function (pokemon) {
+			// This is complicated
+			// For the most part, in-game, it's obvious whether or not Natural Cure activated,
+			// since you can see how many of your opponent's pokemon are statused.
+			// The only ambiguous situation happens in Doubles/Triples, where multiple pokemon
+			// that could have Natural Cure switch out, but only some of them get cured.
+			if (pokemon.side.active.length === 1) return;
+			if (pokemon.showCure === true || pokemon.showCure === false) return;
+
+			let cureList = [];
+			let noCureCount = 0;
+			for (const curPoke of pokemon.side.active) {
+				// pokemon not statused
+				if (!curPoke || !curPoke.status) {
+					// this.add('-message', "" + curPoke + " skipped: not statused or doesn't exist");
+					continue;
+				}
+				if (curPoke.showCure) {
+					// this.add('-message', "" + curPoke + " skipped: Natural Cure already known");
+					continue;
+				}
+				let template = this.getTemplate(curPoke.species);
+				// pokemon can't get Natural Cure
+				if (Object.values(template.abilities).indexOf('Natural Cure') < 0) {
+					// this.add('-message', "" + curPoke + " skipped: no Natural Cure");
+					continue;
+				}
+				// pokemon's ability is known to be Natural Cure
+				if (!template.abilities['1'] && !template.abilities['H']) {
+					// this.add('-message', "" + curPoke + " skipped: only one ability");
+					continue;
+				}
+				// pokemon isn't switching this turn
+				if (curPoke !== pokemon && !this.willSwitch(curPoke)) {
+					// this.add('-message', "" + curPoke + " skipped: not switching");
+					continue;
+				}
+
+				if (curPoke.hasAbility('naturalcure')) {
+					// this.add('-message', "" + curPoke + " confirmed: could be Natural Cure (and is)");
+					cureList.push(curPoke);
+				} else {
+					// this.add('-message', "" + curPoke + " confirmed: could be Natural Cure (but isn't)");
+					noCureCount++;
+				}
+			}
+
+			if (!cureList.length || !noCureCount) {
+				// It's possible to know what pokemon were cured
+				for (const pokemon of cureList) {
+					pokemon.showCure = true;
+				}
+			} else {
+				// It's not possible to know what pokemon were cured
+
+				// Unlike a -hint, this is real information that battlers need, so we use a -message
+				this.add('-message', "(" + cureList.length + " of " + pokemon.side.name + "'s pokemon " + (cureList.length === 1 ? "was" : "were") + " cured by Natural Cure.)");
+
+				for (const pokemon of cureList) {
+					pokemon.showCure = false;
+				}
+			}
+		},
+		onSwitchOut: function (pokemon) {
+			if (!pokemon.status) return;
+
+			// if pokemon.showCure is undefined, it was skipped because its ability
+			// is known
+			if (pokemon.showCure === undefined) pokemon.showCure = true;
+
+			if (pokemon.showCure) this.add('-curestatus', pokemon, pokemon.status, '[from] ability: Phase Through');
+			pokemon.setStatus('');
+
+			// only reset .showCure if it's false
+			// (once you know a Pokemon has Natural Cure, its cures are always known)
+			if (!pokemon.showCure) delete pokemon.showCure;
+		},
+		id: "phasethrough",
+		name: "Phase Through",
+	},
+	"us": {
+		shortDesc: "Immune to priority & status moves.",
+		onImmunity: function (pokemon, move) {
+			if (move.category === 'Status' || move.priority > 0) return false;
+		},
+		id: "us",
+		name: "US",
+	},
+"healthymeal": {
+		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and cannot be inflicted with any major status condition.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				return this.chainModify(0.75);
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+				if (effect && effect.status) {
+					this.add('-activate', target, 'move: Healthy Meal');
+				}
+				return false;
+			},
+		id: "healthymeal",
+		name: "Healthy Meal",
+	},
+	"christmasspirit": {
+		shortDesc: "Halves super-effective damage. Halves damage from Fire and Ice-typed moves. These stack. Cannot be bypassed by Mold Breaker or similar effects.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				return this.chainModify(0.75);
+			}
+		},
+		onModifyAtkPriority: 6,
+		onSourceModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Ice' || move.type === 'Fire') {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onSourceModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Ice' || move.type === 'Fire') {
+				return this.chainModify(0.5);
+			}
+		},
+		isUnbreakable: true,
+		id: "christmasspirit",
+		name: "Christmas Spirit",
+	},
+	"scrumptious": {
+		shortDesc: "If this Pokemon is statused, its Attack & SpA is 1.5x; ignores burn halving physical damage.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "scrumptious",
+		name: "Scrumptious",
+	},
+	"heatseeker": {
+		shortDesc: "When this Pokemon is at 33.3% of its health or less, its Speed and the power of its Fire-type moves go up by 1.5x. When in rain, its speed and power of Fire moves is doubled (which essentially means that its Fire-type moves ignore the rain debuff.)",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire' && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire' && attacker.hp <= attacker.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpe: function (spe, pokemon) {
+			if (pokemon.hp <= pokemon.maxhp / 3) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "heatseeker",
+		name: "Heat Seeker",
+	},
+	"bingobongo": {
+		shortDesc: "Normal and Fighting-type moves have 1.5x power and can hit Ghost-types.",
+		onBasePowerPriority: 8,
+		onBasePower: function (move) {
+			if (move.type === 'Normal' || move.type ==='Fighting') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyMovePriority: -5,
+		onModifyMove: function (move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Fighting'] = true;
+				move.ignoreImmunity['Normal'] = true;
+			}
+		},
+		id: "bingobongo",
+		name: "Bingo Bongo",
+	},
+	"poisonheal": {
+		shortDesc: "This Pokemon is healed by 1/8 of its max HP each turn when poisoned; no HP loss.",
+		onModifyMove: function (move, effect) {
+			if (effect.id === 'psn' || effect.id === 'tox' || effect.id === 'brn' || effect.id === 'par') {
+				move.priority +1;
+			}
+		},
+		id: "poisonheal",
+		name: "Poison Heal",
+		rating: 4,
+		num: 90,
+	},
+	"panicmode": {
+		shortDesc: "This Pokemon's moves have +1 priority when this Pokemon is burned, paralyzed, or poisoned. Ignores the burn Attack drop.",
+		onModifyPriority: function (priority, move, effect) {
+			if (effect.id === 'psn' || effect.id === 'tox' || effect.id === 'brn' || effect.id === 'par') return priority + 1;
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+			if (pokemon.effect.id === 'brn') {
+				return this.chainModify(2);
+			}
+		},
+		id: "panicmode",
+		name: "Panic Mode",
+	},
+	"positivity": {
+		shortDesc: "This Pokemon's stat changes are amplified to 3x their normal amount.",
+		onBoost: function (boost, target, source, effect) {
+			if (effect && effect.id === 'zpower') return;
+			for (let i in boost) {
+				// @ts-ignore
+				boost[i] *= 3;
+			}
+		},
+		id: "positivity",
+		name: "Positivity",
+	},
+	"fisticuffs": {
+		shortDesc: "Punching moves get a 50% boost in power. All other contact moves get a 33% boost.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['punch']) {
+				return this.chainModify(1.5);
+			}
+			else if (move.flags['contact'] && !move.flags['punch']) {
+				return this.chainModify(1.3);
+			}
+			
+		},
+		id: "fisticuffs",
+		name: "Fisticuffst",
+	},
+	"starburst": {
+		shortDesc: "This Pokémon's moves with 60 Base Power or less or that have a secondary effect have their base power doubled. These effects stack.",
+		onModifyMovePriority: -2,
+		onModifyMove: function (move) {
+			if (move.secondaries && move.basePower <= 60) {
+				this.debug('doubling secondary chance');
+				for (const secondary of move.secondaries) {
+					// @ts-ignore
+					secondary.chance *= 2;
+				}
+			}
+		},
+		id: "starburst",
+		name: "Starburst",
+	},
+	"faefist": {
+		shortDesc: "This Pokemon's punch-based attacks have 1.2x power. Sucker Punch is not boosted.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['punch']) {
+				return this.chainModify(1.7);
+			}
+			else if (move.type === 'Fairy') {
+				return this.chainModify(1.2);
+			}
+			else if (move.flags['punch'] && move.type === 'Fairy') {
+				return this.chainModify(2.04);
+			}
+		},
+		onModifyMove: function (move) {
+			if (move.flags['punch']) {
+				move.type === 'Fairy'
+			}
+		},
+		id: "faefist",
+		name: "Fae Fist",
+	},
+	"malware": {
+		shortDesc: "This Pokemon's Attack or Sp. Atk is raised 1 stage based on the foes' weaker Defense at the end of each full turn on the field.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			let totaldef = 0;
+			let totalspd = 0;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				totaldef += target.getStat('def', false, true);
+				totalspd += target.getStat('spd', false, true);
+			}
+			if (totaldef && totaldef >= totalspd) {
+				this.boost({spa: 1});
+			} else if (totalspd) {
+				this.boost({atk: 1});
+			}
+		},
+		id: "malware",
+		name: "Malware",
+	},
+	"nightmarefuel": {
+		shortDesc: "Dark-type moves have 1.5x power and have a 33% chance to put the foe to sleep.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			if (move.category !== "Status") {
+				move.secondaries.push({
+					chance: 33,
+					status: 'slp',
+				});
+			}
+		},
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Dark') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Dark') {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "nightmarefuel",
+		name: "Nightmare Fuel",
+	},
+	"snowabsorb": {
+		shortDesc: "On switch-in, this Pokemon summons Hail.",
+		onStart: function (source) {
+			this.setWeather('hail');
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Snow Absorb');
+				}
+				return null;
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'hail') {
+				this.heal(target.maxhp / 8, target, target);
+			}
+		},
+		id: "snowabsorb",
+		name: "Snow Absorb",
+	},
+	"confidenceboost": {
+		shortDesc: "All of this {okemon's stats are raised by 1 stage if it attacks and KOes another Pokemon.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1}, source);
+			}
+		},
+		id: "confidenceboost",
+		name: "Confidence Boost",
+	},
+	"blizzardblur": {
+		shortDesc: "Summons Hail upon switch-in. This Pokemon's Speed is doubled in Hail. This Pokemon cannot be damaged by hail.",
+		onStart: function (source) {
+			this.setWeather('hail');
+		},
+		onModifySpe: function (spe, pokemon) {
+			if (this.isWeather('hail')) {
+				return this.chainModify(2);
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'hail') return false;
+		},
+		id: "blizzardblur",
+		name: "Blizzard Blur",
+	},
 			/*"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
