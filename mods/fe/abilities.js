@@ -3959,18 +3959,6 @@ exports.BattleAbilities = {
 		id: "bingobongo",
 		name: "Bingo Bongo",
 	},
-	"poisonheal": {
-		shortDesc: "This Pokemon is healed by 1/8 of its max HP each turn when poisoned; no HP loss.",
-		onModifyMove: function (move, effect) {
-			if (effect.id === 'psn' || effect.id === 'tox' || effect.id === 'brn' || effect.id === 'par') {
-				move.priority +1;
-			}
-		},
-		id: "poisonheal",
-		name: "Poison Heal",
-		rating: 4,
-		num: 90,
-	},
 	"panicmode": {
 		shortDesc: "This Pokemon's moves have +1 priority when this Pokemon is burned, paralyzed, or poisoned. Ignores the burn Attack drop.",
 		onModifyPriority: function (priority, move, effect) {
