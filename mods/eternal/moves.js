@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 exports.BattleMovedex = {
 	"wrathofnature": {
@@ -1698,4 +1698,4 @@ ZMovePower: 175,
 		zMovePower: 150,
 		contestType: "Clever",
 	}, */
-};
+//};
