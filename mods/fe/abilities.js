@@ -4144,6 +4144,29 @@ exports.BattleAbilities = {
 		id: "frenzy",
 		name: "Frenzy",
 	},
+	"solarpanel": {
+		shortDesc: "This Pokemon is immune to Electric, Fire and Grass-type moves. If targetted by one, this Pokemon's Special Attack is raised by one stage, and harsh sunlight appears.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Electric' || move.type === 'Fire' || move.type === 'Grass') {
+				this.setWeather('desolateland');
+				if (!this.boost({spa: 1})) {
+					this.add('-immune', target, '[msg]', '[from] ability: Solar Panel');
+				}
+				return null;
+			}
+		},
+		onAnyRedirectTarget: function (target, source, source2, move) {
+			if (move.type !== 'Electric' || move.type !== 'Fire' || move.type !== 'Grass' || ['firepledge', 'grasspledge', 'waterpledge'].includes(move.id)) return;
+			if (this.validTarget(this.effectData.target, source, move.target)) {
+				if (this.effectData.target !== target) {
+					this.add('-activate', this.effectData.target, 'ability: Solar Panel');
+				}
+				return this.effectData.target;
+			}
+		},
+		id: "solarpanel",
+		name: "Solar Panel",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
