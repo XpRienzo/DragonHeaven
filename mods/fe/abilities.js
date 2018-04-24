@@ -4335,12 +4335,11 @@ exports.BattleAbilities = {
 				}
 			}
 				pokemon.setBoost(boosts);
-				this.add('-clearnegativeboost', pokemon, '[silent]');
 		},
 		id: "clearfocus",
 		name: "Clear Focus",
 	},
-	/*slowandsteady: {
+	slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
 			if (target.lastDamage > 0 && source.lastAttackedBy && source.lastAttackedBy.thisTurn && source.lastAttackedBy.pokemon === target) {
@@ -4349,7 +4348,7 @@ exports.BattleAbilities = {
 		},
 		id: "slowandsteady",
 		name: "Slow And Steady",
-	},*/
+	},
 	/*"seamonster": {
 		desc: "Lowers opponent's attack one stage upon switching in. Water-type attacks are boosted 10%.",
 		shortDesc: "Lowers opponent's attack one stage upon switching in. Water-type attacks are boosted 10%.",
