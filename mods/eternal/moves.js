@@ -1,4 +1,4 @@
-/*'use strict';
+'use strict';
 
 exports.BattleMovedex = {
 	"wrathofnature": {
@@ -88,7 +88,7 @@ exports.BattleMovedex = {
 	},
 	"evolutionblast": { /* Evolution Blast (Special, 15 BP, 10 PP, 100 Acc, Hits 8 times. Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy))
 Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigavolt Havoc...) */
-	/*	accuracy: 100,
+		accuracy: 100,
 		basePower: 15,
 		category: "Special",
 		id: "evolutionblast",
@@ -817,7 +817,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		contestType: "Tough",
 	},*/
 	
-	/*"metalliccharge": {
+	"metalliccharge": {
 		accuracy: 100,
 		basePower: 160,
 		category: "Physical",
@@ -1481,7 +1481,7 @@ target: "normal",
 type: "Steel", 
 ZMovePower: 160,
 }, */
-	/*algaeallure: {
+	algaeallure: {
 basePower: 90, 
 accuracy: 100, 
 category: "Special", 
@@ -1698,4 +1698,4 @@ ZMovePower: 175,
 		zMovePower: 150,
 		contestType: "Clever",
 	}, */
-//};
+};
