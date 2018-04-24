@@ -4211,7 +4211,22 @@ exports.BattleAbilities = {
 		id: "synchscales",
 		name: "Synch Scales",
 	},
-	
+	"poisonshield": {
+		shortDesc: "Takes 50% damage from attacks when HP is full. If attacked directly when HP is full, the attacker is poisoned.",
+         onSourceModifyDamage: function (damage, source, target, move) {
+			if (target.hp >= target.maxhp) {
+				return this.chainModify(0.5);
+			}
+		},
+		onAfterDamage: function (damage, target, source, move) {
+			if (move && !source.status && source.runStatusImmunity('powder') && target.hp >= target.maxhp) {
+					source.setStatus('psn', target);
+                }
+				
+		},
+		id: "poisonshield",
+		name: "Poison Shield",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
