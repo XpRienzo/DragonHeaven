@@ -88,7 +88,7 @@ exports.BattleMovedex = {
 	},
 	"evolutionblast": { /* Evolution Blast (Special, 15 BP, 10 PP, 100 Acc, Hits 8 times. Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy))
 Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigavolt Havoc...) */
-		accuracy: 100,
+	/*	accuracy: 100,
 		basePower: 15,
 		category: "Special",
 		id: "evolutionblast",
@@ -818,7 +818,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 	},*/
 	
 	"metalliccharge": {
-		accuracy: 100,
+		/*accuracy: 100,
 		basePower: 160,
 		category: "Physical",
 		desc: "Has a 30% chance to flinch the target. 75% recoil.",
@@ -1481,7 +1481,7 @@ target: "normal",
 type: "Steel", 
 ZMovePower: 160,
 }, */
-	algaeallure: {
+	/*algaeallure: {
 basePower: 90, 
 accuracy: 100, 
 category: "Special", 
