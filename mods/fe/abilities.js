@@ -1631,18 +1631,15 @@ exports.BattleAbilities = {
 		onModifyMove: function (move, pokemon) {
 			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Water';
+				move.hydrateBoosted = true;
 			}
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		if (move.type === 'Water') {
-			return this.chainModify([0x1333, 0x1000]);
-		}
+		if (move.hydrateBoosted) return this.chainModify([0x1333, 0x1000]);
 		},
 		id: "hydrate",
 		name: "Hydrate",
-		rating: 4,
-		num: 174,
 	},
 	"leafstream": {
 		shortDesc: "On switch-in, this Pokemon summons Sunny Day.",
@@ -2740,13 +2737,12 @@ exports.BattleAbilities = {
 		onModifyMove: function (move, pokemon) {
 			if (move.type === 'Normal' || move.type === 'Electric' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Fairy';
+				move.mistysuperchargeBoosted = true;
 			}
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		if (move.type === 'Fairy') {
-			return this.chainModify(1.3);
-		}
+		if (move.mistysuperchargeBoosted) return this.chainModify(1.3);
 		},
 		onStart: function (source) {
 			this.setTerrain('mistyterrain');
@@ -3321,22 +3317,28 @@ exports.BattleAbilities = {
 		onModifyMove: function (move, pokemon) {
 			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Ground';
+				move.madnessBoosted = true;
 			}
 			else if (move.type === 'Ground' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Electric';
+				move.madnessBoosted = true;
 			}
 			else if (move.type === 'Electric' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Steel';
+				move.madnessBoosted = true;
 			}
 			else if (move.type === 'Steel' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Rock';
+				move.madnessBoosted = true;
+			}
+			else if (move.type === 'Rock' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Normal';
+				move.madnessBoosted = true;
 			}
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		if (move.type === 'Ground' || move.type === 'Electric' || move.type === 'Steel' || move.type === 'Normal') {
-		return this.chainModify(1.5);
-		}
+		if (move.madnessBoosted) return this.chainModify(1.5);
 		},
 		id: "movemadness",
 		name: "Move Madness",
@@ -3423,13 +3425,12 @@ exports.BattleAbilities = {
 		onModifyMove: function (move, pokemon) {
 			if (move.type === 'Fire' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Fairy';
+				move.bgoneBoosted = true;
 			}
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		if (move.type === 'Fairy') {
-		return this.chainModify(1.5);
-		}
+		if (move.bgoneBoosted) return this.chainModify(1.5);
 		},
 		onImmunity: function (type, pokemon) {
 			if (type === 'Fire') return false;
@@ -3465,8 +3466,7 @@ exports.BattleAbilities = {
 		name: "Sandmist Surge",
 	},
 	"compactboost": {
-		desc: "This Pokemon's highest stat is raised by 1 stage if it attacks and knocks out another Pokemon.",
-		shortDesc: "This Pokemon's highest stat is raised by 1 if it attacks and KOes another Pokemon.",
+		shortDesc: "Boosts Defense by two stages + highest non-hp non-def stat by one stage upon KOing a foe.",
 		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
 				let stat = 'atk';
@@ -3478,7 +3478,7 @@ exports.BattleAbilities = {
 					}
 				}
 				this.boost({[stat]: 1}, source);
-				this.boost({def: 1}, source);
+				this.boost({def: 2}, source);
 			}
 		},
 		id: "compactboost",
@@ -3490,13 +3490,12 @@ exports.BattleAbilities = {
 		onModifyMove: function (move, pokemon) {
 			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Rock';
+				move.meteorshowerBoosted = true;
 			}
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		if (move.type === 'Rock') {
-			return this.chainModify(1.5);
-		}
+		if (move.meteorshowerBoosted)	return this.chainModify(1.5);
 		},
 		onModifySpDPriority: 4,
 		onModifySpD: function (spd, pokemon) {
@@ -3626,13 +3625,12 @@ exports.BattleAbilities = {
 		onModifyMove: function (move, pokemon) {
 			if (move.type === 'Steel' || move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Electric';
+				move.overloadedhelmBoosted = true;
 			}
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-		if (move.type === 'Electric') {
-			return this.chainModify(1.5);
-		}
+		if (move.overloadedhelmBoosted) return this.chainModify(1.5);
 		},
 		id: "overloadedhelm",
 		name: "Overloaded Helm",
