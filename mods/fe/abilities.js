@@ -4363,7 +4363,7 @@ exports.BattleAbilities = {
 				this.boost({atk: 1});
 			}
 		},
-		onDeductPP: function (move) {
+		onModifyMove: function (move) {
 			if (move.type === 'Dark') return;
 			return move.pp / 2;
 		},
