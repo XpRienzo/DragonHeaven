@@ -4364,8 +4364,7 @@ exports.BattleAbilities = {
 			}
 		},
 		onModifyMove: function (move) {
-			if (move.type === 'Dark') return;
-			return move.pp / 2;
+			if (move.type === 'Dark') return move.pp / 2;
 		},
 		id: "justicepower",
 		name: "Justice Power",
