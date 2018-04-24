@@ -4226,6 +4226,64 @@ exports.BattleAbilities = {
 		id: "poisonshield",
 		name: "Poison Shield",
 	},
+	"rebel": {
+		shortDesc: "Boosts Attack by one stage upon switch-in and by two stages for every stat drop.",
+		onStart: function (pokemon) {
+				this.boost({atk: 1});
+		},
+                onAfterEachBoost: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({atk: 2}, target, target, null, true);
+			}
+		},
+		id: "rebel",
+		name: "Rebel",
+	},
+	"fullsteamahead": {
+		shortDesc: "Upon entering the field, this Pokémon sets up Rain. This Pokémon heals for 25% of its max HP per turn while Rain is active.",
+		onStart: function (source) {
+			for (const action of this.queue) {
+				if (action.choice === 'runPrimal' && action.pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
+			}
+			this.setWeather('raindance');
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'raindance' || effect.id === 'primordialsea') {
+				this.heal(target.maxhp / 4, target, target);
+			}
+		},
+		id: "fullsteamahead",
+		name: "Full Steam Ahead",
+	},
+	"juggernaut": {
+		shortDesc: "Recoil-inducing moves have the added effect of boosting its Speed one stage when used. Does not take recoil damage.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			if (move.category !== "Status" && move.recoil) {
+				move.secondaries.push({
+					chance: 100,
+					self: {
+					boosts: {
+					atk: 1,
+				}
+					}
+				});
+			}
+		},
+		id: "juggernaut",
+		name: "Juggernaut",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
