@@ -4321,22 +4321,24 @@ exports.BattleAbilities = {
 		id: "flashweather",
 		name: "Flash Weather",
 	},
-	"auraoffailure": {
-		shortDesc: "While this Pokemon has 1/2 or less of its max HP, its Attack and Sp. Atk are halved.",
-		onModifyAtkPriority: 5,
-		onModifyAtk: function (atk, source, target) {
-			if (source.hp <= source.maxhp / 2) {
-				return this.chainModify(0.5);
+	"clearfocus": {
+		shortDesc: "Resets stat drops at the end of each turn (including self-inflicted).",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			let activate = false;
+			let boosts = {};
+			for (let i in pokemon.boosts) {
+				if (pokemon.boosts[i] < 0) {
+					activate = true;
+					boosts[i] = 0;
+				}
 			}
+				pokemon.setBoost(boosts);
+				this.add('-clearnegativeboost', pokemon, '[silent]');
 		},
-		onModifySpAPriority: 5,
-		onModifySpA: function (atk, source, target) {
-			if (source.hp <= source.maxhp / 2) {
-				return this.chainModify(0.5);
-			}
-		},
-		id: "auraoffailure",
-		name: "Aura of Failure",
+		id: "clearfocus",
+		name: "Clear Focus",
 	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
