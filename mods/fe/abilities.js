@@ -4125,15 +4125,20 @@ exports.BattleAbilities = {
 		id: "blizzardblur",
 		name: "Blizzard Blur",
 	},
-			"frenzy": {
+		"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
 			if (move.multihit && move.multihit.length) {
 				move.multihit = move.multihit[1];
-				//move.basePower * 1.5;
 			}
 			if (move.multiaccuracy) {
 				delete move.multiaccuracy;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.multihit) {
+				return this.chainModify(1.5);
 			}
 		},
 		id: "frenzy",
