@@ -817,8 +817,8 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		contestType: "Tough",
 	},*/
 	
-	"metalliccharge": {
-		/*accuracy: 100,
+	/*"metalliccharge": {
+		accuracy: 100,
 		basePower: 160,
 		category: "Physical",
 		desc: "Has a 30% chance to flinch the target. 75% recoil.",
