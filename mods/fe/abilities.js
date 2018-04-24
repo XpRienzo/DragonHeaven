@@ -2207,28 +2207,14 @@ exports.BattleAbilities = {
 	},
 	"flamedrive": {
 		shortDesc: "If this Pokemon is struck by a Fire type move, its speed is raised by one stage. Fire type immunity.",
-		onImmunity: function (type, pokemon) {
-			if (type === 'Fire') return false;
-			this.add('-ability', pokemon, 'Flame Drive');
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+            this.add('-immune', target, '[msg]', '[from] ability: Flame Drive');
+				return null;
+			}
 		},
 		onModifySpe: function (spe, attacker, defender, move) {
 				if (move.type === 'Fire') {
-					return this.chainModify(1.5);
-				}
-			},
-		id: "flamedrive",
-		name: "Flame Drive",
-	},
-	"flamedrive": {
-		shortDesc: "If this Pokemon is struck by a Fire type move, its speed is raised by one stage. Fire type immunity.",
-		onSourceFaint: function (target, source, effect) {
-			if (effect && effect.effectType === 'Move') {
-				this.boost({spa: 1}, source);
-			}
-		},
-		onModifySpAPriority: 5,
-			onModifySpA: function (atk, attacker, defender, move) {
-				if (move.type === 'Flying') {
 					return this.chainModify(1.5);
 				}
 			},
@@ -2562,8 +2548,11 @@ exports.BattleAbilities = {
 	},
 	"fearshield": {
 		shortDesc: "Immune to Ghost, Dark, and Bug-type moves.",
-		onImmunity: function(type) {
-			if (type === 'Bug' || type === 'Dark' || type === 'Ghost') return false;
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Bug' || move.type === 'Dark' || move.type === 'Ghost') {
+                        this.add('-immune', target, '[msg]', '[from] ability: Lightning Rod');
+				return null;
+			}
 		},
 		id: "fearshield",
 		name: "Fear Shield",
@@ -3429,8 +3418,11 @@ exports.BattleAbilities = {
 		onBasePower: function (basePower, pokemon, target, move) {
 		if (move.bgoneBoosted) return this.chainModify(1.5);
 		},
-		onImmunity: function (type, pokemon) {
-			if (type === 'Fire') return false;
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+            this.add('-immune', target, '[msg]', '[from] ability: Fire-B-Gone');
+				return null;
+			}
 		},
 		id: "firebgone",
 		name: "Fire-B-Gone",
@@ -4361,8 +4353,11 @@ exports.BattleAbilities = {
 	},
 	"magicfat": {
 		shortDesc: "Immune to Fire and Ice type moves as long as it holds an item.",
-		onImmunity: function (type, pokemon) {
-			if (type === 'Fire' || type === 'Ice') return false;
+		onTryHit: function (target, source, move) {
+			if (target !== source && target.item && move.type === 'Fire' || move.type === 'Ice') {
+                        this.add('-immune', target, '[msg]', '[from] ability: Magic Fat');
+				return null;
+			}
 		},
 		id: "magicfat",
 		name: "Magic Fat",
