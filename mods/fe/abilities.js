@@ -4339,7 +4339,38 @@ exports.BattleAbilities = {
 		id: "clearfocus",
 		name: "Clear Focus",
 	},
-	slowandsteady: {
+	"charmstar": {
+		shortDesc: "Moves without a secondary effect have a 20% chance to attract the opponent.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			if (move.category !== "Status") {
+				for (const secondary of move.secondaries) {
+					if (!move.secondaries) return;
+				}
+				move.secondaries.push({
+					chance: 20,
+					volatileStatus: 'attract',
+				});
+			}
+		},
+		id: "charmstar",
+		name: "Charm Star",
+	},
+	"justicepower": {
+		shortDesc: "Every time the opponent attacks this Pokemon with a Dark-type move, this Pokémon's Attack is raised by 1 and the move's PP are halved (doesn't apply if the move has 1 PP left).",
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.type === 'Dark') {
+				this.boost({atk: 1});
+			}
+		},
+		onDeductPP: function (move) {
+			if (move.type === 'Dark') return;
+			return move.pp / 2;
+		},
+		id: "justicepower",
+		name: "Justice Power",
+	},
+	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
 			if (target.lastDamage > 0 && source.lastAttackedBy && source.lastAttackedBy.thisTurn && source.lastAttackedBy.pokemon === target) {
@@ -4348,35 +4379,8 @@ exports.BattleAbilities = {
 		},
 		id: "slowandsteady",
 		name: "Slow And Steady",
-	},
-	/*"seamonster": {
-		desc: "Lowers opponent's attack one stage upon switching in. Water-type attacks are boosted 10%.",
-		shortDesc: "Lowers opponent's attack one stage upon switching in. Water-type attacks are boosted 10%.",
-		onStart: function (pokemon) {
-			let foeactive = pokemon.side.foe.active;
-			let activated = false;
-			for (let i = 0; i < foeactive.length; i++) {
-				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
-				if (!activated) {
-					this.add('-ability', pokemon, 'Sea Monster', 'boost');
-					activated = true;
-				}
-				if (foeactive[i].volatiles['substitute']) {
-					this.add('-immune', foeactive[i], '[msg]');
-				} else {
-					this.boost({atk: -1}, foeactive[i], pokemon);
-				}
-			}
-		},
-		onBasePower: function (basePower, attacker, defender, move) {
-			if (move.type === 'Water') {
-				return this.chainModify(1.1);
-		},
-	},
-		id: "seamonster",
-		name: "Sea Monster",
-	},
-
+	},*/
+/*
 	
 	"torrenttempo": {
 		shortDesc: "If this Pokemon is confused, it snaps out of that confusion and gains a 50% boost to its Water-moves.",
@@ -4397,20 +4401,5 @@ exports.BattleAbilities = {
 		id: "torrenttempo",
 		name: "Torrent Tempo",
 	},
-	// Magic Fat	Thick Fat	Magician	Immune to Fire and Ice type moves as long as it holds an item.
-	// Under Pressure: This Pokemon's status is cured at the end of each turn, but it uses 2 PP every time it attacks.
-   // Breaker: This pokemon's attacks aren't hindered by stat boosts, drops or abilities.
-	// Bodyguard: Grants immunity to moves that would lower this Pokemon's stats.
-	// Hammer Space: If its item is used or lost during battle, the item will regenerate after it switches out.
-	
-	// Late Bloomer: Late Bloomer: Has a 30% chance of infatuating the opponent at the end of its turn if it moves last.
-	// Slow and Steady: This Pokemon takes 1/2 damage from attacks if it moves last.
-	// Error Marco: Physical moves hit off of special attack, and vice versa for special attacks. Stance change forms remain.
-// Combination Drive: The Pokémon changes form depending on how it battles. Entering Power Forme empowers Punch and Slash based moves by x1.5 for one attack.
-// Charm Star: Moves without a secondary effect have a 20% chance to attract the opponent.
-// Glassing: If the opponent uses a Ground-type move it becomes Burned; Ground immunity.
-// Justice Power: Every time the opponent attacks this Pokemon with a Dark-type move, this Pokémon's Attack is raised by 1 and the move's PP are halved (doesn't apply if the move has 1 PP left).
-	// Lazy Bones: every other turn gains a 20% evasion boost, but loses 20% attack.
-	// Amplify: Increases the power of Exdoom's Fire Type and sound based moves if hit by a sound based/Fire Type attack, grants immunity to sound based/Fire Type attacks.
-// Immune to Fire and Ice type moves as long as it holds an item. */
+	 */
 };
