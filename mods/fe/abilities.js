@@ -4305,11 +4305,39 @@ exports.BattleAbilities = {
 				}
 				return null;
 			}
+			else if (target !== source && move.type === 'Rock' && this.isWeather(['sandstream'])) {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Flash Weather');
+				}
+				return null;
+			}
+			else if (target !== source && move.type === 'Ice' && this.isWeather(['hail'])) {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Flash Weather');
+				}
+				return null;
+			}
 		},
 		id: "flashweather",
 		name: "Flash Weather",
 	},
-	
+	"auraoffailure": {
+		shortDesc: "While this Pokemon has 1/2 or less of its max HP, its Attack and Sp. Atk are halved.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, source, target) {
+			if (source.hp <= source.maxhp / 2) {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, source, target) {
+			if (source.hp <= source.maxhp / 2) {
+				return this.chainModify(0.5);
+			}
+		},
+		id: "auraoffailure",
+		name: "Aura of Failure",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
