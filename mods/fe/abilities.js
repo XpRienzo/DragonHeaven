@@ -340,8 +340,8 @@ exports.BattleAbilities = {
 	},
 	"normalveil": {
 		shortDesc: "This Pokemon is immune to Normal-type moves.",
-		onImmunity: function (type, pokemon) {
-			if (type === 'Normal') return false;
+		onImmunity: function (move, pokemon) {
+			if (move.type === 'Normal') return false;
 		},
 		id: "normalveil",
 		name: "Normal Veil",
