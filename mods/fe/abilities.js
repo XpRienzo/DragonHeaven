@@ -4167,6 +4167,44 @@ exports.BattleAbilities = {
 		id: "solarpanel",
 		name: "Solar Panel",
 	},
+	"icescale": {
+		shortDesc: "Halves damage taken in hail. Takes no damage from Hail.",
+		onModifyDefPriority: 6,
+		onModifyDef: function (def, effect) {
+			if (this.isWeather(['hail'])) {
+			return this.chainModify(2);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD: function (spd, effect) {
+			if (this.isWeather(['hail'])) {
+			return this.chainModify(2);
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'hail') return false;
+		},
+		id: "icescale",
+		name: "Ice Scale",
+	},
+	"synchscales": {
+		shortDesc: "This Pokemon recieves 1/2 damage from attacks if it has a status condition.",
+		onModifyDefPriority: 5,
+		onModifyDef: function (def, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 5,
+		onModifySpD: function (spd, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "synchscales",
+		name: "Synch Scales",
+	},
+	
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
