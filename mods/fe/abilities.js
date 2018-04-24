@@ -342,6 +342,7 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon is immune to Normal-type moves.",
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Normal') {
+				this.add('-immune', target, '[msg]', '[from] ability: Normal Veil');
 				return null;
 			}
 		},
