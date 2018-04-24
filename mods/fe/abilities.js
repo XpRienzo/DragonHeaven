@@ -808,8 +808,11 @@ exports.BattleAbilities = {
 				return false;
 			}
 		},
-		onImmunity: function(type) {
-			if (type === 'Ground') return false;
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+                        this.add('-immune', target, '[msg]', '[from] ability: Sticky Float');
+				return null;
+			}
 		},
 		id: "stickyfloat",
 		name: "Sticky Float",
@@ -1004,11 +1007,10 @@ exports.BattleAbilities = {
 	"sheerflight": {
 		desc: "This Pokemon's attacks with secondary effects have their power multiplied by 1.3, but the secondary effects are removed.",
 		shortDesc: "This Pokemon's attacks with secondary effects have 1.3x power; nullifies the effects.",
-		onImmunity: function(move, pokemon, type) {
-			{
-				if (move.secondaries) {
-					if (type === 'Ground') return false;
-				}
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+                        this.add('-immune', target, '[msg]', '[from] ability: Sheer Flight');
+				return null;
 			}
 		},
 		onModifyMove: function(move, pokemon) {
@@ -1092,8 +1094,6 @@ exports.BattleAbilities = {
 		},
 		id: "hardbody",
 		name: "Hard Body",
-		rating: 2,
-		num: 231
 	},
 	"gutbreaker": {
 		shortDesc: "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
@@ -1109,14 +1109,15 @@ exports.BattleAbilities = {
 		},
 		id: "gutbreaker",
 		name: "Gut Breaker",
-		rating: 3.5,
-		num: 232
 	},
 	"synchofloat": {
 		desc: "This Pokemon is immune to Ground. Gravity, Ingrain, Smack Down, Thousand Arrows, and Iron Ball nullify the immunity.",
 		shortDesc: "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
-		onImmunity: function(type) {
-			if (type === 'Ground') return false;
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+                        this.add('-immune', target, '[msg]', '[from] ability: Levi Poison');
+				return null;
+			}
 			let oldAbility = source.setAbility('levitate', source, 'levitate', true);
 			if (oldAbility) {
 				this.add('-activate', target, 'ability: Levitate', oldAbility, '[of] ' + source);
@@ -1124,8 +1125,6 @@ exports.BattleAbilities = {
 		},
 		id: "synchofloat",
 		name: "Synchofloat",
-		rating: 3.5,
-		num: 233
 	},
 	"magicianswand": {
 		desc: "This Pokemon is immune to Electric-type moves and raises its Special Attack by 1 stage when hit by an Electric-type move. If this Pokemon is not the target of a single-target Electric-type move used by another Pokemon, this Pokemon redirects that move to itself if it is within the range of that move.",
@@ -1542,8 +1541,11 @@ exports.BattleAbilities = {
 				this.add('-formechange', pokemon, forme, '[msg]');
 			}
 		},
-		onImmunity: function(type) {
-			if (type === 'Ground') return false;
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+                        this.add('-immune', target, '[msg]', '[from] ability: Monsoon Altered');
+				return null;
+			}
 		},
 		id: "monsoonaltered",
 		name: "Monsoon-Altered",
@@ -2122,8 +2124,11 @@ exports.BattleAbilities = {
 	},
 	"permafrost": {
 		shortDesc: "Immune to Fire and Ground.",
-		onImmunity: function (type, pokemon) {
-			if (type === 'Fire' || type === 'Ground') return false;
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground' || move.type === 'Fire') {
+                        this.add('-immune', target, '[msg]', '[from] ability: Permafrost');
+				return null;
+			}
 		},
 		id: "permafrost",
 		name: "Permafrost",
