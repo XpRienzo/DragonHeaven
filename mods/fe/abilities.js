@@ -4373,10 +4373,9 @@ exports.BattleAbilities = {
 	},
 	"forestfire": {
 		shortDesc: "Immunity to fire attacks; when hit by a fire move, the opponent takes 1/16th of their health.",
-		onTryHit: function (pokemon, target, move) {
+		onTryHit: function (source, target, move) {
 				if (move.type === 'Fire') {
-					this.add('-activate', pokemon, 'move: Powder');
-					this.damage(this.clampIntRange(Math.round(pokemon.maxhp / 16), 1));
+					this.damage(this.clampIntRange(Math.round(source.maxhp / 16), 1));
 					return false;
 				}
 			},
