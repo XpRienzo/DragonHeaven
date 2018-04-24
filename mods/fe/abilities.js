@@ -4285,11 +4285,29 @@ exports.BattleAbilities = {
 			if (effect.id === 'recoil') {
 				if (!this.activeMove) throw new Error("Battle.activeMove is null");
 				if (this.activeMove.id !== 'struggle') return null;
-				this.add('-ability', source, 'Juggernaut');
 			}
 		},
 		id: "juggernaut",
 		name: "Juggernaut",
+	},
+	"flashweather": {
+		shortDesc: "In Sun, absorbs Fire moves, in Rain Water, in Hail Ice, and in Sand, Rock.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fire' && this.isWeather(['sunnyday', 'desolateland'])) {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Flash Weather');
+				}
+				return null;
+			}
+			else if (target !== source && move.type === 'Water' && this.isWeather(['raindance', 'primordialsea'])) {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Flash Weather');
+				}
+				return null;
+			}
+		},
+		id: "flashweather",
+		name: "Flash Weather",
 	},
 	
 	/*slowandsteady: {
