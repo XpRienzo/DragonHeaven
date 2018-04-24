@@ -4371,6 +4371,18 @@ exports.BattleAbilities = {
 		id: "magicfat",
 		name: "Magic Fat",
 	},
+	"forestfire": {
+		shortDesc: "Immunity to fire attacks; when hit by a fire move, the opponent takes 1/16th of their health.",
+		onTryHit: function (pokemon, target, move) {
+				if (move.type === 'Fire') {
+					this.add('-activate', pokemon, 'move: Powder');
+					this.damage(this.clampIntRange(Math.round(pokemon.maxhp / 16), 1));
+					return false;
+				}
+			},
+		id: "forestfire",
+		name: "Forest Fire",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
