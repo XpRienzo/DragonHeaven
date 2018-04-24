@@ -4219,10 +4219,9 @@ exports.BattleAbilities = {
 			}
 		},
 		onAfterDamage: function (damage, target, source, move) {
-			if (move && !source.status && source.runStatusImmunity('powder') && target.hp >= target.maxhp) {
-					source.setStatus('psn', target);
-                }
-				
+			if (move && move.flags['contact'] && !source.status && source.runStatusImmunity('powder') && target.hp >= target.maxhp) {
+			source.setStatus('psn', target);
+         }		
 		},
 		id: "poisonshield",
 		name: "Poison Shield",
