@@ -4269,7 +4269,7 @@ exports.BattleAbilities = {
 	"juggernaut": {
 		shortDesc: "Recoil-inducing moves have the added effect of boosting its Speed one stage when used. Does not take recoil damage.",
 		onModifyMovePriority: -1,
-		onModifyMove: function (move, pokemon) {
+		onModifyMove: function (move) {
 			if (move.category !== "Status" && move.recoil) {
 				move.secondaries.push({
 					chance: 100,
@@ -4280,12 +4280,12 @@ exports.BattleAbilities = {
 					}
 				});
 			}
-			this.add('-ability', pokemon, 'Juggernaut');
 		},
 		onDamage: function (damage, target, source, effect) {
 			if (effect.id === 'recoil') {
 				if (!this.activeMove) throw new Error("Battle.activeMove is null");
 				if (this.activeMove.id !== 'struggle') return null;
+				this.add('-ability', source, 'Juggernaut');
 			}
 		},
 		id: "juggernaut",
