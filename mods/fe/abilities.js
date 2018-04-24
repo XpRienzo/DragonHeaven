@@ -134,7 +134,9 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Ground') {
             this.add('-immune', target, '[msg]', '[from] ability: Levi Poison');
-				source.setStatus('psn', target);
+				if (move && !source.status && source.runStatusImmunity('powder')) {
+					source.setStatus('psn', target);
+         }		
 				return null;
 			}	
 		},
