@@ -130,13 +130,17 @@ exports.BattleAbilities = {
 		num: 197
 	},
 	"levipoison": {
-		desc: "This Pokemon is immune to Ground. Gravity, Ingrain, Smack Down, Thousand Arrows, and Iron Ball nullify the immunity.",
 		shortDesc: "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Ground') {
-                        this.add('-immune', target, '[msg]', '[from] ability: Levi Poison');
+            this.add('-immune', target, '[msg]', '[from] ability: Levi Poison');
 				return null;
 			}
+		},
+		onAfterDamage: function (damage, target, source, move) {
+			if (move && move.type === 'Ground' && !source.status) {
+			source.setStatus('psn', target);
+         }		
 		},
 		id: "levipoison",
 		name: "Levipoison",
