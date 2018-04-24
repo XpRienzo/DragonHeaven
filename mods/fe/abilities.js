@@ -4373,12 +4373,13 @@ exports.BattleAbilities = {
 	},
 	"forestfire": {
 		shortDesc: "Immunity to fire attacks; when hit by a fire move, the opponent takes 1/16th of their health.",
-		onTryHit: function (source, target, move) {
-				if (move.type === 'Fire') {
-					this.damage(this.clampIntRange(Math.round(target.maxhp / 16), 1));
-					return false;
-				}
-			},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Electric') {
+				this.add('-immune', target, '[msg]', '[from] ability: Forest Fire');
+            this.damage(source.maxhp / 8, source, source);
+				return null;
+			}
+		},
 		id: "forestfire",
 		name: "Forest Fire",
 	},
