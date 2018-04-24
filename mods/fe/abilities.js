@@ -4358,7 +4358,7 @@ exports.BattleAbilities = {
 	},
 	"magicfat": {
 		shortDesc: "Immune to Fire and Ice type moves as long as it holds an item.",
-		onImmunity: function (type) {
+		onImmunity: function (type, pokemon) {
 			if (type === 'Fire' || type === 'Ice') return false;
 		},
 		id: "magicfat",
