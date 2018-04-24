@@ -4275,15 +4275,22 @@ exports.BattleAbilities = {
 					chance: 100,
 					self: {
 					boosts: {
-					atk: 1,
+					spe: 1,
 				}
 					}
 				});
 			}
 		},
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'recoil') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return null;
+			}
+		},
 		id: "juggernaut",
 		name: "Juggernaut",
 	},
+	
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
