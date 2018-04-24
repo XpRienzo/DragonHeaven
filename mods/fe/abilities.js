@@ -949,7 +949,7 @@ exports.BattleAbilities = {
 		rating: 4,
 		num: 227
 	},
-	"justicepower": {
+/*	"justicepower": {
 		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move.",
 		onAfterDamage: function(damage, target, source, effect) {
 			if (effect && effect.type === 'Dark') {
@@ -966,7 +966,7 @@ exports.BattleAbilities = {
 		name: "Justice Power",
 		rating: 2,
 		num: 228
-	},
+	},*/
 	"cursedtrace": {
 		desc: "On switch-in, this Pokemon copies a random adjacent opposing Pokemon's Ability. If there is no Ability that can be copied at that time, this Ability will activate as soon as an Ability can be copied. Abilities that cannot be copied are Flower Gift, Forecast, Illusion, Imposter, Multitype, Stance Change, Trace, and Zen Mode.",
 		shortDesc: "On switch-in, or when it can, this Pokemon copies a random adjacent foe's Ability.",
