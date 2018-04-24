@@ -132,9 +132,11 @@ exports.BattleAbilities = {
 	"levipoison": {
 		desc: "This Pokemon is immune to Ground. Gravity, Ingrain, Smack Down, Thousand Arrows, and Iron Ball nullify the immunity.",
 		shortDesc: "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
-		onImmunity: function(type) {
-			if (type === 'Ground') return false;
-			/* Levipoison (Levitate+Poison Point) - If this Pokémon is hit with a Ground-type attack, the attacker is poisoned. Grants the Pokémon with this ability an immunity to ground */
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+                        this.add('-immune', target, '[msg]', '[from] ability: Levi Poison');
+				return null;
+			}
 		},
 		id: "levipoison",
 		name: "Levipoison",
