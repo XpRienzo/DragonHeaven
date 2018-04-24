@@ -4356,18 +4356,13 @@ exports.BattleAbilities = {
 		id: "charmstar",
 		name: "Charm Star",
 	},
-	"justicepower": {
-		shortDesc: "Every time the opponent attacks this Pokemon with a Dark-type move, this Pokémon's Attack is raised by 1 and the move's PP are halved (doesn't apply if the move has 1 PP left).",
-		onAfterDamage: function (damage, target, source, effect) {
-			if (effect && effect.type === 'Dark') {
-				this.boost({atk: 1});
-			}
+	"magicfat": {
+		shortDesc: "Immune to Fire and Ice type moves as long as it holds an item.",
+		onImmunity: function (type, pokemon) {
+			if (pokemon.item && type === 'Fire' || type === 'Ice') return false;
 		},
-		onModifyMove: function (move) {
-			if (move.type === 'Dark') return move.pp / 2;
-		},
-		id: "justicepower",
-		name: "Justice Power",
+		id: "magicfat",
+		name: "Magic Fat",
 	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
