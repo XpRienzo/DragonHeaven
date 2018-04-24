@@ -74,6 +74,16 @@ exports.BattleAbilities = {
 		rating: 2,
 		num: 194
 	},
+	"flashweather": {
+		shortDesc: "This Pokemon's Ground/Rock/Steel attacks do 1.3x in Sandstorm; immunity to it.",
+		onImmunity: function (type, pokemon, effect, move) {
+			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Fire') {
+				return false;
+			}
+		},
+		id: "flashweather",
+		name: "Flash Weather",
+	},
 	"intenserivalry": {
 		desc: "This Pokemon's attacks have their power multiplied by 1.25 against targets of the same gender or multiplied by 0.75 against targets of the opposite gender. There is no modifier if either this Pokemon or the target is genderless.",
 		shortDesc: "This Pokemon's attacks do 1.25x on same gender targets; 0.75x on opposite gender.",
