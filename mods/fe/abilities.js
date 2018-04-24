@@ -3465,14 +3465,19 @@ exports.BattleAbilities = {
 			if (effect && effect.effectType === 'Move') {
 				let stat = 'atk';
 				let bestStat = 0;
+				let secondBest = 'spa';
 				for (let i in source.stats) {
 					if (source.stats[i] > bestStat) {
 						stat = i;
 						bestStat = source.stats[i];
+						secondBest = source.stats > bestStat;
 					}
 				}
 				if (stat !== 'def') { 
-					this.boost({[stat]: 1}, source);
+				this.boost({[stat]: 1}, source);
+				}
+				else if (stat === 'def') {
+				this.boost({[secondBest]: 1}, source);
 				}
 				this.boost({def: 2}, source);
 			}
