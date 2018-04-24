@@ -3471,7 +3471,9 @@ exports.BattleAbilities = {
 						bestStat = source.stats[i];
 					}
 				}
-				this.boost({[stat]: 1}, source);
+				if (stat !== 'def') { 
+					this.boost({[stat]: 1}, source);
+				}
 				this.boost({def: 2}, source);
 			}
 		},
