@@ -24,8 +24,6 @@ exports.BattleAbilities = {
 		},
 		id: "turnabouttorrent",
 		name: "Turnabout Torrent",
-		rating: 2,
-		num: 192
 	},
 	"intimidatingscales": {
 		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
@@ -56,8 +54,6 @@ exports.BattleAbilities = {
 		},
 		id: "intimidatingscales",
 		name: "Intimidating Scales",
-		rating: 3.5,
-		num: 193
 	},
 	"hugetorrent": {
 		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its attacking stat is multiplied by 1.5 while using a Water-type attack.",
@@ -71,18 +67,6 @@ exports.BattleAbilities = {
 		},
 		id: "hugetorrent",
 		name: "Huge Torrent",
-		rating: 2,
-		num: 194
-	},
-	"flashweather": {
-		shortDesc: "This Pokemon's Ground/Rock/Steel attacks do 1.3x in Sandstorm; immunity to it.",
-		onImmunity: function (type, pokemon, effect, move) {
-			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Fire') {
-				return false;
-			}
-		},
-		id: "flashweather",
-		name: "Flash Weather",
 	},
 	"intenserivalry": {
 		desc: "This Pokemon's attacks have their power multiplied by 1.25 against targets of the same gender or multiplied by 0.75 against targets of the opposite gender. There is no modifier if either this Pokemon or the target is genderless.",
@@ -4141,12 +4125,12 @@ exports.BattleAbilities = {
 		id: "blizzardblur",
 		name: "Blizzard Blur",
 	},
-			/*"frenzy": {
+			"frenzy": {
 		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
 		onModifyMove: function (move) {
 			if (move.multihit && move.multihit.length) {
 				move.multihit = move.multihit[1];
-				move.basePower * 1.5;
+				//move.basePower * 1.5;
 			}
 			if (move.multiaccuracy) {
 				delete move.multiaccuracy;
@@ -4154,7 +4138,7 @@ exports.BattleAbilities = {
 		},
 		id: "frenzy",
 		name: "Frenzy",
-	},*/
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
