@@ -61,7 +61,7 @@ init: function () {
    this.modData('Learnsets', 'vanillish').learnset.recrystalize = ['7L1'];
    this.modData('Learnsets', 'vanilluxe').learnset.recrystalize = ['7L1'];
    this.modData('Learnsets', 'amaura').learnset.recrystalize = ['7L1'];
-   this.modData('Learnsets', 'auroros').learnset.recrystalize = ['7L1'];
+   this.modData('Learnsets', 'aurorus').learnset.recrystalize = ['7L1'];
    this.modData('Learnsets', 'sandshrewalola').learnset.recrystalize = ['7L1'];
    this.modData('Learnsets', 'sandslashalola').learnset.recrystalize = ['7L1'];
    this.modData('Learnsets', 'glaceon').learnset.recrystalize = ['7L1'];
