@@ -142,8 +142,6 @@ exports.BattleAbilities = {
 		},
 		id: "levipoison",
 		name: "Levipoison",
-		rating: 3.5,
-		num: 198,
 	},
 	"armorcast": {
 		desc: "If this Pokemon loses its held item for any reason, its Speed is doubled. This boost is lost if it switches out or gains a new item or Ability.",
@@ -4802,5 +4800,180 @@ exports.BattleAbilities = {
 		},
 		id: "shaggycoat",
 		name: "Shaggy Coat",
+	},
+	"clearabsorb": {
+		shortDesc: "Whenever this Pokemon's stats would be lowered, its health is restored by up to 25% instead. This does not include self-induced stat drops.",
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					// @ts-ignore
+					this.heal(target.maxhp / 4);
+					this.add('-ability', target, 'Clear Absorb');
+				}
+			}
+		},
+		id: "clearabsorb",
+		name: "Clear Absorb",
+	},
+	"Evaporate": {
+		shortDesc: "30% chance of healing 1/4 of its max HP instead of taking damage whenever hit by a super-effective attack.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.typeMod > 0) {
+					if (this.randomChance(3, 10)) {
+					this.heal(target.maxhp / 4));
+					this.add('-ability', target, 'Evaporate');
+				}
+			}
+		},
+		id: "evaporate",
+		name: "Evaporate",
+	},
+	"smokebody": {
+		shortDesc: "Damages the opposing Pokemon for 1/8 of its HP at the end of each turn while it is asleep or if it tries to lower Dank's stats, stats cannot be lowered.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			if (!pokemon.hp) return;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !target.hp) continue;
+				if (target.status === 'slp' || target.hasAbility('comatose')) {
+					this.damage(pokemon.maxhp / 8, pokemon, pokemon);
+				}
+			}
+		},
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					// @ts-ignore
+					this.damage(source.maxhp / 8, source, target);;
+				}
+			}
+		},
+		id: "smokebody",
+		name: "Smoke Body",
+	},
+	"caestus": {
+		shortDesc: "Arm, hand, and punching moves do 25% more damage where applicable and raise this Pokémon's Attack by one stage after their use.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name ==='Arm Thrust' || move.name ==='Hammer Arm' || move.name ==='Needle Arm') {
+				return this.chainModify(1.25);
+			}
+		},
+		onUpdate: function (move) {
+				if (move.flags['punch'] || move.name === 'Helping Hand' || move.name ==='Arm Thrust' || move.name ==='Hammer Arm' || move.name ==='Needle Arm') {
+					this.boost({atk: 1});
+				}
+		},
+		id: "caestus",
+		name: "Caestus",
+	},
+	"fusionpowered": {
+		shortDesc: "This Pokémon's STAB moves do 3x damage rather than 1.5x, but have 33% recoil. Moves with a recoil element do 1.25x bonus damage.",
+		onModifyMove: function (move) {
+			move.stab = 3;
+			if (move.stab) {
+				move.recoil = [1, 3];
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.recoil || move.hasCustomRecoil) {
+				this.debug('Reckless boost');
+				return this.chainModify(1.25);
+			}
+		},
+		id: "fusionpowered",
+		name: "Fusion Powered",
+	},
+	"hyperprotection": {
+		shortDesc: "This Pokemon is imune to Ground-Type moves. If a move against this Pokémon ended up on a Critical Hit, it won't affect the Pokémon.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+            this.add('-immune', target, '[msg]', '[from] ability: Hyper Protection');
+				return null;
+			}	
+		},
+		onHit: function (target, source, move) {
+			if (!target.hp) return;
+			if (move && move.effectType === 'Move' && move.crit) {
+				return null;
+				this.add('-immune', target, '[msg]', '[from] ability: Hyper Protection');
+			}
+		},
+		id: "hyperprotection",
+		name: "Hyper Protection",
+	},
+	"sandslurp": {
+		shortDesc: "Using or being the target of Ground- and Water-type moves heals this Pokémon for 1/8th of its maximum health. This increases to 1/6th in Sandstorm.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Water' || move.type === 'Ground') {
+				this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
+				this.heal(target.maxhp / 8);
+				return null;
+			}
+			else 	if (target !== source && move.type === 'Water' || move.type === 'Ground' && this.isWeather('sandstorm')) {
+				this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
+				this.heal(target.maxhp / 16);
+				return null;
+			}
+		},
+		id: "sandslurp",
+		name: "Sand Slurp",
+	},
+	"sandystorm": {
+		shortDesc: "The user summons a sandstorm, and while the user is in a sandstorm, all moves used by all pokemon cost double PP.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Sandy Storm');
+			this.setWeather('sandstorm');
+		},
+		onDeductPP: function (target, source) {
+			if (target.side === source.side && this.isWeather('sandstorm')) return;
+			return 1;
+		},
+		id: "sandystorm",
+		name: "Sandy Storm",
+	},
+	"hotairballoon": {
+		shortDesc: "Immune to Ground type attacks. If the opponent attempts to use a Ground-type attack on this pokemon, the attacker is burned.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+            this.add('-immune', target, '[msg]', '[from] ability: Hot Air Balloon');
+				if (move && !source.status) {
+					source.setStatus('brn', target);
+         }		
+				return null;
+			}	
+		},
+		id: "hotairballoon",
+		name: "Hot Air Balloon",
+	},
+	"fatalgrace": {
+		shortDesc: "If those with this ability are poisoned, they recover HP every turn and have secondary effect chances multiplied by 2.5.",
+		onDamagePriority: 1,
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'psn' || effect.id === 'tox') {
+				this.heal(target.maxhp / 8);
+				return false;
+			}
+		},
+		onModifyMovePriority: -2,
+		onModifyMove: function (move, pokemon) {
+			if (move.secondaries && pokemon.status === 'psn' || pokemon.status === 'tox') {
+				this.debug('doubling secondary chance');
+				for (const secondary of move.secondaries) {
+					// @ts-ignore
+					secondary.chance *= 2.5;
+				}
+			}
+		},
+		id: "fatalgrace",
+		name: "Fatal Grace",
 	},
 };
