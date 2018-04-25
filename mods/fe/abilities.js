@@ -4976,4 +4976,187 @@ exports.BattleAbilities = {
 		id: "fatalgrace",
 		name: "Fatal Grace",
 	},
+	"meangirl": {
+		shortDesc: "Raises Attack by 1 stage whenever a Pokemon of the same gender enters battle. This also triggers when switching in on such a Pokemon.",
+		onUpdate: function (basePower, attacker, defender) {
+			if (attacker.gender && defender.gender) {
+				if (attacker.gender === defender.gender) {
+					this.boost({atk: 1});
+				}
+			}
+		},
+		id: "meangirl",
+		name: "Mean Girl",
+	},
+	"serenesurge": {
+		shortDesc: "Upon switching in, set Psychic Terrain. During this Psychic Terrain, all affected Pokemon's moves have their secondary effect chances doubled.",
+		onStart: function (source) {
+			this.setTerrain('psychicterrain');
+		},
+		onModifyMovePriority: -2,
+		onModifyMove: function (move, target, source) {
+			if (move.secondaries && this.isTerrain('psychicterrain') && !target.isGrounded() || target.isSemiInvulnerable() || target.side === source.side) {
+				this.debug('doubling secondary chance');
+				for (const secondary of move.secondaries) {
+					// @ts-ignore
+					secondary.chance *= 2;
+				}
+			}
+		},
+		id: "serenesurge",
+		name: "Serene Surge",
+	},
+	"ashestoashes": {
+		shortDesc: "When this Pokémon is below 50% health, the Base Power and secondary effect chance of moves with secondary effects are doubled.",
+		onModifyMovePriority: -2,
+		onModifyMove: function (move) {
+			if (move.secondaries) {
+				this.debug('doubling secondary chance');
+				for (const secondary of move.secondaries) {
+					// @ts-ignore
+					secondary.chance *= 2;
+				}
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (attacker.hp <= attacker.maxhp) {
+				return this.chainModify(2);
+			}
+		},
+		id: "ashestoashes",
+		name: "Ashes to Ashes",
+	},
+	"beastbarbs": {
+		shortDesc: "When hit by direct contact,the Pokémon's highest non-HP stat is boosted by one stage.",
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			if (move && move.flags['contact']) {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		id: "beastbarbs",
+		name: "Beast Barbs",
+	},
+	"subdue": {
+		shortDesc: "Lowers the opponent's highest stat by one, and boosts that same stat by one on yourself upon switch-in.",
+		onStart: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in target.stats) {
+					if (target.stats[i] > bestStat) {
+						stat = i;
+						bestStat = target.stats[i];
+					}
+				}
+				this.boost({[stat]: -1}, target);
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		id: "subdue",
+		name: "Subdue",
+	},
+	"sunbath": {
+		shortDesc: "Under Sun or Rain, Speed is doubled and regains 1/8 of max health at the end of the turn. Ignores Sun's Water Debuff.",
+		onModifySpe: function (spe, pokemon) {
+			if (this.isWeather(['raindance', 'primordialsea', 'sunnyday', 'desolateland'])) {
+				return this.chainModify(2);
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'sunnyday' || effect.id === 'desolateland' || effect.id === 'raindance' || effect.id === 'primordialsea') {
+				this.heal(target.maxhp / 8, target, target);
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' && this.isWeather(['sunnyday', 'desolateland'])) {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' && this.isWeather(['sunnyday', 'desolateland'])) {
+				return this.chainModify(2);
+			}
+		},
+		id: "sunbath",
+		name: "Sun Bath",
+	},
+	"pixiegrace": {
+		shortDesc: "Normal-Type moves become Fairy, Moves with secondary effects have the chance of the effects happening doubled, and both Normal-Type and Moves with secondary effect gain a 1.2x boost.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Fairy';
+				move.pixilateBoosted = true;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+			if (move.pixilateBoosted) {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+			else if (move.secondaries && move.type === 'Fairy' || move.type === 'Normal') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		onModifyMovePriority: -2,
+		onModifyMove: function (move) {
+			if (move.secondaries) {
+				this.debug('doubling secondary chance');
+				for (const secondary of move.secondaries) {
+					// @ts-ignore
+					secondary.chance *= 2;
+				}
+			}
+		},
+		id: "pixiegrace",
+		name: "Pixie Grace",
+	},
+	"turborise": {
+		shortDesc: "User is immune to Ground-type attacks. This immunity cannot be bypassed by Mold Breaker-esque effects.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				this.add('-immune', target, '[msg]', '[from] ability: Water Absorb');
+				return null;
+			}
+		},
+		isUnbreakable: true,
+		id: "turborise",
+		name: "Turborise",
+	},
+	"queenscommand": {
+		shortDesc: "Immune to priority moves. Attack raised by one if hit by one.",
+		onFoeTryMove: function (target, source, effect) {
+			if ((source.side === this.effectData.target.side || effect.id === 'perishsong') && effect.priority > 0.1 && effect.target !== 'foeSide') {
+				this.attrLastMove('[still]');
+				this.add('cant', this.effectData.target, 'ability: Queens Command', effect, '[of] ' + target);
+				this.boost({atk: 1});
+				return false;
+			}
+		},
+		id: "queenscommand",
+		name: "Queen's Command",
+	},
+	"soulforgeddiamond": {
+		shortDesc: "This Pokemon receives 0.665x damage from supereffective attacks.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				return this.chainModify(0.665);
+			}
+		},
+		id: "soulforgeddiamond",
+		name: "Soulforged Diamond",
+	},
+	
 };
