@@ -4427,34 +4427,7 @@ exports.BattleAbilities = {
 				this.boost({spa: 2}, target, target, null, true);
 				source.tryTrap(true);
 				source.maybeTrapped = true;
-			}
-		},
-		onFoeTrapPokemon: function (boost, target, source) {
-			if (!source || target.side === source.side) {
-				return;
-			}
-			let statsLowered = false;
-			for (let i in boost) {
-				// @ts-ignore
-				if (boost[i] < 0) {
-					statsLowered = true;
-				}
-			}
-			if (statsLowered) {
-				source.tryTrap(true);
-			}
-		},
-		onFoeMaybeTrapPokemon: function (boost, taget, source) {
-			let statsLowered = false;
-			for (let i in boost) {
-				// @ts-ignore
-				if (boost[i] < 0) {
-					statsLowered = true;
-				}
-			}
-			if (!source) source = this.effectData.target;
-			if (statsLowered) {
-				source.maybeTrapped = true;
+				source.addVolatile('trapped', source, 'trapper')
 			}
 		},
 		id: "compelling",
