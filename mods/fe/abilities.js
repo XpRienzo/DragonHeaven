@@ -4426,6 +4426,7 @@ exports.BattleAbilities = {
 			if (statsLowered) {
 				this.boost({spa: 2}, target, target, null, true);
 				source.tryTrap(true);
+				source.maybeTrapped = true;
 			}
 		},
 		id: "compelling",
