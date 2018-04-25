@@ -44,11 +44,17 @@ class RandomSeasonalTeams extends RandomTeams {
 				nature:'Adamant',
 			},
 			'Ludicrousity' : {
-				species: 'Umbreon', ability: 'Moonlight Guard', item: 'Leftovers', gender: 'M', shiny:true,
-				moves: ['spikyshield', 'toxic', 'rest'],
-				signatureMove: "Corrupt Aura",evs: {hp: 252, spd: 252, spa: 4},
-				nature:'Calm',
+				species: 'Typhlosion', ability: 'Wildfire', item: 'Ludicrousium-Z', gender: 'M',
+				moves: ['fireblast', 'protect', 'rest'],
+				signatureMove: "Infernal Rain",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				nature:'Timid',
 			},
+			'Gojiratar' : {
+				species: 'Tyranitar-Mega', ability: 'Thicc Toxicity', item: 'Toxic Orb', gender: 'M', shiny:true,
+				moves: ['diamondstorm', 'sacredfire', 'shoreup'],
+				signatureMove: "Wait A Minute",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
+				nature:'Adamant',
+			},			
 			'EchoGaia' : {
 				species: 'Landorus-Therian', ability: 'Extreme Intimidate', item: 'Leftovers', gender: 'M',
 				moves: ['precipiceblades', 'stoneedge', 'uturn'],
