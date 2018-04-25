@@ -4386,7 +4386,9 @@ exports.BattleAbilities = {
 	"disconnect": {
 		shortDesc: "The foe's same-type attack bonus (STAB) is 0.75 instead of 1.5.",
 		onModifyMove: function (move, source, target) {
+			if (source && source !== target) {
 			source.move.stab = 0.75;
+			}
 		},
 		id: "disconnect",
 		name: "Dis/connect",
