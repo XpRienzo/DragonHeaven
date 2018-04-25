@@ -4425,13 +4425,46 @@ exports.BattleAbilities = {
 			}
 			if (statsLowered) {
 				this.boost({spa: 2}, target, target, null, true);
-				source.tryTrap(true);
-				source.maybeTrapped = true;
 				source.addVolatile('trapped', source, 'trapper')
 			}
 		},
 		id: "compelling",
 		name: "Compelling",
+	},
+	"stormlauncher": {
+		shortDesc: "Boosts launching attacks by 50% in no weather. Doubles their power and doubles the user's speed in rain. Quarters their power and halves the users speed in the sun.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['pulse']) {
+				return this.chainModify(1.5);
+			}
+			else if (move.flags['pulse'] && this.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(2);
+			}
+			else if (move.flags['pulse'] && this.isWeather(['sunnyday', 'desolateland'])) {
+				return this.chainModify(0.25);
+			}
+		},
+		onModifySpe: function (spe, pokemon) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(2);
+			}
+			else if (this.isWeather(['sunnyday', 'desolateland'])) {
+				return this.chainModify(0.5);
+			}
+		},
+		id: "stormlauncher",
+		name: "Storm Launcher",
+	},
+	"staticswitch": {
+		shortDesc: "30% chance to paralyze the opponent whenever the user switches out.",
+		onSwitchOut: function (source, target) {
+			if (this.randomChance(3, 10)) {
+					source.trySetStatus('par', target);
+				}
+		},
+		id: "staticswitch",
+		name: "Static Switch",
 	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
