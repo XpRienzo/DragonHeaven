@@ -4309,7 +4309,7 @@ exports.BattleAbilities = {
 				}
 				return null;
 			}
-			else if (target !== source && move.type === 'Rock' && this.isWeather(['sandstream'])) {
+			else if (target !== source && move.type === 'Rock' && this.isWeather(['sandstorm'])) {
 				if (!this.heal(target.maxhp / 4)) {
 					this.add('-immune', target, '[msg]', '[from] ability: Flash Weather');
 				}
@@ -4383,14 +4383,7 @@ exports.BattleAbilities = {
 		id: "forestfire",
 		name: "Forest Fire",
 	},
-	"advocatescale": {
-		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
-		onEffectiveness: function (typeMod, type, move) {
-			if (move.typeMod < 0) return 1;
-		},
-		id: "advocatescale",
-		name: "Advocate Scale",
-	},
+
 	
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
