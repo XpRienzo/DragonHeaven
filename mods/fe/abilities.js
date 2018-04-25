@@ -4383,15 +4383,18 @@ exports.BattleAbilities = {
 		id: "forestfire",
 		name: "Forest Fire",
 	},
-	"crushing": {
-		shortDesc: "Doubles the amount of recoil enemy Pokemon take when using a move against this Pokemon.",
-		onModifyMove: function (move, pokemon) {
-			if (move.recoil) {
-				return move.recoil + move.recoil;
+	"advocatescale": {
+		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				return move.typeMod < 0;
+			}
+			else if (move.typeMod < 0) {
+				return move.typeMod > 0;
 			}
 		},
-		id: "crushing",
-		name: "Crushing",
+		id: "advocatescale",
+		name: "Advocate Scale",
 	},
 	
 	/*slowandsteady: {
