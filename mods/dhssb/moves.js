@@ -261,7 +261,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
-		heal: [1, 4],
+		selfHeal: [1, 4],
 		onTryHit: function (pokemon) {
 			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'simple', 'stancechange', 'truant'];
 			if (bannedAbilities.includes(pokemon.ability)) {
