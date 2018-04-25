@@ -4387,10 +4387,10 @@ exports.BattleAbilities = {
 		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
 		onSourceModifyDamage: function (damage, source, target, move) {
 			if (move.typeMod > 0) {
-				return move.typeMod < 0;
+				move.typeMod < 0;
 			}
 			else if (move.typeMod < 0) {
-				return move.typeMod > 0;
+				move.typeMod > 0;
 			}
 		},
 		id: "advocatescale",
