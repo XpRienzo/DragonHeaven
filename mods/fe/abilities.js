@@ -4393,6 +4393,44 @@ exports.BattleAbilities = {
 		id: "disconnect",
 		name: "Dis/connect",
 	},
+	"pondscum": {
+		shortDesc: "Water-type moves have a 25% chance to flinch the foe.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			if (move.category !== "Status" && move.type === 'Water') {
+				if (!move.secondaries) move.secondaries = [];
+				for (const secondary of move.secondaries) {
+				}
+				move.secondaries.push({
+					chance: 25,
+					volatileStatus: 'flinch',
+				});
+			}
+		},
+		id: "pondscum",
+		name: "Pond Scum",
+	},
+	"compelling": {
+		shortDesc: "If this Pokémon's stats are lowered, its Special Attack is raised by 2 stages, and the opponent cannot switch. This ability cannot be triggered by self-inflicted stat drops.",
+		onAfterEachBoost: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({spa: 2}, target, target, null, true);
+				source.tryTrap(true);
+			}
+		},
+		id: "compelling",
+		name: "Compelling",
+	},
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
