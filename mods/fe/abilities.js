@@ -134,7 +134,7 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Ground') {
             this.add('-immune', target, '[msg]', '[from] ability: Levi Poison');
-				if (move && !source.status && source.runStatusImmunity('powder')) {
+				if (move && !source.status) {
 					source.setStatus('psn', target);
          }		
 				return null;
@@ -3148,10 +3148,11 @@ exports.BattleAbilities = {
 			}
 		},
 		onTryHit: function (target, source, move) {
-			if (target !== source && move.type === 'Fire' || move.type === 'Fire') {
+			if (target !== source && move.type === 'Fire' || move.type === 'Steel') {
 				move.accuracy = true;
-				if (!target.addVolatile('flashfire')) {
+				if (!this.heal(target.maxhp / 4)) {
 					this.add('-immune', target, '[msg]', '[from] ability: Blacksmith');
+					target.addVolatile('flashfire');
 				}
 				return null;
 			}
@@ -4466,36 +4467,340 @@ exports.BattleAbilities = {
 		id: "staticswitch",
 		name: "Static Switch",
 	},
-	/*slowandsteady: {
-		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
-		onModifyDamage: function (damage, source, target, move) {
-			if (target.lastDamage > 0 && source.lastAttackedBy && source.lastAttackedBy.thisTurn && source.lastAttackedBy.pokemon === target) {
-				return this.chainModify(0.5);
+	"bulletproof": {
+		shortDesc: "Protects the Pokémon from opposing recoil and crash moves.",
+		onTryHit: function (pokemon, target, move) {
+			if (move.recoil || move.name === 'High Jump Kick' || move.name === 'Jump Kick') {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Reflex');
+				return null;
 			}
 		},
-		id: "slowandsteady",
-		name: "Slow And Steady",
-	},*/
-/*
-	
-	"torrenttempo": {
-		shortDesc: "If this Pokemon is confused, it snaps out of that confusion and gains a 50% boost to its Water-moves.",
-		onUpdate: function (pokemon) {
-			if (pokemon.volatiles['confusion']) {
-				this.add('-activate', pokemon, 'ability: Torrent Tempo');
-				pokemon.removeVolatile('confusion');
-			}
-		},
-		onTryAddVolatile: function (status, pokemon) {
-			if (status.id === 'confusion') return null;
-		},
-		onHit: function (target, source, move) {
-			if (move && move.volatileStatus === 'confusion') {
-				this.add('-immune', target, 'confusion', '[from] ability: Torrent Tempo');
-			}
-		},
-		id: "torrenttempo",
-		name: "Torrent Tempo",
+		id: "reflex",
+		name: "Reflex",
 	},
-	 */
+	"clearpouch": {
+		shortDesc: "When this Pokemon consumes a Berry, it regains 33% of its maximum HP and any negative stat changes are removed.",
+		onEatItem: function (item, pokemon) {
+			this.heal(pokemon.maxhp / 3);
+			let activate = false;
+			let boosts = {};
+			for (let i in pokemon.boosts) {
+				if (pokemon.boosts[i] < 0) {
+					activate = true;
+					boosts[i] = 0;
+				}
+			}
+				pokemon.setBoost(boosts);
+		},
+		id: "clearpouch",
+		name: "Clear Pouch",
+	},
+	"precision": {
+		desc: "This Pokemon's moves of 60 power or less have their power multiplied by 1.5. Does affect Struggle.",
+		shortDesc: "This Pokemon's moves of 60 power or less have 1.5x power. Includes Struggle.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 75) {
+				return this.chainModify(2);
+				move.technicianBoosted = true;
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, move) {
+			if (!move.technicianBoosted) {
+			return this.modify(atk, 1.33);
+			}
+		},
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			if (move.category === 'Physical' && typeof move.accuracy === 'number') {
+				move.accuracy *= 0.9;
+			}
+		},
+		id: "precision",
+		name: "Precision",
+	},
+	"sleepwalker": {
+		shortDesc: "When hit by a sleeping move, Speed will increase by 1 stage. Immune to Sleep.",
+		onUpdate: function (pokemon) {
+			if (pokemon.status === 'slp') {
+				this.add('-activate', pokemon, 'ability: Insomnia');
+				pokemon.cureStatus();
+				this.boost({spe: 1});
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'slp') return;
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Insomnia');
+			this.boost({spe: 1});
+			return false;
+		},
+		id: "sleepwalker",
+		name: "Sleepwalker",
+	},
+	"absolutezero": {
+		shortDesc: "Biting and normal-type moves used by this Pokemon are treated as being ice-type in addition to their usual type and receive a 30% power boost.",
+		onEffectiveness: function (typeMod, type, move) {
+		if (move.flags['bite'] || move.type === 'Normal') {
+			return typeMod + this.getEffectiveness('Ice', type);
+			}
+		},
+		id: "absolutezero",
+		name: "Absolute Zero",
+	},
+	"taintedlens": {
+		shortDesc: "Not very effective moves will also badly poison the target.",
+		onModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0) {
+				return this.chainModify(2);
+				source.setStatus('psn', target);
+			}
+		},
+		id: "taintedlens",
+		name: "Tainted Lens",
+	},
+	"purethug": {
+		shortDesc: "This Pokemon cannot be poisoned. Gaining this Ability while poisoned cures it.",
+		onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'brn' || status.id !== 'psn' || status.id !== 'tox' || status.id !== 'par' || status.id !== 'frz') return;
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Pure Thug');
+			this.boost({atk: 1});
+			return false;
+		},
+		onUpdate: function (pokemon) {
+			if (pokemon.status) {
+				this.add('-activate', pokemon, 'ability: Pure Thug');
+				pokemon.cureStatus();
+			}
+		},
+		id: "purethug",
+		name: "Pure Thug",
+	},
+	"mysticwave": {
+		shortDesc: "Boosts the power of Water-type moves by 50% as long as the user holds an item.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.item) {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.item) {
+				return this.chainModify(2);
+			}
+		},
+		id: "mysticwave",
+		name: "Mystic Wave",
+	},
+	"titanicstrength": {
+		shortDesc: "If this Pokemon (not its substitute) takes a critical hit, its Attack is raised 12 stages.",
+		onTakeItem: function (item, pokemon, source) {
+			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp || pokemon.item === 'stickybarb') return;
+			if (!this.activeMove) throw new Error("Battle.activeMove is null");
+			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
+				this.add('-activate', pokemon, 'ability: Sticky Hold');
+				pokemon.setBoost({atk: 6});
+				this.add('-setboost', pokemon, 'atk', 12, '[from] ability: Titanic Strength');
+			}
+		},
+		id: "titanicstrength",
+		name: "Titanic Strength",
+	},
+	"hygroscopy": {
+		shortDesc: "Upon being hit by a water- or steel-type move, restores 1/4 of this Pokemon's maximum HP. Water- and steel-type opponents cannot switch out while this Pokemon is active.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (pokemon.hasType('Steel') || pokemon.hasType('Water') && this.isAdjacent(pokemon, this.effectData.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if ((!pokemon.knownType || pokemon.hasType('Steel') || pokemon.hasType('Water')) && this.isAdjacent(pokemon, source)) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Water' || move.type === 'Steel') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Hygroscopy');
+				}
+				return null;
+			}
+		},
+		id: "hygroscopy",
+		name: "Hygroscopy",
+	},
+	"wonderlust": {
+		shortDesc: "This Pokemon is immune to status.",
+		onSetStatus: function (status, target, source, effect) {
+				if (effect && effect.status) {
+					this.add('-immune', target, '[msg]', '[from] ability: Hygroscopy');
+				}
+				return false;
+			},
+		id: "wonderlust",
+		name: "Wonderlust",
+	},
+	"prisoncell": {
+		shortDesc: "Prevents adjacent Dark-type foes from choosing to switch.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (pokemon.hasType('Dark') && this.isAdjacent(pokemon, this.effectData.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if ((!pokemon.knownType || pokemon.hasType('Dark')) && this.isAdjacent(pokemon, source)) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		id: "prisoncell",
+		name: "Prison Cell",
+	},
+	"venomglare": {
+		shortDesc: "On switch-in, the bearer poisons adjacent opponents.",
+		onStart: function (target, source) {
+			if (!source.status) {
+			source.setStatus('psn', target);
+			}
+		},
+		id: "venomglare",
+		name: "Venom Glare",
+	},
+	"terrorize": {
+		shortDesc: "On switch-in, the bearer poisons adjacent opponents.",
+		onStart: function (target, source) {
+		source.addVolatile('gastroacid');
+		},
+		id: "terrorize",
+		name: "Terrorize",
+	},
+		"clearlevitation": {
+		shortDesc: "Immune to Ground-type attacks and non-self inflicted stat drops",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+            this.add('-immune', target, '[msg]', '[from] ability: Clear Levitation');
+				return null;
+			}	
+		},
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					// @ts-ignore
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: Clear Levitation", "[of] " + target);
+		},
+		id: "clearlevitation",
+		name: "Clear Levitation",
+	},
+	"grounddrive": {
+		shortDesc: "Speed is raised by 1 when hit by a Ground-type move; Ground immunity.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+            this.add('-immune', target, '[msg]', '[from] ability: Clear Levitation');
+				this.boost({atk: 1});
+				return null;
+			}	
+		},
+		id: "grounddrive",
+		name: "Ground Drive",
+	},
+	"topgear": {
+		shortDesc: "This Pokemon is immune to electric-type attacks and has its attack raised by one stage if it would be hit by one. This Pokemon's attacks' secondary effects are converted into a 33% power boost.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Electric') {
+				if (!this.boost({atk: 1})) {
+					this.add('-immune', target, '[msg]', '[from] ability: Top Gear');
+				}
+				return null;
+			}
+		},
+		onModifyMove: function (move, pokemon) {
+			if (move.secondaries) {
+				delete move.secondaries;
+				// Actual negation of `AfterMoveSecondary` effects implemented in scripts.js
+				move.hasSheerForce = true;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+			if (move.hasSheerForce) return this.chainModify([0x14CD, 0x1000]);
+		},
+		id: "topgear",
+		name: "Top Gear",
+	},
+	"surgebloom": {
+		shortDesc: "Allied Grass type Pokemon have their Grass STAB increased by x1.5 and their stats can't be lowered..",
+		onAllyBoost: function (boost, target, source, effect) {
+			if ((source && target === source) || !target.hasType('Grass')) return;
+			let showMsg = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					// @ts-ignore
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !effect.secondaries) this.add('-fail', this.effectData.target, 'unboost', '[from] ability: Surge Bloom', '[of] ' + target);
+		},
+		onAllySetStatus: function (status, target, source, effect) {
+			if (target.hasType('Grass')) {
+				if (!effect || !effect.status) return false;
+				this.add('-activate', this.effectData.target, 'ability: Surge Bloom', '[of] ' + target);
+				return null;
+			}
+		},
+		onAllyModifyMove: function (move, pokemon) {
+			if (pokemon.type === 'Grass' || move.type === 'Grass') {
+				move.stab = 3;
+			}
+		},
+		id: "surgebloom",
+		name: "Surge Bloom",
+	},
+	'unparalleledtechnique': {
+		shortDesc: "This Pokemon imprisons adjacent targets on switch-in.",
+		onStart: function (source) {
+			this.useMove('Imprison', source);
+		},
+		id: "unparalleledtechnique",
+		name: "Unparalleled Technique",
+	},
+	'obliterate': {
+		shortDesc: "Deletes the opponent's item upon switch-in if it isn't a Mega Stone. The deleted item is treated as if it were knocked off, so Recycle cannot recover it.",
+		onStart: function (target, source) {
+			if (source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] ability: Obliterate', '[of] ' + source);
+				}
+			}
+		},
+		id: "obliterate",
+		name: "Obliterate",
+	},
+	"shaggycoat": {
+		shortDesc: "This Pokemon's defense stat is doubled. When at 1/3 HP or lower, this Pokemon's defense stat is tripled.",
+		onModifyDefPriority: 6,
+		onModifyDef: function (def, pokemon) {
+			if (pokemon.hp > pokemon.maxhp / 3) {
+			return this.chainModify(2);
+			}
+			else if (pokemon.hp <= pokemon.maxhp / 3) {
+			return this.chainModify(3);
+			}
+		},
+		id: "shaggycoat",
+		name: "Shaggy Coat",
+	},
 };
