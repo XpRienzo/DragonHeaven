@@ -4429,6 +4429,34 @@ exports.BattleAbilities = {
 				source.maybeTrapped = true;
 			}
 		},
+		onFoeTrapPokemon: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				source.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (boost, taget, source) {
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (!source) source = this.effectData.target;
+			if (statsLowered) {
+				source.maybeTrapped = true;
+			}
+		},
 		id: "compelling",
 		name: "Compelling",
 	},
