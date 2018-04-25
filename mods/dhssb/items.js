@@ -80,4 +80,13 @@ exports.BattleItems = {
 		zMoveUser: ["Scrafty"],
 		desc: "If holder is Zapmaster2010 it can use Knee of Justice.",
 	},
+	"ludicrousiumz": {
+		id: "ludicrousiumz",
+		name: "Ludicrousium-Z",
+		onTakeItem: false,
+		zMove: "Infernal Abyss",
+		zMoveFrom: "Infernal Rain",
+		zMoveUser: ["Typhlosion"],
+		desc: "If holder is Ludicrousity it can use Infernal Abyss.",
+	},
 };
