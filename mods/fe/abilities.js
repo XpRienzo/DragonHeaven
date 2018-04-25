@@ -4384,8 +4384,8 @@ exports.BattleAbilities = {
 		name: "Forest Fire",
 	},
 	"disconnect": {
-		shortDesc: "This Pokemon's same-type attack bonus (STAB) is 0.75 instead of 1.5.",
-		onModifyMove: function (move, source) {
+		shortDesc: "The foe's same-type attack bonus (STAB) is 0.75 instead of 1.5.",
+		onModifyMove: function (move, target) {
 			move.stab = 0.75;
 		},
 		id: "disconnect",
