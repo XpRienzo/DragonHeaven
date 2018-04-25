@@ -4823,7 +4823,7 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.typeMod > 0) {
 					if (this.randomChance(3, 10)) {
-					this.heal(target.maxhp / 4));
+					this.heal(target.maxhp / 4);
 					this.add('-ability', target, 'Evaporate');
 				}
 			}
