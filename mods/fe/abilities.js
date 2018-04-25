@@ -4387,12 +4387,13 @@ exports.BattleAbilities = {
 		shortDesc: "Doubles the amount of recoil enemy Pokemon take when using a move against this Pokemon.",
 		onModifyMove: function (move, pokemon) {
 			if (move.recoil) {
-				return move.recoil * 2;
+				return move.recoil + move.recoil;
 			}
 		},
 		id: "crushing",
 		name: "Crushing",
 	},
+	
 	/*slowandsteady: {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onModifyDamage: function (damage, source, target, move) {
