@@ -458,9 +458,7 @@ exports.BattleAbilities = {
 			}
 		},
 		id: "blazingbody",
-		name: "blazing body",
-		rating: 3,
-		num: 208
+		name: "Blazing Body",
 	},
 	"noskill": {
 		shortDesc: "Pressure + Super Luck.",
@@ -511,9 +509,7 @@ exports.BattleAbilities = {
 			if (type === 'hail') return false;
 		},
 		id: "staticstorm",
-		name: "static storm",
-		rating: 1.5,
-		num: 209
+		name: "Static storm",
 	},
 	"dreadedflames": {
 		desc: "On switch-in, this Pokemon lowers the Attack of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
@@ -708,9 +704,7 @@ exports.BattleAbilities = {
 			}
 		},
 		id: "keen feet",
-		name: "keen feet",
-		rating: 2.5,
-		num: 216
+		name: "Keen Feet",
 	},
 	"swiftabsorb": {
 		desc: "This Pokemon is immune to water-type moves. The first time it is hit by a water-type move, its attacking stat is multiplied by 1.5 while using a water-type attack as long as it remains active and has this Ability. If this Pokemon is frozen, it cannot be defrosted by water-type attacks.",
@@ -1174,9 +1168,7 @@ exports.BattleAbilities = {
 			}
 		},
 		id: "cleanmatch",
-		name: "cleanmatch",
-		rating: 3.5,
-		num: 235
+		name: "Clean Match",
 	},
 	"positivegrowth": {
 		desc: "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its attacking stat is multiplied by 1.5 while using a Bug-type attack.",
