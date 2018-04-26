@@ -141,26 +141,26 @@ exports.BattleAbilities = {
 	"wildfire": {
 		name:"Wildfire",
 		id: "wildfire",
-		shortDesc: "Raises all stats 1 stage at the end of each turn. Fire moves deal double damage.",
+		shortDesc: "Raises all stats 1 stage at the end of each turn. Fire moves deal 1.5 damage.",
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual: function (pokemon) {
 			if (pokemon.activeTurns) {
-				this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1, });
+				this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1});
 			}
 		},	
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk, attacker, defender, move) {
 			if (move.type === 'Fire') {
 				this.debug('Wildfire boost');
-				return this.chainModify(2);
+				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function (atk, attacker, defender, move) {
 			if (move.type === 'Fire') {
 				this.debug('Wildfire boost');
-				return this.chainModify(2);
+				return this.chainModify(1.5);
 			}
 		},
 	},
