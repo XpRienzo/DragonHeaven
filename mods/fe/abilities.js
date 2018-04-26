@@ -1465,7 +1465,7 @@ exports.BattleAbilities = {
 			target.addVolatile('gastroacid');
 			}
 		},
-		onUpdate: function(pokemon) {
+		onFoeSwitchOut: function(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 			if (!target || target.fainted) continue;
 			this.add('-start', target, 'Embargo');
