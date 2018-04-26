@@ -5039,4 +5039,58 @@ exports.BattleAbilities = {
 		id: "rhythm",
 		name: "Rhythm",
 	},
+	"magicalwand": {
+	shortDesc: "Critical hit ratio is raised by one stage. Transforms into Star-Butterfly after it gets a critical hit. In butterfly form, critical hit ratio is raised by two stages.",
+	onModifyCritRatio: function(critRatio, pokemon) {
+		if (pokemon.name === 'Star') {
+			return critRatio + 1;
+		} else if (pokemon.name === 'Star-Butterfly') {
+			return critRatio + 2;
+		}
+	},
+	onHit: function(target, source, move) {
+		if (!target.hp) return;
+		if (move && move.effectType === 'Move' && move.crit) {
+		this.add('-formechange', target, 'Star-Butterfly', '[msg]');
+			target.formeChange("Star-Butterfly");
+			this.add('-ability', target, 'Magical Wand');
+		}
+	},
+	id: "magicalwand",
+	name: "Magical Wand",
+},
+	"medicalexpert": {
+		shortDesc: "This Pokemon's moves have 1.3x the power when inflicted with a status condition or when it moves last. These bonuses stack.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+			if (pokemon.status) {
+				return this.chainModify(1.3);
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon) {
+			let boosted = true;
+			let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+				if (target === pokemon) continue;
+				if (this.willMove(target)) {
+					boosted = false;
+					break;
+				}
+			}
+			if (boosted) {
+				return this.chainModify([0x14CD, 0x1000]);
+			}
+		},
+		id: "medicalexpert",
+		name: "Medical Expert",
+	},
+	'badinfluence': {
+		shortDesc: "When the user switches in, all opponents on the field have their stat changes inverted.",
+		onStart: function(source) {
+			this.useMove('Topsy-Turvy', source);
+		},
+		id: "badinfluence",
+		name: "Bad Influence",
+	},
 };
