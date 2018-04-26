@@ -5158,8 +5158,8 @@ exports.BattleAbilities = {
 		},
 		onResidualOrder: 27,
 		onResidual: function (pokemon) {
-			if (pokemon.baseTemplate.baseSpecies === 'Zeeeee' && pokemon.hp => pokemon.maxhp / 2 && pokemon.template.speciesid !== 'zeeeeecomplete') {
-				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
+			if (pokemon.baseTemplate.baseSpecies === 'Zeeeee' && pokemon.hp <= pokemon.maxhp / 2 && pokemon.template.speciesid !== 'zeeeeecomplete') {
+			this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
 			pokemon.formeChange("Zeeeee-Complete");
 			this.add('-ability', pokemon, 'Foundation');
 		}
