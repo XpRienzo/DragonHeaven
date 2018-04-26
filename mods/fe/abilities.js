@@ -5203,12 +5203,12 @@ exports.BattleAbilities = {
 		id: "barbsboost",
 		name: "Barbs Boost",
 	},
-	/*'atmosphericpull': {
+	'atmosphericpull': {
 		shortDesc: "Summons Gravity upon switch-in.",
 		onStart: function(source) {
-			this.useMove('Topsy-Turvy', source);
+			this.setPsuedoWeather('gravity');
 		},
 		id: "atmosphericpull",
 		name: "Atmospheric Pull",
-	},*/
+	},
 };
