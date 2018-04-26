@@ -1033,112 +1033,32 @@ exports.BattleAbilities = {
 		id: "latebloomer",
 		name: "Late Bloomer",
 	},
-	"sturdytempo": {
-		shortDesc: "Sturdy + Tempo.",
-		onUpdate: function(pokemon) {
-			if (pokemon.volatiles['confusion']) {
-				pokemon.removeVolatile('confusion');
-			}
-		},
-		onImmunity: function(type, pokemon) {
-			if (type === 'confusion') {
-				this.add('-immune', pokemon, 'confusion');
-				return false;
-			}
-		},
-		onTryHit: function(pokemon, target, move) {
-			if (move.ohko) {
-				this.add('-immune', pokemon, '[msg]', '[from] ability: Sturdy Tempo');
-				return null;
-			}
-		},
-		onDamagePriority: -100,
-		onDamage: function(damage, target, source, effect) {
-			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
-				this.add('-ability', target, 'Sturdy Tempo');
-				return target.hp - 1;
-			}
-		},
-		id: "sturdytempo",
-		name: "Sturdy Tempo",
-	},
 	"tangledflames": {
-		desc: "This Pokemon is immune to Fire-type moves. The first time it is hit by a Fire-type move, its attacking stat is multiplied by 1.5 while using a Fire-type attack as long as it remains active and has this Ability. If this Pokemon is frozen, it cannot be defrosted by Fire-type attacks.",
-		shortDesc: "This Pokemon's Fire attacks do 1.5x damage if hit by one Fire move; Fire immunity.",
+		shortDesc: "This pokemon's fire attacks are boosted 2x when confused. Fire Immunity.",
 		onTryHit: function(target, source, move) {
 			if (target !== source && move.type === 'Fire') {
 				move.accuracy = true;
-				if (!target.addVolatile('flashfire')) {
-					this.add('-immune', target, '[msg]', '[from] ability: Flash Fire');
-				}
+					this.add('-immune', target, '[msg]', '[from] ability: Tangled Flames');
 				return null;
 			}
 		},
-		onEnd: function(pokemon) {
-			pokemon.removeVolatile('flashfire');
-		},
-		effect: {
-			noCopy: true, // doesn't get copied by Baton Pass
-			onStart: function(target) {
-				this.add('-start', target, 'ability: Flash Fire');
-			},
 			onModifyAtkPriority: 5,
-			onModifyAtk: function(atk, target, attacker, defender, move) {
-				if (move.type === 'Fire' || target && target.volatiles['confusion']) {
-					this.debug('Flash Fire boost');
+			onModifyAtk: function(atk, attacker, defender, move) {
+				if (move.type === 'Fire' || attacker && attacker.volatiles['confusion']) {
 					return this.chainModify(2);
 				}
 			},
 			onModifySpAPriority: 5,
 			onModifySpA: function(atk, attacker, defender, move) {
-				if (move.type === 'Fire' || target && target.volatiles['confusion']) {
-					this.debug('Flash Fire boost');
+				if (move.type === 'Fire' || attacker && attacker.volatiles['confusion']) {
 					return this.chainModify(2);
 				}
-			},
-			onEnd: function(target) {
-				this.add('-end', target, 'ability: Flash Fire', '[silent]');
-			}
 		},
 		id: "tangledflames",
 		name: "Tangled Flames",
-		rating: 3,
-		num: 241
-	},
-	"hydrostream": {
-		shortDesc: "On switch-in, this Pokemon summons Rain Dance.",
-		onStart: function(source) {
-			this.setWeather('raindance');
-		},
-		id: "hydrostream",
-		name: "Hydro Stream",
-		rating: 4.5,
-		num: 242
-	},
-	"hydrate": {
-		desc: "This Pokemon's Normal-type moves become Ice-type moves and have their power multiplied by 1.3. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-		shortDesc: "This Pokemon's Normal-type moves become Ice type and have 1.3x power.",
-		onModifyMovePriority: -1,
-		onModifyMove: function(move, pokemon) {
-			if (move.type === 'Normal' && move.id !== 'naturalgift') {
-				move.type = 'Water';
-				if (move.category !== 'Status') pokemon.addVolatile('refrigerate');
-			}
-		},
-		effect: {
-			duration: 1,
-			onBasePowerPriority: 8,
-			onBasePower: function(basePower, pokemon, target, move) {
-				return this.chainModify([0x14CD, 0x1000]);
-			}
-		},
-		id: "hydrate",
-		name: "Hydrate",
-		rating: 4,
-		num: 243
 	},
 	"breaker": {
-		shortDesc: "Prevents other Pokemon from lowering this Pokemon's stat stages.",
+		shortDesc: "This pokemon's attacks aren't hindered by stat boosts, drops or abilities.",
 		onStart: function(pokemon) {
 			this.add('-ability', pokemon, 'Mold Breaker');
 		},
@@ -1150,7 +1070,7 @@ exports.BattleAbilities = {
 					showMsg = true;
 				}
 			}
-			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: Clear Body", "[of] " + target);
+			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: Breaker", "[of] " + target);
 		},
 		onAnyModifyBoost: function(boosts, target) {
 			var source = this.effectData.target;
@@ -1168,73 +1088,29 @@ exports.BattleAbilities = {
 		},
 		id: "breaker",
 		name: "Breaker",
-		rating: 2,
-		num: 244
 	},
 	"hammerspace": {
-		shortDesc: "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+		shortDesc: "If its item is used or lost during battle, the item will regenerate after it switches out.",
 		onSwitchOut: function(pokemon) {
 			pokemon.setItem(pokemon.lastItem);
 			this.add('-item', pokemon, pokemon.getItem(), '[from] ability: Hammer Space');
 		},
 		id: "hammer space",
 		name: "Hammer Space",
-		rating: 4,
-		num: 245
-	},
-	"sereneeyes": {
-		shortDesc: "This Pokemon's moves have their secondary effect chance doubled.",
-		onModifyMovePriority: -2,
-		onModifyMove: function(move) {
-			if (move.secondaries && move.id !== 'secretpower') {
-				this.debug('doubling secondary chance');
-				move.accuracy *= 2;
-			}
-		},
-		id: "sereneeyes",
-		name: "Serene Eyes",
-		rating: 4,
-		num: 246
-	},
-	"leafstream": {
-		shortDesc: "On switch-in, this Pokemon summons Sunny Day.",
-		onStart: function(source) {
-			this.setWeather('sunnyday');
-		},
-		id: "leafstream",
-		name: "LeafStream",
-		rating: 4.5,
-		num: 247
-	},
-	"cybercriminal": {
-		desc: "This Pokemon's Attack is raised by 1 stage if it attacks and knocks out another Pokemon.",
-		shortDesc: "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
-		onSourceFaint: function(target, source, effect) {
-			if (effect && effect.effectType === 'Move') {
-				this.boost({
-					spa: 1
-				}, source);
-			}
-		},
-		id: "cybercriminal",
-		name: "Cyber Criminal",
-		rating: 3.5,
-		num: 248
 	},
 	"underpressure": {
-		desc: "This Pokemon has its major status condition cured at the end of each turn if Rain Dance is active.",
-		shortDesc: "This Pokemon has its status cured at the end of each turn if Rain Dance is active.",
+		shortDesc: "This Pokemon's status is cured at the end of each turn, but it uses 2 PP every time it attacks.",
 		onResidualOrder: 5,
 		onResidualSubOrder: 1,
 		onResidual: function(pokemon) {
 			if (pokemon.status) {
 				this.debug('under pressure');
-				this.add('-activate', pokemon, 'ability: Hydration');
+				this.add('-activate', pokemon, 'ability: Under Pressure');
 				pokemon.cureStatus();
 			}
 		},
 		onStart: function(pokemon) {
-			this.add('-ability', pokemon, 'Pressure');
+			this.add('-ability', pokemon, 'Under Pressure');
 		},
 		onDeductPP: function(target, source) {
 			if (target.side === source.side) return;
@@ -1242,26 +1118,21 @@ exports.BattleAbilities = {
 		},
 		id: "underpressure",
 		name: "Under Pressure",
-		rating: 2,
-		num: 250
 	},
 	"naturaleye": {
-		desc: "All non-damaging moves that check accuracy have their accuracy changed to 50% when used on this Pokemon. This change is done before any other accuracy modifying effects.",
-		shortDesc: "Status moves with accuracy checks are 50% accurate when used on this Pokemon.",
+		shortDesc: "Pidgemie avoids status moves if they're not 100% accurate.",
 		onModifyAccuracyPriority: 10,
 		onModifyAccuracy: function(accuracy, target, source, move) {
-			if (move.category === 'Status' && typeof move.accuracy === 'number') {
+			if (move.category === 'Status' && !move.accuracy === '100') {
 				this.debug('Wonder Skin - setting accuracy to 50');
 				return 0;
 			}
 		},
 		id: "naturaleye",
 		name: "Natural Eye",
-		rating: 2,
-		num: 251
 	},
 	"overwhelmingpresence": {
-		shortDesc: "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
+		shortDesc: "Whenever this poke is on the field, all abilities and items the opponent has is negated.",
 		onStart: function(pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || target.fainted) continue;
@@ -1308,8 +1179,6 @@ exports.BattleAbilities = {
 		},
 		id: "monsoon",
 		name: "Monsoon",
-		rating: 3,
-		num: 253
 	},
 	"monsoonaltered": {
 		desc: "If this Pokemon is a Casting, its type changes to the current weather condition's type, except Sandstorm.",
@@ -1346,11 +1215,8 @@ exports.BattleAbilities = {
 		},
 		id: "monsoonaltered",
 		name: "Monsoon-Altered",
-		rating: 3,
-		num: 254
 	},
 	"justifiedfire": {
-		desc: "Raises user's Special Attack when hit with a Fire-type attack. Grants immunity to Fire.",
 		shortDesc: "Raises user's Special Attack when hit with a Fire-type attack. Grants immunity to Fire.",
 		onTryHit: function(target, source, move) {
 			if (target !== source && move.type === 'Fire') {
@@ -1373,8 +1239,6 @@ exports.BattleAbilities = {
 		},
 		id: "justifiedfire",
 		name: "Justified Fire",
-		rating: 3.5,
-		num: 32,
 	},
 	"sturdytempo": {
 		desc: "Sturdy + Own Tempo.",
@@ -1456,14 +1320,12 @@ exports.BattleAbilities = {
 		onSourceFaint: function(target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
 				this.boost({
-					atk: 1
+					spa: 1
 				}, source);
 			}
 		},
 		id: "cybercriminal",
 		name: "Cyber Criminal",
-		rating: 3.5,
-		num: 153,
 	},
 	"cleartempo": {
 		shortDesc: "Immune to stat drops and confusion.",
@@ -1541,10 +1403,13 @@ exports.BattleAbilities = {
 	},
 	"dreamcrusher": {
 		shortDesc: "The user deals 2x damage to sleeping targets.",
-		onModifyDamage: function(damage, source, target, move) {
-			if (pokemon.status && pokemon.status == 'slp') {
+		onModifyDamage: function(damage, source, pokemon, move) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || !target.hp) continue;
+			if (target.status && target.status == 'slp') {
 				this.debug('Dream Crusher boost');
 				return this.chainModify(2);
+			}
 			}
 		},
 		id: "dreamcrusher",
@@ -1558,12 +1423,9 @@ exports.BattleAbilities = {
 			if (this.isWeather('hail')) {
 				if (move.type === 'Rock' || move.type === 'Ground' || move.type === 'Steel' || move.type === 'Ice') {
 					this.debug('Desert Snow boost');
-					return this.chainModify([0x14CD, 0x1000]);
+					return this.chainModify(1.3);
 				}
 			}
-		},
-		onImmunity: function(type, pokemon) {
-			if (type === 'sandstorm') return false;
 		},
 		onTryHit: function(target, source, move) {
 			if (this.isWeather('hail')) {
@@ -1610,7 +1472,7 @@ exports.BattleAbilities = {
 		onFlinch: function(pokemon) {
 			this.boost({
 				spe: 1,
-				critRatio: 1
+				critRatio: 1,
 			});
 		},
 		id: "steadfastluck",
@@ -1705,7 +1567,7 @@ exports.BattleAbilities = {
 		},
 		onBasePower: function(basePower, user, target, move) {
 			if (move.type === 'Water') {
-				return this.chainModify([0x1333, 0x1000]);
+				return this.chainModify(1.1);
 			}
 		},
 		id: "seamonster",
@@ -1716,7 +1578,7 @@ exports.BattleAbilities = {
 		onModifyMovePriority: -2,
 		onModifyMove: function(move) {
 			if (move.secondaries) {
-				return accuracy * 1.3;
+				return move.accuracy * 2;
 			}
 		},
 		id: "sereneeyes",
@@ -1729,6 +1591,11 @@ exports.BattleAbilities = {
 			if (effect.id === 'brn') {
 				this.heal(target.maxhp / 8);
 				return false;
+			}
+		},
+		onModifyAtk: function (atk, pokemon) {
+			if (pokemon.status === 'brn') {
+				return this.chainModify(1);
 			}
 		},
 		id: "fromashes",
