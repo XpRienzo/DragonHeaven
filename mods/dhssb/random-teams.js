@@ -38,7 +38,7 @@ class RandomSeasonalTeams extends RandomTeams {
 				nature:'Jolly',
 			},
 			'Pika Xreme' : {
-				species: 'Raichu', ability: 'Xreme Bulk', item: 'Leftovers', gender: 'M', shiny:true,
+				species: 'Raichu', ability: 'Warpstar Crusader', item: 'Leftovers', gender: 'M', shiny:true,
 				moves: ['volttackle', 'woodhammer', 'icehammer'],
 				signatureMove: "Healing Area",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
 				nature:'Adamant',
