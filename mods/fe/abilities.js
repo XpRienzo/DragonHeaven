@@ -5111,7 +5111,7 @@ exports.BattleAbilities = {
 		id: "scout",
 		name: "Scout",
 	},
-	/*"rejuvenation": {
+	"rejuvenation": {
 		shortDesc: "Every time this Pokemon KOs another Pokemon, it heals 20% of it's HP. If this Pokemon is at full health, it's highest non-HP stat will be increased by 1 stage instead.",
 		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move' && source.hp === source.maxhp) {
@@ -5131,7 +5131,7 @@ exports.BattleAbilities = {
 		},
 		id: "rejuvenation",
 		name: "Rejuvenation",
-	},*/
+	},
 	"forcedrain": {
 		shortDesc: "While this Pokemon is active, attacks with secondary effects used by adjacent foes have 0.75x power and the secondary effects are nullified.",
 		onModifySecondaries: function (secondaries) {
