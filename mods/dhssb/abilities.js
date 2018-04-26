@@ -95,29 +95,61 @@ exports.BattleAbilities = {
 		id: "supremeshield",
 		name: "Supreme Shield",
 	},
-	"xremebulk": {
-		name:"Xreme Bulk",
-		id: "xremebulk",
-		shortDesc: "Damage taken 30%, negates Recoil, increases all damage dealt by 1.3x, immune to Burn, cannot be negated/ignored",
-		desc: "Damage taken 30%, negates Recoil, increases all damage dealt by 1.3x, immune to Burn, cannot be negated/ignored",
+	"warpstarcrusader": {
+		name:"Warpstar Crusader",
+		id: "warpstarcrusader",
+		shortDesc: "Increases damage by 50% + decreases incoming damage by 75% + Magic Guard + Unaware. Cannot be bypassed",
+		desc: "Increases damage by 50% + decreases incoming damage by 75% + Magic Guard + Unaware + Immune to burn. Cannot be bypassed",
 		onBasePower: function (basePower, attacker, defender, move) {
-				return this.chainModify([0x14CD, 0x1000]);
+				return this.chainModify(1.5);
 		},
 		onDamage: function (damage, target, source, effect) {
 			if (effect.id === 'recoil' && this.activeMove.id !== 'struggle') return null;
 		},
 		onUpdate: function (pokemon) {
 			if (pokemon.status === 'brn') {
-				this.add('-activate', pokemon, 'ability: Xreme Bulk');
+				this.add('-activate', pokemon, 'ability: Warpstar Crusader');
 				pokemon.cureStatus();
 			}
 		},
 		onSetStatus: function (status, target, source, effect) {
 			if (status.id !== 'brn') return;
 			if (!effect || !effect.status) return false;
-			this.add('-immune', target, '[msg]', '[from] ability: Xreme Bulk');
+			this.add('-immune', target, '[msg]', '[from] ability: Warpstar Crusader');
 			return false;
 		},
+		onDamage: function (damage, target, source, effect) {
+			if (effect.effectType !== 'Move') {
+				return false;
+			}
+		},
+		onModifyAtkPriority: 6,
+		onSourceModifyAtk: function (atk, attacker, defender, move) {
+				this.debug('Warpstar Crusader weaken');
+				return this.chainModify(0.25);
+			}
+		},
+		onModifySpAPriority: 5,
+		onSourceModifySpA: function (atk, attacker, defender, move) {
+				this.debug('Warpstar Crusader weaken');
+				return this.chainModify(0.25);
+			}
+		},
+		onAnyModifyBoost: function (boosts, target) {
+			let source = this.effectData.target;
+			if (source === target) return;
+			if (source === this.activePokemon && target === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (target === this.activePokemon && source === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		isUnbreakable: true,
 	},
 	"punishmentprize": {
 		desc: "If this Pokemon is Zap, it transforms into Zap-Pineapple after knocking out a Pokemon.",
