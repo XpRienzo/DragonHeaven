@@ -5236,8 +5236,8 @@ exports.BattleAbilities = {
 		},*/
 		onSwitchOut: function (pokemon) {
 			for (const target of pokemon.side.foe.active) {
-				if (!target || target.fainted) continue;
-			pokemon.takeItem(target);
+			if (!target || target.fainted) continue;
+			this.add('-enditem', target, '[from] move: Knock Off', '[of] ' + target);
 			}
 		},
 		id: "confiscation",
