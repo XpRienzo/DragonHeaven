@@ -6,6 +6,11 @@ exports.BattlePokedex = {
 		inherit: true,
 		baseStats: {hp: 60, atk: 83, def: 168, spa: 47, spd: 138, spe: 30},
 	},
+	//&Ludicrousity
+	typhlosion: {
+		inherit: true,
+		baseStats: {hp: 78, atk: 84, def: 68, spa: 169, spd: 95, spe: 140},
+	},
 	//%Elcrest
 	dragonite: {
 		inherit: true,
