@@ -5157,11 +5157,12 @@ exports.BattleAbilities = {
 			}
 		},
 		onResidualOrder: 27,
-		onResidual: function (target) {
-			if (target.baseTemplate.baseSpecies === 'Zeeeee' && target.hp => target.maxhp / 2 && target.template.speciesid !== 'starbutterfly') {
-				this.add('-formechange', target, 'Zeeeee-Complete', '[msg]');
-				target.formeChange("Zeeeee-Complete");
-			}
+		onResidual: function (pokemon) {
+			if (pokemon.baseTemplate.baseSpecies === 'Zeeeee' && pokemon.hp => pokemon.maxhp / 2 && pokemon.template.speciesid !== 'zeeeeecomplete') {
+				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
+			pokemon.formeChange("Zeeeee-Complete");
+			this.add('-ability', pokemon, 'Foundation');
+		}
 		},
 		id: "foundation",
 		name: "Foundation",
