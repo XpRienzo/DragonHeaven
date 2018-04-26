@@ -9,7 +9,8 @@ exports.BattlePokedex = {
 	//&Ludicrousity
 	typhlosion: {
 		inherit: true,
-		baseStats: {hp: 78, atk: 84, def: 68, spa: 169, spd: 95, spe: 140},
+		types: ["Fire", "Electric"],
+		baseStats: {hp: 88, atk: 94, def: 88, spa: 119, spd: 95, spe: 110},
 	},
 	//%Elcrest
 	dragonite: {
