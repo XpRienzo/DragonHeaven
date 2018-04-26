@@ -5111,4 +5111,104 @@ exports.BattleAbilities = {
 		id: "scout",
 		name: "Scout",
 	},
+	"rejuvenation": {
+		shortDesc: "Every time this Pokemon KOs another Pokemon, it heals 20% of it's HP. If this Pokemon is at full health, it's highest non-HP stat will be increased by 1 stage instead.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move' && source.hp = source.maxhp) {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+			}
+			else if (effect && effect.effectType === 'Move') {
+				this.heal(source.maxhp / 5);
+			}
+		},
+		id: "rejuvenation",
+		name: "Rejuvenation",
+	},
+	"forcedrain": {
+		shortDesc: "While this Pokemon is active, attacks with secondary effects used by adjacent foes have 0.75x power and the secondary effects are nullified.",
+		onModifySecondaries: function (secondaries) {
+			this.debug('Shield Dust prevent secondary');
+			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
+		},
+		onSourceBasePower: function (basePower, attacker, defender, move) {
+			if (move.secondaries) {
+				return this.chainModify(0.75);
+			}
+		},
+		id: "forcedrain",
+		name: "Force Drain",
+	},
+	"barbsboost": {
+		shortDesc: "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, pokemon, source, move) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+			let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+			if (target && target !== source && move && move.flags['contact']) {
+				this.damage(target.maxhp / 8, target, source);
+				this.boost({[stat]: 1}, source);
+			}
+			}
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		id: "barbsboost",
+		name: "Barbs Boost",
+	},
+	"foundation": {
+		shortDesc: "This Pokemon's STAB bonus is 2x rather than 1.5x. When this Pokemon is at or below half of its maximum HP, this Pokemon transforms into Zeeeee-Complete. Zeeeee-Complete's STAB bonus becomes 2.33x rather than 2x.",
+		onModifyMove: function (move, pokemon) {
+			if (pokemon.baseTemplate.species === 'Zee') {
+			move.stab = 2;
+			}
+			else if (pokemon.template.speciesid === 'xeeeeecomplete') {
+			move.stab = 2.33;
+			}
+		},
+		onResidualOrder: 27,
+		onResidual: function (pokemon) {
+			if (pokemon.name === 'Zeeeee' && pokemon.hp => pokemon.maxhp) {
+				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
+				pokemon.formeChange("Zeeeee-Complete");
+				this.add('-ability', pokemon, 'Foundation');
+			}
+		},
+		id: "foundation",
+		name: "Foundation",
+	},
+	/*'atmosphericpull': {
+		shortDesc: "Summons Gravity upon switch-in.",
+		onStart: function(source) {
+			this.useMove('Topsy-Turvy', source);
+		},
+		id: "atmosphericpull",
+		name: "Atmospheric Pull",
+	},*/
 };
