@@ -1462,13 +1462,16 @@ exports.BattleAbilities = {
 			for (const target of pokemon.side.foe.active) {
 			if (!target || target.fainted) continue;
 			this.add('-start', target, 'Embargo');
-			this.add('-endability', target);
 			target.addVolatile('gastroacid');
-			//this.singleEvent('End', this.getAbility(target.ability), target.abilityData, target, target, 'gastroacid');
 			}
 		},
-		// Item suppression implemented in BattlePokemon.ignoringItem() within battle-engine.js
-		// Ability suppression implemented in BattlePokemon.ignoringAbility() within battle-engine.js
+		onUpdate: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+			this.add('-start', target, 'Embargo');
+			target.addVolatile('gastroacid');
+			}
+		},
 		id: "overwhelmingpresence",
 		name: "Overwhelming Presence",
 	},
