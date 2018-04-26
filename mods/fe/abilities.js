@@ -5234,10 +5234,10 @@ exports.BattleAbilities = {
 	/*	onFoeSwitchOut: function (pokemon) {
 			this.add('-enditem', pokemon);
 		},*/
-		onSwitchOut: function (pokemon) {
+		onSwitchOut: function (pokemon, item) {
 			for (const target of pokemon.side.foe.active) {
 			if (!target || target.fainted) continue;
-			this.add('-enditem', target, '[from] move: Knock Off', '[of] ' + pokemon);
+			this.add('-enditem', target, item.name, '[from] move: Knock Off', '[of] ' + pokemon);
 			}
 		},
 		id: "confiscation",
