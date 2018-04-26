@@ -46,10 +46,10 @@ exports.BattleStatuses = {
 		exists: true,
 		effectType: 'Ability',
 		onStart: function () {
-			this.add('c|&Ludicrousity|things about to spiral outta control');
+			this.add('c|&Ludicrousity|Things about to spiral outta control');
 		},
 		onFaint: function(pokemon) {
-			this.add('c|%Ludicrousity|oof. all burnt out');
+			this.add('c|%Ludicrousity|oof. I\'m all burnt out');
 		},
 	},
 	gojiratar: {
@@ -66,10 +66,10 @@ exports.BattleStatuses = {
 		exists: true,
 		effectType: 'Ability',
 		onStart: function () {
-			this.add('c|%Pika Xreme|Praise Kirby');
+			this.add('c|%Pika Xreme|How are you doing? Personally, I\'m breathing properly.');
 		},
 		onFaint: function(pokemon) {
-			this.add('c|%Pika Xreme|Urban Dictionary is a terrible site');
+			this.add('c|%Pika Xreme|.');
 		},
 	},
 	zapmaster2010: {
