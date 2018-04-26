@@ -5235,7 +5235,7 @@ exports.BattleAbilities = {
 			this.add('-enditem', pokemon, '[from] ability: Confiscation', '[of] ' + pokemon);
 		},
 		onSwitchOut: function (pokemon) {
-			this.add('-enditem', pokemon, '[from] ability: Confiscation', '[of] ' + pokemon);
+			this.add('-enditem', pokemon, 'item', '[from] ability: Confiscation', '[of] ' + pokemon);
 		},
 		id: "confiscation",
 		name: "Confiscation",
