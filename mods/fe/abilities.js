@@ -5182,10 +5182,10 @@ exports.BattleAbilities = {
 		id: "barbsboost",
 		name: "Barbs Boost",
 	},
-	/*"foundation": {
+	"foundation": {
 		shortDesc: "This Pokemon's STAB bonus is 2x rather than 1.5x. When this Pokemon is at or below half of its maximum HP, this Pokemon transforms into Zeeeee-Complete. Zeeeee-Complete's STAB bonus becomes 2.33x rather than 2x.",
 		onModifyMove: function (move, pokemon) {
-			if (pokemon.baseTemplate.species === 'Zee') {
+			if (pokemon.baseTemplate.species === 'Zeeeee') {
 			move.stab = 2;
 			}
 			else if (pokemon.template.speciesid === 'zeeeeecomplete') {
@@ -5202,7 +5202,7 @@ exports.BattleAbilities = {
 		},
 		id: "foundation",
 		name: "Foundation",
-	},*/
+	},
 	/*'atmosphericpull': {
 		shortDesc: "Summons Gravity upon switch-in.",
 		onStart: function(source) {
