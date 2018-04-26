@@ -5044,13 +5044,13 @@ exports.BattleAbilities = {
 	onModifyCritRatio: function(critRatio, pokemon) {
 		if (pokemon.baseTemplate.species === 'Star') {
 			return critRatio + 1;
-		} else if (pokemon.baseTemplate.species === 'Star-Butterfly') {
+		} else if (pokemon.template.speciesid === 'starbutterfly') {
 			return critRatio + 2;
 		}
 	},
 	onHit: function(target, source, move) {
 		if (!target.hp) return;
-		if (move && move.effectType === 'Move' && move.crit && target.baseTemplate.species !== 'Star-Butterfly') {
+		if (move && move.effectType === 'Move' && move.crit && target.template.speciesid === 'starbutterfly') {
 		this.add('-formechange', target, 'Star-Butterfly', '[msg]');
 			target.formeChange("Star-Butterfly");
 			this.add('-ability', target, 'Magical Wand');
