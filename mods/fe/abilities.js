@@ -5042,15 +5042,15 @@ exports.BattleAbilities = {
 	"magicalwand": {
 	shortDesc: "Critical hit ratio is raised by one stage. Transforms into Star-Butterfly after it gets a critical hit. In butterfly form, critical hit ratio is raised by two stages.",
 	onModifyCritRatio: function(critRatio, pokemon) {
-		if (pokemon.name === 'Star') {
+		if (pokemon.baseTemplate.species === 'Star') {
 			return critRatio + 1;
-		} else if (pokemon.name === 'Star-Butterfly') {
+		} else if (pokemon.baseTemplate.species === 'Star-Butterfly') {
 			return critRatio + 2;
 		}
 	},
 	onHit: function(target, source, move) {
 		if (!target.hp) return;
-		if (move && move.effectType === 'Move' && move.crit) {
+		if (move && move.effectType === 'Move' && move.crit && !target.baseTemplate.species === 'Star-Butterfly') {
 		this.add('-formechange', target, 'Star-Butterfly', '[msg]');
 			target.formeChange("Star-Butterfly");
 			this.add('-ability', target, 'Magical Wand');
