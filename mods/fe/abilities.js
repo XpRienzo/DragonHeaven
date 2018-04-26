@@ -1458,21 +1458,15 @@ exports.BattleAbilities = {
 	},
 	"overwhelmingpresence": {
 		shortDesc: "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-		onStart: function(pokemon) {
-			this.add('-start', pokemon, 'Embargo');
-			this.add('-endability', pokemon);
-			this.singleEvent('End', this.getAbility(pokemon.ability), pokemon.abilityData, pokemon, pokemon, 'gastroacid')
+		onStart: function(source, target) {
+			this.add('-start', source, 'Embargo');
+			this.add('-endability', source);
+			this.singleEvent('End', this.getAbility(source.ability), source.abilityData, source, source, 'gastroacid')
 		},
 		// Item suppression implemented in BattlePokemon.ignoringItem() within battle-engine.js
 		// Ability suppression implemented in BattlePokemon.ignoringAbility() within battle-engine.js
-		onResidualOrder: 18,
-		onEnd: function(pokemon) {
-			this.add('-end', pokemon, 'Embargo');
-		},
 		id: "overwhelmingpresence",
 		name: "Overwhelming Presence",
-		rating: 3.5,
-		num: 252
 	},
 	"monsoon": {
 		desc: "If this Pokemon is a Casting, its type changes to the current weather condition's type, except Sandstorm.",
