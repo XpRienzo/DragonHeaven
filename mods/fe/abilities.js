@@ -5050,7 +5050,7 @@ exports.BattleAbilities = {
 	},
 	onHit: function(target, source, move) {
 		if (!target.hp) return;
-		if (move && move.effectType === 'Move' && move.crit && target.template.speciesid === 'starbutterfly') {
+		if (move && move.effectType === 'Move' && move.crit && target.template.speciesid !== 'starbutterfly') {
 		this.add('-formechange', target, 'Star-Butterfly', '[msg]');
 			target.formeChange("Star-Butterfly");
 			this.add('-ability', target, 'Magical Wand');
