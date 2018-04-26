@@ -5188,13 +5188,13 @@ exports.BattleAbilities = {
 			if (pokemon.baseTemplate.species === 'Zee') {
 			move.stab = 2;
 			}
-			else if (pokemon.template.speciesid === 'xeeeeecomplete') {
+			else if (pokemon.template.speciesid === 'zeeeeecomplete') {
 			move.stab = 2.33;
 			}
 		},
 		onResidualOrder: 27,
 		onResidual: function (pokemon) {
-			if (pokemon.name === 'Zeeeee' && pokemon.hp => pokemon.maxhp) {
+			if (pokemon.name === 'Zeeeee' && pokemon.hp => pokemon.maxhp / 2) {
 				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
 				pokemon.formeChange("Zeeeee-Complete");
 				this.add('-ability', pokemon, 'Foundation');
