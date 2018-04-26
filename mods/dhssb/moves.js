@@ -273,7 +273,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 250,
 		category: "Special",
-		shortDesc: "Sets up harsh sunlight. Give the user +2 to all stats. SE against dragon. Burns the target(s)",
+		shortDesc: "Sets up harsh sunlight. Give the user +2 to SpA and Spe and -12 in Atk. SE against dragon. Burns the target(s)",
 		id: "infernalabyss",
 		name: "Infernal Abyss",
 		pp: 1,
@@ -281,10 +281,8 @@ exports.BattleMovedex = {
 		flags: {},
 		selfBoost: {
 			boosts: {
-				atk: 2,
-				def: 2,
+				atk: -12,
 				spa: 2,
-				spd: 2,
 				spe: 2,
 			},
 		},
