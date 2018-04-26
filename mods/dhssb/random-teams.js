@@ -45,7 +45,7 @@ class RandomSeasonalTeams extends RandomTeams {
 			},
 			'Ludicrousity' : {
 				species: 'Typhlosion', ability: 'Wildfire', item: 'Ludicrousium-Z', gender: 'M',
-				moves: ['fireblast', 'protect', 'rest'],
+				moves: ['thunder', 'protect', 'recover'],
 				signatureMove: "Infernal Rain",evs: {hp: 252, atk:252, spd: 252, def: 252, spe: 252},
 				nature:'Timid',
 			},
