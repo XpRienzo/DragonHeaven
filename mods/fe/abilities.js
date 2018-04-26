@@ -4871,4 +4871,172 @@ exports.BattleAbilities = {
 		id: "soulforgeddiamond",
 		name: "Soulforged Diamond",
 	},
+	'slowsurge': {
+		shortDesc: "Summons Trick Room for 5 turns upon entering the field; if Trick Room is already active when the holder is switched in, it will disappear from the field.",
+		onStart: function(source) {
+			this.useMove('Trick Room', source);
+		},
+		id: "slowsurge",
+		name: "Slow Surge",
+	},
+	'petrify': {
+		shortDesc: "Prevents all adjacent opponent from using sound-based moves for two turns.",
+		onStart: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+			target.addVolatile('throatchop');
+			}
+		},
+		id: "petrify",
+		name: "Petrify",
+	},
+	"triggered": {
+		shortDesc: "Heals 1/4 of its max HP from Psychic-type moves and 1/8 of its max HP in Psychic Terrain; Psychic immunity. Takes 1.25x damage from Dark-type moves.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Psychic') {
+					this.heal(target.maxhp / 4)
+					this.add('-immune', target, '[msg]', '[from] ability: Triggered');
+					return null;
+			}
+		},
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			if (this.isTerrain('psychicterrain')) {
+				this.heal(pokemon.maxhp / 4)
+				this.add('-ability', pokemon, 'Triggered');
+			}
+		},
+		onSourceModifyDamage: function (damage, source, target, move) {
+			let mod = 1;
+			if (move.type === 'Dark') mod *= 1.25;
+			return this.chainModify(mod);
+		},
+		id: "triggered",
+		name: "Triggered",
+	},
+	"sharpshooter": {
+		shortDesc: "If this Pokemon is the target of a foe's move, that move loses one additional PP.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Pressure');
+		},
+		onDeductPP: function (pokemon) {
+			return 1;
+		},
+		onModifyCritRatio: function(critRatio) {
+			return critRatio + 6;
+		},
+		id: "sharpshooter",
+		name: "Sharpshooter",
+	},
+	"rubberup": {
+		shortDesc: "Whenever another Pokémon faints or has its stats lowered, this Pokémon has its Special Attack stat boosted by 2 combat stages.",
+		onAfterEachBoost: function (boost, pokemon, source) {
+		for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({atk: 2}, pokemon, pokemon, null, true);
+			}
+		}
+		},
+		onAnyFaint: function () {
+			this.boost({spa: 2}, this.effectData.target);
+		},
+		id: "rubberup",
+		name: "Rubber Up",
+	},
+	"shadowguard": {
+		shortDesc: "Immune to attacking moves while at full HP.",
+		onTryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status' || move.type === '???' || move.id === 'struggle') return;
+			this.debug('Wonder Guard immunity: ' + move.id);
+			if (target.hp = target.maxhp) {
+				this.add('-immune', target, '[msg]', '[from] ability: Shadow Guard');
+				return null;
+			}
+		},
+		id: "shadowguard",
+		name: "Shadow Guard",
+	},
+	"spiralflames": {
+		shortDesc: "Stat boosts and drops are inverted on this Pokémon and ignored on the opponent.",
+		onBoost: function (boost, target, source, effect) {
+			if (effect && effect.id === 'zpower') return;
+			for (let i in boost) {
+				// @ts-ignore
+				boost[i] *= -1;
+			}
+		},
+		onAnyModifyBoost: function (boosts, target) {
+			let source = this.effectData.target;
+			if (source === target) return;
+			if (source === this.activePokemon && target === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (target === this.activePokemon && source === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		id: "spiralflames",
+		name: "Spiral Flames",
+	},
+	"pixieabsorb": {
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Fairy moves; Fairy immunity.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fairy') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Pixie Absorb');
+				}
+				return null;
+			}
+		},
+		id: "pixieabsorb",
+		name: "Pixie Absorb",
+	},
+	"peerpressure": {
+		shortDesc: "The opponent's highest non-HP stat is halved.",
+		onStart: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in target.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = target.stats[i];
+					}
+				}
+				this.boost({[stat]: -2}, target);
+			}
+		},
+		id: "peerpressure",
+		name: "Peer Pressure",
+	},
+	"rhythm": {
+		shortDesc: "At the end of every turn, Darmin switches from Darmin-Up to Darmin-Down, or vice versa.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			if (pokemon.name === 'Darmin-Up') {
+			this.add('-formechange', pokemon, 'Darmin-Down', '[msg]');
+			pokemon.formeChange("Darmin-Down");
+			}
+			else if (pokemon.name === 'Darmin-Down') {
+			this.add('-formechange', pokemon, 'Darmin-Up', '[msg]');
+			pokemon.formeChange("Darmin-Up");
+			}
+		},
+		id: "rhythm",
+		name: "Rhythm",
+	},
 };
