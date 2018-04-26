@@ -1459,7 +1459,7 @@ exports.BattleAbilities = {
 	"overwhelmingpresence": {
 		shortDesc: "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
 		onStart: function(source, target) {
-			this.add('-start', source, 'Embargo');
+			this.add('-start', target, 'Embargo');
 			this.add('-endability', source);
 			this.singleEvent('End', this.getAbility(source.ability), source.abilityData, target, source, 'gastroacid');
 		},
