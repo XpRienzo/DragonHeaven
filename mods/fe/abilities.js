@@ -1463,7 +1463,7 @@ exports.BattleAbilities = {
 			if (!target || target.fainted) continue;
 			this.add('-start', target, 'Embargo');
 			this.add('-endability', target);
-			//this.singleEvent('End', this.getAbility(source.ability), source.abilityData, target, source, 'gastroacid');
+			this.singleEvent('End', this.getAbility(target.ability), target.abilityData, target, target, 'gastroacid');
 			}
 		},
 		// Item suppression implemented in BattlePokemon.ignoringItem() within battle-engine.js
