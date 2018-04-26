@@ -5146,7 +5146,7 @@ exports.BattleAbilities = {
 		id: "forcedrain",
 		name: "Force Drain",
 	},
-	/*"barbsboost": {
+	"barbsboost": {
 		shortDesc: "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
 		onAfterDamageOrder: 1,
 		onAfterDamage: function (damage, pokemon, source, move) {
@@ -5181,7 +5181,7 @@ exports.BattleAbilities = {
 		},
 		id: "barbsboost",
 		name: "Barbs Boost",
-	},*/
+	},
 	/*"foundation": {
 		shortDesc: "This Pokemon's STAB bonus is 2x rather than 1.5x. When this Pokemon is at or below half of its maximum HP, this Pokemon transforms into Zeeeee-Complete. Zeeeee-Complete's STAB bonus becomes 2.33x rather than 2x.",
 		onModifyMove: function (move, pokemon) {
