@@ -138,34 +138,57 @@ exports.BattleAbilities = {
 		rating: 3,
 		num: 210,
 	},
-	"moonlightaura": {
-		name:"Moonlight Aura",
-		id: "moonlightaura",
-		shortDesc: "Doubles Def and SpD. Heals users status at the end of each turn. Halves all damage from SE hits.",
-		desc: "Doubles Def and SpD. Heals users status at the end of each turn. Halves all damage from SE hits.",
-      onModifyDefPriority: 6,
-		onModifyDef: function (def) {
-			return this.chainModify(2);
-		},
-		onModifySpDPriority: 6,
-		onModifySpD: function (spd) {
-			return this.chainModify(2);
-		},
-		onResidualOrder: 5,
+	"wildfire": {
+		name:"Wildfire",
+		id: "wildfire",
+		shortDesc: "Raises all stats 1 stage at the end of each turn. Fire moves deal double damage.",
+		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual: function (pokemon) {
-			if (pokemon.hp && pokemon.status) {
-				this.debug('moonlight aura');
-				this.add('-activate', pokemon, 'ability: Moonlight Aura');
-				pokemon.cureStatus();
-			}
-		},
-     	onSourceModifyDamage: function (damage, source, target, move) {
-			if (move.typeMod > 0) {
-				this.debug('Moonlight Aura neutralize');
-				return this.chainModify(0.5);
+			if (pokemon.activeTurns) {
+				this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1, });
 			}
 		},	
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				this.debug('Wildfire boost');
+				return this.chainModify(2);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				this.debug('Wildfire boost');
+				return this.chainModify(2);
+			}
+		},
+	},
+	"thicctoxicity": {
+		name:"Thicc Toxicity",
+		id: "thicctoxicity",
+		shortDesc: "Poison Heal + Half Damage from SE hits + heals 1/3 max HP when hit by Fighting moves; Fighting immunity.",
+		onDamagePriority: 1,
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'psn' || effect.id === 'tox') {
+				this.heal(target.maxhp / 8);
+				return false;
+			}
+		},
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				this.debug('Thicc Toxicity neutralize');
+				return this.chainModify(0.5);
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fighting') {
+				if (!this.heal(target.maxhp / 3)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Thicc Toxicity');
+				}
+				return null;
+			}
+		},
 	},
 	"extremeintimidate": { /* Fix this On switchin --> Haze --> Lower all of th foe's stats by one*/
 		name:"Extreme Intimidate",
