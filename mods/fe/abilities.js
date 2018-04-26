@@ -1465,9 +1465,12 @@ exports.BattleAbilities = {
 			target.addVolatile('gastroacid');
 			}
 		},
-		onFoeSwitchOut: function(pokemon) {
-			this.add('-start', pokemon, 'Embargo');
-			pokemon.addVolatile('gastroacid');
+		onFoeSwitch: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+			this.add('-start', target, 'Embargo');
+			target.addVolatile('gastroacid');
+			}
 		},
 		id: "overwhelmingpresence",
 		name: "Overwhelming Presence",
