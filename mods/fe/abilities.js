@@ -5039,7 +5039,7 @@ exports.BattleAbilities = {
 		id: "rhythm",
 		name: "Rhythm",
 	},
-	"magicalwand": {
+		"magicalwand": {
 	shortDesc: "Critical hit ratio is raised by one stage. Transforms into Star-Butterfly after it gets a critical hit. In butterfly form, critical hit ratio is raised by two stages.",
 	onModifyCritRatio: function(critRatio, pokemon) {
 		if (pokemon.baseTemplate.species === 'Star') {
@@ -5050,7 +5050,7 @@ exports.BattleAbilities = {
 	},
 	onHit: function(target, source, move) {
 		if (!target.hp) return;
-		if (move && move.effectType === 'Move' && move.crit && target.template.speciesid !== 'starbutterfly') {
+		if (target.baseTemplate.baseSpecies === 'Star' && move && move.effectType === 'Move' && move.crit && target.template.speciesid !== 'starbutterfly') {
 		this.add('-formechange', target, 'Star-Butterfly', '[msg]');
 			target.formeChange("Star-Butterfly");
 			this.add('-ability', target, 'Magical Wand');
@@ -5156,13 +5156,13 @@ exports.BattleAbilities = {
 			move.stab = 2.33;
 			}
 		},
-		onResidualOrder: 27,
+	/*	onResidualOrder: 27,
 		onResidual: function (pokemon) {
-			if (pokemon.template.speciesid === 'darmanitan' && pokemon.hp => pokemon.maxhp / 2) {
+			if (pokemon.baseTemplate.baseSpecies === 'Zeeeee' && pokemon.hp => pokemon.maxhp / 2 && pokemon.template.speciesid !== 'starbutterfly') {
 				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
 				pokemon.formeChange("Zeeeee-Complete");
 			}
-		},
+		},*/
 		id: "foundation",
 		name: "Foundation",
 	},
