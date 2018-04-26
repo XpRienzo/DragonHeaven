@@ -5156,13 +5156,13 @@ exports.BattleAbilities = {
 			move.stab = 2.33;
 			}
 		},
-		onResidualOrder: 27,
+	/*	onResidualOrder: 27,
 		onResidual: function (pokemon) {
 			if (pokemon.baseTemplate.species === 'Zeeeee' && pokemon.hp => pokemon.maxhp / 2) {
 				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
 				pokemon.formeChange("Zeeeee-Complete");
 			}
-		},
+		},*/
 		id: "foundation",
 		name: "Foundation",
 	},
