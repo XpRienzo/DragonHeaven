@@ -1458,10 +1458,13 @@ exports.BattleAbilities = {
 	},
 	"overwhelmingpresence": {
 		shortDesc: "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
-		onStart: function(source, target) {
+		onStart: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
 			this.add('-start', target, 'Embargo');
-			this.add('-endability', source);
-			this.singleEvent('End', this.getAbility(source.ability), source.abilityData, target, source, 'gastroacid');
+			this.add('-endability', target);
+			//this.singleEvent('End', this.getAbility(source.ability), source.abilityData, target, source, 'gastroacid');
+			}
 		},
 		// Item suppression implemented in BattlePokemon.ignoringItem() within battle-engine.js
 		// Ability suppression implemented in BattlePokemon.ignoringAbility() within battle-engine.js
