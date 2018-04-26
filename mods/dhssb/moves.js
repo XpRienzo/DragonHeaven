@@ -249,37 +249,87 @@ exports.BattleMovedex = {
 		zMoveBoost: {evasion: 1},
 		contestType: "Clever",
 	},
-	"corruptaura": {
-		accuracy: true,
-		basePower: 50,
-		category: "Physical",
-		desc: "Replaces the foes ability with Illusion. Heals the user for 25% of its max HP",
-		shortDesc: "Replaces the foes ability with Illusion. Heals the user for 25% of its max HP",
-		id: "corruptaura",
+	"infernalrain": {
+		accuracy: 100,
+		basePower: 20,
+		category: "Special",
+		shortDesc: "Hits 8 times. Has a 10% chance to burn with each hit.",
+		id: "infernalabyss",
 		isViable: true,
-		name: "Corrupt Aura",
+		name: "Infernal Rain",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
-		heal: [1, 4],
-		onTryHit: function (pokemon) {
-			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'simple', 'stancechange', 'truant'];
-			if (bannedAbilities.includes(pokemon.ability)) {
-				return false;
-			}
+		flags: {authentic: 1, defrost: 1, protect: 1},
+		secondary: {
+			chance: 10,
+			status: 'brn',
 		},
-		onHit: function (pokemon) {
-			let oldAbility = pokemon.setAbility('illusion');
-			if (oldAbility) {
-				this.add('-ability', pokemon, 'Illusion', '[from] move: Corrupt Aura');
+		target: "allAdjacent",
+		type: "Fire",
+		zMovePower: 100,
+		contestType: "Cool",
+	},
+	"infernalabyss": {
+		accuracy: true,
+		basePower: 250,
+		category: "Special",
+		shortDesc: "Sets up harsh sunlight. Give the user +2 to all stats. SE against dragon. Burns the target(s)",
+		id: "infernalabyss",
+		name: "Infernal Abyss",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		selfBoost: {
+			boosts: {
+				atk: 2,
+				def: 2,
+				spa: 2,
+				spd: 2,
+				spe: 2,
+			},
+		},
+		weather: 'sunnyday',
+		onEffectiveness: function (typeMod, type) {
+			if (type === 'Dragon') return 1;
+		},
+		isZ: "ludicrousiumz",
+		secondary: {
+			chance: 100,
+			status: 'brn',
+		},
+		target: "allAdjacent",
+		type: "Fire",
+		contestType: "Cool",
+	},
+	"waitaminute": {
+		accuracy: 100,
+		basePower: 180,
+		category: "Physical",
+		shortDesc: "Raises user's Attack, Defense, Special Defence and Speed by 2 on turn 1. Hits turn 2.",
+		id: "waitaminute",
+		isViable: true,
+		name: "Wait A Minute",
+		pp: 10,
+		priority: 0,
+		flags: {charge: 1, protect: 1, mirror: 1},
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
 				return;
 			}
-			return false;
+			this.add('-prepare', attacker, move.name, defender);
+			this.boost({atk: 2, def: 2, spd: 2, spe: 2}, attacker, attacker, this.getMove('waitaminute'));
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				attacker.removeVolatile(move.id);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
 		},
 		secondary: false,
 		target: "normal",
 		type: "Dark",
-		zMovePower: 100,
+		zMovePower: 220,
 		contestType: "Cool",
 	},
 		"shitpost": {
