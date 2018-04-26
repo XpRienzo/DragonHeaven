@@ -5146,6 +5146,26 @@ exports.BattleAbilities = {
 		id: "forcedrain",
 		name: "Force Drain",
 	},
+		"foundation": {
+		shortDesc: "This Pokemon's STAB bonus is 2x rather than 1.5x. When this Pokemon is at or below half of its maximum HP, this Pokemon transforms into Zeeeee-Complete. Zeeeee-Complete's STAB bonus becomes 2.33x rather than 2x.",
+		onModifyMove: function (move, pokemon) {
+			if (pokemon.baseTemplate.species === 'Zeeeee') {
+			move.stab = 2;
+			}
+			else if (pokemon.template.speciesid === 'zeeeeecomplete') {
+			move.stab = 2.33;
+			}
+		},
+		onResidualOrder: 27,
+		onResidual: function (pokemon) {
+			if (pokemon.baseTemplate.species === 'Zeeeee' && pokemon.hp => pokemon.maxhp / 2) {
+				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
+				pokemon.formeChange("Zeeeee-Complete");
+			}
+		},
+		id: "foundation",
+		name: "Foundation",
+	},
 	"barbsboost": {
 		shortDesc: "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
 		onAfterDamageOrder: 1,
@@ -5181,27 +5201,6 @@ exports.BattleAbilities = {
 		},
 		id: "barbsboost",
 		name: "Barbs Boost",
-	},
-	"foundation": {
-		shortDesc: "This Pokemon's STAB bonus is 2x rather than 1.5x. When this Pokemon is at or below half of its maximum HP, this Pokemon transforms into Zeeeee-Complete. Zeeeee-Complete's STAB bonus becomes 2.33x rather than 2x.",
-		onModifyMove: function (move, pokemon) {
-			if (pokemon.baseTemplate.species === 'Zeeeee') {
-			move.stab = 2;
-			}
-			else if (pokemon.template.speciesid === 'zeeeeecomplete') {
-			move.stab = 2.33;
-			}
-		},
-		onResidualOrder: 27,
-		onResidual: function (pokemon) {
-			if (pokemon.name === 'Zeeeee' && pokemon.hp => pokemon.maxhp / 2) {
-				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
-				pokemon.formeChange("Zeeeee-Complete");
-				this.add('-ability', pokemon, 'Foundation');
-			}
-		},
-		id: "foundation",
-		name: "Foundation",
 	},
 	/*'atmosphericpull': {
 		shortDesc: "Summons Gravity upon switch-in.",
