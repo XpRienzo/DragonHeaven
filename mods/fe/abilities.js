@@ -5231,17 +5231,14 @@ exports.BattleAbilities = {
 	},
 	"confiscation": {
 		shortDesc: "Any Pokemon that tries to switch out on it will lose its item as a result.",
-	/*onFoeSwitchOut: function (pokemon) {
+		/*onFoeSwitchOut: function (pokemon) {
 			for (const target of pokemon.side.foe.active) {
 			if (!target || target.fainted) continue;
 			this.add('-enditem', target, '[from] move: Knock Off', '[of] ' + pokemon);
 			}
 		},*/
 		onSwitchOut: function (pokemon) {
-			for (const target of pokemon.side.foe.active) {
-			if (!target || target.fainted) continue;
-			this.add('-enditem', target, '[from] move: Knock Off', '[of] ' + pokemon);
-			}
+			this.add('-enditem', pokemon, '[from] move: Knock Off', '[of] ' + pokemon);
 		},
 		id: "confiscation",
 		name: "Confiscation",
