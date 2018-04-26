@@ -46,10 +46,20 @@ exports.BattleStatuses = {
 		exists: true,
 		effectType: 'Ability',
 		onStart: function () {
-			this.add('c|&Ludicrousity|Bow before me foolish mortals xaa');
+			this.add('c|&Ludicrousity|things about to spiral outta control');
 		},
 		onFaint: function(pokemon) {
-			this.add('c|%Ludicrousity|Praise Snaq!!!');
+			this.add('c|%Ludicrousity|oof. all burnt out');
+		},
+	},
+	gojiratar: {
+		exists: true,
+		effectType: 'Ability',
+		onStart: function () {
+			this.add('c|@Gojiratar|Hoi personhumanbeing');
+		},
+		onFaint: function(pokemon) {
+			this.add('c|@Gojiratar|oshet');
 		},
 	},
 	pikaxreme: {
