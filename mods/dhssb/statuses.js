@@ -49,7 +49,7 @@ exports.BattleStatuses = {
 			this.add('c|&Ludicrousity|things about to spiral outta control');
 		},
 		onFaint: function(pokemon) {
-			this.add('c|%Ludicrousity|oof. ll burnt out');
+			this.add('c|%Ludicrousity|oof. all burnt out');
 		},
 	},
 	gojiratar: {
