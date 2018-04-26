@@ -5206,7 +5206,7 @@ exports.BattleAbilities = {
 	'atmosphericpull': {
 		shortDesc: "Summons Gravity upon switch-in.",
 		onStart: function(source) {
-			this.setPsuedoWeather('gravity');
+			this.useMove('Gravity', source);
 		},
 		id: "atmosphericpull",
 		name: "Atmospheric Pull",
