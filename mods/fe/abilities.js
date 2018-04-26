@@ -5114,7 +5114,7 @@ exports.BattleAbilities = {
 	"rejuvenation": {
 		shortDesc: "Every time this Pokemon KOs another Pokemon, it heals 20% of it's HP. If this Pokemon is at full health, it's highest non-HP stat will be increased by 1 stage instead.",
 		onSourceFaint: function (target, source, effect) {
-			if (effect && effect.effectType === 'Move' && source.hp = source.maxhp) {
+			if (effect && effect.effectType === 'Move' && source.hp === source.maxhp) {
 				let stat = 'atk';
 				let bestStat = 0;
 				for (let i in source.stats) {
