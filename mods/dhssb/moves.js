@@ -254,7 +254,7 @@ exports.BattleMovedex = {
 		basePower: 20,
 		category: "Special",
 		shortDesc: "Hits 8 times. Has a 10% chance to burn with each hit.",
-		id: "infernalabyss",
+		id: "infernalrain",
 		isViable: true,
 		name: "Infernal Rain",
 		pp: 10,
