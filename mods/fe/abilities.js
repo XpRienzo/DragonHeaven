@@ -5168,7 +5168,7 @@ exports.BattleAbilities = {
 		name: "Foundation",
 	},
 	"barbsboost": {
-		shortDesc: "Pokemon making contact with this Pokemon lose 1/8 of their max HP.",
+		shortDesc: "When defeating an opponent or when touched by a contact move, boost the user's highest non-HP stat by one stage. An attacker loses 1/8 HP when using a contact move on this Pokémon.",
 		onAfterDamageOrder: 1,
 		onAfterDamage: function (damage, pokemon, source, move) {
 			for (const target of pokemon.side.foe.active) {
@@ -5210,5 +5210,34 @@ exports.BattleAbilities = {
 		},
 		id: "atmosphericpull",
 		name: "Atmospheric Pull",
+	},
+	"trickyglare": {
+		shortDesc: "Status moves have +1 priority. If the opposing Pokemon attempts to use status moves, the move will fail and their attack will drop by 1 stage.",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.category === 'Status') {
+				move.pranksterBoosted = true;
+				return priority + 1;
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.category === 'Status') {
+				this.boost({atk: -1}, source, target);
+				this.add('-immune', target, '[msg]', '[from] ability: Tricky Glare');
+				return null;
+			}
+		},
+		id: "trickyglare",
+		name: "Tricky Glare",
+	},
+	"confiscation": {
+		shortDesc: "Any Pokemon that tries to switch out on it will lose its item as a result.",
+		onFoeSwitchOut: function (pokemon) {
+			pokemon.takeItem();
+		},
+		onSwitchOut: function (pokemon) {
+			pokemon.takeItem();
+		},
+		id: "confiscation",
+		name: "Confiscation",
 	},
 };
