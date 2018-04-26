@@ -1460,8 +1460,8 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon's moves and their effects ignore the Abilities of other Pokemon.",
 		onStart: function(source, target) {
 			this.add('-start', source, 'Embargo');
-			this.add('-endability', pokemon);
-			this.singleEvent('End', this.getAbility(source.ability), source.abilityData, source, target, 'gastroacid');
+			this.add('-endability', source);
+			this.singleEvent('End', this.getAbility(source.ability), source.abilityData, target, source, 'gastroacid');
 		},
 		// Item suppression implemented in BattlePokemon.ignoringItem() within battle-engine.js
 		// Ability suppression implemented in BattlePokemon.ignoringAbility() within battle-engine.js
