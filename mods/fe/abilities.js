@@ -5148,7 +5148,7 @@ exports.BattleAbilities = {
 	},
 		"foundation": {
 		shortDesc: "This Pokemon's STAB bonus is 2x rather than 1.5x. When this Pokemon is at or below half of its maximum HP, this Pokemon transforms into Zeeeee-Complete. Zeeeee-Complete's STAB bonus becomes 2.33x rather than 2x.",
-		onModifyMove: function (move, pokemon) {
+			onModifyMove: function (move, pokemon) {
 			if (pokemon.baseTemplate.species === 'Zeeeee') {
 			move.stab = 2;
 			}
@@ -5156,13 +5156,13 @@ exports.BattleAbilities = {
 			move.stab = 2.33;
 			}
 		},
-	/*	onResidualOrder: 27,
+		onResidualOrder: 27,
 		onResidual: function (pokemon) {
-			if (pokemon.baseTemplate.species === 'Zeeeee' && pokemon.hp => pokemon.maxhp / 2) {
+			if (pokemon.template.speciesid === 'darmanitan' && pokemon.hp => pokemon.maxhp / 2) {
 				this.add('-formechange', pokemon, 'Zeeeee-Complete', '[msg]');
 				pokemon.formeChange("Zeeeee-Complete");
 			}
-		},*/
+		},
 		id: "foundation",
 		name: "Foundation",
 	},
