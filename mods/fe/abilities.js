@@ -5279,19 +5279,16 @@ exports.BattleAbilities = {
 		id: "familiarmaneuvering",
 		name: "Familiar Maneuvering",
 	},
-	"constellation": {
-		shortDesc: "Contact Moves used by the holder don't make contact; whenever the holder uses a contact move, its status is cured.",
-		onModifyMove: function (move) {
-			delete move.flags['contact'];
-		},
-		onTryHit: function (pokemon, source, move) {
-			for (const target of pokemon.side.foe.active) {
-			if (source !== target && move.flags['contact'] && pokemon.status) {
-				source.cureStatus();
-				}
+	"powersurge": {
+		shortDesc: "Immune to Electric-type moves. When hit by one, next attack is a guaranteed crit.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Electric') {
+					this.add('-immune', target, '[msg]', '[from] ability: Power Surge');
+					target.addVolatile('laserfocus');
+					return null;
 			}
 		},
-		id: "constellation",
-		name: "Constellation",
+		id: "powersurge",
+		name: "Power Surge",
 	},
 };
