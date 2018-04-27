@@ -1,7 +1,40 @@
 'use strict';
 
 exports.BattleItems = {
-	
+	"adrenalineorb": {
+		id: "adrenalineorb",
+		name: "Adrenaline Orb",
+		spritenum: 660,
+		fling: {
+			basePower: 30,
+		},
+		onAfterEachBoost: function (boost, target, source) {
+			let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+			if (!source || target.side === source.side) {
+				return;
+			}
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		num: 846,
+		gen: 7,
+		desc: "If the user has any of its stats lowered, its highest stat gets raised by one stage. Item does not get consumed.",
+	},
 	"adamantorb": {
 		inherit: true,
 		onTakeItem: function (item, source) {
