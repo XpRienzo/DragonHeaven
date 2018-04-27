@@ -67,11 +67,11 @@ exports.BattleAbilities = {
 			}
 			}
 			},*/
-			onImmunity: function (type, pokemon) {
-			for (const target of pokemon.side.foe.active) {
-			if (!target || target.fainted) continue;
+			onFoeImmunity: function (type, pokemon) {
+			//for (const target of pokemon.side.foe.active) {
+			//if (!target || target.fainted) continue;
 			if (type === 'trapped') return false;
-			}
+		//	}
 		},
 		id: "entomb",
 		name: "Entomb",
