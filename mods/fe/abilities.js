@@ -5232,9 +5232,11 @@ exports.BattleAbilities = {
 	"confiscation": {
 		shortDesc: "Any Pokemon that tries to switch out on it will lose its item as a result.",
 		onFoeSwitchOut: function (pokemon) {
+			pokemon.takeItem();
 			this.add('-enditem', pokemon, 'item', '[from] ability: Confiscation', '[of] ' + pokemon);
 		},
 		onSwitchOut: function (pokemon) {
+			pokemon.takeItem();
 			this.add('-enditem', pokemon, 'item', '[from] ability: Confiscation', '[of] ' + pokemon);
 		},
 		id: "confiscation",
