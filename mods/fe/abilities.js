@@ -5271,20 +5271,6 @@ exports.BattleAbilities = {
 				}
 		},
 	},
-	"ability": {
-		shortDesc: "Fire-type attacking moves have their power doubled and their PP halved.",
-		onModifyMove: function (move) {
-			if (move.type === 'Fire' && move.category !== 'Status') {
-			move.pp / 2;
-			}
-		},
-		onDeductPP: function (move, pokemon) {
-			if (move.type === 'Fire' && move.category !== 'Status') return;
-			return move.pp / 2;
-		},
-		id: "ability",
-		name: "Ability",
-	},
 	"familiarmaneuvering": {
 		shortDesc: "This Pokemon's STAB moves have +1 priority (including status moves that would be STAB).",
 		onModifyPriority: function (priority, pokemon, target, move) {
@@ -5292,5 +5278,18 @@ exports.BattleAbilities = {
 		},
 		id: "familiarmaneuvering",
 		name: "Familiar Maneuvering",
+	},
+	"constellation": {
+		shortDesc: "Contact Moves used by the holder don't make contact; whenever the holder uses a contact move, its status is cured.",
+		onModifyMove: function (move) {
+			delete move.flags['contact'];
+		},
+		onUpdate: function (move, pokemon) {
+			if (move.flags['contact'] && pokemon.status) {
+				 pokemon.cureStatus();
+			}
+		},
+		id: "constellation",
+		name: "Constellation",
 	},
 };
