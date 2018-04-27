@@ -59,9 +59,12 @@ exports.BattleAbilities = {
                         }
 		},
 		onFoeSwitchOut: function (pokemon) {
+			for (const source of pokemon.side.foe.active) {
+			if (!source || source.fainted) continue;
 			if (pokemon.hasType('Ghost') && this.isAdjacent(pokemon, this.effectData.target)) {
-				this.add('-ability', pokemon, 'Entomb');
+				this.add('-ability', source, 'Entomb');
 				return null;
+			}
 			}
 			},
 		id: "entomb",
