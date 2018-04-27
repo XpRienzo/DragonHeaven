@@ -5271,6 +5271,16 @@ exports.BattleAbilities = {
 				}
 		},
 	},
+	"ability": {
+		shortDesc: "Fire-type attacking moves have their power doubled and their PP halved.",
+		onModifyMove: function (move) {
+			if (move.type === 'Fire' && move.category !== 'Status') {
+			move.pp / 2;
+			}
+		},
+		id: "ability",
+		name: "Ability",
+	},
 	"familiarmaneuvering": {
 		shortDesc: "This Pokemon's STAB moves have +1 priority (including status moves that would be STAB).",
 		onModifyPriority: function (priority, pokemon, target, move) {
