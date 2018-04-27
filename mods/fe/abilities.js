@@ -5287,7 +5287,7 @@ exports.BattleAbilities = {
 		onTryHit: function (pokemon, source, move) {
 			for (const target of pokemon.side.foe.active) {
 			if (source !== target && move.flags['contact'] && pokemon.status) {
-				pokemon.cureStatus();
+				source.cureStatus();
 				}
 			}
 		},
