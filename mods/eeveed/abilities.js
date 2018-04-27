@@ -6,9 +6,7 @@ exports.BattleAbilities = {
 		onEffectiveness: function (typeMod, target, type, move) {
 			if (move && move.type !== "Grass") return;
 			if (move && !this.getImmunity(move, type)) return 1;
-			for (let i in typeMod) {
-			return i *= -1;
-			}
+			return -typeMod;
 		},
 		id: "inverseivy",
 		name: "Inverse Ivy",
