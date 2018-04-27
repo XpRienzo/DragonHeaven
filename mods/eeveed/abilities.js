@@ -127,15 +127,6 @@ exports.BattleAbilities = {
 		name: "Frostborn",
 		rating: 3.5,
 	},
-	"lucky": {
-		shortDesc: "This mons attacks always crit unless Lucky Shield, shell armour or battle armour are active.",
-		onModifyCritRatio: function(critRatio) {
-			return critRatio + 6;
-		},
-		id: "lucky",
-		name: "Lucky",
-		rating: 3.5,
-	},
 	"unbreakable": {
 		shortDesc: "This Pokemon is immune to punch-based moves.",
 		onTryHit: function(target, source, move) {
@@ -169,22 +160,21 @@ exports.BattleAbilities = {
 		id: "quickclaws",
 		name: "Quick Claws",
 	},
-	"reaperslice": { /* Make the 1.2 somehow 1.3 + Add the infiltrating effect*/
+	"reaperslice": { 
 		desc: "Ghost type moves can bypass Subsitutes, they have also x1.3 power",
 		shortDesc: "Ghost type moves can bypass Subsitutes, they have also x1.3 power",
-		onModifyMovePriority: -1,
-		onModifyMove: function(move, pokemon) {
-			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
-				move.type = 'Ghost';
-				move.sliceBoosted = true;
+		onModifyMove: function (move) {
+			if (move.type === 'Ghost') {
+			move.infiltrates = true;
 			}
 		},
 		onBasePowerPriority: 8,
-		onBasePower: function(basePower, pokemon, target, move) {
-			if (move.sliceBoosted) return this.chainModify([0x1333, 0x1000]);
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				return this.chainModify(1.3);
+			}
 		},
 		id: "reaperslice",
 		name: "Reaper Slice",
-		rating: 4,
 	},
 };
