@@ -71,7 +71,7 @@ regalreversal: {
 	},
       onFoeModifyMove: function (move, typeMod) {
 		if (move.typeMod > 0) {
-      move.recoil = [1, 2];
+      move.switch = true;
 		}
 		},
     id: "regalreversal",
