@@ -5253,16 +5253,7 @@ exports.BattleAbilities = {
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual: function (pokemon) {
-			if (this.randomChance(1, 2)) {
-				if (pokemon.hp && !pokemon.item && this.getItem(pokemon.lastItem).isBerry) {
-					pokemon.setItem(pokemon.lastItem);
-					pokemon.lastItem = '';
-					pokemon.recycledItem = true;
-					this.add('-item', pokemon, pokemon.getItem(), '[from] ability: Stat Harvesting');
-					}
-				}
-			if (pokemon.recyledItem) {
-				let stat = 'atk';
+			let stat = 'atk';
 				let bestStat = 0;
 				for (let i in pokemon.stats) {
 					if (pokemon.stats[i] > bestStat) {
@@ -5270,8 +5261,14 @@ exports.BattleAbilities = {
 						bestStat = pokemon.stats[i];
 					}
 				}
-				this.boost({[stat]: 1}, pokemon);
-			}
+			if (this.randomChance(1, 2)) {
+				if (pokemon.hp && !pokemon.item && this.getItem(pokemon.lastItem).isBerry) {
+					pokemon.setItem(pokemon.lastItem);
+					this.boost({[stat]: 1}, pokemon);
+					pokemon.lastItem = '';
+					this.add('-item', pokemon, pokemon.getItem(), '[from] ability: Stat Harvesting');
+					}
+				}
 		},
 	},
 	"familiarmaneuvering": {
