@@ -52,7 +52,7 @@ exports.BattleAbilities = {
 				pokemon.maybeTrapped = true;
 			}
 		},
-                onModifyPriority: function (priority, pokemon) {
+        onModifyPriority: function (priority, pokemon) {
 			for (const target of pokemon.side.foe.active) {
 			if (!target || target.fainted) continue;
                         if (target.hasType('Ghost')) return priority +4;
@@ -67,12 +67,13 @@ regalreversal: {
 	onSourceModifyDamage: function(damage, source, target, move) {
 		if (move.typeMod > 0) {
 			return this.chainModify(0.75);
+			move.regalRecoil = true;
 		}
 	},
-      onFoeModifyMove: function (move, typeMod) {
-		if (move.typeMod > 0) {
-      move.switch = true;
-		}
+	onModifyMove: function (move) {
+			if (move.regalRecoil = true) {
+				move.recoil = [1, 2];
+			}
 		},
     id: "regalreversal",
 	name: "Regal Reversal",
