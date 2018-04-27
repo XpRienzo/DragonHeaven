@@ -6,7 +6,9 @@ exports.BattleAbilities = {
 		onEffectiveness: function (typeMod, target, type, move) {
 			if (move && move.type !== "Grass") return;
 			if (move && !this.getImmunity(move, type)) return 1;
-			return -typeMod;
+			for (let i in typeMod) {
+			typeMod[i] *= -1;
+			}
 		},
 		id: "inverseivy",
 		name: "Inverse Ivy",
@@ -23,7 +25,7 @@ exports.BattleAbilities = {
 		name: "Crystal Reflection",
 	},
 	"torridsand": {
-		shortDesc: "If Psychic Terrain is active, this Pokemon's Speed is doubled.",
+		shortDesc: "The user's Ground-type moves deal Super Effective damage on Water-types",
 		onModifyMove: function(move) {
 			if (move.type !== "Ground") return;
 			move.onEffectiveness = function(typeMod, type) {
