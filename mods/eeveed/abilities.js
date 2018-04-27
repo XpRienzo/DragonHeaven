@@ -146,8 +146,8 @@ exports.BattleAbilities = {
 	},
 	"lucky": {
 		shortDesc: "This mons attacks always crit unless Lucky Shield, shell armour or battle armour are active.",
-		onModifyCritRatio: function(critRatio) {
-			return critRatio + 6;
+		onModifyMove: function(move) {
+			move.willCrit = true;
 		},
 		id: "lucky",
 		name: "Lucky",
