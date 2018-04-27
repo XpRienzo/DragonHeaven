@@ -1,6 +1,7 @@
 'use strict';
 
 exports.BattleItems = {
+	
 	"adamantorb": {
 		inherit: true,
 		onTakeItem: function (item, source) {
@@ -203,6 +204,19 @@ exports.BattleItems = {
 			}
 		},
 		desc: "When the user is hit by a contact move, this item is consumed and the opponent becomes drowsy",
+	},
+	"serenitybrace": {
+		id: "Serenity Brace",
+		name: "serenitybrace",
+		spritenum: 417,
+		fling: {
+			basePower: 50,
+		},
+		onModifySecondaries: function (secondaries) {
+			this.debug('Shield Dust prevent secondary');
+			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
+		},
+		desc: "Protects the holder from the secondary effects of opponent's moves.",
 	},
 	"mulpberry": {
 		id: "mulpberry",
