@@ -70,7 +70,7 @@ regalreversal: {
 			move.regalRecoil = true;
 		}
 	},
-	onModifyMove: function (move) {
+	onFoeModifyMove: function (move) {
 			if (move.regalRecoil = true) {
 				move.recoil = [1, 2];
 			}
