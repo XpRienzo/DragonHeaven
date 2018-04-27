@@ -5249,7 +5249,7 @@ exports.BattleAbilities = {
 	"familiarmaneuvering": {
 		shortDesc: "This Pokemon's STAB moves have +1 priority (including status moves that would be STAB).",
 		onModifyPriority: function (priority, pokemon, target, move) {
-			if (move.type === pokemon.hasType) return priority + 1;
+			if (pokemon.hasType(move.type)) return priority + 1;
 		},
 		id: "familiarmaneuvering",
 		name: "Familiar Maneuvering",
