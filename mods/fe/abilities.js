@@ -5285,10 +5285,9 @@ exports.BattleAbilities = {
 			delete move.flags['contact'];
 		},
 		onHit: function (move, pokemon) {
-			for (const source of pokemon.side.active) {
-			if (!source || source.fainted) continue;
-				if (move.flags['contact'] && source.status) {
-				 	source.cureStatus();
+			for (const target of pokemon.side.foe.active) {
+				if (move.flags['contact'] && pokemon.status) {
+				 	pokemon.cureStatus();
 				}
 			}
 		},
