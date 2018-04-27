@@ -5284,9 +5284,12 @@ exports.BattleAbilities = {
 		onModifyMove: function (move) {
 			delete move.flags['contact'];
 		},
-		onTryHit: function (move, source) {
-			if (move.flags['contact'] && source.status) {
-				 source.cureStatus();
+		onHit: function (move, pokemon) {
+			for (const source of pokemon.side.active) {
+			if (!source || source.fainted) continue;
+				if (move.flags['contact'] && source.status) {
+				 	source.cureStatus();
+				}
 			}
 		},
 		id: "constellation",
