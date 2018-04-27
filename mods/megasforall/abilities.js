@@ -58,7 +58,7 @@ exports.BattleAbilities = {
                         if (target.hasType('Ghost')) return priority +4;
                         }
 		},
-		onFoeSwitchOut: function (pokemon) {
+	/*	onFoeSwitchOut: function (pokemon) {
 			for (const source of pokemon.side.foe.active) {
 			if (!source || source.fainted) continue;
 			if (pokemon.hasType('Ghost') && this.isAdjacent(pokemon, this.effectData.target)) {
@@ -66,7 +66,13 @@ exports.BattleAbilities = {
 				return null;
 			}
 			}
-			},
+			},*/
+			onImmunity: function (type, pokemon) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+			if (type === 'trapped') return false;
+			}
+		},
 		id: "entomb",
 		name: "Entomb",
 	},
