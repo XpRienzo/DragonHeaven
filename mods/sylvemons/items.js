@@ -9,14 +9,6 @@ exports.BattleItems = {
 			basePower: 30,
 		},
 		onAfterEachBoost: function (boost, target, source) {
-			let stat = 'atk';
-				let bestStat = 0;
-				for (let i in source.stats) {
-					if (source.stats[i] > bestStat) {
-						stat = i;
-						bestStat = source.stats[i];
-					}
-				}
 			if (!source || target.side === source.side) {
 				return;
 			}
@@ -28,6 +20,14 @@ exports.BattleItems = {
 				}
 			}
 			if (statsLowered) {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
 				this.boost({[stat]: 1}, source);
 			}
 		},
