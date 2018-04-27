@@ -55,7 +55,7 @@ exports.BattleAbilities = {
                 onModifyPriority: function (priority, pokemon) {
 			for (const target of pokemon.side.foe.active) {
 			if (!target || target.fainted) continue;
-                        if (target.type === 'Ghost') return priority +4;
+                        if (target.hasType('Ghost')) return priority +4;
                         }
 		},
 		id: "entomb",
