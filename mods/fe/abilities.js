@@ -5284,10 +5284,10 @@ exports.BattleAbilities = {
 		onModifyMove: function (move) {
 			delete move.flags['contact'];
 		},
-		onHit: function (move, pokemon) {
+		onTryHit: function (pokemon, source, move) {
 			for (const target of pokemon.side.foe.active) {
-				if (move.flags['contact'] && pokemon.status) {
-				 	pokemon.cureStatus();
+			if (source !== target && move.flags['contact'] && pokemon.status) {
+				pokemon.cureStatus();
 				}
 			}
 		},
