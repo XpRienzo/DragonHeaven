@@ -1890,7 +1890,6 @@ exports.commands = {
 
 	forceglobalban: 'globalban',
 	gban: 'globalban',
-	ban: 'globalban',
 	globalban: function (target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help globalban');
 
