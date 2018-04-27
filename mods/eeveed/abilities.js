@@ -39,7 +39,11 @@ exports.BattleAbilities = {
 			if (move.type !== "Poison") return;
 			move.onEffectiveness = function(typeMod, type) {
 				if (type === 'Steel' || type === 'Water' || type === 'Rock') return 1;
-			};
+			}
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Steel'] = true;
+			}
 		},
 		id: "acidictouch",
 		name: "Acidic Touch",
