@@ -39,6 +39,44 @@ Ratings and how they work:
 'use strict';
 
 exports.BattleAbilities = {
+	"entomb": {
+		shortDesc: "Traps Ghost types and has +4 priority when targeting them.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (pokemon.hasType('Ghost') && this.isAdjacent(pokemon, this.effectData.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if ((!pokemon.knownType || pokemon.hasType('Ghost')) && this.isAdjacent(pokemon, source)) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+                onModifyPriority: function (priority, pokemon) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+                        if (target.type === 'Ghost') return priority +4;
+                        }
+		},
+		id: "entomb",
+		name: "Entomb",
+	},
+
+regalreversal: {
+	shortDesc: "Super-effective attacks used against this Pokemon have their damage reduced by 25% and do 50% recoil to the user.",
+	onSourceModifyDamage: function(damage, source, target, move) {
+		if (move.typeMod > 0) {
+			return this.chainModify(0.75);
+		}
+	},
+      onFoeModifyMove: function (move, typeMod) {
+		if (move.typeMod > 0) {
+      move.recoil = [1, 2];
+		}
+		},
+    id: "regalreversal",
+	name: "Regal Reversal",
+},
 	"absolutezero": {
 		shortDesc: "Freezes opponent upon switch-in.",
 		onStart: function(source) {
