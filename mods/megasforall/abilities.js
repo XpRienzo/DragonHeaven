@@ -58,6 +58,11 @@ exports.BattleAbilities = {
                         if (target.hasType('Ghost')) return priority +4;
                         }
 		},
+		onFoeSwitchOut: function (pokemon) {
+			if (pokemon.hasType('Ghost') && this.isAdjacent(pokemon, this.effectData.target)) {
+				return null;
+			}
+			},
 		id: "entomb",
 		name: "Entomb",
 	},
