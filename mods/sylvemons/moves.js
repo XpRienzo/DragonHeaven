@@ -26,6 +26,81 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 'use strict';
 
 exports.BattleMovedex = {
+"stormstrike": {
+		accuracy: 100,
+		basePower: 50,
+		category: "Special",
+		desc: "Power doubles during weather effects (except strong winds) and this move's type changes to match; Ice type during Hail, Water type during Rain Dance, Rock type during Sandstorm, and Fire type during Sunny Day.",
+		shortDesc: "Power doubles and type varies in each weather.",
+		id: "stormstrike",
+		name: "Storm Strike",
+		pp: 10,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		onModifyMove: function (move) {
+			switch (this.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				move.basePower *= 2;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				move.basePower *= 2;
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				move.basePower *= 2;
+				break;
+			case 'hail':
+				move.type = 'Ice';
+				move.basePower *= 2;
+				break;
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 160,
+		contestType: "Beautiful",
+	},
+	"allterrainblast": {
+		accuracy: 100,
+		basePower: 50,
+		category: "Special",
+		shortDesc: "Power doubles and type varies in each terrain.",
+		id: "allterrainblast",
+		name: "All-Terrain Blast",
+		pp: 10,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		onModifyMove: function (move) {
+			switch (this.effectiveTerrain()) {
+			case 'electricterrain':
+				move.type = 'Electric';
+				move.basePower *= 2;
+				break;
+			case 'psychicterrain':
+				move.type = 'Psychic';
+				move.basePower *= 2;
+				break;
+			case 'mistyterrain':
+				move.type = 'Fairy';
+				move.basePower *= 2;
+				break;
+			case 'grassyterrain':
+				move.type = 'Grass';
+				move.basePower *= 2;
+				break;
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 160,
+		contestType: "Beautiful",
+	},
 "mistyterrain": {
 		num: 581,
 		accuracy: true,
