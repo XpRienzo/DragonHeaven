@@ -5246,4 +5246,12 @@ exports.BattleAbilities = {
 		id: "confiscation",
 		name: "Confiscation",
 	},
+	"familiarmaneuvering": {
+		shortDesc: "This Pokemon's STAB moves have +1 priority (including status moves that would be STAB).",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move.stab) return priority + 1;
+		},
+		id: "familiarmaneuvering",
+		name: "Familiar Maneuvering",
+	},
 };
