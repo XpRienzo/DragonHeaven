@@ -4916,15 +4916,15 @@ exports.BattleAbilities = {
 		name: "Triggered",
 	},
 	"sharpshooter": {
-		shortDesc: "If this Pokemon is the target of a foe's move, that move loses one additional PP.",
+		shortDesc: "This Pokemon's attacks always result in a critical hit, but use 2 PP instead of 1.",
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Pressure');
 		},
 		onDeductPP: function (pokemon) {
 			return 1;
 		},
-		onModifyCritRatio: function(critRatio) {
-			return critRatio + 6;
+		onModifyMove: function(move) {
+			move.willCrit = true;
 		},
 		id: "sharpshooter",
 		name: "Sharpshooter",
