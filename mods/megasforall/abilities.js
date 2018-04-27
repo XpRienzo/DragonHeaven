@@ -70,7 +70,7 @@ exports.BattleAbilities = {
 			onFoeImmunity: function (type, pokemon) {
 			//for (const target of pokemon.side.foe.active) {
 			//if (!target || target.fainted) continue;
-			if (type === 'sandstorm') return false;
+			if (type === 'sandstorm') return 0;
 		//	}
 		},
 		id: "entomb",
