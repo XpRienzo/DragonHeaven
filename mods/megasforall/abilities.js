@@ -60,7 +60,7 @@ exports.BattleAbilities = {
 		},
 		onFoeSwitchOut: function (pokemon) {
 			if (pokemon.hasType('Ghost') && this.isAdjacent(pokemon, this.effectData.target)) {
-				this.add('-ability', 'Entomb');
+				this.add('-ability', pokemon, 'Entomb');
 				return null;
 			}
 			},
