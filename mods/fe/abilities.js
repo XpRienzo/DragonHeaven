@@ -5278,6 +5278,10 @@ exports.BattleAbilities = {
 			move.pp / 2;
 			}
 		},
+		onDeductPP: function (move, pokemon) {
+			if (move.type === 'Fire' && move.category !== 'Status') return;
+			return move.pp / 2;
+		},
 		id: "ability",
 		name: "Ability",
 	},
