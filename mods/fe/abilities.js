@@ -5246,6 +5246,34 @@ exports.BattleAbilities = {
 		id: "confiscation",
 		name: "Confiscation",
 	},
+	"statharvesting": {
+		shortDesc: "When this Pokemon uses it's berry, it has a 50% chance to immediately re-gain it's berry. Every time this happens, this Pokemon's highest non-HP stat goes up by 1. The chance goes up to 100% in the sun. Berries cannot be harvested twice in one turn.",
+		id: "statharvesting",
+		name: "Stat Harvesting",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			if (this.randomChance(1, 2)) {
+				if (pokemon.hp && !pokemon.item && this.getItem(pokemon.lastItem).isBerry) {
+					pokemon.setItem(pokemon.lastItem);
+					pokemon.lastItem = '';
+					pokemon.recycledItem = true;
+					this.add('-item', pokemon, pokemon.getItem(), '[from] ability: Stat Harvesting');
+					}
+				}
+			if (pokemon.recyledItem) {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in pokemon.stats) {
+					if (pokemon.stats[i] > bestStat) {
+						stat = i;
+						bestStat = pokemon.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, pokemon);
+			}
+		},
+	},
 	"familiarmaneuvering": {
 		shortDesc: "This Pokemon's STAB moves have +1 priority (including status moves that would be STAB).",
 		onModifyPriority: function (priority, pokemon, target, move) {
