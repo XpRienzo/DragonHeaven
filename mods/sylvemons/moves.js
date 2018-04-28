@@ -668,33 +668,10 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		onHit: function (pokemon) {
-			for (const target of pokemon.side.foe.active) {
-				if (!target || target.fainted) continue;
-				this.add('-activate', target, 'move: Charge');
-			}
-		},
-		effect: {
-			duration: 2,
-			onRestart: function (pokemon) {
-				this.effectData.duration = 2;
+			onTryHit: function (target, pokemon) {
+			this.add('-anim', pokemon, "Iron Head", target);
+			this.useMove("Charge", pokemon);
 			},
-			onBasePowerPriority: 3,
-			onBasePower: function (basePower, pokemon, move) {
-				if (move.type === 'Electric') {
-					this.debug('charge boost');
-					return this.chainModify(2);
-				}
-			},
-		},
-		secondary: {
-			chance: 100,
-			self: {
-				boosts: {
-					spd: 1,
-				},
-			},
-		},
 		target: "normal",
 		type: "Steel",
 		zMovePower: 175,
