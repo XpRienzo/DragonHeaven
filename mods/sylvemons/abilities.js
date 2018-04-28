@@ -14,7 +14,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 		shortDesc: "Castform's type changes to the current weather condition's type, except Sandstorm.",
 		onStart: function (pokemon) {
 			if (pokemon.item === 'heatrock') {
-				pokemon.setType('Fire');
+				pokemon.setType[1]('Fire');
 			}
 		},		
 		onUpdate: function (pokemon) {
