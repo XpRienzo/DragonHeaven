@@ -2,7 +2,7 @@
 
 exports.BattleMovedex = {
 		
-	"hyperspacefury": { /* Hyperspace for all */
+	"hyperspacefury": { // Hyperspace for all 
 		num: 621,
 		accuracy: true,
 		basePower: 100,
@@ -27,7 +27,7 @@ exports.BattleMovedex = {
 		zMovePower: 180,
 		contestType: "Tough",
 	},
-	"darkvoid": { /* Dark Void for all */
+	"darkvoid": { // Dark Void for all 
 		num: 464,
 		accuracy: 50,
 		basePower: 0,
@@ -75,6 +75,66 @@ exports.BattleMovedex = {
         zMovePower: 140,
         contestType: "Tough",
     },
+	"darkterrain": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "For 5 turns, the terrain becomes Dark Terrain. During the effect, the power of Dark-type attacks made by grounded Pokemon is multiplied by 1.5 and grounded Pokemon cannot fall asleep; Pokemon already asleep do not wake up. Camouflage transforms the user into an Electric type, Nature Power becomes Thunderbolt, and Secret Power has a 30% chance to cause paralysis. Fails if the current terrain is Electric Terrain.",
+		shortDesc: "5 turns. Grounded: +Dark power, can't sleep.",
+		id: "darkterrain",
+		name: "Dark Terrain",
+		pp: 10,
+		priority: 0,
+		flags: {nonsky: 1},
+		terrain: 'darkterrain',
+		effect: {
+			duration: 5,
+			durationCallback: function (source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onSetStatus: function (status, target, source, effect) {
+				if (status.id === 'slp' && target.isGrounded() && !target.isSemiInvulnerable()) {
+					if (effect.effectType === 'Move' && !effect.secondaries) {
+						this.add('-activate', target, 'move: Electric Terrain');
+					}
+					return false;
+				}
+			},
+			onTryAddVolatile: function (status, target) {
+				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
+				if (status.id === 'yawn') {
+					this.add('-activate', target, 'move: Electric Terrain');
+					return null;
+				}
+			},
+			onBasePower: function (basePower, attacker, defender, move) {
+				if (move.type === 'Dark' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					this.debug('dark terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onStart: function (battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Dark Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Dark Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd: function () {
+				this.add('-fieldend', 'move: Dark Terrain');
+			},
+		},
+		secondary: false,
+		target: "all",
+		type: "Dark",
+		zMoveBoost: {spe: 1},
+		contestType: "Clever",
+	},
     "boilingpoint": {
         accuracy: 100,
         basePower: 80,
