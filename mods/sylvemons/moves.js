@@ -212,7 +212,7 @@ exports.BattleMovedex = {
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', target, "Weather Ball", source);
+			this.add('-anim', source, "Weather Ball", target);
 		},
 		secondary: false,
 		target: "normal",
