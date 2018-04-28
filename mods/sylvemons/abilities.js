@@ -55,7 +55,25 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 			}
 		},
 		id: "knightsblade",
-		name: "Knights Blade",
+		name: "Knight's Blade",
+	},
+	"dispersal": {
+		shortDesc: "Boosts the power of sword, cut, slash, and blade moves by 1.5x",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.name === 'Bullet Seed' || move.name === 'Seed Bomb' || move.name === 'Seed Flare') {
+				return this.chainModify(1.2);
+			}
+		},
+		onTryHealPriority: 1,
+		onTryHeal: function (damage, target, source, effect) {
+			let heals = {drain: 1, leechseed: 1, ingrain: 1, aquaring: 1, strengthsap: 1};
+			if (heals[effect.id]) {
+				return Math.ceil((damage * 1.3) - 0.5);
+			}
+		},
+		id: "dispersal",
+		name: "Dispersal",
 	},
 	"megalauncher": {
 		desc: "This Pokemon's pulse moves have their power multiplied by 1.5. Heal Pulse restores 3/4 of a target's maximum HP, rounded half down.",
