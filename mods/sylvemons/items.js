@@ -12,6 +12,7 @@ exports.BattleItems = {
 			for (let i in target.boosts) {
 				if (target.boosts[i] > 0 && source.useItem()) {
 				return source.boosts[i] = target.boosts[i];
+					this.boost({target.[boosts]}, source);
 				}
 			}
 			//this.add('-copyboost', source, target, '[from] item: Photocopier');
