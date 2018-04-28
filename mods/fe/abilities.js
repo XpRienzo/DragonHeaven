@@ -5291,4 +5291,161 @@ exports.BattleAbilities = {
 		id: "powersurge",
 		name: "Power Surge",
 	},
+	"sheerfat": {
+		shortDesc: "This Pokemon's attacks with secondary effects have their power multiplied 1.3x and have their effects nullified. This Pokemon takes half the damage it would normally have taken from moves with secondary effects.",
+		onModifyMove: function (move, pokemon) {
+			if (move.secondaries) {
+				delete move.secondaries;
+				// Actual negation of `AfterMoveSecondary` effects implemented in scripts.js
+				move.hasSheerForce = true;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+			if (move.hasSheerForce) return this.chainModify([0x14CD, 0x1000]);
+		},
+		onBasePowerPriority: 7,
+		onFoeBasePower: function (basePower, attacker, defender, move) {
+			if (this.effectData.target !== defender) return;
+			if (move.secondaries) {
+				return this.chainModify(0.5);
+			}
+		},
+		id: "sheerfat",
+		name: "Sheer Fat",
+	},
+	"oceanshield": {
+		shortDesc: "When at full HP, the holder takes half damage from moves; when the holder is hit by a non-status move while at full HP, the power of its Water-type moves is boosted by 50%.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (target.hp >= target.maxhp) {
+				return this.chainModify(0.5);
+			}
+		},
+		onAfterDamage: function(damage, target, source, move) {
+			if (move && source.hp >= source.maxhp) {
+				move.oceanshieldBoost = true;
+			}
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.oceanshieldBoost) {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.oceanshieldBoost) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "oceanshield",
+		name: "Ocean Shield",
+	},
+	"persistentmorale": {
+		shortDesc: "Takes 50% less damage from Fire, Ice, and Dark-type moves. If hit by a move of said types, Attack is raised by one stage.",
+		onModifyAtkPriority: 6,
+		onSourceModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Ice' || move.type === 'Fire' || move.type === 'Dark') {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onSourceModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Ice' || move.type === 'Fire' || move.type === 'Dark') {
+				return this.chainModify(0.5);
+			}
+		},
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.type === 'Dark' || effect.type === 'Fire' || effect.type === 'Ice') {
+				this.boost({atk: 1});
+			}
+		},
+		id: "persistentmorale",
+		name: "Persistent Morale",
+	},
+	"dazzlebeast": {
+		shortDesc: "Priority moves won't work against this Pokémon. Attempts to do so result in +1 to its highest non-HP stat.",
+		onTryHit: function (pokemon, source, effect) {
+			for (const target of pokemon.side.foe.active) {
+			((target.side === this.effectData.source.side || effect.id === 'perishsong') && effect.priority > 0.1 && effect.target !== 'foeSide') {
+				this.add('-immune', target, '[msg]', '[from] ability: Dazzle Beast');
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+				return null;
+			}
+			}
+		},
+		id: "dazzlebeast",
+		name: "Dazzle Beast",
+	},
+	"contagiousyawn": {
+		shortDesc: "On switch-in, the opposing Pokemon's ability is changed to Truant.",
+		onSwitchInPriority: 1,
+		onSwitchIn: function(pokemon, source, move) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+			let oldAbility = source.setAbility('truant', source, 'truant', true);
+			}
+		},
+		id: "contagiousyawn",
+		name: "Contagious Yawn",
+	},
+	"enchanted": {
+		shortDesc: "Immune to Fairy and Ground moves. This Pokemon's Normal type moves become Fairy type and have 1.2x power.",
+		onTryHit: function(target, source, move) {
+			if (target !== source && move.type === 'Ground' || move.type === 'Fairy') {
+				this.add('-immune', target, '[msg]', '[from] ability: Clear Levitation');
+				return null;
+			}
+		},
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Fairy';
+				move.pixilateBoosted = true;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+			if (move.pixilateBoosted) return this.chainModify([0x1333, 0x1000]);
+		},
+		id: "enchanted",
+		name: "Enchanted",
+	},
+		"magicsponge": {
+		shortDesc: "The Pokémon only takes damage from attacks. If indirect damage or a water-type attack is used on it, it will health 25% of its life instead.",
+		onTryHit: function (target, source, move, effect) {
+			if (target !== source && move.type === 'Water' || effect.effectType !== 'Move') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Magic Sponge');
+				}
+				return null;
+			}
+		},
+		id: "magicsponge",
+		name: "Magic Sponge",
+	},
+	"groundleecher": {
+		shortDesc: "Wielder is inmune to Ground-type attacks and it heals 1/3 of its maximum HP when hit by a ground attack and on switching out.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				if (!this.heal(target.maxhp / 3)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Ground Leecher');
+				}
+				return null;
+			}
+		},
+		onSwitchOut: function (pokemon) {
+			pokemon.heal(pokemon.maxhp / 3);
+		},
+		id: "groundleecher",
+		name: "Ground Leecher",
+	},
 };
