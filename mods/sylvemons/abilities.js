@@ -11,25 +11,31 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 */
 "forecast": {
 		desc: "If this Pokemon is a Castform, its type changes to the current weather condition's type, except Sandstorm.",
-		shortDesc: "Castform's type changes to the current weather condition's type, except Sandstorm.",
+		shortDesc: "If this Pokémon is holding a Weather Rock, its secondary typing becomes Water/Fire/Rock/Ice/Flying/Dark (depending on the rock) and summon the corresponding weather upon entering the field. Under Strong Winds, this mon gains the added Flying type.",
 		onStart: function (pokemon) {
 			if (pokemon.item === 'heatrock') {
 				pokemon.addType('Fire');
+				this.setWeather('sunnyday');
 			}
 			else if (pokemon.item === 'damprock') {
 				pokemon.addType('Water');
+				this.setWeather('raindance');
 			}
 			else if (pokemon.item === 'smoothrock') {
 				pokemon.addType('Rock');
+				this.setWeather('sandstorm');
 			}
 			else if (pokemon.item === 'icyrock') {
 				pokemon.addType('Ice');
+				this.setWeather('hail');
 			}
 			else if (pokemon.item === 'shadowrock') {
 				pokemon.addType('dark');
+				this.setWeather('shadowsky');
 			}
 			else if (pokemon.item === 'breezerock') {
 				pokemon.addType('Flying');
+				this.setWeather('aircurrent');
 			}
 			else if (this.isWeather('deltastream')) {
 				pokemon.addType('Flying');
