@@ -8,21 +8,13 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
-		onUpdate: function (pokemon, source) {
-			for (const target of pokemon.side.foe.active) {
-			let activate = false;
-			let boosts = {};
+		onUpdate: function (target, source) {
 			for (let i in target.boosts) {
-				if (target.boosts[i] > 0) {
-					activate = true;
-					boosts[i] = 0;
+				if (target.boosts[i] > 0 && source.useItem()) {
+				source.boosts[i] = target.boosts[i];
 				}
 			}
-			if (activate && source.useItem()) {
-				source.setBoost(target.boosts);
-				this.add('-copyboost', source, target, '[from] item: Photocopier');
-			}
-			}
+			this.add('-copyboost', source, target, '[from] item: Photocopier');
 		},
 		desc: "Copies the opponent's stat changes upon first encountering an opponent with a stat boost.",
 	},
