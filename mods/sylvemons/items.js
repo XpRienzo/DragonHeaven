@@ -19,7 +19,7 @@ exports.BattleItems = {
 				}
 			}
 			if (activate && source.useItem()) {
-				source.setBoost(boosts);
+				source.setBoost(target.boosts);
 				this.add('-copyboost', source, target, '[from] item: Photocopier');
 			}
 			}
