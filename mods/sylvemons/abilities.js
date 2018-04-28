@@ -18,10 +18,6 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 				if (pokemon.template.speciesid === 'wishiwashi') {
 					pokemon.formeChange('Wishiwashi-School');
 					this.add('-formechange', pokemon, 'Wishiwashi-School', '[from] ability: Schooling');
-					let oldAbility = pokemon.setAbility('levitate', pokemon, 'levitate', true);
-			if (oldAbility) {
-				this.add('-activate', pokemon, 'ability: Levitate', oldAbility, '[of] ' + pokemon);
-			}
 				}
 			} else {
 				if (pokemon.template.speciesid === 'wishiwashischool') {
