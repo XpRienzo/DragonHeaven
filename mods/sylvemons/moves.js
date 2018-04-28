@@ -22,9 +22,7 @@ reflectable: Bounced back to the original user by Magic Coat or the Ability Magi
 snatch: Can be stolen from the original user and instead used by another Pokemon using Snatch.
 sound: Has no effect on Pokemon with the Ability Soundproof.
 */
-
 'use strict';
-
 exports.BattleMovedex = {
 	"shadowcharge": {
 		accuracy: 95,
@@ -36,11 +34,19 @@ exports.BattleMovedex = {
 		name: "Shadow Charge",
 		pp: 24,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		onBasePower: function (basePower, attacker, defender) {
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1
+		},
+		onBasePower: function(basePower, attacker, defender) {
 			if (!defender.activeTurns) {
 				return this.chainModify(1.5);
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Outrage", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -58,10 +64,18 @@ exports.BattleMovedex = {
 		name: "Haunting Scream",
 		pp: 16,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, sound: 1},
+		flags: {
+			protect: 1,
+			mirror: 1,
+			sound: 1
+		},
 		secondary: {
 			chance: 30,
 			volatileStatus: 'perishsong',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Voice", target);
 		},
 		target: "normal",
 		type: "Ghost",
@@ -78,35 +92,43 @@ exports.BattleMovedex = {
 		name: "Swampland",
 		pp: 15,
 		priority: 0,
-		flags: {snatch: 1},
+		flags: {
+			snatch: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rain Dance", target);
+		},
 		sideCondition: 'swampland',
 		effect: {
 			duration: 4,
-			durationCallback: function (target, source, effect) {
+			durationCallback: function(target, source, effect) {
 				if (source && source.hasAbility('persistent')) {
 					return 6;
 				}
 				return 4;
 			},
-			onStart: function (side) {
+			onStart: function(side) {
 				this.add('-sidestart', side, 'move: Swampland');
 			},
-			onFoeModifySpe: function (spe, pokemon) {
+			onFoeModifySpe: function(spe, pokemon) {
 				return this.chainModify(0.5);
 			},
 			onResidualOrder: 21,
 			onResidualSubOrder: 4,
-			onEnd: function (side) {
+			onEnd: function(side) {
 				this.add('-sideend', side, 'move: Swampland');
 			},
 		},
 		secondary: false,
 		target: "foeSide",
 		type: "Water",
-		zMoveBoost: {spa: 1},
+		zMoveBoost: {
+			spa: 1
+		},
 		contestType: "Cool",
 	},
-"stormstrike": {
+	"stormstrike": {
 		accuracy: 100,
 		basePower: 50,
 		category: "Special",
@@ -116,28 +138,37 @@ exports.BattleMovedex = {
 		name: "Storm Strike",
 		pp: 10,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1},
-		onModifyMove: function (move) {
+		flags: {
+			bullet: 1,
+			protect: 1,
+			mirror: 1
+		},
+		onModifyMove: function(move) {
 			switch (this.effectiveWeather()) {
-			case 'sunnyday':
-			case 'desolateland':
-				move.type = 'Fire';
-				move.basePower *= 2;
-				break;
-			case 'raindance':
-			case 'primordialsea':
-				move.type = 'Water';
-				move.basePower *= 2;
-				break;
-			case 'sandstorm':
-				move.type = 'Rock';
-				move.basePower *= 2;
-				break;
-			case 'hail':
-				move.type = 'Ice';
-				move.basePower *= 2;
-				break;
+				case 'sunnyday':
+				case 'desolateland':
+					move.type = 'Fire';
+					move.basePower *= 2;
+					break;
+				case 'raindance':
+				case 'primordialsea':
+					move.type = 'Water';
+					move.basePower *= 2;
+					break;
+				case 'sandstorm':
+					move.type = 'Rock';
+					move.basePower *= 2;
+					break;
+				case 'hail':
+					move.type = 'Ice';
+					move.basePower *= 2;
+					break;
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Weather Ball", target);
+			this.add('-anim', source, "Knock Off", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -154,26 +185,34 @@ exports.BattleMovedex = {
 		name: "All-Terrain Blast",
 		pp: 10,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1},
-		onModifyMove: function (move) {
+		flags: {
+			bullet: 1,
+			protect: 1,
+			mirror: 1
+		},
+		onModifyMove: function(move) {
 			switch (this.effectiveTerrain()) {
-			case 'electricterrain':
-				move.type = 'Electric';
-				move.basePower *= 2;
-				break;
-			case 'psychicterrain':
-				move.type = 'Psychic';
-				move.basePower *= 2;
-				break;
-			case 'mistyterrain':
-				move.type = 'Fairy';
-				move.basePower *= 2;
-				break;
-			case 'grassyterrain':
-				move.type = 'Grass';
-				move.basePower *= 2;
-				break;
+				case 'electricterrain':
+					move.type = 'Electric';
+					move.basePower *= 2;
+					break;
+				case 'psychicterrain':
+					move.type = 'Psychic';
+					move.basePower *= 2;
+					break;
+				case 'mistyterrain':
+					move.type = 'Fairy';
+					move.basePower *= 2;
+					break;
+				case 'grassyterrain':
+					move.type = 'Grass';
+					move.basePower *= 2;
+					break;
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Weather Ball", source);
 		},
 		secondary: false,
 		target: "normal",
@@ -181,7 +220,7 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Beautiful",
 	},
-"mistyterrain": {
+	"mistyterrain": {
 		num: 581,
 		accuracy: true,
 		basePower: 0,
@@ -192,31 +231,33 @@ exports.BattleMovedex = {
 		name: "Misty Terrain",
 		pp: 10,
 		priority: 0,
-		flags: {nonsky: 1},
+		flags: {
+			nonsky: 1
+		},
 		terrain: 'mistyterrain',
 		effect: {
 			duration: 5,
-			durationCallback: function (source, effect) {
+			durationCallback: function(source, effect) {
 				if (source && source.hasItem('terrainextender')) {
 					return 8;
 				}
 				return 5;
 			},
-			onSetStatus: function (status, target, source, effect) {
+			onSetStatus: function(status, target, source, effect) {
 				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
 				if (effect && effect.status) {
 					this.add('-activate', target, 'move: Misty Terrain');
 				}
 				return false;
 			},
-			onTryAddVolatile: function (status, target, source, effect) {
+			onTryAddVolatile: function(status, target, source, effect) {
 				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
 				if (status.id === 'confusion') {
 					if (effect.effectType === 'Move' && !effect.secondaries) this.add('-activate', target, 'move: Misty Terrain');
 					return null;
 				}
 			},
-			onBasePower: function (basePower, attacker, defender, move) {
+			onBasePower: function(basePower, attacker, defender, move) {
 				if (move.type === 'Dragon' && defender.isGrounded() && !defender.isSemiInvulnerable()) {
 					this.debug('misty terrain weaken');
 					return this.chainModify(0.5);
@@ -226,7 +267,7 @@ exports.BattleMovedex = {
 					return this.chainModify(1.5);
 				}
 			},
-			onStart: function (battle, source, effect) {
+			onStart: function(battle, source, effect) {
 				if (effect && effect.effectType === 'Ability') {
 					this.add('-fieldstart', 'move: Misty Terrain', '[from] ability: ' + effect, '[of] ' + source);
 				} else {
@@ -235,14 +276,16 @@ exports.BattleMovedex = {
 			},
 			onResidualOrder: 21,
 			onResidualSubOrder: 2,
-			onEnd: function (side) {
+			onEnd: function(side) {
 				this.add('-fieldend', 'Misty Terrain');
 			},
 		},
 		secondary: false,
 		target: "all",
 		type: "Fairy",
-		zMoveBoost: {spd: 1},
+		zMoveBoost: {
+			spd: 1
+		},
 		contestType: "Beautiful",
 	},
 	"defog": {
@@ -257,9 +300,16 @@ exports.BattleMovedex = {
 		name: "Defog",
 		pp: 15,
 		priority: 0,
-		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
-		onHit: function (target, source, move) {
-			if (!target.volatiles['substitute'] || move.infiltrates) this.boost({evasion: -1});
+		flags: {
+			protect: 1,
+			reflectable: 1,
+			mirror: 1,
+			authentic: 1
+		},
+		onHit: function(target, source, move) {
+			if (!target.volatiles['substitute'] || move.infiltrates) this.boost({
+				evasion: -1
+			});
 			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
 			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
 			let success = false;
@@ -278,16 +328,18 @@ exports.BattleMovedex = {
 			}
 			return success;
 		},
-		onTryHit: function (target, source) {
-				this.removePseudoWeather('trickroom');
-			   this.removePseudoWeather('magicroom');
-			 	this.removePseudoWeather('wonderroom');
+		onTryHit: function(target, source) {
+			this.removePseudoWeather('trickroom');
+			this.removePseudoWeather('magicroom');
+			this.removePseudoWeather('wonderroom');
 			//	this.removePseudoWeather('inverseroom');
-			},
+		},
 		secondary: false,
 		target: "normal",
 		type: "Flying",
-		zMoveBoost: {accuracy: 1},
+		zMoveBoost: {
+			accuracy: 1
+		},
 		contestType: "Cool",
 	},
 	"splinteredstormshards": {
@@ -302,13 +354,13 @@ exports.BattleMovedex = {
 		pp: 1,
 		priority: 0,
 		flags: {},
-		onTryHit: function (target, source) {
-				this.removePseudoWeather('trickroom');
-			   this.removePseudoWeather('magicroom');
-			 	this.removePseudoWeather('wonderroom');
+		onTryHit: function(target, source) {
+			this.removePseudoWeather('trickroom');
+			this.removePseudoWeather('magicroom');
+			this.removePseudoWeather('wonderroom');
 			//	this.removePseudoWeather('inverseroom');
-			},
-		onHit: function () {
+		},
+		onHit: function() {
 			this.clearTerrain();
 		},
 		isZ: "lycaniumz",
@@ -329,8 +381,10 @@ exports.BattleMovedex = {
 		name: "Haze",
 		pp: 30,
 		priority: 0,
-		flags: {authentic: 1},
-		onHitField: function (target, source) {
+		flags: {
+			authentic: 1
+		},
+		onHitField: function(target, source) {
 			this.removePseudoWeather('trickroom');
 			this.removePseudoWeather('magicroom');
 			this.removePseudoWeather('wonderroom');
@@ -359,73 +413,93 @@ exports.BattleMovedex = {
 		name: "Bulldoze",
 		pp: 20,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, nonsky: 1},
+		flags: {
+			protect: 1,
+			mirror: 1,
+			nonsky: 1
+		},
 		secondary: {
 			chance: 100,
 			boosts: {
 				spe: -1,
 			},
 		},
-		onTryHit: function (target, source) {
-				this.removePseudoWeather('trickroom');
-			   this.removePseudoWeather('magicroom');
-			 	this.removePseudoWeather('wonderroom');
+		onTryHit: function(target, source) {
+			this.removePseudoWeather('trickroom');
+			this.removePseudoWeather('magicroom');
+			this.removePseudoWeather('wonderroom');
 			//	this.removePseudoWeather('inverseroom');
-			},
+		},
 		target: "allAdjacent",
 		type: "Ground",
 		zMovePower: 120,
 		contestType: "Tough",
 	},
-        "flamebullet": {
-                accuracy: 100,
-                basePower: 40,
-                category: "Special",
-                desc: "Usually goes first.",
-                shortDesc: "Usually goes first.",
-                id: "flamebullet",
-                isViable: true,
-                name: "Flame Bullet",
-                pp: 30,
-                priority: 1,
-                flags: {bullet: 1, defrost: 1, mirror: 1, protect: 1},
-                secondary: false,
-                target: "normal",
-                type: "Fire",
-                zMovePower: 100,
-                contestType: "Beautiful",
-        },
-        "wildcharge": {
-                inherit: true,
-                accuracy: 80,
-                basePower: 150,
-                shortDesc: "Has 1/2 recoil",
-                zMovePower: 200,
-        },
-        "meteorshower": {
-                accuracy: 100,
-                basePower: 130,
-                category: "Special",
-                desc: "Lowers the user's Special Attack by 2 stages.",
-                shortDesc: "Lowers the user's Sp. Atk by 2.",
-                id: "meteorshower",
-                isViable: true,
-                name: "Meteor Shower",
-                pp: 5,
-                priority: 0,
-                flags: {mirror: 1, protect: 1},
-                self: {
-                        boosts: {
-				                        spa: -2,
-			                  },
-		            },
-                secondary: false,
-                target: "normal",
-                type: "Rock",
-                zMovePower: 195,
-                contestType: "Beautiful",
-        },
-		"teleport": {
+	"flamebullet": {
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		desc: "Usually goes first.",
+		shortDesc: "Usually goes first.",
+		id: "flamebullet",
+		isViable: true,
+		name: "Flame Bullet",
+		pp: 30,
+		priority: 1,
+		flags: {
+			bullet: 1,
+			defrost: 1,
+			mirror: 1,
+			protect: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ember", target);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fire",
+		zMovePower: 100,
+		contestType: "Beautiful",
+	},
+	"wildcharge": {
+		inherit: true,
+		accuracy: 80,
+		basePower: 150,
+		shortDesc: "Has 1/2 recoil",
+		zMovePower: 200,
+	},
+	"meteorshower": {
+		accuracy: 100,
+		basePower: 130,
+		category: "Special",
+		desc: "Lowers the user's Special Attack by 2 stages.",
+		shortDesc: "Lowers the user's Sp. Atk by 2.",
+		id: "meteorshower",
+		isViable: true,
+		name: "Meteor Shower",
+		pp: 5,
+		priority: 0,
+		flags: {
+			mirror: 1,
+			protect: 1
+		},
+		self: {
+			boosts: {
+				spa: -2,
+			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Draco Meteor", target);
+		},
+		secondary: false,
+		target: "normal",
+		type: "Rock",
+		zMovePower: 195,
+		contestType: "Beautiful",
+	},
+	"teleport": {
 		accuracy: 100,
 		basePower: 70,
 		category: "Special",
@@ -435,7 +509,10 @@ exports.BattleMovedex = {
 		name: "Teleport",
 		pp: 32,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
 		selfSwitch: true,
 		secondary: false,
 		target: "normal",
@@ -454,7 +531,14 @@ exports.BattleMovedex = {
 		name: "Plume Cannon",
 		pp: 8,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Feather Dance", target);
+		},
 		multihit: [2, 5],
 		secondary: false,
 		target: "normal",
@@ -462,7 +546,7 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Tough",
 	},
-	 "slipstream": {
+	"slipstream": {
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
@@ -473,11 +557,19 @@ exports.BattleMovedex = {
 		name: "Slipstream",
 		pp: 32,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Pluck", target);
+		},
 		onBasePowerPriority: 8,
-		onBasePower: function (basePower, source, target) {
-		//if (source.sideCondition('tailwind') || target.sideCondition('tailwind')) {
-				return this.chainModify(2);
+		onBasePower: function(basePower, source, target) {
+			//if (source.sideCondition('tailwind') || target.sideCondition('tailwind')) {
+			return this.chainModify(2);
 			//}
 		},
 		selfSwitch: true,
@@ -487,7 +579,7 @@ exports.BattleMovedex = {
 		zMovePower: 120,
 		contestType: "Cute",
 	},
-		"thunderclap": {
+	"thunderclap": {
 		accuracy: 100,
 		basePower: 100,
 		category: "Physical",
@@ -498,14 +590,24 @@ exports.BattleMovedex = {
 		name: "Thunder Clap",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
+		flags: {
+			protect: 1,
+			mirror: 1,
+			sound: 1,
+			authentic: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Earthquake", target);
+			this.add('-anim', source, "Thunder", target);
+		},
 		secondary: false,
 		target: "allAdjacent",
 		type: "Electric",
 		zMovePower: 200,
 		contestType: "Tough",
 	},
-		"rinseoff": {
+	"rinseoff": {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -516,8 +618,11 @@ exports.BattleMovedex = {
 		name: "Rinse Off",
 		pp: 16,
 		priority: 0,
-		flags: {snatch: 1, heal: 1},
-		onHit: function (pokemon) {
+		flags: {
+			snatch: 1,
+			heal: 1
+		},
+		onHit: function(pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
@@ -525,6 +630,10 @@ exports.BattleMovedex = {
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Acid Armor", source);
 		},
 		secondary: false,
 		target: "self",
@@ -543,16 +652,19 @@ exports.BattleMovedex = {
 		name: "Acid Melt",
 		pp: 32,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
 		onModifyMovePriority: -5,
-		onModifyMove: function (move) {
+		onModifyMove: function(move) {
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};
 			if (move.ignoreImmunity !== true) {
 				move.ignoreImmunity['Steel'] = true;
 				move.ignoreImmunity['Poison'] = true;
 			}
 		},
-		onEffectiveness: function (typeMod, type) {
+		onEffectiveness: function(typeMod, type) {
 			if (type === 'Steel') return 1;
 		},
 		secondary: {
@@ -575,7 +687,11 @@ exports.BattleMovedex = {
 		name: "Fairy Charge",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1
+		},
 		recoil: [1, 3],
 		secondary: {
 			chance: 10,
@@ -583,12 +699,16 @@ exports.BattleMovedex = {
 				atk: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Double Edge", target);
+		},
 		target: "normal",
 		type: "Fairy",
 		zMovePower: 180,
 		contestType: "Cute",
 	},
-		"jetstream": {
+	"jetstream": {
 		accuracy: 100,
 		basePower: 40,
 		category: "Special",
@@ -599,7 +719,16 @@ exports.BattleMovedex = {
 		name: "Jetstream",
 		pp: 48,
 		priority: 1,
-		flags: {contact: 1, protect: 1, mirror: 1, defrost: 1},
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1,
+			defrost: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gust", target);
+		},
 		target: "normal",
 		type: "Flying",
 		zMovePower: 190,
@@ -616,13 +745,20 @@ exports.BattleMovedex = {
 		name: "Recrystalize",
 		pp: 5,
 		priority: 0,
-		flags: {snatch: 1, heal: 1},
-		onHit: function (pokemon) {
+		flags: {
+			snatch: 1,
+			heal: 1
+		},
+		onHit: function(pokemon) {
 			if (this.isWeather(['hail', 'sandstorm'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
-			}  else {
+			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Rock Polish", source);
 		},
 		secondary: false,
 		target: "self",
@@ -634,14 +770,19 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		desc: "Has a high critical hit ratio and a 30% chance to increase the user’s Def by 1 stage. (Contact, Blade)",
-		shortDesc: "Has a high critical hit ratio and a 30% chance to increase the user’s Def by 1 stage. (Contact, Blade)",
+		desc: "Has a high critical hit ratio and a 30% chance to increase the user’s Def by 1 stage.",
+		shortDesc: "Has a high critical hit ratio and a 30% chance to increase the user’s Def by 1 stage.",
 		id: "stalwartsword",
 		isViable: true,
 		name: "Stalwart Sword",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1,
+			punch: 1
+		},
 		critRatio: 2,
 		secondary: {
 			chance: 30,
@@ -650,6 +791,10 @@ exports.BattleMovedex = {
 					def: 1,
 				},
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sacred Sword", target);
 		},
 		target: "normal",
 		type: "Steel",
@@ -667,11 +812,16 @@ exports.BattleMovedex = {
 		name: "Ion Absorb",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-			onTryHit: function (target, pokemon) {
-			this.add('-anim', pokemon, "Iron Head", target);
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1,
+			punch: 1
+		},
+		onTryHit: function(target, pokemon) {
+			this.add('-anim', pokemon, "Parabolic Charge", target);
 			this.useMove("Charge", pokemon);
-			},
+		},
 		target: "normal",
 		type: "Steel",
 		zMovePower: 175,
@@ -688,8 +838,11 @@ exports.BattleMovedex = {
 		name: "Morning Sun",
 		pp: 16,
 		priority: 0,
-		flags: {snatch: 1, heal: 1},
-		onHit: function (pokemon) {
+		flags: {
+			snatch: 1,
+			heal: 1
+		},
+		onHit: function(pokemon) {
 			if (this.isWeather(['desolateland', 'sunnyday'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else {
@@ -712,8 +865,11 @@ exports.BattleMovedex = {
 		name: "Moonlight",
 		pp: 16,
 		priority: 0,
-		flags: {snatch: 1, heal: 1},
-		onHit: function (pokemon) {
+		flags: {
+			snatch: 1,
+			heal: 1
+		},
+		onHit: function(pokemon) {
 			if (this.isWeather(['desolateland', 'sunnyday'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else {
@@ -736,8 +892,11 @@ exports.BattleMovedex = {
 		name: "Synthesis",
 		pp: 16,
 		priority: 0,
-		flags: {snatch: 1, heal: 1},
-		onHit: function (pokemon) {
+		flags: {
+			snatch: 1,
+			heal: 1
+		},
+		onHit: function(pokemon) {
 			if (this.isWeather(['desolateland', 'sunnyday'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else {
@@ -759,16 +918,20 @@ exports.BattleMovedex = {
 		name: "Bug Bite",
 		pp: 32,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1
+		},
 		onBasePowerPriority: 4,
-		onBasePower: function (basePower, source, target, move) {
+		onBasePower: function(basePower, source, target, move) {
 			let item = target.getItem();
 			if (!this.singleEvent('TakeItem', item, target.itemData, target, source, move, item)) return;
 			if (item.id) {
 				return this.chainModify(1.5);
 			}
 		},
-		onHit: function (target, source) {
+		onHit: function(target, source) {
 			let item = target.getItem();
 			if (source.hp && item.isBerry && target.takeItem(source)) {
 				this.add('-enditem', target, item.name, '[from] stealeat', '[move] Bug Bite', '[of] ' + source);
@@ -778,7 +941,7 @@ exports.BattleMovedex = {
 				if (item.onEat) source.ateBerry = true;
 			}
 		},
-		onAfterHit: function (target, source) {
+		onAfterHit: function(target, source) {
 			if (source.hp) {
 				let item = target.takeItem();
 				if (item) {
@@ -802,16 +965,20 @@ exports.BattleMovedex = {
 		name: "Pluck",
 		pp: 32,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1
+		},
 		onBasePowerPriority: 4,
-		onBasePower: function (basePower, source, target, move) {
+		onBasePower: function(basePower, source, target, move) {
 			let item = target.getItem();
 			if (!this.singleEvent('TakeItem', item, target.itemData, target, source, move, item)) return;
 			if (item.id) {
 				return this.chainModify(1.5);
 			}
 		},
-		onHit: function (target, source) {
+		onHit: function(target, source) {
 			let item = target.getItem();
 			if (source.hp && item.isBerry && target.takeItem(source)) {
 				this.add('-enditem', target, item.name, '[from] stealeat', '[move] Pluck', '[of] ' + source);
@@ -821,7 +988,7 @@ exports.BattleMovedex = {
 				if (item.onEat) source.ateBerry = true;
 			}
 		},
-		onAfterHit: function (target, source) {
+		onAfterHit: function(target, source) {
 			if (source.hp) {
 				let item = target.takeItem();
 				if (item) {
@@ -844,16 +1011,19 @@ exports.BattleMovedex = {
 		name: "Incinerate",
 		pp: 32,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
 		onBasePowerPriority: 4,
-		onBasePower: function (basePower, source, target, move) {
+		onBasePower: function(basePower, source, target, move) {
 			let item = target.getItem();
 			if (!this.singleEvent('TakeItem', item, target.itemData, target, source, move, item)) return;
 			if (item.id) {
 				return this.chainModify(1.5);
 			}
 		},
-		onHit: function (target, source) {
+		onHit: function(target, source) {
 			let item = target.getItem();
 			if (source.hp && item.isBerry && target.takeItem(source)) {
 				this.add('-enditem', target, item.name, '[from] stealeat', '[move] Bug Bite', '[of] ' + source);
@@ -863,7 +1033,7 @@ exports.BattleMovedex = {
 				if (item.onEat) source.ateBerry = true;
 			}
 		},
-		onAfterHit: function (target, source) {
+		onAfterHit: function(target, source) {
 			if (source.hp) {
 				let item = target.takeItem();
 				if (item) {
@@ -899,7 +1069,11 @@ exports.BattleMovedex = {
 		name: "Twineedle",
 		pp: 16,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, contact: 1},
+		flags: {
+			protect: 1,
+			mirror: 1,
+			contact: 1
+		},
 		multihit: [2, 2],
 		secondary: {
 			chance: 20,
@@ -928,7 +1102,11 @@ exports.BattleMovedex = {
 		name: "Seed Bomb",
 		pp: 15,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1},
+		flags: {
+			bullet: 1,
+			protect: 1,
+			mirror: 1
+		},
 		secondary: {
 			chance: 50,
 			volatileStatus: 'leechseed',
@@ -950,7 +1128,10 @@ exports.BattleMovedex = {
 		name: "Dragon Rage",
 		pp: 16,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
 		secondary: false,
 		target: "normal",
 		type: "Dragon",
@@ -969,7 +1150,10 @@ exports.BattleMovedex = {
 		name: "Sonic Boom",
 		pp: 32,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
 		secondary: false,
 		target: "normal",
 		type: "Normal",
@@ -988,14 +1172,17 @@ exports.BattleMovedex = {
 		name: "Psywave",
 		pp: 24,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
 		secondary: false,
 		target: "normal",
 		type: "Psychic",
 		zMovePower: 100,
 		contestType: "Clever",
 	},
-		"geargrind": {
+	"geargrind": {
 		num: 544,
 		accuracy: 85,
 		basePower: 50,
@@ -1007,7 +1194,11 @@ exports.BattleMovedex = {
 		name: "Gear Grind",
 		pp: 16,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1
+		},
 		multihit: 2,
 		secondary: false,
 		target: "normal",
@@ -1025,11 +1216,17 @@ exports.BattleMovedex = {
 		pp: 16,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sunny Day", target);
+		},
 		weather: 'shadowsky',
 		secondary: false,
 		target: "all",
 		type: "Ghost",
-		zMoveBoost: {spe: 1},
+		zMoveBoost: {
+			spe: 1
+		},
 	},
 	"aircurrent": {
 		accuracy: true,
@@ -1041,11 +1238,17 @@ exports.BattleMovedex = {
 		pp: 16,
 		priority: 0,
 		flags: {},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Tailwind", source);
+		},
 		weather: 'aircurrent',
 		secondary: false,
 		target: "all",
 		type: "Flying",
-		zMoveBoost: {spe: 1},
+		zMoveBoost: {
+			spe: 1
+		},
 	},
 	"hurricane": {
 		num: 542,
@@ -1059,8 +1262,12 @@ exports.BattleMovedex = {
 		name: "Hurricane",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, distance: 1},
-		onModifyMove: function (move) {
+		flags: {
+			protect: 1,
+			mirror: 1,
+			distance: 1
+		},
+		onModifyMove: function(move) {
 			if (this.isWeather(['raindance', 'primordialsea', 'aircurrent'])) {
 				move.accuracy = true;
 			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
@@ -1080,7 +1287,7 @@ exports.BattleMovedex = {
 		num: 311,
 		accuracy: 100,
 		basePower: 50,
-		basePowerCallback: function (pokemon, target, move) {
+		basePowerCallback: function(pokemon, target, move) {
 			if (this.weather) return move.basePower * 2;
 			return move.basePower;
 		},
@@ -1091,26 +1298,30 @@ exports.BattleMovedex = {
 		name: "Weather Ball",
 		pp: 10,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1},
-		onModifyMove: function (move) {
+		flags: {
+			bullet: 1,
+			protect: 1,
+			mirror: 1
+		},
+		onModifyMove: function(move) {
 			switch (this.effectiveWeather()) {
-			case 'sunnyday':
-			case 'desolateland':
-				move.type = 'Fire';
-				break;
-			case 'raindance':
-			case 'primordialsea':
-				move.type = 'Water';
-				break;
-			case 'sandstorm':
-				move.type = 'Rock';
-				break;
-			case 'hail':
-				move.type = 'Ice';
-				break;
-			case 'aircurrent':
-				move.type = 'Flying';
-				break;
+				case 'sunnyday':
+				case 'desolateland':
+					move.type = 'Fire';
+					break;
+				case 'raindance':
+				case 'primordialsea':
+					move.type = 'Water';
+					break;
+				case 'sandstorm':
+					move.type = 'Rock';
+					break;
+				case 'hail':
+					move.type = 'Ice';
+					break;
+				case 'aircurrent':
+					move.type = 'Flying';
+					break;
 			}
 		},
 		secondary: false,
@@ -1130,70 +1341,35 @@ exports.BattleMovedex = {
 		name: "Trick Room",
 		pp: 5,
 		priority: -7,
-		flags: {mirror: 1},
+		flags: {
+			mirror: 1
+		},
 		pseudoWeather: 'trickroom',
 		effect: {
 			duration: 5,
-			durationCallback: function (source, effect) {
+			durationCallback: function(source, effect) {
 				if (source && source.hasAbility('persistent')) {
 					return 7;
 				}
 				return 5;
 			},
-			onStart: function (target, source) {
+			onStart: function(target, source) {
 				this.add('-fieldstart', 'move: Trick Room', '[of] ' + source);
 			},
-			onRestart: function (target, source) {
+			onRestart: function(target, source) {
 				return null;
 			},
 			onResidualOrder: 23,
-			onEnd: function () {
+			onEnd: function() {
 				this.add('-fieldend', 'move: Trick Room');
 			},
 		},
 		secondary: false,
 		target: "all",
 		type: "Psychic",
-		zMoveBoost: {accuracy: 1},
-		contestType: "Clever",
-	},
-	"magicroom": {
-		num: 478,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		desc: "For 5 turns, the held items of all active Pokemon have no effect. An item's effect of causing forme changes is unaffected, but any other effects from such items are negated. During the effect, Fling and Natural Gift are prevented from being used by all active Pokemon. If this move is used during the effect, the effect ends.",
-		shortDesc: "For 5 turns, all held items have no effect.",
-		id: "magicroom",
-		name: "Magic Room",
-		pp: 10,
-		priority: 0,
-		flags: {mirror: 1},
-		pseudoWeather: 'magicroom',
-		effect: {
-			duration: 5,
-			durationCallback: function (source, effect) {
-				if (source && source.hasAbility('persistent')) {
-					return 7;
-				}
-				return 5;
-			},
-			onStart: function (target, source) {
-				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
-			},
-			onRestart: function (target, source) {
-			return null;
-			},
-			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
-			onResidualOrder: 25,
-			onEnd: function () {
-				this.add('-fieldend', 'move: Magic Room', '[of] ' + this.effectData.source);
-			},
+		zMoveBoost: {
+			accuracy: 1
 		},
-		secondary: false,
-		target: "all",
-		type: "Psychic",
-		zMoveBoost: {spd: 1},
 		contestType: "Clever",
 	},
 	"magicroom": {
@@ -1207,41 +1383,79 @@ exports.BattleMovedex = {
 		name: "Magic Room",
 		pp: 10,
 		priority: 0,
-		flags: {mirror: 1},
+		flags: {
+			mirror: 1
+		},
 		pseudoWeather: 'magicroom',
 		effect: {
 			duration: 5,
-			durationCallback: function (source, effect) {
+			durationCallback: function(source, effect) {
 				if (source && source.hasAbility('persistent')) {
 					return 7;
 				}
 				return 5;
 			},
-			onStart: function (target, source) {
+			onStart: function(target, source) {
 				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
 			},
-			onRestart: function (target, source) {
+			onRestart: function(target, source) {
 				return null;
 			},
 			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
 			onResidualOrder: 25,
-			onEnd: function () {
+			onEnd: function() {
 				this.add('-fieldend', 'move: Magic Room', '[of] ' + this.effectData.source);
 			},
 		},
 		secondary: false,
 		target: "all",
 		type: "Psychic",
-		zMoveBoost: {spd: 1},
+		zMoveBoost: {
+			spd: 1
+		},
 		contestType: "Clever",
 	},
-	/*
-All-Terrain Blast	Normal	Special	50, 100%	16 Max	Does double damage in terrains and becomes the same type of the terrain	Breakneck Blitz (160 BP), will turn into the appropriate Z-Move that matches the terrain
-Gear Grind	Steel	Physical	50, 90%	16 Max	Hits twice (Contact)	Corkscrew Crash (100 BP)
-Haunting Scream	Ghost	Special	90, 100%	16 Max	Inflicts the Perish Song  effect on the opponent 30% of the time. (Sound)	Never-Ending Nightmare (175 BP)
-Meteor Shower	Rock	Special	130, 100%	8 Max	User's Special Attack goes down by 2 stages after use	Continental Crush (195 BP)
-Seed Bomb	Grass	Physical	80, 100%	24 Max	50% Chance to seed target (Ballistic, non-contact)	Bloom Doom (160 BP)
-Shadow Charge	Ghost	Physical	85, 95%	24 Max	Power is boosted 1.5x if target is switching in. (Contact)	Never-Ending Nightmare (160 BP)
-Swampland	Water	Status	--	16 Max	Envelops the opponent’s side of the field in a Swamp (halves the opponent's team's Speed for 4 turns)	Raises the user's Special Attack by 1
-*/
-}; 
+	"magicroom": {
+		num: 478,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "For 5 turns, the held items of all active Pokemon have no effect. An item's effect of causing forme changes is unaffected, but any other effects from such items are negated. During the effect, Fling and Natural Gift are prevented from being used by all active Pokemon. If this move is used during the effect, the effect ends.",
+		shortDesc: "For 5 turns, all held items have no effect.",
+		id: "magicroom",
+		name: "Magic Room",
+		pp: 10,
+		priority: 0,
+		flags: {
+			mirror: 1
+		},
+		pseudoWeather: 'magicroom',
+		effect: {
+			duration: 5,
+			durationCallback: function(source, effect) {
+				if (source && source.hasAbility('persistent')) {
+					return 7;
+				}
+				return 5;
+			},
+			onStart: function(target, source) {
+				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
+			},
+			onRestart: function(target, source) {
+				return null;
+			},
+			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
+			onResidualOrder: 25,
+			onEnd: function() {
+				this.add('-fieldend', 'move: Magic Room', '[of] ' + this.effectData.source);
+			},
+		},
+		secondary: false,
+		target: "all",
+		type: "Psychic",
+		zMoveBoost: {
+			spd: 1
+		},
+		contestType: "Clever",
+	},
+};
