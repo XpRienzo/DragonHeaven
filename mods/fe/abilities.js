@@ -5367,7 +5367,7 @@ exports.BattleAbilities = {
 		shortDesc: "Priority moves won't work against this Pokémon. Attempts to do so result in +1 to its highest non-HP stat.",
 		onTryHit: function (pokemon, source, effect) {
 			for (const target of pokemon.side.foe.active) {
-			((target.side === this.effectData.source.side || effect.id === 'perishsong') && effect.priority > 0.1 && effect.target !== 'foeSide') {
+			if ((target.side === this.effectData.source.side || effect.id === 'perishsong') && effect.priority > 0.1 && effect.target !== 'foeSide') {
 				this.add('-immune', target, '[msg]', '[from] ability: Dazzle Beast');
 				let stat = 'atk';
 				let bestStat = 0;
