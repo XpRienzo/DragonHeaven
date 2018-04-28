@@ -190,7 +190,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 		id: "timewarp",
 		name: "Time Warp",
 	},
-	mindtrick: {
+	/*mindtrick: {
 		shortDesc: "Stat changes are received by the opposing pokemon and vice versa",
 		onStart: function (target, source) {
 			let targetBoosts = {};
@@ -204,11 +204,11 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 			target.setBoost(sourceBoosts);
 			source.setBoost(targetBoosts);
 
-			//this.add('-swapboost', source, target, '[from] ability: Mind Trick');
+			this.add('-swapboost', source, target, '[from] ability: Mind Trick');
 		},
 		id: "mindtrick",
 	name: "Mind Trick",
-	},
+	},*/
 	housekeeping: {
 		shortDesc: "Removes hazards upon switch-in.",
 		onSwitchInPriority: 6,
