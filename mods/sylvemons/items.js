@@ -333,9 +333,9 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		onModifyMove: function (move, pokemon) {
-			pokemon.addVolatile('torment', '[silent]');
-		},
+		onDisableMove: function (pokemon) {
+				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+			},
 		onModifyAtk: function (atk) {
 			return this.chainModify(1.33);
 		},
@@ -348,9 +348,9 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		onModifyMove: function (move, pokemon) {
-			pokemon.addVolatile('torment', '[silent]');
-		},
+		onDisableMove: function (pokemon) {
+				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+			},
 		onModifySpA: function (spa) {
 			return this.chainModify(1.33);
 		},
