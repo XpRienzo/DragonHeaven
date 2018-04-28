@@ -205,15 +205,9 @@ exports.BattleItems = {
 					statsLowered = true;
 				}
 			}
-			if (statsLowered && target.useItem()) {
-				let success = false;
-			for (let i in target.boosts) {
-				if (target.boosts[i] === 0) continue;
+			if (statsLowered) {
 				target.boosts[i] = -target.boosts[i];
-				success = true;
-			}
-			if (!success) return false;
-			this.add('-invertboost', target, '[from] move: Blue Herb');
+				this.add('-invertboost', target, '[from] item: Blue Herb');
 			}
 		},
 		gen: 7,
