@@ -8,11 +8,13 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
-		onUpdate: function (target, source) {
+		onUpdate: function (pokemon, source) {
+			for (const target of pokemon.side.foe.active) {
 			for (let i in target.boosts) {
 				if (target.boosts[i] > 0 && source.useItem()) {
 				this.useMove("Psych Up", source);
 				}
+			}
 			}
 			//this.add('-copyboost', source, target, '[from] item: Photocopier');
 		},
