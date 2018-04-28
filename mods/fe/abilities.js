@@ -5448,4 +5448,56 @@ exports.BattleAbilities = {
 		id: "groundleecher",
 		name: "Ground Leecher",
 	},
+	"bloodthirst": {
+		shortDesc: "This Pokemon's Attack and the highest stat is raised by 1 if it attacks and KOes another Pokemon.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+				this.boost({atk: 1}, source);
+			}
+		},
+		id: "bloodthirst",
+		name: "Bloodthirst",
+	},
+	"electrotorrent": {
+		shortDesc: "When this Pokemon enters the field, the opposing Pokemon is paralyzed and rain is set up for 5 turns.",
+		onStart: function (source, pokemon) {
+			for (const action of this.queue) {
+				if (action.choice === 'runPrimal' && action.pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
+			}
+			this.setWeather('raindance');
+			for (const target of pokemon.side.foe.active) {
+			source.setStatus('par', target);
+			}
+		},
+		id: "electrotorrent",
+		name: "Electrotorrent",
+	},
+	"darksurge": {
+		shortDesc: "On switch-in, this Pokemon summons Dark Terrain.",
+		onStart: function (source) {
+			this.setTerrain('darkterrain');
+		},
+		id: "darksurge",
+		name: "Dark Surge",
+	},
+	"blazingbeast": {
+		shortDesc: "Gets a Flash Fire boost when this Pokémon takes out another.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				source.addVolatile('flashfire')
+			}
+		},
+		id: "blazingbeast",
+		name: "Blazing Beast",
+	},
 };
