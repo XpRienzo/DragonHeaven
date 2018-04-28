@@ -3943,6 +3943,19 @@ exports.Formats = [
 		banlist: ['Arceus', 'King\'s Rock', 'Razor Fang'],
 		noLearn: ['Acupressure', 'Belly Drum', 'Chatter', 'Geomancy', 'Lovely Kiss', 'Shell Smash', 'Shift Gear', 'Thousand Arrows'],
 	},
+		{
+		name: "[Gen 7] Suicide Cup",
+		desc: [
+			"The first side to lose of their Pok&eacute;mon wins.",
+		],
+
+		mod: 'suicidecup',
+		ruleset: ['[Gen 7] Anything Goes', 'Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'Evasion Moves Clause'],
+		banlist: ['Assault Vest', 'Explosion', 'Final Gambit', 'Healing Wish', 'Lunar Dance', 'Magic Room', 'Memento', 'Self Destruct', 'Shedinja', 'Misty Terrain', 'Misty Surge', 'Infiltrator'],
+		onValidateSet: function (set) {
+			if(set.level !== 100) return [`All Pokemon should be Level 100. (${set.name || set.species} is Level ${set.level})`];
+		},
+	},
 	{
 		name: "[Gen 7] Trademarked",
 		desc: ["&bullet; <a href=\"http://www.smogon.com/forums/threads/trademarked.3572949/\">Trademarked</a>"],
@@ -6679,19 +6692,6 @@ exports.Formats = [
 					return ["You are limited to two of each ability by Ability Clause.", "(You have more than two of " + this.getAbility(ability).name + ")"];
 				}
 			}
-		},
-	},
-	{
-		name: "[Gen 7] Suicide Cup",
-		desc: [
-			"The first side to lose of their Pok&eacute;mon wins.",
-		],
-
-		mod: 'suicidecup',
-		ruleset: ['[Gen 7] Anything Goes', 'Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'Evasion Moves Clause'],
-		banlist: ['Assault Vest', 'Explosion', 'Final Gambit', 'Healing Wish', 'Lunar Dance', 'Magic Room', 'Memento', 'Self Destruct', 'Shedinja'],
-		onValidateSet: function (set) {
-			if(set.level !== 100) return [`All Pokemon should be Level 100. (${set.name || set.species} is Level ${set.level})`];
 		},
 	},
 	{
