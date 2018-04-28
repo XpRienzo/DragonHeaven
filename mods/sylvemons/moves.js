@@ -26,6 +26,86 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 'use strict';
 
 exports.BattleMovedex = {
+	"shadowcharge": {
+		accuracy: 95,
+		basePower: 85,
+		category: "Physical",
+		shadowcharge: "Power is boosted 1.5x if target is switching in.",
+		id: "shadowclaw",
+		isViable: true,
+		name: "Shadow Charge",
+		pp: 24,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onBasePower: function (basePower, attacker, defender) {
+			if (!defender.activeTurns) {
+				return this.chainModify(2);
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Ghost",
+		zMovePower: 160,
+		contestType: "Cool",
+	},
+	"hauntingscream": {
+		accuracy: 90,
+		basePower: 100,
+		category: "Special",
+		shortDesc: "Inflicts the Perish Song  effect on the opponent 30% of the time.",
+		id: "airslash",
+		isViable: true,
+		name: "Air Slash",
+		pp: 16,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, sound: 1},
+		secondary: {
+			chance: 30,
+			volatileStatus: 'perishsong',
+		},
+		target: "normal",
+		type: "Ghost",
+		zMovePower: 140,
+		contestType: "Cool",
+	},
+	"swampland": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Envelops the opponent’s side of the field in a Swamp (halves the opponent's team's Speed for 4 turns)",
+		id: "swampland",
+		isViable: true,
+		name: "Swampland",
+		pp: 15,
+		priority: 0,
+		flags: {snatch: 1},
+		sideCondition: 'swampland',
+		effect: {
+			duration: 4,
+			durationCallback: function (target, source, effect) {
+				if (source && source.hasAbility('persistent')) {
+					return 6;
+				}
+				return 4;
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Swampland');
+			},
+			onFoeModifySpe: function (spe, pokemon) {
+				return this.chainModify(0.5);
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 4,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'move: Swampland');
+			},
+		},
+		secondary: false,
+		target: "foeSide",
+		type: "Water",
+		zMoveBoost: {spa: 1},
+		contestType: "Cool",
+	},
 "stormstrike": {
 		accuracy: 100,
 		basePower: 50,
@@ -588,12 +668,12 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
-		onHit: function (pokemon) {
-			this.add('-activate', pokemon, 'move: Charge');
+		onHit: function (source) {
+			this.add('-activate', source, 'move: Charge');
 		},
 		effect: {
 			duration: 2,
-			onRestart: function (pokemon) {
+			onRestart: function (source) {
 				this.effectData.duration = 2;
 			},
 			onBasePowerPriority: 3,
@@ -869,7 +949,10 @@ exports.BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {bullet: 1, protect: 1, mirror: 1},
-		secondary: false,
+		secondary: {
+			chance: 50,
+			volatileStatus: 'leechseed',
+		},
 		target: "normal",
 		type: "Grass",
 		zMovePower: 160,
