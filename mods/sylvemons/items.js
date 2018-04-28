@@ -380,7 +380,7 @@ exports.BattleItems = {
 		gen: 5,
 		desc: "If holder's species can evolve, its Atk and Sp. Atk are 1.5x.",
 	},
-		/*"trickyseed": {
+		"trickyseed": {
 		id: "trickyseed",
 		name: "Tricky Seed",
 		spritenum: 664,
@@ -388,13 +388,13 @@ exports.BattleItems = {
 			basePower: 10,
 		},
 		onUpdate: function (pokemon) {
-			if (this.ispseudoWeather('trickroom') && pokemon.useItem()) {
+			if (this.isPseudoWeather('trickroom') && pokemon.useItem()) {
 				this.boost({spe: -1});
 			}
 		},
 		gen: 7,
 		desc: "If the terrain is Trick Room, lowers holder's Speed by 1 stage. Single use.",
-	},*/
+	},
 		"stunorb": {
 		id: "stunorb",
 		name: "Stun Orb",
