@@ -1,25 +1,6 @@
 'use strict';
 
 exports.BattleItems = {
-	"photocopier": {
-		id: "photocopier",
-		name: "Photocopier",
-		spritenum: 535,
-		fling: {
-			basePower: 80,
-		},
-		onUpdate: function (pokemon, source) {
-			for (const target of pokemon.side.foe.active) {
-			for (let i in target.boosts) {
-				if (target.boosts[i] > 0 && source.useItem()) {
-				this.useMove("Psych Up", source);
-				}
-			}
-			}
-			//this.add('-copyboost', source, target, '[from] item: Photocopier');
-		},
-		desc: "Copies the opponent's stat changes upon first encountering an opponent with a stat boost.",
-	},
 	"adrenalineorb": {
 		id: "adrenalineorb",
 		name: "Adrenaline Orb",
