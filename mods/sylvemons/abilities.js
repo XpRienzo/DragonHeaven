@@ -9,6 +9,38 @@ Forecast	If this Pokémon is holding a Weather Rock, its secondary typing become
 Misty Surge	Summons Misty Terrain upon switching-in. Misty Terrain now boosts Fairy-type moves by 1.5x.
 Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.0 - [Current percentage of HP in decimal form]) + 1.0
 */
+"forecast": {
+		desc: "If this Pokemon is a Castform, its type changes to the current weather condition's type, except Sandstorm.",
+		shortDesc: "Castform's type changes to the current weather condition's type, except Sandstorm.",
+		onUpdate: function (pokemon) {
+			if (pokemon.item === 'heatrock') {
+				pokemon.setType[1]('Fire');
+			}
+		},		
+		onUpdate: function (pokemon) {
+			if (pokemon.baseTemplate.baseSpecies !== 'Castform' || pokemon.transformed) return;
+			let forme = null;
+			switch (this.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				if (pokemon.template.speciesid !== 'castformsunny') forme = 'Castform-Sunny';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				if (pokemon.template.speciesid !== 'castformrainy') forme = 'Castform-Rainy';
+				break;
+			case 'hail':
+				if (pokemon.template.speciesid !== 'castformsnowy') forme = 'Castform-Snowy';
+				break;
+			default:
+				if (pokemon.template.speciesid !== 'castform') forme = 'Castform';
+				break;
+			}
+			if (pokemon.isActive && forme) {
+				pokemon.formeChange(forme);
+				this.add('-formechange', pokemon, forme, '[msg]', '[from] ability: Forecast');
+			}
+		},
 "schooling": {
 		desc: "On switch-in, if this Pokemon is a Wishiwashi that is level 20 or above and has more than 1/4 of its maximum HP left, it changes to School Form. If it is in School Form and its HP drops to 1/4 of its maximum HP or less, it changes to Solo Form at the end of the turn. If it is in Solo Form and its HP is greater than 1/4 its maximum HP at the end of the turn, it changes to School Form.",
 		shortDesc: "If user is Wishiwashi, changes to School Form if it has > 1/4 max HP, else Solo Form.",
