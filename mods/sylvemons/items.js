@@ -195,9 +195,6 @@ exports.BattleItems = {
 			basePower: 60,
 		},
 		onAfterEachBoost: function (boost, target, source) {
-			if (!source || target.side === source.side) {
-				return;
-			}
 			let statsLowered = false;
 			for (let i in boost) {
 				// @ts-ignore
@@ -206,8 +203,12 @@ exports.BattleItems = {
 				}
 			}
 			if (statsLowered) {
-				target.boosts[i] = -target.boosts[i];
-				this.add('-invertboost', target, '[from] item: Blue Herb');
+				let success = false;
+				for (let zz in target.boosts) {
+				if (target.boosts[zz] === 0) continue;
+				target.boosts[zz] = -target.boosts[i];
+				success = true;
+			}
 			}
 		},
 		gen: 7,
