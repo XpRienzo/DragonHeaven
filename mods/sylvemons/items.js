@@ -8,7 +8,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
-		onUpdate: function (source, target) {
+		onUpdate: function (source, pokemon) {
 			let activate = false;
 			let boosts = {};
 			for (const target of pokemon.side.foe.active) {
@@ -19,7 +19,7 @@ exports.BattleItems = {
 				}
 			}
 			if (activate && source.useItem()) {
-				source.boosts[i] = target.boosts[i];
+				source.setBoost(boosts);
 			//	this.add('-copyboost', source, target, '[from] item: Photocopier');
 			}
 			}
@@ -344,7 +344,7 @@ exports.BattleItems = {
 			basePower: 10,
 		},
 		onModifyMove: function (move, pokemon) {
-			pokemon.addVolatile('torment');
+			pokemon.addVolatile('torment', '[silent]');
 		},
 		onModifySpe: function (spe) {
 			return this.chainModify(1.33);
@@ -359,7 +359,7 @@ exports.BattleItems = {
 			basePower: 10,
 		},
 		onModifyMove: function (move, pokemon) {
-			pokemon.addVolatile('torment');
+			pokemon.addVolatile('torment', '[silent]');
 		},
 		onModifyAtk: function (atk) {
 			return this.chainModify(1.33);
@@ -374,7 +374,7 @@ exports.BattleItems = {
 			basePower: 10,
 		},
 		onModifyMove: function (move, pokemon) {
-			pokemon.addVolatile('torment');
+			pokemon.addVolatile('torment', '[silent]');
 		},
 		onModifySpA: function (spa) {
 			return this.chainModify(1.33);
