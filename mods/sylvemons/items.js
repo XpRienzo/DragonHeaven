@@ -188,6 +188,37 @@ exports.BattleItems = {
 		gen: 7,
 		desc: "Holder's use of Shadow Sky lasts 8 turns instead of 5.",
 	},
+	"blueherb": {
+		id: "blueherb",
+		name: "Blue Herb",
+		fling: {
+			basePower: 60,
+		},
+		onAfterEachBoost: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered && target.useItem()) {
+				let success = false;
+			for (let i in target.boosts) {
+				if (target.boosts[i] === 0) continue;
+				target.boosts[i] = -target.boosts[i];
+				success = true;
+			}
+			if (!success) return false;
+			this.add('-invertboost', target, '[from] move: Blue Herb');
+			}
+		},
+		gen: 7,
+		desc: "When held, if this Pokemon has it's stats lowered, all of it's stat changes will immediately be inverted.",
+	},
 	"breezerock": {
 		id: "breezerock",
 		name: "Breeze Rock",
