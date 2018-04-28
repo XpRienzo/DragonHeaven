@@ -679,8 +679,8 @@ exports.BattleMovedex = {
 			onRestart: function (pokemon) {
 				this.effectData.duration = 2;
 			},
-			onFoeBasePowerPriority: 3,
-			onFoeBasePower: function (basePower, pokemon, move) {
+			onBasePowerPriority: 3,
+			onBasePower: function (basePower, pokemon, move) {
 				if (move.type === 'Electric') {
 					this.debug('charge boost');
 					return this.chainModify(2);
