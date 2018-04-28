@@ -11,6 +11,7 @@ exports.BattleItems = {
 		onUpdate: function (source, target) {
 			let activate = false;
 			let boosts = {};
+			for (const target of pokemon.side.foe.active) {
 			for (let i in target.boosts) {
 				if (target.boosts[i] > 0) {
 					activate = true;
@@ -20,6 +21,7 @@ exports.BattleItems = {
 			if (activate && source.useItem()) {
 				source.setBoost(boosts);
 				this.add('-copyboost', source, target, '[from] item: Photocopier');
+			}
 			}
 		},
 		desc: "Copies the opponent's stat changes upon first encountering an opponent with a stat boost. (Consumable)",
