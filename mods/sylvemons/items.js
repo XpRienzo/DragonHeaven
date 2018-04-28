@@ -1,6 +1,29 @@
 'use strict';
 
 exports.BattleItems = {
+	"photocopier": {
+		id: "photocopier",
+		name: "Photocopier",
+		spritenum: 535,
+		fling: {
+			basePower: 80,
+		},
+		onUpdate: function (source, target) {
+			let activate = false;
+			let boosts = {};
+			for (let i in target.boosts) {
+				if (target.boosts[i] > 0) {
+					activate = true;
+					source.boosts[i] = target.boosts[i];
+				}
+			}
+			if (activate && source.useItem()) {
+				source.setBoost(boosts);
+				this.add('-copyboost', source, target, '[from] item: Photocopier');
+			}
+		},
+		desc: "Copies the opponent's stat changes upon first encountering an opponent with a stat boost. (Consumable)",
+	},
 	"adrenalineorb": {
 		id: "adrenalineorb",
 		name: "Adrenaline Orb",
@@ -192,7 +215,7 @@ exports.BattleItems = {
 		id: "blueherb",
 		name: "Blue Herb",
 		fling: {
-			basePower: 60,
+			basePower: 10,
 		},
 		onUpdate: function (pokemon) {
 			let activate = false;
@@ -511,18 +534,4 @@ exports.BattleItems = {
 		id: "weatherwarriorscrystal",
 		name: "Weather Warriors Crystal",
 	},
-	/* Adrenaline Orb	If the user has any of its stats lowered, its highest stat gets raised by one stage. Item does not get consumed.	80, Raises the targets highest stat by 1 stage
-Blue Herb	When held, if this Pokemon has it's stats lowered, all of it's stat changes will immediately be inverted. (Consumable)	10, N/A
-
-Graduation Scale	If holder is a Wishiwashi, it becomes School Form and will not change back. It's ability becomes Intimidate rather than Schooling. Water moves are boosted by 1.2x	30, N/A
-Home-Run Bat	Reflects Sticky Web, Stealth Rock, Spikes, and Toxic Spikes when an opponent would use it. Single-use. Does NOT break after any uses of Spikes or Toxic Spikes (Otherwise consumable). 	60, N/A
-Hot Potato	When the holder comes into contact with another Pokemon, their hold item is switched with the Hot Potato.	60, Burns the opponent
-Mimic Orb	When held, the first move that the holder is targeted with gets added to this Pokemon's moveset until switched out. Displays the same message as Mimic does when activated.	30, N/A
-Photocopier	Copies the opponent's stat changes upon first encountering an opponent with a stat boost. (Consumable)	80, N/A
-Poppy	When the user is hit by a contact move, this item is consumed and the opponent becomes drowsy. (Consumable)	10, Makes the opponent drowsy
-Reverse Core	Holder's weaknesses and resistances (including immunities) are swapped like in an Inverse Battle. On switchin, displays message "[holder] is cloaked in a mysterious power!"	TBD
-Room Extender	Extends Trick Room, Magic Room and Wonder Room to 8 turns, instead of 5	60, N/A
-Serenity Brace	Protects the holder from the secondary effects of opponent’s moves.	50, N/A
-Signature Items (Mechanic Change)	Cannot be removed if their holder is the respective species the item is supposed to work with (Light Ball is a bit suspect for this mechanic)	Varies
-*/
 };
