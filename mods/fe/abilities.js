@@ -1712,7 +1712,7 @@ exports.BattleAbilities = {
 		name: "Sturdy Fire",
 	},
 	"kindle": {
-		shortDesc: "During hail, it's Fire moves are powered up by 1.5x and recovers 1/16 HP every turn.",
+		shortDesc: "During hail, its Fire moves are powered up by 1.5x and recovers 1/16 HP every turn.",
 		onModifySpAPriority: 5,
 		onModifySpA: function(spa, pokemon) {
 			if (this.isWeather('sunnyday')) {
