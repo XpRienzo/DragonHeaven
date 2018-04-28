@@ -132,7 +132,7 @@ Obstinacy	User gains a boost in it's moves the lower it's HP gets. Formula:  (1.
 	},
 	housekeeping: {
 		shortDesc: "Removes hazards upon switch-in.",
-	onStart: function (pokemon, target, source) {
+	onSwitch: function (pokemon, target, source) {
 						this.removePseudoWeather('trickroom');
 			        this.removePseudoWeather('magicroom');
 			 		this.removePseudoWeather('wonderroom');
