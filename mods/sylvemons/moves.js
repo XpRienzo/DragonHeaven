@@ -39,7 +39,7 @@ exports.BattleMovedex = {
 		flags: {contact: 1, protect: 1, mirror: 1},
 		onBasePower: function (basePower, attacker, defender) {
 			if (!defender.activeTurns) {
-				return this.chainModify(2);
+				return this.chainModify(1.5);
 			}
 		},
 		secondary: false,
