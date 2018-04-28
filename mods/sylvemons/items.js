@@ -194,21 +194,18 @@ exports.BattleItems = {
 		fling: {
 			basePower: 60,
 		},
-		onAfterEachBoost: function (boost, target, source) {
-			let statsLowered = false;
-			for (let i in boost) {
-				// @ts-ignore
-				if (boost[i] < 0) {
-					statsLowered = true;
+		onUpdate: function (pokemon) {
+			let activate = false;
+			let boosts = {};
+			for (let i in pokemon.boosts) {
+				if (pokemon.boosts[i] < 0) {
+					activate = true;
+					boosts[i] = -boosts[i];
 				}
 			}
-			if (statsLowered) {
-				let success = false;
-				for (let zz in target.boosts) {
-				if (target.boosts[zz] === 0) continue;
-				target.boosts[zz] = -target.boosts[i];
-				success = true;
-			}
+			if (activate && pokemon.useItem()) {
+				pokemon.setBoost(boosts);
+				this.add('-invertboost', pokemon, '[from] item: Blue Herb');
 			}
 		},
 		gen: 7,
