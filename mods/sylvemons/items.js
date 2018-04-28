@@ -8,23 +8,23 @@ exports.BattleItems = {
 		fling: {
 			basePower: 80,
 		},
-		onUpdate: function (source, pokemon) {
+		onUpdate: function (pokemon, source) {
+			for (const target of pokemon.side.foe.active) {
 			let activate = false;
 			let boosts = {};
-			for (const target of pokemon.side.foe.active) {
 			for (let i in target.boosts) {
 				if (target.boosts[i] > 0) {
 					activate = true;
-					source.boosts[i] = target.boosts[i];
+					boosts[i] = 0;
 				}
 			}
 			if (activate && source.useItem()) {
-				source.boosts[i] = target.boosts[i];
-			//	this.add('-copyboost', source, target, '[from] item: Photocopier');
+				source.setBoost(boosts);
+				this.add('-copyboost', source, target, '[from] item: Photocopier');
 			}
 			}
 		},
-		desc: "Copies the opponent's stat changes upon first encountering an opponent with a stat boost. (Consumable)",
+		desc: "Copies the opponent's stat changes upon first encountering an opponent with a stat boost.",
 	},
 	"adrenalineorb": {
 		id: "adrenalineorb",
