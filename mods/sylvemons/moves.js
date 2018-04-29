@@ -92,9 +92,7 @@ exports.BattleMovedex = {
 		name: "Swampland",
 		pp: 15,
 		priority: 0,
-		flags: {
-			snatch: 1
-		},
+		flags: {snatch: 1},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Rain Dance", target);
@@ -111,7 +109,7 @@ exports.BattleMovedex = {
 			onStart: function(side) {
 				this.add('-sidestart', side, 'move: Swampland');
 			},
-			onFoeModifySpe: function(spe, pokemon) {
+			onModifySpe: function(spe, pokemon) {
 				return this.chainModify(0.5);
 			},
 			onResidualOrder: 21,
@@ -823,7 +821,7 @@ exports.BattleMovedex = {
 			this.useMove("Charge", pokemon);
 		},
 		target: "normal",
-		type: "Steel",
+		type: "Electric",
 		zMovePower: 175,
 		contestType: "Cool",
 	},
