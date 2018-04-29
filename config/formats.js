@@ -4216,7 +4216,7 @@ exports.Formats = [
 		desc: ["&bullet; Megas",
 		      ],
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: [],
+		banlist: ['Illegal'],
 		mod: 'megasforall',
 		searchShow: false,
 	},
