@@ -144,7 +144,7 @@ init: function () {
   this.modData('Learnsets', 'musharna').learnset.moonlight = ['7L1'];
   this.modData('Learnsets', 'marowakalola').learnset.moonlight = ['7L1'];
   this.modData('Learnsets', 'chingling').learnset.moonlight = ['7L1'];
-  this.modData('Learnsets', 'chimechoo').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'chimecho').learnset.moonlight = ['7L1'];
   this.modData('Learnsets', 'gligar').learnset.moonlight = ['7L1'];
   this.modData('Learnsets', 'gliscor').learnset.moonlight = ['7L1'];
   this.modData('Learnsets', 'sneasel').learnset.moonlight = ['7L1'];
