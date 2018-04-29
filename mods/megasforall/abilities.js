@@ -39,6 +39,24 @@ Ratings and how they work:
 'use strict';
 
 exports.BattleAbilities = {
+	'forsee': {
+	shortDesc: "Uses Future Sight on switch out.",
+	onSwitchOut: function(source) {
+		this.useMove('Future Sight', source);
+	},
+	id: "forsee",
+	name: "Forsee",
+}, 
+"supremesamurai": {
+	shortDesc: "The user's Blade-based moves (Cross Poison, Cut, Fury Cutter, Leaf Blade, Megahorn, Night Slash, Psycho Cut, Razor Shell, Sacred Sword, Secret Sword, Slash, Smart Strike, Solar Blade, X-Scissor) are always a critical hit.",
+	onModifyMove: function(move) {
+		if (move.name === 'Cross Poison' || move.name === 'Cut' || move.name === 'Fury Cutter' || move.name === 'Leaf Blade' || move.name === 'Megahorn' || move.name === 'Night Slash' || move.name === 'Psycho Cut' || move.name === 'Razor Shell' || move.name === 'Sacred Sword' || move.name === 'Secret Sword' || move.name === 'Slash' || move.name === 'Smart Strike' || move.name === 'Solar Blade' || move.name === 'X-Scissor') {
+			move.willCrit = true;
+		}
+	},
+	id: "supremesamurai",
+	name: "Supreme Samurai",
+},
 	"entomb": {
 		shortDesc: "Traps Ghost types and has +4 priority when targeting them.",
 		onFoeTrapPokemon: function (pokemon) {
