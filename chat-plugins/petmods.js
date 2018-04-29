@@ -183,6 +183,17 @@ typeopthelp: ["/eternalmons - Shows the list of Pokemon in Type Optimisation Pok
 		this.sendReplyBox(`${buf}</div>`);
 	},
 		mfahelp: ["/mfa - Shows the list of Pokemon in Megas For All."],
+	mfaitem: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of MFA Pokemon</h2><br>Clickable list!</center>`;
+		let mfaDex = require('../mods/megasforall/formats-data.js').BattleFormatsData ;
+		if (!mfaDex) return this.errorReply("Error Fetching MFA Data.");
+		Object.values(mfaDex).forEach(mon => {
+			buf += `requiredItem: &quot;${mon.requiredItem}&quot;<br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
+		mfaitemhelp: ["/mfa - Shows the list of Pokemon in Megas For All."],
 	 alola: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Alola Formes Pokemon</h2></center>`;
