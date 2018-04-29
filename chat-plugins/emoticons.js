@@ -127,6 +127,7 @@ if (typeof demFeels.extendEmotes === 'function') {
 		'efforT':'https://imgur.com/gnLNqaR.png',
 		'supergoku': 'https://i.imgur.com/OaynEr8.gif',
 		'canttouchthis': 'https://vignette.wikia.nocookie.net/powerlisting/images/9/9b/Ultra_Instinct.gif/revision/latest?cb=20180223205757',
+		'sharna': 'https://imgur.com/kTa46qQ.png',
 	});
 }
 
