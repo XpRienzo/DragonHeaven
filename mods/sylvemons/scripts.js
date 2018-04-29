@@ -83,5 +83,134 @@ init: function () {
    this.modData('Learnsets', 'bisharp').learnset.stalwartsword = ['7L1'];
    this.modData('Learnsets', 'scyther').learnset.stalwartsword = ['7L1'];
    this.modData('Learnsets', 'scizor').learnset.stalwartsword = ['7L1'];
+	
+	// Teleport
+  this.modData('Learnsets', 'munna').learnset.teleport = ['7L1'];
+  this.modData('Learnsets', 'musharna').learnset.teleport = ['7L1'];
+
+// Morning Sun
+  this.modData('Learnsets', 'torchic').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'combusken').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'blaziken').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'seviper').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'serperior').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'rayquaza').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'salandit').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'salazzle').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'bagon').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'shelgon').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'salamence').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'treecko').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'grovyle').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'sceptile').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'druddigon').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'budew').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'roselia').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'roserade').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'fomantis').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'lurantis').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'lycanrocdusk').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'lycanroc').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'helioptile').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'heliolisk').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'petilil').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'lilligant').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'cottonee').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'whimsicott').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'bellossom').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'charmander').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'charmeleon').learnset.morningsun = ['7L1'];
+  this.modData('Learnsets', 'charizard').learnset.morningsun = ['7L1'];
+
+// Moonlight
+  this.modData('Learnsets', 'lycanrocdusk').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'lycanrocmidnight').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'noctowl').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'nidoranm').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'nidoranf').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'nidorino').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'nidorina').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'nidoking').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'nidoqueen').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'cleffa').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'clefairy').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'clefable').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'igglybuff').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'jigglypuff').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'wigglytuff').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'skitty').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'delcatty').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'munna').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'musharna').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'marowakalola').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'chingling').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'chimechoo').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'gligar').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'gliscor').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'sneasel').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'weavile').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'ninetalesalola').learnset.moonlight = ['7L1'];
+  this.modData('Learnsets', 'diancie').learnset.moonlight = ['7L1'];
+
+// Synthesis
+  this.modData('Learnsets', 'cottonee').learnset.synthesis = ['7L1'];
+  this.modData('Learnsets', 'whimsicott').learnset.synthesis = ['7L1'];
+  this.modData('Learnsets', 'phantump').learnset.synthesis = ['7L1'];
+  this.modData('Learnsets', 'trevenant').learnset.synthesis = ['7L1'];
+	
+	// Twineedle
+  this.modData('Learnsets', 'ferrothorn').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'naganadel').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'forretress').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'qwilfish').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'maractus').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'chesnaught').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'golisopod').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'genesect').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'leavanny').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'sandshrew').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'sandslash').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'sandshrewalola').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'sandslashalola').learnset.twineedle = ['7L1'];
+  this.modData('Learnsets', 'buzzwole').learnset.twineedle = ['7L1'];
+
+// Gear Grind
+  this.modData('Learnsets', 'magearna').learnset.geargrind = ['7L1'];
+  this.modData('Learnsets', 'genesect').learnset.geargrind = ['7L1'];
+  this.modData('Learnsets', 'golurk').learnset.geargrind = ['7L1'];
+
+// Thunder Clap
+  this.modData('Learnsets', 'electivire').learnset. thunderclap = ['7L1'];
+  this.modData('Learnsets', 'hariyama').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'eelektrik').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'eelektross').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'golett').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'golurk').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'rhyhorn').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'rhydon').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'rhyperior').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'ponyta').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', ' rapidash').learnset. thunderclap = ['7L1'];
+  this.modData('Learnsets', 'blitzle').learnset. thunderclap = ['7L1'];
+  this.modData('Learnsets', 'zebstrika').learnset. thunderclap = ['7L1'];
+  this.modData('Learnsets', 'mudbray').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'mudsdale').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'tauros').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'bouffalant').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'tyranitar').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'raikou').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'exploud').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'flygon').learnset.thunderclap = ['7L1']
+  this.modData('Learnsets', 'tapukoko').learnset. thunderclap = ['7L1'];
+  this.modData('Learnsets', 'geodudealola').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'graveleralola').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'golemalola').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'shinx').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'luxio').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'luxray').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'zekrom').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'klink').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'klang').learnset.thunderclap = ['7L1'];
+  this.modData('Learnsets', 'klinklang').learnset.thunderclap = ['7L1'];
 	},
 };
