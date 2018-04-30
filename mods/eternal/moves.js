@@ -705,6 +705,12 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 				}
 			},
 		},
+		onTryHit: function (target) {
+			if (target.hasType('Grass')) {
+				this.add('-immune', target, '[msg]');
+				return null;
+			}
+		},
 		secondary: false,
 		volatileStatus: 'partiallytrapped',
 		target: "normal",
