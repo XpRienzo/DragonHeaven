@@ -825,6 +825,10 @@ exports.BattleMovedex = {
 					volatileStatus: 'charge',
 				},
 		},
+		onHit: function(target, pokemon) {
+			pokemon.addVolatile('charge');
+			this.add('-activate', pokemon, 'move: Charge');
+		},
 		target: "normal",
 		type: "Electric",
 		zMovePower: 175,
