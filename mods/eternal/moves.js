@@ -1120,7 +1120,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 	"shipwreckedgale": {
 		accuracy: 100,
 		basePower: 70,
-		category: "Physical",
+		category: "Special",
 		desc: "Steals the opponent's stat changes before attacking, and then switches out, passing on the stolen stat changes on to the switch-in.",
 		shortDesc: "Steals the opponent's stat changes before attacking, and then switches out, passing on the stolen stat changes on to the switch-in.",
 		id: "shipwreckedgale",
@@ -1238,7 +1238,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		"razzledazzle": {
 		accuracy: 100,
 		basePower: 45,
-		category: "Physical",
+		category: "Special",
 		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit. 30% chance to burn the target.",
 		shortDesc: "Hits 2 times in one turn. 30% chance to burn the target.",
 		id: "razzledazzle",
@@ -1467,6 +1467,33 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		zMovePower: 200,
 		contestType: "Clever",
 	},
+	"rewind": {
+    accuracy: true,
+    basePower: 0,
+    category: "Status",
+    desc: "Resets the stat stages of all active Pokemon to 0. Heals user by 50% of their max HP.",
+    shortDesc: "Eliminates all stat changes. Heals user.",
+    id: "rewind",
+    isViable: true,
+    name: "Rewind",
+    pp: 30,
+    priority: 0,
+    flags: {authentic: 1, snatch: 1, heal: 1},
+    heal: [1, 2],
+    onHitField: function () {
+      this.add('-clearallboost');
+      for (const side of this.sides) {
+        for (const pokemon of side.active) {
+          if (pokemon && pokemon.isActive) pokemon.clearBoosts();
+        }
+      }
+    },
+    secondary: false,
+    target: "all",
+    type: "Water",
+    zMoveEffect: 'heal',
+    contestType: "Beautiful",
+  },
 /* squeakywheel: {
 basePower: 80, 
 accuracy: 100, 
