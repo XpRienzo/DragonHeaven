@@ -1,5 +1,4 @@
 'use strict';
-
 exports.BattleItems = {
 	"adrenalineorb": {
 		id: "adrenalineorb",
@@ -8,7 +7,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 30,
 		},
-		onAfterEachBoost: function (boost, target, source) {
+		onAfterEachBoost: function(boost, target, source) {
 			if (!source || target.side === source.side) {
 				return;
 			}
@@ -28,7 +27,9 @@ exports.BattleItems = {
 						bestStat = target.stats[i];
 					}
 				}
-				this.boost({[stat]: 1}, target);
+				this.boost({
+					[stat]: 1
+				}, target);
 			}
 		},
 		num: 846,
@@ -37,63 +38,63 @@ exports.BattleItems = {
 	},
 	"adamantorb": {
 		inherit: true,
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Dialga') return false;
 			return true;
 		},
 	},
 	"deepseascale": {
 		inherit: true,
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Clamperl') return false;
 			return true;
 		},
 	},
 	"deepseatooth": {
 		inherit: true,
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Clamperl') return false;
 			return true;
 		},
 	},
 	"griseousorb": {
 		inherit: true,
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Giratina') return false;
 			return true;
 		},
 	},
 	"luckypunch": {
 		inherit: true,
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Chansey') return false;
 			return true;
 		},
 	},
 	"lustrousorb": {
 		inherit: true,
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Palkia') return false;
 			return true;
 		},
 	},
 	"metalpowder": {
 		inherit: true,
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Ditto') return false;
 			return true;
 		},
 	},
 	"quickpowder": {
 		inherit: true,
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Ditto') return false;
 			return true;
 		},
 	},
 	"stick": {
 		inherit: true,
-		onTakeItem: function (item, pokemon, source) {
+		onTakeItem: function(item, pokemon, source) {
 			if ((source && source.baseTemplate.num === 83) || pokemon.baseTemplate.num === 83) {
 				return false;
 			}
@@ -102,7 +103,7 @@ exports.BattleItems = {
 	},
 	"thickclub": {
 		inherit: true,
-		onTakeItem: function (item, pokemon, source) {
+		onTakeItem: function(item, pokemon, source) {
 			if ((source && source.baseTemplate.num === 105) || pokemon.baseTemplate.num === 105) {
 				return false;
 			}
@@ -112,22 +113,22 @@ exports.BattleItems = {
 	"graduationscale": {
 		id: "graduationscale",
 		name: "Graduation Scale",
-      onStart: function(pokemon) {
+		onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Graduation Scale');
-        if (pokemon.baseTemplate.baseSpecies === 'Wishiwashi') {
-			this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
-			pokemon.formeChange("Wishiwashi-School");
-			 let oldAbility = pokemon.setAbility('intimidate', pokemon, 'intimidate', true);
-			if (oldAbility) {
-				this.add('-activate', pokemon, 'ability: Intimidate', oldAbility, '[of] ' + pokemon);
+			if (pokemon.baseTemplate.baseSpecies === 'Wishiwashi') {
+				this.add('-formechange', pokemon, 'Wishiwashi-School', '[msg]');
+				pokemon.formeChange("Wishiwashi-School");
+				let oldAbility = pokemon.setAbility('intimidate', pokemon, 'intimidate', true);
+				if (oldAbility) {
+					this.add('-activate', pokemon, 'ability: Intimidate', oldAbility, '[of] ' + pokemon);
+				}
 			}
-		  }
 		},
 		fling: {
 			basePower: 20,
 		},
-      onBasePowerPriority: 6,
-		onBasePower: function (basePower, user, target, move) {
+		onBasePowerPriority: 6,
+		onBasePower: function(basePower, user, target, move) {
 			if (move && (user.baseTemplate.num === 746) && (move.type === 'Water')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
@@ -138,18 +139,18 @@ exports.BattleItems = {
 	"ragecandybar": {
 		id: "ragecandybar",
 		name: "Rage Candy Bar",
-      onStart: function(pokemon) {
+		onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Rage Candy Bar');
-        if (pokemon.baseTemplate.baseSpecies === 'Darmanitan') {
-			this.add('-formechange', pokemon, 'Darmanitan-Zen', '[msg]');
-			pokemon.formeChange("Darmanitan-Zen");
- }
+			if (pokemon.baseTemplate.baseSpecies === 'Darmanitan') {
+				this.add('-formechange', pokemon, 'Darmanitan-Zen', '[msg]');
+				pokemon.formeChange("Darmanitan-Zen");
+			}
 		},
 		fling: {
 			basePower: 20,
 		},
-                onBasePowerPriority: 6,
-		onBasePower: function (basePower, user, target, move) {
+		onBasePowerPriority: 6,
+		onBasePower: function(basePower, user, target, move) {
 			if (move && (user.baseTemplate.num === 555) && (move.type === 'Psychic')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
@@ -157,21 +158,21 @@ exports.BattleItems = {
 		gen: 7,
 		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power",
 	},
-		"reliccharm": {
+	"reliccharm": {
 		id: "reliccharm",
 		name: "Relic Charm",
-      onStart: function(pokemon) {
+		onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Relic Charm');
-        if (pokemon.baseTemplate.baseSpecies === 'Meloetta') {
-			this.add('-formechange', pokemon, 'Meloetta-Pirouette', '[msg]');
-			pokemon.formeChange("Meloetta-Pirouette");
- }
+			if (pokemon.baseTemplate.baseSpecies === 'Meloetta') {
+				this.add('-formechange', pokemon, 'Meloetta-Pirouette', '[msg]');
+				pokemon.formeChange("Meloetta-Pirouette");
+			}
 		},
 		fling: {
 			basePower: 40,
 		},
-                onBasePowerPriority: 6,
-		onBasePower: function (basePower, user, target, move) {
+		onBasePowerPriority: 6,
+		onBasePower: function(basePower, user, target, move) {
 			if (move && (user.baseTemplate.num === 648) && (move.type === 'Fighting')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
@@ -194,7 +195,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		onUpdate: function (pokemon) {
+		onUpdate: function(pokemon) {
 			let activate = false;
 			let boosts = {};
 			for (let i in pokemon.boosts) {
@@ -226,7 +227,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 30,
 		},
-		onAfterDamage: function (damage, target, source, effect) {
+		onAfterDamage: function(damage, target, source, effect) {
 			if (effect && target.useItem()) {
 				this.add('-item', target, 'Mimic Orb');
 				this.useMove('Mimic', target);
@@ -241,7 +242,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 60,
 		},
-		onAfterDamage: function (damage, target, source, effect) {
+		onAfterDamage: function(damage, target, source, effect) {
 			if (effect && effect.flags['contact'] && target.useItem()) {
 				this.add('-item', target, 'Voodoo Doll');
 				source.addVolatile('torment');
@@ -256,7 +257,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		onAfterDamage: function (damage, target, source, effect) {
+		onAfterDamage: function(damage, target, source, effect) {
 			if (effect && effect.flags['contact'] && target.useItem()) {
 				this.add('-item', target, 'Poppy');
 				source.addVolatile('yawn');
@@ -271,7 +272,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 50,
 		},
-		onModifySecondaries: function (secondaries) {
+		onModifySecondaries: function(secondaries) {
 			this.debug('Shield Dust prevent secondary');
 			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
 		},
@@ -284,16 +285,16 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-       onUpdate: function (pokemon) {
+		onUpdate: function(pokemon) {
 			if (pokemon.hp <= pokemon.maxhp / 4 || (pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility('gluttony'))) {
 				pokemon.eatItem();
 			}
 		},
-		onEat: function (source) {
-			this.useMove('Stealth Rock', source);		
+		onEat: function(source) {
+			this.useMove('Stealth Rock', source);
 		},
-      desc: "When at 1/4 HP or less, consumes Berry and sets Stealth Rock on the foe's side",
-	        },
+		desc: "When at 1/4 HP or less, consumes Berry and sets Stealth Rock on the foe's side",
+	},
 	"ringtarget": {
 		id: "ringtarget",
 		name: "Ring Target",
@@ -301,14 +302,14 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-      onModifyMovePriority: -5,
-		onModifyMove: function (move) {
+		onModifyMovePriority: -5,
+		onModifyMove: function(move) {
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};
 			if (move.ignoreImmunity !== true) {
 				move.ignoreImmunity = true;
 			}
 		},
-        desc: "If a Pokémon holds this item, it will ignore any type-based immunity when attacking.",
+		desc: "If a Pokémon holds this item, it will ignore any type-based immunity when attacking.",
 	},
 	"agonyboots": {
 		id: "agonyboots",
@@ -317,10 +318,10 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		onDisableMove: function (pokemon) {
-				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
-			},
-		onModifySpe: function (spe) {
+		onDisableMove: function(pokemon) {
+			if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+		},
+		onModifySpe: function(spe) {
 			return this.chainModify(1.33);
 		},
 		desc: "Holder's Speed is 1.33x, but it can't use the same move twice in a row",
@@ -332,46 +333,46 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		onDisableMove: function (pokemon) {
-				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
-			},
-		onModifyAtk: function (atk) {
+		onDisableMove: function(pokemon) {
+			if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+		},
+		onModifyAtk: function(atk) {
 			return this.chainModify(1.33);
 		},
 		desc: "Holder's Attack is 1.33x, but it can't use the same move twice in a row",
 	},
-		"distressglass": {
+	"distressglass": {
 		id: "distressglass",
 		name: "Distress Glass",
 		spritenum: 69,
 		fling: {
 			basePower: 10,
 		},
-		onDisableMove: function (pokemon) {
-				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
-			},
-		onModifySpA: function (spa) {
+		onDisableMove: function(pokemon) {
+			if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+		},
+		onModifySpA: function(spa) {
 			return this.chainModify(1.33);
 		},
 		desc: "Holder's Attack is 1.33x, but it can't use the same move twice in a row",
 	},
-   "assaultshield": {
-	id: "assaultshield",
-	name: "assault Shield",
-	onModifyDefPriority: 1,
-	onModifyDef: function(def) {
-		return this.chainModify(1.5);
-	},
-	onDisableMove: function(pokemon) {
-		let moves = pokemon.moveset;
-		for (let i = 0; i < moves.length; i++) {
-			if (this.getMove(moves[i].move).category === 'Status') {
-				pokemon.disableMove(moves[i].id);
+	"assaultshield": {
+		id: "assaultshield",
+		name: "assault Shield",
+		onModifyDefPriority: 1,
+		onModifyDef: function(def) {
+			return this.chainModify(1.5);
+		},
+		onDisableMove: function(pokemon) {
+			let moves = pokemon.moveset;
+			for (let i = 0; i < moves.length; i++) {
+				if (this.getMove(moves[i].move).category === 'Status') {
+					pokemon.disableMove(moves[i].id);
+				}
 			}
-		}
+		},
+		desc: "Holder's Def is 1.5x, but it can only select damaging moves.",
 	},
-	desc: "Holder's Def is 1.5x, but it can only select damaging moves.",
-},
 	"eviolith": {
 		id: "eviolith",
 		name: "Eviolith",
@@ -380,13 +381,13 @@ exports.BattleItems = {
 			basePower: 40,
 		},
 		onModifyAtkPriority: 2,
-		onModifyAtk: function (atk, pokemon) {
+		onModifyAtk: function(atk, pokemon) {
 			if (pokemon.baseTemplate.nfe) {
 				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 2,
-		onModifySpA: function (spa, pokemon) {
+		onModifySpA: function(spa, pokemon) {
 			if (pokemon.baseTemplate.nfe) {
 				return this.chainModify(1.5);
 			}
@@ -409,7 +410,7 @@ exports.BattleItems = {
 		gen: 7,
 		desc: "If the terrain is Trick Room, lowers holder's Speed by 1 stage. Single use.",
 	},*/
-		"stunorb": {
+	"stunorb": {
 		id: "stunorb",
 		name: "Stun Orb",
 		spritenum: 515,
@@ -419,13 +420,13 @@ exports.BattleItems = {
 		},
 		onResidualOrder: 26,
 		onResidualSubOrder: 2,
-		onResidual: function (pokemon) {
+		onResidual: function(pokemon) {
 			pokemon.trySetStatus('par', pokemon);
 		},
 		gen: 4,
 		desc: "At the end of every turn, this item attempts to paralyze the holder.",
 	},
-		"shellbell": {
+	"shellbell": {
 		id: "shellbell",
 		name: "Shell Bell",
 		spritenum: 438,
@@ -433,7 +434,7 @@ exports.BattleItems = {
 			basePower: 30,
 		},
 		onAfterMoveSecondarySelfPriority: -1,
-		onAfterMoveSecondarySelf: function (pokemon, target, move) {
+		onAfterMoveSecondarySelf: function(pokemon, target, move) {
 			if (move.category !== 'Status') {
 				this.heal(pokemon.lastDamage / 4, pokemon);
 			}
@@ -446,21 +447,21 @@ exports.BattleItems = {
 		id: "iceskates",
 		name: "Ice Skates",
 		spritenum: 664,
-		onImmunity: function (type, pokemon) {
+		onImmunity: function(type, pokemon) {
 			if (type === 'hail') return false;
 		},
-		onModifySpe: function (spe) {
+		onModifySpe: function(spe) {
 			if (this.isWeather('hail')) {
 				return this.chainModify(2);
 			}
-			},
+		},
 		fling: {
 			basePower: 80,
 		},
 		gen: 7,
 		desc: "If Hail is active, holder's Speed is doubled. Immune to hail damage.",
 	},
-		"lightball": {
+	"lightball": {
 		id: "lightball",
 		name: "Light Ball",
 		spritenum: 251,
@@ -469,18 +470,18 @@ exports.BattleItems = {
 			status: 'par',
 		},
 		onModifyAtkPriority: 1,
-		onModifyAtk: function (atk, pokemon) { // Pichu, Pikachu, Raichu, Plusle, Minun, Pachirisu, Emolga, Dedenne or a Togedemaru
+		onModifyAtk: function(atk, pokemon) { // Pichu, Pikachu, Raichu, Plusle, Minun, Pachirisu, Emolga, Dedenne or a Togedemaru
 			if (pokemon.baseTemplate.baseSpecies === 'Pikachu' || pokemon.baseTemplate.baseSpecies === 'Pichu' || pokemon.baseTemplate.baseSpecies === 'Raichu' || pokemon.baseTemplate.baseSpecies === 'Plusle' || pokemon.baseTemplate.baseSpecies === 'Minun' || pokemon.baseTemplate.baseSpecies === 'Pachirisu' || pokemon.baseTemplate.baseSpecies === 'Emolga' || pokemon.baseTemplate.baseSpecies === 'Dedenne' || pokemon.baseTemplate.baseSpecies === 'Togedemaru') {
 				return this.chainModify(2);
 			}
 		},
 		onModifySpAPriority: 1,
-		onModifySpA: function (spa, pokemon) {
+		onModifySpA: function(spa, pokemon) {
 			if (pokemon.baseTemplate.baseSpecies === 'Pikachu' || pokemon.baseTemplate.baseSpecies === 'Pichu' || pokemon.baseTemplate.baseSpecies === 'Raichu' || pokemon.baseTemplate.baseSpecies === 'Plusle' || pokemon.baseTemplate.baseSpecies === 'Minun' || pokemon.baseTemplate.baseSpecies === 'Pachirisu' || pokemon.baseTemplate.baseSpecies === 'Emolga' || pokemon.baseTemplate.baseSpecies === 'Dedenne' || pokemon.baseTemplate.baseSpecies === 'Togedemaru') {
 				return this.chainModify(2);
 			}
 		},
-		onTakeItem: function (item, source) {
+		onTakeItem: function(item, source) {
 			if (source.baseTemplate.baseSpecies === 'Pikachu' || source.baseTemplate.baseSpecies === 'Pichu' || source.baseTemplate.baseSpecies === 'Raichu' || source.baseTemplate.baseSpecies === 'Plusle' || source.baseTemplate.baseSpecies === 'Minun' || source.baseTemplate.baseSpecies === 'Pachirisu' || source.baseTemplate.baseSpecies === 'Emolga' || source.baseTemplate.baseSpecies === 'Dedenne' || source.baseTemplate.baseSpecies === 'Togedemaru') return false;
 			return true;
 		},
@@ -488,11 +489,14 @@ exports.BattleItems = {
 		gen: 2,
 		desc: "If held by a Pichu, Pikachu, Raichu, Plusle, Minun, Pachirisu, Emolga, Dedenne or a Togedemaru, its Attack and Sp. Atk are doubled.",
 	},
-		"weatherwarriorscrystal": {
+	"weatherwarriorscrystal": {
 		shortDesc: "When a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each.",
-			onUpdate: function (pokemon) {
+		onUpdate: function(pokemon) {
 			if (this.isWeather(['sunnyday', 'desolateland', 'hail', 'rainyday', 'primordialsea', 'sandstream', 'shadowsky', 'aircurrent']) && pokemon.useItem()) {
-				this.boost({atk:1, spa: 1});
+				this.boost({
+					atk: 1,
+					spa: 1
+				});
 			}
 		},
 		fling: {
