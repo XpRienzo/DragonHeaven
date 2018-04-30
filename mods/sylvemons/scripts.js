@@ -190,7 +190,7 @@ init: function () {
   this.modData('Learnsets', 'rhydon').learnset.thunderclap = ['7L1'];
   this.modData('Learnsets', 'rhyperior').learnset.thunderclap = ['7L1'];
   this.modData('Learnsets', 'ponyta').learnset.thunderclap = ['7L1'];
-  this.modData('Learnsets', ' rapidash').learnset. thunderclap = ['7L1'];
+  this.modData('Learnsets', 'rapidash').learnset. thunderclap = ['7L1'];
   this.modData('Learnsets', 'blitzle').learnset. thunderclap = ['7L1'];
   this.modData('Learnsets', 'zebstrika').learnset. thunderclap = ['7L1'];
   this.modData('Learnsets', 'mudbray').learnset.thunderclap = ['7L1'];
