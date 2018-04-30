@@ -355,15 +355,7 @@ exports.BattleItems = {
 		},
 		desc: "Holder's Attack is 1.33x, but it can't use the same move twice in a row",
 	},
-        "roomextender": {
-		            id: "roomextender",
-		            name: "Room Extender",
-		            fling: {
-		           	        basePower: 60,
-		            },
-            		desc: "Holder's use of Electric/Grassy/Misty/Psychic Terrain lasts 8 turns instead of 5.",
-       	},
-        "assaultshield": {
+   "assaultshield": {
 	id: "assaultshield",
 	name: "assault Shield",
 	onModifyDefPriority: 1,
