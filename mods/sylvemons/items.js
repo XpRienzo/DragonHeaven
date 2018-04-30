@@ -155,6 +155,12 @@ exports.BattleItems = {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
+		onTakeItem: function(item, pokemon, source) {
+			if ((source && source.baseTemplate.num === 555) || pokemon.baseTemplate.num === 555) {
+				return false;
+			}
+			return true;
+		},
 		gen: 7,
 		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power",
 	},
@@ -176,6 +182,12 @@ exports.BattleItems = {
 			if (move && (user.baseTemplate.num === 648) && (move.type === 'Fighting')) {
 				return this.chainModify([0x1333, 0x1000]);
 			}
+		},
+		onTakeItem: function(item, pokemon, source) {
+			if ((source && source.baseTemplate.num === 648) || pokemon.baseTemplate.num === 648) {
+				return false;
+			}
+			return true;
 		},
 		gen: 7,
 		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power",
