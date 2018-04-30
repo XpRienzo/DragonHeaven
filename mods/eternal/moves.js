@@ -676,7 +676,6 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		contestType: "Clever",
 	},
 	"despoilingvines": {
-		num: 73,
 		accuracy: 90,
 		basePower: 35,
 		category: "Physical",
@@ -688,7 +687,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
-		volatileStatus: 'leechseed',
+		volatileStatus: 'despoilingvines',
 		effect: {
 			onStart: function (target) {
 				this.add('-start', target, 'move: Despoiling Vines');
@@ -702,7 +701,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 				}
 				let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
 				if (damage) {
-					this.heal(damage, pokemon, target);
+					this.heal(damage, target, pokemon);
 				}
 			},
 		},
