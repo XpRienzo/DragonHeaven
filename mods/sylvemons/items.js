@@ -204,7 +204,6 @@ exports.BattleItems = {
 				}
 			}
 			if (activate && pokemon.useItem()) {
-				pokemon.setBoost(boosts);
 				this.add('-invertboost', pokemon, '[from] item: Blue Herb');
 			}
 		},
