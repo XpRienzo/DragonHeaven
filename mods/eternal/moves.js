@@ -1268,12 +1268,12 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onHit: function (pokemon) {
+		onSourceFaint: function (pokemon) {
 			if (this.activeMove && this.activeMove.id === 'skillswap') return;
 			let target = pokemon.side.foe.active[pokemon.side.foe.active.length - 1 - pokemon.position];
 			if (target) {
 				target.transformInto(pokemon, target, this.getAbility('imposter'));
-				this.heal(target.maxhp / 2);
+				this.heal(pokemon.maxhp / 2);
 			}
 		},
 		secondary: false,
