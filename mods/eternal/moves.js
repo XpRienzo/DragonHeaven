@@ -712,7 +712,9 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 			}
 		},
 		secondary: false,
-		volatileStatus: 'partiallytrapped',
+		onHit: function (target, source) {
+			return target.addVolatile('trapped', source, 'trapper');
+		},
 		target: "normal",
 		type: "Dark",
 		zMovePower: 1000,
