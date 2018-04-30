@@ -92,7 +92,9 @@ exports.BattleMovedex = {
 		name: "Swampland",
 		pp: 15,
 		priority: 0,
-		flags: {snatch: 1},
+		flags: {
+			snatch: 1
+		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Rain Dance", target);
@@ -821,9 +823,9 @@ exports.BattleMovedex = {
 		},
 		secondary: {
 			chance: 100,
-				self: {
-					volatileStatus: 'charge',
-				},
+			self: {
+				volatileStatus: 'charge',
+			},
 		},
 		onHit: function(target, pokemon) {
 			pokemon.addVolatile('charge');
