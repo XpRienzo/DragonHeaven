@@ -701,7 +701,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 				}
 				let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
 				if (damage) {
-					this.heal(damage, target, pokemon);
+					this.heal(pokemon.maxhp / 8, target);
 				}
 			},
 		},
