@@ -818,9 +818,12 @@ exports.BattleMovedex = {
 		},
 		onTryHit: function(target, pokemon) {
 			this.add('-anim', pokemon, "Parabolic Charge", target);
-			if (!pokemon.addVolatile('charge')); {
-			pokemon.addVolatile('charge');
-			}
+		},
+		secondary: {
+			chance: 100,
+				self: {
+					volatileStatus: 'charge',
+				},
 		},
 		target: "normal",
 		type: "Electric",
