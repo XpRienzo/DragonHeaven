@@ -181,25 +181,6 @@ exports.BattleAbilities = {
 		id: "timewarp",
 		name: "Time Warp",
 	},
-	/*mindtrick: {
-		shortDesc: "Stat changes are received by the opposing pokemon and vice versa",
-		onStart: function (target, source) {
-			let targetBoosts = {};
-			let sourceBoosts = {};
-
-			for (let i in target.boosts) {
-				targetBoosts[i] = target.boosts[i];
-				sourceBoosts[i] = source.boosts[i];
-			}
-
-			target.setBoost(sourceBoosts);
-			source.setBoost(targetBoosts);
-
-			this.add('-swapboost', source, target, '[from] ability: Mind Trick');
-		},
-		id: "mindtrick",
-	name: "Mind Trick",
-	},*/
 	housekeeping: {
 		shortDesc: "Removes hazards upon switch-in.",
 		onSwitchInPriority: 6,
