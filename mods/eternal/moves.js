@@ -687,21 +687,21 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
-		volatileStatus: 'despoilingvines',
+		volatileStatus: 'leechseed',
 		effect: {
 			onStart: function (target) {
-				this.add('-start', target, 'move: Despoiling Vines');
+				this.add('-start', target, 'move: Leech Seed');
 			},
 			onResidualOrder: 8,
 			onResidual: function (pokemon) {
-				let target = this.effectData.source.side.active[pokemon.volatiles['despoilingvines'].sourcePosition];
+				let target = this.effectData.source.side.active[pokemon.volatiles['leechseed'].sourcePosition];
 				if (!target || target.fainted || target.hp <= 0) {
 					this.debug('Nothing to leech into');
 					return;
 				}
 				let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
 				if (damage) {
-					this.heal(pokemon.maxhp / 8, target);
+					this.heal(damage, target, pokemon);
 				}
 			},
 		},
