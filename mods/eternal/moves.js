@@ -690,7 +690,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		volatileStatus: 'despoilingvines',
 		effect: {
 			onStart: function (target) {
-				this.add('-start', target, 'move: Leech Seed');
+				this.add('-start', target, 'move: Despoiling Vines');
 			},
 			onResidualOrder: 8,
 			onResidual: function (pokemon) {
