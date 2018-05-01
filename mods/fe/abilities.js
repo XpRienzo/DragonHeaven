@@ -5392,7 +5392,6 @@ exports.BattleAbilities = {
 			let oldAbility = source.setAbility('truant', source, 'levitate', true);
 			if (oldAbility) {
 				this.add('-activate', target, 'ability: Truant', oldAbility, '[of] ' + source);
-				}
 			}
 		},
 		id: "contagiousyawn",
