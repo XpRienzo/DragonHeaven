@@ -177,9 +177,7 @@ exports.BattleAbilities = {
 			if (foeactive[i].volatiles['substitute']) {
 				this.add('-activate', foeactive[i], 'Substitute', 'ability: Intimidate', '[of] ' + pokemon);
 			} else {
-				this.boost({
-					atk: -1
-				}, foeactive[i], pokemon);
+				this.boost({atk: -1}, foeactive[i], pokemon);
 			}
 		},
 		id: "fear",
@@ -3839,7 +3837,7 @@ exports.BattleAbilities = {
 		name: "Blizzard Blur",
 	},
 	"frenzy": {
-		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times.",
+		shortDesc: "This Pokemon's multi-hit attacks always hit the maximum number of times and have 1.5x power.",
 		onModifyMove: function(move) {
 			if (move.multihit && move.multihit.length) {
 				move.multihit = move.multihit[1];
@@ -5506,5 +5504,228 @@ exports.BattleAbilities = {
 		},
 		id: "blazingbeast",
 		name: "Blazing Beast",
+	},
+	"jailbreak": {
+		shortDesc: "If this Pokemon is holding an item, its speed and the power of its Dark-type moves are 1.33x. If it is not holding an item, its speed and the power of its Dark-type moves are doubled.",
+		onModifySpe: function (spe, pokemon) {
+			if (pokemon.item) {
+				return this.chainModify(1.33);
+			}
+			else if (!pokemon.item) {
+				return this.chainModify(2);
+			}	
+		},
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Dark' && attacker.item) {
+				return this.chainModify(1.33);
+			}
+			else 	if (move.type === 'Dark' && !attacker.item) {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Dark' && attacker.item) {
+				return this.chainModify(1.33);
+			}
+			else 	if (move.type === 'Dark' && !attacker.item) {
+				return this.chainModify(2);
+			}
+		},
+		id: "jailbreak",
+		name: "Jailbreak",
+	},
+	"paralyzedwithfear": {
+		shortDesc: "If the opponent is paralyzed, they lose 1/8 of their HP each turn.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			if (!pokemon.hp) return;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !target.hp) continue;
+				if (target.status === 'par' || target.hasAbility('comatose')) {
+					this.damage(target.maxhp / 8, target, pokemon);
+				}
+			}
+		},
+		id: "paralyzedwithfear",
+		name: "Paralyzed With Fear",
+	},
+	"flipout": {
+		shortDesc: "This Pokémon's multi-strike moves hit the maximum amount of times and deal 33% extra damage. Such moves also heal this Pokémon for 33% of the damage dealt.",
+		onModifyMove: function(move) {
+			if (move.multihit && move.multihit.length) {
+				move.multihit = move.multihit[1];
+				move.drain = [1, 3];
+			}
+			if (move.multiaccuracy) {
+				delete move.multiaccuracy;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function(basePower, attacker, defender, move) {
+			if (move.multihit) {
+				return this.chainModify(1.33);
+			}
+		},
+		id: "flipout",
+		name: "Flip Out",
+	},
+	"lastnightmare": {
+		shortDesc: "When this Pokemon faints, the opponent is damaged for 25% of their max HP and falls asleep.",
+		id: "lastnightmare",
+		name: "Last Nightmare",
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move && move.flags['contact'] && !target.hp) {
+				this.damage(source.maxhp / 4, source, target);
+				source.setStatus('slp', target);
+			}
+		},
+	},
+	"adaptiveabsorption": {
+		shortDesc: "Immune to STAB moves. When hit by one, restores 50% of its HP.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && source.hasType(move.type)) {
+				if (!this.heal(target.maxhp / 2)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Adaptive Absorption');
+				}
+				return null;
+			}
+		},
+		id: "adaptiveabsorption",
+		name: "Adaptive Absorption",
+	},
+	'brilliantbrightness': {
+		shortDesc: "Resets foe's stat changes upon switch in. This pokémon cannot have it's status lowered by external means, and doing so will reduce the foe's attack by one stage.",
+		onStart: function(source) {
+			this.useMove('Haze', source);
+		},
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					// @ts-ignore
+					delete boost[i];
+					this.boost({atk: -1}, target, source);
+					showMsg = true;
+				}
+			}
+			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: Brilliant Brightness", "[of] " + target);
+		},
+		id: "brilliantbrightness",
+		name: "Brilliant Brightness",
+	},
+	"recoveryshield": {
+		shortDesc: "Shadow Shield + Regenerator.",
+		onSwitchOut: function (pokemon) {
+			pokemon.heal(pokemon.maxhp / 3);
+		},
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (target.hp >= target.maxhp) {
+				return this.chainModify(0.5);
+			}
+		},
+		isUnbreakable: true,
+		id: "recoveryshield",
+		name: "Recovery Shield",
+	},
+	"airbornelighting": {
+		shortDesc: "This Pokemon draws Electric & Ground moves to itself to raise Sp. Atk by 1; Electric & Ground immunity.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Electric' || move.type === 'Ground') {
+				if (!this.boost({spa: 1})) {
+					this.add('-immune', target, '[msg]', '[from] ability: Airborne Lighting');
+				}
+				return null;
+			}
+		},
+		onAnyRedirectTarget: function (target, source, source2, move) {
+			if (move.type !== 'Electric' || ['firepledge', 'grasspledge', 'waterpledge'].includes(move.id)) return;
+			if (this.validTarget(this.effectData.target, source, move.target)) {
+				if (this.effectData.target !== target) {
+					this.add('-activate', this.effectData.target, 'ability: Airborne Lighting');
+				}
+				return this.effectData.target;
+			}
+		},
+		id: "airbornelighting",
+		name: "Airborne Lighting",
+	},
+	"sonar": {
+		shortDesc: "Immune to sound based and Ground-type moves.",
+		onTryHit: function(target, source, move) {
+			if (target !== source && move.type === 'Ground' || move.flags['sound']) {
+				this.add('-immune', target, '[msg]', '[from] ability: S.O.N.A.R');
+				return null;
+			}
+		},
+		id: "sonar",
+		name: "S.O.N.A.R",
+	},
+	"threateningglare": {
+		shortDesc: "If another Pokémon's attack brings it down past 50% of its HP, that Pokémon is forced out.",
+		onAfterMoveSecondary: function (target, source, move) {
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			if (target.hp <= target.maxhp / 2 && target.hp + move.totalDamage > target.maxhp / 2) {
+				if (!this.canSwitch(target.side) || target.forceSwitchFlag || target.switchFlag) return;
+				source.switchFlag = true;
+				target.switchFlag = false;
+				this.add('-activate', target, 'ability: Threatening Glare');
+			}
+		},
+		onAfterDamage: function (damage, target, source, effect) {
+			if (!target.hp || effect.effectType === 'Move') return;
+			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+				if (!this.canSwitch(target.side) || target.forceSwitchFlag || target.switchFlag) return;
+				source.switchFlag = true;
+				this.add('-activate', target, 'ability: Threatening Glare');
+			}
+		},
+		id: "threateningglare",
+		name: "Threatening Glare",
+	},
+	"diamondshield": {
+		shortDesc: "While this Pokemon is active, Rock type Pokemon receive 3/4 damage from all attacks.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (target.type === 'Rock') {
+				return this.chainModify(0.75);
+			}
+		},
+		id: "diamondshield",
+		name: "Diamond Shield",
+	},
+	"sunsteelskin": {
+		shortDesc: "Immune to Water and Fire. Unaffected by stat drops (that aren't self-inflicted). If hit by a Water or Fire move, or when it would have a stat lowered, recovers 25% of its max HP. Heals 12.5% of its max HP every turn that it's in Sun. This ability cannot be bypassed.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Water' || move.type === 'Fire') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Water Absorb');
+				}
+				return null;
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'sunnyday' || effect.id === 'desolateland') {
+				this.heal(target.maxhp / 8, target, target);
+			}
+		},
+		onBoost: function(boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					// @ts-ignore
+					this.heal(target.maxhp / 4);
+					this.add('-ability', target, 'Clear Absorb');
+				}
+			}
+		},
+		isUnbreakable: true,
+		id: "sunsteelskin",
+		name: "Sunsteel Skin",
 	},
 };
