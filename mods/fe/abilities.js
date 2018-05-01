@@ -938,11 +938,8 @@ exports.BattleAbilities = {
 		onTryHit: function(source, target, move) {
 			if (target !== source && move.type === 'Ground') {
 			this.add('-immune', source, '[msg]', '[from] ability: Syncho Float');
+			target.setAbility('levitate', source, 'levitate', true);
 			return null;
-			}
-			let oldAbility = target.setAbility('levitate', source, 'levitate', true);
-			if (oldAbility) {
-				this.add('-activate', target, 'ability: Levitate', oldAbility, '[of] ' + target);
 			}
 		},
 		id: "synchofloat",
