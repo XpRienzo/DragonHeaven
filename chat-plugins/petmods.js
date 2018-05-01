@@ -232,7 +232,7 @@ typeopthelp: ["/eternalmons - Shows the list of Pokemon in Type Optimisation Pok
 		let feDex = require('../mods/fe/moves.js').BattleAbilities;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(move => {
-			buf += `<button name="send" value="/dt ${move.id}, FE" style="background:none;border:none;">${move.name}</button><br>`;
+			buf += `<button name="send" value="/dt ${move.id}, FE" style="background:none;border:none;">${move.id}</button><br>`;
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
