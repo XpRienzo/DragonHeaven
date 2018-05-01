@@ -181,7 +181,7 @@ exports.BattlePokedex = {
 			0: "No Guard"
 		},
 	},
-	kabadraeternal: {
+	kadabraeternal: {
 		num: 64,
 		species: "Kadabra-Eternal",
 		baseSpecies: "Kadabra",
