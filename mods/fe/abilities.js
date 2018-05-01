@@ -104,16 +104,18 @@ exports.BattleAbilities = {
 		onEnd: function (pokemon) {
 			pokemon.removeVolatile('armorcast');
 		},
+		effect: {
 		onModifySpe: function (spe, pokemon) {
-				if (pokemon.volatile('armorcast')) {
+				if (!pokemon.item) {
 					return this.chainModify(2);
 				}
 			},
 		onModifyAtk: function (atk, pokemon) {
-				if (pokemon.volatile('armorcast')) {
+				if (!pokemon.item) {
 					return this.chainModify(2);
 				}
 			},
+		},
 		id: "armorcast",
 		name: "Armor Cast",
 	},
