@@ -79,7 +79,7 @@ exports.BattleAbilities = {
 		name: "Intense Rivalry",
 	},
 	"levipoison": {
-		shortDesc: "This Pokemon is immune to Ground; Gravity/Ingrain/Smack Down/Iron Ball nullify it.",
+		shortDesc: "If the opponent uses a Ground-type move it becomes Poisoned; Ground immunity.",
 		onTryHit: function(target, source, move) {
 			if (target !== source && move.type === 'Ground') {
 				this.add('-immune', target, '[msg]', '[from] ability: Levi Poison');
@@ -91,6 +91,20 @@ exports.BattleAbilities = {
 		},
 		id: "levipoison",
 		name: "Levipoison",
+	},
+	"glassing": {
+		shortDesc: "If the opponent uses a Ground-type move it becomes Burned; Ground immunity.",
+		onTryHit: function(target, source, move) {
+			if (target !== source && move.type === 'Ground') {
+				this.add('-immune', target, '[msg]', '[from] ability: Glassing');
+				if (move && !source.status) {
+					source.setStatus('brn', target);
+				}
+				return null;
+			}
+		},
+		id: "glassing",
+		name: "Glassing",
 	},
 	"armorcast": {
 		shortDesc: "When an item is used or lost, Attack and Speed are raised by two stages, while Defense and Special Defense are lowered by one.",
@@ -4088,7 +4102,7 @@ exports.BattleAbilities = {
 	},
 	"disconnect": {
 		shortDesc: "The foe's same-type attack bonus (STAB) is 0.75 instead of 1.5.",
-		onModifyMove: function(move, target) {
+		onModifyMove: function(move, pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				target.move.stab = 0.75;
 			}
