@@ -95,7 +95,7 @@ exports.BattleAbilities = {
 	"armorcast": {
 		shortDesc: "When an item is used or lost, Attack and Speed are raised by two stages, while Defense and Special Defense are lowered by one.",
 		onAfterUseItem: function(item, pokemon) {
-			if (pokemon !== this.effectData.target) return this.boost({
+				return this.boost({
 				atk: 2,
 				spe: 2
 			});
@@ -5387,7 +5387,8 @@ exports.BattleAbilities = {
 	},
 	"contagiousyawn": {
 		shortDesc: "On switch-in, the opposing Pokemon's ability is changed to Truant.",
-		onStart: function	(pokemon, source, move) {
+		onSwitchInPriority: 1,
+		onSwitchIn: function	(pokemon, source, move) {
 		for (const target of pokemon.side.foe.active) {
 		let oldAbility = target.setAbility('truant', target, 'truant', true);
 				if (oldAbility) {
