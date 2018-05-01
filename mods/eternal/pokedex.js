@@ -187,7 +187,7 @@ exports.BattlePokedex = {
 		baseSpecies: "Kadabra",
 		forme: "Eternal",
 		formeLetter: "E",
-		types: ["Psyhic", "Ice"],
+		types: ["Psychic", "Ice"],
 		baseStats: {
 			hp: 60,
 			atk: 35,
