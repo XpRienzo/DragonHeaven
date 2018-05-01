@@ -4612,7 +4612,7 @@ exports.BattleAbilities = {
 	"hyperprotection": {
 		shortDesc: "This Pokemon is imune to Ground-Type moves. If a move against this Pokémon ended up on a Critical Hit, it won't affect the Pokémon.",
 		onTryHit: function(target, source, move) {
-			if (move.type === 'Ground' || move.crit) {
+			if (move && move.effectType === 'Move' && move.crit || move.type === 'Ground') {
 				this.add('-immune', target, '[msg]', '[from] ability: Hyper Protection');
 				return null;
 			}
