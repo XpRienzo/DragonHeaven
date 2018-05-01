@@ -110,6 +110,11 @@ exports.BattleAbilities = {
 					return this.chainModify(2);
 				}
 			},
+			onModifyAtk: function (atk, pokemon) {
+				if (!pokemon.item) {
+					return this.chainModify(2);
+				}
+			},
 		},
 		id: "armorcast",
 		name: "Armor Cast",
