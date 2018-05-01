@@ -5388,10 +5388,12 @@ exports.BattleAbilities = {
 	"contagiousyawn": {
 		shortDesc: "On switch-in, the opposing Pokemon's ability is changed to Truant.",
 		onSwitchInPriority: 1,
-		onSwitchIn: function(target, source, move) {
-			let oldAbility = source.setAbility('truant', source, 'levitate', true);
+		onSwitchIn: function(pokemon, source, move) {
+			for (const target of pokemon.side.foe.active) {
+			let oldAbility = source.setAbility('truant', source, 'truant', true);
 			if (oldAbility) {
 				this.add('-activate', target, 'ability: Truant', oldAbility, '[of] ' + source);
+			}
 			}
 		},
 		id: "contagiousyawn",
