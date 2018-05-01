@@ -86,8 +86,7 @@ exports.BattleMovedex = {
 		zMovePower: 200,
 		contestType: "Beautiful",
 	},
-	"evolutionblast": { /* Evolution Blast (Special, 15 BP, 10 PP, 100 Acc, Hits 8 times. Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy))
-Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigavolt Havoc...) */
+	"evolutionblast": { 
 		shortDesc: "Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy",
 		accuracy: 100,
 		basePower: 15,
