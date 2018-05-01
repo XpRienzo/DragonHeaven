@@ -735,7 +735,7 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		zMovePower: 180,
 		contestType: "Tough",
 	},
-		"pileup": {
+	"pileup": {
 		accuracy: true,
 		basePower: 0,
 		category: "Special",
@@ -747,26 +747,48 @@ Z-Move Effect: Does a 25BP Z-Move for all 8 attacks. (E.g, Hydro Vortex -> Gigav
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		heal: [1, 2],
-		secondary: {
-			chance: 25,
-		   onHit: function (target) {
-			let stats = [];
-			for (let stat in target.boosts) {
-				if (target.boosts[stat] < 6) {
-					stats.push(stat);
-				}
-			}
-			if (stats.length) {
-				let randomStat = stats[this.random(stats.length)];
-				let boost = {};
-				boost[randomStat] = 1;
-				this.boost(boost);
-			} 
-				else {
-				return false;
-			}
-		},
-		},
+		secondaries: [
+			{
+				chance: 25,
+				self: {
+				boosts: {
+					atk: 1,
+				},
+			},
+			},
+			{
+				chance: 25,
+				self: {
+				boosts: {
+					def: 1,
+				},
+			},
+			},
+			{
+				chance: 25,
+				self: {
+				boosts: {
+					spa: 1,
+				},
+			},
+			},
+			{
+				chance: 25,
+				self: {
+				boosts: {
+					spd: 1,
+				},
+			},
+			},
+			{
+				chance: 25,
+				self: {
+				boosts: {
+					spe: 1,
+				},
+			},
+			},
+		],
 		target: "self",
 		type: "Ground",
 		zMoveEffect: 'clearnegativeboost',
