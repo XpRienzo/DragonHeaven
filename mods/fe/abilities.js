@@ -3568,11 +3568,11 @@ exports.BattleAbilities = {
 				return this.chainModify(0.75);
 			}
 		},
-		onSetStatus: function(status, target, source, effect) {
+		onAllySetStatus: function(status, target, source, effect) {
 			if (effect && effect.status) {
-				this.add('-activate', target, 'move: Healthy Meal');
+				this.add('-activate', target, 'ability: Healthy Meal');
+				return false;
 			}
-			return false;
 		},
 		id: "healthymeal",
 		name: "Healthy Meal",
