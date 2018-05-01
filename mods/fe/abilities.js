@@ -5728,4 +5728,33 @@ exports.BattleAbilities = {
 		id: "sunsteelskin",
 		name: "Sunsteel Skin",
 	},
+	"mudabsorb": {
+		shortDesc: "This Pokemon heals 1/4 of its max HP when hit by Water & Ground moves; Water & Ground immunity.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Water' || move.type === 'Ground') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Mud Absorb');
+				}
+				return null;
+			}
+		},
+		id: "mudabsorb",
+		name: "Mud Absorb",
+	},
+	"fluffyfur": {
+		shortDesc: "This Pokemon takes 1/2 damage from contact moves, 2x damage from Fire moves. Doubled Defense.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			let mod = 1;
+			if (move.type === 'Fire') mod *= 2;
+			if (move.flags['contact']) mod /= 2;
+			return this.chainModify(mod);
+		},
+		  onModifyDefPriority: 6,
+		  onModifyDef: function (def) {
+			return this.chainModify(2);
+		},
+		id: "fluffyfur",
+		name: "Fluffy Fur",
+	},
+	
 };
