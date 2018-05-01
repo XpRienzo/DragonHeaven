@@ -5783,4 +5783,60 @@ exports.BattleAbilities = {
 		id: "magnumopus",
 		name: "Magnum Opus",
 	},
+	"adaptiveeye": {
+		shortDesc: "This Pokemon's STAB moves have perfect accuracy.",
+		onAnyAccuracy: function (accuracy, pokemon, move) {
+			if (pokemon.hasType(move.type)) {
+				return true;
+			}
+			return accuracy;
+		},
+		id: "adaptiveeye",
+		name: "Adaptive Eye",
+	},
+	"aquabooster": {
+		shortDesc: "Whenever this pokemon get hit with a water type move or scores a KO, the highest non-hp stat get boosted by a stage and recover ¼ of its max hp. Also has a water immunity.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+				this.heal(source.maxhp / 4);
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (target.stats[i] > bestStat) {
+						stat = i;
+						bestStat = target.stats[i];
+					}
+				}
+					this.heal(target.maxhp / 4);
+					this.boost({[stat]: 1}, target);
+					this.add('-immune', target, '[msg]', '[from] ability: Aqua Booster');
+				return null;
+			}
+		},
+		id: "aquabooster",
+		name: "Aqua Booster",
+	},
+	"gracefulexit": {
+		shortDesc: "When this Pokemon switches out, the opponent flinches.",
+		onSwitchOut: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+			target.addVolatile('flinch');
+			}
+		},
+		id: "gracefulexit",
+		name: "Graceful Exit",
+	},
 };
