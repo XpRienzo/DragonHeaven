@@ -94,7 +94,7 @@ exports.BattleAbilities = {
 	},
 	"armorcast": {
 		shortDesc: "When an item is used or lost, Attack and Speed are raised by two stages, while Defense and Special Defense are lowered by one.",
-		onAfterUseItem: function (item, pokemon) {
+	onAfterUseItem: function (item, pokemon) {
 			if (pokemon !== this.effectData.target) return;
 			pokemon.addVolatile('armorcast');
 		},
@@ -105,12 +105,7 @@ exports.BattleAbilities = {
 			pokemon.removeVolatile('armorcast');
 		},
 		effect: {
-		onModifySpe: function (spe, pokemon) {
-				if (!pokemon.item) {
-					return this.chainModify(2);
-				}
-			},
-		onModifyAtk: function (atk, pokemon) {
+			onModifySpe: function (spe, pokemon) {
 				if (!pokemon.item) {
 					return this.chainModify(2);
 				}
