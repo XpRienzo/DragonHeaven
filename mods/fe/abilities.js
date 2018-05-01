@@ -5391,7 +5391,10 @@ exports.BattleAbilities = {
 		onSwitchIn: function(pokemon, source, move) {
 			for (const target of pokemon.side.foe.active) {
 			if (!target || target.fainted) continue;
-			let oldAbility = source.setAbility('truant', source, 'truant', true);
+			let oldAbility = source.setAbility('truant', source, 'levitate', true);
+			if (oldAbility) {
+				this.add('-activate', target, 'ability: Truant', oldAbility, '[of] ' + source);
+				}
 			}
 		},
 		id: "contagiousyawn",
