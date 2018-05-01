@@ -935,12 +935,13 @@ exports.BattleAbilities = {
 	},
 	"synchofloat": {
 		shortDesc: "Immune to Ground-type moves. Opposing Pokemon's ability is changed to Levitate.",
-		onTryHit: function(pokemon, move) {
+		onFoeTryHit: function(pokemon, move) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || target.fainted) continue;
+			
 			if (target !== pokemon && move.type === 'Ground') {
-				this.add('-immune', pokemon, '[msg]', '[from] ability: Syncho Float');
-				return null;
+			this.add('-immune', pokemon, '[msg]', '[from] ability: Syncho Float');
+			return null;
 			}
 			let oldAbility = target.setAbility('levitate', pokemon, 'levitate', true);
 			if (oldAbility) {
