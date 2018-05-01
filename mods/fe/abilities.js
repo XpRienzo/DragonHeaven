@@ -940,9 +940,9 @@ exports.BattleAbilities = {
 				this.add('-immune', target, '[msg]', '[from] ability: Syncho Float');
 				return null;
 			}
-			let oldAbility = source.setAbility('levitate', source, 'levitate', true);
+			let oldAbility = target.setAbility('levitate', source, 'levitate', true);
 			if (oldAbility) {
-				this.add('-activate', target, 'ability: Levitate', oldAbility, '[of] ' + source);
+				this.add('-activate', target, 'ability: Levitate', oldAbility, '[of] ' + target);
 			}
 		},
 		id: "synchofloat",
