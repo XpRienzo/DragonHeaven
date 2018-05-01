@@ -5756,5 +5756,31 @@ exports.BattleAbilities = {
 		id: "fluffyfur",
 		name: "Fluffy Fur",
 	},
-	
+	"laserbeam": {
+		shortDesc: "Steel-types lose 25% of their HP when switching out.",
+		onFoeSwitchOut: function (pokemon) {
+			if (pokemon.hasType('Steel')) {
+			pokemon.damage(pokemon.maxhp / 4);
+			}
+		},
+		id: "laserbeam",
+		name: "Laser Beam",
+	},
+	"magnumopus": {
+		shortDesc: "This Pokémon's stat boosts are inverted. This Pokémon's super-effective attacks deal 25% more damage.",
+		onBoost: function (boost, target, source, effect) {
+			if (effect && effect.id === 'zpower') return;
+			for (let i in boost) {
+				// @ts-ignore
+				boost[i] *= -1;
+			}
+		},
+		onModifyDamage: function (damage, source, target, move) {
+			if (move && move.typeMod > 0) {
+				return this.chainModify(1.25);
+			}
+		},
+		id: "magnumopus",
+		name: "Magnum Opus",
+	},
 };
