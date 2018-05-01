@@ -938,7 +938,7 @@ exports.BattleAbilities = {
 		onTryHit: function(pokemon, move) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || target.fainted) continue;
-			if (target !== source && move.type === 'Ground') {
+			if (target !== pokemon && move.type === 'Ground') {
 				this.add('-immune', pokemon, '[msg]', '[from] ability: Syncho Float');
 				return null;
 			}
