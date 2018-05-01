@@ -5839,4 +5839,82 @@ exports.BattleAbilities = {
 		id: "gracefulexit",
 		name: "Graceful Exit",
 	},
+	"coldbody": {
+		shortDesc: "30% chance a Pokemon making contact with this Pokemon will be frozen.",
+		onAfterDamage: function (damage, target, source, move) {
+			if (move && move.flags['contact']) {
+				if (this.randomChance(3, 10)) {
+					source.trySetStatus('frz', target);
+				}
+			}
+		},
+		id: "coldbody",
+		name: "Cold Body",
+	},
+	"dangerousaddiction": {
+		shortDesc: "When this pokemon is hit by a move, the move's user lose an equal amount of HP.",
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move) {
+				this.damage(damage, source, target);
+			}
+		},
+		id: "dangerousaddiction",
+		name: "Dangerous Addiction",
+	},
+	"rootrum": {
+		shortDesc: "This Pokemon is immune to Ground and Grass-type moves.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Grass' || move.type === 'Ground') {
+					this.add('-immune', target, '[msg]', '[from] ability: Root Rum');
+				return null;
+			}
+		},
+		id: "rootrum",
+		name: "Root Rum",
+	},
+	"healinghell": {
+		shortDesc: "Heals 1/8th of this pokemon health at the end of each turn. If poisoned, ignore poison damage and heals another 1/8th at the end of each turn (for a total of 1/4).",
+		onResidualOrder: 5,
+		onResidualSubOrder: 2,
+		onResidual: function(pokemon) {
+			if (this.isTerrain('grassyterrain')) return;
+			this.heal(pokemon.maxhp / 16);
+		},
+		onTerrain: function(pokemon) {
+			if (!this.isTerrain('grassyterrain')) return;
+			this.heal(pokemon.maxhp / 16);
+		},
+		onDamagePriority: 1,
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'psn' || effect.id === 'tox') {
+				this.heal(target.maxhp / 8);
+				return false;
+			}
+		},
+		id: "healinghell",
+		name: "Healing Hell",
+	},
+	"firewall": {
+		shortDesc: "Upon switch-in, this Pokemon sets up Reflect or Light Screen depending on the opponent's higher Attacking stat. If they are tied, this Pokemon sets up Aurora Veil.",
+		onStart: function (pokemon) {
+			let totaldef = 0;
+			let totalspd = 0;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				totaldef += target.getStat('def', false, true);
+				totalspd += target.getStat('spd', false, true);
+			}
+			if (totaldef && totaldef > totalspd) {
+				this.useMove('Reflect', pokemon);
+			} else if (totalspd > totaldef) {
+				this.useMove('Light Screen', pokemon);
+			}
+			else if (totalspd = totaldef) {
+				this.useMove('Aurora Veil', pokemon);
+			}
+		},
+		id: "firewall",
+		name: "Firewall",
+	},	
 };
