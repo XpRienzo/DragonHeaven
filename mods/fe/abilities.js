@@ -5917,4 +5917,5 @@ exports.BattleAbilities = {
 		id: "firewall",
 		name: "Firewall",
 	},	
+	
 };
