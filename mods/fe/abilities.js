@@ -115,6 +115,16 @@ exports.BattleAbilities = {
 					return this.chainModify(2);
 				}
 			},
+			onModifyDef: function (def, pokemon) {
+				if (!pokemon.item) {
+					return this.chainModify(2);
+				}
+			},
+			onModifySpD: function (spd, pokemon) {
+				if (!pokemon.item) {
+					return this.chainModify(2);
+				}
+			},
 		},
 		id: "armorcast",
 		name: "Armor Cast",
