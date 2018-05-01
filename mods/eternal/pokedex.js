@@ -144,7 +144,7 @@ exports.BattlePokedex = {
 	lampenteternal: {
 		num: 608,
 		species: "Lampent-Eternal",
-		baseSpecies: "Murkrow",
+		baseSpecies: "Lampent",
 		forme: "Eternal",
 		formeLetter: "E",
 		types: ["Ghost", "Fire"],
