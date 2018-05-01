@@ -3779,7 +3779,7 @@ exports.BattleAbilities = {
 			this.setWeather('hail');
 		},
 		onTryHit: function(target, source, move) {
-			if (target !== source && move.type === 'Water') {
+			if (target !== source && move.type === 'Ice') {
 				if (!this.heal(target.maxhp / 4)) {
 					this.add('-immune', target, '[msg]', '[from] ability: Snow Absorb');
 				}
