@@ -1713,15 +1713,14 @@ target: "normal",
 type: "Water", 
 ZMovePower: 175,
 },
-"freezedry": {
-		num: 573,
+"heatconverter": {
 		accuracy: 100,
 		basePower: 100,
 		category: "Special",
 		shortDesc: "Super Effective on Fire-types. The user recovers 75% of the damage dealt and gives the user a boost to it's next Electric-type move and raised SpDef by one stage (à la Charge).",
-		id: "freezedry",
+		id: "heatconverter",
 		isViable: true,
-		name: "Freeze-Dry",
+		name: "Heat Converter",
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -1733,12 +1732,17 @@ ZMovePower: 175,
 			pokemon.addVolatile('charge');
 			this.add('-activate', pokemon, 'move: Charge');
 		},
+		selfBoost: {
+			boosts: {
+				spd: 1,
+			},
+		},
 		target: "normal",
 		type: "Fire",
 		zMovePower: 175,
 		contestType: "Beautiful",
 	},
-/* Aquatic Ambush: {
+aquaticambush: {
 basePower: 90, 
 accuracy: 100, 
 category: "Special", 
@@ -1747,13 +1751,38 @@ id: "aquatic ambush",
 name: "Aquatic Ambush", 
 pp: 10,
 priority: 0, 
-flags: {protect: 1, mirror: 1}, 
+flags: {protect: 1, mirror: 1},
+onTryHit: function (target, source) {
+			if (source.volatiles['aquaticambush']) return false;
+		},
+		onHit: function (target, source) {
+			source.addVolatile('aquaticambush', source);
+			this.add('-activate', source, 'move: Aquatic Ambush', '[of] ' + target);
+		},
+		effect: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			duration: 2,
+			onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.type === 'Bug') return priority + 1;
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Water') {
+				return this.chainModify(1.5);
+			}
+		},
+			onModifySpAPriority: 5,
+			onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Water') {
+				return this.chainModify(1.5);
+			}
+		},
+		},
 target: "normal",
 type: "Water", 
 ZMovePower: 175, 
-}, */
-	
-	// Divider
+}, 
+
 	   /*"sundance": {
     num: 1001,
     accuracy: true,
