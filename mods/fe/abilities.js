@@ -5939,6 +5939,7 @@ exports.BattleAbilities = {
 				this.debug('Shattered Prism neutralize');
 				return this.chainModify(0.75);
 			}
+		},
 		onModifyMove: function (move) {
 			move.ignoreAbility = true;
 		},
@@ -5952,8 +5953,6 @@ exports.BattleAbilities = {
 		isUnbreakable: true,
 		id: "shatteredprism",
 		name: "Shattered Prism",
-		rating: 4,
-		num: ,
 	},
 	
 };
