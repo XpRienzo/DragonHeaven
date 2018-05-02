@@ -2309,6 +2309,10 @@ ZMovePower: 175,
 					priority: 0,
 					flags: {},
 					drain: [1, 2],
+					onAfterDamageOrder: 1,
+					onAfterDamage: function (damage, target, source, move) {
+						this.heal(damage / 2, target, source);
+					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
