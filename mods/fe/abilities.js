@@ -4796,11 +4796,7 @@ exports.BattleAbilities = {
 					}
 				}
 				this.boost({[stat]: 1}, pokemon);
-				target.addVolatile('subdue');
-				
-				if (target.volatiles['subdue']) {
-					this.boost({[stat]: 1}, target);
-				}
+				this.boost({[stat]: -1}, target, '[silent]');
 				}
 		},
 		id: "subdue",
