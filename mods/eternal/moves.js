@@ -1595,7 +1595,7 @@ ZMovePower: 175,
     type: "Fire",
     zMovePower: 180,
   },
-	
+	Signature Move: Heat Converter |   |   | 100 BP | 10 PP | 100 Acc | "Helioptile drains the heat of it's target and uses it to charge itself up" | Super Effective on Fire-types. The user recovers 75% of the damage dealt and gives the user a boost to it's next Electric-type move and raised SpDef by one stage (à la Charge). | Z Move - 175 BP Inferno Overdrive
 	"tranquillity": {
 		accuracy: true,
 		basePower: 0,
@@ -1690,7 +1690,7 @@ ZMovePower: 175,
 		type: "Electric",
 		zMoveBoost: 'clearnegativeboosts',
 		contestType: "Tough",
-	},
+	},*/
 	"aerialsmash": {
 		accuracy: 100,
 		basePower: 170,
@@ -1736,7 +1736,7 @@ ZMovePower: 175,
 			},
 		},
 		secondary: {
-			chance: 20,
+			chance: 100,
 			self: {
 				boosts: {
 					atk: -1,
@@ -1749,5 +1749,5 @@ ZMovePower: 175,
 		type: "Fighting",
 		zMovePower: 150,
 		contestType: "Clever",
-	}, */
+	}, 
 };
