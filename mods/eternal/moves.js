@@ -2330,10 +2330,10 @@ ZMovePower: 175,
 					priority: 0,
 					flags: {},
 					drain: [1, 2],
-					onAfterDamageOrder: 1,
+					/*onAfterDamageOrder: 1,
 					onAfterMoveSecondarySelf: function (damage, target, pokemon) {
 					this.heal(damage / 2, target, pokemon);
-					},
+					},*/
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
