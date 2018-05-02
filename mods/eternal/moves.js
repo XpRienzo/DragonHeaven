@@ -2404,8 +2404,9 @@ ZMovePower: 175,
                 }
             },
         },
+		  
 		  onModifyMovePriority: 8,
-		  onModifyMove: function (ource, target, move) {
+		  onModifyMove: function (source, target, move) {
 			  if (move.typeMod < 0) {
 				  return move.type = 'Electric';
 			  }
