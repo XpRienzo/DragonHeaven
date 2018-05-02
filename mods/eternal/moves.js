@@ -2291,7 +2291,7 @@ ZMovePower: 175,
         flags: {protect: 1, mirror: 1},
 		  isFutureMove: true,
 		  onTry: function (source, target) {
-			  source.side.addSideCondition('futuremove');
+			  target.side.addSideCondition('futuremove');
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
@@ -2310,7 +2310,7 @@ ZMovePower: 175,
 					flags: {},
 					drain: [1, 2],
 					onAfterDamageOrder: 1,
-					onAfterDamage: function (damage, target, source, move) {
+					onAfterDamage: function (damage, target, source) {
 					this.heal(damage / 2, target, source);
 					},
 					effectType: 'Move',
@@ -2318,7 +2318,7 @@ ZMovePower: 175,
 					type: 'Dark',
 				},
 			};
-			this.add('-start', source, 'move: Spore Burst');
+		//	this.add('-start', source, 'move: Spore Burst');
 			return null;
 		},
         secondary: false,
