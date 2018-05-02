@@ -2312,7 +2312,7 @@ ZMovePower: 175,
 					},
 		  isFutureMove: true,
 		  onTry: function (source, target) {
-			  target.side.addSideCondition('futuremove');
+			 target.side.addSideCondition('futuremove');
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
@@ -2329,7 +2329,12 @@ ZMovePower: 175,
 					category: "Special",
 					priority: 0,
 					flags: {},
-					drain: [1, 2],
+					//drain: [1, 2],
+					onAfterHit: function (damage, target, pokemon) {
+					this.heal(damage / 2, target, pokemon);
+					return;
+						}
+					},
 					/*onAfterDamageOrder: 1,
 					onAfterMoveSecondarySelf: function (damage, target, pokemon) {
 					this.heal(damage / 2, target, pokemon);
