@@ -2435,7 +2435,7 @@ flags: {snatch: 1, heal: 1},
 onHit: function (pokemon) {
 			if (this.isWeather('raindance')) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
-			} else {
+			} else if {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
 			else if (this.isWeather(['sunnyday', 'desolateland', 'hail'])) {
