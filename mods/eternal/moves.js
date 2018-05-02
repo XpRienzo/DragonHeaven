@@ -2404,10 +2404,11 @@ ZMovePower: 175,
                 }
             },
         },
-		  onModifyMovePriority: 8,
-		  onModifyMove: function (move) {
-				  move.type = 'Electric';
-		  },
+		  onModifyMovePriority: -2,
+			onModifyMove: function (move) {
+				this.debug('Electrify making move type electric');
+				move.type = 'Electric';
+			},
         target: "normal",
         type: "Poison",
         zMovePower: 175,
