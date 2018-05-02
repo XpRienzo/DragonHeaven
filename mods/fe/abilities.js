@@ -4803,7 +4803,7 @@ exports.BattleAbilities = {
 				if (target.volatiles['substitute']) {
 					this.add('-immune', target, '[msg]');
 				} else {
-					this.boost({[stat]: -1}, target, "[from] ability: Subdue", "[of] " + pokemon");
+					this.boost({[stat]: -1}, target, pokemon);
 					this.boost({[stat]: 1}, pokemon);
 				}
 			}
