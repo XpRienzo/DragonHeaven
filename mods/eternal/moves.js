@@ -1713,7 +1713,31 @@ target: "normal",
 type: "Water", 
 ZMovePower: 175,
 },
-
+"freezedry": {
+		num: 573,
+		accuracy: 100,
+		basePower: 100,
+		category: "Special",
+		shortDesc: "Super Effective on Fire-types. The user recovers 75% of the damage dealt and gives the user a boost to it's next Electric-type move and raised SpDef by one stage (à la Charge).",
+		id: "freezedry",
+		isViable: true,
+		name: "Freeze-Dry",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		drain: [3, 4],
+		onEffectiveness: function (typeMod, type) {
+			if (type === 'Fire') return 1;
+		},
+		onHit: function(target, pokemon) {
+			pokemon.addVolatile('charge');
+			this.add('-activate', pokemon, 'move: Charge');
+		},
+		target: "normal",
+		type: "Fire",
+		zMovePower: 175,
+		contestType: "Beautiful",
+	},
 /* Aquatic Ambush: {
 basePower: 90, 
 accuracy: 100, 
@@ -1760,7 +1784,7 @@ ZMovePower: 175,
     type: "Fire",
     zMovePower: 180,
   },
-	Signature Move: Heat Converter |   |   | 100 BP | 10 PP | 100 Acc | "Helioptile drains the heat of it's target and uses it to charge itself up" | Super Effective on Fire-types. The user recovers 75% of the damage dealt and gives the user a boost to it's next Electric-type move and raised SpDef by one stage (à la Charge). | Z Move - 175 BP Inferno Overdrive
+	 "Helioptile drains the heat of it's target and uses it to charge itself up" | Super Effective on Fire-types. The user recovers 75% of the damage dealt and gives the user a boost to it's next Electric-type move and raised SpDef by one stage (à la Charge). | Z Move - 175 BP Inferno Overdrive
 	*/
 	"tranquillity": {
 		accuracy: true,
