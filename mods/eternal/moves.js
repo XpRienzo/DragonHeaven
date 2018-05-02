@@ -2405,7 +2405,7 @@ ZMovePower: 175,
             },
         },
 		  onModifyMove: function (move, typeMod) {
-			  if (typeMod.electric > typeMod.poison) {
+			  if (move.typeMod < 0) {
 				  move.type = 'Electric';
 			  }
 		  },
