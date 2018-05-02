@@ -2305,13 +2305,8 @@ ZMovePower: 175,
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-		  drain: [1, 2],
-		  onAfterDamageOrder: 1,
-					onAfterDamage: function (damage, target, source) {
-					this.heal(damage / 2, target, source);
-					},
 		  isFutureMove: true,
-		  onTry: function (source, target) {
+		  onTry: function (source, target, pokemon) {
 			 target.side.addSideCondition('futuremove');
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
@@ -2320,7 +2315,7 @@ ZMovePower: 175,
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 2,
 				move: 'sporeburst',
-				source: source,
+				source: pokemon.side.pokemon,
 				moveData: {
 					id: 'sporeburst',
 					name: "Spore Burst",
@@ -2329,15 +2324,7 @@ ZMovePower: 175,
 					category: "Special",
 					priority: 0,
 					flags: {},
-					//drain: [1, 2],
-					onAfterHit: function (damage, target, pokemon) {
-					this.heal(damage / 2, target, pokemon);
-					return;
-					},
-					/*onAfterDamageOrder: 1,
-					onAfterMoveSecondarySelf: function (damage, target, pokemon) {
-					this.heal(damage / 2, target, pokemon);
-					},*/
+					drain: [1, 2],
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
