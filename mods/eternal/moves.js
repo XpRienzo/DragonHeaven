@@ -1760,7 +1760,7 @@ ZMovePower: 175,
         pp: 10,
         priority: 4,
         flags: {},
-		  volatileStatus: 'protect',
+		 // volatileStatus: 'protect',
         onPrepareHit: function (pokemon) {
             //This is all the code for Protect
 			return !!this.willAct() && this.runEvent('StallMove', pokemon);
@@ -1791,7 +1791,7 @@ ZMovePower: 175,
 				return null;
 			},
 		},
-		onFoeAfterHit: function (damage, target, source, move) {
+			onFoeAfterHit: function (damage, target, source, move) {
 			if (source && source !== target && move && move.effectType === 'Move') {
 				this.damage(damage / 2, source, target);
 			}
