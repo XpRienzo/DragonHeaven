@@ -2289,36 +2289,33 @@ ZMovePower: 175,
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-		  selfSwitch: true,
+		 // selfSwitch: true,
 		  isFutureMove: true,
-		onTry: function (source, target) {
+		 onTry: function (source, target) {
 			target.side.addSideCondition('futuremove');
+			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
 			target.side.sideConditions['futuremove'].positions[target.position] = {
-				duration: 2,
-				move: 'sporeburst',
+				duration: 3,
+				move: 'futuresight',
 				source: source,
 				moveData: {
 					id: 'sporeburst',
 					name: "Spore Burst",
 					accuracy: 100,
-					basePower: 100,
+					basePower: 120,
 					category: "Special",
 					priority: 0,
-					flags: {},
+					flags: {heal: 1},
 					drain: [1, 2],
-					onAfterDamageOrder: 1,
-					onAfterDamage: function (damage, target, source, move) {
-						this.heal(damage / 2, target, source);
-					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
 				},
 			};
-			this.add('-start', source, 'Spore Burst');
+			this.add('-start', source, 'move: Spore Burst');
 			return null;
 		},
         secondary: false,
