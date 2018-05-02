@@ -2467,5 +2467,45 @@ type: "Water",
 		zMovePower: 100,
 		contestType: "Tough",
 	},
-	
+"draconoidfangs": {
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		shortDesc: "Nullifies Detect, Protect, and Quick/Wide Guard.",
+		id: "draconoidfangs",
+		name: "Draconoid Fangs",
+		pp: 10,
+		priority: 2,
+		flags: {mirror: 1},
+		breaksProtect: true,
+		secondary: false,
+		target: "normal",
+		type: "Dragon",
+		zMovePower: 100,
+		contestType: "Clever",
+	},	
+	"winterbliss": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "User restores 1/2 its max HP; 2/3 in Hail.",
+		id: "winterbliss",
+		isViable: true,
+		name: "Winter Bliss",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onHit: function (pokemon) {
+			if (this.isWeather('hail')) {
+				return this.heal(this.modify(pokemon.maxhp, 0.667));
+			} else {
+				return this.heal(this.modify(pokemon.maxhp, 0.5));
+			}
+		},
+		secondary: false,
+		target: "self",
+		type: "Ice",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Beautiful",
+	},
 };
