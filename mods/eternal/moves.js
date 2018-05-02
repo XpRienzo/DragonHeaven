@@ -2307,6 +2307,7 @@ ZMovePower: 175,
         flags: {protect: 1, mirror: 1},
 		  isFutureMove: true,
 		  onTry: function (source, target) {
+			  for (const ally of source.side.pokemon) {
 			 target.side.addSideCondition('futuremove');
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
@@ -2315,7 +2316,7 @@ ZMovePower: 175,
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 2,
 				move: 'sporeburst',
-				source: source.side.pokemon,
+				source: ally,
 				moveData: {
 					id: 'sporeburst',
 					name: "Spore Burst",
@@ -2332,6 +2333,7 @@ ZMovePower: 175,
 			};
 			this.add('-start', source, 'move: Spore Burst');
 			return null;
+			  }
 		},
         secondary: false,
         target: "normal",
