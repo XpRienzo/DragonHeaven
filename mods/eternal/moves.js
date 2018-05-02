@@ -2396,7 +2396,7 @@ ZMovePower: 175,
 		   onModifyMovePriority: 8,
 			onModifyMove: function (move, pokemon) {
 			for (const target of pokemon.side.foe.active) {
-			if (target.hasType('Ghost') || target.hasType('Poison') || target.hasType('Rock')) {
+			if (target.hasType('Ghost') || target.hasType('Poison') || target.hasType('Rock') || target.hasType('Steel') && !target.hasType('Ground')) {
 				move.type = 'Electric';
 			}
 			}
