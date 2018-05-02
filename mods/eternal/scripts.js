@@ -93,6 +93,9 @@ this.modData('Learnsets', 'omanyte').learnset.rewind = ['7L1'];
 this.modData('Learnsets', 'kabuto').learnset.squeakywheel = ['7L1'];
 this.modData('Learnsets', 'lileep').learnset.algaeallure = ['7L1'];
 this.modData('Learnsets', 'anorith').learnset.aquaticambush = ['7L1'];
+this.modData('Learnsets', 'tirtouga').learnset.moisturize = ['7L1'];
+this.modData('Learnsets', 'archen').learnset.archaicanguish = ['7L1'];
+
 */
 	},
 };
