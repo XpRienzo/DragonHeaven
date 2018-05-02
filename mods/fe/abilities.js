@@ -4785,19 +4785,16 @@ exports.BattleAbilities = {
 	"subdue": {
 		shortDesc: "Lowers the opponent's highest stat by one, and boosts that same stat by one on yourself upon switch-in.",
 		onStart: function (pokemon) {
-				for (const target of pokemon.side.foe.active) {
-				if (!target || target.fainted) continue;
 				let stat = 'atk';
 				let bestStat = 0;
-				for (let i in target.stats) {
+				for (let i in pokemon.side.foe.active.stats) {
 					if (target.stats[i] > bestStat) {
 						stat = i;
-						bestStat = target.stats[i];
+						bestStat = pokemon.side.foe.active.stats[i];
 					}
 				}
 				this.boost({[stat]: 1}, pokemon);
-				this.boost({[stat]: -1}, target, '[silent]');
-				}
+				this.boost({[stat]: -1}, pokemon.side.foe.active);
 		},
 		id: "subdue",
 		name: "Subdue",
