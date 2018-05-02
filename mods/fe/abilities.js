@@ -4328,6 +4328,17 @@ exports.BattleAbilities = {
 				this.add('-setboost', pokemon, 'atk', 12, '[from] ability: Titanic Strength');
 			}
 		},
+		onAfterUseItem: function(item, pokemon, source) {
+			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp || pokemon.item === 'stickybarb') return;
+			if (!this.activeMove) throw new Error("Battle.activeMove is null");
+			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
+				this.add('-activate', pokemon, 'ability: Sticky Hold');
+				pokemon.setBoost({
+					atk: 6
+				});
+				this.add('-setboost', pokemon, 'atk', 12, '[from] ability: Titanic Strength');
+			}
+		},
 		id: "titanicstrength",
 		name: "Titanic Strength",
 	},
