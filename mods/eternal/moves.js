@@ -2378,7 +2378,8 @@ ZMovePower: 175,
         flags: {protect: 1, mirror: 1},
 		  weather: 'deltastream',
 		  isFutureMove: true,
-		onTry: function (source, target) {
+		  onTry: function (source, target) {
+			this.setWeather('deltastream');
 			target.side.addSideCondition('futuremove');
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
@@ -2396,8 +2397,12 @@ ZMovePower: 175,
 					priority: 0,
 					flags: {},
 					ignoreImmunity: true,
+					selfBoost: {
 					boosts: {
-					atk: 1, spd: 2, def: 2,
+						atk: 1,
+						def: 2,
+						spd: 2,
+						},
 					},
 					effectType: 'Move',
 					isFutureMove: true,
