@@ -2450,7 +2450,7 @@ ZMovePower: 175,
 				return false;
 			}
 			target.side.sideConditions['futuremove'].positions[target.position] = {
-				duration: 1,
+				duration: 2,
 				move: 'napalm',
 				source: source,
 				moveData: {
