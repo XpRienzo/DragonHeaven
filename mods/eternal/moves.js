@@ -2298,7 +2298,7 @@ ZMovePower: 175,
 			}
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 2,
-				move: 'futuresight',
+				move: 'sporeburst',
 				source: source,
 				moveData: {
 					id: 'sporeburst',
