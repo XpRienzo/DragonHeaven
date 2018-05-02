@@ -2290,8 +2290,7 @@ ZMovePower: 175,
         priority: 0,
         flags: {protect: 1, mirror: 1},
 		  isFutureMove: true,
-		 onTry: function (source, target) {
-			target.side.addSideCondition('futuremove');
+		  onTry: function (source, target) {
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
