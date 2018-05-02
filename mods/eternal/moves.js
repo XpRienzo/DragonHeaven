@@ -2331,8 +2331,8 @@ ZMovePower: 175,
 					flags: {},
 					drain: [1, 2],
 					onAfterDamageOrder: 1,
-					onAfterMoveSecondarySelf: function (damage, target, source) {
-					this.heal(damage / 2, target, source);
+					onAfterMoveSecondarySelf: function (damage, target, pokemon) {
+					this.heal(damage / 2, target, pokemon);
 					},
 					effectType: 'Move',
 					isFutureMove: true,
