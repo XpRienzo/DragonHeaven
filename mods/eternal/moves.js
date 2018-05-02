@@ -2433,14 +2433,13 @@ pp: 5,
 priority: 0, 
 flags: {snatch: 1, heal: 1}, 
 onHit: function (pokemon) {
-			if (this.isWeather('raindance')) {
+			if (this.isWeather(['sunnyday', 'desolateland', 'hail'])) {
+				return this.heal(this.modify(pokemon.maxhp, 0.25));
+			} else if (this.isWeather(['raindance', 'primordialsea'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
-			} else if {
+			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
-			else if (this.isWeather(['sunnyday', 'desolateland', 'hail'])) {
-				return this.heal(this.modify(pokemon.maxhp, 0.667));
-			} 
 		},
 target: "self",
 type: "Water", 
