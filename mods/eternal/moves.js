@@ -2435,7 +2435,7 @@ ZMovePower: 175,
 	"napalm": {
         accuracy: 100,
         basePower: 40,
-        category: "Physicals",
+        category: "Physical",
         shortDesc: "Fletchinder sideswipes the target, attaching a glob of napalm to them that detonates at the end of the next turn, dealing 100 physical Dark damage. Fletchinder switches out after the initial attack. The explosion will also trigger if the opponent is burned, a Fire-type, or when hit by a Fire-type attack.",
         id: "napalm",
         name: "Napalm",
