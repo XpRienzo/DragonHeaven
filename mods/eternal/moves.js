@@ -1775,45 +1775,10 @@ ZMovePower: 175,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
 		selfSwitch: true,
-		onHit: function (target, source, move) {
-			if (!target.volatiles['substitute'] || move.infiltrates);
-			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
-			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
-			let success = false;
-			for (const targetCondition of removeTarget) {
-				if (target.side.removeSideCondition(targetCondition)) {
-					if (!removeAll.includes(targetCondition)) continue;
-					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Tranquillity', '[of] ' + target);
-					success = true;
-				}
-			}
-			for (const sideCondition of removeAll) {
-				if (source.side.removeSideCondition(sideCondition)) {
-					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Tranquillity', '[of] ' + source);
-					success = true;
-				}
-			}
-			return success;
-		},
-		onHitField: function () {
-			this.add('-clearallboost');
-			for (const side of this.sides) {
-				for (const pokemon of side.active) {
-					if (pokemon && pokemon.isActive) pokemon.clearBoosts();
-				}
-			}
-		},
-		allySide: {
-			onPrepareHit: function (pokemon, source) {
-			this.add('-activate', source, 'move: Tranquillity');
-			let side = pokemon.side;
-			let success = false;
-			for (const ally of side.pokemon) {
-				if (ally.hasAbility('soundproof')) continue;
-				if (ally.cureStatus()) success = true;
-			}
-			return success;
-		},
+		onHit: function (source) {
+			this.useMove("Defog", source);
+			this.useMove("Haze", source);
+			this.useMove("Heal Bell", source);
 		},
 		secondary: false,
 		target: "all",
