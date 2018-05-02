@@ -1814,7 +1814,7 @@ ZMovePower: 175,
 			return success;
 		},
 		secondary: false,
-		target: "normal",
+		target: "all",
 		type: "Flying",
 		zMoveEffect: 'healreplacement',
 		contestType: "Cool",
