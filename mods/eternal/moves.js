@@ -1750,4 +1750,54 @@ ZMovePower: 175,
 		zMovePower: 150,
 		contestType: "Clever",
 	}, 
+	  "bounceshield": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        shortDesc: "Prevents moves from affecting the user this turn. The foe takes any damage this pokemon wouldve taken",
+        id: "bounceshield",
+        name: "Bounce Shield",
+        pp: 10,
+        priority: 4,
+        flags: {},
+        onPrepareHit: function (pokemon) {
+            //This is all the code for Protect
+			return !!this.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit: function (pokemon) {
+			pokemon.addVolatile('stall');
+		},
+		effect: {
+			duration: 1,
+			onStart: function (target) {
+				this.add('-singleturn', target, 'Protect');
+			},
+			onTryHitPriority: 3,
+			onTryHit: function (target, source, move) {
+				if (!move.flags['protect']) {
+					if (move.isZ) move.zBrokeProtect = true;
+					return;
+				}
+				this.add('-activate', target, 'move: Protect');
+				source.moveThisTurnResult = true;
+				let lockedmove = source.getVolatile('lockedmove');
+				if (lockedmove) {
+					// Outrage counter is reset
+					if (source.volatiles['lockedmove'].duration === 2) {
+						delete source.volatiles['lockedmove'];
+					}
+				}
+				return null;
+			},
+		},
+		onFoeAfterHit: function (damage, target, source, move) {
+			if (source && source !== target && move && move.effectType === 'Move') {
+				this.damage(damage / 2, source, target);
+			}
+		},
+        secondary: false,
+        target: "self",
+        type: "Psychic",
+        zMoveEffect: 'heal',
+    },
 };
