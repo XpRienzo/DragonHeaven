@@ -1791,15 +1791,62 @@ ZMovePower: 175,
 				return null;
 			},
 		},
-		onAfterDamageOrder: 1,
-		onAfterDamage: function (damage, target, source, move) {
-			//if (source && source !== target && move && move.category === "Special") {
-				this.damage(damage / 2, source, target);
-			//}
-		},
         secondary: false,
         target: "self",
         type: "Psychic",
         zMoveEffect: 'heal',
+    },
+	"goodtidings": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        shortDesc: "User switches out, healing the switch-in for half of user's max HP.",
+        id: "goodtidings",
+        name: "Good Tidings",
+        pp: 10,
+        priority: 0,
+        flags: {mirror: 1},
+			onTryHit: function (pokemon, target, move) {
+			if (!this.canSwitch(pokemon.side)) {
+				delete move.selfdestruct;
+				return false;
+			}
+		},
+		selfSwitch: "true",
+		sideCondition: 'goodtidings',
+		effect: {
+			duration: 2,
+			onStart: function (side, source) {
+				this.debug('goodtidings started on ' + side.name);
+				this.effectData.positions = [];
+				// @ts-ignore
+				for (let i = 0; i < side.active.length; i++) {
+					this.effectData.positions[i] = false;
+				}
+				this.effectData.positions[source.position] = true;
+			},
+			onRestart: function (side, source) {
+				this.effectData.positions[source.position] = true;
+			},
+			onSwitchInPriority: 1,
+			onSwitchIn: function (target) {
+				const positions = /**@type {boolean[]} */ (this.effectData.positions);
+				if (!positions[target.position]) {
+					return;
+				}
+				if (!target.fainted) {
+					target.heal(target.maxhp / 2);
+					this.add('-heal', target, target.getHealth, '[from] move: Good Tidings');
+					positions[target.position] = false;
+				}
+				if (!positions.some(affected => affected === true)) {
+					target.side.removeSideCondition('goodtidings');
+				}
+			},
+		},
+        secondary: false,
+        target: "self",
+        type: "Normal",
+        zMoveEffect: 'healreplacement',
     },
 };
