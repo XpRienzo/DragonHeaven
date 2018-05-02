@@ -2289,6 +2289,7 @@ ZMovePower: 175,
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
+		  selfSwitch: true,
 		  isFutureMove: true,
 		onTry: function (source, target) {
 			target.side.addSideCondition('futuremove');
@@ -2297,7 +2298,7 @@ ZMovePower: 175,
 			}
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 2,
-				move: 'doomdesire',
+				move: 'sporeburst',
 				source: source,
 				moveData: {
 					id: 'sporeburst',
@@ -2317,7 +2318,6 @@ ZMovePower: 175,
 			return null;
 		},
         secondary: false,
-		  selfSwitch: true,
         target: "normal",
         type: "Dark",
         zMovePower: 190, 
