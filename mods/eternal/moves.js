@@ -2383,6 +2383,36 @@ ZMovePower: 175,
         type: "Fairy",
         zMovePower: 175,
     },
+	"injection": {
+        accuracy: 100,
+        basePower: 90,
+        category: "Physical",
+        shortDesc: "Is Poison or Electric type depending on effectiveness. 66% chance to paralyze or poison the opponent",
+        id: "injection",
+        name: "Injection",
+        pp: 10,
+        priority: 0,
+        flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
+        secondary: {
+            chance: 66,
+            onHit: function (target, source) {
+                let result = this.random(2)
+                if (result === 0) {
+                    target.TrySetStatus('psn', source);
+                } else {
+                    target.TrySetStatus('par', source);
+                }
+            },
+        },
+		  onModifyMove: function (move, typeMod) {
+			  if (typeMod.electric > typeMod.poison) {
+				  move.type = 'Electric';
+			  }
+		  },
+        target: "normal",
+        type: "Poison",
+        zMovePower: 175,
+    },
 	"doldrum": {
         accuracy: true,
         basePower: 0,
