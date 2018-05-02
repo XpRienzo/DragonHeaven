@@ -1818,7 +1818,7 @@ ZMovePower: 175,
 		zMoveEffect: 'healreplacement',
 		contestType: "Cool",
 	},
-	"magneticcharge": {
+	*/"magneticcharge": {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
@@ -1850,13 +1850,14 @@ ZMovePower: 175,
 		onAfterMove: function (pokemon) {
 			pokemon.removeVolatile('magneticcharge');
 		},
+		heal: [1, 2],
 		secondary: false,
 		target: "self",
 		type: "Electric",
 		zMoveBoost: 'clearnegativeboosts',
 		contestType: "Tough",
 	},
-	"pumpkinflare": {
+	/*"pumpkinflare": {
         accuracy: 100,
         basePower: 0,
         category: "Special",
@@ -2307,7 +2308,6 @@ ZMovePower: 175,
         flags: {protect: 1, mirror: 1},
 		  isFutureMove: true,
 		  onTry: function (source, target) {
-			  for (const ally of source.side.pokemon) {
 			 target.side.addSideCondition('futuremove');
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
@@ -2333,7 +2333,6 @@ ZMovePower: 175,
 			};
 			this.add('-start', source, 'move: Spore Burst');
 			return null;
-			  }
 		},
         secondary: false,
         target: "normal",
@@ -2411,5 +2410,49 @@ ZMovePower: 175,
         target: "self",
         type: "Flying",
         zMoveEffect: 'clearnegativeboost',
-    },    
+    },
+	"napalm": {
+        accuracy: 100,
+        basePower: 40,
+        category: "Physicals",
+        shortDesc: "Fletchinder sideswipes the target, attaching a glob of napalm to them that detonates at the end of the next turn, dealing 100 physical Dark damage. Fletchinder switches out after the initial attack. The explosion will also trigger if the opponent is burned, a Fire-type, or when hit by a Fire-type attack.",
+        id: "napalm",
+        name: "Napalm",
+        pp: 10,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        selfSwitch: true,
+        isFutureMove: true,
+		onTry: function (source, target) {
+			target.side.addSideCondition('futuremove');
+			if (target.side.sideConditions['futuremove'].positions[target.position]) {
+				return false;
+			}
+			target.side.sideConditions['futuremove'].positions[target.position] = {
+				duration: 1,
+				move: 'napalm',
+				source: source,
+				moveData: {
+					id: 'napalm',
+					name: "Napalm",
+					accuracy: 100,
+					basePower: 100,
+					category: "Physical",
+					priority: 0,
+					flags: {},
+					ignoreImmunity: false,
+					effectType: 'Move',
+					isFutureMove: true,
+					type: 'Dark',
+				},
+			};
+			this.add('-start', source, 'move: Napalm');
+			return null;
+		},
+        secondary: false,
+        target: "normal",
+        type: "Dark",
+        zMovePower: 100,
+    },
+	
 };
