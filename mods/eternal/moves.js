@@ -1761,6 +1761,7 @@ ZMovePower: 175,
     zMovePower: 180,
   },
 	Signature Move: Heat Converter |   |   | 100 BP | 10 PP | 100 Acc | "Helioptile drains the heat of it's target and uses it to charge itself up" | Super Effective on Fire-types. The user recovers 75% of the damage dealt and gives the user a boost to it's next Electric-type move and raised SpDef by one stage (à la Charge). | Z Move - 175 BP Inferno Overdrive
+	*/
 	"tranquillity": {
 		accuracy: true,
 		basePower: 0,
@@ -1775,27 +1776,36 @@ ZMovePower: 175,
 		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
 		selfSwitch: true,
 		onHit: function (target, source, move) {
-			if (!target.volatiles['substitute'] || move.infiltrates) this.boost({evasion: -1});
+			
+			if (!target.volatiles['substitute'] || move.infiltrates));
 			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
 			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
 			let success = false;
-			for (let targetCondition of removeTarget) {
+			for (const targetCondition of removeTarget) {
 				if (target.side.removeSideCondition(targetCondition)) {
 					if (!removeAll.includes(targetCondition)) continue;
-					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + target);
+					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Tranquillity', '[of] ' + target);
 					success = true;
 				}
 			}
-			for (let sideCondition of removeAll) {
+			for (const sideCondition of removeAll) {
 				if (source.side.removeSideCondition(sideCondition)) {
-					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Tranquillity', '[of] ' + source);
 					success = true;
 				}
 			}
 			return success;
 		},
-		onHit: function (pokemon, source) {
-			this.add('-activate', source, 'move: Heal Bell');
+		onHitField: function () {
+			this.add('-clearallboost');
+			for (const side of this.sides) {
+				for (const pokemon of side.active) {
+					if (pokemon && pokemon.isActive) pokemon.clearBoosts();
+				}
+			}
+		},
+		onAfterHit: function (pokemon, source) {
+			this.add('-activate', source, 'move: Tranquillity');
 			let side = pokemon.side;
 			let success = false;
 			for (const ally of side.pokemon) {
@@ -1804,21 +1814,13 @@ ZMovePower: 175,
 			}
 			return success;
 		},
-		onHitField: function () {
-			this.add('-clearallboost');
-			for (let i = 0; i < this.sides.length; i++) {
-				for (let j = 0; j < this.sides[i].active.length; j++) {
-					if (this.sides[i].active[j] && this.sides[i].active[j].isActive) this.sides[i].active[j].clearBoosts();
-				}
-			}
-		},
 		secondary: false,
 		target: "normal",
 		type: "Flying",
 		zMoveEffect: 'healreplacement',
 		contestType: "Cool",
 	},
-	*/"magneticcharge": {
+	"magneticcharge": {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
