@@ -2393,12 +2393,14 @@ ZMovePower: 175,
         pp: 10,
         priority: 0,
         flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
-		  onModifyMovePriority: 8,
-			onModifyMove: function (move, target) {
+		   onModifyMovePriority: 8,
+			onModifyMove: function (move, pokemon) {
+			for (const target of pokemon.side.foe.active) {
 			if (target.hasType('Ghost')) {
 				move.type = 'Electric';
 			}
-		},
+			}
+		  },
         target: "normal",
         type: "Poison",
         zMovePower: 175,
