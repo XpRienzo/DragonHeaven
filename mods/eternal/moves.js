@@ -1803,7 +1803,7 @@ ZMovePower: 175,
 				}
 			}
 		},
-		onAfterHit: function (pokemon, source) {
+		onPrepareHit: function (pokemon, source) {
 			this.add('-activate', source, 'move: Tranquillity');
 			let side = pokemon.side;
 			let success = false;
