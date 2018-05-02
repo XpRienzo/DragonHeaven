@@ -2290,6 +2290,10 @@ ZMovePower: 175,
         priority: 0,
         flags: {protect: 1, mirror: 1},
 		  drain: [1, 2],
+		  onAfterDamageOrder: 1,
+					onAfterDamage: function (damage, target, source) {
+					this.heal(damage / 2, target, source);
+					},
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			  target.side.addSideCondition('futuremove');
