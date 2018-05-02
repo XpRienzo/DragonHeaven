@@ -1791,10 +1791,11 @@ ZMovePower: 175,
 				return null;
 			},
 		},
-			onAfterHit: function (damage, target, source, move) {
-			if (source && source !== target && move && move.effectType === 'Move') {
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			//if (source && source !== target && move && move.category === "Special") {
 				this.damage(damage / 2, source, target);
-			}
+			//}
 		},
         secondary: false,
         target: "self",
