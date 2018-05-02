@@ -2331,7 +2331,7 @@ ZMovePower: 175,
 					flags: {},
 					drain: [1, 2],
 					onAfterDamageOrder: 1,
-					onAfterDamage: function (damage, target, source) {
+					onAfterMoveSecondarySelf: function (damage, target, source) {
 					this.heal(damage / 2, target, source);
 					},
 					effectType: 'Move',
@@ -2339,7 +2339,7 @@ ZMovePower: 175,
 					type: 'Dark',
 				},
 			};
-		//	this.add('-start', source, 'move: Spore Burst');
+			this.add('-start', source, 'move: Spore Burst');
 			return null;
 		},
         secondary: false,
@@ -2360,6 +2360,10 @@ ZMovePower: 175,
         onHit: function (pokemon) {
 			if (['', 'slp', 'frz'].includes(pokemon.status)) return false;
 			pokemon.cureStatus();
+		},
+		 	onBasePowerPriority: 4,
+			onBasePower: function (basePower, pokemon) {
+				return this.chainModify(1.5);
 		},
         secondary: false,
         target: "normal",
