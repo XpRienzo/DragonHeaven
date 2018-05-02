@@ -2279,5 +2279,47 @@ ZMovePower: 175,
         type: "type",
         zMovePower: 170, 
     },
-	
+	"sporeburst": {
+        accuracy: 100,
+        basePower: 100,
+        category: "Special",
+        shortDesc: "Switches out turn 1, hits target turn 2, heals a team member for 50% damage dealt to the corresponding target.",
+        id: "sporeburst",
+        name: "Spore Burst",
+        pp: 5,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+		  isFutureMove: true,
+		onTry: function (source, target) {
+			target.side.addSideCondition('futuremove');
+			if (target.side.sideConditions['futuremove'].positions[target.position]) {
+				return false;
+			}
+			target.side.sideConditions['futuremove'].positions[target.position] = {
+				duration: 2,
+				move: 'doomdesire',
+				source: source,
+				moveData: {
+					id: 'sporeburst',
+					name: "Spore Burst",
+					accuracy: 100,
+					basePower: 100,
+					category: "Special",
+					priority: 0,
+					flags: {},
+					drain: [1, 2],
+					effectType: 'Move',
+					isFutureMove: true,
+					type: 'Dark',
+				},
+			};
+			this.add('-start', source, 'Spore Burst');
+			return null;
+		},
+        secondary: false,
+		  selfSwitch: true,
+        target: "normal",
+        type: "Dark",
+        zMovePower: 190, 
+    },
 };
