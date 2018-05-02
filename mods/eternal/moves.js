@@ -748,7 +748,7 @@ exports.BattleMovedex = {
 		heal: [1, 2],
 		secondaries: [
 			{
-				chance: 25,
+				chance: 5,
 				self: {
 				boosts: {
 					atk: 1,
@@ -756,7 +756,7 @@ exports.BattleMovedex = {
 			},
 			},
 			{
-				chance: 25,
+				chance: 5,
 				self: {
 				boosts: {
 					def: 1,
@@ -764,7 +764,7 @@ exports.BattleMovedex = {
 			},
 			},
 			{
-				chance: 25,
+				chance: 5,
 				self: {
 				boosts: {
 					spa: 1,
@@ -772,7 +772,7 @@ exports.BattleMovedex = {
 			},
 			},
 			{
-				chance: 25,
+				chance: 5,
 				self: {
 				boosts: {
 					spd: 1,
@@ -780,7 +780,7 @@ exports.BattleMovedex = {
 			},
 			},
 			{
-				chance: 25,
+				chance: 5,
 				self: {
 				boosts: {
 					spe: 1,
@@ -814,30 +814,29 @@ exports.BattleMovedex = {
 		zMovePower: 160,
 		contestType: "Beautiful",
 	},
-		/*"spikestorm": {
+		"spikestorm": {
 		accuracy: 90,
 		basePower: 20,
 		category: "Physical",
-		desc: "Hits 2-5 times, each hit has a 70% chance to set up a Layer of Spikes.",
-		shortDesc: "Hits 2-5 times in one turn, each hit has a 70% chance to set up a Layer of Spikes.",
+		desc: "Hits 2-5 times, each hit has a 30% chance to set up a Layer of Spikes.",
+		shortDesc: "Hits 2-5 times in one turn, each hit has a 30% chance to set up a Layer of Spikes.",
 		id: "spikestorm",
 		isViable: true,
 		name: "Spike Storm",
 		pp: 10,
 		priority: 0,
-		flags: {bullet: 1, protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1},
 		multihit: [2, 5],
-		secondary: {
-			chance: 70,
-			onHit: function (target, source) {
+		onHit: function (target, source) {
+			if (this.randomChance(3, 10)) {
 			target.side.addSideCondition('spikes', source);
-			},
+			}
 		},
 		target: "normal",
 		type: "Ground",
 		zMovePower: 80,
 		contestType: "Tough",
-	},*/
+	},
 	
 	"metalliccharge": {
 		accuracy: 100,
@@ -881,7 +880,7 @@ exports.BattleMovedex = {
 	},
 	"deadonstrike": {
 		accuracy: true,
-		basePower: 120,
+		basePower: 80,
 		category: "Physical",
 		desc: "+1 Acc, ignores acc check. 33% recoil.",
 		shortDesc: "+1 Acc, ignores acc check. 33% recoil.",
@@ -1179,17 +1178,17 @@ exports.BattleMovedex = {
 	},
 		"woodpeckerbarrage": {
 		accuracy: 100,
-		basePower: 10,
+		basePower: 30,
 		category: "Physical",
-		desc: "Multihit move: 1-15, doesn't make contact.",
-		shortDesc: "Multihit move: 1-15, doesn't make contact.",
+		desc: "Multihit move: 2-5, doesn't make contact.",
+		shortDesc: "Multihit move: 2-5, doesn't make contact.",
 		id: "woodpeckerbarrage",
 		isViable: true,
 		name: "Woodpecker Barrage",
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		multihit: [1, 15],
+		multihit: [2, 5],
 		secondary: false,
 		target: "normal",
 		type: "Flying",
@@ -1403,6 +1402,7 @@ exports.BattleMovedex = {
 			target.side.addSideCondition('spikes', source);
 			target.side.addSideCondition('spikes', source);
 		},
+		recoil: [1, 1],
 		secondary: false,
 		target: "normal",
 		type: "Ice",
