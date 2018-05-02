@@ -95,7 +95,8 @@ this.modData('Learnsets', 'lileep').learnset.algaeallure = ['7L1'];
 this.modData('Learnsets', 'anorith').learnset.aquaticambush = ['7L1'];
 this.modData('Learnsets', 'tirtouga').learnset.moisturize = ['7L1'];
 this.modData('Learnsets', 'archen').learnset.archaicanguish = ['7L1'];
-
+this.modData('Learnsets', 'tyrunt').learnset.draconoidfangs = ['7L1'];
+this.modData('Learnsets', 'amaura').learnset.winterbliss = ['7L1'];
 */
 	},
 };
