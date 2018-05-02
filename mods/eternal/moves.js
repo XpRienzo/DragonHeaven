@@ -102,6 +102,12 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Extreme Speed", target);
 			this.useMove("evolutionblastwater", source);
 			this.useMove("evolutionblastelectric", source);
+			this.useMove("evolutionblastfire", source);
+			this.useMove("evolutionblastpsychic", source);
+			this.useMove("evolutionblastdark", source);
+			this.useMove("evolutionblastgrass", source);
+			this.useMove("evolutionblastice", source);
+			this.useMove("evolutionblastfairy", source);
 		},
 		target: "normal",
 		type: "Normal",
@@ -144,6 +150,125 @@ exports.BattleMovedex = {
 		},
 		target: "normal",
 		type: "Electric",
+		zMovePower: 25,
+	},
+	"evolutionblastfire": { 
+		shortDesc: "Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy",
+		accuracy: 100,
+		basePower: 15,
+		category: "Special",
+		id: "evolutionblastfire",
+		isViable: true,
+		name: "Evolution Blast",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onPrepareHit: function(target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flare Blitz", target);
+		},
+		target: "normal",
+		type: "Fire",
+		zMovePower: 25,
+	},
+
+"evolutionblastpsychic": { 
+		shortDesc: "Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy",
+		accuracy: 100,
+		basePower: 15,
+		category: "Special",
+		id: "evolutionblastpsychic",
+		isViable: true,
+		name: "Evolution Blast",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onPrepareHit: function(target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Zen Headbutt", target);
+		},
+		target: "normal",
+		type: "Psychic",
+		zMovePower: 25,
+	},
+
+"evolutionblastdark": { 
+		shortDesc: "Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy",
+		accuracy: 100,
+		basePower: 15,
+		category: "Special",
+		id: "evolutionblastdark",
+		isViable: true,
+		name: "Evolution Blast",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onPrepareHit: function(target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
+		target: "normal",
+		type: "Dark",
+		zMovePower: 25,
+	},
+
+"evolutionblastgrass": { 
+		shortDesc: "Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy",
+		accuracy: 100,
+		basePower: 15,
+		category: "Special",
+		id: "evolutionblastgrass",
+		isViable: true,
+		name: "Evolution Blast",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onPrepareHit: function(target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Leaf Blade", target);
+		},
+		target: "normal",
+		type: "Grass",
+		zMovePower: 25,
+	},
+
+"evolutionblastice": { 
+		shortDesc: "Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy",
+		accuracy: 100,
+		basePower: 15,
+		category: "Special",
+		id: "evolutionblastice",
+		isViable: true,
+		name: "Evolution Blast",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onPrepareHit: function(target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ice Fang", target);
+		},
+		target: "normal",
+		type: "Ice",
+		zMovePower: 25,
+	},
+
+"evolutionblastfairy": { 
+		shortDesc: "Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy",
+		accuracy: 100,
+		basePower: 15,
+		category: "Special",
+		id: "evolutionblastfairy",
+		isViable: true,
+		name: "Evolution Blast",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onPrepareHit: function(target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Play Rough", target);
+		},
+		target: "normal",
+		type: "Fairy",
 		zMovePower: 25,
 	},
 	"darkcrowdive": {
