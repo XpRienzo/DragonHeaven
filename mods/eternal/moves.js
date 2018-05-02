@@ -2404,16 +2404,8 @@ ZMovePower: 175,
                 }
             },
         },
-		  onTryHit: function (target, move) {
-			  if (move.typeMod < 0) {
-				  target.addVolatile('injection');
-			  }
-		  },
-		  onModifyMovePriority: 8,
-		  onModifyMove: function (source, target, move) {
-			  if (target.volatiles['injection']) {
+		  onModifyMove: function (move) {
 				  move.type = 'Electric';
-			  }
 		  },
         target: "normal",
         type: "Poison",
