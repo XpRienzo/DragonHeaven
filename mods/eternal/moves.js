@@ -2289,6 +2289,7 @@ ZMovePower: 175,
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
+		  drain: [1, 2],
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			  target.side.addSideCondition('futuremove');
