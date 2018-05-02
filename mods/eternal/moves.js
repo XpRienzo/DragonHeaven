@@ -1791,6 +1791,13 @@ ZMovePower: 175,
 				return null;
 			},
 		},
+		  onDamagePriority: -101,
+			onDamage: function (damage, target, source, effect) {
+				if (effect && effect.effectType === 'Move' && source.side !== target.side) {
+					this.effectData.position = source.position;
+					this.effectData.damage = damage;
+				}
+			},
         secondary: false,
         target: "self",
         type: "Psychic",
@@ -1849,4 +1856,263 @@ ZMovePower: 175,
         type: "Normal",
         zMoveEffect: 'healreplacement',
     },
+	"searingscreen": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        shortDesc: "Increases the power of physical and special attacks by 1,33% during 5 turns, but it can be used only during Sun. It lasts 8 if you use Light Clay.",
+        id: "searingscreen",
+        name: "Searing Screen",
+        pp: 20,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+		  sideCondition: 'searingscreen',
+		  onTryHitSide: function () {
+			if (!this.isWeather('sun')) return false;
+			},
+		  effect: {
+			duration: 5,
+			durationCallback: function (target, source, effect) {
+				if (source && source.hasItem('lightclay')) {
+					return 8;
+				}
+				return 5;
+			},
+			onAnyModifyDamage: function (damage, source, target, move) {
+				if (target !== source && target.side === this.effectData.target) {
+					if ((target.side.sideConditions['reflect'] && this.getCategory(move) === 'Physical') ||
+							(target.side.sideConditions['lightscreen'] && this.getCategory(move) === 'Special')) {
+						return;
+					}
+					if (!move.crit && !move.infiltrates) {
+						this.debug('searingscreen boost');
+						return this.chainModify(1.33);
+					}
+				}
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Searing Screen');
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 1,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'move: Searing Screen');
+			},
+		},
+        secondary: false,
+        target: "foeSide",
+        type: "type",
+        zMovePower: 100, 
+    },
+	 "phantasmalbreak": {
+        accuracy: 100,
+        basePower: 80,
+        category: "Physical",
+        shortDesc: "Damage dealt cannot be restored until switched out.",
+        id: "phantasmalbreak",
+        name: "Phantasmal Break",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+		  volatileStatus: 'phantasmalbreak',
+		  effect: {
+			onStart: function (pokemon) {
+				this.add('-start', pokemon, 'move: Phantasmal Break');
+			},
+			onDisableMove: function (pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (this.getMove(moveSlot.id).flags['heal']) {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			onBeforeMovePriority: 6,
+			onBeforeMove: function (pokemon, target, move) {
+				if (move.flags['heal']) {
+					this.add('cant', pokemon, 'move: Phantasmal Break', move);
+					return false;
+				}
+			},
+			onResidualOrder: 17,
+			onSwitchOut: function (pokemon) {
+				this.add('-end', pokemon, 'move: Phantasmal Break');
+			},
+			onTryHeal: false,
+		},
+        secondary: false,
+        target: "allAdjacentFoes",
+        type: "Ghost",
+        zMovePower: 160,  
+    },
+	"mineralbath": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        shortDesc: "Heals the user by 50% of its max HP. If there are Entry Hazards on the users side, they are removed and the user is healed for 2/3 of its max HP",
+        id: "mineralbath",
+        name: "Mineral Bath",
+        pp: 10,
+        priority: 0,
+        flags: {snatch: 1, mirror: 1},
+		  onHit: function (pokemon) {
+			if (pokemon.side.sideConditions['stealthrock', 'spikes', 'toxicspikes', 'stickyweb']) {
+				return this.heal(this.modify(pokemon.maxhp, 0.667));
+			} else {
+				return this.heal(this.modify(pokemon.maxhp, 0.5));
+			}
+		},
+		self: {
+			onHit: function (pokemon) {
+				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
+					this.add('-end', pokemon, 'Leech Seed', '[from] move: Mineral Bath', '[of] ' + pokemon);
+				}
+				let sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+				for (const condition of sideConditions) {
+					if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+						this.add('-sideend', pokemon.side, this.getEffect(condition).name, '[from] move: Mineral Bath', '[of] ' + pokemon);
+					}
+				}
+			},
+		},
+        secondary: false,
+        target: "normal",
+        type: "Water",
+        zMoveBoost: {atk: 1},
+    },
+	 "mythicalpower": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        shortDesc: "Resets the users negative stat changes and boosts Sp.Atk by 2.",
+        id: "mythicalpower",
+        name: "Mythical Power",
+        pp: 5,
+        priority: 0,
+        flags: {snatch: 1},
+		  onHit: function (pokemon) {
+			  let boosts = {};
+			for (let i in pokemon.boosts) {
+				if (pokemon.boosts[i] < 0) {
+					boosts[i] = 0;
+					this.boost({spa: 2});
+				}
+			}
+		  },
+        secondary: false,
+        target: "self",
+        type: "Fairy",
+        zMoveEffect: 'heal',
+    },
+	"eggoverboil": {
+        accuracy: 90,
+        basePower: 45,
+        category: "Special",
+        shortDesc: "Hits twice, the first hit has a 50% chance to Soak its foe, and the second hit a 50% chance to burn it.",
+        id: "eggoverboil",
+        name: "Egg Overboil",
+        pp: 5,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        multihit: 2,
+        secondaries: [
+			{
+				chance: 50,
+				status: 'brn',
+			}, {
+				chance: 50,
+				volatileStatus: 'soak',
+			},
+		],
+        target: "normal",
+        type: "Water",
+        zMovePower: 175, 
+    },
+	 "ancientritual": {
+        accuracy: 100,
+        basePower: 150,
+        category: "Special",
+        shortDesc: "Hits four turns after being used. If the opponent is KOed, apply Wish to the current pokemon",
+        id: "ancientritual",
+        name: "Ancient Ritual",
+        pp: 5,
+        priority: 0,
+        flags: {},
+        ignoreImmunity: true,
+		isFutureMove: true,
+		onTry: function (source, target) {
+			target.side.addSideCondition('futuremove');
+			if (target.side.sideConditions['futuremove'].positions[target.position]) {
+				return false;
+			}
+			target.side.sideConditions['futuremove'].positions[target.position] = {
+				duration: 4,
+				move: 'ancientritual',
+				source: source,
+				moveData: {
+					id: 'ancientritual',
+					name: "Ancient Ritual",
+					accuracy: 100,
+					basePower: 150,
+					category: "Special",
+					priority: 0,
+					flags: {},
+					ignoreImmunity: false,
+					onAfterMoveSecondarySelf: function (pokemon, target) {
+					if (!target || target.fainted || target.hp <= 0) pokemon.side.addSideCondition('wish');;
+					},
+					effectType: 'Move',
+					isFutureMove: true,
+					type: 'Dragon',
+				},
+			};
+			this.add('-start', source, 'move: Ancient Ritual');
+			return null;
+		},
+        secondary: false,
+        target: "normal",
+        type: "type",
+        zMovePower: 210, 
+    },
+	 "manifestdestiny": {
+        accuracy: 90,
+        basePower: 90,
+		  basePowerCallback: function (pokemon, target, move) {
+			if (pokemon.volatiles.manifestdestiny && pokemon.volatiles.manifestdestiny.hurt) {
+				this.debug('Boosted for being damaged this turn');
+				return move.basePower * 1.5;
+				return move.accuracy = true;
+			}
+			return move.basePower;
+		},
+        category: "Physical",
+        shortDesc: "Deals 50% more damage and never misses if Rufflet is hit on the turn of the attack.",
+        id: "manifestdestiny",
+        name: "Manifest Destiny",
+        pp:  10,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+		  beforeTurnCallback: function (pokemon, target) {
+			pokemon.addVolatile('manifestdestiny');
+			pokemon.volatiles.manifestdestiny.position = target.position;
+		},
+		effect: {
+			duration: 1,
+			onFoeAfterDamage: function (damage, target) {
+				if (target.position === this.effectData.position) {
+					this.debug('damaged this turn');
+					this.effectData.hurt = true;
+				}
+			},
+			onFoeSwitchOut: function (pokemon) {
+				if (pokemon.position === this.effectData.position) {
+					this.effectData.hurt = false;
+				}
+			},
+		},
+        secondary: false,
+        target: "normal",
+        type: "type",
+        zMovePower: 170, 
+    },
+	
 };
