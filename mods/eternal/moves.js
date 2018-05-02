@@ -1791,7 +1791,7 @@ ZMovePower: 175,
 				return null;
 			},
 		},
-			onFoeAfterHit: function (damage, target, source, move) {
+			onAfterHit: function (damage, target, source, move) {
 			if (source && source !== target && move && move.effectType === 'Move') {
 				this.damage(damage / 2, source, target);
 			}
