@@ -4783,12 +4783,8 @@ exports.BattleAbilities = {
 						bestStat = target.stats[i];
 					}
 				}
-				this.boost({
-					[stat]: -1
-				}, target);
-				this.boost({
-					[stat]: 1
-				}, source);
+				this.boost({[stat]: -1}, target);
+				this.boost({[stat]: 1}, source);
 			}
 		},
 		id: "subdue",
@@ -5909,6 +5905,28 @@ exports.BattleAbilities = {
 		id: "healinghell",
 		name: "Healing Hell",
 	},
+		"shatteredprism": {
+		desc: "This Pokemon receives 3/4 damage from supereffective attacks This Pokémon’s Not-Very-Effective moves deal more damage against the foe. This Pokémon’s moves ignores the foe’s ability. Moongeist Beam, Sunsteel Strike, and the Abilities Mold Breaker, Teravolt, and Turboblaze cannot ignore this Ability.",
+		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and deals more damage with not-very-effective moves",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				this.debug('Shattered Prism neutralize');
+				return this.chainModify(0.75);
+			}
+		},
+		onModifyMove: function (move) {
+			move.ignoreAbility = true;
+		},
+		onModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0) {
+				this.debug('Shattered Prism boost');
+				return this.chainModify(1.75);
+			}
+		},
+		isUnbreakable: true,
+		id: "shatteredprism",
+		name: "Shattered Prism",
+	},
 	"firewall": {
 		shortDesc: "Upon switch-in, this Pokemon sets up Reflect or Light Screen depending on the opponent's higher Attacking stat. If they are tied, this Pokemon sets up Aurora Veil.",
 		onStart: function (pokemon) {
@@ -5931,28 +5949,5 @@ exports.BattleAbilities = {
 		id: "firewall",
 		name: "Firewall",
 	},	
-	"shatteredprism": {
-		desc: "This Pokemon receives 3/4 damage from supereffective attacks This Pokémon’s Not-Very-Effective moves deal more damage against the foe. This Pokémon’s moves ignores the foe’s ability. Moongeist Beam, Sunsteel Strike, and the Abilities Mold Breaker, Teravolt, and Turboblaze cannot ignore this Ability.",
-		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and deals more damage with not-very-effective moves",
-		onSourceModifyDamage: function (damage, source, target, move) {
-			if (move.typeMod > 0) {
-				this.debug('Shattered Prism neutralize');
-				return this.chainModify(0.75);
-			}
-		},
-		onModifyMove: function (move) {
-			move.ignoreAbility = true;
-		},
-		onModifyDamage: function (damage, source, target, move) {
-			if (move.typeMod < 0) {
-				this.debug('Shattered Prism boost');
-				return this.chainModify(1.75);
-			}
-		},
-		},
-		isUnbreakable: true,
-		id: "shatteredprism",
-		name: "Shattered Prism",
-	},
 	
 };
