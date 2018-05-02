@@ -4788,7 +4788,7 @@ exports.BattleAbilities = {
 				let stat = 'atk';
 				let bestStat = 0;
 				for (let i in pokemon.side.foe.active.stats) {
-					if (target.stats[i] > bestStat) {
+					if (pokemon.side.foe.active.stats[i] > bestStat) {
 						stat = i;
 						bestStat = pokemon.side.foe.active.stats[i];
 					}
