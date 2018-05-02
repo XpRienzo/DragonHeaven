@@ -2394,7 +2394,7 @@ ZMovePower: 175,
         priority: 0,
         flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
 		  onModifyMovePriority: 8,
-			onModifyMove: function (move) {
+			onModifyMove: function (move, target) {
 			if (move.typeMod < 0) {
 				move.type = 'Electric';
 			}
