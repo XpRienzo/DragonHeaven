@@ -1776,8 +1776,7 @@ ZMovePower: 175,
 		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
 		selfSwitch: true,
 		onHit: function (target, source, move) {
-			
-			if (!target.volatiles['substitute'] || move.infiltrates));
+			if (!target.volatiles['substitute'] || move.infiltrates);
 			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
 			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
 			let success = false;
