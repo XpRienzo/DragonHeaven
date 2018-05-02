@@ -2397,13 +2397,11 @@ ZMovePower: 175,
 					priority: 0,
 					flags: {},
 					ignoreImmunity: true,
-					selfBoost: {
-					boosts: {
+						boosts: {
 						atk: 1,
 						def: 2,
 						spd: 2,
 						},
-					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Flying',
@@ -2413,7 +2411,7 @@ ZMovePower: 175,
 			return null;
 		},
         secondary: false,
-        target: "normal",
+        target: "self",
         type: "Flying",
         zMoveEffect: 'clearnegativeboost',
     },    
