@@ -99,7 +99,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onTryHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Extreme Speed", target);
+			this.add('-anim', source, "Boomburst", target);
 			this.useMove("evolutionblastwater", source);
 			this.useMove("evolutionblastelectric", source);
 			this.useMove("evolutionblastfire", source);
@@ -126,7 +126,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Aqua Jet", target);
+			this.add('-anim', source, "Bubble", target);
 		},
 		target: "normal",
 		type: "Water",
@@ -146,7 +146,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Nuzzle", target);
+			this.add('-anim', source, "Thundershock", target);
 		},
 		target: "normal",
 		type: "Electric",
@@ -165,7 +165,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Flare Blitz", target);
+			this.add('-anim', source, "Blast Burn", target);
 		},
 		target: "normal",
 		type: "Fire",
@@ -185,7 +185,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Zen Headbutt", target);
+			this.add('-anim', source, "Psychic", target);
 		},
 		target: "normal",
 		type: "Psychic",
@@ -205,7 +205,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Night Slash", target);
+			this.add('-anim', source, "Night Daze", target);
 		},
 		target: "normal",
 		type: "Dark",
@@ -225,7 +225,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Leaf Blade", target);
+			this.add('-anim', source, "Razor Leaf", target);
 		},
 		target: "normal",
 		type: "Grass",
@@ -245,7 +245,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Ice Fang", target);
+			this.add('-anim', source, "Ice Beam", target);
 		},
 		target: "normal",
 		type: "Ice",
@@ -265,7 +265,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1},
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Play Rough", target);
+			this.add('-anim', source, "Dazzling Gleam", target);
 		},
 		target: "normal",
 		type: "Fairy",
