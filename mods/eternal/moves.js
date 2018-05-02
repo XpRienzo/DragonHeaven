@@ -1803,7 +1803,8 @@ ZMovePower: 175,
 				}
 			}
 		},
-		onPrepareHit: function (pokemon, source) {
+		allySide: {
+			onPrepareHit: function (pokemon, source) {
 			this.add('-activate', source, 'move: Tranquillity');
 			let side = pokemon.side;
 			let success = false;
@@ -1812,6 +1813,7 @@ ZMovePower: 175,
 				if (ally.cureStatus()) success = true;
 			}
 			return success;
+		},
 		},
 		secondary: false,
 		target: "normal",
