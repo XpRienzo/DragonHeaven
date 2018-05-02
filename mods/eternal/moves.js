@@ -1855,7 +1855,23 @@ ZMovePower: 175,
 		type: "Electric",
 		zMoveBoost: 'clearnegativeboosts',
 		contestType: "Tough",
-	},*/
+	},
+	"pumpkinflare": {
+        accuracy: 100,
+        basePower: 0,
+        category: "Special",
+        shortDesc: "The user bursts its body and fires an array of seeds at the opponent. BP is dependent on form (20 BP for small, 22 BP for medium, 25 BP for large, 30 BP for XL), burn chance is dependent on form (8% for small, 11% for medium, 14% for large, 20% for XL), and amount of hits are based on size (6 for small, 5 for medium, 4 for large, 3 for XL).",
+        id: "pumpkinflare",
+        name: "Pumpkin Flare",
+        pp: 10,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        secondary: false,
+        target: "normal",0
+        type: "type",
+        zMovePower: 190, 
+    }, 
+	 */
 	"aerialsmash": {
 		accuracy: 100,
 		basePower: 170,
@@ -2331,4 +2347,69 @@ ZMovePower: 175,
         type: "Dark",
         zMovePower: 190, 
     },
+	 "divineluster": {
+        accuracy: 100,
+        basePower: 90,
+        category: "Special",
+        shortDesc: "If the attack is used on an foe, the attack will damage and it'll make 1,5 times more damage, then it removes any negative status. If it targets user or an ally, it's heal 50% of max Health Points and will remove all negative stats",
+        id: "divineluster",
+        name: "Divine Luster",
+        pp: 15,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        onHit: function (pokemon) {
+			if (['', 'slp', 'frz'].includes(pokemon.status)) return false;
+			pokemon.cureStatus();
+		},
+        secondary: false,
+        target: "normal",
+        type: "Fairy",
+        zMovePower: 175,
+    },
+	"doldrum": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        shortDesc: "Summons Delta Stream on turn 1. Raises attack by 1 stage and defence + special defence by 2 stages on turn 2",
+        id: "doldrum",
+        name: "Doldrum",
+        pp: 5,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+		  weather: 'deltastream',
+		  isFutureMove: true,
+		onTry: function (source, target) {
+			target.side.addSideCondition('futuremove');
+			if (target.side.sideConditions['futuremove'].positions[target.position]) {
+				return false;
+			}
+			target.side.sideConditions['futuremove'].positions[target.position] = {
+				duration: 2,
+				move: 'doldrum',
+				source: source,
+				moveData: {
+					id: 'doldrum',
+					name: "Doldrum",
+					accuracy: 100,
+					basePower: 0,
+					category: "Status",
+					priority: 0,
+					flags: {},
+					ignoreImmunity: true,
+					boosts: {
+					atk: 1, spd: 2, def: 2,
+					},
+					effectType: 'Move',
+					isFutureMove: true,
+					type: 'Flying',
+				},
+			};
+			this.add('-start', source, 'move: Doldrum');
+			return null;
+		},
+        secondary: false,
+        target: "normal",
+        type: "Flying",
+        zMoveEffect: 'clearnegativeboost',
+    },    
 };
