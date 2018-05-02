@@ -4784,6 +4784,7 @@ exports.BattleAbilities = {
 					}
 				}
 				this.boost({[stat]: 1}, pokemon);
+				this.add('-ability', pokemon, 'Subdue', 'boost');
 				this.boost({[stat]: -1}, target);
 				}
 		},
