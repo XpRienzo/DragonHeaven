@@ -2289,7 +2289,6 @@ ZMovePower: 175,
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-		 // selfSwitch: true,
 		  isFutureMove: true,
 		 onTry: function (source, target) {
 			target.side.addSideCondition('futuremove');
@@ -2298,7 +2297,7 @@ ZMovePower: 175,
 				return false;
 			}
 			target.side.sideConditions['futuremove'].positions[target.position] = {
-				duration: 3,
+				duration: 2,
 				move: 'futuresight',
 				source: source,
 				moveData: {
@@ -2310,6 +2309,10 @@ ZMovePower: 175,
 					priority: 0,
 					flags: {},
 					drain: [1, 2],
+					onAfterDamageOrder: 1,
+					onAfterDamage: function (damage, target, source, move) {
+					this.heal(damage / 2, target, source);
+					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
@@ -2319,7 +2322,7 @@ ZMovePower: 175,
 			return null;
 		},
         secondary: false,
-        target: "foeSide",
+        target: "normal",
         type: "Dark",
         zMovePower: 190, 
     },
