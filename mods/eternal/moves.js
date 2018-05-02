@@ -2422,5 +2422,50 @@ ZMovePower: 175,
         type: "Dark",
         zMovePower: 100,
     },
+moisturize: {
+basePower: 0, 
+accuracy: true, 
+category: "Status", 
+shortDesc: "Heals 50% of max HP; 67% in Rain; 25% in Sun or Hail", 
+id: "moisturize", 
+name: "Moisturize", 
+pp: 5,
+priority: 0, 
+flags: {snatch: 1, heal: 1}, 
+onHit: function (pokemon) {
+			if (this.isWeather('raindance')) {
+				return this.heal(this.modify(pokemon.maxhp, 0.667));
+			} else {
+				return this.heal(this.modify(pokemon.maxhp, 0.5));
+			}
+			else if (this.isWeather(['sunnyday', 'desolateland', 'hail'])) {
+				return this.heal(this.modify(pokemon.maxhp, 0.667));
+			} 
+		},
+target: "self",
+type: "Water", 
+},
+"archaicanguish": {
+		accuracy: 90,
+		basePower: 0,
+		damageCallback: function (pokemon, target) {
+			return this.clampIntRange(Math.floor(target.hp / 2), 1);
+		},
+		category: "Special",
+		desc: "Deals damage to the target equal to half of its current HP, rounded down, but not less than 1 HP.",
+		shortDesc: "Does damage equal to 1/2 target's current HP. Drains half of the damage dealt.",
+		id: "archaicanguish",
+		isViable: true,
+		name: "Archaic Anguish",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
+		drain: [1, 2],
+		secondary: false,
+		target: "normal",
+		type: "Rock",
+		zMovePower: 100,
+		contestType: "Tough",
+	},
 	
 };
