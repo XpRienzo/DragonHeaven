@@ -1836,7 +1836,7 @@ ZMovePower: 175,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
 		selfSwitch: true,
-		onHit: function (source) {
+		onPrepareHit: function (source) {
 			this.useMove("Defog", source);
 			this.useMove("Haze", source);
 			this.useMove("Heal Bell", source);
