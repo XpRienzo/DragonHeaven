@@ -1792,37 +1792,7 @@ type: "Water",
 ZMovePower: 175, 
 }, 
 
-	   /*"sundance": {
-    num: 1001,
-    accuracy: true,
-    basePower: 0,
-    damageCallback: function (pokemon) {
-      let damage = pokemon.hp - 1;
-      pokemon.sethp(1);
-      return damage;
-    },
-    category: "Special",
-    desc: "User decreases it HP until it's left with one hit point, the exact number of hit points is lot by the foe as well (à la Final Gambit). Sets up Sunny Day, and Boosts user's Special Attack, Special Defense, and Speed by one stage each. Never Misses.",
-    shortDesc: "Sets HP to 1 and damages opponent by HP lost. Sets up Sunny Day and boosts Special Attack, Special Defense, and Speed.",
-    id: "sundance",
-    isViable: true,
-    name: "Sun Dance",
-    pp: 5,
-    priority: -5,
-    flags: {protect: 1},
-    boosts: {
-      spa: 1,
-      spd: 1,
-      spe: 1;
-    }
-    weather: 'sunnyday',
-    selfdestruct: "ifHit",
-    secondary: false,
-    target: "normal",
-    type: "Fire",
-    zMovePower: 180,
-  },
-	*/
+	   
 	"tranquillity": {
 		accuracy: true,
 		basePower: 0,
@@ -2712,7 +2682,6 @@ type: "Water",
 		  weather: 'sunnyday',
 		  damageCallback: function (pokemon) {
 			let damage = pokemon.hp;
-			pokemon.faint();
 			return damage;
 		 },
 		  selfBoost: {
