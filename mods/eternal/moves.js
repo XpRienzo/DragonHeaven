@@ -1127,13 +1127,13 @@ exports.BattleMovedex = {
 		zMoveEffect: 'heal',
 		contestType: "Cool",
 	},
-		"biteerfragarance": {
+		"bitterfragarance": {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
 		desc: "Drops target defense and special defense by one level, then returns to the player. 20% of chance to paralyze target.",
 		shortDesc: "Drops target defense and special defense by one level, then returns to the player. 20% of chance to paralyze target.",
-		id: "biteerfragarance",
+		id: "bitterfragarance",
 		isViable: true,
 		name: "Bitter Fragarance",
 		pp: 20,
@@ -1580,7 +1580,7 @@ exports.BattleMovedex = {
 		category: "Special",
 		desc: "Prevents the target from switching for four or five turns; seven turns if the user is holding Grip Claw. Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. The effect ends if either the user or the target leaves the field, or if the target uses Rapid Spin or Substitute. This effect is not stackable or reset by using this or another partial-trapping move.",
 		shortDesc: "Traps and damages the target for 4-5 turns.",
-		id: "magmastorm",
+		id: "shadowbrambles",
 		isViable: true,
 		name: "Shadow Brambles",
 		pp: 5,
@@ -2725,4 +2725,6 @@ type: "Water",
         type: "Grass",
         zMoveEffect: 'clearnegativeboost',
     },
+	// Toxic Lips: https://www.smogon.com/forums/threads/eternal-pok%C3%A9mon.3594809/post-7653536
+	// Electrophage: https://www.smogon.com/forums/threads/eternal-pok%C3%A9mon.3594809/post-7703272
 };
