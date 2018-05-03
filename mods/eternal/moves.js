@@ -2470,6 +2470,21 @@ ZMovePower: 175,
         type: "Flying",
         zMoveEffect: 'clearnegativeboost',
     },
+	"napalmone": {
+		accuracy: 100,
+		basePower: 20,
+		category: "Physical",
+		id: "napalmone",
+		name: "Napalm",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: false,
+		target: "normal",
+		type: "Dark",
+		zMovePower: 120,
+		contestType: "Clever",
+	},
 	"napalm": {
         accuracy: 100,
         basePower: 40,
@@ -2484,6 +2499,8 @@ ZMovePower: 175,
         isFutureMove: true,
 		onTry: function (source, target) {
 			target.side.addSideCondition('futuremove');
+			this.useMove("napalmone", source);
+			source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
