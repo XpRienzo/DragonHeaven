@@ -2689,4 +2689,40 @@ type: "Water",
         type: "Fire",
         zMoveEffect: 'heal',
     },
+	 "nuclearpollen": {
+        accuracy: true,
+        basePower: 0,
+        category: "Status",
+        shortDesc: "For 5 turns, all Pokémon on the field are resistant to normally super-effective types and weak to normally not-very-effective or ineffective types (as in Inverse Battles) ",
+        id: "nuclearpollen",
+        name: "Nuclear Pollen",
+        pp: 5,
+        priority: 0,
+        flags: {mirror: 1},
+		  pseudoWeather: 'nuclearpollen',
+		effect: {
+			duration: 5,
+			durationCallback: function (source, effect) {
+				if (source && source.hasAbility('persistent')) {
+					return 7;
+				}
+				return 5;
+			},
+			onStart: function (target, source) {
+				this.add('-fieldstart', 'move: Nuclear Pollen', '[of] ' + source);
+			},
+			onEffectiveness: function (typeMod, target, type, move) {
+			if (move && !this.getImmunity(move, type)) return 1;
+			return -typeMod;
+			},
+			onResidualOrder: 23,
+			onEnd: function () {
+				this.add('-fieldend', 'move: Nuclear Pollen');
+			},
+		},
+        secondary: false,
+        target: "all",
+        type: "Grass",
+        zMoveEffect: 'clearnegativeboost',
+    },
 };
