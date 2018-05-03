@@ -1931,6 +1931,10 @@ ZMovePower: 175,
 	  "bounceshield": {
         accuracy: true,
         basePower: 0,
+		  damageCallback: function (pokemon) {
+			if (!pokemon.volatiles['bounceshield']) return 0;
+			return pokemon.volatiles['bounceshield'].damage || 1;
+		},
         category: "Status",
         shortDesc: "Prevents moves from affecting the user this turn. The foe takes any damage this pokemon wouldve taken",
         id: "bounceshield",
@@ -1939,8 +1943,7 @@ ZMovePower: 175,
         priority: 4,
         flags: {},
 		beforeTurnCallback: function (pokemon) {
-			pokemon.addVolatile('metalburst');
-			pokemon.addVolatile('protect');
+			pokemon.addVolatile('bounceshield');
 		},
 		onTryHit: function (target, source, move) {
 			if (!source.volatiles['metalburst']) return false;
