@@ -2604,10 +2604,17 @@ type: "Water",
         secondary: false,
         multihit: [1, 1],
 			onTryHit: function (target, pokemon) {
-			 //this.useMove("gearoverloadsteelworker", pokemon);
+				if (pokemon.positiveBoosts() > 4) {
 				let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
 				if (oldAbility) {
 					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
+					}
+				}
+				else if (pokemon.positiveBoosts() > 9) {
+				let oldAbility = pokemon.setAbility('hugepower', pokemon, 'hugepower', true);
+				if (oldAbility) {
+					this.add('-activate', pokemon, 'ability: Huge Power', oldAbility, '[of] ' + pokemon);
+					}
 				}
 			},
 			onModifyMove: function (move, pokemon) {
@@ -2622,28 +2629,6 @@ type: "Water",
         type: "Steel",
         zMovePower: 160,
     },
-	"gearoverloadsteelworker": {
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		shortDesc: "The target's Ability becomes Steelowrker.",
-		id: "gearoverloadsteelworker",
-		name: "Gear Overload",
-		pp: 10,
-		priority: 0,
-		flags: {},
-		onHit: function (pokemon) {
-			let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
-				if (oldAbility) {
-					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
-				}
-		},
-		secondary: false,
-		target: "self",
-		type: "Steel",
-		contestType: "Clever",
-		zMoveEffect: 'heal',
-	},
 	"winterbliss": {
 		accuracy: true,
 		basePower: 0,
