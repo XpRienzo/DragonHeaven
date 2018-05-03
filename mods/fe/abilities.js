@@ -4783,34 +4783,36 @@ exports.BattleAbilities = {
 		name: "Beast Barbs",
 	},
 	"subdue": {
-		shortDesc: "Lowers the opponent's highest stat by one, and boosts that same stat by one on yourself upon switch-in.",
-		onStart: function (pokemon) {
-			let activated = false;
-			for (const target of pokemon.side.foe.active) {
-				let stat = 'atk';
-				let bestStat = 0;
-				for (let i in target.stats) {
-					if (target.stats[i] > bestStat) {
-						stat = i;
-						bestStat = target.stats[i];
-					}
-				}
-				if (!target || !this.isAdjacent(target, pokemon)) continue;
-				if (!activated) {
-					this.add('-ability', pokemon, 'Subdue', 'boost');
-					activated = true;
-				}
-				if (target.volatiles['substitute']) {
-					this.add('-immune', target, '[msg]');
-				} else {
-					this.boost({[stat]: -1}, target, pokemon);
-					this.boost({[stat]: 1}, pokemon);
-				}
-			}
-		},
-		id: "subdue",
-		name: "Subdue",
-	},
+        shortDesc: "Lowers the opponent's highest stat by one, and boosts that same stat by one on yourself upon switch-in.",
+        onStart: function (pokemon) {
+            let activated = false;
+            for (const target of pokemon.side.foe.active) {
+                let stat = 'atk';
+                let bestStat = 0;
+                for (let i in target.stats) {
+                    if (target.stats[i] > bestStat) {
+                        stat = i;
+                        bestStat = target.stats[i];
+                    }
+                }
+                if (!target || !this.isAdjacent(target, pokemon)) continue;
+                if (!activated) {
+                   if(pokemon.ability === "subdue") {
+ 							this.add('-ability', pokemon, 'Subdue', 'boost');
+							}
+                    activated = true;
+                }
+                if (target.volatiles['substitute']) {
+                    this.add('-immune', target, '[msg]');
+                } else {
+                    this.boost({[stat]: -1}, target, pokemon);
+                    this.boost({[stat]: 1}, pokemon);
+                }
+            }
+        },
+        id: "subdue",
+        name: "Subdue",
+    },
 	"sunbath": {
 		shortDesc: "Under Sun or Rain, Speed is doubled and regains 1/8 of max health at the end of the turn. Ignores Sun's Water Debuff.",
 		onModifySpe: function(spe, pokemon) {
