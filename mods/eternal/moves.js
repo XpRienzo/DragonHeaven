@@ -2604,11 +2604,11 @@ type: "Water",
         secondary: false,
         multihit: [1, 1],
 			onPrepareHit: function (pokemon) {
-				if (pokemon.positiveBoosts() => 5) {
+				if (pokemon.positiveBoosts() > 4) {
 					let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
 					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
 				}
-				else if (pokemon.positiveBoosts() => 10) {
+				else if (pokemon.positiveBoosts() > 9) {
 					let oldAbility = pokemon.setAbility('hugepower', pokemon, 'hugepower', true);
 					this.add('-activate', pokemon, 'ability: Huge Power', oldAbility, '[of] ' + pokemon);
 				}
