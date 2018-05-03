@@ -2604,7 +2604,8 @@ type: "Water",
         secondary: false,
         multihit: [1, 1],
 			self: {
-				onPrepareHit: function (pokemon) {
+			onBeforeMovePriority: 100,
+			onBeforeMove: function (pokemon) {
 			let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
 				if (oldAbility) {
 					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
