@@ -389,7 +389,7 @@ evgutter: function (target, room, user) {
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(mon => {
 			if (mon.forme !== 'Mega') {
-			buf += `if (pokemon === '${mon.species}') {<br>num = S{mon.num}; <br>document.getElementById("oldhp").innerHTML = "${mon.hp}"; <br>document.getElementById("oldatk").innerHTML = "${mon.atk}"; <br>document.getElementById("olddef").innerHTML = "${mon.def}"; <br>document.getElementById("oldspa").innerHTML = "${mon.spa}"; <br>document.getElementById("oldspd").innerHTML = "${mon.spd}"; <br>document.getElementById("oldspe").innerHTML = "${mon.spe}"; <br>wt = "${mon.weightkg}; <br>}`;
+			buf += `if (pokemon === '${mon.species}') {<br>num = ${mon.num}; <br>document.getElementById("oldhp").innerHTML = "${mon.baseStats.hp}"; <br>document.getElementById("oldatk").innerHTML = "${mon.baseStats.atk}"; <br>document.getElementById("olddef").innerHTML = "${mon.baseStats.def}"; <br>document.getElementById("oldspa").innerHTML = "${mon.baseStats.spa}"; <br>document.getElementById("oldspd").innerHTML = "${mon.baseStats.spd}"; <br>document.getElementById("oldspe").innerHTML = "${mon.baseStats.spe}"; <br>wt = "${mon.weightkg}; <br>}`;
 			}
 		}
 		);
