@@ -2404,7 +2404,7 @@ ZMovePower: 175,
 				let result = this.random(2);
 				if (result === 0) {
 					target.trySetStatus('psn', source);
-				} else (result === 1) {
+				} else {
 					target.trySetStatus('par', source);
 				}
 			},
