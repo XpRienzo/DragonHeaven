@@ -2604,7 +2604,7 @@ type: "Water",
         secondary: false,
         multihit: [1, 1],
 			onTryHit: function (target, pokemon) {
-				if (pokemon.positiveBoosts() > 4) {
+				if (pokemon.positiveBoosts() > 4 && pokemon.positiveBoosts() < 9) {
 				let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
 				if (oldAbility) {
 					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
