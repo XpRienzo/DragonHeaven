@@ -1684,20 +1684,29 @@ exports.BattleMovedex = {
     zMoveEffect: 'heal',
     contestType: "Beautiful",
   },
-/* squeakywheel: {
+squeakywheel: {
 basePower: 80, 
 accuracy: 100, 
 category: "Physical", 
 shortDesc: "Takes 2 PP from the target's last used move, if applicable.", 
-id: "squeaky wheel", 
+id: "squeakywheel", 
 name: "Squeaky Wheel", 
 pp: 10,
 priority: 0, 
 flags: {protect: 1, mirror: 1, contact: 1}, 
+volatileStatus: 'squeakywheel',
+effect: {
+			onStart: function (pokemon) {
+				this.add('-start', pokemon, 'Squeaky Wheel');
+			},
+			onDeductPP: function (target, source) {
+			return 1;
+			},
+		},
 target: "normal",
 type: "Steel", 
 ZMovePower: 160,
-}, */
+}, 
 	algaeallure: {
 basePower: 90, 
 accuracy: 100, 
@@ -1813,7 +1822,6 @@ ZMovePower: 175,
     type: "Fire",
     zMovePower: 180,
   },
-	 "Helioptile drains the heat of it's target and uses it to charge itself up" | Super Effective on Fire-types. The user recovers 75% of the damage dealt and gives the user a boost to it's next Electric-type move and raised SpDef by one stage (à la Charge). | Z Move - 175 BP Inferno Overdrive
 	*/
 	"tranquillity": {
 		accuracy: true,
@@ -1938,14 +1946,11 @@ ZMovePower: 175,
 				}
 			},
 		},
-		secondary: {
-			chance: 100,
-			self: {
-				boosts: {
-					atk: -1,
-					def: -1,
-					spd: -1,
-				},
+		selfBoost: {
+			boosts: {
+				atk: -1,
+				def: -1,
+				spd: -1,
 			},
 		},
 		target: "any",
@@ -2393,6 +2398,17 @@ ZMovePower: 175,
         pp: 10,
         priority: 0,
         flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
+		  secondary: {
+			chance: 66,
+			onHit: function (target, source) {
+				let result = this.random(2);
+				if (result === 0) {
+					target.trySetStatus('psn', source);
+				} else (result === 1) {
+					target.trySetStatus('par', source);
+				}
+			},
+		},
 		   onModifyMovePriority: 8,
 			onModifyMove: function (move, pokemon) {
 			for (const target of pokemon.side.foe.active) {
