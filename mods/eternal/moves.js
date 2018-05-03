@@ -2603,12 +2603,11 @@ type: "Water",
         flags: {contact: 1, protect: 1, mirror: 1},
         secondary: false,
         multihit: [1, 1],
-			onPrepareHit: function (pokemon) {
-					for (const target of pokemon.side.active) {
-					let oldAbility = target.setAbility('steelworker', target, 'steelworker', true);
+			self: {
+				onPrepareHit: function (pokemon) {
+			let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
 				if (oldAbility) {
-					this.add('-activate', target, 'ability: Steelworker', oldAbility, '[of] ' + target);
-				}
+					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
 				}
 				},
 			onModifyMove: function (move, pokemon) {
@@ -2618,7 +2617,8 @@ type: "Water",
 			if (move.multiaccuracy) {
 				delete move.multiaccuracy;
 			}
-		},
+			},
+			},
         target: "normal",
         type: "Steel",
         zMovePower: 160,
