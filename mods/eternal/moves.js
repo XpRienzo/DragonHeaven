@@ -2603,8 +2603,8 @@ type: "Water",
         flags: {contact: 1, protect: 1, mirror: 1},
         secondary: false,
         multihit: [1, 1],
-			onPrepareHit: function (source) {
-			 this.useMove("gearoverloadsteelworker", source);
+			onPrepareHit: function (pokemon) {
+			 this.useMove("gearoverloadsteelworker", pokemon);
 			},
 			onModifyMove: function (move, pokemon) {
 			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
