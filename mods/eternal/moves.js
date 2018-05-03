@@ -2605,10 +2605,10 @@ type: "Water",
         multihit: [1, 1],
 			onPrepareHit: function (pokemon) {
 				//if (pokemon.positiveBoosts() > 4 && pokemon.positiveBoosts() < 9) {
-				for (const source of pokemon.side.active) {
-					let oldAbility = source.setAbility('steelworker', source, 'steelworker', true);
+				for (const target of pokemon.side.foe.active) {
+					let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
 				if (oldAbility) {
-					this.add('-activate', source, 'ability: Steelworker', oldAbility, '[of] ' + source);
+					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
 					}
 				}
 			//	}
