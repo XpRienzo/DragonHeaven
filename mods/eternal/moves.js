@@ -2649,4 +2649,49 @@ type: "Water",
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Beautiful",
 	},
+	"rainbowburst": {
+        accuracy: 100,
+        basePower: 60,
+        category: "Special",
+        shortDesc: "The user calls a rainbow on the user's side of the field, this rainbow doubles the effect of secondary effects taking place (It's the same effect if you mix Water and Fire Pledge). If this rainbow is in the field, this attack has a 30% of chance of dropping target's special defense one level.",
+        id: "rainbowburst",
+        name: "Rainbow Burst",
+        pp: 5,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+			onHit: function (target, source, move) {
+				target.side.addSideCondition('waterpledge');
+			},
+		  effect: {
+			duration: 4,
+			onStart: function (targetSide) {
+				this.add('-sidestart', targetSide, 'Fire Pledge');
+			},
+			onEnd: function (targetSide) {
+				this.add('-sideend', targetSide, 'Fire Pledge');
+			},
+			onResidual: function (side) {
+				// @ts-ignore
+				for (const pokemon of side.active) {
+					if (pokemon && !pokemon.hasType('Fire')) {
+						this.damage(pokemon.maxhp / 8, pokemon);
+					}
+				}
+			},
+		},
+        secondary: false,
+		  onModifyMove: function (move, target) {
+			  if (target.side.sideConditions['waterpledge']) {
+				  move.secondaries.push({
+					chance: 30,
+					boosts: {
+				spd: -1,
+				},
+				});
+			  }
+		  },
+        target: "normal",
+        type: "Fire",
+        zMovePower: 120, 
+    },
 };
