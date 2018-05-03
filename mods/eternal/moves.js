@@ -2603,14 +2603,14 @@ type: "Water",
         flags: {contact: 1, protect: 1, mirror: 1},
         secondary: false,
         multihit: [1, 1],
-			self: {
-				onPrepareHit: function (pokemon) {
-					let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
+			onPrepareHit: function (pokemon) {
+					for (const target of pokemon.side.active) {
+					let oldAbility = target.setAbility('steelworker', target, 'steelworker', true);
 				if (oldAbility) {
-					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
+					this.add('-activate', target, 'ability: Steelworker', oldAbility, '[of] ' + target);
+				}
 				}
 				},
-			},
 			onModifyMove: function (move, pokemon) {
 			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
 				move.multihit = pokemon.positiveBoosts() + 1;
