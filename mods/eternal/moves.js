@@ -2668,6 +2668,11 @@ type: "Water",
 	"sundance": {
         accuracy: true,
         basePower: 0,
+		  damageCallback: function (pokemon) {
+			let damage = pokemon.hp;
+			pokemon.faint();
+			return damage;
+		 },
         category: "Special",
         shortDesc: "User decreases it HP until it's left with one hit point, the exact number of hit points is lot by the foe as well (à la Final Gambit). Sets up Sunny Day, and Boosts user's Special Attack, Special Defense, and Speed by one stage each. Never Misses.",
         id: "sundance",
@@ -2688,7 +2693,7 @@ type: "Water",
 			},
 		},
         secondary: false,
-        target: "self",
+        target: "normal",
         type: "Fire",
         zMoveEffect: 'heal',
     },
