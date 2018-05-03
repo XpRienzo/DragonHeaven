@@ -2606,7 +2606,7 @@ type: "Water",
 		  "skilllink": {
 			onModifyMove: function (move, pokemon) {
 			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
-				move.multihit = pokemon.positiveBoosts()[1];
+				move.multihit = pokemon.positiveBoosts() + 1;
 			}
 			if (move.multiaccuracy) {
 				delete move.multiaccuracy;
