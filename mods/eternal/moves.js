@@ -2681,15 +2681,11 @@ type: "Water",
 		},
         secondary: false,
 		  onModifyMove: function (move, target) {
-			  if (target.side.sideConditions['waterpledge']) {
-				  move.secondaries.push({
-					chance: 30,
-					boosts: {
-					spd: -1,
-					},
+			  if (move && move.flags['contact']) {
+				if (this.randomChance(3, 10)) {
+					this.boost({spd: -1}, target);
 				}
-				);
-			  }
+			}
 		  },
         target: "normal",
         type: "Fire",
