@@ -2603,7 +2603,7 @@ type: "Water",
         flags: {contact: 1, protect: 1, mirror: 1},
         secondary: false,
         multihit: [1, 1],
-			onPrepareHit: function (pokemon) {
+			onTryHit: function (target, pokemon) {
 			 this.useMove("gearoverloadsteelworker", pokemon);
 			},
 			onModifyMove: function (move, pokemon) {
@@ -2627,7 +2627,7 @@ type: "Water",
 		name: "Gear Overload",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
+		flags: {},
 		onHit: function (pokemon) {
 			let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
 				if (oldAbility) {
@@ -2638,6 +2638,7 @@ type: "Water",
 		target: "self",
 		type: "Steel",
 		contestType: "Clever",
+		zMoveEffect: 'heal',
 	},
 	"winterbliss": {
 		accuracy: true,
