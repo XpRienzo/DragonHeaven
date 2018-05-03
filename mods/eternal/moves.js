@@ -2708,9 +2708,22 @@ type: "Water",
 		  onHit: function (target, pokemon) {
 			pokemon.sethp('1');
 			this.add('-sethp', target, target.getHealth, pokemon, pokemon.getHealth, '[from] move: Sun Dance');
+			},
+		  weather: 'sunnyday',
+		  damageCallback: function (pokemon) {
+			let damage = pokemon.hp;
+			pokemon.faint();
+			return damage;
+		 },
+		  selfBoost: {
+			boosts: {
+				spa: 1,
+				spd: 1,
+				spe: 1,
+			},
 		},
         secondary: false,
-        target: "normal",
+        target: "self",
         type: "Fire",
         zMoveEffect: 'heal',
     },
