@@ -2680,10 +2680,6 @@ type: "Water",
 			this.add('-sethp', target, target.getHealth, pokemon, pokemon.getHealth, '[from] move: Sun Dance');
 			},
 		  weather: 'sunnyday',
-		  damageCallback: function (pokemon) {
-			let damage = pokemon.hp;
-			return damage;
-		 },
 		  selfBoost: {
 			boosts: {
 				spa: 1,
