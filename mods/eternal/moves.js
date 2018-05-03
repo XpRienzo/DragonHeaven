@@ -2604,7 +2604,11 @@ type: "Water",
         secondary: false,
         multihit: [1, 1],
 			onTryHit: function (target, pokemon) {
-			 this.useMove("gearoverloadsteelworker", pokemon);
+			 //this.useMove("gearoverloadsteelworker", pokemon);
+				let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
+				if (oldAbility) {
+					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
+				}
 			},
 			onModifyMove: function (move, pokemon) {
 			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
