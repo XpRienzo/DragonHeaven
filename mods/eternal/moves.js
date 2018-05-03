@@ -1940,7 +1940,7 @@ ZMovePower: 175,
         id: "bounceshield",
         name: "Bounce Shield",
         pp: 10,
-        priority: 4,
+        priority: -4,
         flags: {},
 		beforeTurnCallback: function (pokemon) {
 			pokemon.addVolatile('bounceshield');
