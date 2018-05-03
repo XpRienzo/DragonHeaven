@@ -2670,7 +2670,6 @@ type: "Water",
         basePower: 0,
 		  damageCallback: function (pokemon) {
 			let damage = pokemon.hp;
-			pokemon.faint();
 			return damage;
 		 },
         category: "Special",
