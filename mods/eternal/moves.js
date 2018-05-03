@@ -2603,7 +2603,6 @@ type: "Water",
         flags: {contact: 1, protect: 1, mirror: 1},
         secondary: false,
         multihit: [1, 1],
-			self: {
 			onBeforeMovePriority: 100,
 			onBeforeMove: function (pokemon) {
 			let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
@@ -2611,6 +2610,7 @@ type: "Water",
 					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
 				}
 				},
+			
 			onModifyMove: function (move, pokemon) {
 			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
 				move.multihit = pokemon.positiveBoosts() + 1;
