@@ -2615,4 +2615,29 @@ type: "Water",
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Beautiful",
 	},
+	 "gearoverload": {
+        accuracy: 100,
+        basePower: 20,
+        category: "Physical",
+        shortDesc: "Hits 1 + X times, where X is the number of stat boosts the user has (à la Stored Power). If this move has hits 6 times or more, it replaces the user's ability with Steelworker before doing damage. If the move hits 11 times or more, it       replaces the user's ability with Huge Power before doing damage.",
+        id: "gearoverload",
+        name: "Gear Overload",
+        pp: 20,
+        priority: 0,
+        flags: {contact: 1, protect: 1, mirror: 1},
+        secondary: false,
+        multihit: [1, 11],
+		  "skilllink": {
+			onModifyMove: function (move, pokemon) {
+			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
+				move.multihit = move.pokemon.positiveBoosts()[1];
+			}
+			if (move.multiaccuracy) {
+				delete move.multiaccuracy;
+			}
+		},
+        target: "normal",
+        type: "Steel",
+        zMovePower: 160,
+    },
 };
