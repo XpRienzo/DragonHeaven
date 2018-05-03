@@ -1938,45 +1938,34 @@ ZMovePower: 175,
         pp: 10,
         priority: 4,
         flags: {},
-		 // volatileStatus: 'protect',
-        onPrepareHit: function (pokemon) {
-            //This is all the code for Protect
-			return !!this.willAct() && this.runEvent('StallMove', pokemon);
+		beforeTurnCallback: function (pokemon) {
+			pokemon.addVolatile('metalburst');
+			pokemon.addVolatile('protect');
 		},
-		onHit: function (pokemon) {
-			pokemon.addVolatile('stall');
+		onTryHit: function (target, source, move) {
+			if (!source.volatiles['metalburst']) return false;
+			if (source.volatiles['metalburst'].position === null) return false;
 		},
 		effect: {
 			duration: 1,
-			onStart: function (target) {
-				this.add('-singleturn', target, 'Protect');
+			noCopy: true,
+			onStart: function (target, source, source2, move) {
+				this.effectData.position = null;
+				this.effectData.damage = 0;
 			},
-			onTryHitPriority: 3,
-			onTryHit: function (target, source, move) {
-				if (!move.flags['protect']) {
-					if (move.isZ) move.zBrokeProtect = true;
-					return;
-				}
-				this.add('-activate', target, 'move: Protect');
-				source.moveThisTurnResult = true;
-				let lockedmove = source.getVolatile('lockedmove');
-				if (lockedmove) {
-					// Outrage counter is reset
-					if (source.volatiles['lockedmove'].duration === 2) {
-						delete source.volatiles['lockedmove'];
-					}
-				}
-				return null;
+			onRedirectTargetPriority: -1,
+			onRedirectTarget: function (target, source, source2) {
+				if (source !== this.effectData.target) return;
+				return source.side.foe.active[this.effectData.position];
 			},
-		},
-		  onDamagePriority: -101,
+			onDamagePriority: -101,
 			onDamage: function (damage, target, source, effect) {
-				// @ts-ignore
 				if (effect && effect.effectType === 'Move' && source.side !== target.side) {
 					this.effectData.position = source.position;
 					this.effectData.damage = damage;
 				}
 			},
+		},
         secondary: false,
         target: "self",
         type: "Psychic",
