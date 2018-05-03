@@ -2685,9 +2685,10 @@ type: "Water",
 				  move.secondaries.push({
 					chance: 30,
 					boosts: {
-				spd: -1,
-				},
-				});
+					spd: -1,
+					},
+				}
+				);
 			  }
 		  },
         target: "normal",
