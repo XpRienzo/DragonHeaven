@@ -2695,4 +2695,23 @@ type: "Water",
         type: "Fire",
         zMovePower: 120, 
     },
+	"sundance": {
+        accuracy: true,
+        basePower: 0,
+        category: "Special",
+        shortDesc: "User decreases it HP until it's left with one hit point, the exact number of hit points is lot by the foe as well (à la Final Gambit). Sets up Sunny Day, and Boosts user's Special Attack, Special Defense, and Speed by one stage each. Never Misses.",
+        id: "sundance",
+        name: "Sun Dance",
+        pp: 5,
+        priority: -5,
+        flags: {protect: 1, mirror: 1},
+		  onHit: function (target, pokemon) {
+			pokemon.sethp('1');
+			this.add('-sethp', target, target.getHealth, pokemon, pokemon.getHealth, '[from] move: Sun Dance');
+		},
+        secondary: false,
+        target: "normal",
+        type: "Fire",
+        zMoveEffect: 'heal',
+    },
 };
