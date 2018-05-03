@@ -2679,7 +2679,7 @@ type: "Water",
         pp: 5,
         priority: -5,
         flags: {protect: 1, mirror: 1},
-		  onTryHit: function (target, pokemon) {
+		  onHit: function (target, pokemon) {
 			pokemon.sethp('1');
 			this.add('-sethp', target, target.getHealth, pokemon, pokemon.getHealth, '[from] move: Sun Dance');
 			},
