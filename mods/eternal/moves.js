@@ -2603,21 +2603,13 @@ type: "Water",
         flags: {contact: 1, protect: 1, mirror: 1},
         secondary: false,
         multihit: [1, 1],
-			onPrepareHit: function (pokemon) {
-				//if (pokemon.positiveBoosts() > 4 && pokemon.positiveBoosts() < 9) {
-				for (const target of pokemon.side.foe.active) {
+			self: {
+				onPrepareHit: function (pokemon) {
 					let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
 				if (oldAbility) {
 					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
-					}
 				}
-			//	}
-				//else if (pokemon.positiveBoosts() > 9) {
-				//	let oldAbility = pokemon.setAbility('hugepower', pokemon, 'hugepower', true);
-				//if (oldAbility) {
-				//	this.add('-activate', pokemon, 'ability: Huge Power', oldAbility, '[of] ' + pokemon);
-				//}
-			//	}
+				},
 			},
 			onModifyMove: function (move, pokemon) {
 			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
