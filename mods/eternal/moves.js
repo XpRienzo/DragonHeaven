@@ -2606,11 +2606,15 @@ type: "Water",
 			onPrepareHit: function (pokemon) {
 				if (pokemon.positiveBoosts() > 4 && pokemon.positiveBoosts() < 9) {
 					let oldAbility = pokemon.setAbility('steelworker', pokemon, 'steelworker', true);
+				if (oldAbility) {
 					this.add('-activate', pokemon, 'ability: Steelworker', oldAbility, '[of] ' + pokemon);
+				}
 				}
 				else if (pokemon.positiveBoosts() > 9) {
 					let oldAbility = pokemon.setAbility('hugepower', pokemon, 'hugepower', true);
+				if (oldAbility) {
 					this.add('-activate', pokemon, 'ability: Huge Power', oldAbility, '[of] ' + pokemon);
+				}
 				}
 			},
 			onModifyMove: function (move, pokemon) {
