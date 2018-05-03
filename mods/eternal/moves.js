@@ -1971,6 +1971,7 @@ ZMovePower: 175,
 		},
 		  onDamagePriority: -101,
 			onDamage: function (damage, target, source, effect) {
+				// @ts-ignore
 				if (effect && effect.effectType === 'Move' && source.side !== target.side) {
 					this.effectData.position = source.position;
 					this.effectData.damage = damage;
