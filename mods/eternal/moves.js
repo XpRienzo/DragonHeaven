@@ -2910,7 +2910,7 @@ type: "Water",
 			},
 		onModifyMove: function (move) {
 			if (this.isWeather(['sunnyday', 'desolateland'])) {
-			move.ignoreImmunity: true;	
+			move.ignoreImmunity = true;	
 			move.secondaries.push({
 					chance: 50,
 					status: 'brn',
