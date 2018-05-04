@@ -456,14 +456,17 @@ exports.BattleMovedex = {
 				break;
 			case 'solarsnow':
 				move.type = 'Fire';
-		                onEffectiveness: function (typeMod, type, move) {
-			            // @ts-ignore
-			            return typeMod + this.getEffectiveness('Ice', type);
-		                },
+		      move.solarsnowboosted = true;
 				move.basePower *= 2;
 				break;
 			}
 		},
+		onEffectiveness: function (typeMod, type, move) {
+			            // @ts-ignore
+							if (move.solarsnowboosted) {
+			            return typeMod + this.getEffectiveness('Ice', type);
+							}
+		                },
 		secondary: false,
 		target: "normal",
 		type: "Normal",
