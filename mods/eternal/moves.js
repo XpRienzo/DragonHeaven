@@ -1002,7 +1002,6 @@ exports.BattleMovedex = {
 		zMovePower: 80,
 		contestType: "Tough",
 	},
-	
 	"metalliccharge": {
 		accuracy: 100,
 		basePower: 160,
@@ -1530,15 +1529,15 @@ exports.BattleMovedex = {
 		type: "Psychic",
 		zMovePower: 160,
 	},
-	"nightslash": {
+	"voidster": {
 		accuracy: 100,
 		basePower: 25,
 		category: "Physical",
 		desc: "Has a higher chance for a critical hit.",
 		shortDesc: "High critical hit ratio. Hits 2-5 times.",
-		id: "nightslash",
+		id: "voidster",
 		isViable: true,
-		name: "Night Slash",
+		name: "Voidster",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
@@ -1724,7 +1723,7 @@ ZMovePower: 175,
 },
 "heatconverter": {
 		accuracy: 100,
-		basePower: 100,
+		basePower: 70,
 		category: "Special",
 		shortDesc: "Super Effective on Fire-types. The user recovers 75% of the damage dealt and gives the user a boost to it's next Electric-type move and raised SpDef by one stage (à la Charge).",
 		id: "heatconverter",
@@ -2771,4 +2770,127 @@ type: "Water",
 		zMovePower: 175,
 		contestType: "Cool",
 	},
+	"misdirection": {
+		accuracy: 100,
+		basePower: 60,
+		category: "Physical",
+		shortDesc: "Sets up a layer of Spikes, and then attacks the opponent. Switches out after attacking.",
+		id: "misdirection",
+		isViable: true,
+		name: "Misdirection",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryHit: function (target, source) {
+			target.side.addSideCondition('spikes', source);
+		},
+		selfSwitch: true,
+		target: "normal",
+		type: "Dark",
+		zMovePower: 120,
+		contestType: "Tough",
+	},
+	"poachandscramble": {
+		accuracy: 90,
+		basePower: 20,
+		category: "Physical",
+		shortDesc: "Always hits 6 times, User takes 25% damage inflicted in recoil.",
+		id: "poachandscramble",
+		name: "Poach and Scramble",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		multihit: 6,
+		recoil: [1, 4],
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 140,
+		contestType: "Tough",
+	},
+	"superseed": {
+		accuracy: 100,
+		basePower: 100,
+		category: "Special",
+		shortDesc: "Deals damage 2 turns after the move is used, doubles damage dealt if any terrain is in place, changes typing to match the terrain.",
+		id: "superseed",
+		name: "Superseed",
+		pp: 10,
+		priority: 0,
+		flags: {},
+		ignoreImmunity: true,
+		isFutureMove: true,
+		onTry: function (source, target) {
+			target.side.addSideCondition('futuremove');
+			if (target.side.sideConditions['futuremove'].positions[target.position]) {
+				return false;
+			}
+			target.side.sideConditions['futuremove'].positions[target.position] = {
+				duration: 3,
+				move: 'superseed',
+				source: source,
+				moveData: {
+					id: 'superseed',
+					name: "Superseed ",
+					accuracy: 100,
+					basePower: 100,
+					category: "Special",
+					priority: 0,
+					flags: {},
+					onModifyMove: function(move) {
+			switch (this.effectiveTerrain()) {
+				case 'electricterrain':
+					move.type = 'Electric';
+					move.basePower *= 2;
+					break;
+				case 'psychicterrain':
+					move.type = 'Psychic';
+					move.basePower *= 2;
+					break;
+				case 'mistyterrain':
+					move.type = 'Fairy';
+					move.basePower *= 2;
+					break;
+				case 'grassyterrain':
+					move.type = 'Grass';
+					move.basePower *= 2;
+					break;
+			}
+		},
+					ignoreImmunity: false,
+					effectType: 'Move',
+					isFutureMove: true,
+					type: 'Psychic',
+				},
+			};
+			this.add('-start', source, 'move: Superseed');
+			return null;
+		},
+		secondary: false,
+		onModifyMove: function(move) {
+			switch (this.effectiveTerrain()) {
+				case 'electricterrain':
+					move.type = 'Electric';
+					move.basePower *= 2;
+					break;
+				case 'psychicterrain':
+					move.type = 'Psychic';
+					move.basePower *= 2;
+					break;
+				case 'mistyterrain':
+					move.type = 'Fairy';
+					move.basePower *= 2;
+					break;
+				case 'grassyterrain':
+					move.type = 'Grass';
+					move.basePower *= 2;
+					break;
+			}
+		},
+		target: "normal",
+		type: "Psychic",
+		zMovePower: 190,
+		contestType: "Clever",
+	},
+	
 };
