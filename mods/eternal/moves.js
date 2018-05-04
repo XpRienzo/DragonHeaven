@@ -2725,6 +2725,50 @@ type: "Water",
         type: "Grass",
         zMoveEffect: 'clearnegativeboost',
     },
-	// Toxic Lips: https://www.smogon.com/forums/threads/eternal-pok%C3%A9mon.3594809/post-7653536
-	// Electrophage: https://www.smogon.com/forums/threads/eternal-pok%C3%A9mon.3594809/post-7703272
+	"toxiclips": {
+		accuracy: 100,
+		basePower: 85,
+		category: "Special",
+		shortDesc: "50% chance to poison the target. Drains 75% of the damage dealt.",
+		id: "toxiclips",
+		isViable: true,
+		name: "Toxic Lips",
+		pp: 10,
+		priority: 0,
+		flags: {heal: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 50,
+			status: 'psn',
+		},
+		target: "normal",
+		drain: [3, 4],
+		type: "Poison",
+		zMovePower: 160,
+		contestType: "Tough",
+	},
+	"electrophage": {
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "Raises the user's critical hit ratio by 1. Drains 50% of the damage dealt.",
+		id: "electrophage",
+		name: "Electrophage",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1},
+		self: {
+			onModifyCritRatio: function (critRatio) {
+				return critRatio + 1;
+			},
+		},
+		onEffectiveness: function (typeMod, type) {
+			if (type === 'Ground') return 0;
+		},
+		drain: [1, 2],
+		secondary: false,
+		target: "normal",
+		type: "Electric",
+		zMovePower: 175,
+		contestType: "Cool",
+	},
 };
