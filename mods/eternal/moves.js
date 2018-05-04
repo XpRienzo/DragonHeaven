@@ -1504,7 +1504,7 @@ exports.BattleMovedex = {
 		},
 		stealsBoosts: true,
 		onAfterHit: function(target, pokemon) {
-			this.useMove("shipwreckedgalepass", pokemon);
+			this.useMove("Baton Pass", pokemon);
 		},
 		secondary: false,
 		target: "normal",
