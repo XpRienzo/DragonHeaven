@@ -6646,19 +6646,18 @@ exports.BattleAbilities = {
 			if (move.flags['sound']) {
 				this.add('-immune', target, '[msg]', '[from] ability: Soundproof');
 				let newMove = this.getMoveCopy(move.id);
-			this.useMove(newMove, this.effectData.target, source);
+				this.useMove(newMove, this.effectData.target, source);
 				return null;
 			}
 		},
 		onAllyTryHitSide: function (target, source, move) {
 			if (move.flags['sound']) {
-				this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Soundproof');
+			this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Soundproof');
 			let newMove = this.getMoveCopy(move.id);
 			this.useMove(newMove, this.effectData.target, source);
-			//return null;
+			return null;
 			}
 		},
-                //TODO: Implement Dancer but for Sound-based moves.
 		id: "echo",
 		name: "Echo",
 	},
