@@ -98,8 +98,5 @@ this.modData('Learnsets', 'archen').learnset.archaicanguish = ['7L1'];
 this.modData('Learnsets', 'tyrunt').learnset.draconoidfangs = ['7L1'];
 this.modData('Learnsets', 'amaura').learnset.winterbliss = ['7L1'];
 this.modData('Learnsets', 'pumpkaboo').learnset.pumpkinflare = ['7L1'];
-this.modData('Learnsets', 'pumpkaboosmall').learnset.pumpkinflare = ['7L1'];
-this.modData('Learnsets', 'pumpkaboolarge').learnset.pumpkinflare = ['7L1'];
-this.modData('Learnsets', 'pumpkaboosuper').learnset.pumpkinflare = ['7L1'];
 	},
 };
