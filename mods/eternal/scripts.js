@@ -1,7 +1,7 @@
 'use strict';
 exports.BattleScripts = {
 	init: function () {
-/*this.modData('Learnsets', 'pansage').learnset.wrathofnature = ['7L1'];
+this.modData('Learnsets', 'pansage').learnset.wrathofnature = ['7L1'];
 this.modData('Learnsets', 'pansear').learnset.volcanicexplosion = ['7L1'];
 this.modData('Learnsets', 'panpour').learnset.seenoevil = ['7L1'];
 this.modData('Learnsets', 'pikachu').learnset.gigavoltimpact= ['7L1'];
@@ -97,6 +97,9 @@ this.modData('Learnsets', 'tirtouga').learnset.moisturize = ['7L1'];
 this.modData('Learnsets', 'archen').learnset.archaicanguish = ['7L1'];
 this.modData('Learnsets', 'tyrunt').learnset.draconoidfangs = ['7L1'];
 this.modData('Learnsets', 'amaura').learnset.winterbliss = ['7L1'];
-*/
+this.modData('Learnsets', 'pumpkaboo').learnset.pumpkinflare = ['7L1'];
+this.modData('Learnsets', 'pumpkaboosmall').learnset.pumpkinflare = ['7L1'];
+this.modData('Learnsets', 'pumpkaboolarge').learnset.pumpkinflare = ['7L1'];
+this.modData('Learnsets', 'pumpkaboosuper').learnset.pumpkinflare = ['7L1'];
 	},
 };
