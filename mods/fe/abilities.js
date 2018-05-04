@@ -6557,27 +6557,6 @@ exports.BattleAbilities = {
 		id: "smokebody",
 		name: "Smoke Body",
 	},
-	"beastsfocus": {
-		shortDesc: "If PokÃ©mon would be flinched, buffs highest non-HP stat by 1 instead.",
-		onFlinch: function(target, source, effect) {
-			if (effect && effect.effectType === 'Move') {
-				let stat = 'atk';
-				let bestStat = 0;
-				for (let i in source.stats) {
-					if (source.stats[i] > bestStat) {
-						stat = i;
-						bestStat = source.stats[i];
-					}
-				}
-				this.boost({
-					[stat]: 1
-				}, source);
-			}
-                        return false;
-                      }
-		},
-		id: "beastsfocus",
-		name: "Beasts Focus",
 	"strikeandpass": {
 		shortDesc: "All moves at 60 base power or below get boosted by x1.5 and gain a U-Turn switching effect.",
 		onBasePowerPriority: 8,
@@ -6595,6 +6574,25 @@ exports.BattleAbilities = {
 		},
 		id: "strikeandpass",
 		name: "Strike and Pass",
+	},
+	"beastsfocus": {
+		shortDesc: "If PokÃ©mon would be flinched, buffs highest non-HP stat by 1 instead.",
+		onFlinch: function(target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				this.boost({[stat]: 1}, source);
+			}
+                       return false;
+                      }
+		},
+		id: "beastsfocus",
+		name: "Beasts Focus",
 	},
 	"poisonveil": {
 		shortDesc: "Can't have stats lowered nor can be statused; Poison is inflicted on whoever tries to inflict either on the holder.",
