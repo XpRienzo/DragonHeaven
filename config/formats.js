@@ -4168,7 +4168,7 @@ exports.Formats = [
 		      ],
   		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		mod: 'eternal',
-	// banlist: ['Unreleased', 'Illegal'],
+		banlist: ['Unreleased', 'Illegal'],
   	},
 	{
   		name: "[Gen 7] Fusion Evolution",
