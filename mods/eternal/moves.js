@@ -2892,5 +2892,102 @@ type: "Water",
 		zMovePower: 190,
 		contestType: "Clever",
 	},
-	
+	"acidgeyser": {
+		accuracy: true,
+		basePower: 0,
+		category: "Special",
+		shortDesc: "Under sun, Acid's Well Base Power is increased by 1,5x and it's able to ignore steel type's inmunity to poison. 10% of chance to add a burn (50% in sun)",
+		id: "acidgeyser",
+		name: "Acid Geyser",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onBasePowerPriority: 4,
+			onBasePower: function (basePower) {
+				if (this.isWeather(['sunnyday', 'desolateland'])) {
+				return this.chainModify(1.5);
+				}
+			},
+		onModifyMove: function (move) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
+			move.ignoreImmunity: true;	
+			move.secondaries.push({
+					chance: 50,
+					status: 'brn',
+				});
+			}
+		},
+		secondary: {
+			chance: 10,
+			status: 'brn',
+		},
+		target: "normal",
+		type: "Normal",
+		zMovePower: 160,
+		contestType: "Beautiful",
+	},
+	"naturecall": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "The user use the power of earth to increase special attack, special defense and speed by two levels on the next turn. When the attack is unleashed, Grassy Terrain is summoned.",
+		id: "naturecall",
+		isViable: true,
+		name: "Nature Call",
+		pp: 10,
+		priority: 0,
+		flags: {charge: 1, nonsky: 1},
+		terrain: 'grassyterrain',
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				attacker.removeVolatile(move.id);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		},
+		boosts: {
+			spa: 2,
+			spd: 2,
+			spe: 2,
+		},
+		secondary: false,
+		target: "self",
+		type: "Grass",
+		zMoveBoost: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1},
+		contestType: "Beautiful",
+	},
+	"moltenironspout": {
+		accuracy: 100,
+		basePower: 130,
+		category: "Special",
+		shortDesc: "Hits all adiacent oppos, independent 40% chance of flinching, burning and/or confusing them.",
+		id: "moltenironspout",
+		isViable: true,
+		name: "Molten Iron Spout",
+		pp: 24,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondaries: [
+			{
+				chance: 40,
+				status: 'brn',
+			}, {
+				chance: 40,
+				volatileStatus: 'flinch',
+			}, {
+				chance: 40,
+				volatileStatus: 'confusion',
+			},
+		],
+		target: "allAdjacentFoes",
+		type: "Steel",
+		zMovePower: 120,
+		contestType: "Cool",
+	},
 };
