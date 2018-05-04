@@ -6645,6 +6645,8 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 			if (move.flags['sound']) {
 				this.add('-immune', target, '[msg]', '[from] ability: Soundproof');
+				let newMove = this.getMoveCopy(move.id);
+			this.useMove(newMove, this.effectData.target, source);
 				return null;
 			}
 		},
