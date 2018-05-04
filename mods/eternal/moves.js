@@ -1855,9 +1855,9 @@ ZMovePower: 175,
 		zMoveBoost: 'clearnegativeboosts',
 		contestType: "Tough",
 	},
-	/*"pumpkinflare": {
+	"pumpkinflare": {
         accuracy: 100,
-        basePower: 0,
+        basePower: 20,
         category: "Special",
         shortDesc: "The user bursts its body and fires an array of seeds at the opponent. BP is dependent on form (20 BP for small, 22 BP for medium, 25 BP for large, 30 BP for XL), burn chance is dependent on form (8% for small, 11% for medium, 14% for large, 20% for XL), and amount of hits are based on size (6 for small, 5 for medium, 4 for large, 3 for XL).",
         id: "pumpkinflare",
@@ -1865,12 +1865,49 @@ ZMovePower: 175,
         pp: 10,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-        secondary: false,
-        target: "normal",0
-        type: "type",
+		  onBasePower: function (power, user) {
+			if (user.template.id === 'pumpkaboo') {
+				return this.chainModify(1.1);
+			}
+			else if (user.template.id === 'pumpkaboolarge') {
+				return this.chainModify(1.25);
+			}
+			else if (user.template.id === 'pumpkaboosuper') {
+				return this.chainModify(1.5);
+			}
+			},
+		  multihit: 6,
+		  onModifyMove: function (move, user) {
+			if (user.template.id === 'pumpkaboo') {
+				move.multihit = 5;
+				move.secondaries.push({
+					chance: 11,
+					status: 'brn',
+				});
+			}
+			else if (user.template.id === 'pumpkaboolarge') {
+				move.multihit = 4;
+				move.secondaries.push({
+					chance: 14,
+					status: 'brn',
+				});
+			}
+			else if (user.template.id === 'pumpkaboosuper') {
+				move.multihit = 3;
+				move.secondaries.push({
+					chance: 20,
+					status: 'brn',
+				});
+			}
+		},
+        secondary: {
+			chance: 8,
+			status: 'brn',
+		},
+        target: "normal",
+        type: "Fire",
         zMovePower: 190, 
     }, 
-	 */
 	"aerialsmash": {
 		accuracy: 100,
 		basePower: 170,
