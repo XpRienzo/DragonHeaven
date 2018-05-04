@@ -6263,13 +6263,17 @@ exports.BattleAbilities = {
 	},
 	"hardenedbody": {
 		desc: "This Pokemon receives 3/4 damage from supereffective attacks. When hit by a supereffective attack, boosts all stats by one stage. Moongeist Beam, Sunsteel Strike, and the Abilities Mold Breaker, Teravolt, and Turboblaze cannot ignore this Ability.",
-		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and gets boosted when hit by one.",
+		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and gets boosted all it's stats when hit by one.",
 		onSourceModifyDamage: function (damage, source, target, move) {
 			if (move.typeMod > 0) {
 				this.debug('Prism Armor neutralize');
 				return this.chainModify(0.75);
-				this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1});
 			}
+		},
+		onHit: function (target, source, move) {
+			if (move.typeMod > 0) {
+			this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1});
+				}
 		},
 		isUnbreakable: true,
 		id: "hardenedbody",
