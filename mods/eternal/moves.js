@@ -1855,7 +1855,7 @@ ZMovePower: 175,
 		zMoveBoost: 'clearnegativeboosts',
 		contestType: "Tough",
 	},
-	/*"pumpkinflare": {
+	"pumpkinflare": {
         accuracy: 100,
         basePower: 20,
         category: "Special",
@@ -1907,7 +1907,7 @@ ZMovePower: 175,
         target: "normal",
         type: "Fire",
         zMovePower: 190, 
-    }, */
+    }, 
 	"aerialsmash": {
 		accuracy: 100,
 		basePower: 170,
