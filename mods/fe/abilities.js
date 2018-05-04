@@ -6648,7 +6648,7 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon is immune to sound moves. Whenever a Pokemon uses a sound move, it repeats that move right after.",
 		onTryHit: function (target, source, move) {
 			if (move.flags['sound']) {
-				this.add('-immune', target, '[msg]', '[from] ability: Soundproof');
+				this.add('-immune', target, '[msg]', '[from] ability: Echo');
 				let newMove = this.getMoveCopy(move.id);
 				this.useMove(newMove, this.effectData.target, source);
 				return null;
@@ -6656,7 +6656,7 @@ exports.BattleAbilities = {
 		},
 		onAllyTryHitSide: function (target, source, move) {
 			if (move.flags['sound']) {
-			this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Soundproof');
+			this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Echo');
 			let newMove = this.getMoveCopy(move.id);
 			this.useMove(newMove, this.effectData.target, source);
 			return null;
