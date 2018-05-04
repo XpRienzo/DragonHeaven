@@ -6651,6 +6651,9 @@ exports.BattleAbilities = {
 		onAllyTryHitSide: function (target, source, move) {
 			if (move.flags['sound']) {
 				this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Soundproof');
+			let newMove = this.getMoveCopy(move.id);
+			this.useMove(newMove, this.effectData.target, source);
+			//return null;
 			}
 		},
                 //TODO: Implement Dancer but for Sound-based moves.
