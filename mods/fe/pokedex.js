@@ -4787,7 +4787,7 @@ darkchomp: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
-    polyform2: {
+       polyform2: {
         num: 7500135,
         species: "Polyform2",
         types: ["Normal"],
@@ -4805,6 +4805,146 @@ darkchomp: {
         },
         abilities: {
             0: "Aeroform"
+        },
+        heightm: 0.455,
+        weightkg: 16.65,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+        otherFormes: ["polyform2sunny", "polyform2sunsnow", "polyform2rainy", "polyform2snowy", "polyform2sandy"],
+    },
+    polyform2sunny: {
+        num: 7500135,
+        species: "Polyform2-Sunny",
+        baseSpecies: "Polyform2",
+        forme: "Sunny",
+        formeLetter: "S",
+        types: ["Fire"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 98,
+            atk: 75,
+            def: 90,
+            spa: 91,
+            spd: 90,
+            spe: 65
+        },
+        abilities: {
+            0: "Drought"
+        },
+        heightm: 0.455,
+        weightkg: 16.65,
+        color: "Red",
+        eggGroups: ["Undiscovered"],
+    },
+    polyform2sunsnow: {
+        num: 7500135,
+        species: "Polyform2",
+        species: "Polyform2-Sunsnow",
+        baseSpecies: "Polyform2",
+        forme: "Sunsnow",
+        formeLetter: "S",
+        types: ["Fire", "Ice"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 98,
+            atk: 75,
+            def: 90,
+            spa: 91,
+            spd: 90,
+            spe: 65
+        },
+        abilities: {
+            0: "Solar Snow"
+        },
+        heightm: 0.455,
+        weightkg: 16.65,
+        color: "White",
+        eggGroups: ["Undiscovered"],
+    },
+    polyform2rainy: {
+        num: 7500135,
+        species: "Polyform2",
+        species: "Polyform2-Rainy",
+        baseSpecies: "Polyform2",
+        forme: "Rainy",
+        formeLetter: "R",
+        types: ["Water"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 98,
+            atk: 75,
+            def: 90,
+            spa: 91,
+            spd: 90,
+            spe: 65
+        },
+        abilities: {
+            0: "Drizzle"
+        },
+        heightm: 0.455,
+        weightkg: 16.65,
+        color: "Blue",
+        eggGroups: ["Undiscovered"],
+    },
+    polyform2snowy: {
+        num: 7500135,
+        species: "Polyform2",
+        species: "Polyform2-Snowy",
+        baseSpecies: "Polyform2",
+        forme: "Snowy",
+        formeLetter: "S",
+        types: ["Ice"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 98,
+            atk: 75,
+            def: 90,
+            spa: 91,
+            spd: 90,
+            spe: 65
+        },
+        abilities: {
+            0: "Snow Warning"
+        },
+        heightm: 0.455,
+        weightkg: 16.65,
+        color: "White",
+        eggGroups: ["Undiscovered"],
+    },
+    polyform2sandy: {
+        num: 7500135,
+        species: "Polyform2",
+        species: "Polyform2-Sandy",
+        baseSpecies: "Polyform2",
+        forme: "Sandy",
+        formeLetter: "S",
+        types: ["Rock"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 98,
+            atk: 75,
+            def: 90,
+            spa: 91,
+            spd: 90,
+            spe: 65
+        },
+        abilities: {
+            0: "Sand Stream"
         },
         heightm: 0.455,
         weightkg: 16.65,
