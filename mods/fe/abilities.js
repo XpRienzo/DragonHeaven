@@ -7553,7 +7553,7 @@ exports.BattleAbilities = {
 				this.add('-activate', target, 'ability: Disguise Burden');
 				this.effectData.busted = true;
 				return 0;
-			        pokemon.addVolatile('disguiseburden');
+			        source.addVolatile('disguiseburden');
 			}
 		},
 		onEffectiveness: function (typeMod, target, type, move) {
