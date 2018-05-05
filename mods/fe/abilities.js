@@ -7065,7 +7065,6 @@ exports.BattleAbilities = {
 	},
 	"normalizedenemy": {
 		shortDesc: "If this Pokemon is active, then enemies' moves will turn Normal-type.",
-                //TODO: Fix it. Just... Fix it.
 		onFoeModifyMovePriority: 1,
 		onFoeModifyMove: function (move, pokemon) {
 			if (!(move.isZ && move.category !== 'Status') && !['hiddenpower', 'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'weatherball'].includes(move.id)) {
@@ -7566,7 +7565,6 @@ exports.BattleAbilities = {
 			if (!pokemon.runImmunity(move.type)) return;
 			return 0;
 		},
-                //TODO: Check to see if this is good
 		onUpdate: function (pokemon) {
 			if (pokemon.template.speciesid === 'mimiblim' && this.effectData.busted) {
 				let template = this.getTemplate('Mimiblim-Busted');
