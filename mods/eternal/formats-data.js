@@ -13,3 +13,5 @@ floette: {
 		tier: "OU",
 	},
  };
+
+exports.BattleFormatsData = BattleFormatsData;
