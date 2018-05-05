@@ -7066,17 +7066,10 @@ exports.BattleAbilities = {
 	"normalizedenemy": {
 		shortDesc: "If this Pokemon is active, then enemies' moves will turn Normal-type.",
                 //TODO: Fix it. Just... Fix it.
-		onSourceEffectiveness: function (damage, source, target, move, type) {
-			if (source.side !== target.side) {
-				move.typeMod = this.getEffectiveness('Normal', type);
-			}
-                        return;
-		},
 		onEffectiveness: function (damage, source, target, move, type) {
 			if (source.side !== target.side) {
 				move.typeMod = this.getEffectiveness('Normal', type);
 			}
-                        return;
 		},
 		id: "normalizedenemy",
 		name: "Normalized Enemy",
