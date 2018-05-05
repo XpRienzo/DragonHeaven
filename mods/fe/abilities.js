@@ -6915,7 +6915,7 @@ exports.BattleAbilities = {
                             }
                         }
                         if (!target.volatiles['substitute']) {
-                            this.boost({[stat]: -1}, target, pokemon);
+                            this.boost({[stat]: -1}, target, source);
                             if (source.isActive) target.addVolatile('trapped', source, move, 'trapper');
                         }
 		},
