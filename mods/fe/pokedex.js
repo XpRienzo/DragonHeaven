@@ -11164,8 +11164,27 @@ darkchomp: {
         abilities: {
             0: "Disguise Burden"
         },
+		 otherFormes: ["mimiblimbusted"],
     },
-
+mimiblimbusted: {
+        num: 7500357,
+        species: "Mimiblim-Busted",
+			baseSpecies: "Mimiblim",
+			forme: "Busted",
+			formeLetter: "B",
+        types: ["Ghost"],
+        baseStats: {
+            hp: 112,
+            atk: 95,
+            def: 72,
+            spa: 80,
+            spd: 89,
+            spe: 98
+        },
+        abilities: {
+            0: "Disguise Burden"
+        },
+    },
     warcanein: {
         num: 7500358,
         species: "Warcanein",
