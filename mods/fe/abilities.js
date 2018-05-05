@@ -7072,6 +7072,12 @@ exports.BattleAbilities = {
 			}
                         return;
 		},
+		onEffectiveness: function (damage, source, target, move, type) {
+			if (source.side !== target.side) {
+				move.typeMod = this.getEffectiveness('Normal', type);
+			}
+                        return;
+		},
 		id: "normalizedenemy",
 		name: "Normalized Enemy",
 	},
