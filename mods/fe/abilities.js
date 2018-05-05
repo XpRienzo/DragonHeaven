@@ -7066,9 +7066,10 @@ exports.BattleAbilities = {
 	"normalizedenemy": {
 		shortDesc: "If this Pokemon is active, then enemies' moves will turn Normal-type.",
                 //TODO: Fix it. Just... Fix it.
-		onEffectiveness: function (damage, source, target, move, type) {
-			if (source.side !== target.side) {
-				move.typeMod = this.getEffectiveness('Normal', type);
+		onFoeModifyMovePriority: 1,
+		onFoeModifyMove: function (move, pokemon) {
+			if (!(move.isZ && move.category !== 'Status') && !['hiddenpower', 'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'weatherball'].includes(move.id)) {
+				move.type = 'Normal';
 			}
 		},
 		id: "normalizedenemy",
