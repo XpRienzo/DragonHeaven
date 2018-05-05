@@ -5096,7 +5096,7 @@ exports.BattleAbilities = {
         id: "subdue",
         name: "Subdue",
     },
-	"sunbath": {
+		"sunbath": {
 		shortDesc: "Under Sun or Rain, Speed is doubled and regains 1/8 of max health at the end of the turn. Ignores Sun's Water Debuff.",
 		onModifySpe: function(spe, pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea', 'sunnyday', 'desolateland', 'solarsnow'])) {
@@ -5119,6 +5119,9 @@ exports.BattleAbilities = {
 			if (move.type === 'Water' && this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) {
 				return this.chainModify(2);
 			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'solarsnow') return false;
 		},
 		id: "sunbath",
 		name: "Sun Bath",
