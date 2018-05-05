@@ -75,7 +75,7 @@ exports.BattleMovedex = {
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Hyper Voice", target);
+			this.add('-anim', source, "Boomburst", target);
 		},
 		target: "normal",
 		type: "Ghost",
