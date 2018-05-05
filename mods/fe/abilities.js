@@ -7552,8 +7552,8 @@ exports.BattleAbilities = {
 			if (effect && effect.effectType === 'Move' && target.template.speciesid === 'mimiblim' && !target.transformed) {
 				this.add('-activate', target, 'ability: Disguise Burden');
 				this.effectData.busted = true;
+				target.addVolatile('disguiseburden');
 				return 0;
-			        target.addVolatile('disguiseburden');
 			}
 		},
 		onEffectiveness: function (typeMod, target, type, move) {
@@ -7573,12 +7573,12 @@ exports.BattleAbilities = {
 				this.add('detailschange', pokemon, pokemon.details);
 			}
 		},
-		onEnd: function (pokemon) {
-			pokemon.removeVolatile('disguiseburden');
-		},
 		effect: {
 			onModifySpe: function (spe, pokemon) {
 				return this.chainModify(2);
+			},
+			onEnd: function (pokemon) {
+			pokemon.removeVolatile('disguiseburden');
 			},
 		},
 		id: "disguiseburden",
