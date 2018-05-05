@@ -370,19 +370,23 @@ exports.BattleItems = {
 	},
 	"assaultshield": {
 		id: "assaultshield",
-		name: "assault Shield",
+		name: "Assault Shield",
+		spritenum: 581,
+		fling: {
+			basePower: 80,
+		},
 		onModifyDefPriority: 1,
-		onModifyDef: function(def) {
+		onModifyDef: function (def) {
 			return this.chainModify(1.5);
 		},
-		onDisableMove: function(pokemon) {
-			let moves = pokemon.moveset;
-			for (let i = 0; i < moves.length; i++) {
-				if (this.getMove(moves[i].move).category === 'Status') {
-					pokemon.disableMove(moves[i].id);
+		onDisableMove: function (pokemon) {
+			for (const moveSlot of pokemon.moveSlots) {
+				if (this.getMove(moveSlot.move).category === 'Status') {
+					pokemon.disableMove(moveSlot.id);
 				}
 			}
 		},
+		gen: 7,
 		desc: "Holder's Def is 1.5x, but it can only select damaging moves.",
 	},
 	"eviolith": {
