@@ -3429,8 +3429,8 @@ exports.BattleMovedex = {
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-		  onTryHit: function (source, target) {
-			  if (source.hasMove('Toxic')) {
+		  onHit: function (source, target) {
+			  if (source.hasMove('toxic')) {
 					target.trySetStatus('tox', source);
 					}
 			},
