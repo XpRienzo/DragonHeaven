@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 exports.BattleMovedex = {
 	"wrathofnature": {
 		accuracy: 100,
@@ -19,7 +19,7 @@ exports.BattleMovedex = {
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Frenzy Plant", target);
+			this.add('-anim', source, "Leaf Blade", target);
 			this.add('-anim', source, "Close Combat", target);
 		},
 		priority: 0,
@@ -47,6 +47,10 @@ exports.BattleMovedex = {
 			chance: 10,
 			status: 'brn',
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Eruption", target);
+		},
 		target: "allAdjacent",
 		type: "Fire",
 		zMovePower: 200,
@@ -72,6 +76,10 @@ exports.BattleMovedex = {
 				accuracy: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hydro Pump", target);
+		},
 		target: "normal",
 		type: "Water",
 		zMovePower: 180,
@@ -91,6 +99,10 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Thunder", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -314,6 +326,10 @@ exports.BattleMovedex = {
 		onEffectiveness: function(typeMod, type, move) {
 			return typeMod + this.getEffectiveness('Flying', type);
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
 		secondary: false,
 		target: "normal",
 		type: "Dark",
@@ -326,7 +342,7 @@ exports.BattleMovedex = {
 		category: "Special",
 		defensiveCategory: "Physical",
 		desc: "Deals damage to the target based on its Defense instead of Special Defense.",
-		shortDesc: "Damages target based on Defense ,not Sp. Def.",
+		shortDesc: "Damages target based on Defense, not Sp. Def.",
 		id: "mysticwraith",
 		name: "Mystic Wraith",
 		pp: 10,
@@ -334,6 +350,10 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hex", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -363,6 +383,10 @@ exports.BattleMovedex = {
 		onEffectiveness: function(typeMod, type) {
 			if (type === 'Normal') return 1;
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hex", target);
+		},
 		target: "normal",
 		type: "Ghost",
 		zMovePower: 195,
@@ -382,6 +406,11 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sacred Sword", target);
+			this.add('-anim', source, "Sacred Sword", target);
 		},
 		multihit: 2,
 		secondary: false,
@@ -404,6 +433,10 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ice Beam", target);
 		},
 		selfSwitch: true,
 		secondary: false,
@@ -434,6 +467,10 @@ exports.BattleMovedex = {
 				def: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Metal Claw", target);
+		},
 		target: "normal",
 		type: "Steel",
 		zMovePower: 175,
@@ -458,6 +495,10 @@ exports.BattleMovedex = {
 		secondary: {
 			chance: 20,
 			volatileStatus: 'flinch',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rock Throw", target);
 		},
 		target: "allAdjacentFoes",
 		type: "Rock",
@@ -484,6 +525,10 @@ exports.BattleMovedex = {
 		secondary: {
 			chance: 30,
 			volatileStatus: 'flinch',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Ball", target);
 		},
 		target: "allAdjacentFoes",
 		type: "Ghost",
@@ -518,6 +563,10 @@ exports.BattleMovedex = {
 				}
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tri Attack", target);
+		},
 		target: "normal",
 		type: "Normal",
 		zMovePower: 190,
@@ -539,6 +588,10 @@ exports.BattleMovedex = {
 			mirror: 1,
 			punch: 1,
 			heal: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Extrasensory", target);
 		},
 		drain: [1, 2],
 		secondary: false,
@@ -573,6 +626,10 @@ exports.BattleMovedex = {
 			boosts: {
 				spa: 1,
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Volt Tackle", target);
 		},
 		target: "normal",
 		type: "Electric",
@@ -642,6 +699,10 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "U-Turn", target);
+		},
 		selfSwitch: true,
 		secondary: false,
 		target: "normal",
@@ -662,6 +723,12 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Rock Blast", target);
+			this.add('-anim', source, "Rock Blast", target);
+			this.add('-anim', source, "Rock Blast", target);
 		},
 		multihit: 3,
 		critRatio: 2,
@@ -693,6 +760,10 @@ exports.BattleMovedex = {
 				return this.chainModify(1.5);
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Rush", target);
+		},
 		secondary: false,
 		target: "normal",
 		type: "Dragon",
@@ -721,6 +792,10 @@ exports.BattleMovedex = {
 				},
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Psychic", target);
+		},
 		target: "normal",
 		type: "Psychic",
 		zMovePower: 175,
@@ -742,6 +817,10 @@ exports.BattleMovedex = {
 			reflectable: 1,
 			mirror: 1,
 			authentic: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Parting Shot", target);
 		},
 		selfdestruct: "ifHit",
 		boosts: {
@@ -806,6 +885,10 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Metal Burst", target);
+		},
 		beforeTurnCallback: function(pokemon) {
 			pokemon.addVolatile('metalburst');
 		},
@@ -855,6 +938,10 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Feint Attack", target);
+		},
 		selfSwitch: true,
 		secondary: false,
 		target: "normal",
@@ -877,12 +964,16 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
-		selfBoost: {
+		boosts: {
 			spd: -2,
 		},
 		secondary: {
 			chance: 10,
 			status: 'frz',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Ball", target);
 		},
 		weather: 'hail',
 		target: "normal",
@@ -966,6 +1057,10 @@ exports.BattleMovedex = {
 				this.add('-fieldend', 'move: Gravity');
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Gravity", target);
+		},
 		secondary: false,
 		recoil: [1, 3],
 		target: "all",
@@ -1011,6 +1106,10 @@ exports.BattleMovedex = {
 		onHit: function(target, source) {
 			return target.addVolatile('trapped', source, 'trapper');
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
 		target: "normal",
 		type: "Dark",
 		zMovePower: 1000,
@@ -1035,6 +1134,10 @@ exports.BattleMovedex = {
 			chance: 20,
 			volatileStatus: 'flinch',
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Clanging Scales", target);
+		},
 		target: "normal",
 		type: "Dragon",
 		zMovePower: 180,
@@ -1053,6 +1156,10 @@ exports.BattleMovedex = {
 		flags: {
 			snatch: 1,
 			heal: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Shore Up", source);
 		},
 		heal: [1, 2],
 		secondaries: [{
@@ -1116,6 +1223,10 @@ exports.BattleMovedex = {
 		onEffectiveness: function(typeMod, type) {
 			if (type === 'Fairy') return 1;
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dragon Rush", target);
+		},
 		target: "normal",
 		type: "Dragon",
 		zMovePower: 160,
@@ -1141,6 +1252,10 @@ exports.BattleMovedex = {
 			if (this.randomChance(3, 10)) {
 				target.side.addSideCondition('spikes', source);
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bulldoze", target);
 		},
 		target: "normal",
 		type: "Ground",
@@ -1168,6 +1283,10 @@ exports.BattleMovedex = {
 			chance: 30,
 			volatileStatus: 'flinch',
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Meteor Mash", target);
+		},
 		target: "normal",
 		type: "Steel",
 		zMovePower: 200,
@@ -1188,6 +1307,10 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Waterfall", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -1219,6 +1342,10 @@ exports.BattleMovedex = {
 					accuracy: 1,
 				},
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Smart Strike", target);
 		},
 		target: "normal",
 		type: "Dark",
@@ -1312,6 +1439,10 @@ exports.BattleMovedex = {
 			chance: 20,
 			status: 'par',
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Memento", target);
+		},
 		target: "normal",
 		type: "Dark",
 		zMoveEffect: 'healreplacement',
@@ -1373,6 +1504,11 @@ exports.BattleMovedex = {
 				this.add('-fieldend', 'Misty Terrain');
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Misty Terrain", target);
+			this.add('-anim', target, "Recover", source);
+		},
 		secondary: false,
 		target: "all",
 		type: "Water",
@@ -1405,6 +1541,10 @@ exports.BattleMovedex = {
 			chance: 30,
 			volatileStatus: 'confusion',
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wood Hammer", target);
+		},
 		target: "normal",
 		type: "Grass",
 		zMovePower: 175,
@@ -1428,6 +1568,10 @@ exports.BattleMovedex = {
 		onHit: function(target, source, move) {
 			if (source.isActive) target.addVolatile('trapped', source, move, 'trapper');
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyperspace Hole", target);
+		},
 		secondary: false,
 		target: "allAdjacentFoes",
 		type: "Ground",
@@ -1449,6 +1593,10 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Knock Off", target);
 		},
 		willCrit: true,
 		secondary: false,
@@ -1472,6 +1620,10 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Crabhammer", target);
 		},
 		onBasePowerPriority: 4,
 		onBasePower: function(basePower, pokemon) {
@@ -1547,6 +1699,10 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Play Rough", target);
+		},
 		recoil: [1, 9],
 		target: "normal",
 		type: "Fairy",
@@ -1568,6 +1724,10 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Peck", target);
+		},
 		multihit: [2, 5],
 		secondary: false,
 		target: "normal",
@@ -1587,6 +1747,10 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dazzling Gleam", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -1634,6 +1798,10 @@ exports.BattleMovedex = {
 				},
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Close Combat", target);
+		},
 		onEffectiveness: function(typeMod, type) {
 			if (type === 'Ghost') return 1;
 		},
@@ -1662,6 +1830,11 @@ exports.BattleMovedex = {
 			chance: 30,
 			status: 'par',
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wild Charge", target);
+			this.add('-anim', source, "Wild Charge", target);
+		},
 		target: "normal",
 		type: "Electric",
 		zMovePower: 100,
@@ -1689,6 +1862,10 @@ exports.BattleMovedex = {
 				this.heal(target.maxhp / 2);
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Iron Head", target);
+		},
 		secondary: false,
 		target: "normal",
 		type: "Steel",
@@ -1713,6 +1890,10 @@ exports.BattleMovedex = {
 			punch: 1,
 			heal: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bug Buzz", target);
+		},
 		drain: [1, 1],
 		secondary: false,
 		target: "normal",
@@ -1736,6 +1917,10 @@ exports.BattleMovedex = {
 			reflectable: 1,
 			mirror: 1,
 			heal: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Strength Sap", target);
 		},
 		onHit: function(target, source) {
 			if (target.boosts.spd === -6) return false;
@@ -1768,6 +1953,10 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Wave", target);
+		},
 		secondary: {
 			chance: 100,
 			status: 'psn',
@@ -1792,6 +1981,10 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Feint Attack", target);
+		},
 		critRatio: 2,
 		multihit: [2, 5],
 		secondary: false,
@@ -1815,6 +2008,10 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Freeze Shock", target);
 		},
 		onHit: function(target, source) {
 			target.side.addSideCondition('spikes', source);
@@ -1842,6 +2039,10 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hex", target);
 		},
 		volatileStatus: 'partiallytrapped',
 		secondary: false,
@@ -1881,6 +2082,10 @@ exports.BattleMovedex = {
 				}
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Burn Up", target);
+		},
 		selfSwitch: true,
 		secondary: false,
 		target: "normal",
@@ -1912,6 +2117,10 @@ exports.BattleMovedex = {
 				pokemon.setType(pokemon.getTypes(true).map(type => type === "Rock" ? "???" : type));
 				this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[from] move: Breakthrough');
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Burn Up", target);
 		},
 		recoil: [1, 3],
 		secondary: false,
@@ -1945,6 +2154,10 @@ exports.BattleMovedex = {
 				}
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Haze", target);
+		},
 		secondary: false,
 		target: "all",
 		type: "Water",
@@ -1974,6 +2187,10 @@ exports.BattleMovedex = {
 				return 1;
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Iron Head", target);
+		},
 		target: "normal",
 		type: "Steel",
 		ZMovePower: 160,
@@ -1990,6 +2207,10 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scald", target);
 		},
 		heal: [1, 2],
 		target: "normal",
@@ -2023,6 +2244,10 @@ exports.BattleMovedex = {
 			boosts: {
 				spd: 1,
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Heat Wave", target);
 		},
 		target: "normal",
 		type: "Fire",
@@ -2067,6 +2292,10 @@ exports.BattleMovedex = {
 					return this.chainModify(1.5);
 				}
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "First Impression", target);
 		},
 		target: "normal",
 		type: "Water",
@@ -2136,6 +2365,10 @@ exports.BattleMovedex = {
 		onAfterMove: function(pokemon) {
 			pokemon.removeVolatile('magneticcharge');
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Recover", source);
+		},
 		heal: [1, 2],
 		secondary: false,
 		target: "self",
@@ -2190,6 +2423,10 @@ exports.BattleMovedex = {
 		secondary: {
 			chance: 8,
 			status: 'brn',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Ember", target);
 		},
 		target: "normal",
 		type: "Fire",
@@ -2253,6 +2490,10 @@ exports.BattleMovedex = {
 				spd: -1,
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sky Attack", target);
+		},
 		target: "any",
 		type: "Fighting",
 		zMovePower: 150,
@@ -2298,6 +2539,10 @@ exports.BattleMovedex = {
 					this.effectData.damage = damage;
 				}
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Magic Coat", source);
 		},
 		secondary: false,
 		target: "self",
@@ -2354,6 +2599,10 @@ exports.BattleMovedex = {
 				}
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Baton Pass", target);
+		},
 		secondary: false,
 		target: "self",
 		type: "Normal",
@@ -2363,7 +2612,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "Increases the power of physical and special attacks by 1,33% during 5 turns, but it can be used only during Sun. It lasts 8 if you use Light Clay.",
+		shortDesc: "Increases the power of physical and special attacks by 1.33x during 5 turns, but it can be used only during Sun. It lasts 8 if you use Light Clay.",
 		id: "searingscreen",
 		name: "Searing Screen",
 		pp: 20,
@@ -2420,6 +2669,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {
 			protect: 1,
+			contact: 1,
 			mirror: 1
 		},
 		volatileStatus: 'phantasmalbreak',
@@ -2446,6 +2696,10 @@ exports.BattleMovedex = {
 				this.add('-end', pokemon, 'move: Phantasmal Break');
 			},
 			onTryHeal: false,
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Shadow Bone", target);
 		},
 		secondary: false,
 		target: "allAdjacentFoes",
@@ -2485,6 +2739,10 @@ exports.BattleMovedex = {
 				}
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Refresh", source);
+		},
 		secondary: false,
 		target: "normal",
 		type: "Water",
@@ -2515,6 +2773,10 @@ exports.BattleMovedex = {
 				}
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Nasty Plot", source);
+		},
 		secondary: false,
 		target: "self",
 		type: "Fairy",
@@ -2532,6 +2794,10 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scald", target);
 		},
 		multihit: 2,
 		secondaries: [{
@@ -2563,7 +2829,7 @@ exports.BattleMovedex = {
 				return false;
 			}
 			target.side.sideConditions['futuremove'].positions[target.position] = {
-				duration: 4,
+				duration: 5,
 				move: 'ancientritual',
 				source: source,
 				moveData: {
@@ -2622,6 +2888,7 @@ exports.BattleMovedex = {
 				if (target.position === this.effectData.position) {
 					this.debug('damaged this turn');
 					this.effectData.hurt = true;
+					return move.accuracy = true;
 				}
 			},
 			onFoeSwitchOut: function(pokemon) {
@@ -2629,6 +2896,10 @@ exports.BattleMovedex = {
 					this.effectData.hurt = false;
 				}
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Nasty Plot", source);
 		},
 		secondary: false,
 		target: "normal",
@@ -2704,6 +2975,10 @@ exports.BattleMovedex = {
 		onBasePower: function(basePower, pokemon) {
 			return this.chainModify(1.5);
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dazzling Gleam", target);
+		},
 		secondary: false,
 		target: "normal",
 		type: "Fairy",
@@ -2742,6 +3017,10 @@ exports.BattleMovedex = {
 					move.type = 'Electric';
 				}
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "First Impression", target);
 		},
 		target: "normal",
 		type: "Poison",
@@ -2811,6 +3090,10 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Crunch", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -2889,6 +3172,10 @@ exports.BattleMovedex = {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Shore Up", source);
+		},
 		target: "self",
 		type: "Water",
 	},
@@ -2912,6 +3199,10 @@ exports.BattleMovedex = {
 			mirror: 1,
 			heal: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hyper Fang", target);
+		},
 		drain: [1, 2],
 		secondary: false,
 		target: "normal",
@@ -2930,6 +3221,10 @@ exports.BattleMovedex = {
 		priority: 2,
 		flags: {
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Outrage", target);
 		},
 		breaksProtect: true,
 		secondary: false,
@@ -2975,6 +3270,10 @@ exports.BattleMovedex = {
 				delete move.multiaccuracy;
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Iron Head", target);
+		},
 		target: "normal",
 		type: "Steel",
 		zMovePower: 160,
@@ -2999,6 +3298,10 @@ exports.BattleMovedex = {
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Shore Up", source);
 		},
 		secondary: false,
 		target: "self",
@@ -3049,6 +3352,10 @@ exports.BattleMovedex = {
 				}
 			}
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Overheat", target);
+		},
 		target: "normal",
 		type: "Fire",
 		zMovePower: 120,
@@ -3081,6 +3388,11 @@ exports.BattleMovedex = {
 				spd: 1,
 				spe: 1,
 			},
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Sunny Day", source);
+			this.add('-anim', target, "Quiver Dance", source);
 		},
 		secondary: false,
 		target: "normal",
@@ -3120,6 +3432,10 @@ exports.BattleMovedex = {
 				this.add('-fieldend', 'move: Nuclear Pollen');
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Sunny Day", source);
+		},
 		secondary: false,
 		target: "all",
 		type: "Grass",
@@ -3143,6 +3459,10 @@ exports.BattleMovedex = {
 		secondary: {
 			chance: 50,
 			status: 'psn',
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poison Jab", target);
 		},
 		target: "normal",
 		drain: [3, 4],
@@ -3172,6 +3492,10 @@ exports.BattleMovedex = {
 		onEffectiveness: function(typeMod, type) {
 			if (type === 'Ground') return 0;
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Wild Charge", target);
+		},
 		drain: [1, 2],
 		secondary: false,
 		target: "normal",
@@ -3196,6 +3520,10 @@ exports.BattleMovedex = {
 		onTryHit: function(target, source) {
 			target.side.addSideCondition('spikes', source);
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
 		selfSwitch: true,
 		target: "normal",
 		type: "Dark",
@@ -3215,6 +3543,10 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Cross Chop", target);
 		},
 		multihit: 6,
 		recoil: [1, 4],
@@ -3309,7 +3641,7 @@ exports.BattleMovedex = {
 		contestType: "Clever",
 	},
 	"acidgeyser": {
-		accuracy: true,
+		accuracy: 100,
 		basePower: 0,
 		category: "Special",
 		shortDesc: "Under sun, Acid's Well Base Power is increased by 1,5x and it's able to ignore steel type's inmunity to poison. 10% of chance to add a burn (50% in sun)",
@@ -3340,8 +3672,12 @@ exports.BattleMovedex = {
 			chance: 10,
 			status: 'brn',
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Wave", target);
+		},
 		target: "normal",
-		type: "Normal",
+		type: "Poison",
 		zMovePower: 160,
 		contestType: "Beautiful",
 	},
@@ -3415,8 +3751,27 @@ exports.BattleMovedex = {
 			volatileStatus: 'confusion',
 		}, ],
 		target: "allAdjacentFoes",
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flash Cannon", target);
+		},
 		type: "Steel",
 		zMovePower: 120,
 		contestType: "Cool",
 	},
+	"nosokenisis": {
+        accuracy: 100,
+        basePower: 100,
+        category: "Special",
+        shortDesc: "This move's power is increased by 1,5x if it has a status move, and it transfers the status condition to the enemy. If it transfer the status, the user regains 25% of max HP.",
+        id: "nosokenisis",
+        name: "Nosokenisis",
+        pp: 5,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+        secondary: false,
+        target: "normal",
+        type: "Psychic",
+        zMovePower: 180,
+    },   
 };
