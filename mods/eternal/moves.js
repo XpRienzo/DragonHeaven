@@ -3429,9 +3429,9 @@ exports.BattleMovedex = {
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-		  onTryHit: function (pokemon, target) {
-			  if (pokemon.hasMove('toxic')) {
-					target.trySetStatus('tox', pokemon);
+		  onTryHit: function (source, target) {
+			  if (source.hasMove('Toxic')) {
+					target.trySetStatus('tox', source);
 					}
 			},
         secondary: false,
