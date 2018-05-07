@@ -2623,7 +2623,7 @@ exports.BattleMovedex = {
 		},
 		sideCondition: 'searingscreen',
 		onTryHitSide: function() {
-			if (!this.isWeather('sunnyday')) return false;
+			if (!this.isWeather(['sunnyday', 'desolateland'])) return false;
 		},
 		effect: {
 			duration: 5,
