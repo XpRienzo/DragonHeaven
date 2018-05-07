@@ -3767,8 +3767,16 @@ exports.BattleMovedex = {
         flags: {protect: 1, mirror: 1},
 		  onHit: function (target, source) {
 			  if (source.hasMove('thunderwave')) {
-					target.setStatus('par', source);
-				   this.useMove('Tackle', target);
+					target.trySetStatus('par', source);
+				  this.heal(source.maxhp / 4, source, source);
+		  }
+			  else if (source.hasMove('toxic')) {
+					target.trySetStatus('tox', source);
+				  this.heal(source.maxhp / 4, source, source);
+		  }
+			  else if (source.hasMove('willowisp')) {
+					target.trySetStatus('brn', source);
+				  this.heal(source.maxhp / 4, source, source);
 		  }
 		},
         secondary: false,
