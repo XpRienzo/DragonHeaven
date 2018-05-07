@@ -859,7 +859,7 @@ exports.BattleMovedex = {
 			},
 		},
 		secondary: false,
-		target: "normal",
+		target: "self",
 		type: "Dragon",
 		zMoveEffect: 'healreplacement',
 		contestType: "Cool",
