@@ -3766,7 +3766,7 @@ exports.BattleMovedex = {
         priority: 0,
         flags: {protect: 1, mirror: 1},
 		  onHit: function (source, target) {
-			  if (source.hasMove('Thunder Wave') {
+			  if (source.hasMove('thunderwave') {
 					target.setStatus('par', source);
 		  }
 		},
