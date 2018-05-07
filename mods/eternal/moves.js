@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 exports.BattleMovedex = {
 	"wrathofnature": {
 		accuracy: 100,
@@ -2633,14 +2633,14 @@ exports.BattleMovedex = {
 				}
 				return 5;
 			},
-			onStart: function(side) {
-				this.add('-sidestart', side, 'move: Searing Screen');
-			},
 			onAnyModifyDamage: function(damage, source, target, move) {
 					if (!move.crit && !move.infiltrates) {
 						this.debug('searingscreen boost');
 						return this.chainModify(1.33);
 				}
+			},
+			onStart: function(side) {
+				this.add('-sidestart', side, 'move: Searing Screen');
 			},
 			onResidualOrder: 21,
 			onResidualSubOrder: 1,
