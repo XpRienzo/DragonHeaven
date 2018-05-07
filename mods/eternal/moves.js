@@ -1,5 +1,9 @@
 'use strict';
 exports.BattleMovedex = {
+	"lightofruin": {
+		inherit: true,
+		isUnreleased: false,
+	},
 	"wrathofnature": {
 		accuracy: 100,
 		basePower: 100,
