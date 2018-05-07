@@ -7668,4 +7668,79 @@ exports.BattleAbilities = {
 		id: "blessedprotection",
 		name: "Blessed Protection",
 	},
+	"gutsybeast": {
+		desc: "If this Pokemon has a major status condition, its most proficient stat is multiplied by 1.5; burn's physical damage halving is ignored if highest stat is Attack, and paralysis's speed halving is ignored if highest stat is Speed..",
+		shortDesc: "If this Pokemon is statused, its highest stat is 1.5x; ignores status halving this stat.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function(atk, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (pokemon.status && stat === 'atk') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyDefPriority: 6,
+		onModifyDef: function(def, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (pokemon.status && stat === 'def') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function(spa, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (pokemon.status && stat === 'spa') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 5,
+		onModifySpD: function(spd, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (pokemon.status && stat === 'spd') {
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpe: function(spe, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats && stat === 'spe') {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (pokemon.status) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "gutsybeast",
+		name: "Gutsy Beast",
+	},
 };
