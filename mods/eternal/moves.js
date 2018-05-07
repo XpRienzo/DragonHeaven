@@ -3755,13 +3755,13 @@ exports.BattleMovedex = {
 		zMovePower: 120,
 		contestType: "Cool",
 	},
-	"nosokenisis": {
+	"nosokinesis": {
         accuracy: 100,
         basePower: 100,
         category: "Special",
         shortDesc: "This move's power is increased by 1,5x if it has a status move, and it transfers the status condition to the enemy. If it transfer the status, the user regains 25% of max HP.",
-        id: "nosokenisis",
-        name: "Nosokenisis",
+        id: "nosokinesis",
+        name: "Nosokinesis",
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
