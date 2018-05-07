@@ -1444,7 +1444,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Memento", target);
 		},
 		target: "normal",
-		type: "Dark",
+		type: "Poison",
 		zMoveEffect: 'healreplacement',
 		contestType: "Cool",
 	},
@@ -2633,19 +2633,14 @@ exports.BattleMovedex = {
 				}
 				return 5;
 			},
+			onStart: function(side) {
+				this.add('-sidestart', side, 'move: Searing Screen');
+			},
 			onAnyModifyDamage: function(damage, source, target, move) {
-				if (target !== source && target.side === this.effectData.target) {
-					if ((target.side.sideConditions['reflect'] && this.getCategory(move) === 'Physical') || (target.side.sideConditions['lightscreen'] && this.getCategory(move) === 'Special')) {
-						return;
-					}
 					if (!move.crit && !move.infiltrates) {
 						this.debug('searingscreen boost');
 						return this.chainModify(1.33);
-					}
 				}
-			},
-			onStart: function(side) {
-				this.add('-sidestart', side, 'move: Searing Screen');
 			},
 			onResidualOrder: 21,
 			onResidualSubOrder: 1,
