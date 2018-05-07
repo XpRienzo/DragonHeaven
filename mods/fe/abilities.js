@@ -6854,7 +6854,7 @@ exports.BattleAbilities = {
 		name: "dragonhide",
 	},
 	"choochoo": {
-		shortDesc: "This Pokemon skips every other turn instead of using a move.",
+		shortDesc: "Removes Burn status every other turn. Immune to Burns on the turn Burn is removed.",
 		onBeforeMovePriority: 9,
 		onBeforeMove: function (pokemon, target, move) {
 			if (pokemon.removeVolatile('choochoo') && pokemon.status === 'brn') {
