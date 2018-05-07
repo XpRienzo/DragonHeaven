@@ -3765,9 +3765,10 @@ exports.BattleMovedex = {
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-		  onHit: function (source, target) {
+		  onHit: function (target, source) {
 			  if (source.hasMove('thunderwave')) {
 					target.setStatus('par', source);
+				   this.useMove('Tackle', target);
 		  }
 		},
         secondary: false,
