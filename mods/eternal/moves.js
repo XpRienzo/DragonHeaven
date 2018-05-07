@@ -3765,7 +3765,7 @@ exports.BattleMovedex = {
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-		  onHit: function (target, source) {
+		  onHit: function (target, source, move) {
 			  if (source.hasMove('thunderwave')) {
 					target.trySetStatus('par', source);
 				  this.heal(source.maxhp / 4, source, source);
@@ -3775,9 +3775,14 @@ exports.BattleMovedex = {
 				  this.heal(source.maxhp / 4, source, source);
 		  }
 			  else if (source.hasMove('willowisp')) {
-				  target.trySetStatus('brn', source); return;
-				  this.heal(source.maxhp / 4, source, source);
+				  target.trySetStatus('brn', source);
+				  move.nosokinesisheal = true;
 		  }
+		},
+		onAfterHit: function (move, source) {
+		if (move.nosokinesisheal) {
+		this.heal(source.maxhp / 4, source, source);
+			}
 		},
         secondary: false,
         target: "normal",
