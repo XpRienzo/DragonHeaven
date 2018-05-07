@@ -6725,7 +6725,7 @@ exports.Formats = [
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
 		
 		onModifyMove: function (move, pokemon) {
-		if (move.category === 'Status' && pokemon.stats.atk => pokemon.stats.spa) {
+		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa) {
 		move.category = 'Physical';
 		move.basePower = 60;
 		}
