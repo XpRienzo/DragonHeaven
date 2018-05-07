@@ -3768,21 +3768,13 @@ exports.BattleMovedex = {
 		  onHit: function (target, source, move) {
 			  if (source.hasMove('thunderwave')) {
 					target.trySetStatus('par', source);
-				  this.heal(source.maxhp / 4, source, source);
 		  }
 			  else if (source.hasMove('toxic')) {
 					target.trySetStatus('tox', source);
-				  this.heal(source.maxhp / 4, source, source);
 		  }
 			  else if (source.hasMove('willowisp')) {
 				  target.trySetStatus('brn', source);
-				  move.nosokinesisheal = true;
 		  }
-		},
-		onAfterHit: function (move, source) {
-		if (move.nosokinesisheal) {
-		this.heal(source.maxhp / 4, source, source);
-			}
 		},
         secondary: false,
         target: "normal",
