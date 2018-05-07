@@ -6734,6 +6734,15 @@ exports.Formats = [
 		move.basePower = 60;
 		}
 	},
+		onModifyPriority: function(priority, pokemon, target, move) {
+			if (move.basePower <= 60) return priority + 1;
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+				return this.chainModify(1.5);
+			}
+		},
 },
 	{
 		name: "[Gen 7] Test Format",
