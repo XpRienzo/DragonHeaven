@@ -6718,6 +6718,27 @@ exports.Formats = [
 		column: 3,
 	},
 	{
+		name: "[Gen 7] Aggression Passion",
+		desc: ["&bullet; Status moves become 60 BP moves of the [Undecided] category."],
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
+		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
+		onModifyMove: function (move, pokemon) {
+		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa) {
+		move.category = 'Physical';
+		move.basePower = 60;
+		}
+			else if (move.category === 'Status' && pokemon.stats.spa > pokemon.stats.atk) {
+		move.category = 'Special';
+		move.basePower = 60;
+		}
+			else if (move.category === 'Status' && pokemon.stats.spa = pokemon.stats.atk) {
+		move.category = 'Physical';
+		move.basePower = 60;
+		}
+	},
+	},
+	{
 		name: "[Gen 7] Test Format",
 		desc: ["This format is for testing stuff."],
 		ruleset: ["[Gen 7] OU"],
