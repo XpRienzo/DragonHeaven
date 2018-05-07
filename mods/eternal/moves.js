@@ -851,10 +851,7 @@ exports.BattleMovedex = {
 					return;
 				}
 				if (!target.fainted) {
-					target.setBoost({
-						def: 1,
-						spd: 1
-					});
+					this.boost({def: 1, spd: 1});
 				}
 				if (!positions.some(affected => affected === true)) {
 					target.side.removeSideCondition('paragongift');
