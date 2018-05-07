@@ -3775,10 +3775,8 @@ exports.BattleMovedex = {
 				  this.heal(source.maxhp / 4, source, source);
 		  }
 			  else if (source.hasMove('willowisp')) {
-				  target.trySetStatus('brn', source);
-				  if (target.setStatus('brn', source)) {
+				  target.trySetStatus('brn', source); return;
 				  this.heal(source.maxhp / 4, source, source);
-				  }
 		  }
 		},
         secondary: false,
