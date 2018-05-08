@@ -714,16 +714,19 @@ exports.BattleAbilities = {
 		shortDesc: "30% chance to paralyze the opponent each turn if Hail is active.",
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
-		onResidual: function(damage, target, source, effect) {
-			if (this.random(10) < 3) {
-				source.trySetStatus('par', target, effect);
+		onResidual: function(pokemon, effect) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				if (this.random(10) < 3) {
+				pokemon.trySetStatus('par', target, effect);
+				}
 			}
 		},
 		onImmunity: function(type, pokemon) {
 			if (type === 'hail') return false;
 		},
 		id: "staticstorm",
-		name: "Static storm",
+		name: "Static Storm",
 	},
 	"dreadedflames": {
 		shortDesc: "Gains a 1.5x boost to fire moves on the turn of entry, and lowers opponent's defence on entry.",
