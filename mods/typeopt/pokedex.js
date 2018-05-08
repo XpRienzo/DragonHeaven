@@ -1038,7 +1038,6 @@ types: ["Grass", "Dragon"],
 baseStats: {hp: 120, atk: 70, def: 120, spa: 90, spd: 120, spe: 50},
 abilities: {0: "Contrary", 1: "Bulletproof", H: "Poison Heal"},
 },
-// Break
 jynx: {
 inherit: true,
 types: ["Ghost", "Ice"],
