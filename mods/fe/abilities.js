@@ -425,7 +425,7 @@ exports.BattleAbilities = {
 			}
 		},
 		onTryHit: function(pokemon, target, move) {
-			if (move.id === 'captivate' || move.id === 'taunt' || move.type === 'Electric' || move.type === 'attract') {
+			if (move.id === 'captivate' || move.id === 'taunt' || move.type === 'Electric' || move.id === 'attract') {
 				this.add('-immune', pokemon, '[msg]', '[from] ability: Oblivious Absorb');
 				this.heal(pokemon.maxhp / 8);
 				return null;
