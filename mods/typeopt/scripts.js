@@ -38,9 +38,9 @@ init: function () {
 	this.modData('Learnsets', 'gallade').learnset.machpunch = ['6L1'];
 	this.modData('Learnsets', 'gallade').learnset.sacredsword = ['6L1'];
 	
-	this.modData('Learnsets', 'parsect').learnset.strengthsap = ['6L1'];
-	this.modData('Learnsets', 'parsect').learnset.hornleech = ['6L1'];
-	this.modData('Learnsets', 'parsect').learnset.drainpunch = ['6L1'];
+	this.modData('Learnsets', 'parasect').learnset.strengthsap = ['6L1'];
+	this.modData('Learnsets', 'parasect').learnset.hornleech = ['6L1'];
+	this.modData('Learnsets', 'parasect').learnset.drainpunch = ['6L1'];
 	
 	this.modData('Learnsets', 'golisopod').learnset.spiritshackle = ['6L1'];
 	this.modData('Learnsets', 'golisopod').learnset.stickyweb = ['6L1'];
