@@ -6723,9 +6723,7 @@ exports.Formats = [
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
-		onModifyMove: function (move, pokemon, boosts) {
-		let changeo = boosts;
-		changeo.replace("boosts", "selfBoost");
+		onModifyMove: function (move, pokemon) {
 		if (move.category === 'Status' && move.target === 'self') {
 			move.target = 'normal';
 		}
