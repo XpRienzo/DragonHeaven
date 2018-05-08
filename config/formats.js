@@ -6728,11 +6728,11 @@ exports.Formats = [
 		if (move.category === 'Status' && move.target === 'self') {
 			move.target = 'normal';
 		}
-		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa && move.target === 'self') {
+		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa) {
 		move.category = 'Physical';
 		move.basePower = 80;
 		}
-		else if (move.category === 'Status' && pokemon.stats.spa > pokemon.stats.atk && move.target === 'self') {
+		else if (move.category === 'Status' && pokemon.stats.spa > pokemon.stats.atk) {
 		move.category = 'Special';
 		move.basePower = 80;
 		}
