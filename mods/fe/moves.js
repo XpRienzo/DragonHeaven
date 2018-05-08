@@ -1,6 +1,37 @@
 'use strict';
 
 exports.BattleMovedex = {
+	"teraarmor": {
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "Causes the target's Ability to be rendered ineffective as long as it remains active. If the target uses Baton Pass, the replacement will remain under this effect. Fails if the target's Ability is Multitype or Stance Change.",
+		shortDesc: "Nullifies the target's Ability.",
+		id: "teraarmor",
+		name: "Tera Armor",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
+		volatileStatus: 'teraarmor',
+		onTryHit: function (pokemon) {
+			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange'];
+			if (bannedAbilities.includes(pokemon.ability)) {
+				return false;
+			}
+		},
+		effect: {
+			duration: 1,
+			onStart: function (pokemon) {
+				this.add('-endability', pokemon);
+				this.singleEvent('End', this.getAbility(pokemon.ability), pokemon.abilityData, pokemon, pokemon, 'teraarmor');
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Poison",
+		zMoveBoost: {spe: 1},
+		contestType: "Tough",
+	},
 		"solarbeam": {
 		num: 76,
 		accuracy: 100,
