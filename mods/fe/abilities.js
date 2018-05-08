@@ -3470,31 +3470,19 @@ exports.BattleAbilities = {
 		name: "Sandmist Surge",
 	},
 	"compactboost": {
-		shortDesc: "Boosts Defense by two stages + highest non-hp non-def stat by one stage upon KOing a foe.",
-		onSourceFaint: function(target, source, effect) {
+		desc: "Upon knocking out a foe, boost Defense by two stages and highest non-Hp non-Defense stat by one stage.",
+		shortDesc: "If it lands a KO, +2 to Defense and +1 to other most proficient stat.",
+		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
 				let stat = 'atk';
 				let bestStat = 0;
-				let secondBest = 'spa';
 				for (let i in source.stats) {
-					if (source.stats[i] > bestStat) {
+					if (source.stats[i] > bestStat && source.stats[i] !== source.getStat('def', true, true)) {
 						stat = i;
 						bestStat = source.stats[i];
-						secondBest = source.stats > bestStat;
 					}
 				}
-				if (stat !== 'def') {
-					this.boost({
-						[stat]: 1
-					}, source);
-				} else if (stat === 'def') {
-					this.boost({
-						[secondBest]: 1
-					}, source);
-				}
-				this.boost({
-					def: 2
-				}, source);
+				this.boost({[stat]: 1, def: 2}, source);
 			}
 		},
 		id: "compactboost",
@@ -7048,7 +7036,7 @@ exports.BattleAbilities = {
 			}
 		},
 		onAfterDamage: function (damage, target, source, move) {
-			if (move && move.flags['contact'] && !source.status && source.runStatusImmunity('powder') && (damage + source.hp >= source.maxhp)) {
+			if (move && move.flags['contact'] && !source.status && source.runStatusImmunity('powder') && (damage + target.hp >= target.maxhp)) {
 				let r = this.random(30);
 				if (r < 11) {
 					source.setStatus('slp', target);
@@ -7213,7 +7201,7 @@ exports.BattleAbilities = {
 	"blazingcontrary": {
 		shortDesc: "Inverts stat changes that happen to the user, but only if the Pokémon's HP is above 1/3 of it's HP.",
 		onBoost: function (boost, target, source, effect) {
-			if ((effect && effect.id === 'zpower') || target.hp > target.maxhp / 3) return;
+			if ((effect && effect.id === 'zpower') || target.hp <= target.maxhp / 3) return;
 			for (let i in boost) {
 				// @ts-ignore
 				boost[i] *= -1;
@@ -7669,7 +7657,8 @@ exports.BattleAbilities = {
 		name: "Blessed Protection",
 	},
 	"gutsybeast": {
-		desc: "If this Pokemon has a major status condition, its most proficient stat is multiplied by 1.5; burn's physical damage halving is ignored if highest stat is Attack, and paralysis's speed halving is ignored if highest stat is Speed..",
+
+		desc: "If this Pokemon has a major status condition, its most proficient stat is multiplied by 1.5; burn's physical damage halving is ignored if highest stat is Attack, and paralysis's speed halving is ignored if highest stat is Speed.",
 		shortDesc: "If this Pokemon is statused, its highest stat is 1.5x; ignores status halving this stat.",
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, pokemon) {
@@ -7681,8 +7670,12 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (pokemon.status && stat === 'atk') {
+			if (pokemon.status && stat === 'atk') {     
+                              if (pokemon.status === 'brn'){
+                                return this.chainModify(3);
+                              } else {
 				return this.chainModify(1.5);
+                              }
 			}
 		},
 		onModifyDefPriority: 6,
@@ -7736,11 +7729,202 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (pokemon.status) {
+                              if (pokemon.status === 'par'){
+                                return this.chainModify(3);
+                              } else {
 				return this.chainModify(1.5);
-			}
+                              }
 		},
 		id: "gutsybeast",
 		name: "Gutsy Beast",
+	},
+	"auraoffailure": {
+		shortDesc: "Halves Attack and Special Attack of all Pokemon on the field at 50% max HP or less.",
+		id: "auraoffailure",
+		name: "Aura of Failure",
+		onAnyModifyDamage: function (damage, source, target, move) {
+			if (this.effectData.target.hp*2 <= this.effectData.target.maxhp) {
+				this.debug('Aura of Failure');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	"slownsteady": {
+		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if this.willMove(target) return this.chainModify(0.5); 
+		},
+		id: "slownsteady",
+		name: "Slow 'n' Steady",
+	},
+	"clearpouch": {
+		desc: "When this Pokemon consumes a Berry, it regains 33% of its maximum HP and any negative stat changes are removed.",
+		shortDesc: "If this Pokemon eats a Berry, it restores 1/3 of its max HP and clears stat drops.",
+		onEatItem: function (item, pokemon) {
+			this.heal(pokemon.maxhp / 3);
+				for (let i in pokemon.boosts) {
+                                  if (pokemon.boosts[i] < 0){
+				    delete pokemon.boosts[i];
+                                  }
+			        }
+		},
+		id: "clearpouch",
+		name: "Clear Pouch",
+	},
+	"chainheal": {
+		shortDesc: "Upon switching out, this Pokemon is healed for 1/3 of its max HP. Its replacement's ability is then replaced with Chain Heal.",
+		onSwitchOut: function (pokemon) {
+			pokemon.heal(pokemon.maxhp / 3);
+		},
+		onSwitchInPriority: 1,
+		onSwitchIn: function (target) {
+			if (!target.fainted && target.position === this.effectData.position) {
+                              //Add more abilities that are incompatible
+	                      let bannedAbilities = ['battlebond', 'chainheal', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'truant'];
+			      if (bannedAbilities.includes(target.ability)) {
+				      return;
+			      }
+                              let oldAbility = target.setAbility('chainheal')
+			      if (oldAbility) {
+				this.add('-ability', target, 'Chain Heal', '[from] ability: Chain Heal');
+				return;
+			}
+
+			}
+		},
+		id: "chainheal",
+		name: "Chain Heal",
+	},
+	"360noscope": {
+		shortDesc: "All of this Pokémon's attacking moves strike for a critical hit. Crit power is 2*.",
+		onModifyCritRatio: function (critRatio, source, target) {
+			return 5;
+		},
+  	    onModifyDamage: function (damage, source, target, move) {
+			if (move.crit) {
+				this.debug('Sniper boost');
+				return this.chainModify(1.3333);
+			}
+		},
+		id: "360noscope",
+		name: "360 No-Scope",
+	},
+	"agelessblizzard": {
+		desc: "On switchin, Hail begins and and cannot be removed (even by Primordial Sea/Desolate Land/Delta Stream/Cloud Nine/Air Lock and the like) unless this Ability is removed or this Pokémon switches out.",
+		shortDesc: "On switch-in, hail starts and only ends when this Ability is not active in battle.",
+                //TODO: Prevent Air Lock, Cloud Nine, etc. from working. Dunno if Atmospheric Perversion affects this hail so ;d
+		onStart: function (source) {
+                        //Code to make it last a very long time will be under Hail's code.
+			this.setWeather('hail');
+		},
+		onAnySetWeather: function (target, source, weather) {
+			if (this.getWeather().id === 'hail') return false;
+		},
+		onEnd: function (pokemon) {
+			if (this.weatherData.source !== pokemon) return;
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					if (target === pokemon) continue;
+					if (target && target.hp && target.hasAbility('agelessblizzard')) {
+						this.weatherData.source = target;
+						return;
+					}
+				}
+			}
+			this.clearWeather();
+		},
+		id: "agelessblizzard",
+		name: "Ageless Blizzard",
+	},
+	"deceiver": {
+		desc: "Inverts stat changes on user's SpA. Additionally boosts SpA whenever it claims a kill (doesn't take invertion in account here, just like Z-moves).",
+      shortDesc: "Inverts SpA changes. Boosts this stat if it lands a KO.",
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			if (boost.spa && boost.spa < 0) {
+				boost.spa *= -1;
+			}
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({spa: -1}, source);
+			}
+		},
+		id: "deceiver",
+		name: "Deceiver",
+	},
+	"stanceshield": {
+		desc: "Whenever this Pokémon uses King's Shield or any move that could potentially induce a status condition it switches to its Meteor Form, when this Pokémon uses any attacking move, it switches to its blade form.",
+		shortDesc: "If Aegislash, changes Forme to Blade before attacks and Shield before King's Shield.",
+		onBeforeMovePriority: 0.5,
+		onBeforeMove: function (attacker, defender, move) {
+			if (attacker.template.baseSpecies !== 'Minislash' || attacker.transformed) return;
+                        //TODO: Have Minislash change forms if it uses a status move that can inflict status.
+			if (move.category === 'Status' && move.id !== 'kingsshield') return;
+			let targetSpecies = (move.id === 'kingsshield' ? 'Minislash' : 'Minislash-Blade');
+			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
+				this.add('-formechange', attacker, targetSpecies, '[from] ability: Stance Shield');
+			}
+		},
+		id: "stanceshield",
+		name: "Stance Shield",
+	},
+	"staredown": {
+		desc: "The user cannot use a move every other turn. However, if the user stays in, the opponent's Attack stat is lowered by one stage at the beginning of the turn.",
+		shortDesc: "This Pokemon skips every other turn instead of using a move, but lowers opponents' Attack in doing so.",
+		onBeforeMovePriority: 9,
+		onBeforeMove: function (pokemon, target, move) {
+			if (pokemon.removeVolatile('staredown')) {
+				this.add('cant', pokemon, 'ability: Stare Down');
+			        let activated = false;
+			        for (const target of pokemon.side.foe.active) {
+				        if (!target || !this.isAdjacent(target, pokemon)) continue;
+				        if (!activated) {
+				        	this.add('-ability', pokemon, 'Intimidate', 'boost');
+				        	activated = true;
+			        	}
+				        if (target.volatiles['substitute']) {
+				        	this.add('-immune', target, '[msg]');
+				        } else {
+				        	this.boost({atk: -1}, target, pokemon);
+				        }
+        			}
+		       		return false;
+		       	}
+		       	pokemon.addVolatile('staredown');
+		},
+		effect: {
+			duration: 2,
+		},
+		id: "staredown",
+		name: "Stare Down",
+	},
+	"dirtnap": {
+		shortDesc: "The Evasion stats of the opponents are ignored.",
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			move.accuracy = true;
+		},
+		id: "dirtnap",
+		name: "Dirt Nap",
+	},
+	"quicktrap": {
+		desc: "Prevents adjacent opposing Pokemon from choosing to switch out unless they are immune to trapping or are Electric-type.",
+		shortDesc: "Prevents adjacent foes from choosing to switch unless they are Electric-type.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (!this.isAdjacent(pokemon, this.effectData.target)) return;
+			if (!pokemon.hasType('Electric')) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if (!this.isAdjacent(pokemon, source)) return;
+			if (!pokemon.hasType('Electric')) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		id: "quicktrap",
+		name: "Quick Trap",
 	},
 };
