@@ -6738,7 +6738,7 @@ exports.Formats = [
 		}
 	},
 		onAfterHit: function (move) {
-			if (move.category === 'Status' && move.boost) {
+			if (move.boost) {
 				move.stealBoosts = true;
 			}
 		},
