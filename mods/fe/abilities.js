@@ -7932,7 +7932,7 @@ exports.BattleAbilities = {
 	"teraarmor": {
         shortDesc: "Moves targeting this Pokémon are unaffected by the Ability of the move user.",
         onFoeTryHit: function(pokemon, target) {
-			  if (target === pokemon.side.active)
+			  if (target === pokemon.side.active) {
                 pokemon.addVolatile('gastroacid');
 		  	}
         },
