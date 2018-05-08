@@ -80,8 +80,6 @@ init: function () {
 	this.modData('Learnsets', 'salazzle').learnset.aurasphere = ['7L1'];
 	this.modData('Learnsets', 'salazzle').learnset.calmmind = ['7L1'];
 	
-	this.modData('Learnsets', 'rotomfan').learnset.moonblast = ['7L1'];
-	
 	this.modData('Learnsets', 'dunsparce').learnset.dragontail = ['7L1'];
 	this.modData('Learnsets', 'dunsparce').learnset.dragondance = ['7L1'];
 	this.modData('Learnsets', 'dunsparce').learnset.electricterrain = ['7L1'];
