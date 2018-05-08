@@ -296,22 +296,19 @@ exports.BattleAbilities = {
 	},
 	"intimidatingscales": {
 		shortDesc: "Gains 1.5 defense when afflicted with status, and lowers the opponent's attack on switch in.",
-		onStart: function(pokemon) {
-			var foeactive = pokemon.side.foe.active;
-			var activated = false;
-			for (var i = 0; i < foeactive.length; i++) {
-				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
+		onStart: function (pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
 				if (!activated) {
-					this.add('-ability', pokemon, 'Intimidate');
+					this.add('-ability', pokemon, 'Intimidating Scales', 'boost');
 					activated = true;
 				}
-			}
-			if (foeactive[i].volatiles['substitute']) {
-				this.add('-activate', foeactive[i], 'Substitute', 'ability: Intimidating Scales', '[of] ' + pokemon);
-			} else {
-				this.boost({
-					atk: -1
-				}, foeactive[i], pokemon);
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({atk: -1}, target, pokemon);
+				}
 			}
 		},
 		onModifyDefPriority: 6,
@@ -586,7 +583,7 @@ exports.BattleAbilities = {
 					this.add('-immune', target, '[msg]');
 				} else {
 					this.boost({
-						atk: -1
+						def: -1
 					}, target, pokemon);
 				}
 			}
