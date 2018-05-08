@@ -89,3 +89,4 @@ init: function () {
 	this.modData('Learnsets', 'probopass').learnset.spikes = ['7L1'];
 	},
 };
+exports.BattleScripts = BattleScripts;
