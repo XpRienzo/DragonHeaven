@@ -6725,24 +6725,17 @@ exports.Formats = [
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
 		
 		onModifyMove: function (move, pokemon) {
-		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa) {
+		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa && move.target === 'self') {
 		move.category = 'Physical';
-		move.basePower = 60;
+		move.basePower = 80;
+		move.target = 'normal';
 		}
-		else if (move.category === 'Status' && pokemon.stats.spa > pokemon.stats.atk) {
+		else if (move.category === 'Status' && pokemon.stats.spa > pokemon.stats.atk && move.target === 'self') {
 		move.category = 'Special';
-		move.basePower = 60;
+		move.basePower = 80;
+		move.target = 'normal';
 		}
 	},
-		onModifyPriority: function(priority, pokemon, target, move) {
-			if (move.basePower <= 60) return priority + 1;
-		},
-		onBasePowerPriority: 8,
-		onBasePower: function (basePower, attacker, defender, move) {
-			if (basePower <= 60) {
-				return this.chainModify(1.5);
-			}
-		},
 },
 	{
 		name: "[Gen 7] Test Format",
