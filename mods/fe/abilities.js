@@ -796,13 +796,13 @@ exports.BattleAbilities = {
 			}
 		},
 		onUpdate: function(pokemon) {
-			if (pokemon.hp === pokemon.maxhp && pokemon.status === 'brn' || pokemon.status === 'frz' || pokemon.status === 'psn' || pokemon.status === 'tox' || pokemon.status === 'par') {
+			if (pokemon.hp >= pokemon.maxhp && pokemon.status === 'brn' || pokemon.status === 'frz' || pokemon.status === 'psn' || pokemon.status === 'tox' || pokemon.status === 'par') {
 				this.add('-activate', pokemon, 'ability: Pristine');
 				pokemon.cureStatus();
 			}
 		},
 		onImmunity: function(type, pokemon) {
-			if (pokemon.hp === pokemon.maxhp && pokemon.status === 'brn' || pokemon.status === 'frz' || pokemon.status === 'psn' || pokemon.status === 'tox' || pokemon.status === 'par') return false;
+			if (pokemon.hp >= pokemon.maxhp && pokemon.status === 'brn' || pokemon.status === 'frz' || pokemon.status === 'psn' || pokemon.status === 'tox' || pokemon.status === 'par') return false;
 		},
 		id: "pristine",
 		name: "Pristine",
