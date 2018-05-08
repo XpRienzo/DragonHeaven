@@ -14562,6 +14562,7 @@ auroritarmega: {
 		abilities: {
 			0: "What Does This Do?"
 		},
+		dexentry: "This fusion seems to be made of thousands of cells of other pokémon. It is a higly mutable and unstable species. A notable ability it has is being able to utilize every Mega Stone, resulting in a lot of different forms it can transform into. This is most likely due to the aforementioned different cells that form it. A single cell is known as a Rabbit Core. It is speculated that the Rabbit Cores can absorb DNA from multiple Pokémon before uniting into Bunny, which would then explain species-specific items being abe to interact with Bunny. Not much research has been done, however the species with the closest to a pure DNA seems to share some relation with Buneary.",
 	},
 	kingrat: {
 		num: 7500459,
