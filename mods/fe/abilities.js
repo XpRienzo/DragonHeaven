@@ -6579,13 +6579,11 @@ exports.BattleAbilities = {
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
 			if (basePower <= 60) {
-				this.debug('Technician boost');
-             move.techboost = true;
 				return this.chainModify(1.5);
 			}
 		},
 		onModifyMove: function(move) {
-			if (move.target && !move.nonGhostTarget && (move.target === "normal" || move.target === "any" || move.target === "randomNormal" || move.target === "allAdjacent" || move.target === "allAdjacentFoes") && move.techboost) {
+			if (move.target && !move.nonGhostTarget && (move.target === "normal" || move.target === "any" || move.target === "randomNormal" || move.target === "allAdjacent" || move.target === "allAdjacentFoes") && move.basePower <= 60) {
 				move.selfSwitch = true;
 			}
 		},
