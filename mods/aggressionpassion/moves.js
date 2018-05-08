@@ -564,7 +564,484 @@ let BattleMovedex = {
 		zMoveBoost: {evasion: 1},
 		contestType: "Clever",
 	},
-	
+	"celebrate": {
+		num: 606,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "It is your birthday.",
+		shortDesc: "No competitive use. Or any use.",
+		id: "celebrate",
+		name: "Celebrate",
+		pp: 40,
+		priority: 0,
+		flags: {},
+		self: {
+		onTryHit: function (target, source) {
+			this.add('-activate', target, 'move: Celebrate');
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveBoost: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1},
+		contestType: "Cute",
+	},
+	"charge": {
+		num: 268,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Special Defense by 1 stage. If the user uses an Electric-type attack on the next turn, its power will be doubled.",
+		shortDesc: "Boosts next Electric move and user's Sp. Def by 1.",
+		id: "charge",
+		name: "Charge",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		self: {
+			volatileStatus: 'charge',
+		},
+		onHit: function (pokemon) {
+			this.add('-activate', pokemon, 'move: Charge');
+		},
+		effect: {
+			duration: 2,
+			onRestart: function (pokemon) {
+				this.effectData.duration = 2;
+			},
+			onBasePowerPriority: 3,
+			onBasePower: function (basePower, attacker, defender, move) {
+				if (move.type === 'Electric') {
+					this.debug('charge boost');
+					return this.chainModify(2);
+				}
+			},
+		},
+		selfBoost: {
+		boosts: {
+			spd: 1,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Electric",
+		zMoveBoost: {spd: 1},
+		contestType: "Clever",
+	},
+	"coil": {
+		num: 489,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Attack, Defense, and accuracy by 1 stage.",
+		shortDesc: "Raises user's Attack, Defense, and accuracy by 1.",
+		id: "coil",
+		isViable: true,
+		name: "Coil",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		selfBoost: {
+		boosts: {
+			atk: 1,
+			def: 1,
+			accuracy: 1,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Poison",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Tough",
+	},
+	"conversion": {
+		num: 160,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user's type changes to match the original type of the move in its first move slot. Fails if the user cannot change its type, or if the type is one of the user's current types.",
+		shortDesc: "Changes user's type to match its first move.",
+		id: "conversion",
+		name: "Conversion",
+		pp: 30,
+		priority: 0,
+		flags: {snatch: 1},
+		self: {
+		onHit: function (target) {
+			let type = this.getMove(target.moveSlots[0].id).type;
+			if (target.hasType(type) || !target.setType(type)) return false;
+			this.add('-start', target, 'typechange', type);
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveBoost: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1},
+		contestType: "Beautiful",
+	},
+	"copycat": {
+		num: 383,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user uses the last move used by any Pokemon, including itself. Fails if no move has been used, or if the last move used was Assist, Baneful Bunker, Belch, Bestow, Chatter, Circle Throw, Copycat, Counter, Covet, Destiny Bond, Detect, Dragon Tail, Endure, Feint, Focus Punch, Follow Me, Helping Hand, Hold Hands, King's Shield, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Protect, Rage Powder, Roar, Sketch, Sleep Talk, Snatch, Spiky Shield, Struggle, Switcheroo, Thief, Transform, Trick, or Whirlwind.",
+		shortDesc: "Uses the last move used in the battle.",
+		id: "copycat",
+		name: "Copycat",
+		pp: 20,
+		priority: 0,
+		flags: {},
+		self: {
+		onHit: function (pokemon) {
+			let noCopycat = ['assist', 'banefulbunker', 'bestow', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dragontail', 'endure', 'feint', 'focuspunch', 'followme', 'helpinghand', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'protect', 'ragepowder', 'roar', 'sketch', 'sleeptalk', 'snatch', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind'];
+			if (!this.lastMove || noCopycat.includes(this.lastMove.id) || this.lastMove.isZ) {
+				return false;
+			}
+			this.useMove(this.lastMove.id, pokemon);
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveBoost: {accuracy: 1},
+		contestType: "Cute",
+	},
+	"cosmicpower": {
+		num: 322,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Defense and Special Defense by 1 stage.",
+		shortDesc: "Raises the user's Defense and Sp. Def by 1.",
+		id: "cosmicpower",
+		name: "Cosmic Power",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		selfBoost: {
+		boosts: {
+			def: 1,
+			spd: 1,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Psychic",
+		zMoveBoost: {spd: 1},
+		contestType: "Beautiful",
+	},
+	"cottonguard": {
+		num: 538,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Defense by 3 stages.",
+		shortDesc: "Raises the user's Defense by 3.",
+		id: "cottonguard",
+		isViable: true,
+		name: "Cotton Guard",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		selfBoost: {
+		boosts: {
+			def: 3,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Grass",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Cute",
+	},
+	"craftyshield": {
+		num: 578,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user and its party members are protected from non-damaging attacks made by other Pokemon, including allies, during this turn. Fails if the user moves last this turn or if this move is already in effect for the user's side.",
+		shortDesc: "Protects allies from Status moves this turn.",
+		id: "craftyshield",
+		name: "Crafty Shield",
+		pp: 10,
+		priority: 3,
+		flags: {},
+		self: {
+			sideCondition: 'craftyshield',
+		},
+		onTryHitSide: function (side, source) {
+			return !!this.willAct();
+		},
+		effect: {
+			duration: 1,
+			onStart: function (target, source) {
+				this.add('-singleturn', source, 'Crafty Shield');
+			},
+			onTryHitPriority: 3,
+			onTryHit: function (target, source, move) {
+				if (move && (move.target === 'self' || move.category !== 'Status')) return;
+				this.add('-activate', target, 'move: Crafty Shield');
+				source.moveThisTurnResult = true;
+				return null;
+			},
+		},
+		secondary: false,
+		target: "allySide",
+		type: "Fairy",
+		zMoveBoost: {spd: 1},
+		contestType: "Clever",
+	},
+	"defendorder": {
+		num: 455,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Defense and Special Defense by 1 stage.",
+		shortDesc: "Raises the user's Defense and Sp. Def by 1.",
+		id: "defendorder",
+		isViable: true,
+		name: "Defend Order",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		selfBoost: {
+		boosts: {
+			def: 1,
+			spd: 1,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Bug",
+		zMoveBoost: {def: 1},
+		contestType: "Clever",
+	},
+	"defensecurl": {
+		num: 111,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Defense by 1 stage. As long as the user remains active, the power of the user's Ice Ball and Rollout will be doubled (this effect is not stackable).",
+		shortDesc: "Raises the user's Defense by 1.",
+		id: "defensecurl",
+		name: "Defense Curl",
+		pp: 40,
+		priority: 0,
+		flags: {snatch: 1},
+		selfBoost: {
+		boosts: {
+			def: 1,
+		},
+		},
+		self: {
+		volatileStatus: 'defensecurl',
+		},
+		effect: {
+			noCopy: true,
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveBoost: {accuracy: 1},
+		contestType: "Cute",
+	},
+	"destinybond": {
+		num: 194,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Until the user's next turn, if an opposing Pokemon's attack knocks the user out, that Pokemon faints as well, unless the attack was Doom Desire or Future Sight. Fails if the user used this move successfully last turn.",
+		shortDesc: "If an opponent knocks out the user, it also faints.",
+		id: "destinybond",
+		isViable: true,
+		name: "Destiny Bond",
+		pp: 5,
+		priority: 0,
+		flags: {authentic: 1},
+		self: {
+			volatileStatus: 'destinybond',
+		},
+		onPrepareHit: function (pokemon) {
+			return !pokemon.removeVolatile('destinybond');
+		},
+		effect: {
+			onStart: function (pokemon) {
+				this.add('-singlemove', pokemon, 'Destiny Bond');
+			},
+			onFaint: function (target, source, effect) {
+				if (!source || !effect || target.side === source.side) return;
+				if (effect.effectType === 'Move' && !effect.isFutureMove) {
+					this.add('-activate', target, 'move: Destiny Bond');
+					source.faint();
+				}
+			},
+			onBeforeMovePriority: -1,
+			onBeforeMove: function (pokemon, target, move) {
+				if (move.id === 'destinybond') return;
+				this.debug('removing Destiny Bond before attack');
+				pokemon.removeVolatile('destinybond');
+			},
+			onMoveAborted: function (pokemon, target, move) {
+				pokemon.removeVolatile('destinybond');
+			},
+			onBeforeSwitchOutPriority: 1,
+			onBeforeSwitchOut: function (pokemon) {
+				pokemon.removeVolatile('destinybond');
+			},
+		},
+		secondary: false,
+		target: "self",
+		type: "Ghost",
+		zMoveEffect: 'redirect',
+		contestType: "Clever",
+	},
+	"detect": {
+		num: 197,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user is protected from most attacks made by other Pokemon during this turn. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails or if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard. Fails if the user moves last this turn.",
+		shortDesc: "Prevents moves from affecting the user this turn.",
+		id: "detect",
+		isViable: true,
+		name: "Detect",
+		pp: 5,
+		priority: 4,
+		flags: {},
+		stallingMove: true,
+		self: {
+		volatileStatus: 'protect',
+		onPrepareHit: function (pokemon) {
+			return !!this.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit: function (pokemon) {
+			pokemon.addVolatile('stall');
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Fighting",
+		zMoveBoost: {evasion: 1},
+		contestType: "Cool",
+	},
+	"doubleteam": {
+		num: 104,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's evasiveness by 1 stage.",
+		shortDesc: "Raises the user's evasiveness by 1.",
+		id: "doubleteam",
+		name: "Double Team",
+		pp: 15,
+		priority: 0,
+		flags: {snatch: 1},
+		selfBoost: {
+		boosts: {
+			evasion: 1,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Cool",
+	},
+	"dragondance": {
+		num: 349,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Attack and Speed by 1 stage.",
+		shortDesc: "Raises the user's Attack and Speed by 1.",
+		id: "dragondance",
+		isViable: true,
+		name: "Dragon Dance",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1, dance: 1},
+		selfBoost: {
+		boosts: {
+			atk: 1,
+			spe: 1,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Dragon",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Cool",
+	},
+	"endure": {
+		num: 203,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user will survive attacks made by other Pokemon during this turn with at least 1 HP. This move has a 1/X chance of being successful, where X starts at 1 and triples each time this move is successfully used. X resets to 1 if this move fails or if the user's last move used is not Baneful Bunker, Detect, Endure, King's Shield, Protect, Quick Guard, Spiky Shield, or Wide Guard. Fails if the user moves last this turn.",
+		shortDesc: "The user survives the next hit with at least 1 HP.",
+		id: "endure",
+		name: "Endure",
+		pp: 10,
+		priority: 4,
+		flags: {},
+		stallingMove: true,
+		self: {
+			volatileStatus: 'endure',
+		},
+		onTryHit: function (pokemon) {
+			return this.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit: function (pokemon) {
+			pokemon.addVolatile('stall');
+		},
+		effect: {
+			duration: 1,
+			onStart: function (target) {
+				this.add('-singleturn', target, 'move: Endure');
+			},
+			onDamagePriority: -10,
+			onDamage: function (damage, target, source, effect) {
+				if (effect && effect.effectType === 'Move' && damage >= target.hp) {
+					this.add('-activate', target, 'move: Endure');
+					return target.hp - 1;
+				}
+			},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Tough",
+	},
+	"extremeevoboost": {
+		num: 702,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Attack, Defense, Special Attack, Special Defense, and Speed by 2 stages.",
+		shortDesc: "Raises user's Atk, Def, SpA, SpD, and Spe by 2.",
+		id: "extremeevoboost",
+		isViable: true,
+		name: "Extreme Evoboost",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		isZ: "eeviumz",
+		selfBoost: {
+		boosts: {
+			atk: 2,
+			def: 2,
+			spa: 2,
+			spd: 2,
+			spe: 2,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		contestType: "Beautiful",
+	},
 };
 	//TODO: 
 	// Suspect: Automize, 
