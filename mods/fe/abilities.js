@@ -424,16 +424,10 @@ exports.BattleAbilities = {
 				// Taunt's volatile already sends the -end message when removed
 			}
 		},
-		onImmunity: function(type, pokemon) {
-			if (type === 'attract') {
-				this.add('-immune', pokemon, '[msg]', '[from] ability: Oblivious');
-				return null;
-			}
-		},
 		onTryHit: function(pokemon, target, move) {
-			if (move.id === 'captivate' || move.id === 'taunt' || move.type === 'Electric') {
-				this.add('-immune', pokemon, '[msg]', '[from] ability: Oblivious');
-				this.heal(target.maxhp / 8);
+			if (move.id === 'captivate' || move.id === 'taunt' || move.type === 'Electric' || move.type === 'attract') {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Oblivious Absorb');
+				this.heal(pokemon.maxhp / 8);
 				return null;
 			}
 		},
