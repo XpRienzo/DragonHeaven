@@ -46,7 +46,7 @@ learnistor: function(target, room, user) {
 		let feDex = require('../mods/fe/pokedex.js').BattlePokedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(mon => {
-			buf += `${mon.species}: ${mon.dexentry}<br>`;
+			buf += `<strong>${mon.species}:</b> ${mon.dexentry}<br><br>`;
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
