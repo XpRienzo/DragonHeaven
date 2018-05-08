@@ -658,13 +658,6 @@ exports.BattleMovedex = {
 			heal: 1
 		},
 		noSketch: true,
-		drain: [1, 2],
-		onTry: function(pokemon) {
-			if (pokemon.template.name !== 'Magikarp') {
-				this.add('-fail', pokemon, 'move: Magikarp\'s Revenge');
-				return null;
-			}
-		},
 		self: {
 			onHit: function(source) {
 				this.setWeather('raindance');
@@ -2740,7 +2733,7 @@ exports.BattleMovedex = {
 			this.add('-anim', target, "Refresh", source);
 		},
 		secondary: false,
-		target: "normal",
+		target: "self",
 		type: "Water",
 		zMoveBoost: {
 			atk: 1
