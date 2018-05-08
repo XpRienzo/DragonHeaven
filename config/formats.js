@@ -6726,9 +6726,11 @@ exports.Formats = [
 		
 		onModifyMove: function (move, pokemon) {
 		if (move.category === 'Status' && move.target === 'self') {
+			move.target = 'normal';
+		}
+		if (move.category === 'Status') {
 		move.category = 'Physical';
 		move.basePower = 80;
-		move.target = 'normal';
 		}
 		else if (move.category === 'Status' && pokemon.set.shiny) {
 		move.category = 'Special';
