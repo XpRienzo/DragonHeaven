@@ -6724,8 +6724,11 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
 		onModifyMove: function (move, pokemon) {
-		if (move.category === 'Status' && move.target === 'self' || move.target === 'all' || move.target === 'allySide') {
+		if (move.category === 'Status' && move.target === 'self') {
 			move.target = 'normal';
+		}
+		else if (move.category === 'Status' && move.target === 'all' || move.target === 'allySide') {
+			move.target = 'allAdjacentFoes';
 		}
 		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa) {
 		move.category = 'Physical';
