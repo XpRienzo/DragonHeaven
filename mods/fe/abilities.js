@@ -1068,24 +1068,28 @@ exports.BattleAbilities = {
 		id: "speedbreak",
 		name: "Speed Break",
 	},
-	/*	"justicepower": {
-			shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move.",
+	"justicepower": {
+           desc: "When this Pokemon is hit by a dark type attack, its attack is raised by 1 stage, and that attack's PP is halved unless it is already at 1.",
+			shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move. That move's PP is then halved.",
+                        //TODO: Revise PP stuffs?
 			onAfterDamage: function(damage, target, source, effect) {
 				if (effect && effect.type === 'Dark') {
 					this.boost({
 						atk: 1
 					});
+					for (const moveSlot of source.moveSlots) {
+						if (moveSlot.id === source.lastMove.id) {
+							moveSlot.pp = (moveSlot.pp+1)/2;
+							this.add('-activate', source, 'ability: Justice Power', this.getMove(source.lastMove.id).name);
+						}
+					}
 				}
-			},
-			onDeductPP: function(damage, target, source, effect) {
-				if (effect && effect.type === 'Dark') return;
-				return 1;
 			},
 			id: "justicepower",
 			name: "Justice Power",
 			rating: 2,
 			num: 228
-		},*/
+		},
 	"cursedtrace": {
 		shortDesc: "Traces the foe's ability. The foe's ability now has no effect on the foe.",
 		onUpdate: function(pokemon) {
@@ -6687,6 +6691,10 @@ exports.BattleAbilities = {
 				return this.chainModify(1.5);
 			}
 		},
+		onEnd: function (pokemon) {
+                        //Find some way to remove it. Gastro Acid, Skill Swap...
+			pokemon.removeVolatile('embargo');
+		},
 		id: "carelessforce",
 		name: "Careless Force",
 	},
@@ -7941,5 +7949,104 @@ exports.BattleAbilities = {
         },
         id: "teraarmor",
         name: "Tera Armor",
+    },
+	"turbocurse": {
+        shortDesc: "Moves targeting this Pokémon are unaffected by the Ability of the move user.",
+        onFoeBeforeMove: function(pokemon, target) {
+			  let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+			  if (target !== pokemon) {
+                pokemon.addVolatile('teraarmor');
+			  }
+		  	}
+        },
+        id: "turbocurse",
+        name: "Turbo Curse",
+    },
+	"melodyoftheheart": {
+		shortDesc: "Recovers 33% of max HP upon switching out, or at the end of every turn in Hail. Takes no Hail damage.",
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'hail' || effect.id === 'solarsnow') {
+				this.heal(target.maxhp / 3);
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === ['hail', 'solarsnow']) return false;
+		},
+		onSwitchOut: function (pokemon) {
+			pokemon.heal(pokemon.maxhp / 3);
+		},
+		id: "melodyoftheheart",
+		name: "Melody of the Heart",
+	},
+	"amplify": {
+			shortDesc: "If hit by a Fire-type or Sound-based move, the Pokemon's own moves of that sort are powered up. Immune to both. ",
+          		onTryHit: function (target, source, move) {
+			if (target !== source && (move.type === 'Fire' || move.flags['sound'])) {
+				move.accuracy = true;
+				if (!target.addVolatile('amplify')) {
+					this.add('-immune', target, '[msg]', '[from] ability: Amplify');
+				}
+				return null;
+			}
+		},
+		onEnd: function (pokemon) {
+			pokemon.removeVolatile('amplify');
+		},
+		effect: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart: function (target) {
+				this.add('-start', target, 'ability: Amplify');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk: function (atk, attacker, defender, move) {
+				if (move.type === 'Fire' || move.flags['sound']) {
+					this.debug('Amplify boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA: function (atk, attacker, defender, move) {
+				if (move.type === 'Fire' || move.flags['sound']) {
+					this.debug('Amplify boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onEnd: function (target) {
+				this.add('-end', target, 'ability: Amplify', '[silent]');
+			},
+		},
+		id: "amplify",
+		name: "Amplify",
+		},
+	"beastroar": {
+        shortDesc: "Lowers the foe’s highest stat by 1 stage.",
+        onStart: function (pokemon) {
+            let activated = false;
+            for (const target of pokemon.side.foe.active) {
+                let stat = 'atk';
+                let bestStat = 0;
+                for (let i in target.stats) {
+                    if (target.stats[i] > bestStat) {
+                        stat = i;
+                        bestStat = target.stats[i];
+                    }
+                }
+                if (!target || !this.isAdjacent(target, pokemon)) continue;
+                if (!activated) {
+                   if(pokemon.ability === "beastroar") {
+ 							this.add('-ability', pokemon, 'Beast Roat', 'boost');
+							}
+                    activated = true;
+                }
+                if (target.volatiles['substitute']) {
+                    this.add('-immune', target, '[msg]');
+                } else {
+                    this.boost({[stat]: -1}, target, pokemon);
+                }
+            }
+        },
+        id: "beastroar",
+        name: "Beast Roar",
     },
 };
