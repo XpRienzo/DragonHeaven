@@ -1,6 +1,9 @@
 'use strict';
 
-exports.BattleScripts = {
+const CHOOSABLE_TARGETS = new Set(['normal', 'any', 'adjacentAlly', 'adjacentAllyOrSelf', 'adjacentFoe']);
+
+/**@type {BattleScriptsData} */
+let BattleScripts = {
 init: function () {
 
 	this.modData('Learnsets', 'vanilluxe').learnset.nastyplot = ['6L1'];
@@ -89,4 +92,5 @@ init: function () {
 	this.modData('Learnsets', 'probopass').learnset.spikes = ['7L1'];
 	},
 };
+
 exports.BattleScripts = BattleScripts;
