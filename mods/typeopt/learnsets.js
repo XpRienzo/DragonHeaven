@@ -4760,4 +4760,7 @@ lycanroc: {learnset: {
 		wringout: ["7L49", "6L49", "5L49", "4L44"],
 		zenheadbutt: ["7T", "6T", "5T", "4T"],
 	}},
+		rotomfan: {learnset: {
+		moonblast: ["7L1"],
+	}},
 };
