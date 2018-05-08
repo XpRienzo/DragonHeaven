@@ -7748,7 +7748,7 @@ exports.BattleAbilities = {
 		id: "auraoffailure",
 		name: "Aura of Failure",
 		onAnyModifyDamage: function (damage, source, target, move) {
-			if (this.effectData.target.hp*2 <= this.effectData.target.maxhp) {
+			if (this.effectData.target.hp <= this.effectData.target.maxhp / 2) {
 				this.debug('Aura of Failure');
 				return this.chainModify(0.5);
 			}
