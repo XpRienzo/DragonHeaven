@@ -51,7 +51,7 @@ learnistor: function(target, room, user) {
 			if (mon.species === fusionmon) {
 			buf += `<strong>${mon.species}:</strong> ${mon.dexentry}<br><br>`;
 			}
-			else if (fusionmon = "") {
+			else if (fusionmon === "") {
 			buf += `<strong>${mon.species}:</strong> ${mon.dexentry}<br><br>`;
 			}
 		});
