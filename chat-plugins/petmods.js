@@ -40,6 +40,17 @@ learnistor: function(target, room, user) {
 		this.sendReplyBox(`${buf}</div>`);
 	},
 	felisthelp: ["/felist - Shows the list of Pokemon in Fusion Evolution."],
+	fedex: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
+		let feDex = require('../mods/fe/pokedex.js').BattlePokedex;
+		if (!feDex) return this.errorReply("Error Fetching FE Data.");
+		Object.values(feDex).forEach(mon => {
+			buf += `${mon.species}: ${mon.dexentry}<br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
+	fedexhelp: ["/fedex - Shows the dex entries of Pokemon in Fusion Evolution."],
 	nerfmons: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Nerfed Pokemon</h2></center>`;
@@ -102,6 +113,16 @@ learnistor: function(target, room, user) {
 		if (!eternalDex) return this.errorReply("Error Fetching Eternal Data.");
 		Object.values(eternalDex).forEach(move => {
 			buf += `<button name="send" value="/dt ${move.id}, Eternal" style="background:none;border:none;">${move.id}</button><br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
+	fusionmoves: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Pokemon Moves</h2></center>`;
+		let eternalDex = require('../mods/fusion/moves.js').BattleMovedex;
+		if (!eternalDex) return this.errorReply("Error Fetching Fusion Data.");
+		Object.values(eternalDex).forEach(move => {
+			buf += `<button name="send" value="/dt ${move.id}, Fusion" style="background:none;border:none;">${move.id}</button><br>`;
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
