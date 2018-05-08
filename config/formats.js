@@ -6720,7 +6720,7 @@ exports.Formats = [
 	{
 		name: "[Gen 7] Aggression Passion",
 		desc: ["&bullet; Status moves become 80 BP moves of the [Undecided] category."],
-		mod: 'gen7',
+		mod: 'aggressionpassion',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
 		onModifyMove: function (move, pokemon) {
