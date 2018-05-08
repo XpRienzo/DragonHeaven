@@ -7935,7 +7935,7 @@ exports.BattleAbilities = {
            // for (const target of pokemon.side.foe.active) {
                // if (!target || target.fainted) continue;
                 pokemon.addVolatile('gastroacid');
-            }
+            //}
         },
         id: "teraarmor",
         name: "Tera Armor",
