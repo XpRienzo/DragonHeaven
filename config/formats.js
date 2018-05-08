@@ -6725,6 +6725,8 @@ exports.Formats = [
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
 		
 		onModifyMove: function (move, pokemon) {
+		let str = 'boosts';
+		str.replace('boosts', 'selfBoost');
 		if (move.category === 'Status' && move.target === 'self') {
 			move.target = 'normal';
 		}
@@ -6735,10 +6737,6 @@ exports.Formats = [
 		else if (move.category === 'Status' && pokemon.stats.spa > pokemon.stats.atk) {
 		move.category = 'Special';
 		move.basePower = 80;
-		}
-		if (move.boost) {
-			let str = 'boosts';
-			str.replace('boosts', 'self');
 		}
 	},
 },
