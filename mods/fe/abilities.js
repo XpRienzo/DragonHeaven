@@ -7929,4 +7929,15 @@ exports.BattleAbilities = {
 		id: "quicktrap",
 		name: "Quick Trap",
 	},
+	"teraarmor": {
+        shortDesc: "Moves targeting this Pokémon are unaffected by the Ability of the move user.",
+        onFoeTryHit: function(pokemon) {
+            for (const target of pokemon.side.foe.active) {
+                if (!target || target.fainted) continue;
+                target.addVolatile('gastroacid');
+            }
+        },
+        id: "teraarmor",
+        name: "Tera Armor",
+    },
 };
