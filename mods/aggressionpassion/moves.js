@@ -25,6 +25,42 @@ let BattleMovedex = {
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Tough",
 	},
+	"acupressure": {
+		num: 367,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises a random stat by 2 stages as long as the stat is not already at stage 6. The user can choose to use this move on itself or an adjacent ally. Fails if no stat stage can be raised or if used on an ally with a substitute.",
+		shortDesc: "Raises a random stat of the user or an ally by 2.",
+		id: "acupressure",
+		name: "Acupressure",
+		pp: 30,
+		priority: 0,
+		flags: {},
+		self: {
+			onHit: function (target) {
+			let stats = [];
+			for (let stat in target.boosts) {
+				if (target.boosts[stat] < 6) {
+					stats.push(stat);
+				}
+			}
+			if (stats.length) {
+				let randomStat = this.sample(stats);
+				let boost = {};
+				boost[randomStat] = 2;
+				this.boost(boost);
+			} else {
+				return false;
+			}
+		},
+		},
+		secondary: false,
+		target: "adjacentAllyOrSelf",
+		type: "Normal",
+		zMoveEffect: 'crit2',
+		contestType: "Tough",
+	},
 	"agility": {
 		num: 97,
 		accuracy: true,
@@ -48,6 +84,36 @@ let BattleMovedex = {
 		type: "Psychic",
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Cool",
+	},
+	"allyswitch": {
+		num: 502,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user swaps positions with its ally. Fails if the user is the only Pokemon on its side.",
+		shortDesc: "The user swaps positions with its ally.",
+		id: "allyswitch",
+		name: "Ally Switch",
+		pp: 15,
+		priority: 2,
+		flags: {},
+		self: {
+			onTryHit: function (source) {
+			if (source.side.active.length === 1) return false;
+			if (source.side.active.length === 3 && source.position === 1) return false;
+		},
+		onHit: function (pokemon) {
+			let newPosition = (pokemon.position === 0 ? pokemon.side.active.length - 1 : 0);
+			if (!pokemon.side.active[newPosition]) return false;
+			if (pokemon.side.active[newPosition].fainted) return false;
+			this.swapPosition(pokemon, newPosition, '[from] move: Ally Switch');
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Psychic",
+		zMoveBoost: {spe: 2},
+		contestType: "Clever",
 	},
 	"amnesia": {
 		num: 133,
@@ -102,6 +168,38 @@ let BattleMovedex = {
 		zMoveBoost: {def: 1},
 		contestType: "Beautiful",
 	},
+	"aromatherapy": {
+		num: 312,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Every Pokemon in the user's party is cured of its major status condition. Active Pokemon with the Ability Sap Sipper are not cured, unless they are the user.",
+		shortDesc: "Cures the user's party of all status conditions.",
+		id: "aromatherapy",
+		isViable: true,
+		name: "Aromatherapy",
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1, distance: 1},
+		self: {
+			onHit: function (pokemon, source, move) {
+			this.add('-activate', source, 'move: Aromatherapy');
+			let success = false;
+			for (const ally of pokemon.side.pokemon) {
+				if (ally !== source && ((ally.hasAbility('sapsipper')) ||
+						(ally.volatiles['substitute'] && !move.infiltrates))) {
+					continue;
+				}
+				if (ally.cureStatus()) success = true;
+			}
+			return success;
+		},
+		},
+		target: "allyTeam",
+		type: "Grass",
+		zMoveEffect: 'heal',
+		contestType: "Clever",
+	},
 	"aromaticmist": {
 		num: 597,
 		accuracy: true,
@@ -124,6 +222,46 @@ let BattleMovedex = {
 		type: "Fairy",
 		zMoveBoost: {spd: 2},
 		contestType: "Beautiful",
+	},
+	"assist": {
+		num: 274,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "A random move among those known by the user's party members is selected for use. Does not select Assist, Belch, Bestow, Bounce, Chatter, Circle Throw, Copycat, Counter, Covet, Destiny Bond, Detect, Dig, Dive, Dragon Tail, Endure, Feint, Fly, Focus Punch, Follow Me, Helping Hand, Hold Hands, King's Shield, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Phantom Force, Protect, Rage Powder, Roar, Shadow Force, Sketch, Sky Drop, Sleep Talk, Snatch, Spiky Shield, Struggle, Switcheroo, Thief, Transform, Trick, or Whirlwind.",
+		shortDesc: "Uses a random move known by a team member.",
+		id: "assist",
+		name: "Assist",
+		pp: 20,
+		priority: 0,
+		flags: {},
+		self: {
+			onHit: function (target) {
+			let moves = [];
+			for (const pokemon of target.side.pokemon) {
+				if (pokemon === target) continue;
+				for (const moveSlot of pokemon.moveSlots) {
+					let move = moveSlot.id;
+					let noAssist = [
+						'assist', 'belch', 'bestow', 'bounce', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dig', 'dive', 'dragontail', 'endure', 'feint', 'fly', 'focuspunch', 'followme', 'helpinghand', 'kingsshield', 'matblock', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'phantomforce', 'protect', 'ragepowder', 'roar', 'shadowforce', 'sketch', 'skydrop', 'sleeptalk', 'snatch', 'spikyshield', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind',
+					];
+					if (!noAssist.includes(move) && !this.getMove(move).isZ) {
+						moves.push(move);
+					}
+				}
+			}
+			let randomMove = '';
+			if (moves.length) randomMove = this.sample(moves);
+			if (!randomMove) {
+				return false;
+			}
+			this.useMove(randomMove, target);
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		contestType: "Cute",
 	},
 	"auroraveil": {
 		num: 694,
@@ -341,7 +479,93 @@ let BattleMovedex = {
 		zMoveEffect: 'heal',
 		contestType: "Cute",
 	},
+	"bulkup": {
+		num: 339,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Attack and Defense by 1 stage.",
+		shortDesc: "Raises the user's Attack and Defense by 1.",
+		id: "bulkup",
+		isViable: true,
+		name: "Bulk Up",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		selfBoost: {
+		boosts: {
+			atk: 1,
+			def: 1,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Fighting",
+		zMoveBoost: {atk: 1},
+		contestType: "Cool",
+	},
+	"calmmind": {
+		num: 347,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's Special Attack and Special Defense by 1 stage.",
+		shortDesc: "Raises the user's Sp. Atk and Sp. Def by 1.",
+		id: "calmmind",
+		isViable: true,
+		name: "Calm Mind",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		selfBoost: {
+		boosts: {
+			spa: 1,
+			spd: 1,
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Psychic",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Clever",
+	},
+	"camouflage": {
+		num: 293,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user's type changes based on the battle terrain. Normal type on the regular Wi-Fi terrain, Electric type during Electric Terrain, Fairy type during Misty Terrain, Grass type during Grassy Terrain, and Psychic type during Psychic Terrain. Fails if the user's type cannot be changed or if the user is already purely that type.",
+		shortDesc: "Changes user's type by terrain (default Normal).",
+		id: "camouflage",
+		name: "Camouflage",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		self: {
+			onHit: function (target) {
+			let newType = 'Normal';
+			if (this.isTerrain('electricterrain')) {
+				newType = 'Electric';
+			} else if (this.isTerrain('grassyterrain')) {
+				newType = 'Grass';
+			} else if (this.isTerrain('mistyterrain')) {
+				newType = 'Fairy';
+			} else if (this.isTerrain('psychicterrain')) {
+				newType = 'Psychic';
+			}
+
+			if (!target.setType(newType)) return false;
+			this.add('-start', target, 'typechange', newType);
+		},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveBoost: {evasion: 1},
+		contestType: "Clever",
+	},
+	
 };
-	//TODO: Acupressure, Ally Switch, Aromatherapy, Assist
+	//TODO: 
 	// Suspect: Automize, 
 exports.BattleMovedex = BattleMovedex;
