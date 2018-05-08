@@ -7812,7 +7812,7 @@ exports.BattleAbilities = {
   	    onModifyDamage: function (damage, source, target, move) {
 			if (move.crit) {
 				this.debug('Sniper boost');
-				return this.chainModify(1.3333);
+				return this.chainModify(2);
 			}
 		},
 		id: "360noscope",
