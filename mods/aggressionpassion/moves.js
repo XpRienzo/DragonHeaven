@@ -326,12 +326,12 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1},
-		onHit: function (source) {
-			if (source.hp <= source.maxhp / 2 || source.boosts.atk >= 6 || source.maxhp === 1) { // Shedinja clause
+		onHit: function (pokemon) {
+			if (pokemon.hp <= pokemon.maxhp / 2 || pokemon.boosts.atk >= 6 || pokemon.maxhp === 1) { // Shedinja clause
 				return false;
 			}
-			this.directDamage(source.maxhp / 2);
-			this.boost({atk: 12}, source);
+			this.directDamage(pokemon.maxhp / 2);
+			this.boost({atk: 12}, pokemon);
 		},
 		secondary: false,
 		target: "self",
