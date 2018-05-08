@@ -7749,8 +7749,13 @@ exports.BattleAbilities = {
 	},
 	"slownsteady": {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
-		onSourceModifyDamage: function (damage, source, target, move) {
-			if this.willMove(target) return this.chainModify(0.5); 
+		onSourceModifyDamage: function (damage, pokemon, move) {
+			for (const target of allActives) {
+				if (target === pokemon) continue;
+				if this.willMove(target) { 
+				return this.chainModify(0.5); 
+			}
+			}
 		},
 		id: "slownsteady",
 		name: "Slow 'n' Steady",
