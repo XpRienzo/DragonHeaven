@@ -6737,7 +6737,7 @@ exports.Formats = [
 		move.basePower = 80;
 		}
 	},
-		onAfterHit: function (move) {
+		onPrepareHit: function (move) {
 			if (move.boost) {
 				move.stealBoosts = true;
 			}
