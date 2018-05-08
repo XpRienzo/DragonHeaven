@@ -392,7 +392,7 @@ evgutter: function (target, room, user) {
 		let feDex = require('../data/moves.js').BattleMovedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(move => {
-			if (move.category === 'Status' && move.target !== 'normal') {
+			if (move.category === 'Status' && move.target !== 'normal' && move.target !== 'allAdjacentFoes') {
 			buf += `${move.name}<br>`;
 			}
 		}
