@@ -6737,7 +6737,8 @@ exports.Formats = [
 		move.basePower = 80;
 		}
 		if (move.boost) {
-			return move.self;
+			let str = 'boosts';
+			str.replace('boosts', 'self');
 		}
 	},
 },
