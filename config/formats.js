@@ -6724,8 +6724,9 @@ exports.Formats = [
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
 		onModifyMove: function (move, pokemon) {
-		if (move.category === 'Status' && move.target === 'self') {
+		if (move.category === 'Status' && move.target === 'self' || move.target === 'all' || move.target === 'allySide') {
 			move.target = 'normal';
+			move.boosts = move.selfBoost;
 		}
 		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa) {
 		move.category = 'Physical';
