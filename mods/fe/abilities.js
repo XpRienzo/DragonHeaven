@@ -712,7 +712,9 @@ exports.BattleAbilities = {
 	},
 	"staticstorm": {
 		shortDesc: "30% chance to paralyze the opponent each turn if Hail is active.",
-		onAfterDamage: function(damage, target, source, effect) {
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function(damage, target, source, effect) {
 			if (this.random(10) < 3) {
 				source.trySetStatus('par', target, effect);
 			}
