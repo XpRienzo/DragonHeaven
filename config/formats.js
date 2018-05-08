@@ -6719,18 +6719,18 @@ exports.Formats = [
 	},
 	{
 		name: "[Gen 7] Aggression Passion",
-		desc: ["&bullet; Status moves become 60 BP moves of the [Undecided] category."],
+		desc: ["&bullet; Status moves become 80 BP moves of the [Undecided] category."],
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
 		
 		onModifyMove: function (move, pokemon) {
-		if (move.category === 'Status' && pokemon.stats.atk > pokemon.stats.spa && move.target === 'self') {
+		if (move.category === 'Status' && move.target === 'self') {
 		move.category = 'Physical';
 		move.basePower = 80;
 		move.target = 'normal';
 		}
-		else if (move.category === 'Status' && pokemon.stats.spa > pokemon.stats.atk && move.target === 'self') {
+		else if (move.category === 'Status' && pokemon.set.shiny && move.target === 'self') {
 		move.category = 'Special';
 		move.basePower = 80;
 		move.target = 'normal';
