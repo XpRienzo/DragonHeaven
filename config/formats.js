@@ -6721,8 +6721,8 @@ exports.Formats = [
 		name: "[Gen 7] Aggression Passion",
 		desc: ["&bullet; Status moves become 80 BP moves of the [Undecided] category."],
 		mod: 'aggressionpassion',
-		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
+		ruleset: ['[Gen 7] OU'],
+		banlist: ['Uber', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
 		onModifyMove: function (move, pokemon) {
 		if (move.category === 'Status' && move.target === 'self') {
 			move.target = 'normal';
