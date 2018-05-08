@@ -7747,7 +7747,7 @@ exports.BattleAbilities = {
 			}
 		},
 	},
-	"slownsteady": {
+	/*"slownsteady": {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
 		onSourceModifyDamage: function (damage, pokemon, move) {
 			for (const target of pokemon.side.active) {
@@ -7755,10 +7755,10 @@ exports.BattleAbilities = {
 				return this.chainModify(0.5); 
 			}
 			}
-		},
+		}, TODO: Fix
 		id: "slownsteady",
 		name: "Slow 'n' Steady",
-	},
+	},*/
 	"clearpouch": {
 		desc: "When this Pokemon consumes a Berry, it regains 33% of its maximum HP and any negative stat changes are removed.",
 		shortDesc: "If this Pokemon eats a Berry, it restores 1/3 of its max HP and clears stat drops.",
