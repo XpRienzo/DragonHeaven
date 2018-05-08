@@ -6723,7 +6723,6 @@ exports.Formats = [
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite'],
-		
 		onModifyMove: function (move, pokemon) {
 		if (move.category === 'Status' && move.target === 'self') {
 			move.target = 'normal';
@@ -6736,12 +6735,9 @@ exports.Formats = [
 		move.category = 'Special';
 		move.basePower = 80;
 		}
+			let str = 'boosts';
+			str.replace("boosts", "selfBoosts");
 	},
-		onPrepareHit: function (move) {
-			if (move.boost) {
-				move.stealBoosts = true;
-			}
-		},
 },
 	{
 		name: "[Gen 7] Test Format",
