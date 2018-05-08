@@ -48,7 +48,7 @@ learnistor: function(target, room, user) {
 		Object.values(feDex).forEach(mon => {
 			let separated = target.split(" ");
 			let fusionmon = (("" + separated[0]).trim());
-			if (mon.template.speciesid === fusionmon) {
+			if (mon.species === fusionmon) {
 			buf += `<strong>${mon.species}:</strong> <i>${mon.dexentry}</i><br>`;
 			}
 			else if (fusionmon === "") {
