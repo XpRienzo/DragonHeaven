@@ -3035,6 +3035,14 @@ exports.BattleAbilities = {
 			}
 			return accuracy;
 		},
+          onFoeBeforeMove: function(pokemon, target) {
+			  let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+			  if (target !== pokemon) {
+          pokemon.addVolatile('teraarmor');
+			  }
+		  	}
+			 },
 		onStart: function(pokemon) {
 			this.add('-ability', pokemon, 'Unstable Voltage');
 		},
@@ -8049,4 +8057,200 @@ exports.BattleAbilities = {
         id: "beastroar",
         name: "Beast Roar",
     },
+	"sturdymold": {
+        shortDesc: "This Pokemon cannot be KO'd in one hit, and the abilities of attacking Pokemon are nullified.",
+        onFoeBeforeMove: function(pokemon, target) {
+			  let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+			  if (target !== pokemon) {
+                              pokemon.addVolatile('teraarmor');
+			  }
+		  	}
+        },
+		onTryHit: function (pokemon, target, move) {
+			if (move.ohko) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Sturdy');
+				return null;
+			}
+		},
+		onDamagePriority: -100,
+		onDamage: function (damage, target, source, effect) {
+			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+				this.add('-ability', target, 'Sturdy Mold');
+				return target.hp - 1;
+			}
+		},
+        id: "sturdymold",
+        name: "Sturdy Mold",
+    },
+	"moldedstall": {
+        shortDesc: "No abilities have an effect, other than this one, until after this Pokemon acts.",
+        onFoeBeforeMove: function(pokemon, target) {
+			  let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+			  if (target !== pokemon && this.willMove(target)) {
+                              pokemon.addVolatile('teraarmor');
+			  }
+		  	}
+        },
+		onModifyMove: function(move) {
+			move.ignoreAbility = true;
+		},	
+        id: "moldedstall",
+        name: "Molded Stall",
+    },
+	"unamazed": {
+		shortDesc: "Moves used by and against this Pokémon ignore the foe’s ability and stat changes.",
+                onFoeBeforeMove: function(pokemon, target) {
+			  let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+			  if (target !== pokemon) {
+                              pokemon.addVolatile('teraarmor');
+			  }
+		  	}
+	},
+		onStart: function(pokemon) {
+			this.add('-ability', pokemon, 'Unamazed');
+		},
+		onModifyMove: function(move) {
+			move.ignoreAbility = true;
+		},
+		onAnyModifyBoost: function (boosts, target) {
+			let source = this.effectData.target;
+			if (source === target) return;
+			if (source === this.activePokemon && target === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (target === this.activePokemon && source === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		id: "unamazed",
+		name: "Unamazed",
+	},
+	"jealousaggressor": {
+		shortDesc: "Deals double damage to Pokemon holding an item.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender) {
+			if (defender.item) {
+				this.debug('Jealous Aggressor boost');
+				return this.chainModify(2);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender) {
+			if (defender.item) {
+				this.debug('Jealous Aggressor boost');
+				return this.chainModify(2);
+			}
+		},
+		id: "jealousaggressor",
+		name: "Jealous Aggressor",
+	},
+	"snowsucker": {
+		desc: "This Pokemon summons hail when it switches in. In hail or when it is targeted by an Electric-type move, this Pokemon heals 25% of its HP back and summons Hail; Electric immunity.",
+		shortDesc: "Summons hail upon switch-in; This Pokemon heals 1/4 of its max HP and summons hail when hit by Electric moves or under hail; Immune to both.",
+		onStart: function (source) {
+			this.setWeather('hail');
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Electric') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Volt Absorb');
+				}
+                		this.setWeather('hail');
+				return null;
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'hail' || effect.id === 'solarsnow') {
+				this.heal(target.maxhp / 4);
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === ['hail', 'solarsnow']) return false;
+		},
+		id: "snowsucker",
+		name: "Snow Sucker",
+	},
+	"hailveil": {
+		desc: "This Pokemon cannot be burned. If it would have been burned, it instead sets up hail. At the end of each turn in hail, this Pokemon heals 1/16 of its maximum HP.",
+		shortDesc: "Cannot be burned. Sets up Hail if it would otherwise be burned, and heals 6.25% of HP in that weather.",
+		onUpdate: function (pokemon) {
+			if (pokemon.status === 'brn') {
+				this.add('-activate', pokemon, 'ability: Water Veil');
+                                this.setWeather('hail');
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'brn') return;
+			if (!effect || !effect.status) return false;
+                        if (!this.setWeather('hail')){
+			    this.add('-immune', target, '[msg]', '[from] ability: Hail Veil');
+                        }
+			return false;
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'hail' || effect.id === 'solarsnow') {
+				this.heal(target.maxhp / 16);
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === ['hail', 'solarsnow']) return false;
+		},
+		id: "hailveil",
+		name: "Hail Veil",
+	},
+	"veteran": {
+		shortDesc: "Sniper + Merciless, with the addition that if it crits a non-poisoned mon, the target will get poisoned.",
+		onModifyCritRatio: function (critRatio, source, target) {
+			if (target && ['psn', 'tox'].includes(target.status)) return 5;
+		},
+		onModifyDamage: function (damage, source, target, move) {
+			if (move.crit) {
+				this.debug('Sniper boost');
+				source.trySetStatus('psn', target);
+				return this.chainModify(1.5);
+			}
+		},
+		id: "veteran",
+		name: "Veteran",
+	},
+	"lighteninglightning": {
+		shortDesc: "When this Pokemon consumes its held item, its speed is doubled. Also restores 25% of its max HP when hit by an Electric-type move or when consuming its held item.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Electric') {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Volt Absorb');
+				}
+				return null;
+			}
+		},
+		onAfterUseItem: function (item, pokemon) {
+			if (pokemon !== this.effectData.target) return;
+                        this.heal(target.maxhp / 4);
+			pokemon.addVolatile('lighteninglightning');
+		},
+		onTakeItem: function (item, pokemon) {
+                        this.heal(target.maxhp / 4);
+			pokemon.addVolatile('lighteninglightning');
+		},
+		onEnd: function (pokemon) {
+			pokemon.removeVolatile('lighteninglightning');
+		},
+		effect: {
+			onModifySpe: function (spe, pokemon) {
+				if (!pokemon.item) {
+					return this.chainModify(2);
+				}
+			},
+		},
+		id: "lighteninglightning",
+		name: "Lightening Lightning",
+	},
 };
