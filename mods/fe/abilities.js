@@ -718,7 +718,7 @@ exports.BattleAbilities = {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || target.fainted) continue;
 				if (this.random(10) < 3) {
-				pokemon.trySetStatus('par', target, effect);
+				target.trySetStatus('par', target, effect);
 				}
 			}
 		},
@@ -765,18 +765,16 @@ exports.BattleAbilities = {
 	},
 	"rockygrowth": {
 		shortDesc: "This Pokemon takes no recoil from moves and the power of moves that would cause recoil increases by 50% when HP is below 33%.",
-		onDamage: function(damage, target, source, effect) {
-			if (effect.id === 'recoil' && this.activeMove.id !== 'struggle') return null;
-		},
-		onModifyAtkPriority: 5,
-		onModifyAtk: function(atk, attacker, defender, move) {
-			if (effect.id === 'recoil' && this.activeMove.id !== 'struggle' && attacker.hp <= attacker.maxhp / 3) {
-				return this.chainModify(1.5);
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'recoil') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return null;
 			}
 		},
-		onModifySpAPriority: 5,
-		onModifySpA: function(atk, attacker, defender, move) {
-			if (effect.id === 'recoil' && this.activeMove.id !== 'struggle' && attacker.hp <= attacker.maxhp / 3) {
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.recoil || move.hasCustomRecoil && attacker.hp < attacker.maxhp / 3) {
+				this.debug('Reckless boost');
 				return this.chainModify(1.5);
 			}
 		},
