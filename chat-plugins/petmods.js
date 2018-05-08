@@ -389,7 +389,7 @@ evgutter: function (target, room, user) {
 	apdata: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
-		let feDex = require('../data/moves.js').BattlePokedex;
+		let feDex = require('../data/moves.js').BattleMovedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(move => {
 			if (move.category === 'Status' && move.target !== 'normal') {
