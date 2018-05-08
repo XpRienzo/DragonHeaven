@@ -68,5 +68,26 @@ init: function () {
 	this.modData('Learnsets', 'guzzlord').learnset.shadowball = ['7L1'];
 	this.modData('Learnsets', 'guzzlord').learnset.bellydrum = ['7L1'];
 	this.modData('Learnsets', 'guzzlord').learnset.slackoff = ['7L1'];
+	
+	this.modData('Learnsets', 'victini').learnset.playrough = ['7L1'];
+	this.modData('Learnsets', 'victini').learnset.moonblast = ['7L1'];
+	this.modData('Learnsets', 'victini').learnset.hypervoice = ['7L1'];
+	
+	this.modData('Learnsets', 'talonflame').learnset.extremespeed = ['7L1'];
+	this.modData('Learnsets', 'talonflame').learnset.hypervoice = ['7L1'];
+	
+	this.modData('Learnsets', 'salazzle').learnset.gigadrain = ['7L1'];
+	this.modData('Learnsets', 'salazzle').learnset.aurasphere = ['7L1'];
+	this.modData('Learnsets', 'salazzle').learnset.calmmind = ['7L1'];
+	
+	this.modData('Learnsets', 'rotomfan').learnset.moonblast = ['7L1'];
+	
+	this.modData('Learnsets', 'dunsparce').learnset.dragontail = ['7L1'];
+	this.modData('Learnsets', 'dunsparce').learnset.dragondance = ['7L1'];
+	this.modData('Learnsets', 'dunsparce').learnset.electricterrain = ['7L1'];
+	
+	this.modData('Learnsets', 'probopass').learnset.shoreup = ['7L1'];
+	this.modData('Learnsets', 'probopass').learnset.rapidspin = ['7L1'];
+	this.modData('Learnsets', 'probopass').learnset.spikes = ['7L1'];
 	},
 };
