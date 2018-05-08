@@ -7935,7 +7935,7 @@ exports.BattleAbilities = {
 			  let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
 			for (const target of allActives) {
 			  if (target !== pokemon) {
-                pokemon.addVolatile('gastroacid');
+                pokemon.addVolatile('teraarmor');
 			  }
 		  	}
         },
