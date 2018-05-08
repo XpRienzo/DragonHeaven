@@ -42,7 +42,7 @@ learnistor: function(target, room, user) {
 	felisthelp: ["/felist - Shows the list of Pokemon in Fusion Evolution."],
 	fedex: function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
+		let buf = `<div class=infobox-limited><center><h2>Fusion Evolution Lab Reports</h2></center>`;
 		let feDex = require('../mods/fe/pokedex.js').BattlePokedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(mon => {
@@ -50,6 +50,9 @@ learnistor: function(target, room, user) {
 			let fusionmon = (("" + separated[0]).trim());
 			if (mon.species === fusionmon) {
 			buf += `<strong>${mon.species}:</strong> ${mon.dexentry}<br><br>`;
+			}
+			else if (target ==== 'all') {
+				buf += `<strong>${mon.species}:</strong> ${mon.dexentry}<br><br>`;
 			}
 		});
 		this.sendReplyBox(`${buf}</div>`);
