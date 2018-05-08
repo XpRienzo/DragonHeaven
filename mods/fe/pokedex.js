@@ -6900,6 +6900,60 @@ darkchomp: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
+	minislash: {
+        num: 7500218,
+        species: "Minislash",
+        types: ["Rock", "Ghost"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 70,
+            atk: 65,
+            def: 135,
+            spa: 65,
+            spd: 135,
+            spe: 70
+        },
+        abilities: {
+            0: "Stance Shield"
+        },
+        heightm: 1,
+        weightkg: 46.5,
+        color: "Brown",
+        eggGroups: ["Mineral"],
+	otherFormes: ["minislashblade"],
+    },
+ minislashblade: {
+        num: 7500218,
+        species: "Minislash-Blade",
+	baseSpecies: "Minislash",
+	forme: "Blade",
+	formeLetter: "B",
+        types: ["Rock", "Ghost"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 70,
+            atk: 135,
+            def: 65,
+            spa: 135,
+            spd: 65,
+            spe: 130
+        },
+        abilities: {
+            0: "Stance Shield"
+        },
+        heightm: 1,
+        weightkg: 6.8,
+        color: "White",
+        eggGroups: ["Mineral"],
+	otherFormes: ["minislashblade"],
+    },
+
     minislashmeteor: {
         num: 7500218,
         species: "Minislash-Meteor",
