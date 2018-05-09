@@ -8345,6 +8345,7 @@ exports.BattleAbilities = {
 				this.add('-immune', target, '[msg]', '[from] ability: Temporary Guard');
 				return null;
 			}
+								},
 			onEnd: function (target) {
 				this.add('-end', target, 'Temporary Guard');
 			},
