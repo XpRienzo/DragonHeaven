@@ -747,13 +747,13 @@ exports.BattleAbilities = {
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && !attacker.activeTurns > 1) {
+			if (move.type === 'Fire' && attacker.activeTurns < 1) {
 				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && !attacker.activeTurns > 1) {
+			if (move.type === 'Fire' && !attacker.activeTurns < 1) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -7762,18 +7762,27 @@ exports.BattleAbilities = {
 			}
 		},
 	},
-	/*"slownsteady": {
+	"slownsteady": {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
-		onSourceModifyDamage: function (damage, pokemon, move) {
-			for (const target of pokemon.side.active) {
-				if this.willMove(target) { 
-				return this.chainModify(0.5); 
+		onFoeBasePowerPriority: 8,
+		onFoeBasePower: function (basePower, pokemon) {
+			let boosted = true;
+			let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+				if (target === pokemon) continue;
+				if (this.willMove(target)) {
+					boosted = false;
+					break;
+				}
 			}
+			if (boosted) {
+				this.debug('Analytic boost');
+				return this.chainModify(0.5);
 			}
-		}, TODO: Fix
+		},
 		id: "slownsteady",
 		name: "Slow 'n' Steady",
-	},*/
+	},
 	"clearpouch": {
 		desc: "When this Pokemon consumes a Berry, it regains 33% of its maximum HP and any negative stat changes are removed.",
 		shortDesc: "If this Pokemon eats a Berry, it restores 1/3 of its max HP and clears stat drops.",
