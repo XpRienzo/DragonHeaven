@@ -2630,9 +2630,9 @@ swampert: {
         color: "Pink",
         eggGroups: ["Human-Like"],
     },
-    aegilineshield: {
+    aegiline: {
         num: 750063,
-        species: "Aegiline-Shield",
+        species: "Aegiline",
         types: ["Steel", "Bug"],
         genderRatio: {
             M: 0.0,
@@ -2644,6 +2644,34 @@ swampert: {
             def: 132,
             spa: 85,
             spd: 132,
+            spe: 99
+        },
+        abilities: {
+            0: "Error Macro"
+        },
+        heightm: 1.6,
+        weightkg: 67.75,
+        color: "Black",
+		  otherFormes: ["aegilineblade"],
+        eggGroups: ["Undiscovered"],
+    },
+	    aegilineblade: {
+        num: 750064,
+        species: "Aegiline-Blade",
+        baseSpecies: "Aegiline",
+        forme: "Blade",
+        formeLetter: "B",
+        types: ["Steel", "Bug"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 65,
+            atk: 132,
+            def: 85,
+            spa: 132,
+            spd: 85,
             spe: 99
         },
         abilities: {
@@ -9621,9 +9649,11 @@ darkchomp: {
         },
     },
 
-    ninetalesprime: {
-        num: 7500286,
-        species: "Ninetales-Prime",
+    ninetalesprime: {num: 39
+		  species: "Ninetales-Prime",
+		  baseSpecies: "Ninetales",
+		  forme: "Prime",
+		  formeLetter: "P",
         types: ["Ice", "Fire"],
         baseStats: {
             hp: 83,
@@ -14635,8 +14665,11 @@ auroritarmega: {
 		},
 	},
 	sandslashprime: {
-		num: 7500461,
+		num: 28,
 		species: "Sandslash-Prime",
+		baseSpecies: "Sandslash",
+		forme: "Prime",
+		formeLetter: "P",
 		types: ["Ground", "Ice"],
 		baseStats: {
 			hp: 85,
@@ -15085,8 +15118,11 @@ auroritarmega: {
 		},
 	},
 	persianprime: {
-		num: 7500482,
+		num: 53
 		species: "Persian-Prime",
+		baseSpecies: "Persian",
+		forme: "Persian-Prime",
+		formeLetter: "P",
 		types: ["Normal", "Dark"],
 		baseStats: {
 			hp: 75,
