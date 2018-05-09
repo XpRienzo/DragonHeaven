@@ -916,14 +916,20 @@ exports.BattleAbilities = {
 		name: "Math Surge",
 	},
 	"flameessence": {
-		shortDesc: "Fire-type Moves are counted as STAB.",
+		shortDesc: "This Pokemon's attacking stat is multiplied by 1.5 while using a Fire-type attack.",
 		onModifyAtkPriority: 5,
-		onModifyAtk: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire') {}
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				this.debug('Flame Essence boost');
+				return this.chainModify(1.5);
+			}
 		},
 		onModifySpAPriority: 5,
-		onModifySpA: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire') {}
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				this.debug('Flame Essence boost');
+				return this.chainModify(1.5);
+			}
 		},
 		id: "flameessence",
 		name: "Flame Essence",
@@ -1938,12 +1944,12 @@ exports.BattleAbilities = {
 	},
 	"shakeitoff": {
 		shortDesc: "Boosts the Special Attack stat by two stages when statused.",
-		onUpdate: function(spa, pokemon) {
-			if (pokemon.status) {
+	        onSetStatus: function (status, target, source, effect) {
+			if (!effect || !effect.status) return false;
 				this.boost({
 					spa: 2
 				});
-			}
+			  
 		},
 		id: "shakeitoff",
 		name: "Shake it Off",
@@ -4041,9 +4047,8 @@ exports.BattleAbilities = {
 	},
 	"malware": {
 		shortDesc: "This Pokemon's Attack or Sp. Atk is raised 1 stage based on the foes' weaker Defense at the end of each full turn on the field.",
-		onResidualOrder: 26,
-		onResidualSubOrder: 1,
-		onResidual: function(pokemon) {
+		onResidual: function (pokemon) {
+               	     if (pokemon.activeTurns) {
 			let totaldef = 0;
 			let totalspd = 0;
 			for (const target of pokemon.side.foe.active) {
@@ -4052,14 +4057,11 @@ exports.BattleAbilities = {
 				totalspd += target.getStat('spd', false, true);
 			}
 			if (totaldef && totaldef >= totalspd) {
-				this.boost({
-					spa: 1
-				});
-			} else if (totalspd) {
-				this.boost({
-					atk: 1
-				});
+				this.boost({spa: 1});
+			} else if (totalspd >= totaldef) {
+				this.boost({atk: 1});
 			}
+                    }
 		},
 		id: "malware",
 		name: "Malware",
@@ -4571,9 +4573,9 @@ exports.BattleAbilities = {
 		name: "Tainted Lens",
 	},
 	"purethug": {
-		shortDesc: "This Pokemon cannot be poisoned. Gaining this Ability while poisoned cures it.",
+		shortDesc: "This Pokemon cannot be statused. Should this happen, its Attack is boosted.",
 		onSetStatus: function(status, target, source, effect) {
-			if (status.id !== 'brn' || status.id !== 'psn' || status.id !== 'tox' || status.id !== 'par' || status.id !== 'frz') return;
+			if (status.id === 'slp') return;
 			if (!effect || !effect.status) return false;
 			this.add('-immune', target, '[msg]', '[from] ability: Pure Thug');
 			this.boost({
@@ -4584,6 +4586,9 @@ exports.BattleAbilities = {
 		onUpdate: function(pokemon) {
 			if (pokemon.status) {
 				this.add('-activate', pokemon, 'ability: Pure Thug');
+			        this.boost({
+			        	atk: 1
+			        });
 				pokemon.cureStatus();
 			}
 		},
@@ -8246,5 +8251,103 @@ exports.BattleAbilities = {
 		},
 		id: "lighteninglightning",
 		name: "Lightening Lightning",
+	},
+	"technologicalarmor": {
+		shortDesc: "Attacks with a BP of 60 or less that target the user have their power halved.",
+		onBasePowerPriority: 6,
+		onSourceBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+				return this.chainModify(0.5);
+			}
+		},
+		id: "technologicalarmor",
+		name: "Technological Armor",
+	},
+	"solidsand": {
+		desc: "Upon switching in, the user summons Sandstorm for 5 turns (8 if holding Smooth Rock). If skies are clear and the user is hit by direct damage that would KO it, the user instead survives at 1 HP and summons Sandstorm again.",
+		shortDesc: "On switch-in, this Pokemon summons Sandstorm. Cannot be OHKO'd in clear skies, summoning Sandstorm if this would happen.",
+		onStart: function (source) {
+			this.setWeather('sandstorm');
+		},
+		onTryHit: function (pokemon, target, move) {
+			if (move.ohko) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Solid Sand');
+				return null;
+			}
+		},
+		onDamagePriority: -100,
+		onDamage: function (damage, target, source, effect) {
+			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move' && !this.isWeather()) {
+				this.add('-ability', target, 'Solid Sand');
+			        this.setWeather('sandstorm');
+				return target.hp - 1;
+			}
+		},
+		id: "sandstream",
+		name: "Solid Sand",
+	},
+	"ambulance": {
+		shortDesc: "This Pokemon cannot be statused, sharply raising Speed if this happens. Doubles Speed upon use of item.",
+		onUpdate: function (pokemon) {
+			if (pokemon.status) {
+				this.add('-activate', pokemon, 'ability: Ambulance');
+				this.boost({spe: 2}, pokemon);
+				pokemon.cureStatus();
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (!effect || !effect.status) return false;
+			this.boost({spe: 2}, pokemon);
+			this.add('-immune', target, '[msg]', '[from] ability: Ambulance');
+			return false;
+		},
+		onAfterUseItem: function (item, pokemon) {
+			if (pokemon !== this.effectData.target) return;
+			pokemon.addVolatile('ambulance');
+		},
+		onTakeItem: function (item, pokemon) {
+			pokemon.addVolatile('ambulance');
+		},
+		onEnd: function (pokemon) {
+			pokemon.removeVolatile('ambulance');
+		},
+		effect: {
+			onModifySpe: function (spe, pokemon) {
+				if (!pokemon.item) {
+					return this.chainModify(2);
+				}
+			},
+		},
+		id: "ambulance",
+		name: "Ambulance",
+	},
+	"temporaryguard": {
+		shortDesc: "The user is immune to non-super-effective attacks for the first 5 turns after it is sent out.",
+		onStart: function (pokemon) {
+			pokemon.addVolatile('temporaryguard');
+		},
+		onEnd: function (pokemon) {
+			delete pokemon.volatiles['temporaryguard'];
+			this.add('-end', pokemon, 'Temporary Guard', '[silent]');
+		},
+		effect: {
+			duration: 5,
+			onStart: function (target) {
+				this.add('-start', target, 'ability: Temporary Guard');
+			},
+                        onTryHit: function (target, source, move) {
+			  if (target === source || move.category === 'Status' || move.type === '???' || move.id === 'struggle') return;
+			  this.debug('Wonder Guard immunity: ' + move.id);
+			  if (target.runEffectiveness(move) <= 0) {
+				this.add('-immune', target, '[msg]', '[from] ability: Temporary Guard');
+				return null;
+			}
+			onEnd: function (target) {
+				this.add('-end', target, 'Temporary Guard');
+			},
+                }
+		},
+		id: "temporaryguard",
+		name: "Temporary Guard",
 	},
 };
