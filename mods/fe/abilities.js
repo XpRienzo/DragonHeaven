@@ -4692,9 +4692,12 @@ exports.BattleAbilities = {
 	},
 	"venomglare": {
 		shortDesc: "On switch-in, the bearer poisons adjacent opponents.",
-		onStart: function(target, source) {
-			if (!source.status) {
-				source.setStatus('psn', target);
+		onStart: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+			if (!target.status) {
+				target.setStatus('psn', pokemon);
+			}
 			}
 		},
 		id: "venomglare",
