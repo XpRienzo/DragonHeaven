@@ -15119,7 +15119,7 @@ auroritarmega: {
 		},
 	},
 	persianprime: {
-		num: 53
+		num: 53,
 		species: "Persian-Prime",
 		baseSpecies: "Persian",
 		forme: "Persian-Prime",
