@@ -8358,5 +8358,123 @@ exports.BattleAbilities = {
 		id: "temporaryguard",
 		name: "Temporary Guard",
 	},
-	
+		"synchroveil": {
+		desc: "If it gets afflicted with a status ailment, the Pokemon instantly cures itself. If another Pokémon inflicted the status, the Pokémon attempts to inflict that status on the other Pokémon.",
+		shortDesc: "If another Pokemon burns/poisons/paralyzes this Pokemon, the status is transferred onto that Pokemon.",
+		onAfterSetStatus: function (status, target, source, effect) {
+			if (!source || source === target) return;
+			this.add('-activate', target, 'ability: Synchro Veil');
+			if (effect && effect.id === 'toxicspikes'){ 
+                        source.cureStatus();
+                        return;}
+			if (status.id === 'slp' || status.id === 'frz'){ 
+                          source.cureStatus();
+                          return;}
+			// @ts-ignore
+			source.trySetStatus(status, target, {status: status.id, id: 'synchroveil'});
+                        source.cureStatus();
+		},
+		id: "synchroveil",
+		name: "Synchro Veil",
+	},
+	"pressurate": {
+		shortDesc: "Opponent's moves' PPs are halved when this Pokémon enters the field.",
+		onStart: function (pokemon) {
+                        //TODO: Make it only work once per battle
+			this.add('-ability', pokemon, 'Pressurate');
+			for (const target of pokemon.side.foe.active) {
+				if (target.fainted) continue;
+				for (const moveSlot of target.moveSlots) {
+					moveSlot.pp = moveSlot.pp/2;
+				}
+			}
+		},
+		id: "pressurate",
+		name: "Pressurate",
+	},
+	"metalmonster": {
+		shortDesc: "This Pokemon's Steel-type moves deal 1.5x damage and if this Pokemon gets a KO with a Steel-type move, its highest non-HP stat goes up by 2 stages.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Steel') {
+				this.debug('Steelworker boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Steel') {
+				this.debug('Steelworker boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move' && effect.type === 'Steel') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 2}, source);
+			}
+		},
+		id: "metalmonster",
+		name: "Metal Monster",
+	},
+	"shatteredprism": {
+		desc: "This Pokémon receives 3/4 damage from super-effective attacks. Not-very-effective moves used by this Pokémon do 75% more damage, and this Pokémon's moves ignore the foe's Ability, whereas this Pokémon's Ability cannot be ignored by foes.",
+		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and deals 1.75x damage with resisted hits. Ignores abilities when attacking.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				this.debug('Prism Armor neutralize');
+				return this.chainModify(0.75);
+			}
+		},
+		onModifyMove: function (move) {
+			move.ignoreAbility = true;
+		},
+		onModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0) {
+				this.debug('Tinted Lens boost');
+				return this.chainModify(1.75);
+			}
+		},
+		isUnbreakable: true,
+		id: "Shattered Prism",
+		name: "Shattered Prism",
+	},
+"magicmirror": {
+		shortDesc: "Non-damaging moves and Dark-type moves targeting this Pokemon increase its Attack by 1 stage and are reflected back to the opponent.",
+		id: "magicmirror",
+		name: "Magic Mirror",
+		onTryHitPriority: 1,
+		onTryHit: function (target, source, move) {
+			if (((target === source || !move.flags['reflectable']) && move.type !== 'Dark') || move.hasBounced) {
+				return;
+			}
+			let newMove = this.getMoveCopy(move.id);
+			newMove.hasBounced = true;
+			newMove.pranksterBoosted = false;
+			this.boost({atk: 1}, source);
+			this.useMove(newMove, target, source);
+			return null;
+		},
+		onAllyTryHitSide: function (target, source, move) {
+			if (((target === source || !move.flags['reflectable']) && move.type !== 'Dark') || move.hasBounced) {
+				return;
+			}
+			let newMove = this.getMoveCopy(move.id);
+			newMove.hasBounced = true;
+			newMove.pranksterBoosted = false;
+			this.boost({atk: 1}, source);
+			this.useMove(newMove, this.effectData.target, source);
+			return null;
+		},
+		effect: {
+			duration: 1,
+		},
+	},
 };
