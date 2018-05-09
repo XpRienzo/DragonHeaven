@@ -730,33 +730,30 @@ exports.BattleAbilities = {
 	},
 	"dreadedflames": {
 		shortDesc: "Gains a 1.5x boost to fire moves on the turn of entry, and lowers opponent's defence on entry.",
-		onStart: function(pokemon) {
-			var foeactive = pokemon.side.foe.active;
-			var activated = false;
-			for (var i = 0; i < foeactive.length; i++) {
-				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
+		onStart: function (pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
 				if (!activated) {
-					this.add('-ability', pokemon, 'Dreaded Flames');
+					this.add('-ability', pokemon, 'Dreaded Flames', 'boost');
 					activated = true;
 				}
-			}
-			if (foeactive[i].volatiles['substitute']) {
-				this.add('-activate', foeactive[i], 'Substitute', 'ability: Dreaded Flames', '[of] ' + pokemon);
-			} else {
-				this.boost({
-					atk: -1
-				}, foeactive[i], pokemon);
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({def: -1}, target, pokemon);
+				}
 			}
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && attacker.hp <= attacker.maxhp / 3 && attacker.activeTurns > 1) {
+			if (move.type === 'Fire' && attacker.activeTurns < 1) {
 				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && attacker.hp <= attacker.maxhp / 3 && attacker.activeTurns > 1) {
+			if (move.type === 'Fire' && attacker.activeTurns < 1) {
 				return this.chainModify(1.5);
 			}
 		},
