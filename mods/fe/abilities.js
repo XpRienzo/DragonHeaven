@@ -6343,7 +6343,7 @@ exports.BattleAbilities = {
 		onFoeModifyMove: function (move) {
 			let recoilmod = move.recoil[0];
 			if (move.recoil) {
-				recoilmod * 2;
+				recoilmod *= 2;
 			}
 		},
 		id: "crushing",
