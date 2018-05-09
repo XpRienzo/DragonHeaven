@@ -6340,9 +6340,9 @@ exports.BattleAbilities = {
 	},
 		"crushing": {
 		shortDesc: "Recoil from moves used against this Pokemon is doubled.",
-		onAfterDamage: function (damage, target, source, move) {
-			if (effect.id === 'recoil') {
-				move.recoil = move.recoil * [2, 1];
+		onFoeModifyMove: function (move) {
+			if (move.recoil) {
+				move.recoil *= 2;
 			}
 		},
 		id: "crushing",
