@@ -9649,7 +9649,8 @@ darkchomp: {
         },
     },
 
-    ninetalesprime: {num: 39
+    ninetalesprime: {
+		  num: 39,
 		  species: "Ninetales-Prime",
 		  baseSpecies: "Ninetales",
 		  forme: "Prime",
