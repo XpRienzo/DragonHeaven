@@ -747,13 +747,13 @@ exports.BattleAbilities = {
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && attacker.activeTurns > 1) {
+			if (move.type === 'Fire' && !attacker.activeTurns > 1) {
 				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && attacker.activeTurns > 1) {
+			if (move.type === 'Fire' && !attacker.activeTurns > 1) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -888,8 +888,8 @@ exports.BattleAbilities = {
 	"swiftabsorb": {
 		shortDesc: "When hit by a Water moves, Speed is doubled. Water immunity.",
 		onTryHit: function(target, source, move) {
-			if (target !== source && move.type === 'water') {
-				this.add('-immune', target, '[msg]', '[from] ability: Flash water');
+			if (target !== source && move.type === 'Water') {
+				this.add('-immune', target, '[msg]', '[from] ability: Swift Absorb');
 				return null;
 			}
 		},
@@ -8350,4 +8350,5 @@ exports.BattleAbilities = {
 		id: "temporaryguard",
 		name: "Temporary Guard",
 	},
+	
 };
