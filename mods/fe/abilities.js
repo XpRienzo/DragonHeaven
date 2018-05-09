@@ -747,13 +747,13 @@ exports.BattleAbilities = {
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && attacker.activeTurns < 1) {
+			if (move.type === 'Fire' && attacker.activeTurns > 1) {
 				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && attacker.activeTurns < 1) {
+			if (move.type === 'Fire' && attacker.activeTurns > 1) {
 				return this.chainModify(1.5);
 			}
 		},
