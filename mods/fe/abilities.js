@@ -8338,18 +8338,17 @@ exports.BattleAbilities = {
 			onStart: function (target) {
 				this.add('-start', target, 'ability: Temporary Guard');
 			},
-                        onTryHit: function (target, source, move) {
+             onTryHit: function (target, source, move) {
 			  if (target === source || move.category === 'Status' || move.type === '???' || move.id === 'struggle') return;
 			  this.debug('Wonder Guard immunity: ' + move.id);
 			  if (target.runEffectiveness(move) <= 0) {
 				this.add('-immune', target, '[msg]', '[from] ability: Temporary Guard');
 				return null;
 			}
-								},
+			},
 			onEnd: function (target) {
 				this.add('-end', target, 'Temporary Guard');
 			},
-                }
 		},
 		id: "temporaryguard",
 		name: "Temporary Guard",
