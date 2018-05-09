@@ -1416,8 +1416,8 @@ exports.BattleAbilities = {
 	},
 	"naturaleye": {
 		shortDesc: "Pidgemie avoids status moves if they're not 100% accurate.",
-		onModifyAccuracyPriority: 10,
-		onModifyAccuracy: function(accuracy, target, source, move) {
+		onFoeModifyAccuracyPriority: 10,
+		onFoeModifyAccuracy: function(accuracy, target, source, move) {
 			if (move.category === 'Status' && !move.accuracy === '100') {
 				this.debug('Wonder Skin - setting accuracy to 50');
 				return 0;
@@ -6344,7 +6344,7 @@ exports.BattleAbilities = {
 		shortDesc: "Recoil from moves used against this Pokemon is doubled.",
 		onAfterDamage: function (damage, target, source, move) {
 			if (effect.id === 'recoil') {
-				move.recoil *= 2;
+				move.recoil = move.recoil * [2, 1];
 			}
 		},
 		id: "crushing",
