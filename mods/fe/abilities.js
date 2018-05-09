@@ -4393,11 +4393,8 @@ exports.BattleAbilities = {
 	},
 	"disconnect": {
 		shortDesc: "The foe's same-type attack bonus (STAB) is 0.75 instead of 1.5.",
-		onFoeBasePowerPriority: 8,
-		onFoeBasePower: function(basePower, pokemon, move) {
-			if (pokemon.hasType(move.type)) {
-				 return this.chainModify(0.5);
-			}
+		onFoeModifyMove: function (move) {
+			move.stab = 0.75;
 		},
 		id: "disconnect",
 		name: "Dis/connect",
