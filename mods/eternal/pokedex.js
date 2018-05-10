@@ -2055,7 +2055,6 @@ amauraeternal: {
 	types: ["Grass", "Fire"], 
 	baseStats:{hp: 59, atk: 46, def: 120, spa: 124, spd: 85, spe: 59},
 	abilities: {0: "Pickup", 1: "Frisk", H: "Insomnia"},
-	},
 	weightkg: 15,
 },
 	/*	eternal: {
