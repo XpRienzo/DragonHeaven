@@ -474,11 +474,11 @@ exports.BattlePokedex = {
 		types: ["Normal", "Fairy"],
 		baseStats: {
 			hp: 250,
-			atk: 5,
-			def: 64,
+			atk: 32,
+			def: 32,
 			spa: 35,
 			spd: 135,
-			spe: 50
+			spe: 55
 		},
 		abilities: {
 			0: "Natural Cure",
@@ -605,7 +605,7 @@ exports.BattlePokedex = {
 		},
 		abilities: {
 			0: "Speed Boost",
-			1: "Coumpoundeyes",
+			1: "Coumpound Eyes",
 			H: "Frisk"
 		},
 	},
@@ -860,12 +860,12 @@ exports.BattlePokedex = {
 		formeLetter: "E",
 		types: ["Dark", "Poison"],
 		baseStats: {
-			hp: 100,
-			atk: 70,
-			def: 120,
+			hp: 90,
+			atk: 80,
+			def: 110,
 			spa: 100,
 			spd: 99,
-			spe: 35
+			spe: 45
 		},
 		abilities: {
 			0: "Overgrow",
