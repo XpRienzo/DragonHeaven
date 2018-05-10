@@ -19,6 +19,7 @@ exports.BattlePokedex = {
 			0: "Gluttony",
 			H: "Overgrow"
 		},
+		weightkg: 10.5,
 	},
 	panseareternal: {
 		num: 513,
@@ -39,6 +40,7 @@ exports.BattlePokedex = {
 			0: "Gluttony",
 			H: "Blaze"
 		},
+		weightkg: 11,
 	},
 	panpoureternal: {
 		num: 515,
@@ -59,6 +61,7 @@ exports.BattlePokedex = {
 			0: "Gluttony",
 			H: "Torrent"
 		},
+		weightkg: 13.5,
 	},
 	pikachueternal: {
 		num: 25,
@@ -79,6 +82,7 @@ exports.BattlePokedex = {
 			0: "Static",
 			H: "Lightningrod"
 		},
+		weightkg: 6,
 	},
 	eeveeeternal: {
 		num: 133,
@@ -100,6 +104,7 @@ exports.BattlePokedex = {
 			1: "Adaptability",
 			H: "Anticipation"
 		},
+		weightkg: 6.5,
 	},
 	murkroweternal: {
 		num: 198,
@@ -121,6 +126,7 @@ exports.BattlePokedex = {
 			1: "Super Luck",
 			H: "Prankster"
 		},
+		weightkg: 2.1,
 	},
 	misdreavuseternal: {
 		num: 200,
@@ -140,6 +146,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Levitate"
 		},
+		weightkg: 1,
 	},
 	lampenteternal: {
 		num: 608,
@@ -161,6 +168,7 @@ exports.BattlePokedex = {
 			1: "Flame Body",
 			H: "Infiltrator"
 		},
+		weightkg: 13,
 	},
 	doubladeeternal: {
 		num: 680,
@@ -180,6 +188,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "No Guard"
 		},
+		weightkg: 4.5,
 	},
 	kadabraeternal: {
 		num: 64,
@@ -201,6 +210,7 @@ exports.BattlePokedex = {
 			1: "Inner Focus",
 			H: "Magic Guard"
 		},
+		weightkg: 56.5,
 	},
 	machokeeternal: {
 		num: 67,
@@ -222,6 +232,7 @@ exports.BattlePokedex = {
 			1: "No Guard",
 			H: "Steadfast"
 		},
+		weightkg: 70.5,
 	},
 	gravelereternal: {
 		num: 75,
@@ -243,6 +254,7 @@ exports.BattlePokedex = {
 			1: "Sturdy",
 			H: "Sand Veil"
 		},
+		weightkg: 105,
 	},
 	hauntereternal: {
 		num: 93,
@@ -262,6 +274,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Levitate"
 		},
+		weightkg: 0.1,
 	},
 	magnetoneternal: {
 		num: 82,
@@ -283,6 +296,7 @@ exports.BattlePokedex = {
 			1: "Sturdy",
 			H: "Analytic"
 		},
+		heightm: 1.2,
 	},
 	nosepasseternal: {
 		num: 299,
@@ -304,6 +318,7 @@ exports.BattlePokedex = {
 			1: "Magnet Pull",
 			H: "Sand Force"
 		},
+		weightkg: 97,
 	},
 	charjabugeternal: {
 		num: 737,
@@ -323,6 +338,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Battery"
 		},
+		weightkg: 10.5,
 	},
 	magikarpeternal: {
 		num: 129,
@@ -343,6 +359,7 @@ exports.BattlePokedex = {
 			0: "Swift Swim",
 			H: "Rattled"
 		},
+		weightkg: 10,
 	},
 	feebaseternal: {
 		num: 349,
@@ -364,6 +381,7 @@ exports.BattlePokedex = {
 			1: "Oblivious",
 			H: "Adaptability"
 		},
+		weightkg: 7.4,
 	},
 	wimpodeternal: {
 		num: 767,
@@ -383,6 +401,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Wimp Out"
 		},
+		weightkg: 12,
 	},
 	dartrixeternal: {
 		num: 723,
@@ -403,6 +422,7 @@ exports.BattlePokedex = {
 			0: "Overgrow",
 			H: "Long Reach"
 		},
+		weightkg: 16,
 	},
 	torracateternal: {
 		num: 726,
@@ -423,6 +443,7 @@ exports.BattlePokedex = {
 			0: "Blaze",
 			H: "Intimidate"
 		},
+		weightkg: 25,
 	},
 	brionneeternal: {
 		num: 729,
@@ -443,6 +464,7 @@ exports.BattlePokedex = {
 			0: "Torrent",
 			H: "Liquid Voice"
 		},
+		weightkg: 17.5,
 	},
 	onixeternal: {
 		num: 95,
@@ -464,6 +486,7 @@ exports.BattlePokedex = {
 			1: "Sturdy",
 			H: "Weak Armor"
 		},
+		weightkg: 210,
 	},
 	chanseyeternal: {
 		num: 113,
@@ -485,6 +508,7 @@ exports.BattlePokedex = {
 			1: "Serene Grace",
 			H: "Healer"
 		},
+		weightkg: 34.6,
 	},
 	cranidoseternal: {
 		num: 408,
@@ -505,6 +529,7 @@ exports.BattlePokedex = {
 			0: "Mold Breaker",
 			H: "Sheer Force"
 		},
+		weightkg: 31.5,
 	},
 	sneaseleternal: {
 		num: 215,
@@ -526,6 +551,7 @@ exports.BattlePokedex = {
 			1: "Keen Eye",
 			H: "Pickpocket"
 		},
+		weightkg: 28,
 	},
 	duosioneternal: {
 		num: 578,
@@ -547,6 +573,7 @@ exports.BattlePokedex = {
 			1: "Magic Guard",
 			H: "Regenerator"
 		},
+		weightkg: 8,
 	},
 	cosmoemeternal: {
 		num: 790,
@@ -566,6 +593,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Sturdy"
 		},
+		weightkg: 999.9,
 	},
 	tangelaeternal: {
 		num: 114,
@@ -587,6 +615,7 @@ exports.BattlePokedex = {
 			1: "Leaf Guard",
 			H: "Regenerator"
 		},
+		weightkg: 35,
 	},
 	yanmaeternal: {
 		num: 193,
@@ -608,6 +637,7 @@ exports.BattlePokedex = {
 			1: "Coumpound Eyes",
 			H: "Frisk"
 		},
+		weightkg: 38,
 	},
 	piloswineeternal: {
 		num: 221,
@@ -629,6 +659,7 @@ exports.BattlePokedex = {
 			1: "Snow Cloak",
 			H: "Thick Fat"
 		},
+		weightkg: 55.8,
 	},
 	dragonaireternal: {
 		num: 148,
@@ -649,6 +680,7 @@ exports.BattlePokedex = {
 			0: "Shed Skin",
 			H: "Marvel Scale"
 		},
+		weightkg: 16.5,
 	},
 	pupitareternal: {
 		num: 247,
@@ -668,6 +700,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Shed Skin"
 		},
+		weightkg: 152,
 	},
 	shelgoneternal: {
 		num: 372,
@@ -688,6 +721,7 @@ exports.BattlePokedex = {
 			0: "Rock Head",
 			H: "Overcoat"
 		},
+		weightkg: 110.5,
 	},
 	metangeternal: {
 		num: 375,
@@ -708,6 +742,7 @@ exports.BattlePokedex = {
 			0: "Clear Body",
 			H: "Light Metal"
 		},
+		weightkg: 202.5,
 	},
 	gabiteeternal: {
 		num: 444,
@@ -728,6 +763,7 @@ exports.BattlePokedex = {
 			0: "Sand Veil",
 			H: "Rough Skin"
 		},
+		weightkg: 56,
 	},
 	zweilouseternal: {
 		num: 634,
@@ -747,6 +783,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Hustle"
 		},
+		weightkg: 50,
 	},
 	sliggooeternal: {
 		num: 705,
@@ -768,6 +805,7 @@ exports.BattlePokedex = {
 			1: "Hydration",
 			H: "Gooey"
 		},
+		weightkg: 17.5,
 	},
 	hakamooeternal: {
 		num: 783,
@@ -789,6 +827,7 @@ exports.BattlePokedex = {
 			1: "Soundproof",
 			H: "Overcoat"
 		},
+		weightkg: 47,
 	},
 	rhydoneternal: {
 		num: 112,
@@ -810,6 +849,7 @@ exports.BattlePokedex = {
 			1: "Rock Head",
 			H: "Reckless"
 		},
+		weightkg: 120,
 	},
 	laironeternal: {
 		num: 305,
@@ -831,6 +871,7 @@ exports.BattlePokedex = {
 			1: "Rock Head",
 			H: "Heavy Metal"
 		},
+		weightkg: 120,
 	},
 	shieldoneternal: {
 		num: 410,
@@ -851,6 +892,7 @@ exports.BattlePokedex = {
 			0: "Sturdy",
 			H: "Soundproof"
 		},
+		weightkg: 57,
 	},
 	ivysaureternal: {
 		num: 2,
@@ -871,6 +913,7 @@ exports.BattlePokedex = {
 			0: "Overgrow",
 			H: "Chlorophyll"
 		},
+		weightkg: 13,
 	},
 	charmeleoneternal: {
 		num: 5,
@@ -891,6 +934,7 @@ exports.BattlePokedex = {
 			0: "Blaze",
 			H: "Solar Power"
 		},
+		weightkg: 19,
 	},
 	wartortleeternal: {
 		num: 5,
@@ -911,6 +955,7 @@ exports.BattlePokedex = {
 			0: "Torrent",
 			H: "Rain Dish"
 		},
+		weightkg: 22.5,
 	},
 	digletteternal: {
 		num: 50,
@@ -932,6 +977,7 @@ exports.BattlePokedex = {
 			1: "Arena Trap",
 			H: "Sand Force"
 		},
+		weightkg: 0.8,
 	},
 	wynauteternal: {
 		num: 360,
@@ -952,6 +998,7 @@ exports.BattlePokedex = {
 			0: "Shadow Tag",
 			H: "Telepathy"
 		},
+		weightkg: 14,
 	},
 	gothoritaeternal: {
 		num: 575,
@@ -973,6 +1020,7 @@ exports.BattlePokedex = {
 			1: "Competitive",
 			H: "Shadow Tag"
 		},
+		weightkg: 18,
 	},
 	pidgeottoeternal: {
 		num: 17,
@@ -994,6 +1042,7 @@ exports.BattlePokedex = {
 			1: "Tangled Feet",
 			H: "Big Pecks"
 		},
+		weightkg: 30,
 	},
 	spearoweternal: {
 		num: 21,
@@ -1014,6 +1063,7 @@ exports.BattlePokedex = {
 			0: "Keen Eye",
 			H: "Sniper"
 		},
+		weightkg: 2,
 	},
 	hoothooteternal: {
 		num: 163,
@@ -1035,6 +1085,7 @@ exports.BattlePokedex = {
 			1: "Keen Eye",
 			H: "Tinted Lens"
 		},
+		weightkg: 21.2,
 	},
 	tailloweternal: {
 		num: 276,
@@ -1055,6 +1106,7 @@ exports.BattlePokedex = {
 			0: "Guts",
 			H: "Scrappy"
 		},
+		weightkg: 2.3,
 	},
 	wingulleternal: {
 		num: 278,
@@ -1076,6 +1128,7 @@ exports.BattlePokedex = {
 			1: "Hydration",
 			H: "Rain Dish"
 		},
+		weightkg: 28,
 	},
 	staraviaeternal: {
 		num: 397,
@@ -1095,7 +1148,8 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Intimidate",
 			H: "Reckless"
-		}
+		},
+		weightkg: 15.5,
 	},
 	tranquilleternal: {
 		num: 520,
@@ -1117,6 +1171,7 @@ exports.BattlePokedex = {
 			1: "Super Luck",
 			H: "Rivalry"
 		},
+		weightkg: 15,
 	},
 	fletchindereternal: {
 		num: 662,
@@ -1137,6 +1192,7 @@ exports.BattlePokedex = {
 			0: "Flame Body",
 			H: "Gale Wings"
 		},
+		weightkg: 16,
 	},
 	trumbeaketernal: {
 		num: 732,
@@ -1158,6 +1214,7 @@ exports.BattlePokedex = {
 			1: "Skill Link",
 			H: "Pickup"
 		},
+		weightkg: 14.8,
 	},
 	clefairyeternal: {
 		num: 35,
@@ -1179,6 +1236,7 @@ exports.BattlePokedex = {
 			1: "Magic Guard",
 			H: "Friend Guard"
 		},
+		weightkg: 7.5,
 	},
 	jigglypuffeternal: {
 		num: 39,
@@ -1200,6 +1258,7 @@ exports.BattlePokedex = {
 			1: "Competitive",
 			H: "Friend Guard"
 		},
+		weightkg: 5.5,
 	},
 	togeticeternal: {
 		num: 176,
@@ -1221,6 +1280,7 @@ exports.BattlePokedex = {
 			1: "Serene Grace",
 			H: "Super Luck"
 		},
+		weightkg: 3.2,
 	},
 	snubbulleternal: {
 		num: 209,
@@ -1242,6 +1302,7 @@ exports.BattlePokedex = {
 			1: "Run Away",
 			H: "Rattled"
 		},
+		weightkg: 7.8,
 	},
 	driflooneternal: {
 		num: 425,
@@ -1263,6 +1324,7 @@ exports.BattlePokedex = {
 			1: "Unburden",
 			H: "Flare Boost"
 		},
+		weightkg: 1.2,
 	},
 	yamasketernal: {
 		num: 562,
@@ -1282,6 +1344,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Mummy"
 		},
+		weightkg: 1.5,
 	},
 	phantumpeternal: {
 		num: 708,
@@ -1303,6 +1366,7 @@ exports.BattlePokedex = {
 			1: "Frisk",
 			H: "Harvest"
 		},
+		weightkg: 7,
 	},
 	ruffleteternal: {
 		num: 627,
@@ -1324,6 +1388,7 @@ exports.BattlePokedex = {
 			1: "Sheer Force",
 			H: "Hustle"
 		},
+		weightkg: 10.5,
 	},
 	vullabyeternal: {
 		num: 629,
@@ -1345,6 +1410,7 @@ exports.BattlePokedex = {
 			1: "Overcoat",
 			H: "Weak Armor"
 		},
+		weightkg: 9,
 	},
 	larvestaeternal: {
 		num: 636,
@@ -1365,6 +1431,7 @@ exports.BattlePokedex = {
 			0: "Flame Body",
 			H: "Swarm"
 		},
+		weightkg: 28.8,
 	},
 	poipoleeternal: {
 		num: 803,
@@ -1384,6 +1451,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Beast Boost",
 		},
+		weightkg: 1.8,
 	},
 	gloometernal: {
 		num: 44,
@@ -1404,6 +1472,7 @@ exports.BattlePokedex = {
 			0: "Chlorophyll",
 			H: "Stench"
 		},
+		weightkg: 8.6,
 	},
 	weepinbelleternal: {
 		num: 70,
@@ -1424,6 +1493,7 @@ exports.BattlePokedex = {
 			0: "Chlorophyll",
 			H: "Gluttony"
 		},
+		weightkg: 6.4,
 	},
 	nuzleafeternal: {
 		num: 274,
@@ -1445,6 +1515,7 @@ exports.BattlePokedex = {
 			1: "Early Bird",
 			H: "Pickpocket"
 		},
+		weightkg: 28,
 	},
 	exeggcuteeternal: {
 		num: 102,
@@ -1465,6 +1536,7 @@ exports.BattlePokedex = {
 			0: "Chlorophyll",
 			H: "Harvest"
 		},
+		weightkg: 2.5,
 	},
 	poliwhirleternal: {
 		num: 61,
@@ -1486,6 +1558,7 @@ exports.BattlePokedex = {
 			1: "Damp",
 			H: "Swift Swim"
 		},
+		weightkg: 20,
 	},
 	shelldereternal: {
 		num: 90,
@@ -1507,6 +1580,7 @@ exports.BattlePokedex = {
 			1: "Skill Link",
 			H: "Overcoat"
 		},
+		weightkg: 4,
 	},
 	staryueternal: {
 		num: 120,
@@ -1528,6 +1602,7 @@ exports.BattlePokedex = {
 			1: "Natural Cure",
 			H: "Analytic"
 		},
+		weightkg: 34.5,
 	},
 	lombreeternal: {
 		num: 271,
@@ -1549,6 +1624,7 @@ exports.BattlePokedex = {
 			1: "Rain Dish",
 			H: "Own Tempo"
 		},
+		weightkg: 32.5,
 	},
 	sunkerneternal: {
 		num: 191,
@@ -1570,6 +1646,7 @@ exports.BattlePokedex = {
 			1: "Solar Power",
 			H: "Early Bird"
 		},
+		weightkg: 1.8,
 	},
 	cottoneeeternal: {
 		num: 546,
@@ -1591,6 +1668,7 @@ exports.BattlePokedex = {
 			1: "Infiltrator",
 			H: "Chlorophyll"
 		},
+		weightkg: 0.6,
 	},
 	petilileternal: {
 		num: 548,
@@ -1612,6 +1690,7 @@ exports.BattlePokedex = {
 			1: "Own Tempo",
 			H: "Leaf Guard"
 		},
+		weightkg: 6.6,
 	},
 	helioptileeternal: {
 		num: 694,
@@ -1633,6 +1712,7 @@ exports.BattlePokedex = {
 			1: "Sand Veil",
 			H: "Solar Power"
 		},
+		weightkg: 6,
 	},
 	snorunteternal: {
 		num: 361,
@@ -1654,6 +1734,7 @@ exports.BattlePokedex = {
 			1: "Ice Body",
 			H: "Moody"
 		},
+		weightkg: 16.8,
 	},
 	chinglingeternal: {
 		num: 433,
@@ -1673,6 +1754,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Levitate"
 		},
+		weightkg: 0.6,
 	},
 	ponytaeternal: {
 		num: 77,
@@ -1694,6 +1776,7 @@ exports.BattlePokedex = {
 			1: "Flash Fire",
 			H: "Flame Body"
 		},
+		weightkg: 30,
 	},
 	smoochumeternal: {
 		num: 125,
@@ -1714,6 +1797,7 @@ exports.BattlePokedex = {
 			0: "Static",
 			H: "Vital Spirit"
 		},
+		weightkg: 6,
 	},
 	klangeternal: {
 		num: 600,
@@ -1735,6 +1819,7 @@ exports.BattlePokedex = {
 			1: "Minus",
 			H: "Clear Body"
 		},
+		weightkg: 51,
 	},
 	eelektriketernal: {
 		num: 603,
