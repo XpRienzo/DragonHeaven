@@ -7767,10 +7767,10 @@ exports.BattleAbilities = {
 	},
 	"auraoffailure": {
 		shortDesc: "Halves Attack and Special Attack of all Pokemon on the field at 50% max HP or less.",
-		onUpdate: function (damage, source, target, move) {
+		onUpdate: function (pokemon) {
 			if (this.effectData.target.hp <= this.effectData.target.maxhp / 2) {
 				this.debug('Aura of Failure');
-				source.addVolatile('auraoffailure');
+				pokemon.addVolatile('auraoffailure');
 			}
 		},
 		effect: {
