@@ -4,7 +4,7 @@
 let BattleStatuses = {
 
 solarsnow: {
-		name: 'Solar Snow',
+		name: 'SolarSnow',
 		id: 'solarsnow',
 		num: 0,
 		effectType: 'Weather',
@@ -28,14 +28,14 @@ solarsnow: {
 		onStart: function (battle, source, effect) {
 			if (effect && effect.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectData.duration = 0;
-				this.add('-weather', 'Solar Snow', '[from] ability: ' + effect, '[of] ' + source);
+				this.add('-weather', 'SolarSnow', '[from] ability: ' + effect, '[of] ' + source);
 			} else {
-				this.add('-weather', 'Solar Snow');
+				this.add('-weather', 'SolarSnow');
 			}
 		},
 		onResidualOrder: 1,
 		onResidual: function () {
-			this.add('-weather', 'Solar Snow', '[upkeep]');
+			this.add('-weather', 'SolarSnow', '[upkeep]');
 			if (this.isWeather('solarsnow')) this.eachEvent('Weather');
 		},
 		onWeather: function (target) {
