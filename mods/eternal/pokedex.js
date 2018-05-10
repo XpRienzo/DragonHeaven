@@ -2057,6 +2057,7 @@ amauraeternal: {
 	abilities: {0: "Pickup", 1: "Frisk", H: "Insomnia"},
 	},
 	weightkg: 15,
+},
 	/*	eternal: {
 	num: 44,
 	species: "Pokemon-Eternal",
