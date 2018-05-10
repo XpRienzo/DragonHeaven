@@ -48,3 +48,5 @@ solarsnow: {
 		},
 	},
   };
+
+exports.BattleStatuses = BattleStatuses;
