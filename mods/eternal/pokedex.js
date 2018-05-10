@@ -1839,6 +1839,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Levitate"
 		},
+		weightkg: 22,
 	},
 	ferroseedeternal: {
 		num: 597,
@@ -1858,6 +1859,7 @@ exports.BattlePokedex = {
 		abilities: {
 			0: "Iron Barbs"
 		},
+		weightkg: 18.8,
 	},
 	joltiketernal: {
 		num: 595,
@@ -1879,6 +1881,7 @@ exports.BattlePokedex = {
 			1: "Unnerve",
 			H: "Swarm"
 		},
+		weightkg: 0.6,
 	},
 	omanyteeternal: {
 		num: 138,
@@ -1964,7 +1967,7 @@ exports.BattlePokedex = {
 			0: "Battle Armor",
 			H: "Swift Swim"
 		},
-		weightkg: 100,
+		weightkg: 12.5,
 	},
 	tirtougaeternal: {
 num: 564, 
@@ -2019,6 +2022,7 @@ amauraeternal: {
 	types: ["Grass", "Fire"], 
 	baseStats:{hp: 49, atk: 46, def: 120, spa: 124, spd: 85, spe: 69},
 	abilities: {0: "Pickup", 1: "Frisk", H: "Insomnia"},
+	weightkg: 5,
 	},
 	pumpkaboosmalleternal: {
 	num: 710,
@@ -2029,6 +2033,7 @@ amauraeternal: {
 	types: ["Grass", "Fire"], 
 	baseStats:{hp: 44, atk: 46, def: 120, spa: 124, spd: 85, spe: 74},
 	abilities: {0: "Pickup", 1: "Frisk", H: "Insomnia"},
+	weightkg: 3.5,
 	},
 	pumpkaboolargeeternal: {
 	num: 710,
@@ -2039,6 +2044,7 @@ amauraeternal: {
 	types: ["Grass", "Fire"], 
 	baseStats:{hp: 54, atk: 46, def: 120, spa: 124, spd: 85, spe: 64},
 	abilities: {0: "Pickup", 1: "Frisk", H: "Insomnia"},
+	weightkg: 7.5,
 	},
 	pumpkaboosupereternal: {
 	num: 710,
@@ -2050,6 +2056,7 @@ amauraeternal: {
 	baseStats:{hp: 59, atk: 46, def: 120, spa: 124, spd: 85, spe: 59},
 	abilities: {0: "Pickup", 1: "Frisk", H: "Insomnia"},
 	},
+	weightkg: 15,
 	/*	eternal: {
 	num: 44,
 	species: "Pokemon-Eternal",
