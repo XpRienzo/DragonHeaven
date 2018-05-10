@@ -1406,15 +1406,15 @@ exports.BattleMovedex = {
 		zMoveEffect: 'heal',
 		contestType: "Cool",
 	},
-	"bitterfragance ": {
+	"bitterfragance": {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
 		desc: "Drops target defense and special defense by one level, then returns to the player. 20% of chance to paralyze target.",
 		shortDesc: "Drops target defense and special defense by one level, then returns to the player. 20% of chance to paralyze target.",
-		id: "bitterfragance ",
+		id: "bitterfragance",
 		isViable: true,
-		name: "Bitter Fragance ",
+		name: "Bitter Fragance",
 		pp: 20,
 		priority: 0,
 		flags: {
