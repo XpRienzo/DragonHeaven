@@ -3019,7 +3019,7 @@ swampert: {
         baseSpecies: "Metsir",
         forme: "Mega-P",
         formeLetter: "M",
-        types: ["Steel", "Bug"],
+        types: ["Steel", "Flying"],
         genderRatio: {
             M: 0.5,
             F: 0.5
