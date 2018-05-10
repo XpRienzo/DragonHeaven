@@ -5327,16 +5327,31 @@ exports.BattleAbilities = {
 	},
 	"peerpressure": {
 		shortDesc: "The opponent's highest non-HP stat is halved.",
-		onStart: function (target, source, effect) {
-				let stat = 'atk';
+		onStart: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+			let stat = 'atk';
 				let bestStat = 0;
 				for (let i in target.stats) {
-					if (source.stats[i] > bestStat) {
+					if (target.stats[i] > bestStat) {
 						stat = i;
 						bestStat = target.stats[i];
 					}
 				}
-				this.boost({[stat]: -2}, target);
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Intimidate', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({[stat]: -2}, target, pokemon);
+				}
+			}
+			}
 		},
 		id: "peerpressure",
 		name: "Peer Pressure",
