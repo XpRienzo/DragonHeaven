@@ -40,7 +40,7 @@ solarsnow: {
 			if (this.isWeather('solarsnow')) this.eachEvent('Weather');
 		},
 		onWeather: function (target) {
-         if (!target.hasType('Grass') || !target.hasType('Fire') || !target.hasType('Ice')){
+         if (!target.hasType('Grass') && !target.hasType('Fire') && !target.hasType('Ice')){
 			  this.damage(target.maxhp / 16);
                         }
 		},
