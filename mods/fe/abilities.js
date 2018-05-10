@@ -3673,7 +3673,7 @@ exports.BattleAbilities = {
 		name: "Ouroboros",
 	},
 	"braveheart": {
-		desc: "This Pokemon takes 0.75x damage from super effective moves (2x effective -> 1.5x) and has its Attack raised by 2 stages whenever it's hit by a super effective move."
+		desc: "This Pokemon takes 0.75x damage from super effective moves (2x effective -> 1.5x) and has its Attack raised by 2 stages whenever it's hit by a super effective move.",
 		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and sharply raises its Attack when hit by one.",
 		onSourceModifyDamage: function(damage, source, target, move) {
 			if (move.typeMod > 0) {
@@ -4814,11 +4814,12 @@ exports.BattleAbilities = {
 	},
 	'obliterate': {
 		shortDesc: "Deletes the opponent's item upon switch-in if it isn't a Mega Stone. The deleted item is treated as if it were knocked off, so Recycle cannot recover it.",
-		onStart: function(target, source) {
-			if (source.hp) {
-				let item = target.takeItem();
-				if (item) {
-					this.add('-enditem', target, item.name, '[from] ability: Obliterate', '[of] ' + source);
+		onStart: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+			target.takeItem();
+			if (target.item) {
+			this.add('-enditem', target, 'item', '[from] ability: Obliterate', '[of] ' + target);
 				}
 			}
 		},
