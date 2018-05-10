@@ -5342,7 +5342,7 @@ exports.BattleAbilities = {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !this.isAdjacent(target, pokemon)) continue;
 				if (!activated) {
-					this.add('-ability', pokemon, 'Intimidate', 'boost');
+					this.add('-ability', pokemon, 'Peer Pressure', 'boost');
 					activated = true;
 				}
 				if (target.volatiles['substitute']) {
