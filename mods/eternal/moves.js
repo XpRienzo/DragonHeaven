@@ -572,7 +572,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Tri Attack", target);
 		},
 		target: "normal",
-		type: "Normal",
+		type: "Steel",
 		zMovePower: 190,
 		contestType: "Beautiful",
 	},
@@ -865,8 +865,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		damageCallback: function(pokemon) {
-			if (!pokemon.volatiles['metalburst']) return 0;
-			return pokemon.volatiles['metalburst'].damage || 1;
+			if (!pokemon.volatiles['magicalegg']) return 0;
+			return pokemon.volatiles['magicalegg'].damage || 1;
 		},
 		category: "Physical",
 		desc: "Deals damage to the last foe to hit the user with an attack this turn equal to 1.5 times the HP lost by the user from that attack. If the user did not lose HP from the attack, this move deals damage with a Base Power of 1 instead. If that foe's position is no longer in use, the damage is done to a random foe in range. Only the last hit of a multi-hit attack is counted. Fails if the user was not hit by a foe's attack this turn.",
@@ -884,11 +884,11 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Metal Burst", target);
 		},
 		beforeTurnCallback: function(pokemon) {
-			pokemon.addVolatile('metalburst');
+			pokemon.addVolatile('magicalegg');
 		},
 		onTryHit: function(target, source, move) {
-			if (!source.volatiles['metalburst']) return false;
-			if (source.volatiles['metalburst'].position === null) return false;
+			if (!source.volatiles['magicalegg']) return false;
+			if (source.volatiles['magicalegg'].position === null) return false;
 		},
 		effect: {
 			duration: 1,
@@ -906,7 +906,7 @@ exports.BattleMovedex = {
 			onDamage: function(damage, target, source, effect) {
 				if (effect && effect.effectType === 'Move' && source.side !== target.side) {
 					this.effectData.position = source.position;
-					this.effectData.damage = 1.5 * damage;
+					this.effectData.damage = damage;
 				}
 			},
 		},
