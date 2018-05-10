@@ -3860,13 +3860,13 @@ exports.BattleAbilities = {
 		id: "phasethrough",
 		name: "Phase Through",
 	},
-	"us": {
+	"lockedshell": {
 		shortDesc: "Immune to priority & status moves.",
 		onImmunity: function(pokemon, move) {
 			if (move.category === 'Status' || move.priority > 0) return false;
 		},
-		id: "us",
-		name: "US",
+		id: "lockedshell",
+		name: "Locked Shell",
 	},
 	"healthymeal": {
 		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and cannot be inflicted with any major status condition.",
