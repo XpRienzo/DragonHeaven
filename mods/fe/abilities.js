@@ -5328,7 +5328,6 @@ exports.BattleAbilities = {
 	"peerpressure": {
 		shortDesc: "The opponent's highest non-HP stat is halved.",
 		onStart: function (target, source, effect) {
-			if (effect && effect.effectType === 'Move') {
 				let stat = 'atk';
 				let bestStat = 0;
 				for (let i in target.stats) {
@@ -5338,7 +5337,6 @@ exports.BattleAbilities = {
 					}
 				}
 				this.boost({[stat]: -2}, target);
-			}
 		},
 		id: "peerpressure",
 		name: "Peer Pressure",
