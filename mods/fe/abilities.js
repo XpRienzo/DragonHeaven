@@ -3666,11 +3666,15 @@ exports.BattleAbilities = {
 				this.heal(target.maxhp / 3);
 			}
 		},
+		onSwitchOut: function (pokemon) {
+			pokemon.heal(pokemon.maxhp / 3);
+		},
 		id: "ouroboros",
 		name: "Ouroboros",
 	},
 	"braveheart": {
-		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks.",
+		desc: "This Pokemon takes 0.75x damage from super effective moves (2x effective -> 1.5x) and has its Attack raised by 2 stages whenever it's hit by a super effective move."
+		shortDesc: "This Pokemon receives 3/4 damage from supereffective attacks and sharply raises its Attack when hit by one.",
 		onSourceModifyDamage: function(damage, source, target, move) {
 			if (move.typeMod > 0) {
 				return this.chainModify(0.75);
@@ -3688,7 +3692,7 @@ exports.BattleAbilities = {
 		name: "Braveheart",
 	},
 	"darklight": {
-		shortDesc: "Provides inmunity to super effective attacks and heals 25% of its health instead. This Ability cannot be ignored.",
+		shortDesc: "Provides immunity to super effective attacks and heals 25% of its health instead. This Ability cannot be ignored.",
 		onImmunity: function(move) {
 			if (move.typeMod > 0) return false;
 		},
@@ -3704,11 +3708,11 @@ exports.BattleAbilities = {
 		id: "darklight",
 		name: "Dark Light",
 	},
-	"ancientfoilage": {
+	"ancientfoliage": {
 		shortDesc: "While this Pokemon is active, Grass and Rock-Type Pokemon Special Defense is boosted by 50%. Raises the power of Grass and Rock-type moves by 50% when at 1/2 HP or less.",
-		onModifySpDPriority: 4,
-		onModifySpD: function(spd, pokemon) {
-			if (pokemon.type === 'Rock' || pokemon.type === 'Grass') {
+		onAnyModifySpDPriority: 4,
+		onAnyModifySpD: function(spd, pokemon) {
+			if (pokemon.hasType('Rock') || pokemon.hasType('Grass')) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -3724,11 +3728,11 @@ exports.BattleAbilities = {
 				return this.chainModify(1.5);
 			}
 		},
-		id: "ancientfoilage",
+		id: "ancientfoliage",
 		name: "Ancient Foliage",
 	},
 	"prodigy": {
-		desc: "This Pokemon's moves of 60 power or less have their power multiplied by 2.35. Does affect Struggle.",
+		desc: "This Pokemon's moves of 60 power or less have their power multiplied by 2.25. Does affect Struggle.",
 		shortDesc: "This Pokemon's moves of 60 power or less have 2.25x power. Includes Struggle.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
