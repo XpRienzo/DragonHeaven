@@ -7767,14 +7767,30 @@ exports.BattleAbilities = {
 	},
 	"auraoffailure": {
 		shortDesc: "Halves Attack and Special Attack of all Pokemon on the field at 50% max HP or less.",
-		id: "auraoffailure",
-		name: "Aura of Failure",
-		onAnyModifyDamage: function (damage, source, target, move) {
+		onUpdate: function (damage, source, target, move) {
 			if (this.effectData.target.hp <= this.effectData.target.maxhp / 2) {
 				this.debug('Aura of Failure');
-				return this.chainModify(0.5);
+				source.addVolatile('auraoffailure');
 			}
 		},
+		effect: {
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+				return this.chainModify(0.5);
+		},
+		onFoeModifyAtk: function (atk, pokemon) {
+				return this.chainModify(0.5);
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, pokemon) {
+				return this.chainModify(0.5);
+			},
+		onFoeModifySpA: function (atk, pokemon) {
+				return this.chainModify(0.5);
+			},
+		},
+		id: "auraoffailure",
+		name: "Aura of Failure",
 	},
 	"slownsteady": {
 		shortDesc: "This Pokemon takes 1/2 damage from attacks if it moves last.",
