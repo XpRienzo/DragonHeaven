@@ -378,7 +378,7 @@ evgutter: function (target, room, user) {
 			let speedtier = 2 * mon.baseStats.spe + 99;
 			let speedtierzero = 2 * mon.baseStats.spe + 36;
 			let nameo = mon;
-			buf += `${speedtierplusscarf}: Scarf Fast+ ${mon.nameo}<br>${speedtierscarf}: Scarf Fast ${mon.species}<br>${speedtierplus}: Fast+ ${mon.species}<br>${speedtier}: Fast ${mon.species}<br>${speedtierzero}: Bulky ${mon.species}<br>`;
+			buf += `${speedtierplusscarf}: Scarf Fast+ ${nameo}<br>${speedtierscarf}: Scarf Fast ${mon.species}<br>${speedtierplus}: Fast+ ${mon.species}<br>${speedtier}: Fast ${mon.species}<br>${speedtierzero}: Bulky ${mon.species}<br>`;
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
