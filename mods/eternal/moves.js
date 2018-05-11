@@ -2505,29 +2505,11 @@ exports.BattleMovedex = {
 		id: "bounceshield",
 		name: "Bounce Shield",
 		pp: 10,
-		priority: -4,
+		priority: 4,
 		flags: {},
 		beforeTurnCallback: function(pokemon) {
 			pokemon.addVolatile('bounceshield');
 		},
-		onTryHit: function (target, source, move) {
-    if (!move.flags['protect']) {
-        if (move.isZ) move.zBrokeProtect = true;
-        return;
-    }
-    let damage = this.getDamage(source, target, move);
-    this.add('-activate', target, 'move: Protect');
-    source.moveThisTurnResult = true;
-    let lockedmove = source.getVolatile('lockedmove');
-    if (lockedmove) {
-        // Outrage counter is reset
-        if (source.volatiles['lockedmove'].duration === 2) {
-            delete source.volatiles['lockedmove'];
-        }
-    }
-    this.directDamage(damage, source, target);
-    return null;
-},
 		effect: {
 			duration: 1,
 			noCopy: true,
@@ -2548,6 +2530,24 @@ exports.BattleMovedex = {
 				}
 			},
 		},
+		onTryHit: function (target, source, move) {
+    if (!move.flags['protect']) {
+        if (move.isZ) move.zBrokeProtect = true;
+        return;
+    }
+    let damage = this.getDamage(source, target, move);
+    this.add('-activate', target, 'move: Protect');
+    source.moveThisTurnResult = true;
+    let lockedmove = source.getVolatile('lockedmove');
+    if (lockedmove) {
+        // Outrage counter is reset
+        if (source.volatiles['lockedmove'].duration === 2) {
+            delete source.volatiles['lockedmove'];
+        }
+    }
+    this.directDamage(damage, source, target);
+    return null;
+},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', target, "Magic Coat", source);
