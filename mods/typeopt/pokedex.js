@@ -460,6 +460,11 @@ exports.BattlePokedex = {
             spd: 60,
             spe: 109
         },
+		 abilities: {
+            0: "Rock Head",
+            1: "Mold Breaker",
+            H: "Sheer Force"
+        },
     },
     lycanrocmidnight: {
         inherit: true,
