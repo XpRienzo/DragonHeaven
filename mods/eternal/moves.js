@@ -2915,10 +2915,11 @@ exports.BattleMovedex = {
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
+			for (const ally of source.side.pokemon) {
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 2,
 				move: 'sporeburst',
-				source: source,
+				source: ally,
 				moveData: {
 					id: 'sporeburst',
 					name: "Spore Burst",
@@ -2937,6 +2938,7 @@ exports.BattleMovedex = {
 					isFutureMove: true,
 					type: 'Dark',
 				},
+			}
 			};
 			this.add('-start', source, 'move: Spore Burst');
 			return null;
