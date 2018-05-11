@@ -49,6 +49,9 @@ exports.BattleMovedex = {
 			onStart: function(target, source) {
 				this.add('-fieldstart', 'move: Inverse Room', '[of] ' + source);
 			},
+			onRestart: function (target, source) {
+				this.removePseudoWeather('wonderroom');
+			},
 			onEffectiveness: function(typeMod, target, type, move) {
 				if (move && !this.getImmunity(move, type)) return 1;
 				return -typeMod;
