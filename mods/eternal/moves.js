@@ -2510,10 +2510,24 @@ exports.BattleMovedex = {
 		beforeTurnCallback: function(pokemon) {
 			pokemon.addVolatile('bounceshield');
 		},
-		onTryHit: function(target, source, move) {
-			if (!source.volatiles['metalburst']) return false;
-			if (source.volatiles['metalburst'].position === null) return false;
-		},
+		onTryHit: function (target, source, move) {
+    if (!move.flags['protect']) {
+        if (move.isZ) move.zBrokeProtect = true;
+        return;
+    }
+    let damage = this.getDamage(source, target, move);
+    this.add('-activate', target, 'move: Protect');
+    source.moveThisTurnResult = true;
+    let lockedmove = source.getVolatile('lockedmove');
+    if (lockedmove) {
+        // Outrage counter is reset
+        if (source.volatiles['lockedmove'].duration === 2) {
+            delete source.volatiles['lockedmove'];
+        }
+    }
+    this.directDamage(damage, source, target);
+    return null;
+},
 		effect: {
 			duration: 1,
 			noCopy: true,
@@ -2929,7 +2943,10 @@ exports.BattleMovedex = {
 					flags: {
 						heal: 1
 					},
-					drain: [1, 2],
+					onHit: function (target, side) {
+    				let teammate = side.active[this.effectData.sourcePosition];
+    				teammate.heal(Math.ceil(this.effectData.damage * 0.5));
+					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
@@ -3758,16 +3775,19 @@ exports.BattleMovedex = {
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
-		  onHit: function (target, source, move) {
-			  if (source.hasMove('thunderwave')) {
-					target.trySetStatus('par', source);
-		  }
-			  else if (source.hasMove('toxic')) {
-					target.trySetStatus('tox', source);
-		  }
-			  else if (source.hasMove('willowisp')) {
-				  target.trySetStatus('brn', source);
-		  }
+		  onBasePowerPriority: 4,
+			onBasePower: function (basePower, pokemon) {
+    		if (pokemon.status && pokemon.status !== 'frz') {
+        return this.chainModify(1.5);
+    		}
+			},
+			onHit: function (target, pokemon) {
+    		if (pokemon.status && !target.status && target.trySetStatus(pokemon.status)) {
+        pokemon.cureStatus();
+        return this.heal(pokemon.maxhp / 4, pokemon, pokemon);
+    		} else {
+        return false;
+    		}
 		},
         secondary: false,
         target: "normal",
