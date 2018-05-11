@@ -2496,13 +2496,10 @@ exports.BattleMovedex = {
 	"bounceshield": {
 		accuracy: true,
 		basePower: 0,
-		damageCallback: function(pokemon) {
-			if (!pokemon.volatiles['bounceshield']) return 0;
-			return pokemon.volatiles['bounceshield'].damage || 1;
-		},
 		category: "Status",
-		shortDesc: "Prevents moves from affecting the user this turn. The foe takes any damage this pokemon wouldve taken",
+		shortDesc: "Prevents moves from affecting the user this turn. Returns half the damage it would've taken.",
 		id: "bounceshield",
+		isViable: true,
 		name: "Bounce Shield",
 		pp: 10,
 		priority: 4,
