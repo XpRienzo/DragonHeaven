@@ -6,67 +6,67 @@ const CHOOSABLE_TARGETS = new Set(['normal', 'any', 'adjacentAlly', 'adjacentAll
 let BattleScripts = {
 init: function () {
 
-	this.modData('Learnsets', 'vanilluxe').learnset.nastyplot = ['6L1'];
-	this.modData('Learnsets', 'vanilluxe').learnset.hypervoice = ['6L1'];
-	this.modData('Learnsets', 'vanilluxe').learnset.focusblast = ['6L1'];
+	this.modData('Learnsets', 'vanilluxe').learnset.nastyplot = ['7L1'];
+	this.modData('Learnsets', 'vanilluxe').learnset.hypervoice = ['7L1'];
+	this.modData('Learnsets', 'vanilluxe').learnset.focusblast = ['7L1'];
 
-	this.modData('Learnsets', 'mightyena').learnset.honeclaws = ['6L1'];
-	this.modData('Learnsets', 'mightyena').learnset.iciclecrash = ['6L1'];
-	this.modData('Learnsets', 'mightyena').learnset.superpower = ['6L1'];
+	this.modData('Learnsets', 'mightyena').learnset.honeclaws = ['7L1'];
+	this.modData('Learnsets', 'mightyena').learnset.iciclecrash = ['7L1'];
+	this.modData('Learnsets', 'mightyena').learnset.superpower = ['7L1'];
 	
-	this.modData('Learnsets', 'sandslashalola').learnset.pinmissile = ['6L1'];
-	this.modData('Learnsets', 'sandslashalola').learnset.rockblast = ['6L1'];
-	this.modData('Learnsets', 'sandslashalola').learnset.thunderpunch = ['6L1'];
+	this.modData('Learnsets', 'sandslashalola').learnset.pinmissile = ['7L1'];
+	this.modData('Learnsets', 'sandslashalola').learnset.rockblast = ['7L1'];
+	this.modData('Learnsets', 'sandslashalola').learnset.thunderpunch = ['7L1'];
 	
-	this.modData('Learnsets', 'mandibuzz').learnset.shadowbone = ['6L1'];
-	this.modData('Learnsets', 'mandibuzz').learnset.shadowsneak = ['6L1'];
-	this.modData('Learnsets', 'mandibuzz').learnset.willowisp = ['6L1'];
+	this.modData('Learnsets', 'mandibuzz').learnset.shadowbone = ['7L1'];
+	this.modData('Learnsets', 'mandibuzz').learnset.shadowsneak = ['7L1'];
+	this.modData('Learnsets', 'mandibuzz').learnset.willowisp = ['7L1'];
 	
-	this.modData('Learnsets', 'toucannon').learnset.ironhead = ['6L1'];
-	this.modData('Learnsets', 'toucannon').learnset.flareblitz = ['6L1'];
-	this.modData('Learnsets', 'toucannon').learnset.earthquake = ['6L1'];
+	this.modData('Learnsets', 'toucannon').learnset.ironhead = ['7L1'];
+	this.modData('Learnsets', 'toucannon').learnset.flareblitz = ['7L1'];
+	this.modData('Learnsets', 'toucannon').learnset.earthquake = ['7L1'];
 	
-	this.modData('Learnsets', 'wigglytuff').learnset.airslash = ['6L1'];
-	this.modData('Learnsets', 'wigglytuff').learnset.earthpower = ['6L1'];
-	this.modData('Learnsets', 'wigglytuff').learnset.drainingkiss = ['6L1'];
+	this.modData('Learnsets', 'wigglytuff').learnset.airslash = ['7L1'];
+	this.modData('Learnsets', 'wigglytuff').learnset.earthpower = ['7L1'];
+	this.modData('Learnsets', 'wigglytuff').learnset.drainingkiss = ['7L1'];
 	
-	this.modData('Learnsets', 'poliwrath').learnset.aquajet = ['6L1'];
-	this.modData('Learnsets', 'poliwrath').learnset.stoneedge = ['6L1'];
-	this.modData('Learnsets', 'poliwrath').learnset.drainpunch = ['6L1'];
+	this.modData('Learnsets', 'poliwrath').learnset.aquajet = ['7L1'];
+	this.modData('Learnsets', 'poliwrath').learnset.stoneedge = ['7L1'];
+	this.modData('Learnsets', 'poliwrath').learnset.drainpunch = ['7L1'];
 	
-	this.modData('Learnsets', 'gallade').learnset.playrough = ['6L1'];
-	this.modData('Learnsets', 'gallade').learnset.machpunch = ['6L1'];
-	this.modData('Learnsets', 'gallade').learnset.sacredsword = ['6L1'];
+	this.modData('Learnsets', 'gallade').learnset.playrough = ['7L1'];
+	this.modData('Learnsets', 'gallade').learnset.machpunch = ['7L1'];
+	this.modData('Learnsets', 'gallade').learnset.sacredsword = ['7L1'];
 	
-	this.modData('Learnsets', 'parasect').learnset.strengthsap = ['6L1'];
-	this.modData('Learnsets', 'parasect').learnset.hornleech = ['6L1'];
-	this.modData('Learnsets', 'parasect').learnset.drainpunch = ['6L1'];
+	this.modData('Learnsets', 'parasect').learnset.strengthsap = ['7L1'];
+	this.modData('Learnsets', 'parasect').learnset.hornleech = ['7L1'];
+	this.modData('Learnsets', 'parasect').learnset.drainpunch = ['7L1'];
 	
-	this.modData('Learnsets', 'golisopod').learnset.spiritshackle = ['6L1'];
-	this.modData('Learnsets', 'golisopod').learnset.stickyweb = ['6L1'];
-	this.modData('Learnsets', 'golisopod').learnset.uturn = ['6L1'];
+	this.modData('Learnsets', 'golisopod').learnset.spiritshackle = ['7L1'];
+	this.modData('Learnsets', 'golisopod').learnset.stickyweb = ['7L1'];
+	this.modData('Learnsets', 'golisopod').learnset.uturn = ['7L1'];
 	
-	this.modData('Learnsets', 'magcargo').learnset.bugbuzz = ['6L1'];
-	this.modData('Learnsets', 'magcargo').learnset.uturn = ['6L1'];
-	this.modData('Learnsets', 'magcargo').learnset.rapidspin = ['6L1'];
+	this.modData('Learnsets', 'magcargo').learnset.bugbuzz = ['7L1'];
+	this.modData('Learnsets', 'magcargo').learnset.uturn = ['7L1'];
+	this.modData('Learnsets', 'magcargo').learnset.rapidspin = ['7L1'];
 	
-	this.modData('Learnsets', 'shiftry').learnset.bravebird = ['6L1'];
-	this.modData('Learnsets', 'shiftry').learnset.woodhammer = ['6L1'];
-	this.modData('Learnsets', 'shiftry').learnset.uturn = ['6L1'];
+	this.modData('Learnsets', 'shiftry').learnset.bravebird = ['7L1'];
+	this.modData('Learnsets', 'shiftry').learnset.woodhammer = ['7L1'];
+	this.modData('Learnsets', 'shiftry').learnset.uturn = ['7L1'];
 	
-	this.modData('Learnsets', 'victreebel').learnset.scald = ['6L1'];
-	this.modData('Learnsets', 'victreebel').learnset.liquidation = ['6L1'];
-	this.modData('Learnsets', 'victreebel').learnset.uturn = ['6L1'];
+	this.modData('Learnsets', 'victreebel').learnset.scald = ['7L1'];
+	this.modData('Learnsets', 'victreebel').learnset.liquidation = ['7L1'];
+	this.modData('Learnsets', 'victreebel').learnset.uturn = ['7L1'];
 	
-	this.modData('Learnsets', 'meganium').learnset.dracometeor = ['6L1'];
-	this.modData('Learnsets', 'meganium').learnset.earthpower = ['6L1'];
-	this.modData('Learnsets', 'meganium').learnset.calmmind = ['6L1'];
+	this.modData('Learnsets', 'meganium').learnset.dracometeor = ['7L1'];
+	this.modData('Learnsets', 'meganium').learnset.earthpower = ['7L1'];
+	this.modData('Learnsets', 'meganium').learnset.calmmind = ['7L1'];
 	
-	this.modData('Learnsets', 'jynx').learnset.thunderbolt = ['6L1'];
+	this.modData('Learnsets', 'jynx').learnset.thunderbolt = ['7L1'];
 	
-	this.modData('Learnsets', 'porygonz').learnset.hex = ['6L1'];
-	this.modData('Learnsets', 'porygonz').learnset.willowisp = ['6L1'];
-	this.modData('Learnsets', 'porygonz').learnset.volstswitch = ['6L1'];
+	this.modData('Learnsets', 'porygonz').learnset.hex = ['7L1'];
+	this.modData('Learnsets', 'porygonz').learnset.willowisp = ['7L1'];
+	this.modData('Learnsets', 'porygonz').learnset.volstswitch = ['7L1'];
 	
 	this.modData('Learnsets', 'guzzlord').learnset.shadowball = ['7L1'];
 	this.modData('Learnsets', 'guzzlord').learnset.bellydrum = ['7L1'];
