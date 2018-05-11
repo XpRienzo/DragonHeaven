@@ -2536,6 +2536,7 @@ exports.BattleMovedex = {
     this.directDamage(damage, source, target);
     return null;
 },
+		},
 		secondary: false,
 		target: "self",
 		type: "Psychic",
