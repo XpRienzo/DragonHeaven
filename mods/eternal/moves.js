@@ -2507,30 +2507,21 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 4,
 		flags: {},
-		beforeTurnCallback: function(pokemon) {
-			pokemon.addVolatile('bounceshield');
+		stallingMove: true,
+		volatileStatus: 'protect',
+		onPrepareHit: function (pokemon) {
+			return !!this.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit: function (pokemon) {
+			pokemon.addVolatile('stall');
 		},
 		effect: {
 			duration: 1,
-			noCopy: true,
-			onStart: function(target, source, source2, move) {
-				this.effectData.position = null;
-				this.effectData.damage = 0;
+			onStart: function (target) {
+				this.add('-singleturn', target, 'Protect');
 			},
-			onRedirectTargetPriority: -1,
-			onRedirectTarget: function(target, source, source2) {
-				if (source !== this.effectData.target) return;
-				return source.side.foe.active[this.effectData.position];
-			},
-			onDamagePriority: -101,
-			onDamage: function(damage, target, source, effect) {
-				if (effect && effect.effectType === 'Move' && source.side !== target.side) {
-					this.effectData.position = source.position;
-					this.effectData.damage = damage;
-				}
-			},
-		},
-		onTryHit: function (target, source, move) {
+			onTryHitPriority: 3,
+			onTryHit: function (target, source, move) {
     if (!move.flags['protect']) {
         if (move.isZ) move.zBrokeProtect = true;
         return;
@@ -2548,14 +2539,11 @@ exports.BattleMovedex = {
     this.directDamage(damage, source, target);
     return null;
 },
-		onPrepareHit: function(target, source, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', target, "Magic Coat", source);
-		},
 		secondary: false,
 		target: "self",
 		type: "Psychic",
-		zMoveEffect: 'heal',
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Cute",
 	},
 	"goodtidings": {
 		accuracy: true,
