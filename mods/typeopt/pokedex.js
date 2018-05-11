@@ -3,6 +3,7 @@
 exports.BattlePokedex = {
     lycanroc: {
         inherit: true,
+		  species: "Lycanroc",
         types: ["Rock", "Normal"],
         baseStats: {
             hp: 75,
