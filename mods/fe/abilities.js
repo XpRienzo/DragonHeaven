@@ -8520,4 +8520,28 @@ exports.BattleAbilities = {
 		id: "beautifulobliterationweapon",
 		name: "Beautiful Obliteration Weapon",
 	},
+		"advocatescale": {
+		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
+                //WARNING: DOUBT AHEAD.
+		onSourceEffectiveness: function (typeMod, type, move) {
+			if (move && this.getImmunity(move, type)) return 1;
+			return -typeMod;
+		},
+		id: "advocatescale",
+		name: "Advocate Scale",
+	},
+
+	"inversearmor": {
+                desc: "Type effectiveness of moves that the holder uses or is hit by is inverted (Inverse Battle rules apply; type effectiveness of moves used by Mold Breaker variants users is not influenced by this ability).",
+		shortDesc: "Type effectiveness in moves that target or are used by this Pokemon is inverted.",
+                //WARNING: AGAIN, MASSIVE DOUBT AHEAD.
+		onAnyEffectiveness: function (typeMod, type,  target, source, move) {
+                       if (move && (source === this.effectData.target || target === this.effectData.target)) {
+			  if (move && this.getImmunity(move, type)) return 1;
+			  return -typeMod;
+                       }
+		},
+		id: "inversearmor",
+		name: "Inverse Armor",
+	},
 };
