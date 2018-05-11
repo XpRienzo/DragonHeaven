@@ -5323,31 +5323,78 @@ exports.BattleAbilities = {
 	},
 	"peerpressure": {
 		shortDesc: "The opponent's highest non-HP stat is halved.",
-		onStart: function (pokemon) {
-			for (const target of pokemon.side.foe.active) {
-				if (!target || target.fainted) continue;
+				onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Peer Pressure');
+		},
+		onFoeModifyAtkPriority: 5,
+		onFoeModifyAtk: function(atk, pokemon) {
 			let stat = 'atk';
-				let bestStat = 0;
-				for (let i in target.stats) {
-					if (target.stats[i] > bestStat) {
-						stat = i;
-						bestStat = target.stats[i];
-					}
-				}
-			let activated = false;
-			for (const target of pokemon.side.foe.active) {
-				if (!target || !this.isAdjacent(target, pokemon)) continue;
-				if (!activated) {
-					this.add('-ability', pokemon, 'Peer Pressure', 'boost');
-					activated = true;
-				}
-				if (target.volatiles['substitute']) {
-					this.add('-immune', target, '[msg]');
-				} else {
-					this.boost({[stat]: -2}, target, pokemon);
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
 				}
 			}
+			if (stat === 'atk') {     
+                              return this.chainModify(0.5);
 			}
+		},
+		onFoeModifyDefPriority: 6,
+		onFoeModifyDef: function(def, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (stat === 'def') {
+				return this.chainModify(0.5);
+			}
+		},
+		onFoeModifySpAPriority: 5,
+		onFoeModifySpA: function(spa, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (stat === 'spa') {
+				return this.chainModify(0.5);
+			}
+		},
+		onFoeModifySpDPriority: 5,
+		onFoeModifySpD: function(spd, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (stat === 'spd') {
+				return this.chainModify(0.5);
+			}
+		},
+		onFoeModifySpe: function(spe, pokemon) {
+			let stat = 'atk';
+			let bestStat = 0;
+			for (let i in pokemon.stats) {
+				if (pokemon.stats[i] > bestStat) {
+					stat = i;
+					bestStat = pokemon.stats[i];
+				}
+			}
+			if (stat === 'spe') {
+				return this.chainModify(0.5);
+            }
+		},
 		},
 		id: "peerpressure",
 		name: "Peer Pressure",
@@ -7746,17 +7793,19 @@ exports.BattleAbilities = {
 		onModifySpe: function(spe, pokemon) {
 			let stat = 'atk';
 			let bestStat = 0;
-			for (let i in pokemon.stats && stat === 'spe') {
+			for (let i in pokemon.stats) {
 				if (pokemon.stats[i] > bestStat) {
 					stat = i;
 					bestStat = pokemon.stats[i];
 				}
 			}
+			if (pokemon.status && stat === 'spe') {     
                               if (pokemon.status === 'par'){
                                 return this.chainModify(3);
                               } else {
 				return this.chainModify(1.5);
                               }
+			}
 		},
 		id: "gutsybeast",
 		name: "Gutsy Beast",
@@ -8063,31 +8112,32 @@ exports.BattleAbilities = {
 		},
 	"beastroar": {
         shortDesc: "Lowers the foe’s highest stat by 1 stage.",
-        onStart: function (pokemon) {
-            let activated = false;
-            for (const target of pokemon.side.foe.active) {
-                let stat = 'atk';
-                let bestStat = 0;
-                for (let i in target.stats) {
-                    if (target.stats[i] > bestStat) {
-                        stat = i;
-                        bestStat = target.stats[i];
-                    }
-                }
-                if (!target || !this.isAdjacent(target, pokemon)) continue;
-                if (!activated) {
-                   if(pokemon.ability === "beastroar") {
- 							this.add('-ability', pokemon, 'Beast Roat', 'boost');
-							}
-                    activated = true;
-                }
-                if (target.volatiles['substitute']) {
-                    this.add('-immune', target, '[msg]');
-                } else {
-                    this.boost({[stat]: -1}, target, pokemon);
-                }
-            }
-        },
+		onStart: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+			let stat = 'atk';
+				let bestStat = 0;
+				for (let i in target.stats) {
+					if (target.stats[i] > bestStat) {
+						stat = i;
+						bestStat = target.stats[i];
+					}
+				}
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Beast Roar', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({[stat]: -1}, target, pokemon);
+				}
+			}
+			}
+		},
         id: "beastroar",
         name: "Beast Roar",
     },
