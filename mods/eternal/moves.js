@@ -2918,7 +2918,7 @@ exports.BattleMovedex = {
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 2,
 				move: 'sporeburst',
-				source: ally,
+				source: source,
 				moveData: {
 					id: 'sporeburst',
 					name: "Spore Burst",
