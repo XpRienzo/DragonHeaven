@@ -6,7 +6,7 @@ exports.BattleItems = {
 		            fling: {
 		           	        basePower: 60,
 		            },
-           		desc: "Holder's use of Electric/Grassy/Misty/Psychic Terrain lasts 8 turns instead of 5.",
+           		desc: "Extends Trick Room, Magic Room and Wonder Room to 8 turns, instead of 5",
       	},
 	"adrenalineorb": {
 		id: "adrenalineorb",
