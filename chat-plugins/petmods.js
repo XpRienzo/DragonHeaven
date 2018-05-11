@@ -369,7 +369,7 @@ evgutter: function (target, room, user) {
 	typeoptspeed: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
-		let feDex = require('../mods/typeoptspeed/pokedex.js').BattlePokedex;
+		let feDex = require('../mods/typeopt/pokedex.js').BattlePokedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(mon => {
 			let speedtierplusscarf = (2.2 * mon.baseStats.spe + 108.9) * 1.5;
