@@ -41,6 +41,9 @@ exports.BattleMovedex = {
 				if (source && source.hasAbility('persistent')) {
 					return 7;
 				}
+				else if (source && source.hasItem('roomextender')) {
+					return 8;
+				}
 				return 5;
 			},
 			onStart: function(target, source) {
@@ -1400,6 +1403,9 @@ exports.BattleMovedex = {
 				if (source && source.hasAbility('persistent')) {
 					return 7;
 				}
+				else if (source && source.hasItem('roomextender')) {
+					return 8;
+				}
 				return 5;
 			},
 			onStart: function(target, source) {
@@ -1442,6 +1448,9 @@ exports.BattleMovedex = {
 				if (source && source.hasAbility('persistent')) {
 					return 7;
 				}
+				else if (source && source.hasItem('roomextender')) {
+					return 8;
+				}
 				return 5;
 			},
 			onStart: function(target, source) {
@@ -1464,47 +1473,46 @@ exports.BattleMovedex = {
 		},
 		contestType: "Clever",
 	},
-	"magicroom": {
-		num: 478,
+	"wonderroom": {
+		num: 472,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "For 5 turns, the held items of all active Pokemon have no effect. An item's effect of causing forme changes is unaffected, but any other effects from such items are negated. During the effect, Fling and Natural Gift are prevented from being used by all active Pokemon. If this move is used during the effect, the effect ends.",
-		shortDesc: "For 5 turns, all held items have no effect.",
-		id: "magicroom",
-		name: "Magic Room",
+		desc: "For 5 turns, all active Pokemon have their Defense and Special Defense stats swapped. Stat stage changes are unaffected. If this move is used during the effect, the effect ends.",
+		shortDesc: "For 5 turns, all Defense and Sp. Def stats switch.",
+		id: "wonderroom",
+		name: "Wonder Room",
 		pp: 10,
 		priority: 0,
-		flags: {
-			mirror: 1
-		},
-		pseudoWeather: 'magicroom',
+		flags: {mirror: 1},
+		pseudoWeather: 'wonderroom',
 		effect: {
 			duration: 5,
-			durationCallback: function(source, effect) {
+			durationCallback: function (source, effect) {
 				if (source && source.hasAbility('persistent')) {
 					return 7;
 				}
+					else if (source && source.hasItem('roomextender')) {
+					return 8;
+				}
 				return 5;
 			},
-			onStart: function(target, source) {
-				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
+			onStart: function (side, source) {
+				this.add('-fieldstart', 'move: Wonder Room', '[of] ' + source);
 			},
-			onRestart: function(target, source) {
-				return null;
+			onRestart: function (target, source) {
+				this.removePseudoWeather('wonderroom');
 			},
-			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
-			onResidualOrder: 25,
-			onEnd: function() {
-				this.add('-fieldend', 'move: Magic Room', '[of] ' + this.effectData.source);
+			// Swapping defenses implemented in sim/pokemon.js:Pokemon#calculateStat and Pokemon#getStat
+			onResidualOrder: 24,
+			onEnd: function () {
+				this.add('-fieldend', 'move: Wonder Room');
 			},
 		},
 		secondary: false,
 		target: "all",
 		type: "Psychic",
-		zMoveBoost: {
-			spd: 1
-		},
+		zMoveBoost: {spd: 1},
 		contestType: "Clever",
 	},
 };
