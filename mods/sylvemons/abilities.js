@@ -196,6 +196,14 @@ exports.BattleAbilities = {
 		id: "timewarp",
 		name: "Time Warp",
 	},
+	"dimensionwarp": {
+		shortDesc: "On switch-in, this Pokemon summons Trick Room.",
+		onStart: function(source) {
+			this.useMove("Inverse Room", source);
+		},
+		id: "dimensionwarp",
+		name: "Dimension Warp",
+	},
 	housekeeping: {
 		shortDesc: "Removes hazards upon switch-in.",
 		onSwitchInPriority: 6,
