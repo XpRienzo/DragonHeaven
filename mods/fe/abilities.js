@@ -5323,7 +5323,7 @@ exports.BattleAbilities = {
 	},
 	"peerpressure": {
 		shortDesc: "The opponent's highest non-HP stat is halved.",
-				onStart: function (pokemon) {
+		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Peer Pressure');
 		},
 		onFoeModifyAtkPriority: 5,
@@ -5337,7 +5337,7 @@ exports.BattleAbilities = {
 				}
 			}
 			if (stat === 'atk') {     
-                              return this.chainModify(0.5);
+          return this.chainModify(0.5);
 			}
 		},
 		onFoeModifyDefPriority: 6,
@@ -5394,7 +5394,6 @@ exports.BattleAbilities = {
 			if (stat === 'spe') {
 				return this.chainModify(0.5);
             }
-		},
 		},
 		id: "peerpressure",
 		name: "Peer Pressure",
@@ -8573,7 +8572,7 @@ exports.BattleAbilities = {
 		"advocatescale": {
 		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
                 //WARNING: DOUBT AHEAD.
-		onSourceEffectiveness: function (typeMod, type, move, attacker, defender) {
+		onEffectiveness: function (typeMod, type, move) {
 			if (move && this.getImmunity(move, type)) return 1;
 			return -typeMod;
 		},
