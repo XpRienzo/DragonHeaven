@@ -8523,7 +8523,7 @@ exports.BattleAbilities = {
 		"advocatescale": {
 		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
                 //WARNING: DOUBT AHEAD.
-		onSourceEffectiveness: function (typeMod, type, move) {
+		onFoeEffectiveness: function (typeMod, type, move) {
 			if (move && this.getImmunity(move, type)) return 1;
 			return -typeMod;
 		},
@@ -8543,5 +8543,34 @@ exports.BattleAbilities = {
 		},
 		id: "inversearmor",
 		name: "Inverse Armor",
+	},
+	"mentalfear": {
+		shortDesc: "Always appear as full health to the opponent.",
+		onBeforeSwitchIn: function (pokemon) {
+			pokemon.illusion = null;
+			let i;
+			for (i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				if (!pokemon.side.pokemon[i]) continue;
+				if (!pokemon.side.pokemon[i].fainted) break;
+			}
+			if (!pokemon.side.pokemon[i]) return;
+			if (pokemon === pokemon.side.pokemon[i]) return;
+			pokemon.illusion = pokemon.side.pokemon[i];
+		},
+		onEnd: function (pokemon) {
+			if (pokemon.illusion) {
+				this.debug('illusion cleared');
+				pokemon.illusion = null;
+				let details = pokemon.template.species + pokemon.hp === pokemon.maxhp + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				this.add('replace', pokemon, details);
+				this.add('-end', pokemon, 'Illusion');
+			}
+		},
+		onFaint: function (pokemon) {
+			pokemon.illusion = null;
+		},
+		isUnbreakable: true,
+		id: "mentalfear",
+		name: "Mental Fear",
 	},
 };
