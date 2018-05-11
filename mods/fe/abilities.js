@@ -8586,8 +8586,8 @@ exports.BattleAbilities = {
                 //WARNING: AGAIN, MASSIVE DOUBT AHEAD.
 		onAnyEffectiveness: function (typeMod, type,  target, source, move) {
                        if (move && (source === this.effectData.target || target === this.effectData.target)) {
-			  if (move && this.getImmunity(move, type)) return 1;
-			  return -typeMod;
+										  if (move && this.getImmunity(move, type)) return 1;
+										  return -typeMod;
                        }
 		},
 		id: "inversearmor",
