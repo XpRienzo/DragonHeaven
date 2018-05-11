@@ -2242,15 +2242,11 @@ exports.BattleAbilities = {
 	'flamingpresence': {
 		shortDesc: "Upon switching in, this pokemon burns all opposing pokemon that can be burned.",
 		onStart: function(pokemon) {
-			        for (const target of pokemon.side.foe.active) {
-                                    let activated = false;
-                                    if (!target || !this.isAdjacent(target, pokemon)) continue;
-				    if (!activated) {
-					activated = true;
-				     }
-				     if (!target.volatiles['substitute']){
-					source.trySetStatus('brn', target);
-				     }
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				if (!target.status) {
+				target.trySetStatus('brn', pokemon);
+			}
 			}
 		},
 		id: "flamingpresence",
