@@ -8509,7 +8509,7 @@ exports.BattleAbilities = {
 		},
 	},
 "beautifulobliterationweapon": {
-		desc: "This Pokemon summons Beautiful Terrain upon switching in. Beautiful Terrain multiplies the power of Fire and Fairy-type moves 1.5x and burns anything that can be burnt. When this terrain fades, this ability functions just like Flame Body."
+		desc: "This Pokemon summons Beautiful Terrain upon switching in. Beautiful Terrain multiplies the power of Fire and Fairy-type moves 1.5x and burns anything that can be burnt. When this terrain fades, this ability functions just like Flame Body.",
 		shortDesc: "On switch-in, this Pokemon summons Beautiful Terrain, which powers up Fire- and Fairy-type moves and burns anything that can be burned. Contact can inflict burn.",
 		onStart: function (source) {
 			this.setTerrain('beautifulterrain');
