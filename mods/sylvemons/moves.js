@@ -702,6 +702,10 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Acid", source);
+		},
 		onModifyMovePriority: -5,
 		onModifyMove: function(move) {
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};
