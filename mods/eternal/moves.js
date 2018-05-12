@@ -2922,10 +2922,10 @@ exports.BattleMovedex = {
 					flags: {
 						heal: 1
 					},
-					onHit: function (target, side) {
+					/*onHit: function (target, side) {
     				let teammate = side.active[this.effectData.sourcePosition];
     				teammate.heal(Math.ceil(this.effectData.damage * 0.5));
-					},
+					},*/
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
