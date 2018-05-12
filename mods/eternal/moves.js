@@ -2889,22 +2889,19 @@ exports.BattleMovedex = {
 		zMovePower: 170,
 	},
 	"sporeburst": {
-		accuracy: 100,
-		basePower: 100,
-		category: "Special",
-		shortDesc: "Switches out turn 1, hits target turn 2, heals a team member for 50% damage dealt to the corresponding target.",
-		id: "sporeburst",
-		name: "Spore Burst",
-		pp: 5,
-		priority: 0,
-		flags: {
-			protect: 1,
-			mirror: 1
-		},
-		isFutureMove: true,
-		onTry: function(source, target) {
-			target.side.addSideCondition('futuremove');
-			source.switchFlag = true;
+        accuracy: 100,
+        basePower: 100,
+        category: "Special",
+        shortDesc: "Switches out turn 1, hits target turn 2, heals a team member for 50% damage dealt to the corresponding target.", // Make the healing work for the teammate
+        id: "sporeburst",
+        name: "Spore Burst",
+        pp: 5,
+        priority: 0,
+        flags: {protect: 1, mirror: 1},
+		  isFutureMove: true,
+		  onTry: function (source, target) {
+			 target.side.addSideCondition('futuremove');
+			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
@@ -2919,13 +2916,11 @@ exports.BattleMovedex = {
 					basePower: 100,
 					category: "Special",
 					priority: 0,
-					flags: {
-						heal: 1
-					},
-					/*onHit: function (target, side) {
+					flags: {},
+					onHit: function (target, side) {
     				let teammate = side.active[this.effectData.sourcePosition];
-    				teammate.heal(Math.ceil(this.effectData.damage * 0.5));
-					},*/
+    				teammate.heal(this.effectData.damage * 0.5);
+					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
@@ -2934,11 +2929,11 @@ exports.BattleMovedex = {
 			this.add('-start', source, 'move: Spore Burst');
 			return null;
 		},
-		secondary: false,
-		target: "normal",
-		type: "Dark",
-		zMovePower: 190,
-	},
+        secondary: false,
+        target: "normal",
+        type: "Dark",
+        zMovePower: 190, 
+    },
 	"divineluster": {
 		accuracy: 100,
 		basePower: 90,
