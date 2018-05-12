@@ -6191,12 +6191,12 @@ exports.BattleMovedex = {
 		contestType: "Cool",
 	},
 // Foul Mimicry
-		"pursuit": {
+		"switchflare": {
 		accuracy: 100,
 		basePower: 100,
 		basePowerCallback: function (pokemon, target, move) {
 			if (target.beingCalledBack) {
-				this.debug('Pursuit damage boost');
+				this.debug('Switch Flare damage boost');
 				return move.basePower * 2;
 			}
 			return move.basePower;
@@ -6211,27 +6211,27 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
 		beforeTurnCallback: function (pokemon, target) {
-			target.side.addSideCondition('pursuit', pokemon);
-			if (!target.side.sideConditions['pursuit'].sources) {
-				target.side.sideConditions['pursuit'].sources = [];
+			target.side.addSideCondition('switchflare', pokemon);
+			if (!target.side.sideConditions['switchflare'].sources) {
+				target.side.sideConditions['switchflare'].sources = [];
 			}
-			target.side.sideConditions['pursuit'].sources.push(pokemon);
+			target.side.sideConditions['switchflare'].sources.push(pokemon);
 		},
 		onModifyMove: function (move, source, target) {
 			if (target && target.beingCalledBack) move.accuracy = true;
 		},
 		onTryHit: function (target, pokemon) {
-			target.side.removeSideCondition('pursuit');
+			target.side.removeSideCondition('switchflare');
 		},
 		effect: {
 			duration: 1,
 			onBeforeSwitchOut: function (pokemon) {
-				this.debug('Pursuit start');
+				this.debug('Switch Flare start');
 				let alreadyAdded = false;
 				for (const source of this.effectData.sources) {
 					if (!this.cancelMove(source)) continue;
 					if (!alreadyAdded) {
-						this.add('-activate', pokemon, 'move: Pursuit');
+						this.add('-activate', pokemon, 'move: Switch Flare');
 						alreadyAdded = true;
 					}
 					if (source.canMegaEvo || source.canUltraBurst) {
@@ -6243,7 +6243,7 @@ exports.BattleMovedex = {
 							}
 						}
 					}
-					this.runMove('pursuit', source, this.getTargetLoc(pokemon, source));
+					this.runMove('switchflare', source, this.getTargetLoc(pokemon, source));
 				}
 			},
 		},
@@ -6325,5 +6325,23 @@ exports.BattleMovedex = {
 		target: "all",
 		type: "Fire",
 		zMoveBoost: {spd: 1},
+	},
+	"shadowdance": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		isViable: true,
+		desc: "Summons Spirit Storm for 5 turns (8 with Damp Rock). Under Spirit Storm, Ghost-Type moves have 1.5x power and every non-Ghost or Water type has the PP of each move reduced by 2 at the end of each turn. Forecast variants turn the user into a Ghost type, and Weather Ball becomes a Ghost-Type move. Phantom Force and Shadow Force don't need to charge under this weather.",
+		shortDesc: "Summons Spirit Storm for 5 turns, powering up Ghost-type moves and draining the PP of most Pokemon's moves.",
+		id: "shadowdance",
+		name: "Shadow Dance",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		weather: 'ShadowDance',
+		secondary: false,
+		target: "all",
+		type: "Ghost",
+		zMoveBoost: {spe: 1},
 	},
 };
