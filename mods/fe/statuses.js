@@ -48,7 +48,6 @@ solarsnow: {
 			this.add('-weather', 'none');
 		},
 	},
-  };
 
 shadowdance: {
     name: 'ShadowDance',
