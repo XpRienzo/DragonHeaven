@@ -164,4 +164,18 @@ exports.BattlePokedex = {
 		evos: ["sawsbuck"],
 		eggGroups: ["Field"],
 	},
+	sawsbuckwinter: {
+    num: 586,
+    species: "Sawsbuck",
+    baseSpecies: "Sawsbuck",
+    forme: "Winter",
+    formeLetter: "W",
+    types: ["Grass", "Ice"],
+    baseStats: {hp: 80, atk: 100, def: 70, spa: 60, spd: 70, spe: 95},
+    abilities: {0: "Slush Rush", 1: "Sap Sipper", HA: "Snow Warning"},
+    heightm: 1.9,
+    weightkg: 92.5,
+    color: "Brown",
+    eggGroups: ["Field"],
+},
 };
