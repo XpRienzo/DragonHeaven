@@ -2502,24 +2502,6 @@ exports.BattleMovedex = {
 		onPrepareHit: function (pokemon) {
 			return !!this.willAct() && this.runEvent('StallMove', pokemon);
 		},
-		onTryHit: function (target, source, move) {
-    if (!move.flags['protect']) {
-        if (move.isZ) move.zBrokeProtect = true;
-        return;
-    }
-    let damage = this.getDamage(source, target, move);
-    this.add('-activate', target, 'move: Protect');
-    source.moveThisTurnResult = true;
-    let lockedmove = source.getVolatile('lockedmove');
-    if (lockedmove) {
-        // Outrage counter is reset
-        if (source.volatiles['lockedmove'].duration === 2) {
-            delete source.volatiles['lockedmove'];
-        }
-    }
-    this.directDamage(damage, source, target);
-    return null;
-},
 		onHit: function (pokemon) {
 			pokemon.addVolatile('stall');
 		},
