@@ -316,7 +316,6 @@ exports.BattleMovedex = {
 		accuracy: 95,
 		basePower: 150,
 		category: "Physical",
-		desc: "No additional effect.",
 		shortDesc: "No additional effect.",
 		id: "darkcrowdive",
 		name: "Dark Crow Dive",
@@ -326,9 +325,6 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1
-		},
-		onEffectiveness: function(typeMod, type, move) {
-			return typeMod + this.getEffectiveness('Flying', type);
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
@@ -2251,7 +2247,7 @@ exports.BattleMovedex = {
 	aquaticambush: {
 		basePower: 90,
 		accuracy: 100,
-		category: "Special",
+		category: "Physical",
 		shortDesc: "On the following turn after using this move, Anorith is granted +1 Priority on any Bug-type move used or 50% extra power on any Water-type move used.",
 		id: "aquatic ambush",
 		name: "Aquatic Ambush",
@@ -2260,9 +2256,6 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1
-		},
-		onTryHit: function(target, source) {
-			if (source.volatiles['aquaticambush']) return false;
 		},
 		onHit: function(target, source) {
 			source.addVolatile('aquaticambush', source);
