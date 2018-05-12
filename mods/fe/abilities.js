@@ -8657,7 +8657,7 @@ exports.BattleAbilities = {
 	    name: "Magicworker",
 	},
 	"poisonpores": {
-	    desc: "When this Pokemon is on the field, all Poison and Steel-types have their speed doubled. If a Pokemon is poisoned, their speed is halved."
+	    desc: "When this Pokemon is on the field, all Poison and Steel-types have their speed doubled. If a Pokemon is poisoned, their speed is halved.",
 	    shortDesc: "Doubles the speed of all active Poison- and Steel-types, and halves the speed of all active poisoned Pokemon.",
 	    onAnyModifySpe: function(spe, pokemon) {
 	        let mod = 1;
