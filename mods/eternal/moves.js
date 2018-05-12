@@ -2702,7 +2702,7 @@ exports.BattleMovedex = {
 			mirror: 1
 		},
 		onHit: function(pokemon) {
-			if (pokemon.side.sideConditions['stealthrock', 'spikes', 'toxicspikes', 'stickyweb']) {
+			if (pokemon.side.sideConditions['stealthrock'], ['spikes'], ['toxicspikes'], ['stickyweb']) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
