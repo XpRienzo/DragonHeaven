@@ -747,13 +747,13 @@ exports.BattleAbilities = {
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && attacker.activeTurns < 1) {
+			if (move.type === 'Fire' && attacker.activeTurns > 1) {
 				return this.chainModify(1.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function(atk, attacker, defender, move) {
-			if (move.type === 'Fire' && !attacker.activeTurns < 1) {
+			if (move.type === 'Fire' && !attacker.activeTurns > 1) {
 				return this.chainModify(1.5);
 			}
 		},
@@ -1418,7 +1418,7 @@ exports.BattleAbilities = {
 		shortDesc: "Pidgemie avoids status moves if they're not 100% accurate.",
 		onFoeModifyAccuracyPriority: 10,
 		onFoeModifyAccuracy: function(accuracy, target, source, move) {
-			if (move.category === 'Status' && !move.accuracy === '100') {
+			if (move.category === 'Status' && move.accuracy !== '100') {
 				this.debug('Wonder Skin - setting accuracy to 50');
 				return 0;
 			}
@@ -4351,13 +4351,13 @@ exports.BattleAbilities = {
 	"charmstar": {
 		shortDesc: "Moves without a secondary effect have a 20% chance to attract the opponent.",
 		onModifyMovePriority: -1,
-		onModifyMove: function(move) {
+		onModifyMove: function (move) {
 			if (move.category !== "Status") {
+				if (!move.secondaries) move.secondaries = [];
 				for (const secondary of move.secondaries) {
-					if (!move.secondaries) return;
 				}
 				move.secondaries.push({
-					chance: 20,
+					chance: 10,
 					volatileStatus: 'attract',
 				});
 			}
