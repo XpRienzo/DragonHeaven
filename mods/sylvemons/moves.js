@@ -704,7 +704,7 @@ exports.BattleMovedex = {
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', target, "Acid", source);
+			this.add('-anim', source, "Acid", target);
 		},
 		onModifyMovePriority: -5,
 		onModifyMove: function(move) {
