@@ -1808,9 +1808,9 @@ exports.BattlePokedex = {
 		types: ["Steel"],
 		baseStats: {
 			hp: 90,
-			atk: 135,
+			atk: 105,
 			def: 96,
-			spa: 39,
+			spa: 69,
 			spd: 84,
 			spe: 75
 		},
