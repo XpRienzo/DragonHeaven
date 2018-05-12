@@ -3229,7 +3229,7 @@ exports.BattleMovedex = {
 	},
 	"gearoverload": {
 		accuracy: 100,
-		basePower: 20,
+		basePower: 15,
 		category: "Physical",
 		shortDesc: "Hits 1 + X times, where X is the number of stat boosts the user has (à la Stored Power). If this move has hits 6 times or more, it replaces the user's ability with Steelworker before doing damage. If the move hits 11 times or more, it       replaces the user's ability with Huge Power before doing damage.",
 		id: "gearoverload",
