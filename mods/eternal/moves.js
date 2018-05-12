@@ -544,7 +544,7 @@ exports.BattleMovedex = {
 		id: "particlecannon",
 		isViable: true,
 		name: "Particle Cannon",
-		pp: 2,
+		pp: 5,
 		priority: 0,
 		flags: {
 			protect: 1,
