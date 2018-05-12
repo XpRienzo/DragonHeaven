@@ -8610,7 +8610,7 @@ exports.BattleAbilities = {
 			if (pokemon.illusion) {
 				this.debug('illusion cleared');
 				pokemon.illusion = null;
-				let details = pokemon.template.species + pokemon.hp === pokemon.maxhp + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				let details = pokemon.template.species + (pokemon.hp === pokemon.maxhp) + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
 				this.add('replace', pokemon, details);
 				this.add('-end', pokemon, 'Illusion');
 			}
@@ -8621,5 +8621,55 @@ exports.BattleAbilities = {
 		isUnbreakable: true,
 		id: "mentalfear",
 		name: "Mental Fear",
+	},
+	"magicworker": {
+	    desc: "If the bearer would take indirect damage in a turn, it does not take damage, and the power of its attacking moves is 1.5*; multiple instances of passive damage do not affect the power multiplier.",
+	    shortDesc: "Indirect damage powers up this Pokemon's attacks and is nullified.",
+	    onDamage: function(damage, target, source, effect) {
+	        if (effect.effectType !== 'Move') {
+	            target.addVolatile('magicworker')
+	            return false;
+	        }
+	    },
+	    onEnd: function(pokemon) {
+	        pokemon.removeVolatile('magicworker');
+	    },
+	    effect: {
+	        noCopy: true, // doesn't get copied by Baton Pass
+	        onStart: function(target) {
+	            this.add('-start', target, 'ability: Magicworker');
+	        },
+	        onModifyAtkPriority: 5,
+	        onModifyAtk: function(atk, attacker, defender, move) {
+	            this.debug('Magicworker boost');
+	            return this.chainModify(1.5);
+	        },
+	        onModifySpAPriority: 5,
+	        onModifySpA: function(atk, attacker, defender, move) {
+	            this.debug('Magicworker boost');
+	            return this.chainModify(1.5);
+	        },
+	        onEnd: function(target) {
+	            this.add('-end', target, 'ability: Magicworker', '[silent]');
+	        },
+	    },
+	    id: "magicworker",
+	    name: "Magicworker",
+	},
+	"poisonpores": {
+	    desc: "When this Pokemon is on the field, all Poison and Steel-types have their speed doubled. If a Pokemon is poisoned, their speed is halved.",
+	    shortDesc: "Doubles the speed of all active Poison- and Steel-types, and halves the speed of all active poisoned Pokemon.",
+	    onAnyModifySpe: function(spe, pokemon) {
+	        let mod = 1;
+	        if (pokemon.hasType('Poison') || pokemon.hasType('Steel')) {
+	            mod *= 2;
+	        }
+	        if (pokemon.status && (pokemon.status === 'psn' || pokemon.status === 'tox')) {
+	            mod = mod / 2;
+	        }
+	        return mod;
+	    },
+	    id: "poisonpores",
+	    name: "Poison Pores",
 	},
 };
