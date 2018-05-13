@@ -445,7 +445,7 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Cool",
 	},
-	"mettalicpunch": {
+	"metallicpunch": {
 		accuracy: 90,
 		basePower: 90,
 		category: "Physical",
@@ -1449,6 +1449,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			
 			nonsky: 1
 		},
 		heal: [1, 2],
@@ -3026,6 +3027,8 @@ exports.BattleMovedex = {
 			target.side.addSideCondition('futuremove');
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
+			source.addVolatile('twoturnmove', target);
+			return null;
 			}
 			target.side.sideConditions['futuremove'].positions[target.position] = {
 				duration: 2,
