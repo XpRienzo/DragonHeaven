@@ -416,7 +416,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Steel",
-		zMovePower: 120,
+		zMovePower: 190,
 		contestType: "Tough",
 	},
 	"brainfreeze": {
@@ -734,7 +734,7 @@ exports.BattleMovedex = {
 	"highnoonclaw": {
 		accuracy: 100,
 		basePower: 100,
-		category: "Physical",
+		category: "Special",
 		desc: "Deals 1.5* damage if the weather is Sunny.",
 		shortDesc: "Deals 1.5* damage if the weather is Sunny.",
 		id: "highnoonclaw",
@@ -743,7 +743,6 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		flags: {
-			contact: 1,
 			protect: 1,
 			mirror: 1
 		},
@@ -938,15 +937,15 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Cute",
 	},
-	"eeirewhiteout": {
+	"eeriewhiteout": {
 		accuracy: true,
 		basePower: 50,
 		category: "Special",
 		desc: "Sets up Hail. Reduces the target's Special Defense by two stages. 10% chance to freeze the target.",
 		shortDesc: "Sets up Hail. Reduces the target's Special Defense by two stages. 10% chance to freeze the target.",
-		id: "eeirewhiteout",
+		id: "eeriewhiteout",
 		isViable: true,
-		name: "Eeire Whiteout",
+		name: "Eerie Whiteout",
 		pp: 10,
 		priority: 0,
 		flags: {
@@ -1892,9 +1891,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {
 			contact: 1,
-			protect: 1,
 			mirror: 1,
-			punch: 1,
 			heal: 1
 		},
 		onPrepareHit: function(target, source, move) {
@@ -1964,13 +1961,10 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Sludge Wave", target);
 		},
-		secondary: {
-			chance: 100,
-			status: 'psn',
-		},
+		status: 'psn',
 		target: "normal",
 		type: "Psychic",
-		zMovePower: 160,
+		zMovePower: 120,
 	},
 	"voidster": {
 		accuracy: 100,
@@ -2343,10 +2337,9 @@ exports.BattleMovedex = {
 		id: "Magnetic Charge",
 		isViable: true,
 		name: "Magnetic Charge",
-		pp: 15,
+		pp: 10,
 		priority: -3,
 		flags: {
-			bullet: 1,
 			protect: 1
 		},
 		beforeTurnCallback: function(pokemon) {
@@ -2867,6 +2860,12 @@ exports.BattleMovedex = {
 			}
 			return move.basePower;
 		},
+		accuracyCallback: function(pokemon, target, move) {
+				if (pokemon.volatiles.manifestdestiny && pokemon.volatiles.manifestdestiny.hurt) {
+				return move.accuracy = true;
+			}
+			return move.accuracy;
+		},
 		category: "Physical",
 		shortDesc: "Deals 50% more damage and never misses if Rufflet is hit on the turn of the attack.",
 		id: "manifestdestiny",
@@ -3191,15 +3190,15 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Tough",
 	},
-	"draconoidfangs": {
+	"draconidfangs": {
 		accuracy: 100,
 		basePower: 85,
 		category: "Physical",
 		shortDesc: "Nullifies Detect, Protect, and Quick/Wide Guard.",
-		id: "draconoidfangs",
-		name: "Draconoid Fangs",
+		id: "draconidfangs",
+		name: "Draconid Fangs",
 		pp: 10,
-		priority: 2,
+		priority: 0,
 		flags: {
 			mirror: 1
 		},
@@ -3378,7 +3377,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Fire",
-		zMoveEffect: 'heal',
+		zMovePower: 180,
 	},
 	"nuclearpollen": {
 		accuracy: true,
@@ -3470,9 +3469,7 @@ exports.BattleMovedex = {
 				return critRatio + 1;
 			},
 		},
-		onEffectiveness: function(typeMod, type) {
-			if (type === 'Ground') return 0;
-		},
+		ignoreImmunity: true,
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Wild Charge", target);
