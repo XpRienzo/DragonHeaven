@@ -358,7 +358,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Ghost",
-		zMovePower: 200,
+		zMovePower: 180,
 		contestType: "Beautiful",
 	},
 	"wispburst": {
@@ -587,7 +587,6 @@ exports.BattleMovedex = {
 		flags: {
 			protect: 1,
 			mirror: 1,
-			punch: 1,
 			heal: 1
 		},
 		onPrepareHit: function(target, source, move) {
@@ -1141,7 +1140,7 @@ exports.BattleMovedex = {
 		shortDesc: "The user gathers nutrients from the ground, restoring 50% of its maximum HP. This move has a 25% chance to raise the user's Attack, Defense, Special Attack, Special Defense, or Speed by 1 stage (basically 5% for each).",
 		id: "pileup",
 		name: "Pile Up",
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {
 			snatch: 1,
@@ -1210,9 +1209,7 @@ exports.BattleMovedex = {
 			contact: 1
 		},
 		secondary: false,
-		onEffectiveness: function(typeMod, type) {
-			if (type === 'Fairy') return 1;
-		},
+		ignoreImmunity: true,
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Dragon Rush", target);
@@ -1944,7 +1941,7 @@ exports.BattleMovedex = {
 		target: "normal",
 		type: "Water",
 		zMoveBoost: {
-			def: 1
+			spa: 1
 		},
 		contestType: "Cute",
 	},
@@ -2100,7 +2097,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Fire",
-		zMovePower: 100,
+		zMovePower: 140,
 		contestType: "Cool",
 	},
 	"breakthrough": {
@@ -2209,7 +2206,7 @@ exports.BattleMovedex = {
 		basePower: 90,
 		accuracy: 100,
 		category: "Special",
-		shortDesc: "Lileep recovers 50% of the damage done.",
+		shortDesc: "User recovers 50% of the damage done.",
 		id: "algae allure",
 		name: "Algae Allure",
 		pp: 10,
@@ -2749,7 +2746,7 @@ exports.BattleMovedex = {
 		target: "self",
 		type: "Water",
 		zMoveBoost: {
-			atk: 1
+			def: 1
 		},
 	},
 	"mythicalpower": {
@@ -2759,7 +2756,7 @@ exports.BattleMovedex = {
 		shortDesc: "Resets the users negative stat changes and boosts Sp.Atk by 2.",
 		id: "mythicalpower",
 		name: "Mythical Power",
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {
 			snatch: 1
@@ -2782,7 +2779,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "self",
 		type: "Fairy",
-		zMoveEffect: 'heal',
+		zMoveEffect: 'crit2',
 	},
 	"eggoverboil": {
 		accuracy: 90,
@@ -2791,7 +2788,7 @@ exports.BattleMovedex = {
 		shortDesc: "Hits twice, the first hit has a 50% chance to Soak its foe, and the second hit a 50% chance to burn it.",
 		id: "eggoverboil",
 		name: "Egg Overboil",
-		pp: 5,
+		pp: 10,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -3299,7 +3296,7 @@ exports.BattleMovedex = {
 		shortDesc: "The user calls a rainbow on the user's side of the field, this rainbow doubles the effect of secondary effects taking place (It's the same effect if you mix Water and Fire Pledge). If this rainbow is in the field, this attack has a 30% of chance of dropping target's special defense one level.",
 		id: "rainbowburst",
 		name: "Rainbow Burst",
-		pp: 5,
+		pp: 15,
 		priority: 0,
 		flags: {
 			protect: 1,
