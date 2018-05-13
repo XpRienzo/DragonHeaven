@@ -3752,8 +3752,8 @@ exports.BattleMovedex = {
         flags: {protect: 1, mirror: 1},
 		  onBasePowerPriority: 4,
 			onBasePower: function (basePower, pokemon) {
-    		if (pokemon.hasMove('thunderwave') || pokemon.hasMove('willowisp') || pokemon.hasMove('toxic'))
-        return this.chainModify(1.5);
+    		if (pokemon.hasMove('thunderwave') || pokemon.hasMove('willowisp') || pokemon.hasMove('toxic')) {
+        	return this.chainModify(1.5);
     		}
 			},
 			onHit: function (target, pokemon) {
