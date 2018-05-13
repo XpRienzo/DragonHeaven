@@ -1820,7 +1820,7 @@ exports.BattleMovedex = {
 	"razzledazzle": {
 		accuracy: 100,
 		basePower: 45,
-		category: "Physical",
+		category: "Special",
 		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit. 30% chance to burn the target.",
 		shortDesc: "Hits 2 times in one turn. 30% chance to burn the target.",
 		id: "razzledazzle",
@@ -3158,6 +3158,7 @@ exports.BattleMovedex = {
 		},
 		target: "self",
 		type: "Water",
+		zMoveEffect: 'clearnegativeboost',
 	},
 	"archaicanguish": {
 		accuracy: 90,
@@ -3622,7 +3623,7 @@ exports.BattleMovedex = {
 	},
 	"acidgeyser": {
 		accuracy: 100,
-		basePower: 0,
+		basePower: 80,
 		category: "Special",
 		shortDesc: "Under sun, Acid's Well Base Power is increased by 1,5x and it's able to ignore steel type's inmunity to poison. 10% of chance to add a burn (50% in sun)",
 		id: "acidgeyser",
