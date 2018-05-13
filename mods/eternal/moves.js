@@ -48,7 +48,7 @@ exports.BattleMovedex = {
 			mirror: 1
 		},
 		secondary: {
-			chance: 10,
+			chance: 50,
 			status: 'brn',
 		},
 		onPrepareHit: function(target, source, move) {
@@ -1349,7 +1349,7 @@ exports.BattleMovedex = {
 		isViable: true,
 		name: "Tectonic Fault",
 		pp: 5,
-		priority: 0,
+		priority: 2,
 		flags: {
 			reflectable: 1
 		},
@@ -2314,7 +2314,7 @@ exports.BattleMovedex = {
 		id: "tranquillity",
 		isViable: true,
 		name: "Tranquillity",
-		pp: 15,
+		pp: 10,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -2609,7 +2609,7 @@ exports.BattleMovedex = {
 		},
 		secondary: false,
 		target: "self",
-		type: "Normal",
+		type: "Psychic",
 		zMoveEffect: 'healreplacement',
 	},
 	"searingscreen": {
@@ -3751,7 +3751,7 @@ exports.BattleMovedex = {
         flags: {protect: 1, mirror: 1},
 		  onBasePowerPriority: 4,
 			onBasePower: function (basePower, pokemon) {
-    		if (pokemon.status && pokemon.status !== 'frz') {
+    		if (pokemon.hasMove('thunderwave') || pokemon.hasMove('willowisp') || pokemon.hasMove('toxic'))
         return this.chainModify(1.5);
     		}
 			},
