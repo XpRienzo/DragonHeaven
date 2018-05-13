@@ -106,12 +106,12 @@ exports.BattleMovedex = {
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Thunder", target);
+			this.add('-anim', source, "Volt Tackle", target);
 		},
 		secondary: false,
 		target: "normal",
 		type: "Electric",
-		zMovePower: 200,
+		zMovePower: 180,
 		contestType: "Beautiful",
 	},
 	"evolutionblast": {
@@ -458,6 +458,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {
 			protect: 1,
+			punch: 1,
 			mirror: 1,
 			contact: 1
 		},
@@ -476,15 +477,15 @@ exports.BattleMovedex = {
 		zMovePower: 175,
 		contestType: "Clever",
 	},
-	"stonepalm": {
+	"stoneslam": {
 		accuracy: 100,
 		basePower: 100,
 		category: "Physical",
 		desc: "Has a 20% chance to flinch the target.",
 		shortDesc: "20% chance to flinch the foe(s).",
-		id: "stonepalm",
+		id: "stoneslam",
 		isViable: true,
-		name: "Stone Palm",
+		name: "Stone Slam",
 		pp: 10,
 		priority: 0,
 		flags: {
@@ -795,7 +796,7 @@ exports.BattleMovedex = {
 		contestType: "Beautiful",
 	},
 	"paragongift": {
-		accuracy: 100,
+		accuracy: true,
 		basePower: 0,
 		category: "Status",
 		desc: "The teammate that switches in gains +1 to Defense and Special Defense. User faints.",
@@ -806,8 +807,7 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		flags: {
-			protect: 1,
-			reflectable: 1,
+			snatch: 1,
 			mirror: 1,
 			authentic: 1
 		},
@@ -864,9 +864,9 @@ exports.BattleMovedex = {
 			if (!pokemon.volatiles['magicalegg']) return 0;
 			return pokemon.volatiles['magicalegg'].damage || 1;
 		},
-		category: "Physical",
+		category: "Special",
 		desc: "Deals damage to the last foe to hit the user with an attack this turn equal to 1.5 times the HP lost by the user from that attack. If the user did not lose HP from the attack, this move deals damage with a Base Power of 1 instead. If that foe's position is no longer in use, the damage is done to a random foe in range. Only the last hit of a multi-hit attack is counted. Fails if the user was not hit by a foe's attack this turn.",
-		shortDesc: "If hit by an attack, returns 1.5x damage.",
+		shortDesc: "If hit by an attack, returns the damage taken.",
 		id: "magicalegg",
 		name: "Magical Egg",
 		pp: 10,
@@ -1510,8 +1510,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 90,
 		category: "Physical",
-		desc: "Deals 1.5* damage if the weather is Rainy.",
-		shortDesc: "Deals 1.5* damage if the weather is Rainy.",
+		shortDesc: "Damage increased by 1.5x under rain. 30% chance to confuse its foe.",
 		id: "bamboobash",
 		isViable: true,
 		name: "Bamboo Bash",
@@ -1568,6 +1567,31 @@ exports.BattleMovedex = {
 		type: "Ground",
 		zMovePower: 200,
 		contestType: "Tough",
+	},
+	"swirlingpunch": {
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "10% chance of inducing sleep, 10% chance of inducing confusion. 80% chance of neither",
+		id: "swirlingpunch",
+		isViable: true,
+		name: "Swirling Punch",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondaries: [
+			{
+				chance: 10,
+				status: 'slp',
+			}, {
+				chance: 10,
+				volatileStatus: 'confusion',
+			},
+		],
+		target: "normal",
+		type: "Psychic",
+		zMovePower: 175,
+		contestType: "Cool",
 	},
 	"highwaymansstrike": {
 		accuracy: 90,
@@ -1729,7 +1753,7 @@ exports.BattleMovedex = {
 	"meteoriteimpact": {
 		accuracy: 95,
 		basePower: 45,
-		category: "Special",
+		category: "Physical",
 		shortDesc: "Nearly always goes first.",
 		id: "meteoriteimpact",
 		name: "Meteorite Impact",
@@ -1741,7 +1765,7 @@ exports.BattleMovedex = {
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Dazzling Gleam", target);
+			this.add('-anim', source, "Play Rough", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -1781,21 +1805,16 @@ exports.BattleMovedex = {
 				}
 			},
 		},
-		secondary: {
-			chance: 100,
-			self: {
-				boosts: {
-					spe: 1,
-				},
+		selfBoost: {
+			boosts: {
+				spe: 1,
 			},
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Close Combat", target);
 		},
-		onEffectiveness: function(typeMod, type) {
-			if (type === 'Ghost') return 1;
-		},
+		ignoreImmunity: true,
 		target: "normal",
 		type: "Fighting",
 		zMovePower: 190,
@@ -2639,7 +2658,7 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "foeSide",
 		type: "type",
-		zMovePower: 100,
+		zMoveBoost: {spe: 1},
 	},
 	"phantasmalbreak": {
 		accuracy: 100,
@@ -3011,7 +3030,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "Charges, then raises SpA, SpD, Spe by 2 turn 2.",
+		shortDesc: "Summons a Delta Stream current turn 1. Raises Attack by one stage and both Defense and Special Defense by two stages turn 2.",
 		id: "doldrum",
 		isViable: true,
 		name: "Doldrum",
@@ -3026,17 +3045,17 @@ exports.BattleMovedex = {
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				this.add('-anim', attacker, move.name, defender);
 				attacker.removeVolatile(move.id);
+				this.setWeather('deltastream');
 				return;
 			}
 			attacker.addVolatile('twoturnmove', defender);
 			return null;
 		},
 		boosts: {
-			spa: 2,
+			atk: 2,
 			spd: 2,
-			spe: 2,
+			def: 2,
 		},
-		weather: 'deltastream',
 		secondary: false,
 		target: "self",
 		type: "Flying",
@@ -3698,7 +3717,7 @@ exports.BattleMovedex = {
 		id: "moltenironspout",
 		isViable: true,
 		name: "Molten Iron Spout",
-		pp: 24,
+		pp: 15,
 		priority: 0,
 		flags: {
 			protect: 1,
@@ -3720,7 +3739,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, "Flash Cannon", target);
 		},
 		type: "Steel",
-		zMovePower: 120,
+		zMovePower: 195,
 		contestType: "Cool",
 	},
 	"nosokinesis": {
