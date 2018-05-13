@@ -3011,51 +3011,32 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "Summons Delta Stream on turn 1. Raises attack by 1 stage and defence + special defence by 2 stages on turn 2",
+		shortDesc: "Charges, then raises SpA, SpD, Spe by 2 turn 2.",
 		id: "doldrum",
+		isViable: true,
 		name: "Doldrum",
 		pp: 5,
 		priority: 0,
-		flags: {
-			protect: 1,
-			mirror: 1
+		flags: {charge: 1, nonsky: 1},
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				attacker.removeVolatile(move.id);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		},
+		boosts: {
+			spa: 2,
+			spd: 2,
+			spe: 2,
 		},
 		weather: 'deltastream',
-		isFutureMove: true,
-		onTry: function(source, target) {
-			this.setWeather('deltastream');
-			target.side.addSideCondition('futuremove');
-			if (target.side.sideConditions['futuremove'].positions[target.position]) {
-				return false;
-			source.addVolatile('twoturnmove', target);
-			return null;
-			}
-			target.side.sideConditions['futuremove'].positions[target.position] = {
-				duration: 2,
-				move: 'doldrum',
-				source: source,
-				moveData: {
-					id: 'doldrum',
-					name: "Doldrum",
-					accuracy: 100,
-					basePower: 0,
-					category: "Status",
-					priority: 0,
-					flags: {},
-					ignoreImmunity: true,
-					boosts: {
-						atk: 1,
-						def: 2,
-						spd: 2,
-					},
-					effectType: 'Move',
-					isFutureMove: true,
-					type: 'Flying',
-				},
-			};
-			this.add('-start', source, 'move: Doldrum');
-			return null;
-		},
 		secondary: false,
 		target: "self",
 		type: "Flying",
