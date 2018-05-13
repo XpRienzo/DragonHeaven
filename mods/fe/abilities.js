@@ -8572,10 +8572,10 @@ exports.BattleAbilities = {
 		"advocatescale": {
 		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
                 //WARNING: DOUBT AHEAD.
-		onEffectiveness: function (typeMod, type, move) {
-			if (move && this.getImmunity(move, type)) return 1;
-			return -typeMod;
-		},
+			onEffectiveness: function(typeMod, target, type, move) {
+				if (move && !this.getImmunity(move, type)) return 1;
+				return -typeMod;
+			},
 		id: "advocatescale",
 		name: "Advocate Scale",
 	},
