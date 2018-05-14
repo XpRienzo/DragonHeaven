@@ -428,6 +428,19 @@ evgutter: function (target, room, user) {
 		);
 		this.sendReplyBox(`${buf}</div>`);
 	},
+	epcheck: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
+		let feDex = require('../eternal/moves.js').BattleMovedex;
+		if (!feDex) return this.errorReply("Error Fetching FE Data.");
+		Object.values(feDex).forEach(move => {
+			if (move.category === 'Special' && move.flags['contact']) {
+			buf += `${move.name}<br>`;
+			}
+		}
+		);
+		this.sendReplyBox(`${buf}</div>`);
+	},
 	datalistool: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
