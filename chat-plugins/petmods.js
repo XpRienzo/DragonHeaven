@@ -434,7 +434,7 @@ evgutter: function (target, room, user) {
 		let feDex = require('../eternal/moves.js').BattleMovedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(move => {
-			if (move.category === 'Special' && move.flags['contact']) {
+			if (move.category === 'Special') {
 			buf += `${move.name}<br>`;
 			}
 		}
