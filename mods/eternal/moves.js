@@ -1074,6 +1074,9 @@ exports.BattleMovedex = {
 			reflectable: 1,
 			mirror: 1
 		},
+		onHit: function (target, source, move) {
+			return target.addVolatile('trapped', source, move, 'trapper');
+		},
 		volatileStatus: 'despoilingvines',
 		effect: {
 			onStart: function(target) {
