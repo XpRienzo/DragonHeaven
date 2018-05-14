@@ -1136,7 +1136,7 @@ exports.BattleMovedex = {
 	"pileup": {
 		accuracy: true,
 		basePower: 0,
-		category: "Special",
+		category: "Status",
 		desc: "The user gathers nutrients from the ground, restoring 50% of its maximum HP. This move has a 25% chance to raise the user's Attack, Defense, Special Attack, Special Defense, or Speed by 1 stage (basically 5% for each).",
 		shortDesc: "The user gathers nutrients from the ground, restoring 50% of its maximum HP. This move has a 25% chance to raise the user's Attack, Defense, Special Attack, Special Defense, or Speed by 1 stage (basically 5% for each).",
 		id: "pileup",
