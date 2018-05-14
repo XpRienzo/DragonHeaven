@@ -1068,7 +1068,6 @@ exports.BattleAbilities = {
 	"justicepower": {
            desc: "When this Pokemon is hit by a dark type attack, its attack is raised by 1 stage, and that attack's PP is halved unless it is already at 1.",
 			shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a Dark-type move. That move's PP is then halved.",
-                        //TODO: Revise PP stuffs?
 			onAfterDamage: function(damage, target, source, effect) {
 				if (effect && effect.type === 'Dark') {
 					this.boost({
@@ -1407,8 +1406,7 @@ exports.BattleAbilities = {
 		onStart: function(pokemon) {
 			this.add('-ability', pokemon, 'Under Pressure');
 		},
-		onDeductPP: function(target, source) {
-			if (target.side === source.side) return;
+		onDeductPP: function(pokemon) {
 			return 1;
 		},
 		id: "underpressure",
@@ -4935,7 +4933,7 @@ exports.BattleAbilities = {
 			this.setWeather('sandstorm');
 		},
 		onDeductPP: function(target, source) {
-			if (target.side === source.side && this.isWeather('sandstorm')) return;
+			if (!this.isWeather('sandstorm')) return;
 			return 1;
 		},
 		id: "sandystorm",
@@ -7178,7 +7176,7 @@ exports.BattleAbilities = {
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Piercing Gaze');
 		},
-		onDeductPP: function (target, source, moves) {
+		onDeductPP: function (target, source, move) {
 			if (target.side === source.side || !move.secondaries) return;
 			return 1;
 		},
@@ -7416,10 +7414,9 @@ exports.BattleAbilities = {
 		shortDesc: "Halves all of this Pokemon's moves' PP upon switch-in, but raises Attack by two stages.",
 		onStart: function (pokemon) {
 			this.boost({atk: 2});
-                        //TODO: Cut down its PP on every move here
-		},
-		onDeductPP: function (source, target) {
-			return 1;
+			for (const moveSlot of pokemon.moveSlots) {
+					moveSlot.pp = (moveSlot.pp+1)/2;
+			}		
 		},
 		id: "vexingvalor",
 		name: "Vexing Valor",
@@ -7440,7 +7437,7 @@ exports.BattleAbilities = {
 				let stat = 'atk';
 				let bestStat = 0;
 				for (let i in source.stats) {
-					if (source.stats[i] > bestStat && source.stats[i] !== pokemon.getStat('def', true, true)) {
+					if (source.stats[i] > bestStat && source.stats[i] !== source.getStat('def', true, true)) {
 						stat = i;
 						bestStat = source.stats[i];
 					}
@@ -7506,9 +7503,9 @@ exports.BattleAbilities = {
 	},
 	"mercilessbeast": {
 		shortDesc: "If it lands a hit on a poisoned Pokémon, its most proficient stat goes up by 1.",
-		onSourceHit: function (target, source, move) {
+		onSourceHit: function (target, source, effect) {
 			if (target && ['psn', 'tox'].includes(target.status)){
-                            	if (effect && effect.effectType === 'Move') {
+            if (effect && effect.effectType === 'Move') {
 				let stat = 'atk';
 				let bestStat = 0;
 				for (let i in source.stats) {
@@ -7526,7 +7523,6 @@ exports.BattleAbilities = {
 	},
 	"ability": {
 		shortDesc: "Fire-type attacking moves have their power doubled and their PP halved.",
-                //TODO: PP Deduction
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk, attacker, defender, move) {
 			if (move.type === 'Fire') {
@@ -7540,6 +7536,9 @@ exports.BattleAbilities = {
 				this.debug('Blaze boost');
 				return this.chainModify(2);
 			}
+		},
+		onDeductPP: function(pokemon, move) {
+			if (move.type === 'Fire') return 1;
 		},
 		id: "ability",
 		name: "Ability",
@@ -7730,87 +7729,87 @@ exports.BattleAbilities = {
 	},
 	"gutsybeast": {
 
-		desc: "If this Pokemon has a major status condition, its most proficient stat is multiplied by 1.5; burn's physical damage halving is ignored if highest stat is Attack, and paralysis's speed halving is ignored if highest stat is Speed.",
-		shortDesc: "If this Pokemon is statused, its highest stat is 1.5x; ignores status halving this stat.",
-		onModifyAtkPriority: 5,
-		onModifyAtk: function(atk, pokemon) {
-			let stat = 'atk';
-			let bestStat = 0;
-			for (let i in pokemon.stats) {
-				if (pokemon.stats[i] > bestStat) {
-					stat = i;
-					bestStat = pokemon.stats[i];
-				}
-			}
-			if (pokemon.status && stat === 'atk') {     
-                              if (pokemon.status === 'brn'){
-                                return this.chainModify(3);
-                              } else {
-				return this.chainModify(1.5);
-                              }
-			}
-		},
-		onModifyDefPriority: 6,
-		onModifyDef: function(def, pokemon) {
-			let stat = 'atk';
-			let bestStat = 0;
-			for (let i in pokemon.stats) {
-				if (pokemon.stats[i] > bestStat) {
-					stat = i;
-					bestStat = pokemon.stats[i];
-				}
-			}
-			if (pokemon.status && stat === 'def') {
-				return this.chainModify(1.5);
-			}
-		},
-		onModifySpAPriority: 5,
-		onModifySpA: function(spa, pokemon) {
-			let stat = 'atk';
-			let bestStat = 0;
-			for (let i in pokemon.stats) {
-				if (pokemon.stats[i] > bestStat) {
-					stat = i;
-					bestStat = pokemon.stats[i];
-				}
-			}
-			if (pokemon.status && stat === 'spa') {
-				return this.chainModify(1.5);
-			}
-		},
-		onModifySpDPriority: 5,
-		onModifySpD: function(spd, pokemon) {
-			let stat = 'atk';
-			let bestStat = 0;
-			for (let i in pokemon.stats) {
-				if (pokemon.stats[i] > bestStat) {
-					stat = i;
-					bestStat = pokemon.stats[i];
-				}
-			}
-			if (pokemon.status && stat === 'spd') {
-				return this.chainModify(1.5);
-			}
-		},
-		onModifySpe: function(spe, pokemon) {
-			let stat = 'atk';
-			let bestStat = 0;
-			for (let i in pokemon.stats) {
-				if (pokemon.stats[i] > bestStat) {
-					stat = i;
-					bestStat = pokemon.stats[i];
-				}
-			}
-			if (pokemon.status && stat === 'spe') {     
-                              if (pokemon.status === 'par'){
-                                return this.chainModify(3);
-                              } else {
-				return this.chainModify(1.5);
-                              }
-			}
-		},
-		id: "gutsybeast",
-		name: "Gutsy Beast",
+	    desc: "If this Pokemon has a major status condition, its most proficient stat is multiplied by 1.5; burn's physical damage halving is ignored if highest stat is Attack, and paralysis's speed halving is ignored if highest stat is Speed.",
+	    shortDesc: "If this Pokemon is statused, its highest stat is 1.5x; ignores status halving this stat.",
+	    onModifyAtkPriority: 5,
+	    onModifyAtk: function(atk, pokemon) {
+	        let stat = 'atk';
+	        let bestStat = 0;
+	        for (let i in pokemon.stats) {
+	            if (pokemon.stats[i] > bestStat) {
+	                stat = i;
+	                bestStat = pokemon.stats[i];
+	            }
+	        }
+	        if (pokemon.status && stat === 'atk') {
+	            if (pokemon.status === 'brn') {
+	                return this.chainModify(3);
+	            } else {
+	                return this.chainModify(1.5);
+	            }
+	        }
+	    },
+	    onModifyDefPriority: 6,
+	    onModifyDef: function(def, pokemon) {
+	        let stat = 'atk';
+	        let bestStat = 0;
+	        for (let i in pokemon.stats) {
+	            if (pokemon.stats[i] > bestStat) {
+	                stat = i;
+	                bestStat = pokemon.stats[i];
+	            }
+	        }
+	        if (pokemon.status && stat === 'def') {
+	            return this.chainModify(1.5);
+	        }
+	    },
+	    onModifySpAPriority: 5,
+	    onModifySpA: function(spa, pokemon) {
+	        let stat = 'atk';
+	        let bestStat = 0;
+	        for (let i in pokemon.stats) {
+	            if (pokemon.stats[i] > bestStat) {
+	                stat = i;
+	                bestStat = pokemon.stats[i];
+	            }
+	        }
+	        if (pokemon.status && stat === 'spa') {
+	            return this.chainModify(1.5);
+	        }
+	    },
+	    onModifySpDPriority: 5,
+	    onModifySpD: function(spd, pokemon) {
+	        let stat = 'atk';
+	        let bestStat = 0;
+	        for (let i in pokemon.stats) {
+	            if (pokemon.stats[i] > bestStat) {
+	                stat = i;
+	                bestStat = pokemon.stats[i];
+	            }
+	        }
+	        if (pokemon.status && stat === 'spd') {
+	            return this.chainModify(1.5);
+	        }
+	    },
+	    onModifySpe: function(spe, pokemon) {
+	        let stat = 'atk';
+	        let bestStat = 0;
+	        for (let i in pokemon.stats) {
+	            if (pokemon.stats[i] > bestStat) {
+	                stat = i;
+	                bestStat = pokemon.stats[i];
+	            }
+	        }
+	        if (pokemon.status && stat === 'spe') {
+	            if (pokemon.status === 'par') {
+	                return this.chainModify(3);
+	            } else {
+	                return this.chainModify(1.5);
+	            }
+	        }
+	    },
+	    id: "gutsybeast",
+	    name: "Gutsy Beast",
 	},
 	"auraoffailure": {
 		shortDesc: "Halves Attack and Special Attack of all Pokemon on the field at 50% max HP or less.",
@@ -7861,18 +7860,18 @@ exports.BattleAbilities = {
 		name: "Slow 'n' Steady",
 	},
 	"clearpouch": {
-		desc: "When this Pokemon consumes a Berry, it regains 33% of its maximum HP and any negative stat changes are removed.",
-		shortDesc: "If this Pokemon eats a Berry, it restores 1/3 of its max HP and clears stat drops.",
-		onEatItem: function (item, pokemon) {
-			this.heal(pokemon.maxhp / 3);
-				for (let i in pokemon.boosts) {
-                                  if (pokemon.boosts[i] < 0){
-				    delete pokemon.boosts[i];
-                                  }
-			        }
-		},
-		id: "clearpouch",
-		name: "Clear Pouch",
+	    desc: "When this Pokemon consumes a Berry, it regains 33% of its maximum HP and any negative stat changes are removed.",
+	    shortDesc: "If this Pokemon eats a Berry, it restores 1/3 of its max HP and clears stat drops.",
+	    onEatItem: function(item, pokemon) {
+	        this.heal(pokemon.maxhp / 3);
+	        for (let i in pokemon.boosts) {
+	            if (pokemon.boosts[i] < 0) {
+	                delete pokemon.boosts[i];
+	            }
+	        }
+	    },
+	    id: "clearpouch",
+	    name: "Clear Pouch",
 	},
 	"chainheal": {
 		shortDesc: "Upon switching out, this Pokemon is healed for 1/3 of its max HP. Its replacement's ability is then replaced with Chain Heal.",
@@ -8319,11 +8318,11 @@ exports.BattleAbilities = {
 		},
 		onAfterUseItem: function (item, pokemon) {
 			if (pokemon !== this.effectData.target) return;
-                        this.heal(target.maxhp / 4);
+                        this.heal(pokemon.maxhp / 4);
 			pokemon.addVolatile('lighteninglightning');
 		},
 		onTakeItem: function (item, pokemon) {
-                        this.heal(target.maxhp / 4);
+                        this.heal(pokemon.maxhp / 4);
 			pokemon.addVolatile('lighteninglightning');
 		},
 		onEnd: function (pokemon) {
@@ -8384,7 +8383,7 @@ exports.BattleAbilities = {
 		},
 		onSetStatus: function (status, target, source, effect) {
 			if (!effect || !effect.status) return false;
-			this.boost({spe: 2}, pokemon);
+			this.boost({spe: 2}, target);
 			this.add('-immune', target, '[msg]', '[from] ability: Ambulance');
 			return false;
 		},
@@ -8464,7 +8463,7 @@ exports.BattleAbilities = {
 			for (const target of pokemon.side.foe.active) {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
-					moveSlot.pp = moveSlot.pp/2;
+					moveSlot.pp = (moveSlot.pp+1)/2;
 				}
 			}
 		},
