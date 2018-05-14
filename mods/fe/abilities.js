@@ -8759,4 +8759,23 @@ exports.BattleAbilities = {
 		id: "zeroawareness",
 		name: "Zero Awareness",
 	},
+	
+		"hardenedbody": {
+		desc: "Takes less damage from super-effective moves. When hit by one, raises all stats by one stage (not acc/eva).",
+		shortDesc: "Super-effective damage is reduced and boosts all of this Pokemon's stats by one stage.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				this.debug('Prism Armor neutralize');
+				return this.chainModify(0.75);
+			}
+		},
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.typeMod > 0) {
+				this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1});
+			}
+		},
+		isUnbreakable: true,
+		id: "hardenedbody",
+		name: "Hardened Body",
+	},
 };
