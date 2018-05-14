@@ -2779,6 +2779,40 @@ exports.Formats = [
 		}
 	},
 	{
+		name: "[Gen 7] Pure Hackmons",
+		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		maxLevel: 100,
+		defaultLevel: 100,
+		onValidateSet: function(set) {
+			let template = this.getTemplate(set.species);
+			let item = this.getItem(set.item);
+			let problems = [];
+			if (template.isNonstandard) {
+				problems.push(set.species + ' is not a real Pokemon.');
+			}
+			if (item.isNonstandard) {
+				problems.push(item.name + ' is not a real item.');
+			}
+			let ability = {};
+			if (set.ability) ability = this.getAbility(set.ability);
+			if (ability.isNonstandard) {
+				problems.push(ability.name + ' is not a real ability.');
+			}
+			if (set.moves) {
+				for (let i = 0; i < set.moves.length; i++) {
+					let move = this.getMove(set.moves[i]);
+					if (move.isNonstandard) {
+						problems.push(move.name + ' is not a real move.');
+					}
+				}
+				if (set.moves.length > 4) {
+					problems.push((set.name || set.species) + ' has more than four moves.');
+				}
+			}
+			return problems;
+		}
+	},
+	{
 		name: "[Gen 7] Tier Shift",
 		ruleset: ['[Gen 7] OU'],
 		desc: ['<a href="http://www.smogon.com/forums/threads/3610073/">Tier Shift</a>: Pokemon get a +10 boost to each stat per tier below OU they are in. UU gets +10, RU +20, NU +30, and PU +40.'],
