@@ -1448,7 +1448,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
-			
+			heal: 1,
 			nonsky: 1
 		},
 		heal: [1, 2],
@@ -2209,6 +2209,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			heal: 1,
 			protect: 1,
 			mirror: 1
 		},
@@ -2338,12 +2339,13 @@ exports.BattleMovedex = {
 		category: "Status",
 		desc: " At start of the turn, the user charges itself in a really hot plasma courtain, then it heasl 50% of it max HP. If hitted during the charge phase with a contact move, the attacker will be burned (It's a mix between Beak Blast heating phase and a Recover move)",
 		shortDesc: "Burns on contact with the user before it moves. Recovers 50% of the total HP",
-		id: "Magnetic Charge",
+		id: "magneticcharge",
 		isViable: true,
 		name: "Magnetic Charge",
 		pp: 10,
 		priority: -3,
 		flags: {
+			heal: 1,
 			protect: 1
 		},
 		beforeTurnCallback: function(pokemon) {
