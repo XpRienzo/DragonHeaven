@@ -7041,8 +7041,11 @@ exports.BattleAbilities = {
 	},
 	"contrabubble": {
 		shortDesc: "Reverses the effectiveness of Fire and Water attacks on all active Pokemon, and the effects of burn on this Pokemon.",
-		onEffectiveness: function (typeMod, target, type, move) {
-			if (move.type === 'Water' || move.type === 'Fire') return -typeMod;
+		onAnyEffectiveness: function (typeMod, target, type, move) {
+			if (move.type === 'Water' || move.type === 'Fire') {
+				if (move && !this.getImmunity(move, type)) return 1;
+				return -typeMod;
+			},
 		},
                 //TODO: Check to see if this is actually implemented properly.
 		onModifyAtkPriority: 5,
@@ -8571,7 +8574,6 @@ exports.BattleAbilities = {
 	},
 		"advocatescale": {
 		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
-                //WARNING: DOUBT AHEAD.
 			onEffectiveness: function(typeMod, target, type, move) {
 				if (move && !this.getImmunity(move, type)) return 1;
 				return -typeMod;
@@ -8579,20 +8581,21 @@ exports.BattleAbilities = {
 		id: "advocatescale",
 		name: "Advocate Scale",
 	},
-
-	"inversearmor": {
-                desc: "Type effectiveness of moves that the holder uses or is hit by is inverted (Inverse Battle rules apply; type effectiveness of moves used by Mold Breaker variants users is not influenced by this ability).",
-		shortDesc: "Type effectiveness in moves that target or are used by this Pokemon is inverted.",
-                //WARNING: AGAIN, MASSIVE DOUBT AHEAD.
-		onAnyEffectiveness: function (typeMod, type,  target, source, move) {
-                       if (move && (source === this.effectData.target || target === this.effectData.target)) {
-			  if (move && this.getImmunity(move, type)) return 1;
-			  return -typeMod;
-                       }
-		},
-		id: "inversearmor",
-		name: "Inverse Armor",
-	},
+"inversearmor": {
+    desc: "Type effectiveness of moves that the holder uses or is hit by is inverted (Inverse Battle rules apply; type effectiveness of moves used by Mold Breaker variants users is not influenced by this ability).",
+    shortDesc: "Type effectiveness in moves that target or are used by this Pokemon is inverted.",
+    //WARNING: AGAIN, MASSIVE DOUBT AHEAD.
+    onEffectiveness: function(typeMod, target, type, move) {
+        if (move && !this.getImmunity(move, type)) return 1;
+        return -typeMod;
+    },
+    onSourceEffectiveness: function(typeMod, target, type, move) {
+        if (move && !this.getImmunity(move, type)) return 1;
+        return -typeMod;
+    },
+    id: "inversearmor",
+    name: "Inverse Armor",
+},
 	"mentalfear": {
 		shortDesc: "Always appear as full health to the opponent.",
 		onBeforeSwitchIn: function (pokemon) {
@@ -8704,5 +8707,22 @@ exports.BattleAbilities = {
 		id: "sensudancer",
 		name: "Sensu Dancer",
 		// implemented in runMove in scripts.js
+	},
+	
+	"radioactivesurge": {
+		desc: "This Pokemon summons Radioactive Terrain upon switching in. Radioactive Terrain multiplies the power of Electric and Poison-type moves 1.5x and poisons anything that can be poisoned. When this terrain fades, this ability functions just like Poison Point.",
+		shortDesc: "On switch-in, this Pokemon summons Radioactive Terrain, which powers up Electric- and Poison-type moves and poisons anything that can be poisoned. Contact can inflict poison.",
+		onStart: function (source) {
+			this.setTerrain('radioactiveterrain');
+		},
+		onAfterDamage: function (damage, target, source, move) {
+			if (move && move.flags['contact'] && !this.isTerrain('radioactiveterrain')) {
+				if (this.randomChance(3, 10)) {
+					source.trySetStatus('psn', target);
+				}
+			}
+		},
+		id: "radioactivesurge",
+		name: "Radioactive Surge",
 	},
 };
