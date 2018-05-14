@@ -434,7 +434,7 @@ evgutter: function (target, room, user) {
 		let eternalDex = require('../mods/eternal/moves.js').BattleMovedex;
 		if (!eternalDex) return this.errorReply("Error Fetching Eternal Data.");
 		Object.values(eternalDex).forEach(move => {
-			if (move.category !== 'Status' && move.zMovePower) {
+			if (move.category !== 'Status' && !move.zMovePower) {
 			buf += `<button name="send" value="/dt ${move.id}, Eternal" style="background:none;border:none;">${move.id}</button><br>`;
 			}
 		});
