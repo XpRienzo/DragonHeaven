@@ -8572,7 +8572,8 @@ exports.BattleAbilities = {
 		id: "beautifulobliterationweapon",
 		name: "Beautiful Obliteration Weapon",
 	},
-		"advocatescale": {
+	
+	"advocatescale": {
 		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
 			onEffectiveness: function(typeMod, target, type, move) {
 				if (move && !this.getImmunity(move, type)) return 1;
@@ -8724,5 +8725,38 @@ exports.BattleAbilities = {
 		},
 		id: "radioactivesurge",
 		name: "Radioactive Surge",
+	},
+	
+	"zeroawareness": {
+		shortDesc: "Increases power of moves with secondary effects by 30%. Ignores the opponent's stat boosts and their moves' secondary effects.",
+		onModifyMove: function (move, pokemon) {
+			if (move.secondaries) {
+				move.hasSheerForce = true;
+			}
+		},
+		onAnyModifyBoost: function (boosts, target) {
+			let source = this.effectData.target;
+			if (source === target) return;
+			if (source === this.activePokemon && target === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (target === this.activePokemon && source === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+			if (move.hasSheerForce) return this.chainModify([0x14CD, 0x1000]);
+		},
+		onModifySecondaries: function (secondaries) {
+			this.debug('Shield Dust prevent secondary');
+			return secondaries.filter(effect => !!(effect.self || effect.dustproof));
+		},
+		id: "zeroawareness",
+		name: "Zero Awareness",
 	},
 };
