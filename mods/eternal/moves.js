@@ -101,6 +101,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1
 		},
@@ -1068,6 +1069,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			reflectable: 1,
 			mirror: 1
@@ -1230,6 +1232,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1
 		},
@@ -1547,6 +1550,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1,
 			nonsky: 1
@@ -1731,6 +1735,7 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1
 		},
@@ -1755,6 +1760,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 2,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1
 		},
@@ -2262,6 +2268,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1
 		},
@@ -2870,6 +2877,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1
 		},
@@ -3196,6 +3204,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {
+			contact: 1,
 			mirror: 1
 		},
 		onPrepareHit: function(target, source, move) {
@@ -3456,6 +3465,7 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1,
 			heal: 1
@@ -3488,6 +3498,7 @@ exports.BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {
+			contact: 1,
 			protect: 1,
 			mirror: 1
 		},
