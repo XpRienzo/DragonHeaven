@@ -1096,9 +1096,6 @@ exports.BattleMovedex = {
 			},
 		},
 		secondary: false,
-		onHit: function(target, source) {
-			return target.addVolatile('trapped', source, 'trapper');
-		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Night Slash", target);
