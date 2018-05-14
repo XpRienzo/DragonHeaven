@@ -1271,7 +1271,7 @@ exports.BattlePokedex = {
 			hp: 64,
 			atk: 44,
 			def: 124,
-			spa: 144,
+			spa: 114,
 			spd: 144,
 			spe: 54
 		},
