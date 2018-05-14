@@ -142,7 +142,7 @@ exports.BattleMovedex = {
 		},
 		target: "normal",
 		type: "Normal",
-		zMovePower: 25,
+		zMovePower: 200,
 	},
 	"evolutionblastwater": {
 		shortDesc: "Changes type after each hit (Water -> Electric -> Fire -> Psychic -> Dark -> Grass -> Ice -> Fairy",
