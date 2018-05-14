@@ -6326,6 +6326,60 @@ exports.BattleMovedex = {
 		type: "Fire",
 		zMoveBoost: {spd: 1},
 	},
+		"radioactiveterrain": {
+		num: 0,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Simply summons Radioactive Terrain",
+		id: "radioactiveterrain",
+		name: "Radioactive Terrain",
+		pp: 10,
+		priority: 0,
+		flags: {nonsky: 1},
+		terrain: 'radioactiveterrain',
+		effect: {
+			duration: 5,
+			durationCallback: function (source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onBasePower: function (basePower, attacker, defender, move) {
+				if ((move.type === 'Poison' || move.type === 'Electric') && attacker.isGrounded()) {
+					this.debug('radioactive terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onStart: function (battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Radioactive Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Radioactive Terrain');
+				}
+			},
+			onResidualOrder: 5,
+			onResidualSubOrder: 3,
+			onResidual: function () {
+				this.eachEvent('Terrain');
+			},
+			onTerrain: function (pokemon) {
+				if (pokemon.isGrounded() && !pokemon.isSemiInvulnerable()) {
+					this.debug('Pokemon is grounded, poisoning through Radioactive Terrain.');
+			                pokemon.trySetStatus('psn', pokemon);
+				}
+			},
+			onEnd: function () {
+				this.eachEvent('Terrain');
+				this.add('-fieldend', 'move: Radioactive Terrain');
+			},
+		},
+		secondary: false,
+		target: "all",
+		type: "Poison",
+		zMoveBoost: {spd: 1},
+	},
 	"shadowdance": {
 		accuracy: true,
 		basePower: 0,
@@ -6343,5 +6397,44 @@ exports.BattleMovedex = {
 		target: "all",
 		type: "Ghost",
 		zMoveBoost: {spe: 1},
+	},
+		"metronome": {
+		num: 118,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "A random move is selected for use, other than After You, Assist, Belch, Bestow, Celebrate, Chatter, Copycat, Counter, Covet, Crafty Shield, Destiny Bond, Detect, Diamond Storm, Endure, Feint, Focus Punch, Follow Me, Freeze Shock, Happy Hour, Helping Hand, Hold Hands, Hyperspace Hole, Ice Burn, King's Shield, Light of Ruin, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Protect, Quash, Quick Guard, Rage Powder, Relic Song, Secret Sword, Sketch, Sleep Talk, Snarl, Snatch, Snore, Spiky Shield, Steam Eruption, Struggle, Switcheroo, Techno Blast, Thief, Thousand Arrows, Thousand Waves, Transform, Trick, V-create, or Wide Guard.",
+		shortDesc: "Picks a random move.",
+		id: "metronome",
+		name: "Metronome",
+		pp: 10,
+		priority: 0,
+		flags: {},
+		noMetronome: ['afteryou', 'assist', 'belch', 'bestow', 'celebrate', 'chatter', 'copycat', 'counter', 'covet', 'craftyshield', 'destinybond', 'detect', 'diamondstorm', 'dragonascent', 'endure', 'feint', 'focuspunch', 'followme', 'freezeshock', 'happyhour', 'helpinghand', 'holdhands', 'hyperspacefury', 'hyperspacehole', 'iceburn', 'kingsshield', 'lightofruin', 'matblock', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'originpulse', 'precipiceblades', 'protect', 'quash', 'quickguard', 'ragepowder', 'relicsong', 'secretsword', 'sketch', 'sleeptalk', 'snarl', 'snatch', 'snore', 'spikyshield', 'steameruption', 'struggle', 'switcheroo', 'technoblast', 'thief', 'thousandarrows', 'thousandwaves', 'transform', 'trick', 'vcreate', 'wideguard', 'teraarmor', 'darkterrain', 'beautifulterrain', 'radioactiveterrain'],
+		onHit: function (target, source, effect) {
+			let moves = [];
+			for (let i in exports.BattleMovedex) {
+				let move = exports.BattleMovedex[i];
+				if (i !== move.id) continue;
+				if (move.isZ || move.isNonstandard) continue;
+				// @ts-ignore
+				if (effect.noMetronome.includes(move.id)) continue;
+				if (this.getMove(i).gen > this.gen) continue;
+				moves.push(move);
+			}
+			let randomMove = '';
+			if (moves.length) {
+				moves.sort((a, b) => a.num - b.num);
+				randomMove = this.sample(moves).id;
+			}
+			if (!randomMove) {
+				return false;
+			}
+			this.useMove(randomMove, target);
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		contestType: "Cute",
 	},
 };
