@@ -3042,6 +3042,7 @@ exports.BattleMovedex = {
 		flags: {charge: 1, nonsky: 1},
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
+				this.setWeather('deltastream');
 				return;
 			}
 			this.add('-prepare', attacker, move.name, defender);
