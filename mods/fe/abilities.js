@@ -7045,7 +7045,7 @@ exports.BattleAbilities = {
 			if (move.type === 'Water' || move.type === 'Fire') {
 				if (move && !this.getImmunity(move, type)) return 1;
 				return -typeMod;
-			},
+			}
 		},
                 //TODO: Check to see if this is actually implemented properly.
 		onModifyAtkPriority: 5,
