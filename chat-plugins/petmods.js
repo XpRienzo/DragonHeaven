@@ -430,15 +430,14 @@ evgutter: function (target, room, user) {
 	},
 	epcheck: function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
-		let feDex = require('../eternal/moves.js').BattleMovedex;
-		if (!feDex) return this.errorReply("Error Fetching FE Data.");
-		Object.values(feDex).forEach(move => {
-			if (move.category === 'Special') {
-			buf += `${move.name}<br>`;
+		let buf = `<div class=infobox-limited><center><h2>List Of Eternal Pokemon Moves</h2></center>`;
+		let eternalDex = require('../mods/eternal/moves.js').BattleMovedex;
+		if (!eternalDex) return this.errorReply("Error Fetching Eternal Data.");
+		Object.values(eternalDex).forEach(move => {
+			if (move.category === 'Special' && move.flags['contact']) {
+			buf += `<button name="send" value="/dt ${move.id}, Eternal" style="background:none;border:none;">${move.id}</button><br>`;
 			}
-		}
-		);
+		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
 	datalistool: function (target, room, user) {
