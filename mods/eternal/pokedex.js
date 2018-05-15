@@ -80,7 +80,7 @@ exports.BattlePokedex = {
 		},
 		abilities: {
 			0: "Static",
-			H: "Lightningrod"
+			H: "Lightning Rod"
 		},
 		weightkg: 6,
 	},
