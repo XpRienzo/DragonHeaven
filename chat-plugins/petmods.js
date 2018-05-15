@@ -60,7 +60,7 @@ learnistor: function(target, room, user) {
 	fedexhelp: ["/fedex - Shows the dex entries of Pokemon in Fusion Evolution."],
 		mfastone: function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		let buf = `<center>Megas For All Mega Stone Data</center>`;
+		let buf = `<center><h1>Megas For All Mega Stone Database</h1></center>`;
 		let sylveDex = require('../mods/megasforall/items.js').BattleItems;
 		if (!sylveDex) return this.errorReply("Error Fetching MFA Data.");
 		Object.values(sylveDex).forEach(item => {
