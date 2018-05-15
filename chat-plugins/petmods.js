@@ -434,12 +434,8 @@ evgutter: function (target, room, user) {
 		let eternalDex = require('../mods/eternal/moves.js').BattleMovedex;
 		if (!eternalDex) return this.errorReply("Error Fetching Eternal Data.");
 		Object.values(eternalDex).forEach(move => {
-			let contactmove = "";
-			if (move.flags['contact']) {
-				contactmove = 'makesContact: true,<br> ';
-			}
 			if (move.category !== 'Status') {
-			buf += `'${move.name}': { <br>bp: ${move.basePower}, <br>type: '${move.type}', <br>category: '${move.category}',<br> ${contactmove}zp: ${move.zMovePower}<br> },<br>`;
+			buf += `'${move.name}': { <br>bp: ${move.basePower}, <br>type: '${move.type}', <br>category: '${move.category}',<br> zp: ${move.zMovePower}<br> },<br>`;
 			}
 		});
 		this.sendReplyBox(`${buf}</div>`);
