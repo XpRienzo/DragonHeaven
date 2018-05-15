@@ -58,16 +58,16 @@ learnistor: function(target, room, user) {
 		this.sendReplyBox(`${buf}</div>`);
 	},
 	fedexhelp: ["/fedex - Shows the dex entries of Pokemon in Fusion Evolution."],
-		mfastones: function (target, room, user) {
+		mfastone: function (target, room, user) {
 		if (!this.runBroadcast()) return;
-		let buf = `<div class=infobox-limited><center><h2>List Of Sylvemons Items Additions/Alterations</h2></center>`;
+		let buf = `<center>Megas For All Mega Stone Data</center>`;
 		let sylveDex = require('../mods/megasforall/items.js').BattleItems;
-		if (!sylveDex) return this.errorReply("Error Fetching Sylvemons Data.");
+		if (!sylveDex) return this.errorReply("Error Fetching MFA Data.");
 		Object.values(sylveDex).forEach(item => {
 			let separated = target.split(" ");
 			let megamon = (("" + separated[0]).trim());
 			if (item.megaEvolves === megamon) {
-			buf += `${megamon}: ${item.name}`;
+			buf += `<strong>${megamon}:</strong> ${item.name}`;
 			}
 		});
 		this.sendReplyBox(`${buf}</div>`);
