@@ -834,7 +834,7 @@ let BattleFormats = {
 		desc: "Allows the use of Pok&eacute;mon, abilities, moves, and items made by the Create-A-Pok&eacute;mon project",
 		// Implemented in the 'pokemon' ruleset
 	},
-	dogmondex: {
+dogmons: {
 effectType: 'ValidatorRule',
 name: 'Dogmons',
 desc: "Only allows Pokémon with canine features",
