@@ -2506,7 +2506,7 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "Prevents moves from affecting the user this turn. Returns half the damage it would've taken.",
+		shortDesc: "Protects from moves. Attacker loses 1/6 max HP.",
 		id: "bounceshield",
 		isViable: true,
 		name: "Bounce Shield",
@@ -2514,9 +2514,9 @@ exports.BattleMovedex = {
 		priority: 4,
 		flags: {},
 		stallingMove: true,
-		volatileStatus: 'protect',
-		onPrepareHit: function (pokemon) {
-			return !!this.willAct() && this.runEvent('StallMove', pokemon);
+		volatileStatus: 'bounceshield',
+		onTryHit: function (target, source, move) {
+			return !!this.willAct() && this.runEvent('StallMove', target);
 		},
 		onHit: function (pokemon) {
 			pokemon.addVolatile('stall');
@@ -2524,33 +2524,32 @@ exports.BattleMovedex = {
 		effect: {
 			duration: 1,
 			onStart: function (target) {
-				this.add('-singleturn', target, 'Protect');
+				this.add('-singleturn', target, 'move: Protect');
 			},
 			onTryHitPriority: 3,
 			onTryHit: function (target, source, move) {
-    if (!move.flags['protect']) {
-        if (move.isZ) move.zBrokeProtect = true;
-        return;
-    }
-    let damage = this.getDamage(source, target, move);
-    this.add('-activate', target, 'move: Protect');
-    source.moveThisTurnResult = true;
-    let lockedmove = source.getVolatile('lockedmove');
-    if (lockedmove) {
-        // Outrage counter is reset
-        if (source.volatiles['lockedmove'].duration === 2) {
-            delete source.volatiles['lockedmove'];
-        }
-    }
-    this.directDamage(damage, source, target);
-    return null;
-},
+				if (!move.flags['protect']) {
+					if (move.isZ) move.zBrokeProtect = true;
+					return;
+				}
+				this.add('-activate', target, 'move: Protect');
+				source.moveThisTurnResult = true;
+				let lockedmove = source.getVolatile('lockedmove');
+				if (lockedmove) {
+					// Outrage counter is reset
+					if (source.volatiles['lockedmove'].duration === 2) {
+						delete source.volatiles['lockedmove'];
+					}
+				}
+					this.damage(source.maxhp / 6, source, target);
+				return null;
+			},
 		},
 		secondary: false,
 		target: "self",
 		type: "Psychic",
-		zMoveEffect: 'clearnegativeboost',
-		contestType: "Cute",
+		zMoveEffect: 'heal',
+		contestType: "Tough",
 	},
 	"goodtidings": {
 		accuracy: true,
@@ -2940,10 +2939,9 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					/*onHit: function (target, side) {
-    				let teammate = side.active[this.effectData.sourcePosition];
-    				teammate.heal(Math.ceil(this.effectData.damage * 0.5));
-					},*/
+					onHit: function (pokemon, side) {
+    				this.heal(pokemon.maxhp / 4)
+					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
