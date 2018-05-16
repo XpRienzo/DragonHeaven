@@ -2925,7 +2925,7 @@ exports.BattleMovedex = {
 			 target.side.addSideCondition('futuremove');
 			  //target.side.addSideCondition('sporeburstheal');
 			  this.useMove("sporeburstheal", source);
-			 source.switchFlag = true;
+			this.useMove("Baton Pass", source);
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
