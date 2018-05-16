@@ -2941,7 +2941,7 @@ exports.BattleMovedex = {
 					flags: {},
 					sideCondition: 'Spore Burst',
 					onAferHit: function (source, target) {
-						this.heal(target.maxhp/ 4);
+						this.useMove("sporeburstheal", source);
 					},
 					effectType: 'Move',
 					isFutureMove: true,
@@ -2956,6 +2956,26 @@ exports.BattleMovedex = {
         type: "Dark",
         zMovePower: 190, 
     },
+	"sporeburstheal": {
+		num: 105,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user restores 1/2 of its maximum HP, rounded half up.",
+		shortDesc: "Heals the user by 50% of its max HP.",
+		id: "sporeburstheal",
+		isViable: true,
+		name: "Spore Burst",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 4],
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Clever",
+	},
 	"divineluster": {
 		accuracy: 100,
 		basePower: 90,
