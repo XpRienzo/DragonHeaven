@@ -2967,7 +2967,7 @@ exports.BattleMovedex = {
 		flags: {snatch: 1, heal: 1},
 		sideCondition: 'Spore Burst',
 		effect: {
-			duration: 2,
+			duration: 1,
 			onStart: function (side, source) {
 				this.effectData.hp = source.maxhp / 4;
 			},
