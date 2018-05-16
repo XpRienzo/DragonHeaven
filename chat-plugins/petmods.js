@@ -442,6 +442,21 @@ evgutter: function (target, room, user) {
 		);
 		this.sendReplyBox(`${buf}</div>`);
 	},
+	multidata: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
+		let feDex = require('../data/moves.js').BattleMovedex;
+		if (!feDex) return this.errorReply("Error Fetching FE Data.");
+		Object.values(feDex).forEach(move => {
+			let separated = target.split(" ");
+			let movetype = (("" + separated[0]).trim());
+			if (move.type === movetype && move.multihit) {
+			buf += `${move.name}<br>`;
+			}
+		}
+		);
+		this.sendReplyBox(`${buf}</div>`);
+	},
 	epcheck: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Eternal Pokemon Moves</h2></center>`;
