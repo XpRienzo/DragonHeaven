@@ -2923,8 +2923,6 @@ exports.BattleMovedex = {
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			 target.side.addSideCondition('futuremove');
-			  this.useMove("sporeburstheal", source);
-			  source.side.addSideCondition('wish');
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
@@ -2941,6 +2939,10 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
+					onAfterHit: function (source) {
+						let healmon = source.side.active;
+						this.heal(healmon.maxhp / 4);
+					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
@@ -2965,7 +2967,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		sideCondition: 'Spore Burst',
+		sideCondition: 'sporeburst',
 		effect: {
 			duration: 1,
 			onStart: function (side, source) {
