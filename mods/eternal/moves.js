@@ -2923,6 +2923,7 @@ exports.BattleMovedex = {
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			 target.side.addSideCondition('futuremove');
+			  target.side.addSideCondition('sporeburstheal');
 			  //this.useMove("sporeburstheal", source);
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
