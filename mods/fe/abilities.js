@@ -8765,5 +8765,23 @@ exports.BattleAbilities = {
 			}
 		},
 	},
-	
+	"compoundpressure": {
+		shortDesc: "Doubles accuracy, but moves with less than 100 accuracy will use up 2 PP rather than 1.",
+		onModifyMove: function (move) {
+			if (move.accuracy < 100) {
+				move.compoundpressure = true;
+			}
+		},
+		onSourceModifyAccuracy: function (accuracy) {
+			if (typeof accuracy !== 'number') return;
+			this.debug('compoundeyes - enhancing accuracy');
+			return accuracy * 2;
+		},
+		onDeductPP: function (move) {
+			if (move.compoundpressure) return;
+			return 1;
+		},
+		id: "compoundpressure",
+		name: "Compound Pressure",
+	},
 };
