@@ -2923,7 +2923,7 @@ exports.BattleMovedex = {
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			 target.side.addSideCondition('futuremove');
-			  this.useMove("sporeburstheal", source);
+			  //this.useMove("sporeburstheal", source);
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
@@ -2941,7 +2941,7 @@ exports.BattleMovedex = {
 					priority: 0,
 					flags: {},
 					self: {
-					volatileStatus: 'sporeburst',					
+					sideCondition: 'sporeburstheal',					
 					},
 					effectType: 'Move',
 					isFutureMove: true,
@@ -2960,14 +2960,14 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "Next turn, 50% of the user's max HP is restored.",
+		shortDesc: "Next turn, 25% of the user's max HP is restored.",
 		id: "sporeburstheal",
 		isViable: true,
-		name: "Spore Burst",
+		name: "Spore Burst Heal",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		volatileStatus: 'sporeburst',
+		sideCondition: 'sporeburstheal',
 		effect: {
 			duration: 1,
 			onStart: function (side, source) {
