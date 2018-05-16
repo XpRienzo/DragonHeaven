@@ -8830,11 +8830,11 @@ exports.BattleAbilities = {
 					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
 				return null;
 			}
-		else if (target !== source && move.type === 'Bug' && target.hasMove(['pinmissile', 'twineedle']) && target.item) {
+		else if (target !== source && move.type === 'Bug' && target.hasMove('pinmissile') || target.hasMove('twineedle') && target.item) {
 					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
 				return null;
 			}
-		else if (target !== source && move.type === 'Fighting' && target.hasMove(['armthrust', 'doublekick', 'triplekick'])) {
+		else if (target !== source && move.type === 'Fighting' && target.hasMove('armthrust') || target.hasMove('doublekick') || target.hasMove('triplekick')) {
 					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
 				return null;
 			}
