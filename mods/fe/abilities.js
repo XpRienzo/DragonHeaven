@@ -8816,30 +8816,24 @@ exports.BattleAbilities = {
 		name: "Sand Dreams",
 	},
 	"horsetailarmor": { // TODO: This is a WIP
-		shortDesc: "Multi-strike attacks always hit the maximum number of times. This Pokemon is immune to moves and entry hazards of the same type as any multi-strike moves it knows, as long as it is holding an item.",
-		onModifyMove: function (move) {
-			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
-				move.multihit = move.multihit[1];
-			}
-			if (move.multiaccuracy) {
-				delete move.multiaccuracy;
-			}
-		},
-		onTryHit: function (target, source, move) {
-			if (target !== source && move.type === 'Rock' && target.hasMove('rockblast') && target.item) {
-					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
-				return null;
-			}
-		else if (target !== source && move.type === 'Bug' && target.hasMove('pinmissile') || target.hasMove('twineedle') && target.item) {
-					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
-				return null;
-			}
-		else if (target !== source && move.type === 'Fighting' && target.hasMove('armthrust') || target.hasMove('doublekick') || target.hasMove('triplekick')) {
-					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
-				return null;
-			}
-		},
-		id: "horsetailarmor",
-		name: "Horsetail Armor",
+	    shortDesc: "Multi-strike attacks always hit the maximum number of times. This Pokemon is immune to moves and entry hazards of the same type as any multi-strike moves it knows, as long as it is holding an item.",
+	    onModifyMove: function(move) {
+	        if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
+	            move.multihit = move.multihit[1];
+	        }
+	        if (move.multiaccuracy) {
+	            delete move.multiaccuracy;
+	        }
+	    },
+	    onTryHit: function(target, source, move) {
+	        for (const moveSlot of pokemon.moveSlots) {
+	            const holderMove = moveSlot.id;
+	            if (holderMove && holderMove.type === move.type && holderMove.multihit) {
+	                return null;
+	            }
+	        }
+	    },
+	    id: "horsetailarmor",
+	    name: "Horsetail Armor",
 	},
 };
