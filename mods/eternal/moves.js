@@ -2939,10 +2939,8 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					onHit: function (pokemon, side) {
-						for (const allyActive of pokemon.foe.side.active) {
-    					this.heal(allyActive.maxhp / 4)
-						}
+					onHit: function (source, target) {
+    					this.heal(source.maxhp / 4)
 					},
 					effectType: 'Move',
 					isFutureMove: true,
