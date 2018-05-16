@@ -6650,11 +6650,9 @@ exports.BattleAbilities = {
 			if (move.flags['sound']) {
 			this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Echo');
 			let newMove = this.getMoveCopy(move.id);
-			if (target.ability !== 'Echo') {
 			this.useMove(newMove, this.effectData.target, source);
 			}
 			return null;
-			}
 		},
 		effect: {
 			duration: 1,
