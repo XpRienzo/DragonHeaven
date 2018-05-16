@@ -4,7 +4,7 @@ exports.BattleAbilities = {
 	"inverseivy": {
 		shortDesc: "The Pokemon's Grass type moves work like in inverse battles.",
 		onFoeEffectiveness: function(typeMod, target, type, move) {
-				if (move.type === 'Grass' && !this.getImmunity(move, type)) return 1;
+				if (!this.getImmunity(move, type) && move.type === 'Grass') return 1;
 				return -typeMod;
 			},
 		id: "inverseivy",
