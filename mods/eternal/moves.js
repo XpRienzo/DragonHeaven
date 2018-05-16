@@ -2923,6 +2923,7 @@ exports.BattleMovedex = {
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			 target.side.addSideCondition('futuremove');
+			  this.useMove("sporeburstheal", source);
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
@@ -2940,9 +2941,6 @@ exports.BattleMovedex = {
 					priority: 0,
 					flags: {},
 					sideCondition: 'Spore Burst',
-					onAferHit: function (source, target) {
-						this.useMove("sporeburstheal", source);
-					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
@@ -2957,24 +2955,38 @@ exports.BattleMovedex = {
         zMovePower: 190, 
     },
 	"sporeburstheal": {
-		num: 105,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user restores 1/2 of its maximum HP, rounded half up.",
-		shortDesc: "Heals the user by 50% of its max HP.",
+		shortDesc: "Next turn, 50% of the user's max HP is restored.",
 		id: "sporeburstheal",
 		isViable: true,
 		name: "Spore Burst",
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		heal: [1, 4],
+		sideCondition: 'Spore Burst',
+		effect: {
+			duration: 2,
+			onStart: function (side, source) {
+				this.effectData.hp = source.maxhp / 4;
+			},
+			onResidualOrder: 4,
+			onEnd: function (side) {
+				// @ts-ignore
+				let target = side.active[this.effectData.sourcePosition];
+				if (target && !target.fainted) {
+					let source = this.effectData.source;
+					let damage = this.heal(this.effectData.hp, target, target);
+					if (damage) this.add('-heal', target, target.getHealth, '[from] move: Spore Burst');
+				}
+			},
+		},
 		secondary: false,
 		target: "self",
 		type: "Normal",
-		zMoveEffect: 'clearnegativeboost',
-		contestType: "Clever",
+		zMoveBoost: {spd: 1},
+		contestType: "Cute",
 	},
 	"divineluster": {
 		accuracy: 100,
