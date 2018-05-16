@@ -8758,23 +8758,114 @@ exports.BattleAbilities = {
 		id: "zeroawareness",
 		name: "Zero Awareness",
 	},
-	
-		"hardenedbody": {
-		desc: "Takes less damage from super-effective moves. When hit by one, raises all stats by one stage (not acc/eva).",
-		shortDesc: "Super-effective damage is reduced and boosts all of this Pokemon's stats by one stage.",
-		onSourceModifyDamage: function (damage, source, target, move) {
-			if (move.typeMod > 0) {
-				this.debug('Prism Armor neutralize');
-				return this.chainModify(0.75);
+	"ravage": {
+		shortDesc: "This Pokémon's moves always crit and it avoids crits, but its physical attacks have 0.9* accuracy.",
+		onModifyMove: function(move) {
+			move.willCrit = true;
+		},
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			if (move.category === 'Physical' && typeof move.accuracy === 'number') {
+				move.accuracy *= 0.9;
 			}
 		},
-		onAfterDamage: function (damage, target, source, effect) {
-			if (effect && effect.typeMod > 0) {
-				this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1});
-			}
-		},
-		isUnbreakable: true,
-		id: "hardenedbody",
-		name: "Hardened Body",
+		onCriticalHit: false,
+		id: "ravage",
+		name: "Ravage",
 	},
+	"noimmigrants": {
+		shortDesc: "If a Pokémon switches in, this Pokémon's highest stat is raised by one, and if the Pokémon is knocked out, this Pokémon receives another +1 boost to its highest stat.",
+		onFoeSwitchIn: function (target, source, effect) {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		id: "noimmigrants",
+		name: "NO IMMIGRANTS",
+	},
+	"dramaticrage": {
+		shortDesc: "This Pokémon's Special Attacks with secondary effects are boosted by 1.5* and have their secondary effects removed. When this Pokémon is below half health, this rises to 2*. Also removes Life Orb recoil.",
+		onModifyMove: function (move, pokemon) {
+			if (move.secondaries && move.category === 'Special') {
+				delete move.secondaries;
+				// Actual negation of `AfterMoveSecondary` effects implemented in scripts.js
+				move.hasSheerForce = true;
+			}	
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+		if (move.hasSheerForce && pokemon.hp > pokemon.maxhp / 2) {
+				return this.chainModify(1.5);
+			}
+		else if (move.hasSheerForce && pokemon.hp <= pokemon.maxhp / 2) {
+				return this.chainModify(2);
+			}
+		},
+		id: "dramaticrage",
+		name: "Dramatic Rage",
+	},
+	"nautralcurse": {
+		shortDesc: "This Pokemon restores 1/3 of its maximum HP, rounded down, when it switches out.",
+		onSwitchOut: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				target.addVolatile('disable', this.effectData.source);
+			}
+		},
+		id: "nautralcurse",
+		name: "Nautral Curse",
+	},
+	"thehiddenone": {
+		shortDesc: "Pokemon making contact with this Pokemon have their Ability changed to Mummy.",
+		id: "thehiddenone",
+		name: "The Hidden One",
+		onUpdate: function	(pokemon, source, move) {
+		for (const target of pokemon.side.foe.active) {
+		let oldAbility = target.setAbility('mummy', target, 'truant', true);
+				if (oldAbility) {
+					this.add('-activate', target, 'ability: Mummy', oldAbility, '[of] ' + target, '[silent]');
+				}
+			}
+		},
+		onFoeTrapPokemon: function (pokemon) {
+			if (pokemon.hasType('Steel') && this.isAdjacent(pokemon, this.effectData.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if ((!pokemon.knownType || pokemon.hasType('Steel')) && this.isAdjacent(pokemon, source)) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move && move.flags['contact'] && source.ability !== 'mummy') {
+				let oldAbility = source.setAbility('mummy', target);
+				if (oldAbility) {
+					this.add('-activate', target, 'ability: Mummy', this.getAbility(oldAbility).name, '[of] ' + source);
+					target.tryTrap(true);
+				}
+			}
+		},
+	},
+	
 };
