@@ -8832,6 +8832,18 @@ exports.BattleAbilities = {
 				}
 				return null;
 			}
+		else if (target !== source && move.type === 'Bug' && target.hasMove('pinmissile') && target.item) {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
+				}
+				return null;
+			}
+		else if (target !== source && move.type === 'Normal' && target.hasMove(move.type === 'Normal' && move.multihit) && target.item) {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
+				}
+				return null;
+			}
 		},
 		id: "horsetailarmor",
 		name: "Horsetail Armor",
