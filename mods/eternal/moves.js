@@ -2939,11 +2939,9 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					onAfterHit: function(pokemon, target, move) {
-			if (!target || target.fainted || target.hp <= 0) {
-				this.heal(target.maxhp / 4);
-			}
-		},
+					onAfterHit: function(pokemon, target) {
+					this.heal(target.maxhp / 4);
+					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
