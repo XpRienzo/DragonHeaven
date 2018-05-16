@@ -2939,8 +2939,22 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					onHit: function (target, source) {
-    					this.heal(source.maxhp / 4)
+					sideCondition: 'Spore Burst',
+					effect: {
+					duration: 1,
+					onStart: function (side, source) {
+				this.effectData.hp = source.maxhp / 4;
+					},
+					onResidualOrder: 4,
+					onEnd: function (side) {
+				// @ts-ignore
+					let target = side.active[this.effectData.sourcePosition];
+					if (target && !target.fainted) {
+					let source = this.effectData.source;
+					let damage = this.heal(this.effectData.hp, target, target);
+					if (damage) this.add('-heal', target, target.getHealth, '[from] move: Spore Burst');
+						}
+					},
 					},
 					effectType: 'Move',
 					isFutureMove: true,
