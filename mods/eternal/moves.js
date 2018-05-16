@@ -2924,7 +2924,7 @@ exports.BattleMovedex = {
 		  onTry: function (source, target) {
 			 target.side.addSideCondition('futuremove');
 			  this.useMove("sporeburstheal", source);
-			  source.side.addSideCondition('sporeburst');
+			  source.side.addSideCondition('wish');
 			 source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
