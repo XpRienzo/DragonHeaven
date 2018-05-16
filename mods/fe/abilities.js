@@ -3525,19 +3525,6 @@ exports.BattleAbilities = {
 		id: "mountainclimber",
 		name: "Mountain Climber",
 	},
-	"monarchoftherain": {
-		shortDesc: "Speed under Hail or Sand is 2.5x, immunity to both.",
-		onModifySpe: function(spe, pokemon) {
-			if (this.isWeather('hail') || this.isWeather('sandstorm')) {
-				return this.chainModify(2.5);
-			}
-		},
-		onImmunity: function(type, pokemon) {
-			if (type === 'hail' || type === 'sandstorm') return false;
-		},
-		id: "monarchoftherain",
-		name: "Monarch of the Rain",
-	},
 	"dukeofthelightning": {
 		shortDesc: "This Pokemon's Speed is doubled.",
 		onModifySpe: function(spe) {
