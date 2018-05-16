@@ -8,7 +8,7 @@ exports.BattleAbilities = {
 				move.inverseivy = true;
 			}
 		},
-		onEffectiveness: function(typeMod, target, type, move) {
+		onFoeEffectiveness: function(typeMod, target, type, move) {
 				if (move.inverseivy)	return -typeMod;
 			},
 		id: "inverseivy",
