@@ -4329,7 +4329,7 @@ darkchomp: {
             spe: 113
         },
         abilities: {
-            0: "Rough Skin"
+            0: "Sand Dreams"
         },
         heightm: 1.705,
         weightkg: 72.75,
