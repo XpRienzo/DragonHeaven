@@ -834,6 +834,20 @@ let BattleFormats = {
 		desc: "Allows the use of Pok&eacute;mon, abilities, moves, and items made by the Create-A-Pok&eacute;mon project",
 		// Implemented in the 'pokemon' ruleset
 	},
+	dogmondex: {
+effectType: 'ValidatorRule',
+name: 'Dogmons',
+desc: "Only allows Pokémon with canine features",
+onValidateSet: function (set, format) {
+let dogmonDex = [
+"Absol", "Arcanine", "Eevee", "Electrike", "Entei", "Flareon", "Furfrou", "Glaceon", "Granbull", "Growlithe", "Herdier", "Houndoom", "Houndour", "Jolteon", "Lillipup", "Lucario", "Lycanroc", "Manetric", "Mightyena", "Poochyena", "Raikou", "Riolu", "Rockruff", "Shaymin-Sky", "Smeargle", "Snubbull", "Stoutland", "Suicune", "Vaporeon", "Volcanion", "Zygarde-10%",
+];
+let template = this.getTemplate(set.species || set.name);
+if (!dogmonDex.includes(template.baseSpecies) && !this.getRuleTable(format).has('+' + template.speciesid)) {
+return [template.baseSpecies + " is not canine."];
+}
+},
+},
 	allowtradeback: {
 		effectType: 'ValidatorRule',
 		name: 'Allow Tradeback',
