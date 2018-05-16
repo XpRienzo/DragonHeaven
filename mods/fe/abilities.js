@@ -2583,9 +2583,9 @@ exports.BattleAbilities = {
 		name: "Puffy Cloud",
 	},
 	"tinkering": {
-		shortDesc: "This Pokemon's status moves and moves that switch the user out have +1 priority. This Pokemon heals status conditions upon switching out..",
-		onModifyPriority: function(priority, pokemon, target, move) {
-			if (move.category === 'Status' || move.selfSwitch) {
+		shortDesc: "This Pokemon's status moves and moves that switch the user out have +1 priority. This Pokemon heals status conditions upon switching out.",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.category === 'Status' || move.selfSwitch) {
 				return priority + 1;
 			}
 		},
