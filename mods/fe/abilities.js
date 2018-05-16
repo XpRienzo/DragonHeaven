@@ -8815,4 +8815,25 @@ exports.BattleAbilities = {
 		id: "sanddreams",
 		name: "Sand Dreams",
 	},
+	"horsetailarmor": { // Done for Rock only for now to test
+		shortDesc: "Multi-strike attacks always hit the maximum number of times. This Pokemon is immune to moves and entry hazards of the same type as any multi-strike moves it knows, as long as it is holding an item.",
+		onModifyMove: function (move) {
+			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
+				move.multihit = move.multihit[1];
+			}
+			if (move.multiaccuracy) {
+				delete move.multiaccuracy;
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Rock' && target.hasMove('rockblast') && target.item) {
+				if (!this.heal(target.maxhp / 4)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
+				}
+				return null;
+			}
+		},
+		id: "horsetailarmor",
+		name: "Horsetail Armor",
+	},
 };
