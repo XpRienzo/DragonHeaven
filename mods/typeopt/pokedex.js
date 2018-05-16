@@ -1056,7 +1056,7 @@ exports.BattlePokedex = {
 			spd: 85,
 			spe: 30
 		},
-		abilties: {
+		abilities: {
 			0: "Slush Rush",
 			1: "Skill Link",
 			H: "Tough Claws"
