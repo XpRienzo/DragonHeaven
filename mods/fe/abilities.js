@@ -8797,5 +8797,22 @@ exports.BattleAbilities = {
 		id: "compoundpressure",
 		name: "Compound Pressure",
 	},
-	
+	"sanddreams": {
+		shortDesc: "Opposing sleeping Pokemon take sandstorm chip damage while on the field with this Pokemon.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				if (target.hasType('Rock') || target.hasType('Steel') || target.hasType('Ground') || target.hasAbility(['overcoat', 'sandrush', 'sandveil', 'sandforce'])) {
+					 return null;
+					 }
+				else {
+					 this.damage(target.maxhp / 16, target, target);
+			}
+			}
+		},
+		id: "sanddreams",
+		name: "Sand Dreams",
+	},
 };
