@@ -6646,11 +6646,13 @@ exports.BattleAbilities = {
 				return null;
 			}
 		},
-		onAllyTryHitSide: function (target, source, move) {
+		onAllyTryHitSide: function (target, source, move, effect) {
 			if (move.flags['sound']) {
 			this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Echo');
 			let newMove = this.getMoveCopy(move.id);
+			if (effect.id !== 'Echo') {
 			this.useMove(newMove, this.effectData.target, source);
+			}
 			return null;
 			}
 		},
@@ -8784,4 +8786,5 @@ exports.BattleAbilities = {
 		id: "compoundpressure",
 		name: "Compound Pressure",
 	},
+	
 };
