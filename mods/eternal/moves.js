@@ -2940,9 +2940,7 @@ exports.BattleMovedex = {
 					priority: 0,
 					flags: {},
 					self: {
-					onAfterHit: function (target) {
-					this.heal(target.maxhp / 4);
-						},
+					volatileStatus: 'sporeburst',					
 					},
 					effectType: 'Move',
 					isFutureMove: true,
@@ -2968,7 +2966,7 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
-		sideCondition: 'sporeburst',
+		volatileStatus: 'sporeburst',
 		effect: {
 			duration: 1,
 			onStart: function (side, source) {
