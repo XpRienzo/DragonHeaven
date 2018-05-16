@@ -6642,7 +6642,9 @@ exports.BattleAbilities = {
 			if (move.flags['sound']) {
 				this.add('-immune', target, '[msg]', '[from] ability: Echo');
 				let newMove = this.getMoveCopy(move.id);
+				if (target.ability !== 'echo') {
 				this.useMove(newMove, this.effectData.target, source);
+				}
 				return null;
 			}
 		},
@@ -6650,7 +6652,9 @@ exports.BattleAbilities = {
 			if (move.flags['sound']) {
 			this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Echo');
 			let newMove = this.getMoveCopy(move.id);
+			if (target.ability !== 'echo') {
 			this.useMove(newMove, this.effectData.target, source);
+			}
 			}
 			return null;
 		},
