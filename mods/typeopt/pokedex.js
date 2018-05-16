@@ -12,6 +12,7 @@ exports.BattlePokedex = {
 			spd: 60,
 			spe: 117
 		},
+		abilities: {0: "Keen Eye", 1: "Sand Rush", H: "Rock Head"},
 	},
 	emboar: {
 		inherit: true,
