@@ -2940,7 +2940,7 @@ exports.BattleMovedex = {
 					priority: 0,
 					flags: {},
 					onAfterHit: function (source) {
-						for (const healmon of source.side.active) {
+						for (const healmon of source.side.foe.active) {
 						this.heal(healmon.maxhp / 4);
 						}
 					},
