@@ -2940,8 +2940,9 @@ exports.BattleMovedex = {
 					priority: 0,
 					flags: {},
 					onAfterHit: function (source) {
-						let healmon = source.side.active;
+						for (const healmon of source.side.active) {
 						this.heal(healmon.maxhp / 4);
+						}
 					},
 					effectType: 'Move',
 					isFutureMove: true,
