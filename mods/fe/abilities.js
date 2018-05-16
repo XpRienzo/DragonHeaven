@@ -8514,7 +8514,7 @@ exports.BattleAbilities = {
 },
 	"mentalfear": {
 		shortDesc: "Always appear as full health to the opponent.",
-		onBeforeSwitchIn: function (pokemon) {
+		onUpdate: function (pokemon) {
 				let details = pokemon.template.species + (pokemon.hp === pokemon.maxhp) + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
 				this.add('replace', pokemon, details);
 				this.add('-end', pokemon, 'Illusion');
