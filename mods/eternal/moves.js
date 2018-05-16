@@ -2940,9 +2940,9 @@ exports.BattleMovedex = {
 					priority: 0,
 					flags: {},
 					self: {
-					onAfterHit: function(pokemon) {
-					this.heal(pokemon.maxhp / 4);
-					},
+					onAfterHit: function (target) {
+					this.heal(target.maxhp / 4);
+						},
 					},
 					effectType: 'Move',
 					isFutureMove: true,
