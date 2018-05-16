@@ -2939,7 +2939,7 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					onHit: function (source, target) {
+					onHit: function (target, source) {
     					this.heal(source.maxhp / 4)
 					},
 					effectType: 'Move',
