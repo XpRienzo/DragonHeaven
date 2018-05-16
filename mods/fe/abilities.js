@@ -8815,7 +8815,7 @@ exports.BattleAbilities = {
 		id: "sanddreams",
 		name: "Sand Dreams",
 	},
-	"horsetailarmor": { // Done for Rock only for now to test
+	"horsetailarmor": { // TODO: This is a WIP
 		shortDesc: "Multi-strike attacks always hit the maximum number of times. This Pokemon is immune to moves and entry hazards of the same type as any multi-strike moves it knows, as long as it is holding an item.",
 		onModifyMove: function (move) {
 			if (move.multihit && Array.isArray(move.multihit) && move.multihit.length) {
@@ -8827,21 +8827,15 @@ exports.BattleAbilities = {
 		},
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Rock' && target.hasMove('rockblast') && target.item) {
-				if (!this.heal(target.maxhp / 4)) {
 					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
-				}
 				return null;
 			}
-		else if (target !== source && move.type === 'Bug' && target.hasMove('pinmissile') && target.item) {
-				if (!this.heal(target.maxhp / 4)) {
+		else if (target !== source && move.type === 'Bug' && target.hasMove(['pinmissile', 'twineedle']) && target.item) {
 					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
-				}
 				return null;
 			}
-		else if (target !== source && move.type === 'Normal' && target.hasMove(move.type === 'Normal' && move.multihit) && target.item) {
-				if (!this.heal(target.maxhp / 4)) {
+		else if (target !== source && move.type === 'Fighting' && target.hasMove(['armthrust', 'doublekick', 'triplekick'])) {
 					this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
-				}
 				return null;
 			}
 		},
