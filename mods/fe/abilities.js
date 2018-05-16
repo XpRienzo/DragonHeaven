@@ -8777,7 +8777,7 @@ exports.BattleAbilities = {
 			this.debug('compoundeyes - enhancing accuracy');
 			return accuracy * 2;
 		},
-		onDeductPP: function (move) {
+		onSourceDeductPP: function (move) {
 			if (move.compoundpressure) return;
 			return 1;
 		},
