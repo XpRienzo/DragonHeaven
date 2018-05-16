@@ -3616,10 +3616,7 @@ exports.BattleAbilities = {
 	},
 	"darklight": {
 		shortDesc: "Provides immunity to super effective attacks and heals 25% of its health instead. This Ability cannot be ignored.",
-		onImmunity: function(move) {
-			if (move.typeMod > 0) return false;
-		},
-		onTryHit: function(target, source, move) {
+		onTryHit: function (target, source, move) {
 			if (target !== source && move.typeMod > 0) {
 				if (!this.heal(target.maxhp / 4)) {
 					this.add('-immune', target, '[msg]', '[from] ability: Dark Light');
