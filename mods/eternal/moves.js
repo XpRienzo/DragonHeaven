@@ -2940,7 +2940,6 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					sideCondition: 'Spore Burst',
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
