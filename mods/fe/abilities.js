@@ -7322,7 +7322,9 @@ exports.BattleAbilities = {
 		onAnyTryPrimaryHit: function (target, source, move) {
 			if (target === source || move.category !== 'Special') return;
                         let newMove = this.getMoveCopy(move.id);
+								if (target.ability !== 'flutteringheart') {
                         this.useMove(newMove, this.effectData.target, source);
+								}
 		},
 		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
@@ -8460,7 +8462,9 @@ exports.BattleAbilities = {
 			newMove.hasBounced = true;
 			newMove.pranksterBoosted = false;
 			this.boost({atk: 1}, source);
-			this.useMove(newMove, target, source);
+			if (target.ability !== 'magicmirror') {
+         this.useMove(newMove, this.effectData.target, source);
+			}
 			return null;
 		},
 		onAllyTryHitSide: function (target, source, move) {
@@ -8471,7 +8475,9 @@ exports.BattleAbilities = {
 			newMove.hasBounced = true;
 			newMove.pranksterBoosted = false;
 			this.boost({atk: 1}, source);
-			this.useMove(newMove, this.effectData.target, source);
+			if (target.ability !== 'magicmirror') {
+         this.useMove(newMove, this.effectData.target, source);
+			}
 			return null;
 		},
 		effect: {
