@@ -6646,11 +6646,11 @@ exports.BattleAbilities = {
 				return null;
 			}
 		},
-		onAllyTryHitSide: function (target, source, move, effect) {
+		onAllyTryHitSide: function (target, source, move) {
 			if (move.flags['sound']) {
 			this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Echo');
 			let newMove = this.getMoveCopy(move.id);
-			if (effect.id !== 'echo') {
+			if (target.ability !== 'Echo') {
 			this.useMove(newMove, this.effectData.target, source);
 			}
 			return null;
