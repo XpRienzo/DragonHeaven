@@ -8590,6 +8590,14 @@ exports.BattleAbilities = {
 	"paudancer": {
 		desc: "Whenever another Pokémon or the user uses a dance or a Psychic-type move, a Pokémon with the ability Pa'u Dancer will immediatly use that move as well. Using a move through Pa'u Dancer is a separate action to usin the move originally selected. Pa'u Dancer will not actiavte for a move copied by Pa'u Dancer, or any Dancer-based abilities.",
 		shortDesc: "After another Pokemon uses a dance move or a Psychic-type move, this Pokemon uses the same move.",
+		onTryHit: function (target, source, move) {
+			if (move.type === 'Psychic' || move.flags['dance']) {
+				let newMove = this.getMoveCopy(move.id);
+				if (target.ability !== 'dancer' || target.ability !== 'paudancer') {
+				this.useMove(newMove, this.effectData.target, source);
+				}
+			}
+		},
 		id: "paudancer",
 		name: "Pa'u Dancer",
 		// implemented in runMove in scripts.js
@@ -8599,6 +8607,14 @@ exports.BattleAbilities = {
 	"pompomdancer": {
 		desc: "Whenever another Pokémon or the user uses a dance or an Electric-type move, a Pokémon with the ability Pom-Pom Dancer will immediately use that move as well. Using a move through Pom-Pom Dancer is a separate action to using the move originally selected. Pom-Pom Dancer will not activate for a move copied by Pom-Pom Dancer, or any Dancer-based abilities.",
 		shortDesc: "After another Pokemon uses a dance move or an Electric-type move, this Pokemon uses the same move.",
+		onTryHit: function (target, source, move) {
+			if (move.type === 'Electric' || move.flags['dance']) {
+				let newMove = this.getMoveCopy(move.id);
+				if (target.ability !== 'dancer' || target.ability !== 'pompomdancer') {
+				this.useMove(newMove, this.effectData.target, source);
+				}
+			}
+		},
 		id: "pompomdancer",
 		name: "Pom-Pom Dancer",
 		// implemented in runMove in scripts.js
@@ -8607,6 +8623,14 @@ exports.BattleAbilities = {
 	"bailedancer": {
 		desc: "Whenever another Pokémon or the user uses a dance or a Grass-type move, a Pokémon with the ability Baile Dancer will immediatly use that move as well. Using a move through Baile Dancer is a separate action to usin the move originally selected. Baile Dancer will not actiavte for a move copied by Baile Dancer, or any Dancer-based abilities.",
 		shortDesc: "After another Pokemon uses a dance move or a Grass-type move, this Pokemon uses the same move.",
+		onTryHit: function (target, source, move) {
+			if (move.type === 'Grass' || move.flags['dance']) {
+				let newMove = this.getMoveCopy(move.id);
+				if (target.ability !== 'dancer' || target.ability !== 'bailedancer') {
+				this.useMove(newMove, this.effectData.target, source);
+				}
+			}
+		},
 		id: "bailedancer",
 		name: "Baile Dancer",
 		// implemented in runMove in scripts.js
@@ -8615,6 +8639,14 @@ exports.BattleAbilities = {
 	"sensudancer": {
 		desc: "Whenever another Pokémon or the user uses a dance or a Fairy-type move, a Pokémon with the ability Sensu Dancer will immediatly use that move as well. Using a move through Sensu Dancer is a separate action to usin the move originally selected. Sensu Dancer will not actiavte for a move copied by Sensu Dancer, or any Dancer-based abilities.",
 		shortDesc: "After another Pokemon uses a dance move or a Fairy-type move, this Pokemon uses the same move.",
+		onTryHit: function (target, source, move) {
+			if (move.type === 'Fairy' || move.flags['dance']) {
+				let newMove = this.getMoveCopy(move.id);
+				if (target.ability !== 'dancer' || target.ability !== 'sensudancer') {
+				this.useMove(newMove, this.effectData.target, source);
+				}
+			}
+		},
 		id: "sensudancer",
 		name: "Sensu Dancer",
 		// implemented in runMove in scripts.js
@@ -8993,12 +9025,14 @@ exports.BattleAbilities = {
 			for (const target of pokemon.side.foe.active) {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
-					let move1 = this.getMove(moveSlot.move);
-					this.useMove(move1, pokemon);
+					this.add('-ability', pokemon, 'Dance Poster');
+					let moves = this.getMove(moveSlot.move);
+					this.useMove(moves, pokemon);
 				}
 			}
 		},
 		id: "danceposter",
-		name: "Dance Poster",
+		name: "Danceposter",
 	},
+	
 };
