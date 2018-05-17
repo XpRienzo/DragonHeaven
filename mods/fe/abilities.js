@@ -8836,7 +8836,7 @@ exports.BattleAbilities = {
 	    id: "horsetailarmor",
 	    name: "Horsetail Armor",
 	},
-	"sandpressure": {
+	"sandpressure": { //TODO: Make it work once per weather change
 		shortDesc: "Opponent's moves' PPs are halved when this Pokémon enters the field.",
 		onWeather: function (pokemon) {    
 			this.add('-ability', pokemon, 'Sand Pressure');
