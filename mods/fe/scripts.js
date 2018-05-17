@@ -121,7 +121,7 @@ let BattleScripts = {
             }
         }
         //Sensu Dancer
-        if ((move.flags['dance'] || move.type === 'Fairy') && moveDidSomething && !move.isExternal) {
+        /*if ((move.flags['dance'] || move.type === 'Fairy') && moveDidSomething && !move.isExternal) {
             let sensudancers = [];
             for (const side of this.sides) {
                 for (const currentPoke of side.active) {
@@ -141,7 +141,7 @@ let BattleScripts = {
                 this.add('-activate', dancer, 'ability: Sensu Dancer');
                 this.runMove(baseMove.id, dancer, 0, this.getAbility('sensudancer'), undefined, true);
             }
-        }
+        }*/
         //Baile Dancer
         if ((move.flags['dance'] || move.type === 'Grass') && moveDidSomething && !move.isExternal) {
             let bailedancers = [];
