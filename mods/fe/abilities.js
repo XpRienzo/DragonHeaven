@@ -8994,7 +8994,7 @@ exports.BattleAbilities = {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
 					let move1 = this.getMove(moveSlot.move);
-					this.useMove(move1, source, target);
+					this.useMove(move1, target, pokemon);
 				}
 			}
 		},
