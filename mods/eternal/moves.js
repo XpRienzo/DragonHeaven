@@ -2923,6 +2923,7 @@ exports.BattleMovedex = {
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			target.side.addSideCondition('futuremove');
+			  source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
@@ -2938,9 +2939,7 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					onAfterHit: function (side, target) {
-					target.side.addSideCondition('Wish');		
-					},
+					drain: [1, 2],
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
