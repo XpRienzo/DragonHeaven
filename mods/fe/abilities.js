@@ -8893,4 +8893,19 @@ exports.BattleAbilities = {
 		id: "powerforward",
 		name: "Power Forward",
 	},
+	"weathercaster": {
+		shortDesc: "While this Pokemon is active, the effects of weather conditions are disabled.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Weather Caster');
+			let type = this.getMove(pokemon.moveSlots[0].id).type;
+			if (type === 'Fire') {
+			pokemon.setType[1]('Fire');
+			this.setWeather('sunnyday');
+			}
+			this.add('-start', pokemon, 'typechange', type);
+		},
+		suppressWeather: true,
+		id: "weathercaster",
+		name: "Weather Caster",
+	},
 };
