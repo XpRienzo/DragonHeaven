@@ -8915,4 +8915,23 @@ exports.BattleAbilities = {
 		id: "weathercaster",
 		name: "Weather Caster",
 	},
+	"victorysystem": { // TODO: Check if this works
+		shortDesc: "Holding a Memory changes this Pokemon's primary type and multiplies its accuracy by 1.5.",
+		// RKS System's type-changing itself is implemented in statuses.js
+		id: "victorysystem",
+		name: "Victory System",
+	},
+	"resurrection": {
+		shortDesc: "When this Pokémon gets KOed for the first time, it gains 50% of its original HP and changes to Reborn form.",
+		onAfterDamage: function (damage, target, source, move) {
+			if (target.baseTemplate.baseSpecies === 'Miminja' && source !== target && move && move.effectType === 'Move' && !move.isFutureMove) {
+				this.add('-activate', target, 'ability: Resurrection');
+				this.add('-formechange', target, 'Miminja-Reborn', '[msg]');
+				target.formeChange("Miminja-Reborn");
+				this.heal(target.maxhp / 2);
+			}
+		},
+		id: "resurrection",
+		name: "Resurrection",
+	},
 };
