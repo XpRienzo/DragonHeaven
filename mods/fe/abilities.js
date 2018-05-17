@@ -8899,7 +8899,7 @@ exports.BattleAbilities = {
 			this.add('-ability', pokemon, 'Weather Caster');
 			let type = this.getMove(pokemon.moveSlots[0].id).type;
 			if (type === 'Fire') {
-			pokemon.addType('Fire');
+			pokemon.setType('Fire');
 			this.setWeather('sunnyday');
 			}
 			this.add('-start', pokemon, 'typechange', type);
