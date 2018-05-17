@@ -8924,9 +8924,9 @@ exports.BattleAbilities = {
 	"resurrection": {
 		shortDesc: "When this Pokémon gets KOed for the first time, it gains 50% of its original HP and changes to Reborn form.",
 		onDamage: function (damage, target, source, effect) {
-			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+			if (damage >= target.hp && effect && effect.effectType === 'Move') {
 				this.add('-ability', target, 'Resurrection');
-				return target.hp - 1;
+				return target.hp - 0;
 			}
 		},
 		onAfterDamage: function (damage, target, source, move) {
