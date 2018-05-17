@@ -2923,8 +2923,6 @@ exports.BattleMovedex = {
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			 target.side.addSideCondition('futuremove');
-			  //target.side.addSideCondition('sporeburstheal');
-			  this.useMove("sporeburstheal", source);
 			this.useMove("Baton Pass", source);
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
@@ -2941,9 +2939,7 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					self: {
 					sideCondition: 'sporeburstheal',					
-					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
@@ -2971,8 +2967,11 @@ exports.BattleMovedex = {
 		sideCondition: 'sporeburstheal',
 		effect: {
 			duration: 1,
-			onStart: function (side, source) {
-				this.effectData.hp = source.maxhp / 4;
+			onStart: function (side, pokemon) {
+				for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				this.effectData.hp = target.maxhp / 4;
+				}
 			},
 			onResidualOrder: 4,
 			onEnd: function (side) {
