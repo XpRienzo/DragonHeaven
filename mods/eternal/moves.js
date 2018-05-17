@@ -2914,7 +2914,7 @@ exports.BattleMovedex = {
         accuracy: 100,
         basePower: 100,
         category: "Special",
-        shortDesc: "Switches out turn 1, hits target turn 2, heals a team member for 50% damage dealt to the corresponding target.", // Make the healing work for the teammate
+        shortDesc: "Switches out turn 1, hits target turn 2.", // Make the healing work for the teammate
         id: "sporeburst",
         name: "Spore Burst",
         pp: 5,
@@ -2923,8 +2923,7 @@ exports.BattleMovedex = {
 		  isFutureMove: true,
 		  onTry: function (source, target) {
 			target.side.addSideCondition('futuremove');
-			  target.side.addSideCondition('Wish');
-			  source.switchFlag = true;
+			source.switchFlag = true;
 			if (target.side.sideConditions['futuremove'].positions[target.position]) {
 				return false;
 			}
