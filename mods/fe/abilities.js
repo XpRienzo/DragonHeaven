@@ -8869,7 +8869,7 @@ exports.BattleAbilities = {
 			duration: 1,
 			onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Ground' && target.volatiles['sheerflight']) {
-					this.add('-immune', target, '[msg]', '[from] ability: Water Absorb');
+					this.add('-immune', target, '[msg]', '[from] ability: Sheer Flight');
 				return null;
 			}
 		},
