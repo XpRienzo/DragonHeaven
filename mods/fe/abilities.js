@@ -8594,7 +8594,7 @@ exports.BattleAbilities = {
 			if (move.type === 'Psychic' || move.flags['dance']) {
 				let newMove = this.getMoveCopy(move.id);
 				if (target.ability !== 'dancer' || target.ability !== 'paudancer') {
-				this.useMove(newMove, this.effectData.target, source);
+				this.useMove(newMove, source);
 				}
 			}
 		},
@@ -8627,7 +8627,7 @@ exports.BattleAbilities = {
 			if (move.type === 'Grass' || move.flags['dance']) {
 				let newMove = this.getMoveCopy(move.id);
 				if (target.ability !== 'dancer' || target.ability !== 'bailedancer') {
-				this.useMove(newMove, this.effectData.target, source);
+				this.useMove(newMove, source);
 				}
 			}
 		},
