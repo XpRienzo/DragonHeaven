@@ -8857,4 +8857,24 @@ exports.BattleAbilities = {
 		id: "sandpressure",
 		name: "Sand Pressure",
 	},
+	"sheerflight": {
+		shortDesc: "During the turn that a move with a secondary effect was used by this Pokemon, it is immune to ground and takes no Life Orb recoil.",
+		onModifyMove: function (move, source)
+			if (move.secondaries) {
+				move.sheerflight = true;
+				source.addVolatile('sheerflight');
+			}
+		},
+		effect: {
+			duration: 1,
+			onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground' && target.volatiles['sheerflight']) {
+					this.add('-immune', target, '[msg]', '[from] ability: Water Absorb');
+				return null;
+			}
+		},
+		},
+		id: "sheerflight",
+		name: "Sheer Flight",
+	},
 };
