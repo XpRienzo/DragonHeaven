@@ -8902,9 +8902,16 @@ exports.BattleAbilities = {
 			pokemon.setType('Electric', 'Fire');
 			this.setWeather('sunnyday');
 			}
+			if (type === 'Water') {
+			pokemon.setType('Electric', 'Water');
+			this.setWeather('raindance');
+			}
+			if (type === 'Ice') {
+			pokemon.setType('Electric', 'Ice');
+			this.setWeather('hail');
+			}
 			this.add('-start', pokemon, 'typechange', type);
 		},
-		suppressWeather: true,
 		id: "weathercaster",
 		name: "Weather Caster",
 	},
