@@ -8923,8 +8923,8 @@ exports.BattleAbilities = {
 	},
 	"resurrection": {
 		shortDesc: "When this Pokémon gets KOed for the first time, it gains 50% of its original HP and changes to Reborn form.",
-		onAfterDamage: function (damage, target, source, move) {
-			if (target.baseTemplate.baseSpecies === 'Miminja' && source !== target && move && move.effectType === 'Move' && !move.isFutureMove) {
+		onDamage: function (damage, target, source, move) {
+			if (target.baseTemplate.species === 'Miminja' && source !== target && move && move.effectType === 'Move' && !move.isFutureMove) {
 				this.add('-activate', target, 'ability: Resurrection');
 				this.add('-formechange', target, 'Miminja-Reborn', '[msg]');
 				target.formeChange("Miminja-Reborn");
