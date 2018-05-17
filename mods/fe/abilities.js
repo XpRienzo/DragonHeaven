@@ -8992,12 +8992,15 @@ exports.BattleAbilities = {
 		onStart: function (pokemon) {
 			for (const target of pokemon.side.foe.active) {
 				if (target.fainted) continue;
-				for (const moveSlot of target.moveSlots) {
+				/*for (const moveSlot of target.moveSlots) {
 					this.useMove(moveSlot[0].id, pokemon);
 					this.useMove(moveSlot[1].id, pokemon);
 					this.useMove(moveSlot[2].id, pokemon);
 					this.useMove(moveSlot[3].id, pokemon);
 				}
+			}*/
+		let newMove = target.moveSlots[0].id;
+		this.useMove(newMove, this.effectData.target, pokemon);
 			}
 		},
 		id: "danceposter",
