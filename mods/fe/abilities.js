@@ -8604,7 +8604,7 @@ exports.BattleAbilities = {
 	},
 	
 	
-	"pompomdancer": {
+	"pomdancer": {
 		desc: "Whenever another Pokémon or the user uses a dance or an Electric-type move, a Pokémon with the ability Pom-Pom Dancer will immediately use that move as well. Using a move through Pom-Pom Dancer is a separate action to using the move originally selected. Pom-Pom Dancer will not activate for a move copied by Pom-Pom Dancer, or any Dancer-based abilities.",
 		shortDesc: "After another Pokemon uses a dance move or an Electric-type move, this Pokemon uses the same move.",
 		onFoeAfterMove: function (target, source, move) {
@@ -8643,7 +8643,7 @@ exports.BattleAbilities = {
 			if (move.type === 'Fairy' || move.flags['dance']) {
 				let newMove = this.getMoveCopy(move.id);
 				if (target.ability !== 'dancer' || target.ability !== 'sensudancer') {
-				this.useMove(newMove, this.effectData.target, source);
+				this.useMove(newMove, source);
 				}
 			}
 		},
