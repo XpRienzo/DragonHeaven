@@ -8924,7 +8924,7 @@ exports.BattleAbilities = {
 	"resurrection": {
 		shortDesc: "When this Pokémon gets KOed for the first time, it gains 50% of its original HP and changes to Reborn form.",
 		onDamage: function (damage, target, source, effect) {
-			if (damage >= target.hp && effect && effect.effectType === 'Move') {
+			if (target.baseTemplate.species === 'Miminja' && damage >= target.hp && effect && effect.effectType === 'Move') {
 				target.addVolatile('resurrection');
 				this.add('-ability', target, 'Resurrection');
 				return target.hp - 1;
