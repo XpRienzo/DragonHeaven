@@ -2939,7 +2939,9 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					sideCondition: 'sporeburstheal',					
+					onAfterHit: function (target) {
+					target.side.addSideCondition('sporeburstheal');		
+					},
 					effectType: 'Move',
 					isFutureMove: true,
 					type: 'Dark',
