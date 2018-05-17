@@ -8949,10 +8949,58 @@ exports.BattleAbilities = {
 		id: "resurrectiondone",
 		name: "Resurrection Done",
 	},
-	/*"upgrade": { TODO: Left this because had to go, will continue
+	"upgrade": { 
 		shortDesc: "On switch in, doubles the power of Water- or Bug-type moves, in base of the effectiveness on the opponent (for example if opponent is resistant to Water-type, the power of Bug-type moves is doubled).",
-		
+		onStart: function (pokemon) {
+			pokemon.addVolatile('upgrade');
+			this.add('-ability', pokemon, 'Upgrade');
+		},
+		effect: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart: function (target) {
+				this.add('-start', target, 'ability: Upgrade');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk: function (atk, attacker, defender, move) {
+				if (defender.hasType('Dragon') ||defender.hasType('Grass') || defender.hasType('Water') && move.type === 'Bug') {
+					this.debug('Upgrade boost');
+					return this.chainModify(1.5);
+				}
+				else if (move.type === 'Water') {
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA: function (atk, attacker, defender, move) {
+				if (defender.hasType('Dragon') ||defender.hasType('Grass') || defender.hasType('Water') && move.type === 'Bug') {
+					this.debug('Upgrade boost');
+					return this.chainModify(1.5);
+				}
+				else if (move.type === 'Water') {
+					return this.chainModify(1.5);
+				}
+			},
+			onEnd: function (target) {
+				this.add('-end', target, 'ability: Upgrade', '[silent]');
+			},
+		},
 		id: "upgrade",
 		name: "Upgrade",
-	},*/
+	},
+	"danceposter": {
+		shortDesc: "On switchin, this Pokémon uses each of the foe's moves in a random order.",
+		onStart: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (target.fainted) continue;
+				for (const moveSlot of target.moveSlots) {
+					this.useMove(moveSlot[0].id, pokemon);
+					this.useMove(moveSlot[1].id, pokemon);
+					this.useMove(moveSlot[2].id, pokemon);
+					this.useMove(moveSlot[3].id, pokemon);
+				}
+			}
+		},
+		id: "danceposter",
+		name: "Dance Poster",
+	},
 };
