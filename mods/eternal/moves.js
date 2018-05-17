@@ -2938,7 +2938,7 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
-					onAfterHit: function (target) {
+					onAfterHit: function (side, target) {
 					target.side.addSideCondition('Wish');		
 					},
 					effectType: 'Move',
@@ -2954,40 +2954,6 @@ exports.BattleMovedex = {
         type: "Dark",
         zMovePower: 190, 
     },
-	"sporeburstheal": {
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		shortDesc: "Next turn, 25% of the user's max HP is restored.",
-		id: "sporeburstheal",
-		isViable: true,
-		name: "Spore Burst Heal",
-		pp: 10,
-		priority: 0,
-		flags: {snatch: 1, heal: 1},
-		sideCondition: 'sporeburstheal',
-		effect: {
-			duration: 1,
-			onStart: function (side, target) {
-				this.effectData.hp = target.maxhp / 4;
-			},
-			onResidualOrder: 4,
-			onEnd: function (side) {
-				// @ts-ignore
-				let target = side.active[this.effectData.sourcePosition];
-				if (target && !target.fainted) {
-					let source = this.effectData.source;
-					let damage = this.heal(this.effectData.hp, target, target);
-					if (damage) this.add('-heal', target, target.getHealth, '[from] move: Spore Burst');
-				}
-			},
-		},
-		secondary: false,
-		target: "self",
-		type: "Normal",
-		zMoveBoost: {spd: 1},
-		contestType: "Cute",
-	},
 	"divineluster": {
 		accuracy: 100,
 		basePower: 90,
