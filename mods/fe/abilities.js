@@ -8930,13 +8930,16 @@ exports.BattleAbilities = {
 				return target.hp - 1;
 			}
 		},
-		onAfterDamage: function (damage, target, source, move) {
-			if (target.baseTemplate.species === 'Miminja' && target.volatiles['resurrection']) {
+		effect: {
+			duration: 1,
+			onAfterDamage: function (damage, target, source, move) {
+			if (target.baseTemplate.species === 'Miminja') {
 				this.add('-activate', target, 'ability: Resurrection');
 				this.add('-formechange', target, 'Miminja-Reborn', '[msg]');
 				target.formeChange("Miminja-Reborn");
 				this.heal(target.maxhp / 2);
 			}
+			},
 		},
 		id: "resurrection",
 		name: "Resurrection",
