@@ -8825,10 +8825,11 @@ exports.BattleAbilities = {
 	            delete move.multiaccuracy;
 	        }
 	    },
-	    onTryHit: function(pokemon, move) {
-	        for (const moveSlot of pokemon.moveSlots) {
+	    onTryHit: function(source, target, move) {
+	        for (const moveSlot of target.moveSlots) {
 	            const holderMove = moveSlot.id;
 	            if (holderMove && holderMove.type === move.type && holderMove.multihit) {
+						 this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
 	                return null;
 	            }
 	        }
