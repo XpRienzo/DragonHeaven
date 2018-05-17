@@ -8933,8 +8933,8 @@ exports.BattleAbilities = {
 			if (target.baseTemplate.species === 'Miminja' && source && source !== target && move && move.flags['contact'] && !target.hp) {
 				this.add('-activate', target, 'ability: Resurrection');
 				this.add('-formechange', target, 'Miminja-Reborn', '[msg]');
-				target.formeChange("Miminja-Reborn");
 				this.heal(target.maxhp / 2);
+				target.formeChange("Miminja-Reborn");
 			}
 		},
 		id: "resurrection",
