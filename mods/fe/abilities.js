@@ -8828,12 +8828,28 @@ exports.BattleAbilities = {
 	    onTryHit: function(pokemon, move) {
 	        for (const moveSlot of pokemon.moveSlots) {
 	            const holderMove = moveSlot.id;
-	            if (/*holderMove && */holderMove.type === move.type && holderMove.multihit) {
+	            if (holderMove && holderMove.type === move.type && holderMove.multihit) {
 	                return null;
 	            }
 	        }
 	    },
 	    id: "horsetailarmor",
 	    name: "Horsetail Armor",
+	},
+	"sandpressure": {
+		shortDesc: "Opponent's moves' PPs are halved when this Pokémon enters the field.",
+		onWeather: function (pokemon) {    
+			this.add('-ability', pokemon, 'Sand Pressure');
+			for (const target of pokemon.side.foe.active) {
+				if (target.fainted) continue;
+				for (const moveSlot of target.moveSlots) {
+					if (this.isWeather('sandstorm')) {
+					moveSlot.pp = (moveSlot.pp+1)/2;
+					}
+				}
+			}
+		},
+		id: "sandpressure",
+		name: "Sand Pressure",
 	},
 };
