@@ -8881,13 +8881,13 @@ exports.BattleAbilities = {
 		shortDesc: "Moves with a chance to flinch heal this Pokémon for 12.5% of its HP.",
 		onTryHit: function (target, source, move) {
 			for (const secondary of move.secondaries) {
-					if (secondary.volatileStatus === 'flinch') continue;
-			if (target !== source) {
-				if (!this.heal(target.maxhp / 8)) {
+					if (!move.secondaries) move.secondaries = [];
+					if (target !== source && secondary.volatileStatus === 'flinch') {
+					if (!this.heal(target.maxhp / 8)) {
 					this.add('-immune', target, '[msg]', '[from] ability: Power Forward');
 				}
 				return null;
-			}
+				}
 			}
 		},
 		id: "powerforward",
