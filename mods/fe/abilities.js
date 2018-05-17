@@ -8857,7 +8857,7 @@ exports.BattleAbilities = {
 		id: "sandpressure",
 		name: "Sand Pressure",
 	},
-	"sheerflight": {
+	"sheerflight": { // TODO: Remove Life Orb recoil on usage of a secondary move
 		shortDesc: "During the turn that a move with a secondary effect was used by this Pokemon, it is immune to ground and takes no Life Orb recoil.",
 		onModifyMove: function (move, source) {
 			if (move.secondaries) {
@@ -8873,13 +8873,24 @@ exports.BattleAbilities = {
 				return null;
 			}
 		},
-		onDamage: function (damage, target, source, effect) {
-			if (effect.effectType === 'Life Orb') {
-				return false;
-			}
-		},
 		},
 		id: "sheerflight",
 		name: "Sheer Flight",
+	},
+	"powerforward": {
+		shortDesc: "Moves with a chance to flinch heal this Pokémon for 12.5% of its HP.",
+		onTryHit: function (target, source, move) {
+			for (const secondary of move.secondaries) {
+					if (secondary.volatileStatus === 'flinch') continue;
+			if (target !== source) {
+				if (!this.heal(target.maxhp / 8)) {
+					this.add('-immune', target, '[msg]', '[from] ability: Power Forward');
+				}
+				return null;
+			}
+			}
+		},
+		id: "powerforward",
+		name: "Power Forward",
 	},
 };
