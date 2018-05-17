@@ -8989,18 +8989,13 @@ exports.BattleAbilities = {
 	},
 	"danceposter": {
 		shortDesc: "On switchin, this Pokémon uses each of the foe's moves in a random order.",
-		onStart: function (pokemon) {
+		onStart: function (pokemon, source) {
 			for (const target of pokemon.side.foe.active) {
 				if (target.fainted) continue;
-				/*for (const moveSlot of target.moveSlots) {
-					this.useMove(moveSlot[0].id, pokemon);
-					this.useMove(moveSlot[1].id, pokemon);
-					this.useMove(moveSlot[2].id, pokemon);
-					this.useMove(moveSlot[3].id, pokemon);
+				for (const moveSlot of target.moveSlots) {
+					let move1 = this.getMove(moveSlot.move);
+					this.useMove(move1, target, source);
 				}
-			}*/
-		let newMove = target.moveSlots[0].id;
-		this.useMove(newMove, this.effectData.target, pokemon);
 			}
 		},
 		id: "danceposter",
