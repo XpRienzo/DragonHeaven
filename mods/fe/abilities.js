@@ -8611,7 +8611,7 @@ exports.BattleAbilities = {
 			if (move.type === 'Electric' || move.flags['dance']) {
 				let newMove = this.getMoveCopy(move.id);
 				if (target.ability !== 'dancer' || target.ability !== 'pompomdancer') {
-				this.useMove(newMove, this.effectData.target, source);
+				this.useMove(newMove, source);
 				}
 			}
 		},
