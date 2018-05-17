@@ -9376,7 +9376,7 @@ darkchomp: {
             spe: 134
         },
         abilities: {
-            0: "Resurrection"
+            0: "Resurrection Done"
         },
     },
 
