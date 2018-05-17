@@ -8930,7 +8930,7 @@ exports.BattleAbilities = {
 			}
 		},
 			onAfterDamage: function (damage, target, source, move) {
-			if (target.baseTemplate.species === 'Miminja' && target.hp === '1') {
+			if (target.baseTemplate.species === 'Miminja' && target.hp === 1) {
 				this.add('-activate', target, 'ability: Resurrection');
 				this.add('-formechange', target, 'Miminja-Reborn', '[msg]');
 				target.formeChange("Miminja-Reborn");
