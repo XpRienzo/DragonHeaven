@@ -92,6 +92,28 @@ shadowdance: {
         this.add('-weather', 'none');
     },
 },
+	vitality: {
+		name: 'Vitality',
+		id: 'vitality',
+		num: 7500209,
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+			let type = 'Normal';
+			if (pokemon.ability === 'rkssystem') {
+				// @ts-ignore
+				type = pokemon.getItem().onMemory;
+				// @ts-ignore
+				if (!type || type === true) {
+					type = 'Normal';
+				}
+			}
+			pokemon.setType(type, true);
+		},
+	},
+	onSourceModifyAccuracy: function (accuracy, pokemon) {
+			if (typeof accuracy !== 'number' && pokemon.item.name.includes("Memory")) return;
+			return accuracy * 1.5;
+		},
 };
 
 exports.BattleStatuses = BattleStatuses;
