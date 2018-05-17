@@ -8828,7 +8828,7 @@ exports.BattleAbilities = {
 	    onTryHit: function(pokemon, move) {
 	        for (const moveSlot of pokemon.moveSlots) {
 	            const holderMove = moveSlot.id;
-	            if (holderMove && holderMove.type === move.type && holderMove.multihit) {
+	            if (/*holderMove && */holderMove.type === move.type && holderMove.multihit) {
 	                return null;
 	            }
 	        }
