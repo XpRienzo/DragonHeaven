@@ -8935,6 +8935,10 @@ exports.BattleAbilities = {
 				this.add('-formechange', target, 'Miminja-Reborn', '[msg]');
 				target.formeChange("Miminja-Reborn");
 				this.heal(target.maxhp / 2);
+				let oldAbility = target.setAbility('intimidate', target, 'resurrectiondone', true);
+				if (oldAbility) {
+					this.add('-activate', target, 'ability: Resurrection Done', oldAbility, '[of] ' + target);
+				}
 			}
 		},
 		id: "resurrection",
