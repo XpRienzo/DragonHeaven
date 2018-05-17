@@ -8604,7 +8604,7 @@ exports.BattleAbilities = {
 	},
 	
 	
-	"pomdancer": {
+	"pompomdancer": {
 		desc: "Whenever another Pokémon or the user uses a dance or an Electric-type move, a Pokémon with the ability Pom-Pom Dancer will immediately use that move as well. Using a move through Pom-Pom Dancer is a separate action to using the move originally selected. Pom-Pom Dancer will not activate for a move copied by Pom-Pom Dancer, or any Dancer-based abilities.",
 		shortDesc: "After another Pokemon uses a dance move or an Electric-type move, this Pokemon uses the same move.",
 		onFoeAfterMove: function (target, source, move) {
