@@ -8873,6 +8873,11 @@ exports.BattleAbilities = {
 				return null;
 			}
 		},
+		onDamage: function (damage, target, source, effect) {
+			if (effect.effectType === 'Life Orb') {
+				return false;
+			}
+		},
 		},
 		id: "sheerflight",
 		name: "Sheer Flight",
