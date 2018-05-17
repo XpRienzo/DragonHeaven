@@ -8949,4 +8949,10 @@ exports.BattleAbilities = {
 		id: "resurrectiondone",
 		name: "Resurrection Done",
 	},
+	/*"upgrade": { TODO: Left this because had to go, will continue
+		shortDesc: "On switch in, doubles the power of Water- or Bug-type moves, in base of the effectiveness on the opponent (for example if opponent is resistant to Water-type, the power of Bug-type moves is doubled).",
+		
+		id: "upgrade",
+		name: "Upgrade",
+	},*/
 };
