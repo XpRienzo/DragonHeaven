@@ -2939,7 +2939,7 @@ exports.BattleMovedex = {
 					priority: 0,
 					flags: {},
 					onAfterHit: function (target) {
-					target.side.addSideCondition('sporeburstheal');		
+					target.side.addSideCondition('Wish');		
 					},
 					effectType: 'Move',
 					isFutureMove: true,
