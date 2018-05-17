@@ -8940,4 +8940,9 @@ exports.BattleAbilities = {
 		id: "resurrection",
 		name: "Resurrection",
 	},
+	"resurrectiondone": {
+		shortDesc: "Post Resurrection ability.",
+		id: "resurrectiondone",
+		name: "Resurrection Done",
+	},
 };
