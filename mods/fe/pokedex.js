@@ -9363,9 +9363,9 @@ darkchomp: {
     miminjareborn: {
         num: 7500275,
         species: "Miminja-Reborn",
-        baseSpecies: "Pokemon",
-        forme: "Mega",
-        formeLetter: "M",
+        baseSpecies: "Miminja",
+        forme: "Reborn",
+        formeLetter: "R",
         types: ["Dark", "Ghost"],
         baseStats: {
             hp: 63,
