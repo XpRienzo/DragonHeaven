@@ -8926,7 +8926,7 @@ exports.BattleAbilities = {
 		onDamage: function (damage, target, source, effect) {
 			if (damage >= target.hp && effect && effect.effectType === 'Move') {
 				this.add('-ability', target, 'Resurrection');
-				return target.hp - 0;
+				return target.hp - 1;
 			}
 		},
 		onAfterDamage: function (damage, target, source, move) {
