@@ -34,8 +34,8 @@ swampert: {
         species: "Swampamar",
         types: ["Dark", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 103,
@@ -82,8 +82,8 @@ swampert: {
         species: "Gyarotic",
         types: ["Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 105,
@@ -124,13 +124,13 @@ swampert: {
         color: "Blue",
         eggGroups: ["Water 2"],
     },
-    azurninja: {
+    azuninja: {
         num: 75003,
         species: "Azuninja",
         types: ["Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 96,
@@ -153,8 +153,8 @@ swampert: {
         species: "Chandeform",
         types: ["Ghost", "Normal"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 75,
@@ -177,8 +177,8 @@ swampert: {
         species: "Mismatross",
         types: ["Electric", "Ghost"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 82,
@@ -201,8 +201,8 @@ swampert: {
         species: "Haxardos",
         types: ["Dragon", "Rock"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 96,
@@ -225,8 +225,8 @@ swampert: {
         species: "Pangleye",
         types: ["Fighting", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 82,
@@ -272,8 +272,8 @@ swampert: {
         species: "Garchados",
         types: ["Ground", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 111,
@@ -342,8 +342,8 @@ swampert: {
         species: "Wailcatty",
         types: ["Normal", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 25.0,
+            F: 75.0
         },
         baseStats: {
             hp: 130,
@@ -366,8 +366,8 @@ swampert: {
         species: "Gargatr",
         types: ["Dragon", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 106,
@@ -413,8 +413,8 @@ swampert: {
         species: "Dragon",
         types: ["Dark", "Poison"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 88,
@@ -437,8 +437,8 @@ swampert: {
         species: "Hawlusharp",
         types: ["Fighting", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 81,
@@ -461,8 +461,8 @@ swampert: {
         species: "Cofagreelix",
         types: ["Steel", "Ghost"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 76,
@@ -508,8 +508,8 @@ swampert: {
         species: "Joltlord",
         types: ["Electric", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 127,
@@ -533,7 +533,7 @@ swampert: {
         types: ["Bug", "Ground"],
         genderRatio: {
             M: 0.0,
-            F: 0.0
+            F: 100.0
         },
         baseStats: {
             hp: 82,
@@ -551,84 +551,13 @@ swampert: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
-    aggrodos: {
-        num: 758888,
-        species: "Aggrodos",
-        types: ["Water", "Steel"],
-        genderRatio: {
-            M: 0.5,
-            F: 0.5
-        },
-        baseStats: {
-            hp: 92,
-            atk: 127,
-            def: 139,
-            spa: 70,
-            spd: 90,
-            spe: 75
-        },
-        abilities: {
-            0: "FEAR"
-        },
-        heightm: 2,
-        weightkg: 75.5,
-        color: "Brown",
-        eggGroups: ["Monster"],
-    },
-
-    aggrodosmegax: {
-        num: 758888,
-        species: "Aggrodos-Mega-X",
-        baseSpecies: "Aggrodos",
-        forme: "Mega",
-        formeLetter: "M",
-        types: ["Water", "Dark"],
-        baseStats: {
-            hp: 92,
-            atk: 157,
-            def: 169,
-            spa: 80,
-            spd: 120,
-            spe: 75
-        },
-        abilities: {
-            0: "Mold Breaker"
-        },
-        heightm: 2,
-        weightkg: 75.5,
-        color: "Brown",
-        eggGroups: ["Monster"],
-    },
-    aggrodosmegay: {
-        num: 758888,
-        species: "Aggrodos-Mega-Y",
-        baseSpecies: "Aggrodos",
-        forme: "Mega",
-        formeLetter: "M",
-        types: ["Water", "Steel"],
-        baseStats: {
-            hp: 92,
-            atk: 157,
-            def: 189,
-            spa: 70,
-            spd: 110,
-            spe: 75
-        },
-        abilities: {
-            0: "Filter"
-        },
-        heightm: 2,
-        weightkg: 75.5,
-        color: "Brown",
-        eggGroups: ["Monster"],
-    },
     zorcanine: {
         num: 750016,
         species: "Zorcanine",
         types: ["Fire", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 87.5,
+            F: 12.5
         },
         baseStats: {
             hp: 85,
@@ -651,8 +580,8 @@ swampert: {
         species: "Archedactyl",
         types: ["Rock", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 87.5,
+            F: 12.5
         },
         baseStats: {
             hp: 87,
@@ -698,8 +627,8 @@ swampert: {
         species: "Chesdon",
         types: ["Grass", "Ground"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 108,
@@ -722,8 +651,8 @@ swampert: {
         species: "Mamodrill",
         types: ["Ground", "Ice"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 120,
@@ -746,8 +675,8 @@ swampert: {
         species: "Heliodra",
         types: ["Dragon", "Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 86,
@@ -770,8 +699,8 @@ swampert: {
         species: "Scyscor",
         types: ["Bug", "Ground"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 82,
@@ -794,8 +723,8 @@ swampert: {
         species: "Joltry",
         types: ["Grass", "Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 87,
@@ -818,8 +747,8 @@ swampert: {
         species: "Azumaloom",
         types: ["Water", "Grass"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 90,
@@ -842,7 +771,7 @@ swampert: {
         species: "Sawkape",
         types: ["Fire", "Fighting"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -861,13 +790,13 @@ swampert: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
-    wasol: {
+    weasol: {
         num: 750025,
         species: "Weasol",
-        types: ["Dark"],
+        types: ["Dark", "Ice"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 77,
@@ -878,7 +807,7 @@ swampert: {
             spe: 110
         },
         abilities: {
-            0: "Pressure + Super Luck"
+            0: "No Skill"
         },
         heightm: 1.14,
         weightkg: 40.5,
@@ -913,8 +842,8 @@ swampert: {
         species: "Tyranichomp",
         types: ["Rock", "Dragon"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 114,
@@ -1007,8 +936,8 @@ swampert: {
         species: "Railie",
         types: ["Ice", "Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 80,
@@ -1054,8 +983,8 @@ swampert: {
         species: "Charatos",
         types: ["Fire", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 97,
@@ -1121,9 +1050,9 @@ swampert: {
         eggGroups: ["Dragon"],
     },
 
-    charatosmegaz: {
+    charatosmegag: {
         num: 750028,
-        species: "Charatos-Mega-Z",
+        species: "Charatos-Mega-G",
         baseSpecies: "Charatos",
         forme: "Mega",
         formeLetter: "M",
@@ -1149,8 +1078,8 @@ swampert: {
         species: "Aggrosaur",
         types: ["Grass", "Steel"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 85,
@@ -1163,10 +1092,10 @@ swampert: {
         abilities: {
             0: "Rocky Growth"
         },
-        heightm: 2.06,
+        heightm: 2.05,
         weightkg: 230,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Gray",
+        eggGroups: ["Monster"],
     },
     aggrosaurmegax: {
         num: 750029,
@@ -1188,7 +1117,7 @@ swampert: {
         },
         heightm: 2,
         weightkg: 75.5,
-        color: "Brown",
+        color: "Gray",
         eggGroups: ["Monster"],
     },
 
@@ -1212,7 +1141,7 @@ swampert: {
         },
         heightm: 2,
         weightkg: 75.5,
-        color: "Brown",
+        color: "Gray",
         eggGroups: ["Monster"],
     },
     blastninja: {
@@ -1220,8 +1149,8 @@ swampert: {
         species: "Blastinja",
         types: ["Water", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 87.5,
+            F: 12.5
         },
         baseStats: {
             hp: 90,
@@ -1237,7 +1166,7 @@ swampert: {
         heightm: 1.55,
         weightkg: 62.75,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Water 1"],
     },
     blastinjamega: {
         num: 750030,
@@ -1268,8 +1197,8 @@ swampert: {
         species: "Skaria",
         types: ["Steel", "Dragon"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 80,
@@ -1285,7 +1214,7 @@ swampert: {
         heightm: 1.395,
         weightkg: 35.55,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Flying"],
     },
     skariamega: {
         num: 750031,
@@ -1315,8 +1244,8 @@ swampert: {
         species: "Magmozam",
         types: ["Fire", "Psychic"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 75,
@@ -1332,7 +1261,7 @@ swampert: {
         heightm: 1.55,
         weightkg: 58,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Human-Like"],
     },
     magmozammega: {
         num: 750032,
@@ -1362,8 +1291,8 @@ swampert: {
         species: "Glakiss",
         types: ["Fairy", "Ice"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 92,
@@ -1409,8 +1338,8 @@ swampert: {
         species: "Sharpedos",
         types: ["Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 92,
@@ -1425,12 +1354,12 @@ swampert: {
         },
         heightm: 4.15,
         weightkg: 161.9,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Blue",
+        eggGroups: ["Water 2"],
     },
-    sharpedosmegax: {
+    sharpedosmegas: {
         num: 750034,
-        species: "Sharpedos-Mega-X",
+        species: "Sharpedos-Mega-S",
         baseSpecies: "Sharpedos",
         forme: "Mega",
         formeLetter: "M",
@@ -1448,13 +1377,13 @@ swampert: {
         },
         heightm: 2,
         weightkg: 75.5,
-        color: "Brown",
-        eggGroups: ["Water 1"],
+        color: "Blue",
+        eggGroups: ["Water 2"],
     },
 
-    sharpedosmegay: {
+    sharpedosmegag: {
         num: 750034,
-        species: "Sharpedos-Mega-Y",
+        species: "Sharpedos-Mega-G",
         baseSpecies: "Sharpedos",
         forme: "Mega",
         formeLetter: "M",
@@ -1472,16 +1401,16 @@ swampert: {
         },
         heightm: 2,
         weightkg: 75.5,
-        color: "Brown",
-        eggGroups: ["Water 1"],
+        color: "Blue",
+        eggGroups: ["Water 2"],
     },
     vapornine: {
         num: 750035,
         species: "Vapornine",
         types: ["Water", "Fire"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 120,
@@ -1504,8 +1433,8 @@ swampert: {
         species: "Pidgetot",
         types: ["Normal", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 89,
@@ -1575,8 +1504,8 @@ swampert: {
         species: "Klazor",
         types: ["Bug", "Steel"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 75,
@@ -1626,8 +1555,8 @@ swampert: {
         species: "Pidgemie",
         types: ["Water", "Normal"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 84,
@@ -1677,8 +1606,8 @@ swampert: {
         species: "Eek",
         types: ["Electric", "Poison"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 105,
@@ -1720,13 +1649,13 @@ swampert: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
-    shaynizard: {
+    shaymizard: {
         num: 750042,
         species: "Shaymizard",
         types: ["Fire", "Grass"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 87.5,
+            F: 12.5
         },
         baseStats: {
             hp: 89,
@@ -1752,8 +1681,8 @@ swampert: {
         formeLetter: "M",
         types: ["Fire", "Dragon"],
         genderRatio: {
-            M: 0.5,
-            F: 0.5
+            M: 0.875,
+            F: 0.125
         },
         baseStats: {
             hp: 89,
@@ -1779,8 +1708,8 @@ swampert: {
         formeLetter: "M",
         types: ["Fire", "Grass"],
         genderRatio: {
-            M: 0.5,
-            F: 0.5
+            M: 0.875,
+            F: 0.125
         },
         baseStats: {
             hp: 89,
@@ -1803,8 +1732,8 @@ swampert: {
         species: "Ferroslash-Shield",
         types: ["Steel", "Grass"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 77,
@@ -1820,15 +1749,39 @@ swampert: {
         heightm: 1.345,
         weightkg: 81.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Mineral"],
+    },
+    ferroslashshield: {
+        num: 750043,
+        species: "Ferroslash-Blade",
+        types: ["Steel", "Grass"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 77,
+            atk: 150,
+            def: 82,
+            spa: 133,
+            spd: 62,
+            spe: 50
+        },
+        abilities: {
+            0: "Barb Stance"
+        },
+        heightm: 1.345,
+        weightkg: 81.5,
+        color: "Black",
+        eggGroups: ["Mineral"],
     },
     hazard: {
         num: 750044,
         species: "Hazard",
         types: ["Fire", "Dragon"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 87,
@@ -1854,8 +1807,8 @@ swampert: {
         formeLetter: "M",
         types: ["Fire", "Dragon"],
         genderRatio: {
-            M: 0.5,
-            F: 0.5
+            M: 0.75,
+            F: 0.25
         },
         baseStats: {
             hp: 87,
@@ -1881,8 +1834,8 @@ swampert: {
         formeLetter: "M",
         types: ["Fire", "Dragon"],
         genderRatio: {
-            M: 0.5,
-            F: 0.5
+            M: 0.75,
+            F: 0.25
         },
         baseStats: {
             hp: 87,
@@ -1930,8 +1883,8 @@ swampert: {
         species: "Maladuck",
         types: ["Water", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 93,
@@ -2002,8 +1955,8 @@ swampert: {
         species: "Jellivoir",
         types: ["Ghost", "Fairy"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 94,
@@ -2053,8 +2006,8 @@ swampert: {
         species: "Metabat",
         types: ["Steel", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 82,
@@ -2104,7 +2057,7 @@ swampert: {
         species: "Dartios",
         types: ["Fire", "Dragon"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -2131,8 +2084,8 @@ swampert: {
         formeLetter: "M",
         types: ["Fire", "Dragon"],
         genderRatio: {
-            M: 0.5,
-            F: 0.5
+            M: 100.0,
+            F: 0.0
         },
         baseStats: {
             hp: 100,
@@ -2155,8 +2108,8 @@ swampert: {
         species: "Grenheatja",
         types: ["Water", "Fire"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 81,
@@ -2203,8 +2156,8 @@ swampert: {
         species: "Banegross",
         types: ["Ghost", "Steel"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 72,
@@ -2281,8 +2234,8 @@ swampert: {
         species: "Herasir",
         types: ["Fighting", "Bug"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 82,
@@ -2359,8 +2312,8 @@ swampert: {
         species: "Mismagivoir",
         types: ["Fairy", "Ghost"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 74,
@@ -2385,10 +2338,6 @@ swampert: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Ghost", "Fairy"],
-        genderRatio: {
-            M: 0.5,
-            F: 0.5
-        },
         baseStats: {
             hp: 74,
             atk: 92,
@@ -2434,8 +2383,8 @@ swampert: {
         species: "Mana",
         types: ["Ghost", "Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 75,
@@ -2460,10 +2409,6 @@ swampert: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Ghost", "Electric"],
-        genderRatio: {
-            M: 0.5,
-            F: 0.5
-        },
         baseStats: {
             hp: 75,
             atk: 92,
@@ -2485,8 +2430,8 @@ swampert: {
         species: "Lucharma",
         types: ["Fighting", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 121,
@@ -2509,8 +2454,8 @@ swampert: {
         species: "Swank",
         types: ["Water", "Steel"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.875,
+            F: 0.125
         },
         baseStats: {
             hp: 85,
@@ -2536,8 +2481,8 @@ swampert: {
         formeLetter: "M",
         types: ["Water", "Steel"],
         genderRatio: {
-            M: 0.5,
-            F: 0.5
+            M: 0.875,
+            F: 0.125
         },
         baseStats: {
             hp: 85,
@@ -2560,8 +2505,8 @@ swampert: {
         species: "Casting",
         types: ["Poison", "Normal"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 78,
@@ -2584,8 +2529,8 @@ swampert: {
         species: "Sablemimez",
         types: ["Ghost", "Fairy"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 55,
@@ -2687,8 +2632,8 @@ swampert: {
         species: "Houndlion",
         types: ["Dark", "Steel"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 83,
@@ -2738,8 +2683,8 @@ swampert: {
         species: "Loppeye",
         types: ["Ghost", "Normal"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 67,
@@ -2817,8 +2762,8 @@ swampert: {
         species: "Bastioking",
         types: ["Water", "Steel"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 88,
@@ -2841,8 +2786,8 @@ swampert: {
         species: "Peatran",
         types: ["Fire", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 87,
@@ -2855,9 +2800,37 @@ swampert: {
         abilities: {
             0: "Tangled Flames"
         },
-        heightm: 1.6,
-        weightkg: 234.75,
-        color: "Black",
+        heightm: 1.5,
+        weightkg: 31.8,
+        color: "Red",
+        eggGroups: ["Undiscovered"],
+        otherFormes: ["peatranmega"],
+    },
+    peatranmega: {
+        num: 750067,
+        species: "Peatran-Mega",
+        baseSpecies: "Peatran",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Fire", "Flying"],
+        genderRatio: {
+            M: 0.5,
+            F: 0.5
+        },
+        baseStats: {
+            hp: 87,
+            atk: 85,
+            def: 95,
+            spa: 185,
+            spd: 98,
+            spe: 129
+        },
+        abilities: {
+            0: "No Guard"
+        },
+        heightm: 1.5,
+        weightkg: 39.5,
+        color: "Red",
         eggGroups: ["Undiscovered"],
     },
     manatar: {
@@ -2865,8 +2838,8 @@ swampert: {
         species: "Manatar",
         types: ["Water", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 100,
@@ -2916,8 +2889,8 @@ swampert: {
         species: "Aurortoise",
         types: ["Water", "Ice"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.875,
+            F: 0.125
         },
         baseStats: {
             hp: 111,
@@ -2943,8 +2916,8 @@ swampert: {
         formeLetter: "M",
         types: ["Water", "Ice"],
         genderRatio: {
-            M: 0.5,
-            F: 0.5
+            M: 0.875,
+            F: 0.125
         },
         baseStats: {
             hp: 111,
@@ -2967,8 +2940,8 @@ swampert: {
         species: "Metsir",
         types: ["Steel", "Bug"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 72,
@@ -3069,8 +3042,8 @@ swampert: {
         species: "Houdini",
         types: ["Ghost", "Normal"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 106,
@@ -3120,8 +3093,8 @@ swampert: {
         species: "Shot",
         types: ["Grass", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 103,
@@ -3171,8 +3144,8 @@ swampert: {
         species: "Leafadon",
         types: ["Grass", "Ground"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 96,
@@ -3195,8 +3168,8 @@ swampert: {
         species: "Mampharos",
         types: ["Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 95,
@@ -3297,8 +3270,8 @@ swampert: {
         species: "Entaria",
         types: ["Fire", "Dragon"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 95,
@@ -3343,65 +3316,13 @@ swampert: {
         color: "Red",
         eggGroups: ["Undiscovered"],
     },
-    pidgetran: {
-        num: 758889,
-        species: "Pidgetran",
-        types: ["Fire", "Flying"],
-        genderRatio: {
-            M: 0.5,
-            F: 0.5
-        },
-        baseStats: {
-            hp: 87,
-            atk: 85,
-            def: 90,
-            spa: 120,
-            spd: 88,
-            spe: 109
-        },
-        abilities: {
-            0: "Tangled Flames"
-        },
-        heightm: 1.5,
-        weightkg: 31.8,
-        color: "Red",
-        eggGroups: ["Undiscovered"],
-        otherFormes: ["pidgetranmega"],
-    },
-    pidgetranmega: {
-        num: 758889,
-        species: "Pidgetran-Mega",
-        baseSpecies: "Pidgetran",
-        forme: "Mega",
-        formeLetter: "M",
-        types: ["Fire", "Flying"],
-        genderRatio: {
-            M: 0.5,
-            F: 0.5
-        },
-        baseStats: {
-            hp: 87,
-            atk: 85,
-            def: 95,
-            spa: 185,
-            spd: 98,
-            spe: 129
-        },
-        abilities: {
-            0: "No Guard"
-        },
-        heightm: 1.5,
-        weightkg: 39.5,
-        color: "Red",
-        eggGroups: ["Undiscovered"],
-    },
     blasterain: {
         num: 750078,
         species: "Blasterain",
         types: ["Water", "Bug"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.75,
+            F: 0.25
         },
         baseStats: {
             hp: 84,
@@ -3427,8 +3348,8 @@ swampert: {
         formeLetter: "M",
         types: ["Water", "Bug"],
         genderRatio: {
-            M: 0.5,
-            F: 0.5
+            M: 0.75,
+            F: 0.25
         },
         baseStats: {
             hp: 84,
@@ -3451,8 +3372,8 @@ swampert: {
         species: "Dianbro",
         types: ["Water", "Fairy"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 90,
@@ -3470,12 +3391,39 @@ swampert: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
+    dianbromega: {
+        num: 750079,
+        species: "Dianbro-Mega",
+        baseSpecies: "Dianbro",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Water", "Fairy"],
+        genderRatio: {
+            M: 0.5,
+            F: 0.5
+        },
+        baseStats: {
+            hp: 90,
+            atk: 90,
+            def: 200,
+            spa: 130,
+            spd: 130,
+            spe: 40
+        },
+        abilities: {
+            0: "Shell Armor"
+        },
+        heightm: 1.155,
+        weightkg: 43.65,
+        color: "Pink",
+        eggGroups: ["Undiscovered"],
+    },
     chatotorus: {
         num: 750080,
         species: "Chatotorus",
         types: ["Normal", "Flying"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -3500,7 +3448,7 @@ swampert: {
         types: ["Normal", "Fairy"],
         genderRatio: {
             M: 0.0,
-            F: 0.0
+            F: 100.0
         },
         baseStats: {
             hp: 185,
@@ -3515,16 +3463,16 @@ swampert: {
         },
         heightm: 1.5,
         weightkg: 42.4,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "White",
+        eggGroups: ["Fairy"],
     },
     toxisharp: {
         num: 750082,
         species: "Toxisharp",
         types: ["Dark", "Poison"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 84,
@@ -3540,15 +3488,15 @@ swampert: {
         heightm: 1.45,
         weightkg: 57.2,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Human-Like"],
     },
     darmega: {
         num: 750083,
         species: "Darmega",
         types: ["Dark", "Bug"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 90,
@@ -3583,7 +3531,7 @@ swampert: {
             spe: 110
         },
         abilities: {
-            0: "Sand Force + Ice Body"
+            0: "Desert Snow"
         },
         heightm: 1.5,
         weightkg: 162.25,
@@ -3595,8 +3543,8 @@ swampert: {
         species: "Heatloom",
         types: ["Steel", "Grass"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 95,
@@ -3616,7 +3564,7 @@ swampert: {
     },
     golislashdefense: {
         num: 750086,
-        species: "Golislash-Defense",
+        species: "Golislash",
         types: ["Ghost", "Steel"],
         genderRatio: {
             M: 0.0,
@@ -3638,13 +3586,40 @@ swampert: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
+    golislashpower: {
+        num: 750086,
+        species: "Golislash-Power",
+        baseSpecies: "Golislash",
+        forme: "Power",
+        formeLetter: "P",
+        types: ["Ghost", "Steel"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 74,
+            atk: 115,
+            def: 87,
+            spa: 115,
+            spd: 52,
+            spe: 52
+        },
+        abilities: {
+            0: "Combination Drive"
+        },
+        heightm: 2.245,
+        weightkg: 191.5,
+        color: "Black",
+        eggGroups: ["Undiscovered"],
+    },
     hooporus: {
         num: 750087,
         species: "Hooporus",
         types: ["Ghost", "Dragon"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 78,
@@ -3667,8 +3642,8 @@ swampert: {
         species: "Lopunnini",
         types: ["Fire", "Normal"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 83,
@@ -3686,13 +3661,36 @@ swampert: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
+    loppuninimega: {
+        num: 750088,
+        species: "Lopunnini-Mega",
+        baseSpecies: "Lopunnini",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Fire", "Fighting"],
+        baseStats: {
+            hp: 83,
+            atk: 148,
+            def: 102,
+            spa: 77,
+            spd: 98,
+            spe: 133
+        },
+        abilities: {
+            0: "Scrappy"
+        },
+        heightm: 0.9,
+        weightkg: 13.65,
+        color: "Black",
+        eggGroups: ["Undiscovered"],
+    },
     volcagon: {
         num: 750089,
         species: "Volcagon",
         types: ["Fire", "Ground"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 92,
@@ -3708,7 +3706,7 @@ swampert: {
         heightm: 1.805,
         weightkg: 64,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Bug"],
     },
     enterrak: {
         num: 750090,
@@ -3739,8 +3737,8 @@ swampert: {
         species: "Aeroraptor",
         types: ["Normal", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 92,
@@ -3756,15 +3754,38 @@ swampert: {
         heightm: 1.495,
         weightkg: 41.95,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Flying"],
+    },
+    aeroraptormega: {
+        num: 750091,
+        species: "Aeroraptor-Mega",
+        baseSpecies: "Aeroraptor",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Normal", "Flying"],
+        baseStats: {
+            hp: 92,
+            atk: 152,
+            def: 97,
+            spa: 75,
+            spd: 97,
+            spe: 145
+        },
+        abilities: {
+            0: "Tough Claws"
+        },
+        heightm: 1.495,
+        weightkg: 41.95,
+        color: "Black",
+        eggGroups: ["Flying"],
     },
     sans: {
         num: 750092,
         species: "Sans",
         types: ["Normal", "Ground"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 122,
@@ -3780,15 +3801,15 @@ swampert: {
         heightm: 1.5,
         weightkg: 80,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     lucasol: {
         num: 750093,
         species: "Lucasol",
         types: ["Fighting", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 78,
@@ -3804,15 +3825,61 @@ swampert: {
         heightm: 1.19,
         weightkg: 50.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
+    },
+    lucasolmegal: {
+        num: 750093,
+        species: "Lucasol-Mega L",
+        baseSpecies: "Lucasol",
+        forme: "Mega L",
+        formeLetter: "M",
+        types: ["Fighting", "Dark"],
+        baseStats: {
+            hp: 78,
+            atk: 170,
+            def: 93,
+            spa: 135,
+            spd: 75,
+            spe: 115
+        },
+        abilities: {
+            0: "Adaptability"
+        },
+        heightm: 1.19,
+        weightkg: 50.5,
+        color: "Black",
+        eggGroups: ["Field"],
+    },
+    lucasolmegaa: {
+        num: 750093,
+        species: "Lucasol-Mega A",
+        baseSpecies: "Lucasol",
+        forme: "Mega A",
+        formeLetter: "M",
+        types: ["Fighting", "Dark"],
+        baseStats: {
+            hp: 78,
+            atk: 150,
+            def: 75,
+            spa: 145,
+            spd: 75,
+            spe: 133
+        },
+        abilities: {
+            0: "Magic Bounce"
+        },
+        heightm: 1.19,
+        weightkg: 50.5,
+        color: "Black",
+        eggGroups: ["Field"],
     },
     sceptilusaur: {
         num: 750094,
         species: "Sceptilusaur",
         types: ["Poison", "Grass"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 87.5,
+            F: 12.5
         },
         baseStats: {
             hp: 90,
@@ -3827,16 +3894,62 @@ swampert: {
         },
         heightm: 1.855,
         weightkg: 76.1,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Green",
+        eggGroups: ["Monster"],
+    },
+    sceptilusaurmegax: {
+        num: 750094,
+        species: "Sceptilusaur-Mega X",
+        baseSpecies: "Sceptilusaur",
+        forme: "Mega X",
+        formeLetter: "M",
+        types: ["Poison", "Grass"],
+         baseStats: {
+            hp: 90,
+            atk: 116,
+            def: 128,
+            spa: 139,
+            spd: 127,
+            spe: 115
+        },
+        abilities: {
+            0: "Thick Fat"
+        },
+        heightm: 1.855,
+        weightkg: 76.1,
+        color: "Green",
+        eggGroups: ["Monster"],
+    },
+    sceptilusaurmegay: {
+        num: 750094,
+        species: "Sceptilusaur-Mega Y",
+        baseSpecies: "Sceptilusaur",
+        forme: "Mega Y",
+        formeLetter: "M",
+        types: ["Poison", "Dragon"],
+         baseStats: {
+            hp: 90,
+            atk: 123,
+            def: 98,
+            spa: 157,
+            spd: 107,
+            spe: 140
+        },
+        abilities: {
+            0: "Lightning Rod"
+        },
+        heightm: 1.855,
+        weightkg: 76.1,
+        color: "Green",
+        eggGroups: ["Monster"],
     },
     houndectric: {
         num: 750095,
         species: "Houndectric",
         types: ["Electric", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 83,
@@ -3852,15 +3965,61 @@ swampert: {
         heightm: 1.45,
         weightkg: 37.6,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
+    },
+    houndectricmegam: {
+        num: 750095,
+        species: "Houndectric-Mega M",
+        baseSpecies: "Houndectric",
+        forme: "Mega M",
+        formeLetter: "M",
+        types: ["Electric", "Dark"],
+        baseStats: {
+            hp: 83,
+            atk: 93,
+            def: 85,
+            spa: 148,
+            spd: 100,
+            spe: 140
+        },
+        abilities: {
+            0: "Intimidate"
+        },
+        heightm: 1.45,
+        weightkg: 37.6,
+        color: "Black",
+        eggGroups: ["Field"],
+    },
+    houndectricmegah: {
+        num: 750095,
+        species: "Houndectric-Mega H",
+        baseSpecies: "Houndectric",
+        forme: "Mega H",
+        formeLetter: "M",
+        types: ["Electric", "Dark"],
+        baseStats: {
+            hp: 83,
+            atk: 93,
+            def: 105,
+            spa: 148,
+            spd: 90,
+            spe: 130
+        },
+        abilities: {
+            0: "Solar Power"
+        },
+        heightm: 1.45,
+        weightkg: 37.6,
+        color: "Black",
+        eggGroups: ["Field"],
     },
     exdoom: {
         num: 750096,
         species: "Exdoom",
         types: ["Normal", "Fire"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 0.5,
+            F: 0.5
         },
         baseStats: {
             hp: 100,
