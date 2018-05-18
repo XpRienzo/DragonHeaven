@@ -5134,14 +5134,14 @@ exports.BattleAbilities = {
 		onResidualSubOrder: 1,
 		onResidual: function (pokemon) {
 			if (this.isTerrain('psychicterrain')) {
-				this.heal(pokemon.maxhp / 4)
+				this.heal(pokemon.maxhp / 8)
 				this.add('-ability', pokemon, 'Triggered');
+			}	else if (this.isTerrain('darkterrain')) {
+				this.damage(pokemon.maxhp / 8, pokemon, pokemon)
 			}
 		},
 		onSourceModifyDamage: function (damage, source, target, move) {
-			let mod = 1;
-			if (move.type === 'Dark') mod *= 1.25;
-			return this.chainModify(mod);
+			if (move.type === 'Dark') return this.chainModify(1.25);
 		},
 		id: "triggered",
 		name: "Triggered",
