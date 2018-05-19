@@ -1071,7 +1071,6 @@ exports.BattleMovedex = {
 		flags: {
 			contact: 1,
 			protect: 1,
-			reflectable: 1,
 			mirror: 1
 		},
 		onHit: function (target, source, move) {
@@ -1079,6 +1078,7 @@ exports.BattleMovedex = {
 		},
 		volatileStatus: 'despoilingvines',
 		effect: {
+			duration: 4,
 			onStart: function(target) {
 				this.add('-start', target, 'move: Despoiling Vines');
 			},
@@ -1093,6 +1093,12 @@ exports.BattleMovedex = {
 				if (damage) {
 					this.heal(damage, target, pokemon);
 				}
+			},
+			onSwitchOut: function (target) {
+				target.removeVolatile('despoilingvines') 
+			},
+			onEnd: function (target) {
+			target.removeVolatile('despoilingvines');
 			},
 		},
 		secondary: false,
