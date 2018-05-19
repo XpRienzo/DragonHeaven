@@ -9034,5 +9034,49 @@ exports.BattleAbilities = {
 		id: "danceposter",
 		name: "Danceposter",
 	},
-	
+	"cosmology": {
+		desc: "Changes forms depending on the weather (Astrolith-Star (rock/fire) during sun, Astrolith-Comet (rock/water) during rain, Astrolith-Neutron (rock/ice) during hail, and Astrolith-Meteor (rock/flying) during sand).",
+		shortDesc: "Astrolith's type changes depending on the weather.",
+		onUpdate: function (pokemon) {
+			if (pokemon.baseTemplate.baseSpecies !== 'Astrolith' || pokemon.transformed) return;
+			let forme = null;
+			switch (this.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+         case 'solarsnow':
+				if (pokemon.template.speciesid !== 'astrolithstar') forme = 'Astrolith-Star';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				if (pokemon.template.speciesid !== 'astrolithcomet') forme = 'Astrolith-Comet';
+				break;
+			case 'hail':
+				if (pokemon.template.speciesid !== 'astrolithneutron') forme = 'Astrolith-Neutron';
+				break;
+			case 'sandstorm':
+				if (pokemon.template.speciesid !== 'astrolithmeteor') forme = 'Astrolith-Meteor';
+				break;
+			case 'shadowdance':
+				if (pokemon.template.speciesid !== 'astrolithnova') forme = 'Astrolith-Nova';
+				break;
+			default:
+				if (pokemon.template.speciesid !== 'astrolith') forme = 'Astrolith';
+				break;
+			}
+			if (pokemon.isActive && forme) {
+				pokemon.formeChange(forme);
+				this.add('-formechange', pokemon, forme, '[msg]', '[from] ability: Cosmology');
+			}
+		},
+		id: "cosmology",
+		name: "Cosmology",
+	},
+	"summonspirits": {
+		shortDesc: "On switch-in, this Pokemon summons Spirit Skies.",
+		onStart: function (source) {
+			this.setWeather('shadowdance');
+		},
+		id: "summonspirits",
+		name: "Summon Spirits",
+	},
 };
