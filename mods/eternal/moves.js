@@ -1100,6 +1100,12 @@ exports.BattleMovedex = {
 				target.removeVolatile('despoilingvines');
 				}
 			},
+			onSwitchOut: function (pokemon) {
+				for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				target.removeVolatile('despoilingvines');
+				}
+			},
 		},
 		secondary: false,
 		onPrepareHit: function(target, source, move) {
