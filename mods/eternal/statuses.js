@@ -27,7 +27,7 @@ despoilingvines: {
 				this.damage(pokemon.maxhp / 8);
 			}
 		},
-	  onAfterDamage: function (source) {
+	  onFoeAfterMove: function (source) {
 		  this.heal(source.maxhp / 8);
 	  },
 		onEnd: function (pokemon) {
