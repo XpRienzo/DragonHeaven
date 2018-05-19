@@ -1077,36 +1077,6 @@ exports.BattleMovedex = {
 			return target.addVolatile('trapped', source, move, 'trapper');
 		},
 		volatileStatus: 'despoilingvines',
-		effect: {
-			duration: 4,
-			onStart: function(target) {
-				this.add('-start', target, 'move: Despoiling Vines');
-			},
-			onResidualOrder: 8,
-			onResidual: function(pokemon) {
-				let target = this.effectData.source.side.active[pokemon.volatiles['despoilingvines'].sourcePosition];
-				if (!target || target.fainted || target.hp <= 0) {
-					this.debug('Nothing to leech into');
-					return;
-				}
-				let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
-				if (damage) {
-					this.heal(damage, target, pokemon);
-				}
-			},
-			onEnd: function (pokemon) {
-				for (const target of pokemon.side.foe.active) {
-				if (!target || target.fainted) continue;
-				target.removeVolatile('despoilingvines');
-				}
-			},
-			onSwitchOut: function (pokemon) {
-				for (const target of pokemon.side.foe.active) {
-				if (!target || target.fainted) continue;
-				target.removeVolatile('despoilingvines');
-				}
-			},
-		},
 		secondary: false,
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
