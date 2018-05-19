@@ -1094,10 +1094,10 @@ exports.BattleMovedex = {
 					this.heal(damage, target, pokemon);
 				}
 			},
-			onSwitchOut: function (pokemon, target) {
-				target.removeVolatile('despoilingvines') 
+			onSwitchOut: function (target, pokemon) {
+				target.removeVolatile('despoilingvines') ;
 			},
-			onEnd: function (pokemon, target) {
+			onEnd: function (target, pokemon) {
 			target.removeVolatile('despoilingvines');
 			},
 		},
