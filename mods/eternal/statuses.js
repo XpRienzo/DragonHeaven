@@ -17,9 +17,8 @@ despoilingvines: {
 		},
 		onResidualOrder: 11,
 		onResidual: function (pokemon) {
-			if (!pokemon || pokemon.fainted) continue;
 			if (this.effectData.source && (!this.effectData.source.isActive || this.effectData.source.hp <= 0 || !this.effectData.source.activeTurns)) {
-				delete pokemon.volatiles['partiallytrapped'];
+				delete pokemon.volatiles['despoilingvines'];
 				return;
 			}
 			if (this.effectData.source.hasItem('bindingband')) {
