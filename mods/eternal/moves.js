@@ -3414,7 +3414,7 @@ exports.BattleMovedex = {
 				this.add('-fieldstart', 'move: Nuclear Pollen', '[of] ' + source);
 			},
 			onEffectiveness: function(typeMod, target, type, move) {
-				if (move && !this.getImmunity(move, type)) return 0;
+				if (move && !this.getImmunity(move, type)) return 1;
 				return -typeMod;
 			},
 			onResidualOrder: 23,
