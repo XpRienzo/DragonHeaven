@@ -17,18 +17,18 @@ despoilingvines: {
 		},
 		onResidualOrder: 11,
 		onResidual: function (pokemon) {
-			for (const target of pokemon.side.foe.active) {
-				if (!target || target.fainted) continue;
+			for (const source of pokemon.side.active) {
+			if (!pokemon || pokemon.fainted) continue;
 			if (this.effectData.source && (!this.effectData.source.isActive || this.effectData.source.hp <= 0 || !this.effectData.source.activeTurns)) {
-				delete target.volatiles['partiallytrapped'];
+				delete pokemon.volatiles['partiallytrapped'];
 				return;
 			}
 			if (this.effectData.source.hasItem('bindingband')) {
-				this.damage(target.maxhp / 6);
+				this.damage(pokemon.maxhp / 6);
 			} else {
-				this.damage(target.maxhp / 8);
+				this.damage(pokemon.maxhp / 8);
 			}
-			this.heal(pokemon.maxhp / 8);
+			this.heal(source.maxhp / 8);
 			}
 		},
 		onEnd: function (pokemon) {
