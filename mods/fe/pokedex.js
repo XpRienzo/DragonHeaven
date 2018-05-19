@@ -52,7 +52,7 @@ swampert: {
         weightkg: 64.45,
         color: "Black",
 		  fusion: ["Swampert", "Malamar"],
-        eggGroups: ["Water 2"],
+        eggGroups: ["Water 1"],
     },
     swampamarmega: {
         num: 75001,
@@ -75,7 +75,7 @@ swampert: {
         heightm: 2,
         weightkg: 75.5,
         color: "Blue",
-        eggGroups: ["Water 2"],
+        eggGroups: ["Water 1"],
     },
     gyarotic: {
         num: 75002,
@@ -99,7 +99,7 @@ swampert: {
         heightm: 6.35,
         weightkg: 198.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Dragon"],
     },
     gyaroticmega: {
         num: 75002,
@@ -122,7 +122,7 @@ swampert: {
         heightm: 2,
         weightkg: 75.5,
         color: "Blue",
-        eggGroups: ["Water 2"],
+        eggGroups: ["Dragon"],
     },
     azuninja: {
         num: 75003,
@@ -146,7 +146,7 @@ swampert: {
         heightm: 1.145,
         weightkg: 34.25,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Water 1"],
     },
     chandeform: {
         num: 75004,
@@ -170,7 +170,7 @@ swampert: {
         heightm: 0.645,
         weightkg: 17.55,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Amorphous"],
     },
     mismatross: {
         num: 75005,
@@ -194,7 +194,7 @@ swampert: {
         heightm: 1.5,
         weightkg: 42.45,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Amorphous"],
     },
     haxardos: {
         num: 75006,
@@ -218,7 +218,7 @@ swampert: {
         heightm: 1.7,
         weightkg: 104,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Monster"],
     },
     pangleye: {
         num: 75007,
@@ -242,7 +242,7 @@ swampert: {
         heightm: 1.31,
         weightkg: 73.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Human-Like"],
     },
     pangleyemega: {
         num: 75007,
@@ -289,7 +289,7 @@ swampert: {
         heightm: 4.205,
         weightkg: 165,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Dragon"],
     },
     garchadosmegax: {
         num: 75008,
@@ -359,7 +359,7 @@ swampert: {
         heightm: 7.795,
         weightkg: 215.3,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     gargatr: {
         num: 750010,
@@ -383,7 +383,7 @@ swampert: {
         heightm: 2.11,
         weightkg: 91.9,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Monster"],
     },
     gargatrmega: {
         num: 750010,
@@ -406,7 +406,7 @@ swampert: {
         heightm: 2,
         weightkg: 75.5,
         color: "Brown",
-        eggGroups: ["Dragon"],
+        eggGroups: ["Monster"],
     },
     dragon: {
         num: 750011,
@@ -430,7 +430,7 @@ swampert: {
         heightm: 1.8,
         weightkg: 120.75,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Dragon"],
     },
     hawlusharp: {
         num: 750012,
@@ -454,7 +454,7 @@ swampert: {
         heightm: 1.195,
         weightkg: 45.75,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Human-Like"],
     },
     cofagreelix: {
         num: 750013,
@@ -478,7 +478,7 @@ swampert: {
         heightm: 5.445,
         weightkg: 238.25,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Mineral"],
     },
     cofagreelixmega: {
         num: 750013,
@@ -525,7 +525,7 @@ swampert: {
         heightm: 7.645,
         weightkg: 211.25,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     vepsicor: {
         num: 750015,
@@ -549,7 +549,7 @@ swampert: {
         heightm: 1.6,
         weightkg: 40.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Bug"],
     },
     zorcanine: {
         num: 750016,
@@ -573,7 +573,7 @@ swampert: {
         heightm: 1.755,
         weightkg: 118.05,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     archedactyl: {
         num: 750017,
@@ -597,7 +597,7 @@ swampert: {
         heightm: 1.6,
         weightkg: 45.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Flying"],
     },
     archedactylmega: {
         num: 750017,
@@ -644,7 +644,7 @@ swampert: {
         heightm: 1.805,
         weightkg: 195,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     mamodrill: {
         num: 750019,
@@ -668,7 +668,7 @@ swampert: {
         heightm: 1.6,
         weightkg: 165.7,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     heliodra: {
         num: 750020,
@@ -692,7 +692,7 @@ swampert: {
         heightm: 1.5,
         weightkg: 85.75,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Dragon"],
     },
     syscor: {
         num: 750021,
@@ -716,7 +716,7 @@ swampert: {
         heightm: 1.755,
         weightkg: 49.25,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Bug"],
     },
     joltry: {
         num: 750022,
@@ -740,7 +740,7 @@ swampert: {
         heightm: 1.045,
         weightkg: 42.05,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     azumaloom: {
         num: 750023,
@@ -764,7 +764,7 @@ swampert: {
         heightm: 0.99,
         weightkg: 33.85,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Fairy"],
     },
     sawkape: {
         num: 750024,
@@ -788,7 +788,7 @@ swampert: {
         heightm: 1.295,
         weightkg: 53,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Human-Like"],
     },
     weasol: {
         num: 750025,
@@ -812,7 +812,7 @@ swampert: {
         heightm: 1.14,
         weightkg: 40.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     weasolmega: {
         num: 750025,
@@ -859,7 +859,7 @@ swampert: {
         heightm: 1.96,
         weightkg: 148.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Monster"],
     },
     tyranichompmegax: {
         num: 750026,
@@ -953,7 +953,7 @@ swampert: {
         heightm: 1.145,
         weightkg: 143.25,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Fairy"],
     },
     railiemega: {
         num: 750027,
@@ -1000,7 +1000,7 @@ swampert: {
         heightm: 4.1,
         weightkg: 162.75,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Dragon"],
     },
     charatosmegay: {
         num: 750028,
@@ -1426,7 +1426,7 @@ swampert: {
         heightm: 1.45,
         weightkg: 92,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
     pidgetot: {
         num: 750036,
@@ -1450,7 +1450,7 @@ swampert: {
         heightm: 1.005,
         weightkg: 20.7,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Flying"],
     },
     pidgetotmega: {
         num: 750036,
@@ -1623,7 +1623,7 @@ swampert: {
         heightm: 1.65,
         weightkg: 55.25,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Amorphous"],
     },
     hitachi: {
         num: 750041,
@@ -1729,7 +1729,8 @@ swampert: {
     },
     ferroslashshield: {
         num: 750043,
-        species: "Ferroslash-Shield",
+        species: "Ferroslash",
+		  baseForme: "Shield",
         types: ["Steel", "Grass"],
         genderRatio: {
             M: 50.0,
@@ -1748,12 +1749,15 @@ swampert: {
         },
         heightm: 1.345,
         weightkg: 81.5,
-        color: "Black",
+        color: "Gray",
         eggGroups: ["Mineral"],
     },
-    ferroslashshield: {
+    ferroslashblade: {
         num: 750043,
         species: "Ferroslash-Blade",
+        baseSpecies: "Ferroslash",
+        forme: "Blade",
+        formeLetter: "M",
         types: ["Steel", "Grass"],
         genderRatio: {
             M: 50.0,
@@ -1772,7 +1776,7 @@ swampert: {
         },
         heightm: 1.345,
         weightkg: 81.5,
-        color: "Black",
+        color: "Gray",
         eggGroups: ["Mineral"],
     },
     hazard: {
@@ -1797,7 +1801,7 @@ swampert: {
         heightm: 1.75,
         weightkg: 98,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Monster", "Dragon"],
     },
     hazardmegax: {
         num: 750044,
@@ -2578,6 +2582,7 @@ swampert: {
     aegiline: {
         num: 750063,
         species: "Aegiline",
+		  baseForme: "Shield",
         types: ["Steel", "Bug"],
         genderRatio: {
             M: 0.0,
@@ -3562,9 +3567,10 @@ swampert: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
-    golislashdefense: {
+    golislash: {
         num: 750086,
         species: "Golislash",
+		  baseForme: "Defense",
         types: ["Ghost", "Steel"],
         genderRatio: {
             M: 0.0,
@@ -5388,7 +5394,7 @@ darkchomp: {
         weightkg: 16.65,
         color: "Gray",
         eggGroups: ["Undiscovered"],
-        otherFormes: ["polyform2sunny", "polyform2sunsnow", "polyform2rainy", "polyform2snowy", "polyform2sandy"],
+        otherFormes: ["polyform2sunny", "polyform2sunsnow", "polyform2rainy", "polyform2snowy", "polyform2sandy", "polyform2spooky"],
     },
     polyform2sunny: {
         num: 7500135,
@@ -5526,7 +5532,35 @@ darkchomp: {
         },
         heightm: 0.455,
         weightkg: 16.65,
-        color: "Black",
+        color: "Brown",
+        eggGroups: ["Undiscovered"],
+    },
+    polyform2spooky: {
+        num: 7500135,
+        species: "Polyform2",
+        species: "Polyform2-Spooky",
+        baseSpecies: "Polyform2",
+        forme: "Spooky",
+        formeLetter: "S",
+        types: ["Ghost"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 98,
+            atk: 75,
+            def: 90,
+            spa: 91,
+            spd: 90,
+            spe: 65
+        },
+        abilities: {
+            0: "Summon Spirits"
+        },
+        heightm: 0.455,
+        weightkg: 16.65,
+        color: "Purple",
         eggGroups: ["Undiscovered"],
     },
     scraftia: {
@@ -5668,7 +5702,7 @@ darkchomp: {
         },
         heightm: 2.25,
         weightkg: 371.4,
-        color: "Blue",
+        color: "Black",
         eggGroups: ["Monster"],
     },
     lopunne: {
@@ -5739,7 +5773,30 @@ darkchomp: {
         },
         heightm: 1.055,
         weightkg: 47.25,
-        color: "Black",
+        color: "Pink",
+        eggGroups: ["Undiscovered"],
+    },
+	 hootoisemega: {
+        num: 7500139,
+        species: "Hootoise-Mega",
+        baseSpecies: "Hootoise",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Water", "Ghost"],
+        baseStats: {
+            hp: 83,
+            atk: 116,
+            def: 120,
+            spa: 180,
+            spd: 130,
+            spe: 74
+        },
+        abilities: {
+            0: "Mega Launcher"
+        },
+        heightm: 1.055,
+        weightkg: 47.25,
+        color: "Pink",
         eggGroups: ["Undiscovered"],
     },
     lietaur: {
@@ -5747,7 +5804,7 @@ darkchomp: {
         species: "Lietaur",
         types: ["Normal", "Dark"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -5763,8 +5820,8 @@ darkchomp: {
         },
         heightm: 1.245,
         weightkg: 62.95,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Purple",
+        eggGroups: ["Field"],
     },
     laprazone: {
         num: 7500143,
@@ -5787,7 +5844,7 @@ darkchomp: {
         },
         heightm: 1.84,
         weightkg: 200,
-        color: "Black",
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     hydraulic: {
@@ -5795,8 +5852,8 @@ darkchomp: {
         species: "Hydraulic",
         types: ["Water", "Dragon"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 103,
@@ -5812,7 +5869,7 @@ darkchomp: {
         heightm: 4,
         weightkg: 161,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Dragon"],
     },
     klinkle: {
         num: 7500145,
@@ -5835,7 +5892,7 @@ darkchomp: {
         },
         heightm: 0.51,
         weightkg: 42.6,
-        color: "Black",
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     metanlee: {
@@ -5859,7 +5916,30 @@ darkchomp: {
         },
         heightm: 1.55,
         weightkg: 299.9,
-        color: "Black",
+        color: "Blue",
+        eggGroups: ["Undiscovered"],
+    },
+	 metanleemega: {
+        num: 7500146,
+        species: "Metanlee-Mega",
+        baseSpecies: "Metanlee",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Steel", "Fighting"],
+        baseStats: {
+            hp: 75,
+            atk: 138,
+            def: 102,
+            spa: 65,
+            spd: 100,
+            spe: 89
+        },
+        abilities: {
+            0: "Tough Claws"
+        },
+        heightm: 2.45,
+        weightkg: 692.8,
+        color: "Blue",
         eggGroups: ["Undiscovered"],
     },
     kangoruskhan: {
@@ -5868,7 +5948,7 @@ darkchomp: {
         types: ["Normal", "Dragon"],
         genderRatio: {
             M: 0.0,
-            F: 0.0
+            F: 100.0
         },
         baseStats: {
             hp: 100,
@@ -5883,16 +5963,16 @@ darkchomp: {
         },
         heightm: 2.005,
         weightkg: 92.75,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Yellow",
+        eggGroups: ["Monster"],
     },
     heebleye: {
         num: 7500148,
         species: "Heebleye",
         types: ["Psychic", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 72,
@@ -5907,8 +5987,31 @@ darkchomp: {
         },
         heightm: 0.75,
         weightkg: 22.75,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Purple",
+        eggGroups: ["Human-Like"],
+    },
+	 heebleyemega: {
+        num: 7500148,
+        species: "Heebleye-Mega",
+        baseSpecies: "Metanlee",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Psychic", "Dark"],
+        baseStats: {
+            hp: 72,
+            atk: 95,
+            def: 135,
+            spa: 125,
+            spd: 140,
+            spe: 25
+        },
+        abilities: {
+            0: "Synchrostall"
+        },
+        heightm: 0.75,
+        weightkg: 22.75,
+        color: "Purple",
+        eggGroups: ["Human-Like"],
     },
     crygotran: {
         num: 7500149,
@@ -5931,7 +6034,7 @@ darkchomp: {
         },
         heightm: 1.395,
         weightkg: 289,
-        color: "Black",
+        color: "Blue",
         eggGroups: ["Undiscovered"],
     },
     dugterra: {
@@ -5939,8 +6042,8 @@ darkchomp: {
         species: "Dugterra",
         types: ["Fighting", "Ground"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 73,
@@ -5955,7 +6058,7 @@ darkchomp: {
         },
         heightm: 1.31,
         weightkg: 146.65,
-        color: "Black",
+        color: "Brown",
         eggGroups: ["Undiscovered"],
     },
     garbagorde: {
@@ -5979,7 +6082,7 @@ darkchomp: {
         },
         heightm: 3.455,
         weightkg: 206.15,
-        color: "Black",
+        color: "Green",
         eggGroups: ["Undiscovered"],
     },
     cherform: {
@@ -5987,8 +6090,8 @@ darkchomp: {
         species: "Cherform",
         types: ["Grass", "Normal"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 80,
@@ -6003,8 +6106,144 @@ darkchomp: {
         },
         heightm: 0.405,
         weightkg: 5.05,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Gray",
+        eggGroups: ["Fairy"],
+     	  otherFormes: ["cherformsunny", "cherformrainy", "cherformsnowy", "cherformsandy", "cherformspooky"],
+    },
+    cherformsunny: {
+        num: 7500152,
+        species: "Cherform-Sunny",
+        baseSpecies: "Cherform",
+        forme: "Sunny",
+        formeLetter: "S",
+        types: ["Grass", "Fire"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 80,
+            atk: 75,
+            def: 80,
+            spa: 88,
+            spd: 84,
+            spe: 87
+        },
+        abilities: {
+            0: "Weather Front"
+        },
+        heightm: 0.405,
+        weightkg: 5.05,
+        color: "Red",
+        eggGroups: ["Fairy"],
+    },
+    cherformrainy: {
+        num: 7500152,
+        species: "Cherform-Rainy",
+        baseSpecies: "Cherform",
+        forme: "Rainy",
+        formeLetter: "R",
+        types: ["Grass", "Water"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 80,
+            atk: 75,
+            def: 80,
+            spa: 88,
+            spd: 84,
+            spe: 87
+        },
+        abilities: {
+            0: "Weather Front"
+        },
+        heightm: 0.405,
+        weightkg: 5.05,
+        color: "Blue",
+        eggGroups: ["Fairy"],
+    },
+    cherformsnowy: {
+        num: 7500152,
+        species: "Cherform-Snowy",
+        baseSpecies: "Cherform",
+        forme: "Snowy",
+        formeLetter: "S",
+        types: ["Grass", "Ice"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 80,
+            atk: 75,
+            def: 80,
+            spa: 88,
+            spd: 84,
+            spe: 87
+        },
+        abilities: {
+            0: "Weather Front"
+        },
+        heightm: 0.405,
+        weightkg: 5.05,
+        color: "White",
+        eggGroups: ["Fairy"],
+    },
+    cherformsandy: {
+        num: 7500152,
+        species: "Cherform-Sandy",
+        baseSpecies: "Cherform",
+        forme: "Sandy",
+        formeLetter: "S",
+        types: ["Grass", "Rock"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 80,
+            atk: 75,
+            def: 80,
+            spa: 88,
+            spd: 84,
+            spe: 87
+        },
+        abilities: {
+            0: "Weather Front"
+        },
+        heightm: 0.405,
+        weightkg: 5.05,
+        color: "Brown",
+        eggGroups: ["Fairy"],
+    },
+    cherformspooky: {
+        num: 7500152,
+        species: "Cherform-Spooky",
+        baseSpecies: "Cherform",
+        forme: "Sandy",
+        formeLetter: "S",
+        types: ["Grass", "Ghost"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 80,
+            atk: 75,
+            def: 80,
+            spa: 88,
+            spd: 84,
+            spe: 87
+        },
+        abilities: {
+            0: "Weather Front"
+        },
+        heightm: 0.405,
+        weightkg: 5.05,
+        color: "Purple",
+        eggGroups: ["Fairy"],
     },
     porygrigus: {
         num: 7500153,
@@ -6027,13 +6266,17 @@ darkchomp: {
         },
         heightm: 1.155,
         weightkg: 54.5,
-        color: "Black",
+        color: "Yellow",
         eggGroups: ["Undiscovered"],
     },
     zoroldeo: {
         num: 7500154,
         species: "Zoroldeo",
         types: ["Dark", "Fighting"],
+        genderRatio: {
+            M: 87.5,
+            F: 12.5
+        },
         baseStats: {
             hp: 75,
             atk: 106,
@@ -6046,14 +6289,15 @@ darkchomp: {
             0: "Justice Illusion"
         },
         weightkg: 64.8,
+        color: "Blue",
     },
     stundos: {
         num: 7500155,
         species: "Stundos",
         types: ["Ground", "Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 110,
@@ -6071,18 +6315,30 @@ darkchomp: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
-    /*{
-    num: 7500156,
-    species: "The unnamed illegitimate love child of Gastrodon and Magcargo",
-    types: ["Fire","Ground"],
-    genderRatio: {M: 0.0, F: 0.0},
-    baseStats: {hp: 90, atk: 86, def: 104, spa: 96, spd: 91, spe: 44},
-    abilities: {0: "Steam Sauna"},
-    heightm: 0.84,
-    weightkg: 42.45,
-    color: "Black",
-    eggGroups: ["Undiscovered"],
-    },*/
+	macaroon: {
+        num: 7500156,
+        species: "Macaroon",
+        types: ["Fire", "Ground"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 90,
+            atk: 86,
+            def: 104,
+            spa: 96,
+            spd: 91,
+            spe: 44
+        },
+        abilities: {
+            0: "Steam Sauna"
+        },
+        heightm: 0.84,
+        weightkg: 42.45,
+        color: "Brown",
+        eggGroups: ["Amorphous"],
+    },
     dank: {
         num: 7500157,
         species: "Dank",
@@ -6112,8 +6368,8 @@ darkchomp: {
         species: "Rapipom",
         types: ["Normal", "Fire"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 80,
@@ -6128,16 +6384,16 @@ darkchomp: {
         },
         heightm: 1.445,
         weightkg: 57.65,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Purple",
+        eggGroups: ["Field"],
     },
     tadpole: {
         num: 7500159,
         species: "Tadpole",
         types: ["Dragon", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 100,
@@ -6152,16 +6408,16 @@ darkchomp: {
         },
         heightm: 1.755,
         weightkg: 132,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Blue",
+        eggGroups: ["Water 1"],
     },
     draegarados: {
         num: 7500160,
         species: "Draegarados",
         types: ["Poison", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 90,
@@ -6176,16 +6432,43 @@ darkchomp: {
         },
         heightm: 4.15,
         weightkg: 158.25,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Blue",
+        eggGroups: ["Dragon"],
+    },
+    draegaradosmega: {
+        num: 7500160,
+        species: "Draegarados-Mega",
+        baseSpecies: "Draegarados",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Poison", "Water"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 90,
+            atk: 140,
+            def: 125,
+            spa: 99,
+            spd: 152,
+            spe: 73
+        },
+        abilities: {
+            0: "Mold Breaker"
+        },
+        heightm: 4.15,
+        weightkg: 158.25,
+        color: "Blue",
+        eggGroups: ["Dragon"],
     },
     grangoro: {
         num: 7500161,
         species: "Grangoro",
         types: ["Dark", "Fairy"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 37.5,
+            F: 62.5
         },
         baseStats: {
             hp: 102,
@@ -6200,16 +6483,16 @@ darkchomp: {
         },
         heightm: 1.755,
         weightkg: 92.35,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Purple",
+        eggGroups: ["Field"],
     },
     babuffe: {
         num: 7500162,
         species: "Babuffe",
         types: ["Ghost", "Psychic"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 137,
@@ -6225,7 +6508,34 @@ darkchomp: {
         heightm: 1.195,
         weightkg: 20.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Amorphous"],
+    },
+    babuffemega: {
+        num: 7500162,
+        species: "Babuffe-Mega",
+        baseSpecies: "Babuffe",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Ghost", "Psychic"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 137,
+            atk: 134,
+            def: 81,
+            spa: 78,
+            spd: 90,
+            spe: 69
+        },
+        abilities: {
+            0: "Toll Booth"
+        },
+        heightm: 1.195,
+        weightkg: 20.5,
+        color: "Black",
+        eggGroups: ["Amorphous"],
     },
     galionz: {
         num: 7500163,
@@ -6248,7 +6558,34 @@ darkchomp: {
         },
         heightm: 1.195,
         weightkg: 145.25,
-        color: "Black",
+        color: "Red",
+        eggGroups: ["Undiscovered"],
+    },
+    galionzmega: {
+        num: 7500162,
+        species: "Galion-Z-Mega",
+        baseSpecies: "Galion-Z",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Normal", "Ice"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 82,
+            atk: 120,
+            def: 75,
+            spa: 177,
+            spd: 92,
+            spe: 135
+        },
+        abilities: {
+            0: "Refrigerate"
+        },
+        heightm: 1.195,
+        weightkg: 145.25,
+        color: "Red",
         eggGroups: ["Undiscovered"],
     },
     steelweez: {
@@ -6272,7 +6609,7 @@ darkchomp: {
         },
         heightm: 1.55,
         weightkg: 107.25,
-        color: "Black",
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     thunderbee: {
@@ -6280,7 +6617,7 @@ darkchomp: {
         species: "Thundurbee",
         types: ["Bug", "Electric"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -6296,7 +6633,7 @@ darkchomp: {
         },
         heightm: 1.245,
         weightkg: 45.25,
-        color: "Black",
+        color: "Yellow",
         eggGroups: ["Undiscovered"],
     },
     gallatross: {
@@ -6304,7 +6641,7 @@ darkchomp: {
         species: "Gallatross",
         types: ["Electric", "Fighting"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -6320,8 +6657,35 @@ darkchomp: {
         },
         heightm: 1.855,
         weightkg: 66.25,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Blue",
+        eggGroups: ["Amorphous"],
+    },
+    gallatrossmega: {
+        num: 7500166,
+        species: "Gallatross-Mega",
+        baseSpecies: "Gallatross",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Electric", "Fighting"],
+        genderRatio: {
+            M: 100.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 86,
+            atk: 170,
+            def: 112,
+            spa: 95,
+            spd: 107,
+            spe: 105
+        },
+        abilities: {
+            0: "Ground Drive"
+        },
+        heightm: 1.855,
+        weightkg: 66.25,
+        color: "Blue",
+        eggGroups: ["Amorphous"],
     },
     victant: {
         num: 7500167,
@@ -6344,7 +6708,7 @@ darkchomp: {
         },
         heightm: 0.355,
         weightkg: 18.5,
-        color: "Black",
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     rosetteeternal: {
@@ -6353,7 +6717,7 @@ darkchomp: {
         types: ["Fairy", "Poison"],
         genderRatio: {
             M: 0.0,
-            F: 0.0
+            F: 100.0
         },
         baseStats: {
             hp: 77,
@@ -6368,7 +6732,7 @@ darkchomp: {
         },
         heightm: 0.545,
         weightkg: 7.7,
-        color: "Black",
+        color: "Green",
         eggGroups: ["Undiscovered"],
     },
     conkelvire: {
@@ -6376,8 +6740,8 @@ darkchomp: {
         species: "Conkelvire",
         types: ["Fighting", "Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 100,
@@ -6392,16 +6756,16 @@ darkchomp: {
         },
         heightm: 1.6,
         weightkg: 112.8,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Yellow",
+        eggGroups: ["Human-Like"],
     },
     landia: {
         num: 7500170,
         species: "Landia",
         types: ["Dragon", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 86,
@@ -6416,16 +6780,43 @@ darkchomp: {
         },
         heightm: 1.345,
         weightkg: 79.8,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Blue",
+        eggGroups: ["Dragon"],
+    },
+    landiamega: {
+        num: 7500170,
+        species: "Landia-Mega",
+        baseSpecies: "Landia",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Dragon", "Fairy"],
+        genderRatio: {
+            M: 50.0,
+            F: 50.0
+        },
+        baseStats: {
+            hp: 86,
+            atk: 145,
+            def: 120,
+            spa: 115,
+            spd: 107,
+            spe: 74
+        },
+        abilities: {
+            0: "Dragon Hide"
+        },
+        heightm: 1.745,
+        weightkg: 79.8,
+        color: "Blue",
+        eggGroups: ["Dragon"],
     },
     odelay: {
         num: 7500171,
         species: "Odelay",
         types: ["Water", "Rock"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 78,
@@ -6440,15 +6831,15 @@ darkchomp: {
         },
         heightm: 1.5,
         weightkg: 96.45,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Purple",
+        eggGroups: ["Water 3"],
     },
     thundercast: {
         num: 7500172,
         species: "Thundercast",
         types: ["Electric", "Normal"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -6473,7 +6864,7 @@ darkchomp: {
         types: ["Fairy", "Grass"],
         genderRatio: {
             M: 0.0,
-            F: 0.0
+            F: 100.0
         },
         baseStats: {
             hp: 72,
@@ -6488,7 +6879,34 @@ darkchomp: {
         },
         heightm: 0.95,
         weightkg: 26.55,
-        color: "Black",
+        color: "White",
+        eggGroups: ["Undiscovered"],
+    },
+    sceptetteeternalmega: {
+        num: 7500173,
+        species: "Sceptette-Eternal-Mega",
+        baseSpecies: "Sceptette-Eternal",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Fairy", "Dragon"],
+        genderRatio: {
+            M: 0.0,
+            F: 100.0
+        },
+        baseStats: {
+            hp: 72,
+            atk: 100,
+            def: 76,
+            spa: 165,
+            spd: 126,
+            spe: 151
+        },
+        abilities: {
+            0: "Lightning Rod"
+        },
+        heightm: 0.95,
+        weightkg: 26.55,
+        color: "White",
         eggGroups: ["Undiscovered"],
     },
     raillink: {
@@ -6496,8 +6914,8 @@ darkchomp: {
         species: "Rail Link",
         types: ["Normal", "Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 170,
@@ -6512,16 +6930,16 @@ darkchomp: {
         },
         heightm: 8.255,
         weightkg: 264.25,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Blue",
+        eggGroups: ["Field"],
     },
     agrippa: {
         num: 7500175,
         species: "Agrippa",
         types: ["Fighting", "Steel"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 90,
@@ -6537,15 +6955,18 @@ darkchomp: {
         heightm: 1.855,
         weightkg: 103,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Human-Like"],
     },
     basculinbasculin: {
-        num: 7500176,
+        num: 550,
         species: "Basculin-Basculin",
+        baseSpecies: "Basculin",
+        forme: "Basculin",
+        formeLetter: "B",
         types: ["Water"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 80,
@@ -6558,18 +6979,18 @@ darkchomp: {
         abilities: {
             0: "Fusion Powered"
         },
-        heightm: 0.99,
+        heightm: 1,
         weightkg: 18,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Green",
+        eggGroups: ["Water 2"],
     },
     mewelli: {
         num: 7500177,
         species: "Mewelli",
         types: ["Water", "Psychic"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 100,
@@ -6584,7 +7005,7 @@ darkchomp: {
         },
         heightm: 1.31,
         weightkg: 69.5,
-        color: "Black",
+        color: "White",
         eggGroups: ["Undiscovered"],
     },
     bael: {
@@ -6611,13 +7032,40 @@ darkchomp: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
+    baelmega: {
+        num: 7500178,
+        species: "Bael-Mega",
+        baseSpecies: "Bael",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Ghost", "Dragon"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 86,
+            atk: 160,
+            def: 110,
+            spa: 92,
+            spd: 108,
+            spe: 110
+        },
+        abilities: {
+            0: "Prankster"
+        },
+        heightm: 3.045,
+        weightkg: 158.75,
+        color: "Black",
+        eggGroups: ["Undiscovered"],
+    },
     simigoat: {
         num: 7500179,
         species: "Simigoat",
         types: ["Fire", "Grass"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 109,
@@ -6632,8 +7080,8 @@ darkchomp: {
         },
         heightm: 1.345,
         weightkg: 59.5,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Brown",
+        eggGroups: ["Field"],
     },
     miltrank: {
         num: 7500180,
@@ -6641,7 +7089,7 @@ darkchomp: {
         types: ["Normal", "Steel"],
         genderRatio: {
             M: 0.0,
-            F: 0.0
+            F: 100.0
         },
         baseStats: {
             hp: 101,
@@ -6664,8 +7112,8 @@ darkchomp: {
         species: "Furfraught",
         types: ["Normal", "Fighting"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 91,
@@ -6680,15 +7128,15 @@ darkchomp: {
         },
         heightm: 1.395,
         weightkg: 59,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "White",
+        eggGroups: ["Field"],
     },
     tyranking: {
         num: 7500182,
         species: "Tyranking",
         types: ["Rock", "Poison"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -6704,16 +7152,43 @@ darkchomp: {
         },
         heightm: 1.705,
         weightkg: 132,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Purple",
+        eggGroups: ["Monster"],
+    },
+    tyrankingmega: {
+        num: 7500182,
+        species: "Tyranking-Mega",
+        baseSpecies: "Tyranking",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Rock", "Poison"],
+        genderRatio: {
+            M: 100.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 100,
+            atk: 158,
+            def: 143,
+            spa: 100,
+            spd: 117,
+            spe: 93
+        },
+        abilities: {
+            0: "Sand Stream"
+        },
+        heightm: 1.705,
+        weightkg: 132,
+        color: "Purple",
+        eggGroups: ["Monster"],
     },
     supermuk: {
         num: 7500183,
         species: "Supermuk",
         types: ["Ghost", "Poison"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 105,
@@ -6728,8 +7203,8 @@ darkchomp: {
         },
         heightm: 1.445,
         weightkg: 34.5,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Brown",
+        eggGroups: ["Amorphous"],
     },
     mentor: {
         num: 7500184,
@@ -6749,6 +7224,33 @@ darkchomp: {
         },
         abilities: {
             0: "Black Hole"
+        },
+        heightm: 1.905,
+        weightkg: 328.3,
+        color: "Black",
+        eggGroups: ["Undiscovered"],
+    },
+    mentormega: {
+        num: 7500184,
+        species: "Mentor-Mega",
+        baseSpecies: "Mentor",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Ghost", "Steel"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 82,
+            atk: 127,
+            def: 152,
+            spa: 90,
+            spd: 152,
+            spe: 97
+        },
+        abilities: {
+            0: "Tough Claws"
         },
         heightm: 1.905,
         weightkg: 328.3,
@@ -6776,7 +7278,34 @@ darkchomp: {
         },
         heightm: 1.345,
         weightkg: 57.3,
-        color: "Black",
+        color: "White",
+        eggGroups: ["Undiscovered"],
+    },
+    elektramega: {
+        num: 7500185,
+        species: "Elektra-Mega",
+        baseSpecies: "Elektra",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Psychic", "Electric"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 57,
+            atk: 50,
+            def: 77,
+            spa: 167,
+            spd: 97,
+            spe: 180
+        },
+        abilities: {
+            0: "Trace"
+        },
+        heightm: 1.045,
+        weightkg: 57.3,
+        color: "White",
         eggGroups: ["Undiscovered"],
     },
     escagon: {
@@ -6784,8 +7313,8 @@ darkchomp: {
         species: "Escagon",
         types: ["Dragon", "Steel"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 85,
@@ -6800,8 +7329,8 @@ darkchomp: {
         },
         heightm: 1.5,
         weightkg: 57.5,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Gray",
+        eggGroups: ["Bug"],
     },
     golmanitan: {
         num: 7500187,
@@ -6824,7 +7353,7 @@ darkchomp: {
         },
         heightm: 2.045,
         weightkg: 211.45,
-        color: "Black",
+        color: "Red",
         eggGroups: ["Undiscovered"],
     },
     sunflorrim: {
@@ -6832,8 +7361,8 @@ darkchomp: {
         species: "Sunflorrim",
         types: ["Grass"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 82,
@@ -6848,7 +7377,7 @@ darkchomp: {
         },
         heightm: 0.65,
         weightkg: 8.9,
-        color: "Black",
+        color: "Yellow",
         eggGroups: ["Undiscovered"],
     },
     unconventional: {
@@ -6872,7 +7401,7 @@ darkchomp: {
         },
         heightm: 1.345,
         weightkg: 181.5,
-        color: "Black",
+        color: "Yellow",
         eggGroups: ["Undiscovered"],
     },
     ambiccino: {
@@ -6880,8 +7409,8 @@ darkchomp: {
         species: "Ambiccino",
         types: ["Normal"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 37.5,
+            F: 62.5
         },
         baseStats: {
             hp: 90,
@@ -6896,16 +7425,16 @@ darkchomp: {
         },
         heightm: 0.85,
         weightkg: 13.9,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Purple",
+        eggGroups: ["Field"],
     },
     parp: {
         num: 7500191,
         species: "Parp",
         types: ["Normal", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 74,
@@ -6920,8 +7449,8 @@ darkchomp: {
         },
         heightm: 1.04,
         weightkg: 34.75,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Purple",
+        eggGroups: ["Field"],
     },
     zyflare: {
         num: 7500192,
@@ -6953,7 +7482,7 @@ darkchomp: {
         types: ["Dragon", "Steel"],
         genderRatio: {
             M: 0.0,
-            F: 0.0
+            F: 100.0
         },
         baseStats: {
             hp: 90,
@@ -6968,7 +7497,34 @@ darkchomp: {
         },
         heightm: 1.4,
         weightkg: 190,
-        color: "Black",
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+    probsmega: {
+        num: 7500193,
+        species: "Probs-Mega",
+        baseSpecies: "Probs",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Dragon", "Steel"],
+        genderRatio: {
+            M: 0.0,
+            F: 100.0
+        },
+        baseStats: {
+            hp: 90,
+            atk: 87,
+            def: 152,
+            spa: 122,
+            spd: 160,
+            spe: 90
+        },
+        abilities: {
+            0: "Levitate"
+        },
+        heightm: 1.4,
+        weightkg: 190,
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     hentai: {
@@ -6976,8 +7532,8 @@ darkchomp: {
         species: "Hentai",
         types: ["Poison", "Fire"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 90,
@@ -6992,7 +7548,7 @@ darkchomp: {
         },
         heightm: 1.65,
         weightkg: 242.5,
-        color: "Black",
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     tornastar: {
@@ -7000,7 +7556,7 @@ darkchomp: {
         species: "Tornastar",
         types: ["Flying", "Water"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -7016,7 +7572,7 @@ darkchomp: {
         },
         heightm: 1.245,
         weightkg: 49,
-        color: "Black",
+        color: "Green",
         eggGroups: ["Undiscovered"],
     },
     magmovire: {
@@ -7024,8 +7580,8 @@ darkchomp: {
         species: "Magmovire",
         types: ["Fire", "Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 85,
@@ -7040,16 +7596,16 @@ darkchomp: {
         },
         heightm: 1.7,
         weightkg: 103.3,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Red",
+        eggGroups: ["Human-Like"],
     },
     volgon: {
         num: 7500197,
         species: "Volgon",
         types: ["Ground", "Electric"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 93,
@@ -7065,7 +7621,7 @@ darkchomp: {
         heightm: 1.755,
         weightkg: 63.5,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Bug"],
     },
     tapuloom: {
         num: 7500198,
@@ -7088,7 +7644,7 @@ darkchomp: {
         },
         heightm: 1.55,
         weightkg: 42.35,
-        color: "Black",
+        color: "Red",
         eggGroups: ["Undiscovered"],
     },
     lucashadow: {
@@ -7096,8 +7652,8 @@ darkchomp: {
         species: "Lucashadow",
         types: ["Fighting", "Ghost"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 87.5,
+            F: 12.5
         },
         baseStats: {
             hp: 80,
@@ -7108,11 +7664,38 @@ darkchomp: {
             spe: 120
         },
         abilities: {
-            0: "Technician + Inner Focus"
+            0: "Eye of Horus"
         },
         heightm: 0.95,
         weightkg: 38.1,
-        color: "Black",
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+    lucashadowmega: {
+        num: 7500199,
+        species: "Lucashadow-Mega",
+        baseSpecies: "Lucashadow",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Fighting", "Ghost"],
+        genderRatio: {
+            M: 87.5,
+            F: 12.5
+        },
+        baseStats: {
+            hp: 80,
+            atk: 166,
+            def: 98,
+            spa: 135,
+            spd: 80,
+            spe: 142
+        },
+        abilities: {
+            0: "Adaptability"
+        },
+        heightm: 0.95,
+        weightkg: 38.1,
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     cradilego: {
@@ -7136,12 +7719,13 @@ darkchomp: {
         },
         heightm: 1.345,
         weightkg: 57.95,
-        color: "Black",
+        color: "White",
         eggGroups: ["Undiscovered"],
     },
-    astrolithclear: {
+    astrolith: {
         num: 7500201,
-        species: "Astrolith-Clear",
+        species: "Astrolith",
+		  baseForme: "Clear",
         types: ["Rock", "Normal"],
         genderRatio: {
             M: 0.0,
@@ -7160,7 +7744,143 @@ darkchomp: {
         },
         heightm: 0.3,
         weightkg: 20.4,
-        color: "Black",
+        color: "Brown",
+        eggGroups: ["Undiscovered"],
+     	  otherFormes: ["astrolithstar", "astrolithcomet", "astrolithneutron", "astrolithmeteor", "astrolithnova"],
+    },
+    astrolithstar: {
+        num: 7500201,
+        species: "Astrolith-Star",
+        baseSpecies: "Astrolith",
+        forme: "Star",
+        formeLetter: "S",
+        types: ["Rock", "Fire"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 85,
+            atk: 115,
+            def: 45,
+            spa: 115,
+            spd: 45,
+            spe: 125
+        },
+        abilities: {
+            0: "Cosmology"
+        },
+        heightm: 0.3,
+        weightkg: 0.55,
+        color: "Red",
+        eggGroups: ["Undiscovered"],
+    },
+    astrolithcomet: {
+        num: 7500201,
+        species: "Astrolith-Comet",
+        baseSpecies: "Astrolith",
+        forme: "Comet",
+        formeLetter: "C",
+        types: ["Rock", "Water"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 85,
+            atk: 115,
+            def: 45,
+            spa: 115,
+            spd: 45,
+            spe: 125
+        },
+        abilities: {
+            0: "Cosmology"
+        },
+        heightm: 0.3,
+        weightkg: 0.55,
+        color: "Blue",
+        eggGroups: ["Undiscovered"],
+    },
+    astrolithneutron: {
+        num: 7500201,
+        species: "Astrolith-Neutron",
+        baseSpecies: "Astrolith",
+        forme: "Neutron",
+        formeLetter: "N",
+        types: ["Rock", "Ice"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 85,
+            atk: 115,
+            def: 45,
+            spa: 115,
+            spd: 45,
+            spe: 125
+        },
+        abilities: {
+            0: "Cosmology"
+        },
+        heightm: 0.3,
+        weightkg: 0.55,
+        color: "White",
+        eggGroups: ["Undiscovered"],
+    },
+    astrolithmeteor: {
+        num: 7500201,
+        species: "Astrolith-Meteor",
+        baseSpecies: "Astrolith",
+        forme: "Meteor",
+        formeLetter: "M",
+        types: ["Rock", "Flying"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 85,
+            atk: 115,
+            def: 45,
+            spa: 115,
+            spd: 45,
+            spe: 125
+        },
+        abilities: {
+            0: "Cosmology"
+        },
+        heightm: 0.3,
+        weightkg: 0.55,
+        color: "Red",
+        eggGroups: ["Undiscovered"],
+    },
+    astrolithnova: {
+        num: 7500201,
+        species: "Astrolith-Nova",
+        baseSpecies: "Astrolith",
+        forme: "Nova",
+        formeLetter: "N",
+        types: ["Rock", "Ghost"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 85,
+            atk: 115,
+            def: 45,
+            spa: 115,
+            spd: 45,
+            spe: 125
+        },
+        abilities: {
+            0: "Cosmology"
+        },
+        heightm: 0.3,
+        weightkg: 0.55,
+        color: "Purple",
         eggGroups: ["Undiscovered"],
     },
     kyraurem: {
@@ -7184,7 +7904,34 @@ darkchomp: {
         },
         heightm: 2.505,
         weightkg: 263.5,
-        color: "Black",
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+    kyauremmega: {
+        num: 7500202,
+        species: "Kyaurem-Mega",
+        baseSpecies: "Kyaurem",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Rock", "Ice"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 120,
+            atk: 170,
+            def: 148,
+            spa: 120,
+            spd: 123,
+            spe: 88
+        },
+        abilities: {
+            0: "Sand Stream"
+        },
+        heightm: 2.505,
+        weightkg: 263.5,
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     hetrarna: {
@@ -7208,7 +7955,7 @@ darkchomp: {
         },
         heightm: 1.345,
         weightkg: 255.25,
-        color: "Black",
+        color: "Red",
         eggGroups: ["Undiscovered"],
     },
     xurkivoir: {
@@ -7235,13 +7982,40 @@ darkchomp: {
         color: "Black",
         eggGroups: ["Undiscovered"],
     },
+    xurkivoirmega: {
+        num: 7500204,
+        species: "Xurkivoir-Mega",
+        baseSpecies: "Xurkivoir",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Electric", "Fairy"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 80,
+            atk: 100,
+            def: 68,
+            spa: 205,
+            spd: 120,
+            spe: 110
+        },
+        abilities: {
+            0: "Pixilate"
+        },
+        heightm: 2.705,
+        weightkg: 74.2,
+        color: "Black",
+        eggGroups: ["Undiscovered"],
+    },
     vikarona: {
         num: 7500205,
         species: "Vikarona",
         types: ["Electric", "Fire"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 91,
@@ -7256,16 +8030,16 @@ darkchomp: {
         },
         heightm: 1.55,
         weightkg: 45.5,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Blue",
+        eggGroups: ["Bug"],
     },
     mudgoat: {
         num: 7500206,
         species: "Mudgoat",
         types: ["Grass", "Ground"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 121,
@@ -7280,15 +8054,15 @@ darkchomp: {
         },
         heightm: 2.095,
         weightkg: 505.5,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Brown",
+        eggGroups: ["Field"],
     },
     theridel: {
         num: 7500207,
         species: "Theridel",
         types: ["Ghost", "Ground"],
         genderRatio: {
-            M: 0.0,
+            M: 100.0,
             F: 0.0
         },
         baseStats: {
@@ -7312,8 +8086,8 @@ darkchomp: {
         species: "Shrek",
         types: ["Grass", "Flying"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 75.0,
+            F: 25.0
         },
         baseStats: {
             hp: 82,
@@ -7328,8 +8102,8 @@ darkchomp: {
         },
         heightm: 0.955,
         weightkg: 21.25,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Brown",
+        eggGroups: ["Fairy"],
     },
     vitality: {
         num: 7500209,
@@ -7352,7 +8126,7 @@ darkchomp: {
         },
         heightm: 1.36,
         weightkg: 52.25,
-        color: "Black",
+        color: "Gray",
         eggGroups: ["Undiscovered"],
     },
     necromega: {
@@ -7376,7 +8150,7 @@ darkchomp: {
         },
         heightm: 2.15,
         weightkg: 140.75,
-        color: "Black",
+        color: "Green",
         eggGroups: ["Undiscovered"],
     },
     malaquanid: {
@@ -7384,8 +8158,8 @@ darkchomp: {
         species: "Malaquanid",
         types: ["Dark", "Bug"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 87,
@@ -7400,16 +8174,16 @@ darkchomp: {
         },
         heightm: 1.65,
         weightkg: 64.5,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
+        color: "Green",
+        eggGroups: ["Water 1"],
     },
     scrapunny: {
         num: 7500212,
         species: "Scrapunny",
         types: ["Normal", "Dark"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 50.0,
+            F: 50.0
         },
         baseStats: {
             hp: 75,
@@ -7425,9 +8199,9 @@ darkchomp: {
         heightm: 1.14,
         weightkg: 31.65,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Field"],
     },
-    bezog: {
+    bezong: {
         num: 7500213,
         species: "Bezong",
         types: ["Normal", "Psychic"],
@@ -7448,7 +8222,7 @@ darkchomp: {
         },
         heightm: 1.705,
         weightkg: 161,
-        color: "Black",
+        color: "Green",
         eggGroups: ["Undiscovered"],
     },
     valcro: {
@@ -7472,7 +8246,7 @@ darkchomp: {
         },
         heightm: 2.055,
         weightkg: 87.75,
-        color: "Black",
+        color: "Purple",
         eggGroups: ["Undiscovered"],
     },
     smelly: {
@@ -7496,7 +8270,7 @@ darkchomp: {
         },
         heightm: 1.75,
         weightkg: 79.25,
-        color: "Black",
+        color: "Yellow",
         eggGroups: ["Undiscovered"],
     },
     tapumeme: {
@@ -7520,7 +8294,34 @@ darkchomp: {
         },
         heightm: 0.9,
         weightkg: 12.55,
-        color: "Black",
+        color: "Green",
+        eggGroups: ["Undiscovered"],
+    },
+    tapumemedank: {
+        num: 7500216,
+        species: "Tapu Meme-Dank",
+        baseSpecies: "Tapu Meme",
+        forme: "Dank",
+        formeLetter: "D",
+        types: ["Psychic", "Fighting"],
+        genderRatio: {
+            M: 0.0,
+            F: 0.0
+        },
+        baseStats: {
+            hp: 85,
+            atk: 133,
+            def: 103,
+            spa: 81,
+            spd: 81,
+            spe: 141
+        },
+        abilities: {
+            0: "Serene Surge"
+        },
+        heightm: 0.9,
+        weightkg: 12.55,
+        color: "Red",
         eggGroups: ["Undiscovered"],
     },
     comcott: {
@@ -7528,8 +8329,8 @@ darkchomp: {
         species: "Comcott",
         types: ["Fairy", "Grass"],
         genderRatio: {
-            M: 0.0,
-            F: 0.0
+            M: 37.5,
+            F: 62.5
         },
         baseStats: {
             hp: 65,
@@ -7548,83 +8349,58 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 	minislash: {
-        num: 7500218,
-        species: "Minislash",
-        types: ["Rock", "Ghost"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
-        baseStats: {
-            hp: 70,
-            atk: 65,
-            def: 135,
-            spa: 65,
-            spd: 135,
-            spe: 70
-        },
-        abilities: {
-            0: "Stance Shield"
-        },
-        heightm: 1,
-        weightkg: 46.5,
-        color: "Brown",
-        eggGroups: ["Mineral"],
-	otherFormes: ["minislashblade"],
-    },
- minislashblade: {
-        num: 7500218,
-        species: "Minislash-Blade",
-	baseSpecies: "Minislash",
-	forme: "Blade",
-	formeLetter: "B",
-        types: ["Rock", "Ghost"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
-        baseStats: {
-            hp: 70,
-            atk: 135,
-            def: 65,
-            spa: 135,
-            spd: 65,
-            spe: 130
-        },
-        abilities: {
-            0: "Stance Shield"
-        },
-        heightm: 1,
-        weightkg: 6.8,
-        color: "White",
-        eggGroups: ["Mineral"],
-	otherFormes: ["minislashblade"],
-    },
-
-    minislashmeteor: {
-        num: 7500218,
-        species: "Minislash-Meteor",
-        types: ["Rock", "Ghost"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
-        baseStats: {
-            hp: 70,
-            atk: 65,
-            def: 135,
-            spa: 65,
-            spd: 135,
-            spe: 70
-        },
-        abilities: {
-            0: "Stance Shield"
-        },
-        heightm: 1,
-        weightkg: 46.5,
-        color: "Black",
-        eggGroups: ["Undiscovered"],
-    },
+	        num: 7500218,
+	        species: "Minislash",
+	        baseForme: "Meteor",
+	        types: ["Rock", "Ghost"],
+	        genderRatio: {
+	            M: 0.0,
+	            F: 0.0
+	        },
+	        baseStats: {
+	            hp: 70,
+	            atk: 65,
+	            def: 135,
+	            spa: 65,
+	            spd: 135,
+	            spe: 70
+	        },
+	        abilities: {
+	            0: "Stance Shield"
+	        },
+	        heightm: 1,
+	        weightkg: 46.5,
+	        color: "Brown",
+	        eggGroups: ["Mineral"],
+	        otherFormes: ["minislashblade"],
+	    },
+ 	minislashblade: {
+	        num: 7500218,
+	        species: "Minislash-Blade",
+	        baseSpecies: "Minislash",
+	        forme: "Blade",
+	        formeLetter: "B",
+	        types: ["Rock", "Ghost"],
+	        genderRatio: {
+	            M: 0.0,
+	            F: 0.0
+	        },
+	        baseStats: {
+	            hp: 70,
+	            atk: 135,
+	            def: 65,
+	            spa: 135,
+	            spd: 65,
+	            spe: 130
+	        },
+	        abilities: {
+	            0: "Stance Shield"
+	        },
+	        heightm: 1,
+	        weightkg: 6.8,
+	        color: "White",
+	        eggGroups: ["Mineral"],
+	    },
     crematoria: {
         num: 7500219,
         species: "Crematoria",
@@ -7774,7 +8550,7 @@ darkchomp: {
         heightm: 2.3,
         weightkg: 131.75,
         color: "Black",
-        eggGroups: ["Undiscovered"],
+        eggGroups: ["Monster"],
     },
     slampamega: {
         num: 7500222,
@@ -7801,7 +8577,7 @@ darkchomp: {
         heightm: 2.3,
         weightkg: 163.25,
         color: "Pink",
-        eggGroups: ["Monster", ],
+        eggGroups: ["Monster"],
     },
     decidactyl: {
         num: 7500223,
