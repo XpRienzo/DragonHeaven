@@ -16,19 +16,21 @@ despoilingvines: {
 			this.add('-activate', pokemon, 'move: ' + this.effectData.sourceEffect, '[of] ' + source);
 		},
 		onResidualOrder: 11,
-		onResidual: function(pokemon) {
-				for (const target of pokemon.side.foe.active) {
+		onResidual: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
 				if (!target || target.fainted) continue;
-				if (!target || target.fainted || target.hp <= 0) {
-					this.debug('Nothing to leech into');
-					return;
-				}
-				let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
-				if (damage) {
-					this.heal(damage, target, pokemon);
-				}
-				}
-			},
+			if (this.effectData.source && (!this.effectData.source.isActive || this.effectData.source.hp <= 0 || !this.effectData.source.activeTurns)) {
+				delete target.volatiles['partiallytrapped'];
+				return;
+			}
+			if (this.effectData.source.hasItem('bindingband')) {
+				this.damage(target.maxhp / 6);
+			} else {
+				this.damage(target.maxhp / 8);
+			}
+			this.heal(pokemon.maxhp / 8);
+			}
+		},
 		onEnd: function (pokemon) {
 			this.add('-end', pokemon, this.effectData.sourceEffect, '[despoilingvines]');
 		},
