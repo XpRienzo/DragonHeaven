@@ -28,7 +28,7 @@ despoilingvines: {
 				this.damage(pokemon.maxhp / 8);
 			}
 			for (const allyActive of pokemon.side.active) {
-			this.allyActive(pokemon.maxhp / 8);
+			this.heal(allyActive.maxhp / 8);
 			}
 		},
 		onEnd: function (pokemon) {
