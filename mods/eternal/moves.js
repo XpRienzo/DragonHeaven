@@ -3413,8 +3413,11 @@ exports.BattleMovedex = {
 			onStart: function(target, source) {
 				this.add('-fieldstart', 'move: Nuclear Pollen', '[of] ' + source);
 			},
-			onEffectiveness: function(typeMod, target, type, move) {
-				return -typeMod;
+			onNegateImmunity: false,
+			onEffectiveness: function (typeMod, target, type, move) {
+			// The effectiveness of Freeze Dry on Water isn't reverted
+			if (move && !this.getImmunity(move, type)) return 1;
+			return -typeMod;
 			},
 			onResidualOrder: 23,
 			onEnd: function() {
