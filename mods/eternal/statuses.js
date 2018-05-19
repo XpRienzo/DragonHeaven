@@ -16,7 +16,7 @@ despoilingvines: {
 			this.add('-activate', pokemon, 'move: ' + this.effectData.sourceEffect, '[of] ' + source);
 		},
 		onResidualOrder: 11,
-		onResidual: function (pokemon, source) {
+		onResidual: function (source, pokemon) {
 				this.damage(pokemon.maxhp / 8);
 				this.heal(source.maxhp / 8);
 		},
