@@ -17,7 +17,8 @@ despoilingvines: {
 		},
 		onResidualOrder: 11,
 		onResidual: function(pokemon) {
-				let target = this.effectData.source.side.active[pokemon.volatiles['despoilingvines'].sourcePosition];
+				for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
 				if (!target || target.fainted || target.hp <= 0) {
 					this.debug('Nothing to leech into');
 					return;
@@ -25,6 +26,7 @@ despoilingvines: {
 				let damage = this.damage(pokemon.maxhp / 8, pokemon, target);
 				if (damage) {
 					this.heal(damage, target, pokemon);
+				}
 				}
 			},
 		onEnd: function (pokemon) {
