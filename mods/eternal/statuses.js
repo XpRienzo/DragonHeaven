@@ -27,9 +27,6 @@ despoilingvines: {
 			} else {
 				this.damage(pokemon.maxhp / 8);
 			}
-			for (const source of pokemon.side.active) {
-			this.heal(source.maxhp / 8);
-			}
 		},
 		onEnd: function (pokemon) {
 			this.add('-end', pokemon, this.effectData.sourceEffect, '[despoilingvines]');
