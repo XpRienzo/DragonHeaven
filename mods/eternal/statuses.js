@@ -17,7 +17,9 @@ despoilingvines: {
 		},
 		onResidualOrder: 11,
 		onResidual: function (pokemon, source) {
+			for (const source of pokemon.side.active) {
 			this.heal(source.maxhp / 8);
+			}
 			if (this.effectData.source && (!this.effectData.source.isActive || this.effectData.source.hp <= 0 || !this.effectData.source.activeTurns)) {
 				delete pokemon.volatiles['despoilingvines'];
 				return;
