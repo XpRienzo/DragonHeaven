@@ -23,10 +23,11 @@ despoilingvines: {
 			}
 			if (this.effectData.source.hasItem('bindingband')) {
 				this.damage(pokemon.maxhp / 6);
+				this.heal(source.maxhp / 8);
 			} else {
 				this.damage(pokemon.maxhp / 8);
+				this.heal(source.maxhp / 8);
 			}
-			this.heal(source.maxhp / 8);
 		},
 		onEnd: function (pokemon) {
 			this.add('-end', pokemon, this.effectData.sourceEffect, '[despoilingvines]');
