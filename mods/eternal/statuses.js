@@ -17,7 +17,6 @@ despoilingvines: {
 		},
 		onResidualOrder: 11,
 		onResidual: function (pokemon) {
-			for (const target of pokemon.side.foe.active) {
 			if (!pokemon || pokemon.fainted) continue;
 			if (this.effectData.source && (!this.effectData.source.isActive || this.effectData.source.hp <= 0 || !this.effectData.source.activeTurns)) {
 				delete pokemon.volatiles['partiallytrapped'];
@@ -28,7 +27,8 @@ despoilingvines: {
 			} else {
 				this.damage(pokemon.maxhp / 8);
 			}
-			this.heal(target.maxhp / 8);
+			for (const allyActive of pokemon.side.active) {
+			this.allyActive(pokemon.maxhp / 8);
 			}
 		},
 		onEnd: function (pokemon) {
