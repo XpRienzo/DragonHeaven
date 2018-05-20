@@ -2491,4 +2491,583 @@ exports.BattleItems = {
         gen: 6,
         desc: "If holder is a amdremayre, this item allows it to Mega Evolve in battle.",
     },
+    "metabellite": {
+        id: "metabellite",
+        name: "metabellite",
+        spritenum: 618,
+
+        megaStone: "Metabell-Mega",
+        megaEvolves: "Metabell",
+        onTakeItem: function(item, source) {
+            if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+            return true;
+        },
+        gen: 6,
+        desc: "If holder is a Metabell, this item allows it to Mega Evolve in battle.",
+    },
+    "bangmaite": {
+        id: "bangmaite",
+        name: "bangmaite",
+        spritenum: 582,
+
+        megaStone: "Bangma-Mega",
+        megaEvolves: "Bangma",
+        onTakeItem: function(item, source) {
+            if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+            return true;
+        },
+        gen: 6,
+        desc: "If holder is a Bangma, this item allows it to Mega Evolve in battle.",
+    },
+    "unozamite": {
+        id: "unozamite",
+        name: "unozamite",
+        spritenum: 579,
+		 
+        megaStone: "Unozam-Mega",
+        megaEvolves: "Unozam",
+        onTakeItem: function(item, source) {
+            if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+            return true;
+        },
+        gen: 6,
+        desc: "If holder is an Unozam, this item allows it to Mega Evolve in battle.",
+    },
+    "laprasnowite": {
+        id: "laprasnowite",
+        name: "laprasnowite",
+        spritenum: 575,
+		 
+        megaStone: "Laprasnow-Mega",
+        megaEvolves: "Laprasnow",
+        onTakeItem: function(item, source) {
+            if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+            return true;
+        },
+        gen: 6,
+        desc: "If holder is a Laprasnow, this item allows it to Mega Evolve in battle.",
+    },
+    "pigmentite": {
+        id: "pigmentite",
+        name: "pigmentite",
+        spritenum: 596,
+
+        megaStone: "Pigment-Mega",
+        megaEvolves: "Pigment",
+        onTakeItem: function(item, source) {
+            if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+            return true;
+        },
+        gen: 6,
+        desc: "If holder is a Pigment, this item allows it to Mega Evolve in battle.",
+    },
+    "mewdeucaxite": {
+        id: "mewdeucaxite",
+        name: "mewdeucaxite",
+        spritenum: 600,
+
+        megaStone: "Mewdeuca-Mega-X",
+        megaEvolves: "Mewdeuca",
+        onTakeItem: function(item, source) {
+            if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+            return true;
+        },
+        gen: 6,
+        desc: "If holder is a Mewdeuca, this item allows it to Mega Evolve in battle.",
+    },
+    "mewdeucayite": {
+        id: "mewdeucayite",
+        name: "mewdeucayite",
+        spritenum: 601,
+
+        megaStone: "Mewdeuca-Mega-Y",
+        megaEvolves: "Mewdeuca",
+        onTakeItem: function(item, source) {
+            if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
+            return true;
+        },
+        gen: 6,
+        desc: "If holder is a Mewdeuca, this item allows it to Mega Evolve in battle.",
+    },
+	//Fusions are given access to Z-Moves. 
+	
+	"pikaniumz": {
+		id: "pikaniumz",
+		name: "Pikanium Z",
+		spritenum: 649,
+		onTakeItem: false,
+		zMove: "Catastropika",
+		zMoveFrom: "Volt Tackle",
+		zMoveUser: ["Pikachu", "Pikachu-Ash"],
+		num: 794,
+		gen: 7,
+		desc: "If held by a Pikachu with Volt Tackle, it can use Catastropika.",
+	},
+	"pikashuniumz": {
+		id: "pikashuniumz",
+		name: "Pikashunium Z",
+		spritenum: 659,
+		onTakeItem: false,
+		zMove: "10,000,000 Volt Thunderbolt",
+		zMoveFrom: "Thunderbolt",
+		zMoveUser: ["Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner", "Pikachu-Ash"],
+		num: 836,
+		gen: 7,
+		desc: "If held by cap Pikachu with Thunderbolt, it can use 10,000,000 Volt Thunderbolt.",
+	},
+	"tapuniumz": {
+		id: "tapuniumz",
+		name: "Tapunium Z",
+		spritenum: 653,
+		onTakeItem: false,
+		zMove: "Guardian of Alola",
+		zMoveFrom: "Nature's Madness",
+		zMoveUser: ["Tapu Koko", "Tapu Lele", "Tapu Bulu", "Tapu Fini", "Aero Dako", "Tapu Jojo", "Sylvoko", "Mapu Iasu", "Mapu Auhe", "Mapu Moli", "Mapu Bupa", "Peli Koko", "Absoko", "Maui", "Apou Probo", "Tapu Meme", "Tapu Meme-Dank", "Vani Lele", "Apou Terro", "Castapus", "Castapus-Smarty", "Castapus-Sparky", "Castapus-Grassy", "Castapus-Misty", "Castapus-Rocky", "Castapus-Murky", "Castapus-Kelpy", "Castapus-Sludgy", "Castapus-Beauty", "Castapus-Sturdy", "Tapu Loom", "Tapu Dede", "Torko Bulu", "Tamatoa", "Cat Bed", "Giga Fini", "Fablefin"],
+		num: 801,
+		gen: 7,
+		desc: "If held by a Tapu with Nature's Madness, it can use Guardian of Alola.",
+	},
+	"snorliumz": {
+		id: "snorliumz",
+		name: "Snorlium Z",
+		spritenum: 656,
+		onTakeItem: false,
+		zMove: "Pulverizing Pancake",
+		zMoveFrom: "Giga Impact",
+		zMoveUser: ["Snorlax", "Snoopa", "Rhyperlax", "Snorligatr", "Swolax"],
+		num: 804,
+		gen: 7,
+		desc: "If held by a Snorlax with Giga Impact, it can use Pulverizing Pancake.",
+	},
+	"mewniumz": {
+		id: "mewniumz",
+		name: "Mewnium Z",
+		spritenum: 658,
+		onTakeItem: false,
+		zMove: "Genesis Supernova",
+		zMoveFrom: "Psychic",
+		zMoveUser: ["Mew", "Mimian", "Kommew", "Weeeeds", "Drewni", "Mewelli", "Mtn Dew", "Meazle"],
+		num: 806,
+		gen: 7,
+		desc: "If held by a Mew with Psychic, it can use Genesis Supernova.",
+	},
+	"decidiumz": {
+		id: "decidiumz",
+		name: "Decidium Z",
+		spritenum: 650,
+		onTakeItem: false,
+		zMove: "Sinister Arrow Raid",
+		zMoveFrom: "Spirit Shackle",
+		zMoveUser: ["Decidueye", "Alteyer", "Decidactyl", "Mendoza", "Skarmeye"],
+		num: 798,
+		gen: 7,
+		desc: "If held by a Decidueye with Spirit Shackle, it can use Sinister Arrow Raid.",
+	},
+	"inciniumz": {
+		id: "inciniumz",
+		name: "Incinium Z",
+		spritenum: 651,
+		onTakeItem: false,
+		zMove: "Malicious Moonsault",
+		zMoveFrom: "Darkest Lariat",
+		zMoveUser: ["Incineroar", "Landoroar-Royal", "Maginera", "Trampoline"],
+		num: 799,
+		gen: 7,
+		desc: "If held by an Incineroar with Darkest Lariat, it can use Malicious Moonsault.",
+	},
+	"primariumz": {
+		id: "primariumz",
+		name: "Primarium Z",
+		spritenum: 652,
+		onTakeItem: false,
+		zMove: "Oceanic Operetta",
+		zMoveFrom: "Sparkling Aria",
+		zMoveUser: ["Primarina", "Joltarina", "Slowmarina"],
+		num: 800,
+		gen: 7,
+		desc: "If held by a Primarina with Sparkling Aria, it can use Oceanic Operetta.",
+	},
+	"lycaniumz": {
+		id: "lycaniumz",
+		name: "Lycanium Z",
+		spritenum: 689,
+		onTakeItem: false,
+		zMove: "Splintered Stormshards",
+		zMoveFrom: "Stone Edge",
+		zMoveUser: ["Lycanroc", "Lycanroc-Midnight", "Lycanroc-Dusk", "Lycanape", "Dark Hunter", "Lycanperior-Dusk", "Lycaking-Dusk", "Lycanitan-Nightmare", "Lycanitan-Daydream"],
+		num: 925,
+		gen: 7,
+		desc: "If held by any Lycanroc with Stone Edge, it can use Splintered Stormshards.",
+	},
+	"mimikiumz": {
+		id: "mimikiumz",
+		name: "Mimikium Z",
+		spritenum: 688,
+		onTakeItem: false,
+		zMove: "Let's Snuggle Forever",
+		zMoveFrom: "Play Rough",
+		zMoveUser: ["Mimikyu", "Mimikyu-Busted", "Mimikyu-Totem", "Mimikyu-Busted-Totem", "Banekyu", "Banekyu-Busted", "Mimukyu", "Mimukyu-Busted", "Miminja", "Miminja-Reborn", "Mimiblim", "Mimiblim-Busted", "Mimitto", "Kyutana", "Kyutana-Busted"],
+		num: 924,
+		gen: 7,
+		desc: "If held by a Mimikyu with Play Rough, it can use Let's Snuggle Forever.",
+	},
+	"solganiumz": {
+		id: "solganiumz",
+		name: "Solganium Z",
+		spritenum: 685,
+		onTakeItem: false,
+		zMove: "Searing Sunraze Smash",
+		zMoveFrom: "Sunsteel Strike",
+		zMoveUser: ["Solgaleo", "Necrozma-Dusk-Mane", "Murkaleo", "Aloha", "Parasol", "Necroqua", "Necropur", "Smotilizer", "Necrotune", "Nut"],
+		num: 921,
+		gen: 7,
+		desc: "Solgaleo or Dusk Mane Necrozma with Sunsteel Strike can use a special Z-Move.",
+	},
+	"lunaliumz": {
+		id: "lunaliumz",
+		name: "Lunalium Z",
+		spritenum: 686,
+		onTakeItem: false,
+		zMove: "Menacing Moonraze Maelstrom",
+		zMoveFrom: "Moongeist Beam",
+		zMoveUser: ["Lunala", "Necrozma-Dawn-Wings", "Lunatic", "Luau", "Shenala", "Audala", "Qwilala", "Necrynx", "Necrozerian", "Lampara", "Chazma"],
+		num: 922,
+		gen: 7,
+		desc: "Lunala or Dawn Wings Necrozma with Moongeist Beam can use a special Z-Move.",
+	},
+	/* This is Ultranecrozium Z code. Not sure if it can Ultra Burst mons, but it's here just in case.
+	
+	"ultranecroziumz": {
+		inherit: true,
+		id: "ultranecroziumz",
+		name: "Ultranecrozium Z",
+		spritenum: 687,
+		onTakeItem: false,
+		zMove: "Light That Burns the Sky",
+		zMoveFrom: "Photon Geyser",
+		zMoveUser: ["Necrozma-Ultra", "Necrynx-Ultra", "Necroqua-Ultra", "Necrozerain-Ultra", "Necropur-Beautiful", "Lampara-De-Lava", "Chazma-Hatched", "Smotilizer-Ultra", "Necrotune-Ultra", "Ultra Burst Nut"],
+		num: 923,
+		gen: 7,
+		desc: "Dusk Mane/Dawn Wings Necrozma: Ultra Burst, then Z-Move w/ Photon Geyser.",
+	},
+	*/
+	"marshadiumz": {
+		id: "marshadiumz",
+		name: "Marshadium Z",
+		spritenum: 654,
+		onTakeItem: false,
+		zMove: "Soul-Stealing 7-Star Strike",
+		zMoveFrom: "Spectral Thief",
+		zMoveUser: ["Marshadow", "Lucashadow", "Cinshado", "Lars"],
+		num: 802,
+		gen: 7,
+		desc: "If held by Marshadow with Spectral Thief, it can use Soul-Stealing 7-Star Strike.",
+	},
+	"charcoal": {
+		id: "charcoal",
+		name: "Charcoal",
+		spritenum: 61,
+		itemizeType: 'Fire',
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && move.type === 'Fire') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 249,
+		gen: 2,
+		desc: "Holder's Fire-type attacks have 1.2x power.",
+	},
+	"mysticwater": {
+		id: "mysticwater",
+		name: "Mystic Water",
+		spritenum: 300,
+		itemizeType: 'Water',
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Water') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 243,
+		gen: 2,
+		desc: "Holder's Water-type attacks have 1.2x power.",
+	},
+	"miracleseed": {
+		id: "miracleseed",
+		name: "Miracle Seed",
+		itemizeType: 'Grass',
+		fling: {
+			basePower: 30,
+		},
+		spritenum: 292,
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Grass') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 239,
+		gen: 2,
+		desc: "Holder's Grass-type attacks have 1.2x power.",
+	},
+	"magnet": {
+		id: "magnet",
+		name: "Magnet",
+		itemizeType: 'Electric',
+		spritenum: 273,
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Electric') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 242,
+		gen: 2,
+		desc: "Holder's Electric-type attacks have 1.2x power.",
+	},
+	"silkscarf": {
+		id: "silkscarf",
+		name: "Silk Scarf",
+		itemizeType: 'Normal',
+		spritenum: 444,
+		fling: {
+			basePower: 10,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Normal') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 251,
+		gen: 3,
+		desc: "Holder's Normal-type attacks have 1.2x power.",
+	},
+	"twistedspoon": {
+		id: "twistedspoon",
+		name: "Twisted Spoon",
+		itemizeType: 'Psychic',
+		spritenum: 520,
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Psychic') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 248,
+		gen: 2,
+		desc: "Holder's Psychic-type attacks have 1.2x power.",
+	},
+	"blackglasses": {
+		id: "blackglasses",
+		name: "Black Glasses",
+		itemizeType: 'Dark',
+		spritenum: 35,
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && move.type === 'Dark') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 240,
+		gen: 2,
+		desc: "Holder's Dark-type attacks have 1.2x power.",
+	},
+	"blackbelt": {
+		id: "blackbelt",
+		name: "Black Belt",
+		itemizeType: 'Fighting',
+		spritenum: 32,
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && move.type === 'Fighting') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 241,
+		gen: 2,
+		desc: "Holder's Fighting-type attacks have 1.2x power.",
+	},
+	"poisonbarb": {
+		id: "poisonbarb",
+		name: "Poison Barb",
+		itemizeType: 'Poison',
+		spritenum: 343,
+		fling: {
+			basePower: 70,
+			status: 'psn',
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Poison') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 245,
+		gen: 2,
+		desc: "Holder's Poison-type attacks have 1.2x power.",
+	},
+	"sharpbeak": {
+		id: "sharpbeak",
+		name: "Sharp Beak",
+		itemizeType: 'Flying',
+		spritenum: 436,
+		fling: {
+			basePower: 50,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && move.type === 'Flying') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 244,
+		gen: 2,
+		desc: "Holder's Flying-type attacks have 1.2x power.",
+	},
+	"nevermeltice": {
+		id: "nevermeltice",
+		name: "Never-Melt Ice",
+		spritenum: 305,
+		itemizeType: 'Ice',
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Ice') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 246,
+		gen: 2,
+		desc: "Holder's Ice-type attacks have 1.2x power.",
+	},
+	"softsand": {
+		id: "softsand",
+		name: "Soft Sand",
+		itemizeType: 'Ground',
+		spritenum: 456,
+		fling: {
+			basePower: 10,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Ground') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 237,
+		gen: 2,
+		desc: "Holder's Ground-type attacks have 1.2x power.",
+	},
+	"hardstone": {
+		id: "hardstone",
+		name: "Hard Stone",
+		itemizeType: 'Rock',
+		spritenum: 187,
+		fling: {
+			basePower: 100,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && move.type === 'Rock') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 238,
+		gen: 2,
+		desc: "Holder's Rock-type attacks have 1.2x power.",
+	},
+	"dragonfang": {
+		id: "dragonfang",
+		name: "Dragon Fang",
+		itemizeType: 'Dragon',
+		spritenum: 106,
+		fling: {
+			basePower: 70,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move && move.type === 'Dragon') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 250,
+		gen: 2,
+		desc: "Holder's Dragon-type attacks have 1.2x power.",
+	},
+	"metalcoat": {
+		id: "metalcoat",
+		name: "Metal Coat",
+		itemizeType: 'Steel',
+		spritenum: 286,
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Steel') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 233,
+		gen: 2,
+		desc: "Holder's Steel-type attacks have 1.2x power.",
+	},
+	"silverpowder": {
+		id: "silverpowder",
+		name: "SilverPowder",
+		itemizeType: 'Bug',
+		spritenum: 447,
+		fling: {
+			basePower: 10,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Bug') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 222,
+		gen: 2,
+		desc: "Holder's Bug-type attacks have 1.2x power.",
+	},
+	"spelltag": {
+		id: "spelltag",
+		name: "Spell Tag",
+		itemizeType: 'Ghost',
+		spritenum: 461,
+		fling: {
+			basePower: 30,
+		},
+		onBasePowerPriority: 6,
+		onBasePower: function (basePower, user, target, move) {
+			if (move.type === 'Ghost') {
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		num: 247,
+		gen: 2,
+		desc: "Holder's Ghost-type attacks have 1.2x power.",
+	},
 };
