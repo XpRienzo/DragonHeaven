@@ -489,4 +489,85 @@ exports.BattleAbilities = {
 		rating: 2.5,
 		num: 138,
 	},
+	"angerpoint": {
+		shortDesc: "This Pokemon's Attack is raised by 1 stage after it is damaged by a move.",
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.effectType === 'Move' && effect.id !== 'confused') {
+				this.boost({atk: 1});
+			}
+		},
+		id: "angerpoint",
+		name: "Anger Point",
+		rating: 3,
+		num: 83,
+	},	
+	"infuriation": {
+		shortDesc: "This Pokemon's Special Attack is raised by 1 stage after it is damaged by a move.",
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.effectType === 'Move' && effect.id !== 'confused') {
+				this.boost({spa: 1});
+			}
+		},
+		id: "infuriation",
+		name: "Infuriation",
+	},	
+	"perseverance": {
+		shortDesc: "This Pokemon's Special Defense is raised by 1 stage after it is damaged by a move.",
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.effectType === 'Move' && effect.id !== 'confused') {
+				this.boost({spd: 1});
+			}
+		},
+		id: "perseverance",
+		name: "Perseverance",
+	},	                             
+	"stalwart": {
+		shortDesc: "This Pokemon's Speed is raised by 1 stage after it is damaged by a move.",
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.effectType === 'Move' && effect.id !== 'confused') {
+				this.boost({spe: 1});
+			}
+		},
+		id: "stalwart",
+		name: "Stalwart",
+	},	    
+	"surgesurfer": {
+		shortDesc: "If a Terrain is active, this Pokemon's Speed is doubled.",
+		onModifySpe: function (spe) {
+			if (this.isTerrain('electricterrain'), ('psychicterrain'), ('grassyterrain'), ('mistyterrain')) {
+				return this.chainModify(2);
+			}
+		},
+		id: "surgesurfer",
+		name: "Surge Surfer",
+		rating: 2,
+		num: 207,
+	},
+	"sugarglider": {
+		shortDesc: "If Air Current is active, this Pokemon's Speed is doubled.",
+		onModifySpe: function (spe, pokemon) {
+			if (this.isWeather(['aircurrent'])) {
+				return this.chainModify(2);
+			}
+		},
+		id: "sugarglider",
+		name: "Sugar Glider",
+	},
+	"sharkbait": {
+		desc: "Prevents adjacent opposing Water-type Pokemon from choosing to switch out unless they are immune to trapping.",
+		shortDesc: "Prevents adjacent Water-type foes from choosing to switch.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (pokemon.hasType('Water') && this.isAdjacent(pokemon, this.effectData.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			if ((!pokemon.knownType || pokemon.hasType('Steel')) && this.isAdjacent(pokemon, source)) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		id: "sharkbait",
+		name: "Shark Bait",
+	},
 };
