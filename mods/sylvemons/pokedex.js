@@ -229,7 +229,7 @@ exports.BattlePokedex = {
 	flygon: {
 		inherit: true,
 		types: ["Ground", "Bug"],
-		abilities: {0: "Levitate", 1: "Sand Stream", H: "Tinted LEns"},
+		abilities: {0: "Levitate", 1: "Sand Stream", H: "Tinted Lens"},
 	},
 	octillery: {
 		inherit: true,
