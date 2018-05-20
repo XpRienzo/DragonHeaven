@@ -29,6 +29,7 @@ let BattleItems = {
 "eeviumz": {
 inherit: true,
 zMoveUser: ["Eevee", "Eevee-Eternal"],
+},
 };
 
 exports.BattleItems = BattleItems;
