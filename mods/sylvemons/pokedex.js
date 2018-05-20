@@ -86,7 +86,7 @@ exports.BattlePokedex = {
 	vespiquen: {
 		inherit: true,
 		types: ["Bug", "Poison"],
-		abilities: {0: "Poison Point", 1: "Intimidate", H: "Prankster"},
+		abilities: {0: "Unnerve", 1: "Poison Point", H: "Intimidate"},
 	},
 	lugia: {
 		inherit: true,
@@ -178,4 +178,62 @@ exports.BattlePokedex = {
     color: "Brown",
     eggGroups: ["Field"],
 },
+	solgaleo: {
+		inherit: true,
+		types: ["Steel", "Fire"],
+		abilities: {0: "Full Metal Body", H: "Drought"},
+	},
+	lunala: {
+		inherit: true,
+		types: ["Ghost", "Fairy"],
+		abilities: {0: "Shadow Shield", H: "Shadow Surge"},
+	},
+	necrozma: {
+		inherit: true,
+		types: ["Psychic", "Dark"],
+		abilities: {0: "Prism Armor", H: "Magic Bounce"},
+	},
+	necrozmaduskmane: {
+		inherit: true,
+		types: ["Psychic", "Steel"],
+		abilities: {0: "Prism Armor", H: "Full Metal Body"},
+	},
+	necrozmadawnwings: {
+		inherit: true,
+		types: ["Dark", "Ghost"],
+		abilities: {0: "Prism Armor", H: "Shadow Shield"},
+	},
+	milotic: {
+		inherit: true,
+		types: ["Water", "Fairy"],
+		abilities: {0: "Multiscale", 1: "Competitive", H: "Soul-Heart"},
+	},
+	growlithe: {
+		inherit: true,
+		types: ["Fire", "Normal"],
+	},
+	arcanine: {
+		inherit: true,
+		types: ["Fire", "Normal"],
+	},
+	trapinch: {
+		inherit: true,
+		types: ["Ground", "Bug"],
+		abilities: {0: "Hyper Cutter", 1: "Sand Stream", H: "Arena Trap"},
+	},
+	vibrava: {
+		inherit: true,
+		types: ["Ground", "Bug"],
+		abilities: {0: "Levitate", 1: "Sand Stream", H: "Tinted Lens"},
+	},
+	flygon: {
+		inherit: true,
+		types: ["Ground", "Bug"],
+		abilities: {0: "Levitate", 1: "Sand Stream", H: "Tinted Lens"},
+	},
+	octillery: {
+		inherit: true,
+		types: ["Water", "Fire"],
+		abilities: {0: "Protean", 1: "Regenerator", H: "Mega Launcher"},
+	},
 };
