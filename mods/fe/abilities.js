@@ -9278,5 +9278,33 @@ exports.BattleAbilities = {
 		id: "goddesstrace",
 		name: "Goddess Trace",
 	},
-	
+		"sensei": {
+	    shortDesc: "This Pokemon's punching moves have the same base power as its most powerful move.",
+	    onBasePowerPriority: 8,
+	    onBasePower: function(basePower, attacker, defender, move) {
+	        if (move.flags['punch']) {
+	            this.debug('Iron Fist boost');
+	            let warnMoves = [];
+	            let warnBp = move.basePower;
+	            for (const moveSlot of target.moveSlots) {
+	                let moves = this.getMove(moveSlot.move);
+	                let bp = moves.basePower;
+	                if (moves.ohko) bp = 160;
+	                if (moves.id === 'counter' || moves.id === 'metalburst' || moves.id === 'mirrorcoat') bp = 120;
+	                if (!bp && moves.category !== 'Status') bp = 80;
+	                if (bp > warnBp) {
+	                    warnMoves = [
+	                        [moves, target]
+	                    ];
+	                    warnBp = bp;
+	                } else if (bp === warnBp) {
+	                    warnMoves.push([moves, target]);
+	                }
+	            }
+	            return this.chainModify(warnBp / move.basePower);
+	        }
+	    },
+	    id: "sensei",
+	    name: "Sensei",
+	},
 };
