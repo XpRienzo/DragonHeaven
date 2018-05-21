@@ -9134,7 +9134,7 @@ exports.BattleAbilities = {
 		id: "compassionatesoul",
 		name: "Compassionate Soul",
 	},
-	"movestat": {
+	"movestat": { // TODO: Make the stats work properly
 		shortDesc: "On switchin, this Pokémon makes its base stats equal to that of the foes' move of the highest power.",
 		onStart: function (pokemon) {
 			/**@type {(Move|Pokemon)[][]} */
@@ -9156,14 +9156,12 @@ exports.BattleAbilities = {
 					}
 				}
 			}
-			if (!warnMoves.length) return;
-			const [warnMoveName, warnTarget] = this.sample(warnMoves);
-			pokemon.baseStats.hp = warnBp;
-			pokemon.baseStats.atk = warnBp;
-			pokemon.baseStats.def = warnBp;
-			pokemon.baseStats.spa = warnBp;
-			pokemon.baseStats.spd = warnBp;
-			pokemon.baseStats.spe = warnBp;
+			pokemon.stats.hp = warnBp;
+			pokemon.stats.atk = warnBp;
+			pokemon.stats.def = warnBp;
+			pokemon.stats.spa = warnBp;
+			pokemon.stats.spd = warnBp;
+			pokemon.stats.spe = warnBp;
 		},
 		id: "movestat",
 		name: "Move~Stat",
