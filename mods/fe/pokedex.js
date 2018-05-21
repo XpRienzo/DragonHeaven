@@ -10320,8 +10320,27 @@ darkchomp: {
         abilities: {
             0: "Appropriation"
         },
+		 otherFormes: ["mimukyubusted"],
     },
-
+	mimukyubusted: {
+        num: 7500265,
+        species: "Mimukyu-Buested",
+		baseSpecies: "Mimukyu",
+		forme: "Busted",
+		formeLetter: "B",
+        types: ["Dark", "Fairy"],
+        baseStats: {
+            hp: 90,
+            atk: 107,
+            def: 87,
+            spa: 67,
+            spd: 112,
+            spe: 83
+        },
+        abilities: {
+            0: "Appropriation"
+        },
+    },
     axatree: {
         num: 7500266,
         species: "Axatree",
