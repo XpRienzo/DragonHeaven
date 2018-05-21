@@ -4532,7 +4532,7 @@ exports.BattleAbilities = {
 		},
 		effect: {
 			duration: 1,
-			onAfterHit: function (pokemon) {
+			onUpdate: function (pokemon) {
 				if (!pokemon.item) {
 				this.add('-start', pokemon, 'ability: Titanic Strength');
 				this.boost({atk: 12}, pokemon);
