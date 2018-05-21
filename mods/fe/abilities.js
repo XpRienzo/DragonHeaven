@@ -9071,4 +9071,18 @@ exports.BattleAbilities = {
 		id: "summonspirits",
 		name: "Summon Spirits",
 	},
+	"rockysurge": {
+		shortDesc: "On switch-in, this Pokemon summons Rocky Terrain.",
+		onStart: function (source) {
+			this.setTerrain('rockysurge');
+		},
+		id: "rockysurge",
+		name: "Rocky Surge",
+	},
+	"spiralpower": { // TODO: Check if this works
+		shortDesc: "Changes secondary type and doubles Speed while holding a plate or Z-Crystal.",
+		// RKS System's type-changing itself is implemented in statuses.js
+		id: "spiralpower",
+		name: "Spiral Power",
+	},
 };
