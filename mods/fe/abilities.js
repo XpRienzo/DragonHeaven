@@ -9159,7 +9159,7 @@ exports.BattleAbilities = {
 		id: "movestat",
 		name: "Move~Stat",
 	},
-	"revitalize": {
+	/*"revitalize": {
 		shortDesc: "Upon switching out, this Pokemon regains 1/3 of its max HP and 1/3 of the PP of all its moves (rounded down).",
 		onSwitchOut: function (pokemon) {
 			pokemon.heal(pokemon.maxhp / 3);
@@ -9170,7 +9170,7 @@ exports.BattleAbilities = {
 		id: "revitalize",
 		name: "Revitalize",
 	},
-	/*"soakingaura": {
+	"soakingaura": {
 		shortDesc: "Moves of this Pokémon that have a type which is immune to its attacks (For example, Electric moves) as well as Fairy moves have 1.33x power.",
 		onBasePowerPriority: 8,
 		onBasePower: function (attacker, defender, move) {
