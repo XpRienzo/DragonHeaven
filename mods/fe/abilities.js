@@ -4533,7 +4533,7 @@ exports.BattleAbilities = {
 		effect: {
 			duration: 1,
 			onStart: function (pokemon) {
-				this.boost({atk: 12});
+				this.boost({atk: 12}, pokemon);
 			},
 		},
 		id: "titanicstrength",
@@ -9160,7 +9160,7 @@ exports.BattleAbilities = {
 		id: "movestat",
 		name: "Move~Stat",
 	},
-	/*"revitalize": {
+	"revitalize": {
 		shortDesc: "Upon switching out, this Pokemon regains 1/3 of its max HP and 1/3 of the PP of all its moves (rounded down).",
 		onSwitchOut: function (pokemon) {
 			pokemon.heal(pokemon.maxhp / 3);
@@ -9245,6 +9245,6 @@ exports.BattleAbilities = {
 		},
 		id: "goddesstrace",
 		name: "Goddess Trace",
-	},*/
+	},
 	
 };
