@@ -1622,7 +1622,7 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Beautiful",
 	},
-	"Powder Snow": {
+	"powdersnow": {
 		num: 410,
 		accuracy: 100,
 		basePower: 40,
