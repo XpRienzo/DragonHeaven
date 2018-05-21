@@ -9182,7 +9182,7 @@ exports.BattleAbilities = {
 		id: "soakingaura",
 		name: "Soaking Aura",
 	},
-	"pokemon": {
+	"cloudboost": {
 		shortDesc: "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Cloud Boost');
@@ -9213,7 +9213,7 @@ exports.BattleAbilities = {
 		id: "sporespreading",
 		name: "Spore Spreading",
 	},
-	"goddesstrace": {
+	/*"goddesstrace": {
 		shortDesc: "Upon being sent out, the Pokemon copies the opposing Pokemon's ability and halves the PP of their moves.",
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Goddess Trace');
@@ -9237,13 +9237,13 @@ exports.BattleAbilities = {
 					possibleTargets.splice(rand, 1);
 					continue;
 				}
-				this.add('-ability', pokemon, ability, '[from] ability: Trace', '[of] ' + target);
+				this.add('-ability', pokemon, ability, '[from] ability: Goddess Trace', '[of] ' + target);
 				pokemon.setAbility(ability);
 				return;
 			}
 		},
 		id: "goddesstrace",
 		name: "Goddess Trace",
-	},
+	},*/
 	
 };
