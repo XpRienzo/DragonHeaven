@@ -9081,8 +9081,86 @@ exports.BattleAbilities = {
 	},
 	"spiralpower": { // TODO: Check if this works
 		shortDesc: "Changes secondary type and doubles Speed while holding a plate or Z-Crystal.",
-		// RKS System's type-changing itself is implemented in statuses.js
+		// Implemented in statuses.js
 		id: "spiralpower",
 		name: "Spiral Power",
+	},
+	"compassionatesoul": { 
+		desc: "This Pokemon's Attack is raised by 1 stage if it attacks and knocks out another Pokemon.",
+		shortDesc: "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({spa: 1}, source);
+				source.cureStatus();
+			}
+		},
+		onSwitchOut: function (pokemon) {
+			if (!pokemon.status) {
+				return;
+			}
+			else {
+				pokemon.cureStatus();
+				pokemon.addVolatile('compassionatesoul');
+			}
+		},
+		effect: {
+			duration: 2,
+			onStart: function (side, source) {
+				this.debug('Compassionate Soul started on ' + side.name);
+				this.effectData.positions = [];
+				// @ts-ignore
+				for (const i of side.active.keys()) {
+					this.effectData.positions[i] = false;
+				}
+				this.effectData.positions[source.position] = true;
+			},
+			onRestart: function (side, source) {
+				this.effectData.positions[source.position] = true;
+			},
+			onSwitchInPriority: 1,
+			onSwitchIn: function (target) {
+				const positions = /**@type {boolean[]} */ (this.effectData.positions);
+				if (target.position !== this.effectData.sourcePosition) {
+					return;
+				}
+				if (!target.fainted) {
+					target.boost({spa: 1});
+				}
+				if (!positions.some(affected => affected === true)) {
+					target.side.removeSideCondition('compassionatesoul');
+				}
+			},
+		},
+		id: "compassionatesoul",
+		name: "Compassionate Soul",
+	},
+	"movestat": {
+		shortDesc: "On switchin, this Pokémon makes its base stats equal to that of the foes' move of the highest power.",
+		onStart: function (pokemon) {
+			/**@type {(Move|Pokemon)[][]} */
+			let warnMoves = [];
+			let warnBp = 1;
+			for (const target of pokemon.side.foe.active) {
+				if (target.fainted) continue;
+				for (const moveSlot of target.moveSlots) {
+					let move = this.getMove(moveSlot.move);
+					let bp = move.basePower;
+					if (move.ohko) bp = 160;
+					if (move.id === 'counter' || move.id === 'metalburst' || move.id === 'mirrorcoat') bp = 120;
+					if (!bp && move.category !== 'Status') bp = 80;
+					if (bp > warnBp) {
+						warnMoves = [[move, target]];
+						warnBp = bp;
+					} else if (bp === warnBp) {
+						warnMoves.push([move, target]);
+					}
+				}
+			}
+			if (!warnMoves.length) return;
+			const [warnMoveName, warnTarget] = this.sample(warnMoves);
+			pokemon.baseStats.atk = warnBp;
+		},
+		id: "movestat",
+		name: "Move~Stat",
 	},
 };
