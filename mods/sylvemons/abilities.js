@@ -570,4 +570,15 @@ exports.BattleAbilities = {
 		id: "sharkbait",
 		name: "Shark Bait",
 	},
+"solecaliber": {
+		shortDesc: "This Pokemon's kick-based attacks have 1.2x power.",
+		onBasePowerPriority: 8,
+		onBasePower: function(basePower, attacker, defender, move) {
+			if (move.name === 'Jump Kick' || move.name === 'High Jump Kick' || move.name === 'Mega Kick' || move.name === 'Double Kick' || move.name === 'Trop Kick' || move.name === 'Blaze Kick' || move.name === 'Low Kick' || move.name === 'Low Sweep' || move.name === 'Rolling Kick' || move.name === 'Triple Kick' || move.name === 'Stomp' || move.name === 'High Horsepower') {
+				return this.chainModify(1.2);
+			}
+		},
+		id: "solecaliber",
+		name: "Sole Caliber",
+	},
 };
