@@ -114,6 +114,29 @@ shadowdance: {
 			if (typeof accuracy !== 'number' && pokemon.item.name.includes("Memory")) return;
 			return accuracy * 1.5;
 		},
+	omneus: {
+		name: 'Omneus',
+		id: 'omneus',
+		num: 493,
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+			let type = 'Normal';
+			if (pokemon.ability === 'multitype') {
+				// @ts-ignore
+				type = pokemon.getItem().onPlate;
+				// @ts-ignore
+				if (!type || type === true) {
+					type = 'Normal';
+				}
+			}
+			pokemon.setType(type, true);
+		},
+	},
+	onModifySpe: function (spe, pokemon) {
+			if (pokemon.item.name.includes("Plate") || pokemon.item.zMove) {
+				return this.chainModify(2);
+			}
+		},
 };
 
 exports.BattleStatuses = BattleStatuses;
