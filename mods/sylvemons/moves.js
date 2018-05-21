@@ -671,6 +671,7 @@ exports.BattleMovedex = {
 		onHit: function(pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
+			}
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
