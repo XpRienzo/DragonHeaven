@@ -9170,7 +9170,7 @@ exports.BattleAbilities = {
 		id: "revitalize",
 		name: "Revitalize",
 	},
-	"soakingaura": {
+	/*"soakingaura": {
 		shortDesc: "Moves of this Pokémon that have a type which is immune to its attacks (For example, Electric moves) as well as Fairy moves have 1.33x power.",
 		onBasePowerPriority: 8,
 		onBasePower: function (attacker, defender, move) {
@@ -9213,7 +9213,7 @@ exports.BattleAbilities = {
 		id: "sporespreading",
 		name: "Spore Spreading",
 	},
-	/*"goddesstrace": {
+	"goddesstrace": {
 		shortDesc: "Upon being sent out, the Pokemon copies the opposing Pokemon's ability and halves the PP of their moves.",
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Goddess Trace');
