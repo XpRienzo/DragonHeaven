@@ -9158,7 +9158,12 @@ exports.BattleAbilities = {
 			}
 			if (!warnMoves.length) return;
 			const [warnMoveName, warnTarget] = this.sample(warnMoves);
-			pokemon.atk = warnBp;
+			pokemon.baseStats.hp = warnBp;
+			pokemon.baseStats.atk = warnBp;
+			pokemon.baseStats.def = warnBp;
+			pokemon.baseStats.spa = warnBp;
+			pokemon.baseStats.spd = warnBp;
+			pokemon.baseStats.spe = warnBp;
 		},
 		id: "movestat",
 		name: "Move~Stat",
