@@ -766,7 +766,6 @@ exports.BattleMovedex = {
 		pp: 48,
 		priority: 1,
 		flags: {
-			contact: 1,
 			protect: 1,
 			mirror: 1,
 		},
