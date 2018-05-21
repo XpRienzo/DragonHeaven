@@ -4520,27 +4520,20 @@ exports.BattleAbilities = {
 	},
 	"titanicstrength": {
 		shortDesc: "If this Pokemon (not its substitute) takes a critical hit, its Attack is raised 12 stages.",
-		onTakeItem: function(item, pokemon, source) {
-			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp || pokemon.item === 'stickybarb') return;
-			if (!this.activeMove) throw new Error("Battle.activeMove is null");
-			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
-				this.add('-activate', pokemon, 'ability: Sticky Hold');
-				pokemon.setBoost({
-					atk: 6
-				});
-				this.add('-setboost', pokemon, 'atk', 12, '[from] ability: Titanic Strength');
-			}
+		onAfterUseItem: function (item, pokemon) {
+			if (pokemon !== this.effectData.target) return;
+			pokemon.addVolatile('titanicstrength');
 		},
-		onAfterUseItem: function(item, pokemon, source) {
-			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp || pokemon.item === 'stickybarb') return;
-			if (!this.activeMove) throw new Error("Battle.activeMove is null");
-			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
-				this.add('-activate', pokemon, 'ability: Sticky Hold');
-				pokemon.setBoost({
-					atk: 6
-				});
-				this.add('-setboost', pokemon, 'atk', 12, '[from] ability: Titanic Strength');
-			}
+		onTakeItem: function (item, pokemon) {
+			pokemon.addVolatile('titanicstrength');
+		},
+		onEnd: function (pokemon) {
+			pokemon.removeVolatile('titanicstrength');
+		},
+		effect: {
+			duration: 1,
+			onStart: function (pokemon) {
+				this.boost({atk: 12});
 		},
 		id: "titanicstrength",
 		name: "Titanic Strength",
