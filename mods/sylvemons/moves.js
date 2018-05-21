@@ -1665,6 +1665,8 @@ exports.BattleMovedex = {
 			case 'inverseroom':
 			case 'magicroom':
 				move.basePower *= 1.5;
+			}
+		},
 		secondary: false,
 		onTryHit: function(target, source) {
 			this.removePseudoWeather('trickroom');
