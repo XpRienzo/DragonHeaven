@@ -4980,7 +4980,7 @@ exports.BattleAbilities = {
                 if (!target || !this.isAdjacent(target, pokemon)) continue;
                 if (!activated) {
                    if(pokemon.ability === "subdue") {
- 							this.add('-ability', pokemon, 'Subdue', 'boost');
+ 								this.add('-ability', pokemon, 'Subdue', 'boost');
 							}
                     activated = true;
                 }
@@ -6037,7 +6037,7 @@ exports.BattleAbilities = {
 		shortDesc: "Steel-types lose 25% of their HP when switching out.",
 		onFoeSwitchOut: function (pokemon) {
 			if (pokemon.hasType('Steel')) {
-			pokemon.damage(pokemon.maxhp / 4);
+				pokemon.damage(pokemon.maxhp / 4);
 			}
 		},
 		id: "laserbeam",
@@ -9014,10 +9014,17 @@ exports.BattleAbilities = {
 		onStart: function (pokemon, source) {
 			for (const target of pokemon.side.foe.active) {
 				if (target.fainted) continue;
+			   let warnMoves = [];
 				for (const moveSlot of target.moveSlots) {
 					this.add('-ability', pokemon, 'Dance Poster');
 					let moves = this.getMove(moveSlot.move);
-					this.useMove(moves, pokemon);
+					warnMoves.push(moves); 
+				}
+				//The following should basically get a randomzied copy of the opponent's moves before using them.  
+				let useMoves = []; 
+				useMoves = this.sample(warnMoves, 4); 
+				for(const move of useMoves){
+					this.useMove(move, pokemon);
 				}
 			}
 		},
@@ -9072,7 +9079,7 @@ exports.BattleAbilities = {
 	"rockysurge": {
 		shortDesc: "On switch-in, this Pokemon summons Rocky Terrain.",
 		onStart: function (source) {
-			this.setTerrain('rockysurge');
+			this.setTerrain('rockyterrain');
 		},
 		id: "rockysurge",
 		name: "Rocky Surge",
@@ -9147,19 +9154,21 @@ exports.BattleAbilities = {
 					if (move.id === 'counter' || move.id === 'metalburst' || move.id === 'mirrorcoat') bp = 120;
 					if (!bp && move.category !== 'Status') bp = 80;
 					if (bp > warnBp) {
-						warnMoves = [[move, target]];
+						warnMoves = [[move]];
 						warnBp = bp;
 					} else if (bp === warnBp) {
-						warnMoves.push([move, target]);
+						warnMoves.push([move]);
 					}
 				}
 			}
-			pokemon.baseStats.hp = warnBp;
-			pokemon.baseStats.atk = warnBp;
-			pokemon.baseStats.def = warnBp;
-			pokemon.baseStats.spa = warnBp;
-			pokemon.baseStats.spd = warnBp;
-			pokemon.baseStats.spe = warnBp;
+			if (warnMoves.length > 0){
+				pokemon.baseStats.hp = warnBp;
+				pokemon.baseStats.atk = warnBp;
+				pokemon.baseStats.def = warnBp;
+				pokemon.baseStats.spa = warnBp;
+				pokemon.baseStats.spd = warnBp;
+				pokemon.baseStats.spe = warnBp;
+			}
 		},
 		id: "movestat",
 		name: "Move~Stat",
@@ -9169,9 +9178,12 @@ exports.BattleAbilities = {
 		onSwitchOut: function (pokemon) {
 			pokemon.heal(pokemon.maxhp / 3);
 			for (const moveSlot of pokemon.moveSlots) {
-					moveSlot.pp = moveSlot.pp + moveSlot.pp / 3;
+						moveSlot.pp = moveSlot.pp + moveSlot.maxpp / 3;
+						if (moveSlot.pp > moveSlot.maxpp){
+							moveSlot.pp = moveSlot.maxpp;
+						}
 				}
-		},
+			},
 		id: "revitalize",
 		name: "Revitalize",
 	},
@@ -9188,22 +9200,38 @@ exports.BattleAbilities = {
 		name: "Soaking Aura",
 	},
 	"cloudboost": {
-		shortDesc: "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
+		shortDesc: "This Pokemon's highest stat is raised by 1 if it attacks and KOes another Pokemon or it's under weather. Blocks the effects of weather.",
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Cloud Boost');
 		},
 		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
-				this.boost({atk: 1}, source);
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
 			}
 		},
 		onWeather: function (pokemon) {
-		pokemon.addVolatile('cloudboost');
+			pokemon.addVolatile('cloudboost');
 		},
 		effect: {
 			duration: 1,
 			onStart: function (pokemon) {
-				this.boost({atk: 1}, pokemon);
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in pokemon.stats) {
+					if (pokemon.stats[i] > bestStat) {
+						stat = i;
+						bestStat = pokemon.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, pokemon);
 			}
 		},
 		suppressWeather: true,
@@ -9213,7 +9241,7 @@ exports.BattleAbilities = {
 	"sporespreading": {
 		shortDesc: "Healing Moves and moves with a chance to Poison, Sleep, or Paralyze the opponent have +1 priority.",
 		onModifyPriority: function (priority, pokemon, target, move) {
-			if (move && move.flags['heal'] || move.secondary.status === 'psn' || move.secondary.status === 'par' || move.secondary.status === 'slp' || move.status === 'psn' || move.status === 'slp' || move.status === 'par') return priority + 1;
+			if (move && move.flags['heal'] || (move.secondary && move.secondary.status && (move.secondary.status === 'psn' || move.secondary.status === 'par' || move.secondary.status === 'slp')) || (move.status && (move.status === 'psn' || move.status === 'slp' || move.status === 'par'))) return priority + 1;
 		},
 		id: "sporespreading",
 		name: "Spore Spreading",
