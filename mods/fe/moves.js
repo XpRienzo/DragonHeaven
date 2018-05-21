@@ -6349,23 +6349,22 @@ exports.BattleMovedex = {
 					return this.chainModify(1.5);
 				}
 			},
-			onStart: function (battle, source, effect) {
+			onStart: function (battle, source, pokemon, effect) {
+				for (const target of pokemon.side.foe.active) {
 				if (effect && effect.effectType === 'Ability') {
 					this.add('-fieldstart', 'move: Beautiful Terrain', '[from] ability: ' + effect, '[of] ' + source);
 				} else {
 					this.add('-fieldstart', 'move: Beautiful Terrain');
+				}
+				if (!target.hasTypes('Fire')) {
+					this.boost({atk: -2}, target, pokemon);
+					}
 				}
 			},
 			onResidualOrder: 5,
 			onResidualSubOrder: 3,
 			onResidual: function () {
 				this.eachEvent('Terrain');
-			},
-			onTerrain: function (pokemon) {
-				if (pokemon.isGrounded() && !pokemon.isSemiInvulnerable()) {
-					this.debug('Pokemon is grounded, burning through Beautiful Terrain.');
-			                pokemon.trySetStatus('brn', pokemon);
-				}
 			},
 			onEnd: function () {
 				this.eachEvent('Terrain');
