@@ -9156,14 +9156,101 @@ exports.BattleAbilities = {
 					}
 				}
 			}
-			pokemon.stats.hp = warnBp;
-			pokemon.stats.atk = warnBp;
-			pokemon.stats.def = warnBp;
-			pokemon.stats.spa = warnBp;
-			pokemon.stats.spd = warnBp;
-			pokemon.stats.spe = warnBp;
+			pokemon.baseStats.hp = warnBp;
+			pokemon.baseStats.atk = warnBp;
+			pokemon.baseStats.def = warnBp;
+			pokemon.baseStats.spa = warnBp;
+			pokemon.baseStats.spd = warnBp;
+			pokemon.baseStats.spe = warnBp;
 		},
 		id: "movestat",
 		name: "Move~Stat",
 	},
+	"revitalize": {
+		shortDesc: "Upon switching out, this Pokemon regains 1/3 of its max HP and 1/3 of the PP of all its moves (rounded down).",
+		onSwitchOut: function (pokemon) {
+			pokemon.heal(pokemon.maxhp / 3);
+			for (const moveSlot of pokemon.moveSlots) {
+					moveSlot.pp = moveSlot.pp + moveSlot.pp / 3;
+				}
+		},
+		id: "revitalize",
+		name: "Revitalize",
+	},
+	"soakingaura": {
+		shortDesc: "Moves of this Pokémon that have a type which is immune to its attacks (For example, Electric moves) as well as Fairy moves have 1.33x power.",
+		onBasePowerPriority: 8,
+		onBasePower: function (attacker, defender, move) {
+			if (move.type === 'Psychic' || move.type === 'Dragon' || move.type === 'Electric' || move.type === 'Fighting' || move.type === 'Ghost' || move.type === 'Normal' || move.type === 'Poison' || move.type === 'Ground' || move.type === 'Fairy') {
+				this.debug('Technician boost');
+				return this.chainModify(1.33);
+			}
+		},
+		id: "soakingaura",
+		name: "Soaking Aura",
+	},
+	"pokemon": {
+		shortDesc: "This Pokemon's Attack is raised by 1 stage if it attacks and KOes another Pokemon.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Cloud Boost');
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({atk: 1}, source);
+			}
+		},
+		onWeather: function (pokemon) {
+		pokemon.addVolatile('cloudboost');
+		},
+		effect: {
+			duration: 1,
+			onStart: function (pokemon) {
+				this.boost({atk: 1}, pokemon);
+			}
+		},
+		suppressWeather: true,
+		id: "pokemon",
+		name: "Cloud Boost",
+	},
+	"sporespreading": {
+		shortDesc: "Healing Moves and moves with a chance to Poison, Sleep, or Paralyze the opponent have +1 priority.",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.flags['heal'] || move.secondary.status === 'psn' || move.secondary.status === 'par' || move.secondary.status === 'slp' || move.status === 'psn' || move.status === 'slp' || move.status === 'par') return priority + 1;
+		},
+		id: "sporespreading",
+		name: "Spore Spreading",
+	},
+	"goddesstrace": {
+		shortDesc: "Upon being sent out, the Pokemon copies the opposing Pokemon's ability and halves the PP of their moves.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Goddess Trace');
+			for (const target of pokemon.side.foe.active) {
+				if (target.fainted) continue;
+				for (const moveSlot of target.moveSlots) {
+					moveSlot.pp = (moveSlot.pp+1)/2;
+				}
+			}
+		},
+		onUpdate: function (pokemon) {
+			if (!pokemon.isStarted) return;
+			let possibleTargets = pokemon.side.foe.active.filter(foeActive => foeActive && this.isAdjacent(pokemon, foeActive));
+			while (possibleTargets.length) {
+				let rand = 0;
+				if (possibleTargets.length > 1) rand = this.random(possibleTargets.length);
+				let target = possibleTargets[rand];
+				let ability = this.getAbility(target.ability);
+				let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'zenmode'];
+				if (bannedAbilities.includes(target.ability)) {
+					possibleTargets.splice(rand, 1);
+					continue;
+				}
+				this.add('-ability', pokemon, ability, '[from] ability: Trace', '[of] ' + target);
+				pokemon.setAbility(ability);
+				return;
+			}
+		},
+		id: "goddesstrace",
+		name: "Goddess Trace",
+	},
+	
 };
