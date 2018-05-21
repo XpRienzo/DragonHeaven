@@ -657,8 +657,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Heals the user by 50% (66% in rain, 25% in sun)",
-		shortDesc: "Heals the user by 50% (66% in rain, 25% in sun)",
+		desc: "Heals the user by 50% (66% in rain)",
+		shortDesc: "Heals the user by 50% (66% in rain)",
 		id: "rinseoff",
 		isViable: true,
 		name: "Rinse Off",
@@ -671,11 +671,6 @@ exports.BattleMovedex = {
 		onHit: function(pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
-			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
-				return this.heal(this.modify(pokemon.maxhp, 0.25));
-			} else {
-				return this.heal(this.modify(pokemon.maxhp, 0.5));
-			}
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
@@ -762,8 +757,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 40,
 		category: "Special",
-		desc: "Has +1 Priority and can thaw the user. ",
-		shortDesc: "Has +1 Priority and can thaw the user. ",
+		desc: "Has +1 Priority. ",
+		shortDesc: "Has +1 Priority. ",
 		id: "jetstream",
 		isViable: true,
 		name: "Jetstream",
@@ -773,7 +768,6 @@ exports.BattleMovedex = {
 			contact: 1,
 			protect: 1,
 			mirror: 1,
-			defrost: 1
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
@@ -1648,5 +1642,42 @@ exports.BattleMovedex = {
 		type: "Ice",
 		zMovePower: 100,
 		contestType: "Beautiful",
+	},
+	"pragmastrike": {
+		accuracy: 100,
+		basePower: 75,
+		category: "Physical",
+		desc: "Has a 100% chance to lower the target's Speed by 1 stage.",
+		shortDesc: "If a Room is active, 1.5x power; destroys the Room.",
+		id: "pragmastrike",
+		name: "Pragma-Strike",
+		pp: 10,
+		priority: 0,
+		flags: {
+			protect: 1,
+			mirror: 1,
+		},
+		onModifyMove: function (move) {
+			switch (this.effectivePseudoWeather()) {
+			case 'trickroom':
+			case 'wonderroom':
+			case 'inverseroom':
+			case 'magicroom':
+				move.basePower *= 1.5;
+		secondary: false,
+		onTryHit: function(target, source) {
+			this.removePseudoWeather('trickroom');
+			this.removePseudoWeather('magicroom');
+			this.removePseudoWeather('wonderroom');
+			//	this.removePseudoWeather('inverseroom');
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Power Trip", target);
+		},
+		target: "normal",
+		type: "Dark",
+		zMovePower: 140,
+		contestType: "Tough",
 	},
 };
