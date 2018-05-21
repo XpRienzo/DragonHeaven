@@ -1,6 +1,57 @@
 'use strict';
 
 exports.BattleMovedex = {
+	"rockyterrain": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "5 turns. Grounded: +Electric power, non Rock-types lose 1/16 HP on contact.",
+		shortDesc: "5 turns. Grounded: +Electric power, non Rock-types lose 1/16 HP on contact.",
+		id: "rockyterrain",
+		name: "Rocky Terrain",
+		pp: 10,
+		priority: 0,
+		flags: {nonsky: 1},
+		terrain: 'rockyterrain',
+		effect: {
+			duration: 5,
+			durationCallback: function (source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onBasePower: function (basePower, attacker, defender, move) {
+				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					this.debug('electric terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onAfterDamageOrder: 1,
+			onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move && move.flags['contact'] && !source.hasType('Rock')) {
+				this.damage(source.maxhp / 8, source, target);
+			}
+		},
+			onStart: function (battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Rocky Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Rocky Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd: function () {
+				this.add('-fieldend', 'move: Rocky Terrain');
+			},
+		},
+		secondary: false,
+		target: "all",
+		type: "Rock",
+		zMoveBoost: {spe: 1},
+		contestType: "Clever",
+	},
 	"teraarmor": {
 		accuracy: 100,
 		basePower: 0,
