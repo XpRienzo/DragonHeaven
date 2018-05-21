@@ -378,7 +378,7 @@ exports.BattleMovedex = {
 			this.removePseudoWeather('trickroom');
 			this.removePseudoWeather('magicroom');
 			this.removePseudoWeather('wonderroom');
-			//	this.removePseudoWeather('inverseroom');
+			this.removePseudoWeather('inverseroom');
 		},
 		secondary: false,
 		target: "normal",
@@ -404,7 +404,7 @@ exports.BattleMovedex = {
 			this.removePseudoWeather('trickroom');
 			this.removePseudoWeather('magicroom');
 			this.removePseudoWeather('wonderroom');
-			//	this.removePseudoWeather('inverseroom');
+			this.removePseudoWeather('inverseroom');
 		},
 		onHit: function() {
 			this.clearTerrain();
@@ -434,7 +434,7 @@ exports.BattleMovedex = {
 			this.removePseudoWeather('trickroom');
 			this.removePseudoWeather('magicroom');
 			this.removePseudoWeather('wonderroom');
-			//	this.removePseudoWeather('inverseroom');
+			this.removePseudoWeather('inverseroom');
 			this.add('-clearallboost');
 			for (let i = 0; i < this.sides.length; i++) {
 				for (let j = 0; j < this.sides[i].active.length; j++) {
@@ -474,7 +474,7 @@ exports.BattleMovedex = {
 			this.removePseudoWeather('trickroom');
 			this.removePseudoWeather('magicroom');
 			this.removePseudoWeather('wonderroom');
-			//	this.removePseudoWeather('inverseroom');
+			this.removePseudoWeather('inverseroom');
 		},
 		target: "allAdjacent",
 		type: "Ground",
@@ -1672,7 +1672,7 @@ exports.BattleMovedex = {
 			this.removePseudoWeather('trickroom');
 			this.removePseudoWeather('magicroom');
 			this.removePseudoWeather('wonderroom');
-			//	this.removePseudoWeather('inverseroom');
+			this.removePseudoWeather('inverseroom');
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
