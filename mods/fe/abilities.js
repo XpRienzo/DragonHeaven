@@ -4534,7 +4534,7 @@ exports.BattleAbilities = {
 			duration: 1,
 			onUpdate: function (pokemon) {
 				if (!pokemon.item) {
-				this.add('-start', pokemon, 'ability: Titanic Strength');
+				this.add('-start', pokemon, 'ability: Titanic Strength', '[silent]');
 				this.boost({atk: 12}, pokemon);
 				}
 			},
