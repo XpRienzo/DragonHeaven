@@ -4534,6 +4534,7 @@ exports.BattleAbilities = {
 			duration: 1,
 			onStart: function (pokemon) {
 				this.boost({atk: 12});
+			},
 		},
 		id: "titanicstrength",
 		name: "Titanic Strength",
