@@ -9543,5 +9543,111 @@ exports.BattleAbilities = {
 		id: "voltfield",
 		name: "Volt Field",
 	},
+	"hiddenadvantage": {
+		shortDesc: "This Pokemon is immune to types of its moves.",
+		onTryHit: function (target, source, move) {
+				for (const moveSlot of target.moveSlots) {
+					let hiddenmove = this.getMove(moveSlot.move);
+					if (target !== source && move.type === hiddenmove.type) {
+						this.add('-immune', target, '[msg]', '[from] ability: Hidden Advantage');
+						return null;
+				}
+			}
+		},
+		id: "hiddenadvantage",
+		name: "Hidden Advantage",
+	},
+	"galelevitation": {
+		shortDesc: "This Pokémon is not grounded and can't be hit with Ground or Flying-Type moves. Attempting to use one of those moves on this Pokémon gives this Pokémon +1 priority to all its attacks untill it switches out.",
+		onTryHit: function(target, source, move) {
+			if (target !== source && move.type === 'Ground' || move.type === 'Flying') {
+				this.add('-immune', target, '[msg]', '[from] ability: Gale Levitation');
+				target.addVolatile('galelevitation');
+				return null;
+			}
+		},
+		effect: {
+			onModifyPriority: function (priority, pokemon, target, move) {
+			return priority + 1;
+		},
+		},
+		id: "galelevitation",
+		name: "Gale Levitation",
+	},
+	"frictioncharge": {
+		shortDesc: "When hit by an Electric-type move or contact move, increases the power of own contact moves by 1.5x (similar to what Flash Fire does with Fire moves). Grants immunity to Electric-type moves.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Fire') {
+				move.accuracy = true;
+				if (!target.addVolatile('frictioncharge')) {
+					this.add('-immune', target, '[msg]', '[from] ability: Friction Charge');
+				}
+				return null;
+			}
+		},
+		onEnd: function (pokemon) {
+			pokemon.removeVolatile('frictioncharge');
+		},
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.flags['contact']) {
+				this.add('-ability', target, 'Friction Charge');
+				target.addVolatile('frictioncharge');
+			}
+		},
+		effect: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart: function (target) {
+				this.add('-start', target, 'ability: Friction Charge');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk: function (atk, attacker, defender, move) {
+				if (move.type === 'Electric') {
+					this.debug('Friction Charge boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA: function (atk, attacker, defender, move) {
+				if (move.type === 'Electric') {
+					this.debug('Friction Charge boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onEnd: function (target) {
+				this.add('-end', target, 'ability: Friction Charge', '[silent]');
+			},
+		},
+		id: "frictioncharge",
+		name: "Friction Charge",
+	},
+	"tommysroom": {
+		shortDesc: "This Pokémon ignores other Pokémon's stat stages when attacking or being attacked. Takes half damage from Pokémon with stat changes and deals double damage to them.",
+		id: "tommysroom",
+		name: "Tommy's Room",
+		onAnyModifyBoost: function (boosts, target) {
+			let source = this.effectData.target;
+			if (source === target) return;
+			if (source === this.activePokemon && target === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (target === this.activePokemon && source === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		onSourceModifyDamage: function (damage, source, target, boosts) {
+			if (target.boosts > 0) {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifyDamage: function (damage, source, target, boosts) {
+			if (target.boosts > 0) {
+				return this.chainModify(2);
+			}
+		},
+	},
 	
 };
