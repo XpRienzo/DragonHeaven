@@ -9033,30 +9033,10 @@ exports.BattleAbilities = {
 				let move2 = this.getMove(target.moveSlots[1].id).name;
 				let move3 = this.getMove(target.moveSlots[2].id).name;
 				let move4 = this.getMove(target.moveSlots[3].id).name;
-				let use1 = this.useMove(move1, pokemon);
-				let use2 = this.useMove(move2, pokemon);
-				let use3 = this.useMove(move3, pokemon);
-				let use4 = this.useMove(move4, pokemon);
-				
-				use4;
-				use2;
-				/*let result = this.random(3);
-				if (result === 0) {
-					use1;
-					use2;
-					use3;
-					use4;
-				} else if (result === 1) {
-					use4;
-					use3;
-					use2;
-					use1;
-				} else {
-					use1;
-					use3;
-					use4;
-					use2;
-				}*/
+				this.useMove(move1, pokemon);
+				this.useMove(move2, pokemon);
+				this.useMove(move3, pokemon);
+				this.useMove(move4, pokemon);
 			}
 		},
 		id: "danceposter",
