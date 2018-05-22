@@ -4051,6 +4051,14 @@ exports.Formats = [
 		column: 3,
 	},
 	{
+  		name: "[Gen 7] AbNormal",
+  		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/abnormal-v2-submission-phase.3628089/page-2>AbNormal V2</a>",
+		      ],
+  		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		mod: 'abnormal',
+		// banlist: ['Unreleased', 'Illegal'],
+  	},
+	{
   		name: "[Gen 7] Alola Formes",
   		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/alola-formes-v3.3617314/>Alola Formes</a>",
 		      ],
