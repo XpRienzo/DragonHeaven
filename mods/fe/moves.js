@@ -7043,4 +7043,211 @@ exports.BattleMovedex = {
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Clever",
 	},
+	
+	"stickyvenom": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Sets a layer on the foe's field that inflicts poison and -1 Speed on opposing switch-ins. Can be stacked up to two layers (toxic poison, -2 Speed)",
+		shortDesc: "Poisons & lowers the Speed of grounded foes on switch-in. Max 2 layers.",
+		id: "stickyvenom",
+		isViable: true,
+		name: "Sticky Venom",
+		pp: 64,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1},
+		sideCondition: 'stickyvenom',
+		effect: {
+			// this is a side condition
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectData.layers = 1;
+			},
+			onRestart: function (side) {
+				if (this.effectData.layers >= 2) return false;
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectData.layers++;
+			},
+			onSwitchIn: function (pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (!pokemon.runImmunity('Poison')) return;
+				if (pokemon.hasType('Poison')) {
+					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('toxicspikes');
+				} else if (this.effectData.layers >= 2) {
+					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
+					this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], this.getMove('stickyvenom'));
+				} else {
+					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+					this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], this.getMove('stickyvenom'));
+				}
+			},
+		},
+		secondary: false,
+		target: "foeSide",
+		type: "Bug",
+		zMoveBoost: {def: 1, spe: 1},
+	},
+	"condensation": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "The user recovers 2/3 HP if any weather effect is in play; 1/2 HP otherwise.",
+		shortDesc: "User restores 1/2 its max HP; 2/3 in any weather.",
+		id: "condensation",
+		isViable: true,
+		name: "Condensation",
+		pp: 16,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		onHit: function (pokemon) {
+			if (this.isWeather) {
+				return this.heal(this.modify(pokemon.maxhp, 0.667));
+			} else {
+				return this.heal(this.modify(pokemon.maxhp, 0.5));
+			}
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'clearnegativeboost',
+	},
+	"drainrush": {
+		accuracy: 100,
+		basePower: 100,
+		category: "Physical",
+		desc: "Drains 50% of the damage dealt. Has a 20% chance to flinch the target.",
+		shortDesc: "Drains 50% of the damage dealt. Has a 20% chance to flinch the target.",
+		id: "drainrush",
+		isViable: true,
+		name: "Drain Rush",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
+		secondary: {
+			chance: 20,
+			volatileStatus: 'flinch',
+		},
+		drain: [1, 2],
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 180,
+		contestType: "Tough",
+	},
+	"cleverclutch": { //TODO: Check this
+		accuracy: 100,
+		basePower: 65,
+		category: "Physical",
+		desc: "Power doubles if the foe is holding an item. Said item is removed, and if it's consumable, the user of this move will receive the effects of said item.",
+		shortDesc: "Power doubles if the foe is holding an item. Said item is removed, and if it's consumable, the user of this move will receive the effects of said item.",
+		id: "cleverclutch",
+		name: "Clever Clutch",
+		pp: 32,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, distance: 1},
+		onHit: function (target, source) {
+			let item = target.getItem();
+			if (source.hp && item.isBerry && target.takeItem(source)) {
+				this.add('-enditem', target, item.name, '[from] stealeat', '[move] Pluck', '[of] ' + source);
+				if (this.singleEvent('Eat', item, null, source, null, null)) {
+					this.runEvent('EatItem', source, null, null, item);
+				}
+				if (item.onEat) source.ateBerry = true;
+			}
+		},
+		onBasePowerPriority: 4,
+		onBasePower: function (basePower, source, target, move) {
+			let item = target.getItem();
+			if (!this.singleEvent('TakeItem', item, target.itemData, target, source, move, item)) return;
+			if (item.id) {
+				return this.chainModify(2);
+			}
+		},
+		onAfterHit: function (target, source) {
+			if (source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Clever Clutch', '[of] ' + source);
+				}
+			}
+		},
+		secondary: false,
+		target: "any",
+		type: "Dark",
+		zMovePower: 165,
+		contestType: "Cute",
+	},
+	"hoodjump": {
+		accuracy: 95,
+		basePower: 90,
+		category: "Physical",
+		desc: "Two-turn move. First turn it boosts its Attack and Defense by one stage, while entering a semi-invulnerable state. Second turn it attacks.",
+		shortDesc: "Turn 1 +1 Atk, Def, then strikes the next turn.",
+		id: "hoodjump",
+		name: "Hood Jump",
+		pp: 24,
+		priority: 0,
+		flags: {contact: 1, charge: 1, protect: 1, mirror: 1, gravity: 1, distance: 1},
+		onTry: function (attacker, defender, move) {
+			if (attacker.removeVolatile(move.id)) {
+				return;
+			}
+			this.add('-prepare', attacker, move.name, defender);
+			this.boost({atk: 1, def: 1}, attacker, attacker, this.getMove('hoodjump'));
+			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
+				this.add('-anim', attacker, move.name, defender);
+				return;
+			}
+			attacker.addVolatile('twoturnmove', defender);
+			return null;
+		},
+		effect: {
+			duration: 2,
+			onTryImmunity: function (target, source, move) {
+				if (move.id === 'gust' || move.id === 'twister') {
+					return;
+				}
+				if (move.id === 'skyuppercut' || move.id === 'thunder' || move.id === 'hurricane' || move.id === 'smackdown' || move.id === 'thousandarrows' || move.id === 'helpinghand') {
+					return;
+				}
+				if (source.hasAbility('noguard') || target.hasAbility('noguard')) {
+					return;
+				}
+				if (source.volatiles['lockon'] && target === source.volatiles['lockon'].source) return;
+				return false;
+			},
+			onSourceModifyDamage: function (damage, source, target, move) {
+				if (move.id === 'gust' || move.id === 'twister') {
+					return this.chainModify(2);
+				}
+			},
+		},
+		secondary: false,
+		target: "any",
+		type: "Fighting",
+		zMovePower: 175,
+		contestType: "Clever",
+	},
+	"drainwing": {
+		accuracy: 100,
+		basePower: 75,
+		category: "Physical",
+		desc: "Has a 100% chance to lower the target's Defense by 1 stage.",
+		shortDesc: "100% chance to lower the target's Defense by 1.",
+		id: "drainwing",
+		isViable: true,
+		name: "Drain Wing",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
+		boosts: {
+				atk: -2,
+		},
+		drain: [1, 2],
+		target: "normal",
+		type: "Flying",
+		zMovePower: 140,
+		contestType: "Cute",
+	},
+	
 };
