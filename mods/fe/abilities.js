@@ -9056,8 +9056,8 @@ exports.BattleAbilities = {
 					use3;
 					use4;
 					use2;
-				}
-			}*/
+				}*/
+			}
 		},
 		id: "danceposter",
 		name: "Danceposter",
