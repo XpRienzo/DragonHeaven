@@ -9038,7 +9038,9 @@ exports.BattleAbilities = {
 				let use3 = this.useMove(move3, pokemon);
 				let use4 = this.useMove(move4, pokemon);
 				
-				let result = this.random(3);
+				use4;
+				use2;
+				/*let result = this.random(3);
 				if (result === 0) {
 					use1;
 					use2;
@@ -9055,7 +9057,7 @@ exports.BattleAbilities = {
 					use4;
 					use2;
 				}
-			}
+			}*/
 		},
 		id: "danceposter",
 		name: "Danceposter",
