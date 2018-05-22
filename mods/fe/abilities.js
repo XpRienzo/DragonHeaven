@@ -9390,7 +9390,7 @@ exports.BattleAbilities = {
 		shortDesc: "Restores 1/4 HP when hit by a super-effective move (recovery first then damage). Super-effective moves do 1/4 of the damage. Fire type moves ignore this ability. This ability cannot be bypassed by Mold Breaker or its variants.",
 		onFoeBeforeMove: function (target, source, move) {
 			if (target !== source && move.typeMod > 0 && !source.hasType('Fire')) {
-				this.heal(target.maxhp / 4)) 
+				this.heal(target.maxhp / 4)
 			}
 		},
 		onSourceModifyDamage: function (damage, source, target, move) {
