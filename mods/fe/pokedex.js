@@ -10324,7 +10324,7 @@ darkchomp: {
     },
 	mimukyubusted: {
         num: 7500265,
-        species: "Mimukyu-Buested",
+        species: "Mimukyu-Busted",
 		baseSpecies: "Mimukyu",
 		forme: "Busted",
 		formeLetter: "B",
@@ -15721,6 +15721,7 @@ stalossaka: {
         num: 7500444,
         species: "Stalossaka",
         types: ["Steel", "Ghost"],
+        gender: "N",
         baseStats: {
             hp: 83,
             atk: 113,
@@ -15729,12 +15730,15 @@ stalossaka: {
             spd: 108,
             spe: 24
         },
-         abilities: {0: "Compact Boost"},
+        heightm: 3.4,
+        weightkg: 535,
+        abilities: {0: "Compact Boost"},
+		eggGroups: ["Undiscovered"],
     },
 
-Stakamise: {
+stakamise: {
         num: 7500444,
-        species: "Stalossaka",
+        species: "Stakamise",
         types: ["Steel", "Grass"],
         baseStats: {
             hp: 85,
@@ -15744,28 +15748,37 @@ Stakamise: {
             spd: 110,
             spe: 26
         },
-         abilities: {0: "Metal Monster"},
+        heightm: 4.7,
+        weightkg: 515,
+        abilities: {0: "Metal Monster"},
+		eggGroups: ["Undiscovered"],
     },
 
-deoxysconfused : {
-        num: 7500446,
-        species: "Deoxys-Confused",
-        types: ["Psychic"],
-        baseStats: {
-            hp: 75,
-            atk: 130,
-            def: 105,
-            spa: 130,
-            spd: 105,
-            spe: 125
-        },
-         abilities: {0: "Pressure"},
-    },
+
+	deoxysattack: {
+		num: 386,
+		species: "Deoxys-Confused",
+		baseSpecies: "Deoxys",
+		forme: "Really Confused",
+		formeLetter: "C",
+		types: ["Psychic"],
+		gender: "N",
+		baseStats: {hp: 75, atk: 130, def: 105, spa: 130, spd: 105, spe: 125},
+		abilities: {0: "Pressure"},
+		heightm: 1.7,
+		weightkg: 60.8,
+		color: "Red",
+		eggGroups: ["Undiscovered"],
+	},
 
 auroritar: {
         num: 7500447,
         species: "Auroritar",
         types: ["Rock"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
         baseStats: {
             hp: 121,
             atk: 115,
@@ -15774,7 +15787,10 @@ auroritar: {
             spd: 106,
             spe: 69
         },
-         abilities: {0: "Meteor Shower"},
+		  heightm: 2.35,
+		  weightkg: 213.5,
+        abilities: {0: "Meteor Shower"},
+		  eggGroups: ["Monster"],
     },
 
 auroritarmega: {
@@ -15784,6 +15800,10 @@ auroritarmega: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Rock"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
         baseStats: {
             hp: 121,
             atk: 145,
@@ -15792,12 +15812,17 @@ auroritarmega: {
             spd: 106,
             spe: 69
         },
-        abilities: {0: "Meteor Shower"},
+		  heightm: 2.85,
+		  weightkg: 266.5,
+        abilities: {0: "Sand Stream"},
+		  eggGroups: ["Monster"],
     }, 
  necrynxcutewig: {
 		num: 7500448,
-		species: "Necrynx-Cute-Wig",
+		species: "Necrynx",
+	   baseForme: "Cute Wig",
 		types: ["Ice", "Psychic"],
+		gender: "F",
 		baseStats: {
 			hp: 90,
 			atk: 81,
@@ -15809,14 +15834,18 @@ auroritarmega: {
 		abilities: {
 			0: "Prism Skin"
 		},
+		  heightm: 2.8,
+		  weightkg: 195.3,
+		  eggGroups: ["Undiscovered"],
 	},
 	necrynxultra: {
 		num: 7500448,
 		species: "Necrynx-Ultra",
-		baseSpecies: "Necrynx-Cute-Wig",
+		baseSpecies: "Necrynx",
 		forme: "Ultra",
 		formeLetter: "U",
 		types: ["Ice", "Dragon"],
+		gender: "F",
 		baseStats: { // 90  165 81  165 81  150
 			hp: 90,
 			atk: 165,
@@ -15828,11 +15857,15 @@ auroritarmega: {
 		abilities: {
 			0: "Neuroforce"
 		},
+		  heightm: 6.1,
+		  weightkg: 75.3,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippally: {
 		num: 7500449,
 		species: "Hippally",
 		types: ["Ground", "Normal"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15844,6 +15877,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyfire: {
 		num: 7500450,
@@ -15852,6 +15888,7 @@ auroritarmega: {
 		forme: "Fire",
 		formeLetter: "F",
 		types: ["Ground", "Fire"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15863,6 +15900,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallywater: {
 		num: 7500450,
@@ -15871,6 +15911,7 @@ auroritarmega: {
 		forme: "Water",
 		formeLetter: "W",
 		types: ["Ground", "Water"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15882,6 +15923,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyelectric: {
 		num: 7500450,
@@ -15890,6 +15934,7 @@ auroritarmega: {
 		forme: "Electric",
 		formeLetter: "E",
 		types: ["Ground", "Electric"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15901,6 +15946,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallygrass: {
 		num: 7500450,
@@ -15909,6 +15957,7 @@ auroritarmega: {
 		forme: "Grass",
 		formeLetter: "G",
 		types: ["Ground", "Grass"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15920,6 +15969,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyice: {
 		num: 7500450,
@@ -15928,6 +15980,7 @@ auroritarmega: {
 		forme: "Ice",
 		formeLetter: "I",
 		types: ["Ground", "Ice"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15939,6 +15992,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyfighting: {
 		num: 7500450,
@@ -15947,6 +16003,7 @@ auroritarmega: {
 		forme: "Fighting",
 		formeLetter: "F",
 		types: ["Ground", "Fighting"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15958,6 +16015,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyground: {
 		num: 7500450,
@@ -15966,6 +16026,7 @@ auroritarmega: {
 		forme: "Fighting",
 		formeLetter: "F",
 		types: ["Ground"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15977,6 +16038,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallypoison: {
 		num: 7500450,
@@ -15985,6 +16049,7 @@ auroritarmega: {
 		forme: "Poison",
 		formeLetter: "P",
 		types: ["Ground", "Poison"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -15996,6 +16061,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyflying: {
 		num: 7500450,
@@ -16004,6 +16072,7 @@ auroritarmega: {
 		forme: "Flying",
 		formeLetter: "F",
 		types: ["Ground", "Flying"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16015,6 +16084,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallypsychic: {
 		num: 7500450,
@@ -16023,6 +16095,7 @@ auroritarmega: {
 		forme: "Psychic",
 		formeLetter: "P",
 		types: ["Ground", "Psychic"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16034,6 +16107,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallybug: {
 		num: 7500450,
@@ -16042,6 +16118,7 @@ auroritarmega: {
 		forme: "Bug",
 		formeLetter: "B",
 		types: ["Ground", "Bug"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16053,6 +16130,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyrock: {
 		num: 7500450,
@@ -16061,6 +16141,7 @@ auroritarmega: {
 		forme: "Rock",
 		formeLetter: "R",
 		types: ["Ground", "Rock"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16072,6 +16153,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyghost: {
 		num: 7500450,
@@ -16080,6 +16164,7 @@ auroritarmega: {
 		forme: "Ghost",
 		formeLetter: "G",
 		types: ["Ground", "Ghost"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16091,6 +16176,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallydragon: {
 		num: 7500450,
@@ -16099,6 +16187,7 @@ auroritarmega: {
 		forme: "Dragon",
 		formeLetter: "D",
 		types: ["Ground", "Dragon"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16110,6 +16199,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallydark: {
 		num: 7500450,
@@ -16118,6 +16210,7 @@ auroritarmega: {
 		forme: "Dark",
 		formeLetter: "D",
 		types: ["Ground", "Dark"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16129,6 +16222,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallysteel: {
 		num: 7500450,
@@ -16137,6 +16233,7 @@ auroritarmega: {
 		forme: "Psychic",
 		formeLetter: "P",
 		types: ["Ground", "Psychic"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16148,6 +16245,9 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	hippallyfairy: {
 		num: 7500450,
@@ -16156,6 +16256,7 @@ auroritarmega: {
 		forme: "Fairy",
 		formeLetter: "F",
 		types: ["Ground", "Fairy"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 123,
@@ -16167,11 +16268,16 @@ auroritarmega: {
 		abilities: {
 			0: "Effect Setter"
 		},
+		  heightm: 2.15,
+		  weightkg: 200.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	necroquaduskbubble: {
 		num: 7500451,
-		species: "Necroqua-Dusk-Bubble",
+		species: "Necroqua",
+	   baseForme: "Dusk Bubble",
 		types: ["Steel", "Water"],
+		gender: "N",
 		baseStats: {
 			hp: 102,
 			atk: 120,
@@ -16183,14 +16289,18 @@ auroritarmega: {
 		abilities: {
 			0: "Black Hole"
 		},
+		  heightm: 2.6,
+		  weightkg: 271,
+		  eggGroups: ["Undiscovered"],
 	},
-	necrynxultra: {
+	necroquaultra: {
 		num: 7500451,
 		species: "Necroqua-Ultra",
 		baseSpecies: "Necroqua-Dusk-Bubble",
 		forme: "Ultra",
 		formeLetter: "U",
 		types: ["Steel", "Dragon"],
+		gender: "N",
 		baseStats: {
 			hp: 102,
 			atk: 130,
@@ -16202,11 +16312,15 @@ auroritarmega: {
 		abilities: {
 			0: "Neuroforce"
 		},
+		  heightm: 6.7,
+		  weightkg: 41,
+		  eggGroups: ["Undiscovered"],
 	},
 	poize: {
 		num: 7500452,
 		species: "Poize",
 		types: ["Electric", "Poison"],
+		gender: "N",
 		baseStats: {
 			hp: 83,
 			atk: 111,
@@ -16218,11 +16332,16 @@ auroritarmega: {
 		abilities: {
 			0: "Terabeast"
 		},
+		  heightm: 1.75,
+		  weightkg: 173.4,
+		  eggGroups: ["Undiscovered"],
 	},
 	magnettanorth: {
 		num: 7500453,
-		species: "Magnetta-North",
-		types: ["Steel", "Fighting"],
+		species: "Magnetta",
+	   baseForme: "North",
+		types: ["Steel", "Psychic"],
+		gender: "N",
 		baseStats: {
 			hp: 85,
 			atk: 75,
@@ -16234,14 +16353,18 @@ auroritarmega: {
 		abilities: {
 			0: "Graceful Analyst"
 		},
+		  heightm: 0.9,
+		  weightkg: 93.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	magnettasouth: {
 		num: 7500453,
 		species: "Magnetta-South",
-		baseSpecies: "Magnetta-North",
+		baseSpecies: "Magnetta",
 		forme: "South",
 		formeLetter: "S",
 		types: ["Steel", "Fighting"],
+		gender: "N",
 		baseStats: {
 			hp: 85,
 			atk: 145,
@@ -16253,6 +16376,9 @@ auroritarmega: {
 		abilities: {
 			0: "Graceful Analyst"
 		},
+		  heightm: 0.9,
+		  weightkg: 93.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	kromork: {
 		num: 7500454,
@@ -16269,11 +16395,15 @@ auroritarmega: {
 		abilities: {
 			0: "Tera Armor"
 		},
+		  heightm: 1.95,
+		  weightkg: 195,
+		  eggGroups: ["Undiscovered"],
 	},
 	watafak: {
 		num: 7500455,
 		species: "Watafak",
 		types: ["Steel", "Psychic"],
+		gender: "N",
 		baseStats: {
 			hp: 145,
 			atk: 102,
@@ -16285,10 +16415,14 @@ auroritarmega: {
 		abilities: {
 			0: "Sadistic"
 		},
+		  heightm: 3.4,
+		  weightkg: 424.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	necrozeraindawndisguise: {
 		num: 7500456,
-		species: "Necrozerain-Dawn-Disguise",
+		species: "Necrozerain",
+	   baseForme: "Dawn Disguise",
 		types: ["Bug", "Ghost"],
 		baseStats: { // 83  86  85  148 104 98
 			hp: 83,
@@ -16301,11 +16435,14 @@ auroritarmega: {
 		abilities: {
 			0: "Fearmonger"
 		},
+		  heightm: 2.5,
+		  weightkg: 176.8,
+		  eggGroups: ["Undiscovered"],
 	},
 	necrozrainultra: {
 		num: 7500456,
 		species: "Necrozerain-Ultra",
-		baseSpecies: "Necrozerain-Dawn-Disguise",
+		baseSpecies: "Necrozerain",
 		forme: "Ultra",
 		formeLetter: "U",
 		types: ["Bug", "Dragon"],
@@ -16320,6 +16457,9 @@ auroritarmega: {
 		abilities: {
 			0: "Neuroforce"
 		},
+		  heightm: 5.8,
+		  weightkg: 56.8,
+		  eggGroups: ["Undiscovered"],
 	},
 	quagsirom: {
 		num: 7500457,
@@ -16336,11 +16476,15 @@ auroritarmega: {
 		abilities: {
 			0: "Unamazed"
 		},
+		  heightm: 2.15,
+		  weightkg: 210,
+		  eggGroups: ["Undiscovered"],
 	},
 	bunny: {
 		num: 7500458,
 		species: "Bunny",
 		types: ["Dragon", "Normal"],
+		gender: "N",
 		baseStats: {
 			hp: 70,
 			atk: 85,
@@ -16352,6 +16496,9 @@ auroritarmega: {
 		abilities: {
 			0: "What Does This Do?"
 		},
+		  heightm: 0.8,
+		  weightkg: 19.5,
+		  eggGroups: ["Undiscovered"],
 		dexentry: "This fusion seems to be made of thousands of cells of other pokémon. It is a higly mutable and unstable species. A notable ability it has is being able to utilize every Mega Stone, resulting in a lot of different forms it can transform into. This is most likely due to the aforementioned different cells that form it. A single cell is known as a Rabbit Core. It is speculated that the Rabbit Cores can absorb DNA from multiple Pokémon before uniting into Bunny, which would then explain species-specific items being abe to interact with Bunny. Not much research has been done, however the species with the closest to a pure DNA seems to share some relation with Buneary.",
 	},
 	kingrat: {
@@ -16369,11 +16516,18 @@ auroritarmega: {
 		abilities: {
 			0: "Power Saver"
 		},
+		  heightm: 1.35,
+		  weightkg: 74.5,
+		  eggGroups: ["Field"],
 	},
 	gamera: {
 		num: 7500460,
 		species: "Gamera",
 		types: ["Water", "Dark"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 99,
 			atk: 118,
@@ -16385,6 +16539,9 @@ auroritarmega: {
 		abilities: {
 			0: "Underwater Screen"
 		},
+		  heightm: 1.8,
+		  weightkg: 143.75,
+		  eggGroups: ["Monster"],
 	},
 	gameramegax: {
 		num: 7500460,
@@ -16393,6 +16550,10 @@ auroritarmega: {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Water", "Dark"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 99,
 			atk: 148,
@@ -16404,6 +16565,9 @@ auroritarmega: {
 		abilities: {
 			0: "Sand Stream"
 		},
+		  heightm: 2.3,
+		  weightkg: 196.75,
+		  eggGroups: ["Monster"],
 	},
 	gameramegay: {
 		num: 7500460,
@@ -16412,6 +16576,10 @@ auroritarmega: {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Water", "Dark"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 99,
 			atk: 138,
@@ -16423,6 +16591,9 @@ auroritarmega: {
 		abilities: {
 			0: "Mega Launcher"
 		},
+		  heightm: 1.8,
+		  weightkg: 159.35,
+		  eggGroups: ["Monster"],
 	},
 	sandslashprime: {
 		num: 28,
@@ -16442,11 +16613,15 @@ auroritarmega: {
 		abilities: {
 			0: "Mountain Climber"
 		},
+		  heightm: 1.1,
+		  weightkg: 42.25,
+		  eggGroups: ["Field"],
 	},
 	suiceon: {
 		num: 7500462,
 		species: "Suiceon",
 		types: ["Water"],
+		gender: "N",
 		baseStats: {
 			hp: 125,
 			atk: 75,
@@ -16458,11 +16633,15 @@ auroritarmega: {
 		abilities: {
 			0: "Monarch of the Rain"
 		},
+		  heightm: 1.5,
+		  weightkg: 108,
+		  eggGroups: ["Undiscovered"],
 	},
 	raikeon: {
 		num: 7500463,
 		species: "Raikeon",
 		types: ["Electric"],
+		gender: "N",
 		baseStats: {
 			hp: 93,
 			atk: 85,
@@ -16474,11 +16653,15 @@ auroritarmega: {
 		abilities: {
 			0: "Duke of the Lightning"
 		},
+		  heightm: 1.35,
+		  weightkg: 101.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	enteon: {
 		num: 7500464,
 		species: "Enteon",
 		types: ["Fire"],
+		gender: "N",
 		baseStats: {
 			hp: 93,
 			atk: 125,
@@ -16490,6 +16673,9 @@ auroritarmega: {
 		abilities: {
 			0: "Emperor of the Fire"
 		},
+		  heightm: 1.5,
+		  weightkg: 111.5,
+		  eggGroups: ["Undiscovered"],
 	},
 	vilossom: {
 		num: 7500465,
@@ -16506,11 +16692,17 @@ auroritarmega: {
 		abilities: {
 			0: "Chlorophyll"
 		},
+		prevo: "gloom",
+		evoLevel: 21,
+		  heightm: 0.8,
+		  weightkg: 12.2,
+		  eggGroups: ["Grass"],
 	},
 	gholemisealola: {
 		num: 7500466,
 		species: "Gholemise-Alola",
 		types: ["Electric", "Grass"],
+		gender: "N",
 		baseStats: {
 			hp: 85,
 			atk: 135,
@@ -16522,11 +16714,15 @@ auroritarmega: {
 		abilities: {
 			0: "Overloaded Helm"
 		},
+		  heightm: 2.8,
+		  weightkg: 263,
+		  eggGroups: ["Undiscovered"],
 	},
 	tallsteelegg: {
 		num: 7500467,
 		species: "Tall Steel Egg",
 		types: ["Dragon", "Steel"],
+		gender: "N",
 		baseStats: {
 			hp: 106,
 			atk: 103,
@@ -16538,6 +16734,9 @@ auroritarmega: {
 		abilities: {
 			0: "Farmer's Delight"
 		},
+		  heightm: 10.05,
+		  weightkg: 707.75,
+		  eggGroups: ["Undiscovered"],
 	},
 	zerpuff: {
 		num: 7500468,
@@ -16554,11 +16753,15 @@ auroritarmega: {
 		abilities: {
 			0: "Lightening Lightning"
 		},
+		  heightm: 1.15,
+		  weightkg: 24.75,
+		  eggGroups: ["Undiscovered"],
 	},
 	lycakingdusk: {
 		num: 7500469,
 		species: "Lycaking-Dusk",
 		types: ["Rock", "Ground"],
+		gender: "M",
 		baseStats: {
 			hp: 88,
 			atk: 119,
@@ -16570,11 +16773,15 @@ auroritarmega: {
 		abilities: {
 			0: "Unrivaled Claws"
 		},
+		  heightm: 1.15,
+		  weightkg: 24.75,
+		  eggGroups: ["Field"],
 	},
 	tornadelnaga: {
 		num: 7500470,
 		species: "Tornadel-Naga",
 		types: ["Flying", "Poison"],
+		gender: "N",
 		baseStats: {
 			hp: 83,
 			atk: 89,
@@ -16586,11 +16793,16 @@ auroritarmega: {
 		abilities: {
 			0: "Ouroboros"
 		},
+		  heightm: 2.5,
+		  weightkg: 106.5,
+		  eggGroups: ["Undiscovered"],
 	},
 	necropurugly: {
 		num: 7500471,
-		species: "Necropur-Ugly",
+		species: "Necropur",
+	   baseForme: "Ugly",
 		types: ["Steel", "Normal"],
+		gender: "N",
 		baseStats: {
 			hp: 84,
 			atk: 139,
@@ -16602,14 +16814,18 @@ auroritarmega: {
 		abilities: {
 			0: "Braveheart"
 		},
+		  heightm: 2.6,
+		  weightkg: 196.9,
+		  eggGroups: ["Undiscovered"],
 	},
 	necropurbeautiful: {
 		num: 7500471,
 		species: "Necropur-Beautiful",
-		baseSpecies: "Necropur-Ugly",
+		baseSpecies: "Necropur",
 		forme: "Beautiful",
 		formeLetter: "B",
 		types: ["Steel", "Dragon"],
+		gender: "N",
 		baseStats: {
 			hp: 84,
 			atk: 149,
@@ -16621,11 +16837,15 @@ auroritarmega: {
 		abilities: {
 			0: "Neuroforce"
 		},
+		  heightm: 5.9,
+		  weightkg: 26.9,
+		  eggGroups: ["Undiscovered"],
 	},
 	flyorusguard: {
 		num: 7500472,
 		species: "Flyorus Guard",
 		types: ["Ground", "Dragon"],
+		gender: "M",
 		baseStats: {
 			hp: 84,
 			atk: 122,
@@ -16637,10 +16857,14 @@ auroritarmega: {
 		abilities: {
 			0: "Guard's Shield"
 		},
+		  heightm: 1.65,
+		  weightkg: 75,
+		  eggGroups: ["Undiscovered"],
 	},
 	lamparadenoche: {
 		num: 7500473,
-		species: "Lampara-De-Noche",
+		species: "Lampara",
+		forme: "De-Noche",
 		types: ["Water", "Psychic"],
 		baseStats: {
 			hp: 113,
@@ -16653,11 +16877,14 @@ auroritarmega: {
 		abilities: {
 			0: "Dark Light"
 		},
+		  heightm: 2.7,
+		  weightkg: 186.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	lamparadelava: {
 		num: 7500473,
 		species: "Lampara-De-Lava",
-		baseSpecies: "Lampara-De-Noche",
+		baseSpecies: "Lampara",
 		forme: "Ultra",
 		formeLetter: "U",
 		types: ["Water", "Dragon"],
@@ -16672,11 +16899,15 @@ auroritarmega: {
 		abilities: {
 			0: "Neuroforce"
 		},
+		  heightm: 6,
+		  weightkg: 66.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	balloon: {
 		num: 7500474,
 		species: "Balloon",
 		types: ["Ghost", "Fire"],
+		gender: "N",
 		baseStats: {
 			hp: 101,
 			atk: 103,
@@ -16688,11 +16919,18 @@ auroritarmega: {
 		abilities: {
 			0: "Hot Air Balloon"
 		},
+		  heightm: 1.5,
+		  weightkg: 14,
+		  eggGroups: ["Undiscovered"],
 	},
 	tyrannosaurus: {
 		num: 7500475,
 		species: "Tyrannosaurus",
 		types: ["Grass", "Rock"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 100,
 			atk: 118,
@@ -16704,6 +16942,9 @@ auroritarmega: {
 		abilities: {
 			0: "Ancient Foliage"
 		},
+		  heightm: 2,
+		  weightkg: 151,
+		  eggGroups: ["Monster"],
 	},
 	tyrannosaurusmegax: {
 		num: 7500475,
@@ -16712,6 +16953,10 @@ auroritarmega: {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Grass", "Rock"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 100,
 			atk: 138,
@@ -16723,6 +16968,9 @@ auroritarmega: {
 		abilities: {
 			0: "Thick Fat"
 		},
+		  heightm: 2.4,
+		  weightkg: 206.5,
+		  eggGroups: ["Monster"],
 	},
 	tyrannosaurusmegay: {
 		num: 7500475,
@@ -16731,6 +16979,10 @@ auroritarmega: {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Grass", "Rock"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 100,
 			atk: 148,
@@ -16742,11 +16994,18 @@ auroritarmega: {
 		abilities: {
 			0: "Sand Stream"
 		},
+		  heightm: 2.5,
+		  weightkg: 204,
+		  eggGroups: ["Monster"],
 	},
 	espeord: {
 		num: 7500476,
 		species: "Espeord",
 		types: ["Psychic", "Water"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 127,
 			atk: 87,
@@ -16758,11 +17017,18 @@ auroritarmega: {
 		abilities: {
 			0: "Synchro Veil"
 		},
+		  heightm: 7.7,
+		  weightkg: 212.25,
+		  eggGroups: ["Field"],
 	},
 	glacord: {
 		num: 7500477,
 		species: "Glacord",
 		types: ["Ice", "Water"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 127,
 			atk: 85,
@@ -16774,6 +17040,9 @@ auroritarmega: {
 		abilities: {
 			0: "Hail Veil"
 		},
+		  heightm: 7.65,
+		  weightkg: 209.25,
+		  eggGroups: ["Field"],
 	},
 	hypango: {
 		num: 7500478,
@@ -16790,6 +17059,9 @@ auroritarmega: {
 		abilities: {
 			0: "Sensei"
 		},
+		  heightm: 1.85,
+		  weightkg: 105.8,
+		  eggGroups: ["Human-Like"],
 	},
 	scizion: {
 		num: 7500479,
@@ -16806,6 +17078,9 @@ auroritarmega: {
 		abilities: {
 			0: "Prodigy"
 		},
+		  heightm: 1.55,
+		  weightkg: 89.75,
+		  eggGroups: ["Bug"],
 	},
 	scizionmega: {
 		num: 7500479,
@@ -16825,11 +17100,15 @@ auroritarmega: {
 		abilities: {
 			0: "Technician"
 		},
+		  heightm: 1.75,
+		  weightkg: 96.75,
+		  eggGroups: ["Bug"],
 	},
 	fluorine: {
 		num: 7500480,
 		species: "Fluorine",
 		types: ["Fairy", "Normal"],
+		gender: "F",
 		baseStats: {
 			hp: 100,
 			atk: 72,
@@ -16841,6 +17120,9 @@ auroritarmega: {
 		abilities: {
 			0: "Titanium Toothpaste"
 		},
+		  heightm: 1.1,
+		  weightkg: 20.5,
+		  eggGroups: ["Fairy"],
 	},
 	fluorinemega: {
 		num: 7500480,
@@ -16849,6 +17131,7 @@ auroritarmega: {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Fairy"],
+		gender: "F",
 		baseStats: {
 			hp: 100,
 			atk: 72,
@@ -16860,6 +17143,9 @@ auroritarmega: {
 		abilities: {
 			0: "Healer"
 		},
+		  heightm: 1.5,
+		  weightkg: 21.5,
+		  eggGroups: ["Fairy"],
 	},
 	wallray: {
 		num: 7500481,
@@ -16876,6 +17162,9 @@ auroritarmega: {
 		abilities: {
 			0: "Too Thick"
 		},
+		  heightm: 1.4,
+		  weightkg: 96.3,
+		  eggGroups: ["Field"],
 	},
 	persianprime: {
 		num: 53,
@@ -16895,6 +17184,9 @@ auroritarmega: {
 		abilities: {
 			0: "Tech Fur"
 		},
+		  heightm: 1.05,
+		  weightkg: 33.5,
+		  eggGroups: ["Field"],
 	},
 	octapex: {
 		num: 7500483,
@@ -16911,6 +17203,9 @@ auroritarmega: {
 		abilities: {
 			0: "Veteran"
 		},
+		  heightm: 0.8,
+		  weightkg: 21.5,
+		  eggGroups: ["Water 1"],
 	},
 	gooo: {
 		num: 7500484,
@@ -16927,6 +17222,9 @@ auroritarmega: {
 		abilities: {
 			0: "Sound Soul"
 		},
+		  heightm: 1.8,
+		  weightkg: 114.35,
+		  eggGroups: ["Dragon"],
 	},
 	noivian: {
 		num: 7500485,
@@ -16943,6 +17241,9 @@ auroritarmega: {
 		abilities: {
 			0: "Phase Through"
 		},
+		  heightm: 1.3,
+		  weightkg: 52.8,
+		  eggGroups: ["Flying"],
 	},
 	novianmega: {
 		num: 7500485,
@@ -16962,6 +17263,9 @@ auroritarmega: {
 		abilities: {
 			0: "Pixilate"
 		},
+		  heightm: 1.7,
+		  weightkg: 52.8,
+		  eggGroups: ["Flying"],
 	},
 	cruski: {
 		num: 7500486,
@@ -16978,11 +17282,18 @@ auroritarmega: {
 		abilities: {
 			0: "Locked Shell"
 		},
+		  heightm: 0.8,
+		  weightkg: 101.5,
+		  eggGroups: ["Mineral"],
 	},
 	periurora: {
 		num: 7500487,
 		species: "Periurora",
 		types: ["Ice", "Rock"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 129,
 			atk: 118,
@@ -16994,11 +17305,15 @@ auroritarmega: {
 		abilities: {
 			0: "Christmas Parade"
 		},
+		  heightm: 2.55,
+		  weightkg: 253.9,
+		  eggGroups: ["Monster"],
 	},
 	apouprobo: {
 		num: 7500488,
 		species: "Apou Probo",
 		types: ["Steel", "Fairy"],
+		gender: "N",
 		baseStats: {
 			hp: 85,
 			atk: 85,
@@ -17010,11 +17325,15 @@ auroritarmega: {
 		abilities: {
 			0: "Magnetic Surge"
 		},
+		  heightm: 1.6,
+		  weightkg: 180.25,
+		  eggGroups: ["Undiscovered"],
 	},
 	shedigigas: {
 		num: 7500489,
 		species: "Shedigigas",
 		types: ["Bug", "Normal"],
+		gender: "N",
 		baseStats: {
 			hp: 75,
 			atk: 140,
@@ -17026,11 +17345,16 @@ auroritarmega: {
 		abilities: {
 			0: "Temporary Guard"
 		},
+		  heightm: 2.25,
+		  weightkg: 210.6,
+		  eggGroups: ["Undiscovered"],
 	},
 	chazmaegg: {
 		num: 7500490,
-		species: "Chazma-Egg",
+		species: "Chazma",
+	   baseForme: "Egg",
 		types: ["Normal", "Ghost"],
+		gender: "N",
 		baseStats: {
 			hp: 193,
 			atk: 59,
@@ -17042,6 +17366,9 @@ auroritarmega: {
 		abilities: {
 			0: "Healthy Meal"
 		},
+		  heightm: 2.65,
+		  weightkg: 192.3,
+		  eggGroups: ["Undiscovered"],
 	},
 	chazmahatched: {
 		num: 7500490,
@@ -17050,6 +17377,7 @@ auroritarmega: {
 		forme: "Hatched",
 		formeLetter: "H",
 		types: ["Normal", "Dragon"],
+		gender: "N",
 		baseStats: {
 			hp: 193,
 			atk: 106,
@@ -17061,11 +17389,15 @@ auroritarmega: {
 		abilities: {
 			0: "Neuroforce"
 		},
+		  heightm: 5.95,
+		  weightkg: 72.3,
+		  eggGroups: ["Undiscovered"],
 	},
 	smolitizer: {
 		num: 7500491,
 		species: "Smolitizer",
 		types: ["Ice", "Steel"],
+		gender: "N",
 		baseStats: {
 			hp: 118,
 			atk: 148,
@@ -17077,6 +17409,9 @@ auroritarmega: {
 		abilities: {
 			0: "Christmas Spirit"
 		},
+		  heightm: 2.45,
+		  weightkg: 257.9,
+		  eggGroups: ["Undiscovered"],
 	},
 	smolitizerultra: {
 		num: 7500491,
@@ -17085,6 +17420,7 @@ auroritarmega: {
 		forme: "Ultra",
 		formeLetter: "U",
 		types: ["Ice", "Dragon"],
+		gender: "N",
 		baseStats: {
 			hp: 118,
 			atk: 158,
@@ -17096,11 +17432,15 @@ auroritarmega: {
 		abilities: {
 			0: "Neuroforce"
 		},
+		  heightm: 6.15,
+		  weightkg: 27.9,
+		  eggGroups: ["Undiscovered"],
 	},
 	noirtic: {
 		num: 7500492,
 		species: "Noirtic",
 		types: ["Ghost", "Flying"],
+		gender: "N",
 		baseStats: {
 			hp: 93,
 			atk: 95,
@@ -17112,6 +17452,9 @@ auroritarmega: {
 		abilities: {
 			0: "Pressure"
 		},
+		  heightm: 1.95,
+		  weightkg: 27.9,
+		  eggGroups: ["Undiscovered"],
 	},
 	casserole: {
 		num: 7500493,
@@ -17128,11 +17471,18 @@ auroritarmega: {
 		abilities: {
 			0: "Scrumptious"
 		},
+		  heightm: 1.05,
+		  weightkg: 25.9,
+		  eggGroups: ["Flying"],
 	},
 	blazel: {
 		num: 7500494,
 		species: "Blazel",
 		types: ["Fire", "Water"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 92,
 			atk: 122,
@@ -17144,6 +17494,9 @@ auroritarmega: {
 		abilities: {
 			0: "Heat Seeker"
 		},
+		  heightm: 1.5,
+		  weightkg: 42.75,
+		  eggGroups: ["Field"],
 	},
 	blazelmega: {
 		num: 7500494,
@@ -17152,6 +17505,10 @@ auroritarmega: {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Fire", "Water"],
+        genderRatio: {
+            M: 75.0,
+            F: 25.0
+        },
 		baseStats: {
 			hp: 92,
 			atk: 162,
@@ -17163,6 +17520,9 @@ auroritarmega: {
 		abilities: {
 			0: "Speed Boost"
 		},
+		  heightm: 1.5,
+		  weightkg: 42.75,
+		  eggGroups: ["Field"],
 	},
 	funsparret: {
 		num: 7500495,
@@ -17179,11 +17539,15 @@ auroritarmega: {
 		abilities: {
 			0: "Effective Strategy"
 		},
+		  heightm: 1.65,
+		  weightkg: 23.25,
+		  eggGroups: ["Field"],
 	},
 	claytar: {
 		num: 7500496,
 		species: "Claytar",
 		types: ["Ground", "Dark"],
+		gender: "N",
 		baseStats: {
 			hp: 100,
 			atk: 102,
@@ -17195,6 +17559,9 @@ auroritarmega: {
 		abilities: {
 			0: "Floating Grounds"
 		},
+		  heightm: 1.75,
+		  weightkg: 154.95,
+		  eggGroups: ["Undiscovered"],
 	},
 	claytarmega: {
 		num: 7500496,
@@ -17203,6 +17570,7 @@ auroritarmega: {
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Ground", "Dark"],
+		gender: "N",
 		baseStats: {
 			hp: 100,
 			atk: 132,
@@ -17214,11 +17582,15 @@ auroritarmega: {
 		abilities: {
 			0: "Sand Stream"
 		},
+		  heightm: 2.25,
+		  weightkg: 207.95,
+		  eggGroups: ["Undiscovered"],
 	},
 	komally: {
 		num: 7500497,
 		species: "Komally",
 		types: ["Normal"],
+		gender: "N",
 		baseStats: {
 			hp: 85,
 			atk: 105,
@@ -17230,6 +17602,9 @@ auroritarmega: {
 		abilities: {
 			0: "Sleeping System"
 		},
+		  heightm: 1.35,
+		  weightkg: 60.2,
+		  eggGroups: ["Undiscovered"],
 	},
 	joltalesalola: {
 		num: 7500498,
@@ -17246,6 +17621,9 @@ auroritarmega: {
 		abilities: {
 			0: "Snow Sucker"
 		},
+		  heightm: 0.95,
+		  weightkg: 22.2,
+		  eggGroups: ["Field"],
 	},
 	
 };
