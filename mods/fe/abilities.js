@@ -9307,4 +9307,37 @@ exports.BattleAbilities = {
 	    id: "sensei",
 	    name: "Sensei",
 	},
+		"appropriation": {
+	    desc: "Allows the bearer to avoid damage for one attack. Once it takes an attack and its disguise is broken, it automatically copies the ability of whatever attacked it.",
+	    shortDesc: "If this Pokemon is a Mimukyu, the first hit it takes in battle deals 0 neutral damage and copies the attacker's ability.",
+	    onDamagePriority: 1,
+	    onDamage: function(damage, target, source, effect) {
+	        if (effect && effect.effectType === 'Move' && target.template.speciesid === 'mimukyu' && !target.transformed) {
+	            this.add('-activate', target, 'ability: Appropriation');
+	            this.effectData.busted = true;
+	            let ability = this.getAbility(target.ability);
+	            let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode'];
+	            if (!bannedAbilities.includes(source.ability)) this.effectData.target.setAbility(ability);
+	            return 0;
+	        }
+	    },
+	    onEffectiveness: function(typeMod, target, type, move) {
+	        if (!this.activeTarget) return;
+	        let pokemon = this.activeTarget;
+	        if (pokemon.template.speciesid !== 'mimukyu' || pokemon.transformed || (pokemon.volatiles['substitute'] && !(move.flags['authentic'] || move.infiltrates))) return;
+	        if (!pokemon.runImmunity(move.type)) return;
+	        return 0;
+	    },
+	    onUpdate: function(pokemon) {
+	        if (pokemon.template.speciesid === 'mimukyu' && this.effectData.busted) {
+	            let template = this.getTemplate('Mimukyu-Busted');
+	            pokemon.formeChange(template);
+	            pokemon.baseTemplate = template;
+	            pokemon.details = template.species + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+	            this.add('detailschange', pokemon, pokemon.details);
+	        }
+	    },
+	    id: "appropriation",
+	    name: "Appropriation",
+	},
 };
