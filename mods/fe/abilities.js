@@ -9515,7 +9515,7 @@ exports.BattleAbilities = {
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, attacker, defender, move) {
 			if (move.flags['heal']) {
-				return this.chainModify(1..7);
+				return this.chainModify(1.7);
 			}
 		},
 		onModifyMove: function (move) {
