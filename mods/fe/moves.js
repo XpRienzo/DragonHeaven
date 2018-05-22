@@ -79,13 +79,11 @@ exports.BattleMovedex = {
 					return this.chainModify(1.5);
 				}
 			},
-			onStart: function (battle, source, pokemon, effect) {
-				for (const target of pokemon.side.foe.active) {
+			onStart: function (battle, source, effect) {
 				if (effect && effect.effectType === 'Ability') {
 					this.add('-fieldstart', 'move: Beautiful Terrain', '[from] ability: ' + effect, '[of] ' + source);
 				} else {
 					this.add('-fieldstart', 'move: Beautiful Terrain');
-				}
 				}
 			},
 			onResidualOrder: 5,
