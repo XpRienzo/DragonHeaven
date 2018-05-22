@@ -86,9 +86,6 @@ exports.BattleMovedex = {
 				} else {
 					this.add('-fieldstart', 'move: Beautiful Terrain');
 				}
-				if (!target.hasTypes('Fire')) {
-					this.boost({atk: -2}, target, pokemon);
-					}
 				}
 			},
 			onResidualOrder: 5,
