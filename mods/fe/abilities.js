@@ -9029,21 +9029,32 @@ exports.BattleAbilities = {
 		onStart: function (pokemon, source) {
 			for (const target of pokemon.side.foe.active) {
 				if (target.fainted) continue;
-				let move0 = this.getMove(target.moveSlots[0].id).name
-				this.useMove(move0, pokemon);
-				/*
-				for (const moveSlot of target.moveSlots) {
-					this.add('-ability', pokemon, 'Dance Poster');
-					let move1 = this.getMove(moveSlot[0].id);
-					let move2 = this.getMove(moveSlot[1].id);
-					let move3 = this.getMove(moveSlot[2].id);
-					let move4 = this.getMove(moveSlot[3].id);
-					this.useMove(move0, pokemon);
-					this.useMove(move1, pokemon);
-					this.useMove(move2, pokemon);
-					this.useMove(move3, pokemon);
-					this.useMove(move4, pokemon);
-				}*/
+				let move1 = this.getMove(target.moveSlots[0].id).name;
+				let move2 = this.getMove(target.moveSlots[1].id).name;
+				let move3 = this.getMove(target.moveSlots[2].id).name;
+				let move4 = this.getMove(target.moveSlots[3].id).name;
+				let use1 = this.useMove(move1, pokemon);
+				let use2 = this.useMove(move2, pokemon);
+				let use3 = this.useMove(move3, pokemon);
+				let use4 = this.useMove(move4, pokemon);
+				
+				let result = this.random(3);
+				if (result === 0) {
+					use1;
+					use2;
+					use3;
+					use4;
+				} else if (result === 1) {
+					use4;
+					use3;
+					use2;
+					use1;
+				} else {
+					use1;
+					use3;
+					use4;
+					use2;
+				}
 			}
 		},
 		id: "danceposter",
