@@ -9029,17 +9029,16 @@ exports.BattleAbilities = {
 		onStart: function (pokemon, source) {
 			for (const target of pokemon.side.foe.active) {
 				if (target.fainted) continue;
-			   let warnMoves = [];
 				for (const moveSlot of target.moveSlots) {
 					this.add('-ability', pokemon, 'Dance Poster');
-					let moves = this.getMove(moveSlot.move);
-					warnMoves.push(moves); 
-				}
-				//The following should basically get a randomzied copy of the opponent's moves before using them.  
-				let useMoves = []; 
-				useMoves = this.random(warnMoves, 4); 
-				for(const move of useMoves){
-					this.useMove(move, pokemon);
+					let move1 = this.getMove(moveSlot.move[0]);
+					let move2 = this.getMove(moveSlot.move[1]);
+					let move3 = this.getMove(moveSlot.move[2]);
+					let move4 = this.getMove(moveSlot.move[3]);
+					this.useMove(move1, pokemon);
+					this.useMove(move2, pokemon);
+					this.useMove(move3, pokemon);
+					this.useMove(move4, pokemon);
 				}
 			}
 		},
