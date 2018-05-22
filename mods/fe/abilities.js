@@ -9031,10 +9031,12 @@ exports.BattleAbilities = {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
 					this.add('-ability', pokemon, 'Dance Poster');
+					let move0 = this.getMove(target.moveSlots[0].id)
 					let move1 = this.getMove(moveSlot[0].id);
 					let move2 = this.getMove(moveSlot[1].id);
 					let move3 = this.getMove(moveSlot[2].id);
 					let move4 = this.getMove(moveSlot[3].id);
+					this.useMove(move0, pokemon);
 					this.useMove(move1, pokemon);
 					this.useMove(move2, pokemon);
 					this.useMove(move3, pokemon);
