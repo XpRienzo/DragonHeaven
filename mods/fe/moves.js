@@ -5474,7 +5474,7 @@ exports.BattleMovedex = {
              secondary: {
                      chance: 100,
                      self: {
-                             volatileStatus: 'dragonscage';
+                             volatileStatus: 'dragonscage',
                      },
              },
              effect: {
