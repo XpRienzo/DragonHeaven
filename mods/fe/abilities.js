@@ -8477,7 +8477,22 @@ exports.BattleAbilities = {
 "beautifulobliterationweapon": {
 		desc: "This Pokemon summons Beautiful Terrain upon switching in. Beautiful Terrain multiplies the power of Fire and Fairy-type moves 1.5x and burns anything that can be burnt. When this terrain fades, this ability functions just like Flame Body.",
 		shortDesc: "On switch-in, this Pokemon summons Beautiful Terrain, which powers up Fire- and Fairy-type moves and burns anything that can be burned. Contact can inflict burn.",
-		onStart: function (source) {
+		onStart: function (pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Beautiful Obliteration Weapon', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute'] || target.hasType('Fire')) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({atk: -2}, target, pokemon);
+				}
+			}
+		},
+		onSwitchIn: function (source) {
 			this.setTerrain('beautifulterrain');
 		},
 		onAfterDamage: function (damage, target, source, move) {
