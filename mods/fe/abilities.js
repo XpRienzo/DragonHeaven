@@ -9461,7 +9461,7 @@ exports.BattleAbilities = {
 			if (move.christmasparade) return this.chainModify(1.75);
 		},
 		onSourceModifyDamage: function (damage, source, target, move) {
-			if move.christmasparadeboosted) {
+			if (move.christmasparadeboosted) {
 				return this.chainModify(0.75);
 			}
 		},
