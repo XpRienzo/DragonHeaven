@@ -901,11 +901,11 @@ exports.BattleAbilities = {
 		name: "Swift Absorb",
 	},
 	"mathsurge": {
-		shortDesc: "Increases Special Attack to 1.5x at 1/3 max HP or less.",
-		onModifySpAPriority: 5,
-		onModifySpA: function(atk, attacker, defender, move) {
-			if (attacker.hp <= attacker.maxhp / 3) {
-				this.debug('Math surge');
+		shortDesc: "1.5x power of moves with 60 BP or less. When an ally has Technician, Plus or derivatives of those two abilities, multiplier is boosted to 2x.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60) {
+				this.debug('Math Surge boost');
 				return this.chainModify(1.5);
 			}
 		},
@@ -9022,7 +9022,7 @@ exports.BattleAbilities = {
 				}
 				//The following should basically get a randomzied copy of the opponent's moves before using them.  
 				let useMoves = []; 
-				useMoves = this.sample(warnMoves, 4); 
+				useMoves = this.random(warnMoves, 4); 
 				for(const move of useMoves){
 					this.useMove(move, pokemon);
 				}
@@ -9340,4 +9340,208 @@ exports.BattleAbilities = {
 	    id: "appropriation",
 	    name: "Appropriation",
 	},
+	"scarilyadorable": {
+		shortDesc: "On switch-in, the foe's attack and speed is lowered by two stages. The foe is also is paralyzed 30% of the time. If this Pokemon is targeted with a contact move, the foe has a 30% chance to have their Attack lowered by one stage.",
+		onStart: function (pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Intimidate', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({atk: -2, spe: -2}, target, pokemon);
+					if (this.randomChance(3, 10)) {
+					target.trySetStatus('par', pokemon);
+				}
+				}
+			}
+		},
+		onAfterDamage: function (damage, target, source, move) {
+			if (move && move.flags['contact']) {
+				if (this.randomChance(3, 10)) {
+					this.boost({atk: -1}, source, target);
+				}
+			}
+		},
+		id: "scarilyadorable",
+		name: "Scarily Adorable",
+	},
+	"creepy": {
+		shortDesc: "Status moves have +1 priority and lower the foe's Attack by one stage.",
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (move && move.category === 'Status') {
+				move.pranksterBoosted = true;
+				return priority + 1;
+			}
+		},
+		onAfterHit: function (move, target) {
+			if (move.category === 'Status' && move.target === 'normal' || move.target === 'foeSide' || move.target === 'allAdjacentFoes') {
+				this.boost({atk: -1}, target);
+			}
+		},
+		id: "creepy",
+		name: "Creepy",
+	},
+	"prismskin": {
+		shortDesc: "Restores 1/4 HP when hit by a super-effective move (recovery first then damage). Super-effective moves do 1/4 of the damage. Fire type moves ignore this ability. This ability cannot be bypassed by Mold Breaker or its variants.",
+		onFoeBeforeMove: function (target, source, move) {
+			if (target !== source && move.typeMod > 0 && !source.hasType('Fire')) {
+				this.heal(target.maxhp / 4)) 
+			}
+		},
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0 && !target.hasType('Fire')) {
+				this.debug('Prism Armor neutralize');
+				return this.chainModify(0.25);
+			}
+		},
+		isUnbreakable: true,
+		id: "prismskin",
+		name: "Prism Skin",
+	},
+	"terabeast": { //TODO: Checkthis
+		desc: "This Pokemon's move with the highest base power deals 1.5x damage and ignores the target's ability.",
+		shortDesc: "This Pokemon's move with the highest base power deals 1.5x damage and ignores the target's ability.",
+		onModifyMove: function (pokemon) {
+			/**@type {(Move|Pokemon)[][]} */
+			let warnMoves = [];
+			let warnBp = 1;
+				for (const moveSlot of pokemon.moveSlots) {
+					let move = this.getMove(moveSlot.move);
+					let bp = move.basePower;
+					if (move.ohko) bp = 160;
+					if (move.id === 'counter' || move.id === 'metalburst' || move.id === 'mirrorcoat') bp = 120;
+					if (!bp && move.category !== 'Status') bp = 80;
+					if (bp > warnBp) {
+						warnMoves = [[move, pokemon]];
+						warnBp = bp;
+					} else if (bp === warnBp) {
+						warnMoves.push([move, pokemon]);
+					}
+				}
+			if (!warnMoves.length) return;
+			const [warnMoveName, warnTarget] = this.sample(warnMoves);
+			warnMoves.ignoreAbility = true;
+			return warnMoves.chainModify(1.5);
+		},
+		id: "terabeast",
+		name: "Terabeast",
+	},
+	"powersaver": {
+		shortDesc: "Physical moves do 50% more damage every other turn.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, pokemon) {
+			return this.modify(atk, 1.5);
+			pokemon.addVolatile('powersaver');
+		},
+		effect: {
+			duration: 2,
+		},
+		id: "powersaver",
+		name: "Power Saver",
+	},
+	"christmasparade": {
+		shortDesc: "Super effective attacks against this Pokemon becomes Ice-type and do 0.75x damage. Normal-type moves become Ice-type and do 1.75x damage.",
+		onFoeModifyMove: function (source, target, move) {
+			if (move.typeMod > 0) {
+				move.type === 'Ice';
+				move.christmasparadeboosted = true;
+			}
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Ice';
+				move.christmasparade = true;
+			}
+		},
+		onFoeBasePowerPriority: 8,
+		onFoeBasePower: function (basePower, pokemon, target, move) {
+			if (move.christmasparade) return this.chainModify(1.75);
+		},
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if move.christmasparadeboosted) {
+				return this.chainModify(0.75);
+			}
+		},
+		isUnbreakable: true,
+		id: "christmasparade",
+		name: "Christmas Parade",
+	},
+	"shocktrap": { // TODO: Make it work only once
+		shortDesc: "Takes 50% damage from all attacks when its HP is full. If it takes a direct attack at full HP, the attacker is paralyzed. (Note: the latter effect only works once.)",
+		onSourceModifyDamage: function(damage, source, target, move) {
+			if (target.hp >= target.maxhp) {
+				return this.chainModify(0.5);
+			}
+		},
+		onAfterDamage: function(damage, target, source, move) {
+			if (move && move.flags['contact'] && !source.status && source.runStatusImmunity('powder') && source.hp >= source.maxhp) {
+				source.setStatus('par', target);
+			}
+		},
+		id: "shocktrap",
+		name: "Shock Trap",
+	},
+	"auraofpain": {
+		shortDesc: "While this Pokemon is active, all Pokemon are prevented from healing.",
+		onUpdate: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				for (const moveSlot of target.moveSlots) {
+					if (this.getMove(moveSlot.id).flags['heal']) {
+						target.disableMove(moveSlot.id);
+						}
+						for (const moveSlot of pokemon.moveSlots) {
+						if (this.getMove(moveSlot.id).flags['heal']) {
+						pokemon.disableMove(moveSlot.id);
+					}
+					}
+				}
+			}
+		},
+		onFoeBeforeMove: function (pokemon, target, move) {
+				if (move.flags['heal']) {
+					this.add('cant', pokemon, 'ability: Aura Of Pain', move);
+					return false;
+				}
+			},
+		id: "auraofpain",
+		name: "Aura Of Pain",
+	},
+	"pouchaura": {
+		shortDesc: "While this Pokémon is on the field, moves that heal the user gain a 1.7x boost and heal for 1.7x more than usual.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.flags['heal']) {
+				return this.chainModify(1..7);
+			}
+		},
+		onModifyMove: function (move) {
+			if (move.flags['heal']) {
+				move.heal *= 1.7;
+			}
+		},
+		id: "pouchaura",
+		name: "Pouch Aura",
+	},
+	"voltfield": {
+		shortDesc: "As long as the holder is on the field, opponent is under the effect of Taunt.",
+		onStart: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				target.addVolatile('taunt');
+			}
+		},
+		onUpdate: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				target.addVolatile('taunt');
+			}
+		},
+		id: "voltfield",
+		name: "Volt Field",
+	},
+	
 };
