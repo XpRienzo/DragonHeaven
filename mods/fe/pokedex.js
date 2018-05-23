@@ -7966,7 +7966,7 @@ darkchomp: {
     vitalityfire: {
         num: 7500209,
         species: "Vitality-Fire",
-        baseSpecies: "Omneus",
+        baseSpecies: "Vitality",
         forme: "Fire",
         formeLetter: "F",
         gender: "N",
