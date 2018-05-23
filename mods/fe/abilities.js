@@ -3879,8 +3879,10 @@ exports.BattleAbilities = {
 	},
 	"panicmode": {
 		shortDesc: "This Pokemon's moves have +1 priority when this Pokemon is burned, paralyzed, or poisoned. Ignores the burn Attack drop.",
-		onModifyPriority: function (priority, pokemon, target) {
-			if (pokemon.status === 'brn' || pokemon.status === 'par' || pokemon.status === 'psn') return priority + 1;
+		onModifyPriority: function (priority, pokemon, target, move) {
+			if (pokemon.status === 'brn' || pokemon.status === 'par' || pokemon.status === 'psn') {
+				return priority + 1;
+			}
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, pokemon) {
