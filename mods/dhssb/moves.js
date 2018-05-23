@@ -129,7 +129,7 @@ exports.BattleMovedex = {
 	},
 	"buildup": {
 		accuracy: true,
-		basePower: 190,
+		basePower: 100,
 		category: "Physical",
 		id: "buildup",
 		isViable: true,
@@ -140,24 +140,16 @@ exports.BattleMovedex = {
 		shortDesc: "Does many things!",
 		drain: [3, 4],
 		ignoreAbility: true,
-		breaksProtect: true,
 		willCrit: true,
 		secondary: {
 			chance: 100,
 			self: {
 				boosts: {
 					atk: 1,
-					spe: 2,
-					def: 2,
-					spd: 2,
+					def: 1,
+					spd: 1,
 				},
 			},
-		},
-		onEffectiveness: function (typeMod, type) {
-			if (type === 'Water') return 1;
-			if (type === 'Fire') return 1;
-			if (type === 'Steel') return 1;
-			if (type === 'Electric') return 1;
 		},
 		onTryHit: function (target, pokemon, source) {
 			this.add('-anim', pokemon, "Imprison", source);
@@ -316,7 +308,7 @@ exports.BattleMovedex = {
 				return;
 			}
 			this.add('-prepare', attacker, move.name, defender);
-			this.boost({atk: 2, def: 2, spd: 2, spe: 2}, attacker, attacker, this.getMove('waitaminute'));
+			this.boost({atk: 1, def: 1, spd: 1, spe: 1}, attacker, attacker, this.getMove('waitaminute'));
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
 				this.add('-anim', attacker, move.name, defender);
 				attacker.removeVolatile(move.id);

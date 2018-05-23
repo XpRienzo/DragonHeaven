@@ -4,12 +4,12 @@ exports.BattleAbilities = {
 	"bruteforce": {
 		shortDesc: "Combo of a lot of abilities",
 		onModifyMove: function (move) {
-			move.stab = 2;
+			move.stab = 1.75;
 		},
 		onSourceModifyDamage: function (damage, source, target, move) {
 			if (target.hp >= target.maxhp) {
 				this.debug('Shadow Shield weaken');
-				return this.chainModify(0.5);
+				return this.chainModify(0.75);
 			}
 		},
 		onTryHit: function (pokemon, target, move) {
@@ -36,14 +36,14 @@ exports.BattleAbilities = {
 		onModifyAtk: function (atk, attacker, defender, move) {
 			if (move.type === 'Steel') {
 				this.debug('Steelworker boost');
-				return this.chainModify(1.5);
+				return this.chainModify(1.33);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function (atk, attacker, defender, move) {
 			if (move.type === 'Steel') {
 				this.debug('Steelworker boost');
-				return this.chainModify(1.5);
+				return this.chainModify(1.33);
 			}
 		},
 		onUpdate: function (pokemon) {
@@ -101,7 +101,7 @@ exports.BattleAbilities = {
 		shortDesc: "Increases damage by 50% + decreases incoming damage by 75% + Magic Guard + Unaware. Cannot be bypassed",
 		desc: "Increases damage by 50% + decreases incoming damage by 75% + Magic Guard + Unaware + Immune to burn. Cannot be bypassed",
 		onBasePower: function (basePower, attacker, defender, move) {
-				return this.chainModify(1.5);
+				return this.chainModify(1.2);
 		},
 		onDamage: function (damage, target, source, effect) {
 			if (effect.id === 'recoil' && this.activeMove.id !== 'struggle') return null;
@@ -126,12 +126,12 @@ exports.BattleAbilities = {
 		onModifyAtkPriority: 6,
 		onSourceModifyAtk: function (atk, attacker, defender, move) {
 				this.debug('Warpstar Crusader weaken');
-				return this.chainModify(0.25);
+				return this.chainModify(0.80);
 		},
 		onModifySpAPriority: 5,
 		onSourceModifySpA: function (atk, attacker, defender, move) {
 				this.debug('Warpstar Crusader weaken');
-				return this.chainModify(0.25);
+				return this.chainModify(0.80);
 		},
 		onAnyModifyBoost: function (boosts, target) {
 			let source = this.effectData.target;
