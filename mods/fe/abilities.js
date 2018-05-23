@@ -1939,12 +1939,9 @@ exports.BattleAbilities = {
 	},
 	"shakeitoff": {
 		shortDesc: "Boosts the Special Attack stat by two stages when statused.",
-	        onSetStatus: function (status, target, source, effect) {
-			if (!effect || !effect.status) return false;
-				this.boost({
-					spa: 2
-				});
-			  
+	    onSetStatus: function (status, target, source, effect) {
+			if (!effect || !status) return false;
+			this.boost({ spa: 2 });
 		},
 		id: "shakeitoff",
 		name: "Shake it Off",
@@ -2852,15 +2849,16 @@ exports.BattleAbilities = {
 	"landsshield": {
 		shortDesc: "Halves damage taken if either at full health or hit Super Effectively, both stack.",
 		onSourceModifyDamage: function (damage, source, target, move) {
-                        let mod = 1;
+         let mod = 1;
 			if (target.hp >= target.maxhp) {
 				mod = mod * 0.5;
+				this.debug('Shadow Shield weaken');
 			}
-
 			if (move.typeMod > 0) {
 				mod = mod * 0.5;
-                        }
-                        return mod;
+				this.debug('Prism Armor neutralize');
+          }
+          return this.chainModify(mod);
 		},
 		id: "landsshield",
 		name: "Land's Shield",
@@ -4522,23 +4520,14 @@ exports.BattleAbilities = {
 		shortDesc: "If this Pokemon (not its substitute) takes a critical hit, its Attack is raised 12 stages.",
 		onAfterUseItem: function (item, pokemon) {
 			if (pokemon !== this.effectData.target) return;
-			pokemon.addVolatile('titanicstrength');
+				this.boost({atk: 12}, pokemon);
 		},
 		onTakeItem: function (item, pokemon) {
-			pokemon.addVolatile('titanicstrength');
+				this.boost({atk: 12}, pokemon);
 		},
 		onEnd: function (pokemon) {
 			pokemon.removeVolatile('titanicstrength');
 		},
-		effect: {
-			duration: 1,
-			onUpdate: function (pokemon) {
-				if (!pokemon.item && pokemon.volatiles['titanicstrength']) {
-				this.add('-start', pokemon, 'ability: Titanic Strength', '[silent]');
-				this.boost({atk: 12}, pokemon);
-				pokemon.removeVolatile('titanicstrength');
-				}
-			},
 		},
 		id: "titanicstrength",
 		name: "Titanic Strength",
@@ -4762,20 +4751,18 @@ exports.BattleAbilities = {
 		name: "Clear Absorb",
 	},
 	"evaporate": {
-		shortDesc: "30% chance of healing 1/4 of its max HP instead of taking damage whenever hit by a super-effective attack.",
-		onTryHit: function(target, source, move) {
-			if (target !== source && move.typeMod > 0) {
-				if (this.randomChance(3, 10)) {
-				        if (!this.heal(target.maxhp / 4)) {
-					        this.add('-immune', target, '[msg]', '[from] ability: Evaporate');
-				        }
-					this.add('-ability', target, 'Evaporate');
-                                        return null;
-				}
-			}
-		},
-		id: "evaporate",
-		name: "Evaporate",
+	    shortDesc: "30% chance of healing 1/4 of its max HP instead of taking damage whenever hit by a super-effective attack.",
+	    onTryHit: function(target, source, move) {
+	        if (this.randomChance(3, 10) && target !== source && move.typeMod > 0) {
+	            if (!this.heal(target.maxhp / 4)) {
+	                this.add('-immune', target, '[msg]', '[from] ability: Evaporate');
+	            }
+	            this.add('-ability', target, 'Evaporate');
+	            return null;
+	        }
+	    },
+	    id: "evaporate",
+	    name: "Evaporate",
 	},
 	"caestus": {
 		shortDesc: "Arm, hand, and punching moves do 25% more damage where applicable and raise this Pokémon's Attack by one stage after their use.",
@@ -4950,15 +4937,15 @@ exports.BattleAbilities = {
 			if (move && move.flags['contact']) {
 				let stat = 'atk';
 				let bestStat = 0;
-				for (let i in source.stats) {
-					if (source.stats[i] > bestStat) {
+				for (let i in target.stats) {
+					if (target.stats[i] > bestStat) {
 						stat = i;
-						bestStat = source.stats[i];
+						bestStat = target.stats[i];
 					}
 				}
 				this.boost({
 					[stat]: 1
-				}, source);
+				}, target);
 			}
 		},
 		id: "beastbarbs",
@@ -5152,9 +5139,7 @@ exports.BattleAbilities = {
 	},
 	"rubberup": {
 		shortDesc: "Whenever another Pokémon faints or has its stats lowered, this Pokémon has its Special Attack stat boosted by 2 combat stages.",
-		onAfterEachBoost: function (boost, pokemon, source) {
-		for (const target of pokemon.side.foe.active) {
-				if (!target || target.fainted) continue;
+		onAnyAfterEachBoost: function (boost, pokemon, source) {
 			let statsLowered = false;
 			for (let i in boost) {
 				// @ts-ignore
@@ -5163,9 +5148,8 @@ exports.BattleAbilities = {
 				}
 			}
 			if (statsLowered) {
-				this.boost({atk: 2}, pokemon, pokemon, null, true);
+				this.boost({spa: 2}, this.effectData.target);
 			}
-		}
 		},
 		onAnyFaint: function () {
 			this.boost({spa: 2}, this.effectData.target);
@@ -9249,22 +9233,13 @@ exports.BattleAbilities = {
 	"sporespreading": {
 		shortDesc: "Healing Moves and moves with a chance to Poison, Sleep, or Paralyze the opponent have +1 priority.",
 		onModifyPriority: function (priority, pokemon, target, move) {
-			if (move && move.flags['heal'] || (move.secondary && move.secondary.status && (move.secondary.status === 'psn' || move.secondary.status === 'par' || move.secondary.status === 'slp')) || (move.status && (move.status === 'psn' || move.status === 'slp' || move.status === 'par'))) return priority + 1;
+			if (move && move.flags['heal'] || move.id === 'triattack' || (move.secondary && move.secondary.status && (move.secondary.status === 'psn' || move.secondary.status === 'par' || move.secondary.status === 'slp')) || (move.status && (move.status === 'psn' || move.status === 'slp' || move.status === 'par'))) return priority + 1;
 		},
 		id: "sporespreading",
 		name: "Spore Spreading",
 	},
 	"goddesstrace": {
 		shortDesc: "Upon being sent out, the Pokemon copies the opposing Pokemon's ability and halves the PP of their moves.",
-		onStart: function (pokemon) {
-			this.add('-ability', pokemon, 'Goddess Trace');
-			for (const target of pokemon.side.foe.active) {
-				if (target.fainted) continue;
-				for (const moveSlot of target.moveSlots) {
-					moveSlot.pp = (moveSlot.pp+1)/2;
-				}
-			}
-		},
 		onUpdate: function (pokemon) {
 			if (!pokemon.isStarted) return;
 			let possibleTargets = pokemon.side.foe.active.filter(foeActive => foeActive && this.isAdjacent(pokemon, foeActive));
@@ -9280,6 +9255,9 @@ exports.BattleAbilities = {
 				}
 				this.add('-ability', pokemon, ability, '[from] ability: Goddess Trace', '[of] ' + target);
 				pokemon.setAbility(ability);
+				for (const moveSlot of target.moveSlots) {
+					moveSlot.pp = (moveSlot.pp+1)/2;
+				}
 				return;
 			}
 		},
@@ -9386,8 +9364,8 @@ exports.BattleAbilities = {
 				return priority + 1;
 			}
 		},
-		onAfterHit: function (move, target) {
-			if (move.category === 'Status' && move.target === 'normal' || move.target === 'foeSide' || move.target === 'allAdjacentFoes') {
+		onSourceHit: function (target, source, move) {
+			if (target !== source && move.category === 'Status' && (move.target === 'normal' || move.target === 'foeSide' || move.target === 'allAdjacentFoes')) {
 				this.boost({atk: -1}, target);
 			}
 		},
