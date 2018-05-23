@@ -878,29 +878,6 @@ swampert: {
         color: "Brown",
         eggGroups: ["Monster"],
     },
-    tyranichompmegax: {
-        num: 750026,
-        species: "Tyranichomp-Mega-X",
-        baseSpecies: "Tyranichomp",
-        forme: "Mega",
-        formeLetter: "M",
-        types: ["Rock", "Dragon"],
-        baseStats: {
-            hp: 114,
-            atk: 172,
-            def: 152,
-            spa: 97,
-            spd: 122,
-            spe: 101
-        },
-        abilities: {
-            0: "Sand Stream"
-        },
-        heightm: 2,
-        weightkg: 75.5,
-        color: "Brown",
-        eggGroups: ["Monster"],
-    },
 
     tyranichompmegay: {
         num: 750026,
@@ -5670,7 +5647,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
 	    lopunnemega: {
-        num: 7500138,
+        num: 7500140,
         species: "Lopunne-Mega",
         baseSpecies: "Lopunne",
         forme: "Mega",
@@ -5717,7 +5694,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 	 hootoisemega: {
-        num: 7500139,
+        num: 7500141,
         species: "Hootoise-Mega",
         baseSpecies: "Hootoise",
         forme: "Mega",
@@ -14853,7 +14830,399 @@ mimiblimbusted: {
         color: "Gray",
         eggGroups: ["Undiscovered"],
     },
-    // Vallysect 7500409
+   vallysect: {
+        num: 7500412,
+        species: "Vallysect",
+        types: ["Bug", "Normal"],
+        gender: "N",
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+	
+    vallysectfire: {
+        num: 7500412,
+        species: "Vallysect-Fire",
+        baseSpecies: "Vallysect",
+        forme: "Fire",
+        formeLetter: "F",
+        gender: "N",
+        types: ["Bug", "Fire"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectwater: {
+        num: 7500412,
+        species: "Vallysect-Water",
+        baseSpecies: "Vallysect",
+        forme: "Water",
+        formeLetter: "W",
+        gender: "N",
+        types: ["Bug", "Water"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectelectric: {
+        num: 7500412,
+        species: "Vallysect-Electric",
+        baseSpecies: "Vallysect",
+        forme: "Electric",
+        formeLetter: "E",
+        gender: "N",
+        types: ["Bug", Electric"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectgrass: {
+        num: 7500412,
+        species: "Vallysect-Grass",
+        baseSpecies: "Vallysect",
+        forme: "Grass",
+        formeLetter: "G",
+        gender: "N",
+        types: ["Bug", "Grass"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectice: {
+        num: 7500412,
+        species: "Vallysect-Ice",
+        baseSpecies: "Vallysect",
+        forme: "Ice",
+        formeLetter: "I",
+        gender: "N",
+        types: ["Bug", "Ice"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+    vallysectfighting: {
+        num: 7500412,
+        species: "Vallysect-Fighting",
+        baseSpecies: "Vallysect",
+        forme: "Fighting",
+        formeLetter: "F",
+        gender: "N",
+        types: ["Bug", "Fighting"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectpoison: {
+        num: 7500412,
+        species: "Vallysect-Poison",
+        baseSpecies: "Vallysect",
+        forme: "Poison",
+        formeLetter: "P",
+        gender: "N",
+        types: ["Bug", "Poison"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+    vallysectground: {
+        num: 7500412,
+        species: "Vallysect-Ground",
+        baseSpecies: "Vallysect",
+        forme: "Ground",
+        formeLetter: "G",
+        gender: "N",
+        types: ["Bug", "Ground"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+    vallysectflying: {
+        num: 7500412,
+        species: "Vallysect-Flying",
+        baseSpecies: "Vallysect",
+        forme: "Flying",
+        formeLetter: "F",
+        gender: "N",
+        types: ["Bug", "Flying"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+    vallysectpsychic: {
+        num: 7500412,
+        species: "Vallysect-Psychic",
+        baseSpecies: "Vallysect",
+        forme: "Psychic",
+        formeLetter: "P",
+        gender: "N",
+        types: ["Bug", "Psychic"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectbug: {
+        num: 7500412,
+        species: "Vallysect-Bug",
+        baseSpecies: "Vallysect",
+        forme: "Bug",
+        formeLetter: "B",
+        gender: "N",
+        types: ["Bug"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectdragon: {
+        num: 7500412,
+        species: "Vallysect-Dragon",
+        baseSpecies: "Vallysect",
+        forme: "Dragon",
+        formeLetter: "D",
+        gender: "N",
+        types: ["Bug", "Dragon"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectdark: {
+        num: 7500412,
+        species: "Vallysect-Dark",
+        baseSpecies: "Vallysect",
+        forme: "Dark",
+        formeLetter: "D",
+        gender: "N",
+        types: ["Bug", "Dark"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectsteel: {
+        num: 7500412,
+        species: "Vallysect-Steel",
+        baseSpecies: "Vallysect",
+        forme: "Steel",
+        formeLetter: "S",
+        gender: "N",
+        types: ["Bug", "Steel"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vallysectfairy: {
+        num: 7500253,
+        species: "Vallysect-Fairy",
+        baseSpecies: "Vallysect",
+        forme: "Fairy",
+        formeLetter: "F",
+        gender: "N",
+        types: ["Bug", "Fairy"],
+        baseStats: {
+            hp: 90,
+            atk: 120,
+            def: 95,
+            spa: 120,
+            spd: 95,
+            spe: 104
+        },
+        abilities: {
+            0: "Genetic Algorithm"
+        },
+        heightm: 1.9,
+        weightkg: 91.5,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+	
     mamozone: {
         num: 7500410,
         species: "Mamozone",
@@ -15126,7 +15495,7 @@ mimiblimbusted: {
         num: 7500418,
         species: "Kudou",
         types: ["Water", "Electric"],
-        gender: "N",
+        gender: "M",
         baseStats: {
             hp: 85,
             atk: 100,
