@@ -217,11 +217,6 @@ shadowdance: {
 			pokemon.setType('Water', type);
 		},
 	},
-	onModifySpe: function (spe, pokemon) {
-			if (pokemon.getItem() && pokemon.getItem().onPlate) {
-				return this.chainModify(2);
-			}
-		},
 };
 
 exports.BattleStatuses = BattleStatuses;
