@@ -3569,7 +3569,7 @@ exports.BattleAbilities = {
 	},
 	"ouroboros": {
 		shortDesc: "Upon scoring a KO or switching out, the user regains 1/3 max HP.",
-		onSourceFaint: function(target, source, effect) {
+		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
 				this.heal(source.maxhp / 3);
 			}
