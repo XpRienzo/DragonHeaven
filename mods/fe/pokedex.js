@@ -10493,6 +10493,7 @@ darkchomp: {
         abilities: {
             0: "Tinkering"
         },
+		 fusion: ["Riolu", "Celebi"],
     },
 
     combarde: {
