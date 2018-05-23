@@ -9334,7 +9334,7 @@ exports.BattleAbilities = {
 	    name: "Appropriation",
 	},
 	"scarilyadorable": {
-		shortDesc: "On switch-in, the foe's attack and speed is lowered by two stages. The foe is also is paralyzed 30% of the time. If this Pokemon is targeted with a contact move, the foe has a 30% chance to have their Attack lowered by one stage.",
+		shortDesc: "On switch-in, the foe's attack and speed is lowered by one stage. If this Pokemon is targeted with a contact move, the foe has a 30% chance to have their Attack lowered by one stage.",
 		onStart: function (pokemon) {
 			let activated = false;
 			for (const target of pokemon.side.foe.active) {
@@ -9346,9 +9346,7 @@ exports.BattleAbilities = {
 				if (target.volatiles['substitute']) {
 					this.add('-immune', target, '[msg]');
 				} else {
-					this.boost({atk: -2, spe: -2}, target, pokemon);
-					if (this.randomChance(3, 10)) {
-					target.trySetStatus('par', pokemon);
+					this.boost({atk: -1, spe: -1}, target, pokemon);
 				}
 				}
 			}
@@ -9380,16 +9378,16 @@ exports.BattleAbilities = {
 		name: "Creepy",
 	},
 	"prismskin": {
-		shortDesc: "Restores 1/4 HP when hit by a super-effective move (recovery first then damage). Super-effective moves do 1/4 of the damage. Fire type moves ignore this ability. This ability cannot be bypassed by Mold Breaker or its variants.",
+		shortDesc: "Restores 1/4 HP when hit by a super-effective move (recovery first then damage). Super-effective moves do 1/2 of the damage. This ability can be bypassed by Fire-type moves and only Fire-type moves, regardless of whether the attacker has Mold Breaker or its variants.",
 		onFoeBeforeMove: function (target, source, move) {
-			if (target !== source && move.typeMod > 0 && !source.hasType('Fire')) {
+			if (target !== source && move.typeMod > 0 && move.type !== 'Fire') {
 				this.heal(target.maxhp / 4)
 			}
 		},
 		onSourceModifyDamage: function (damage, source, target, move) {
-			if (move.typeMod > 0 && !target.hasType('Fire')) {
+			if (move.typeMod > 0 && move.type !== 'Fire') {
 				this.debug('Prism Armor neutralize');
-				return this.chainModify(0.25);
+				return this.chainModify(0.5);
 			}
 		},
 		isUnbreakable: true,
