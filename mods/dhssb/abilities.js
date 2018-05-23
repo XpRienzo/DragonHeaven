@@ -3,13 +3,13 @@
 exports.BattleAbilities = {
 	"bruteforce": {
 		shortDesc: "Combo of a lot of abilities",
-		onModifyMove: function (move) {
+		/*onModifyMove: function (move) {
 			move.stab = 1.75;
-		},
+		},*/
 		onSourceModifyDamage: function (damage, source, target, move) {
 			if (target.hp >= target.maxhp) {
-				this.debug('Shadow Shield weaken');
-				return this.chainModify(0.75);
+				this.debug('Brute Force weaken');
+				return this.chainModify(0.8);
 			}
 		},
 		onTryHit: function (pokemon, target, move) {
@@ -31,7 +31,7 @@ exports.BattleAbilities = {
 				this.debug('Iron Fist boost');
 				return this.chainModify([0x1333, 0x1000]);
 			}
-		},
+		},/*
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk, attacker, defender, move) {
 			if (move.type === 'Steel') {
@@ -45,7 +45,7 @@ exports.BattleAbilities = {
 				this.debug('Steelworker boost');
 				return this.chainModify(1.33);
 			}
-		},
+		},*/
 		onUpdate: function (pokemon) {
 			if (pokemon.status === 'slp') {
 				this.add('-activate', pokemon, 'ability: Insomnia');
@@ -70,12 +70,6 @@ exports.BattleAbilities = {
 			}
 			if (statsLowered) {
 				this.boost({atk: 2}, target, target, null, true);
-			}
-		},
-		onSourceModifyDamage: function (damage, source, target, move) {
-			if (move.typeMod > 0) {
-				this.debug('Filter neutralize');
-				return this.chainModify(0.5);
 			}
 		},
 		isUnbreakable: true,

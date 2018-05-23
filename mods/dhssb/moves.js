@@ -135,30 +135,23 @@ exports.BattleMovedex = {
 		isViable: true,
 		name: "Build Up",
 		pp: 15,
-		priority: 2,
 		flags: {protect: 1, contact: 1, mirror: 1, authentic: 1},
 		shortDesc: "Does many things!",
-		drain: [3, 4],
+		drain: [4, 5],
 		ignoreAbility: true,
-		willCrit: true,
 		secondary: {
 			chance: 100,
 			self: {
 				boosts: {
 					atk: 1,
 					def: 1,
-					spd: 1,
 				},
 			},
 		},
 		onTryHit: function (target, pokemon, source) {
 			this.add('-anim', pokemon, "Imprison", source);
 			this.add('-anim', pokemon, "Dark Void", target);
-			this.add('-anim', pokemon, "Shell Smash", source);
-			this.add('-anim', pokemon, "Catastropika", target);
 			this.add('-anim', pokemon, "Dragon Ascent", target);
-			this.add('-anim', pokemon, "Sunsteel Strike", target);
-			this.add('-anim', pokemon, "All-Out Pummeling", target);
 		},
 		target: "normal",
 		type: "Steel",
