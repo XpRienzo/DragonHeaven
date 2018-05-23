@@ -92,9 +92,9 @@ shadowdance: {
         this.add('-weather', 'none');
     },
 },
-	partiallytrapped: {
-		name: 'partiallytrapped',
-		id: 'partiallytrapped',
+	titanicstrength: {
+		name: 'titanicstrength',
+		id: 'titanicstrength',
 		num: 0,
 		duration: 1,
 			onUpdate: function (pokemon) {
