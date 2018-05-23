@@ -4775,9 +4775,9 @@ exports.BattleAbilities = {
 				return this.chainModify(1.25);
 			}
 		},
-		onAfterMove: function(move, pokemon) {
+		onAfterMove: function(move, source) {
 			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name === 'Arm Thrust' || move.name === 'Hammer Arm' || move.name === 'Needle Arm') {
-				this.boost({atk: 1}, pokemon);
+				this.boost({atk: -1}, source);
 			}
 		},
 		id: "caestus",
