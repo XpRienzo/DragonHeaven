@@ -9910,7 +9910,7 @@ darkchomp: {
         forme: "Dragon",
         formeLetter: "D",
         gender: "N",
-        types: ["Water", "Fire"],
+        types: ["Water", "Dragon"],
         baseStats: {
             hp: 77,
             atk: 80,
@@ -9973,7 +9973,7 @@ darkchomp: {
         forme: "Fairy",
         formeLetter: "A",
         gender: "N",
-        types: ["Water", "Fire"],
+        types: ["Water", "Fairy"],
         baseStats: {
             hp: 77,
             atk: 80,
