@@ -9372,8 +9372,8 @@ exports.BattleAbilities = {
 			}
 		},
 		onSourceHit: function (target, source, move) {
-			if (target !== source && move.category === 'Status' && move.target === 'normal' || move.target === 'foeSide' || move.target === 'allAdjacentFoes') {
-				this.boost({atk: -1}, target);
+			if (target !== source && move.pranksterBoosted && move.target === 'normal' || move.target === 'foeSide' || move.target === 'allAdjacentFoes') {
+				this.boost({atk: -1}, target, source);
 			}
 		},
 		id: "creepy",
