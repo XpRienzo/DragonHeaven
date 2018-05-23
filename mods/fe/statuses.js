@@ -92,6 +92,19 @@ shadowdance: {
         this.add('-weather', 'none');
     },
 },
+	partiallytrapped: {
+		name: 'partiallytrapped',
+		id: 'partiallytrapped',
+		num: 0,
+		duration: 1,
+			onUpdate: function (pokemon) {
+				if (!pokemon.item && pokemon.volatiles['titanicstrength']) {
+				this.add('-start', pokemon, 'ability: Titanic Strength', '[silent]');
+				this.boost({atk: 12}, pokemon);
+				pokemon.removeVolatile('titanicstrength');
+				}
+			},
+	},
 	vitality: {
 		name: 'Vitality',
 		id: 'vitality',
