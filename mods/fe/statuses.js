@@ -142,7 +142,7 @@ shadowdance: {
 					type = 'Normal';
 				}
 			}
-			pokemon.setType(type, true);
+			pokemon.setType[1](type, true);
 		},
 	},
 	onModifySpe: function (spe, pokemon) {
