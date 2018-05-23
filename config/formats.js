@@ -3989,6 +3989,9 @@ exports.Formats = [
 		onValidateSet: function (set) {
 			if(set.level !== 100) return [`All Pokemon should be Level 100. (${set.name || set.species} is Level ${set.level})`];
 		},
+		onValidateTeam: function (team) {
+			if (team.length !== 6) return ['Your team cannot have less than 6 Pok&eacute;mon.'];
+		},
 	},
 	{
 		name: "[Gen 7] Trademarked",

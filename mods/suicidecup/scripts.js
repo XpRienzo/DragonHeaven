@@ -89,7 +89,7 @@
 		}
 
 		if (!this.p1.pokemonLeft && !this.p2.pokemonLeft) {
-			this.win(faintData ? faintData.source.side : null);
+			this.win(faintData ? faintData.target.side.foe : null);
 			return true;
 		}
 		if (!this.p1.pokemonLeft) {
