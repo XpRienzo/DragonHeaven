@@ -2,8 +2,8 @@
 
 exports.BattleAbilities = {
 	"halt": {
-		desc: "Prevents adjacent opposing Pokemon from choosing to switch out unless they are immune to trapping or also have this Ability.",
-		shortDesc: "Prevents adjacent foes from choosing to switch unless they also have this Ability.",
+		desc: "Applies ingrain and Aqua ring on switch-in, traps opponent + unaware",
+		shortDesc: "Applies ingrain and Aqua ring on switch-in, traps opponent + unaware.",
 		onFoeTrapPokemon: function (pokemon) {
 			if (this.isAdjacent(pokemon, this.effectData.target)) {
 				pokemon.tryTrap(true);
