@@ -3886,7 +3886,7 @@ exports.BattleAbilities = {
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, pokemon) {
-			if (pokemon.effect.id === 'brn') {
+			if (pokemon.status === 'brn') {
 				return this.chainModify(2);
 			}
 		},
