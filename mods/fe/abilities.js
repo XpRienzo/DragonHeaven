@@ -9505,7 +9505,7 @@ exports.BattleAbilities = {
 		shortDesc: "While this Pokémon is on the field, moves that heal the user gain a 1.7x boost and heal for 1.7x more than usual.",
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, attacker, defender, move) {
-			if (move.flags['heal']) {
+			if (move.flags['drain'] || move.flags['heal']) {
 				return this.chainModify(1.7);
 			}
 		},
