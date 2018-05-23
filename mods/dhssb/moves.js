@@ -243,7 +243,7 @@ exports.BattleMovedex = {
 	},
 	"infernalrain": {
 		accuracy: 100,
-		basePower: 15,
+		basePower: 10,
 		category: "Special",
 		shortDesc: "Hits 10 times. Has a 20% chance to burn with each hit.",
 		id: "infernalrain",
