@@ -1172,7 +1172,7 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 3,
 		flags: {protect: 1, mirror: 1},
-		selfdestruct: true,
+		selfdestruct: "ifHit",
 		secondary: false,
 		target: "allAdjacent",
 		type: "Dragon",
