@@ -3611,8 +3611,8 @@ exports.BattleAbilities = {
 		},
 		onDamage: function (damage, target, source, move) {
 			if (move.typeMod > 0) {
-				return null;
 				this.add('-immune', target, '[msg]', '[from] ability: Dark Light');
+				return null;
 			}
 		},
 		isUnbreakable: true,
@@ -9372,7 +9372,7 @@ exports.BattleAbilities = {
 			}
 		},
 		onSourceHit: function (target, source, move) {
-			if (target !== source && move.category === 'Status' && (move.target === 'normal' || move.target === 'foeSide' || move.target === 'allAdjacentFoes')) {
+			if (target !== source && move.category === 'Status' && move.target === 'normal' || move.target === 'foeSide' || move.target === 'allAdjacentFoes') {
 				this.boost({atk: -1}, target);
 			}
 		},
