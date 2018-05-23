@@ -1941,7 +1941,7 @@ exports.BattleAbilities = {
 		shortDesc: "Boosts the Special Attack stat by two stages when statused.",
 	    onSetStatus: function (status, target, source, effect) {
 			if (!effect || !status) return false;
-			this.boost({ spa: 2 });
+			this.boost({spa: 2});
 		},
 		id: "shakeitoff",
 		name: "Shake it Off",
@@ -4398,15 +4398,14 @@ exports.BattleAbilities = {
 		shortDesc: "When this Pokemon consumes a Berry, it regains 33% of its maximum HP and any negative stat changes are removed.",
 		onEatItem: function(item, pokemon) {
 			this.heal(pokemon.maxhp / 3);
-			let activate = false;
 			let boosts = {};
 			for (let i in pokemon.boosts) {
 				if (pokemon.boosts[i] < 0) {
-					activate = true;
 					boosts[i] = 0;
 				}
 			}
 			pokemon.setBoost(boosts);
+			this.add('-clearnegativeboost', pokemon);
 		},
 		id: "clearpouch",
 		name: "Clear Pouch",
