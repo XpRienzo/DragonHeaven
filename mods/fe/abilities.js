@@ -4520,10 +4520,10 @@ exports.BattleAbilities = {
 		shortDesc: "If this Pokemon (not its substitute) takes a critical hit, its Attack is raised 12 stages.",
 		onAfterUseItem: function (item, pokemon) {
 			if (pokemon !== this.effectData.target) return;
-				this.boost({atk: 12}, pokemon);
+			pokemon.addVolatile('titanicstrength');
 		},
 		onTakeItem: function (item, pokemon) {
-				this.boost({atk: 12}, pokemon);
+			pokemon.addVolatile('titanicstrength');
 		},
 		onEnd: function (pokemon) {
 			pokemon.removeVolatile('titanicstrength');
@@ -9634,5 +9634,65 @@ exports.BattleAbilities = {
 			}
 		},
 	},
-	
+		"crystallizedshield": {
+		desc: "If this Pokemon is a Minior, it changes to its Core forme if it has 1/2 or less of its maximum HP, and changes to Meteor Form if it has more than 1/2 its maximum HP. This check is done on switch-in and at the end of each turn. While in its Meteor Form, it cannot become affected by major status conditions. Moongeist Beam, Sunsteel Strike, and the Abilities Mold Breaker, Teravolt, and Turboblaze cannot ignore this Ability.",
+		shortDesc: "If Miniancie, switch-in/end of turn it changes to Jewel at 1/2 max HP or less, else Ore.",
+		onStart: function (pokemon) {
+			if (pokemon.baseTemplate.baseSpecies !== 'Miniancie' || pokemon.transformed) return;
+			if (pokemon.hp > pokemon.maxhp / 2) {
+				if (pokemon.template.speciesid === 'minianciejewel') {
+					pokemon.formeChange(pokemon.set.species);
+					this.add('-formechange', pokemon, pokemon.set.species, '[from] ability: Crystallized Shield');
+				}
+			} else {
+				if (pokemon.template.speciesid !== 'minianciejewel') {
+					pokemon.formeChange('Miniancie-Jewel');
+					this.add('-formechange', pokemon, 'Miniancie-Jewel', '[from] ability: Crystallized Shield');
+				}
+			}
+		},
+		onResidualOrder: 27,
+		onResidual: function (pokemon) {
+			if (pokemon.baseTemplate.baseSpecies !== 'Minior' || pokemon.transformed || !pokemon.hp) return;
+			if (pokemon.hp > pokemon.maxhp / 2) {
+				if (pokemon.template.speciesid === 'minianciejewel') {
+					pokemon.formeChange(pokemon.set.species);
+					this.add('-formechange', pokemon, pokemon.set.species, '[msg]', '[from] ability: Crystallized Shield');
+				}
+			} else {
+				if (pokemon.template.speciesid !== 'minianciejewel') {
+					pokemon.formeChange('Miniancie-Jewel');
+					this.add('-formechange', pokemon, 'Miniancie-Jewel', '[msg]', '[from] ability: Crystallized Shield');
+				}
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Crystallized Shield');
+			return false;
+		},
+		onTryAddVolatile: function (status, target) {
+			if (target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			if (status.id !== 'yawn') return;
+			this.add('-immune', target, '[msg]', '[from] ability: Crystallized Shield');
+			return null;
+		},
+		onBoost: function (boost, target, source, effect) {
+			if ((source && target === source) || target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			let showMsg = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					// @ts-ignore
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: Crystallized Shield", "[of] " + target);
+		},
+		isUnbreakable: true,
+		id: "crystallizedshield",
+		name: "Crystallized Shield",
+	},
 };
