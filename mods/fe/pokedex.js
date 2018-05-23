@@ -4353,7 +4353,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     zaggronmega: {
-        num: 750105,
+        num: 7500107,
         species: "Zaggron-Mega",
         baseSpecies: "Zaggron",
         forme: "Mega",
@@ -4448,7 +4448,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     eruptionmega: {
-        num: 750108,
+        num: 7500110,
         species: "Eruption-Mega",
         baseSpecies: "Eruption",
         forme: "Mega",
@@ -4540,7 +4540,7 @@ swampert: {
         eggGroups: ["Bug"],
     },
     sicklemega: {
-        num: 750111,
+        num: 7500113,
         species: "Sickle-Mega",
         baseSpecies: "Sickle",
         forme: "Mega",
@@ -12127,9 +12127,7 @@ celebi: {
             0: "Upgrade"
         },
     },
-
-
-    darminup: {
+    darmin: {
         num: 7500310,
         species: "Darmin",
 		  baseForme: "Up",
@@ -12146,8 +12144,6 @@ celebi: {
             0: "Rhythm"
         },
     },
-
-
     darmindown: {
         num: 7500310,
         species: "Darmin-Down",
@@ -12167,8 +12163,6 @@ celebi: {
             0: "Rhythm"
         },
     },
-
-
     conkeldurus: {
         num: 7500311,
         species: "Conkeldurus",
@@ -12186,8 +12180,6 @@ celebi: {
             0: "Lightning Fist"
         },
     },
-
-
     fisktres: {
         num: 7500312,
         species: "Fisktres",
@@ -12204,8 +12196,6 @@ celebi: {
             0: "Flare Wings"
         },
     },
-
-
     landana: {
         num: 7500313,
         species: "Landana",
@@ -12222,8 +12212,6 @@ celebi: {
             0: "Pecking Order"
         },
     },
-
-
     regimiki: {
         num: 7500314,
         species: "Regimiki",
@@ -12240,8 +12228,6 @@ celebi: {
             0: "Vomit"
         },
     },
-
-
     star: {
         num: 7500315,
         species: "Star",
@@ -15171,7 +15157,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     sparklingart: {
-        num: 7500410,
+        num: 7500411,
         species: "Sparkling Art",
         types: ["Steel", "Flying"],
         genderRatio: {
