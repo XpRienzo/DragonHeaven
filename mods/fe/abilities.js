@@ -5730,8 +5730,7 @@ exports.BattleAbilities = {
 						bestStat = source.stats[i];
 					}
 				}
-				this.boost({[stat]: 1}, source);
-				this.boost({atk: 1}, source);
+				this.boost({[stat]: 1, atk: 1}, source);
 			}
 		},
 		id: "bloodthirst",
@@ -9080,7 +9079,12 @@ exports.BattleAbilities = {
 	},
 	"spiralpower": { // TODO: Check if this works
 		shortDesc: "Changes secondary type and doubles Speed while holding a plate or Z-Crystal.",
-		// Implemented in statuses.js
+		// Form Changes implemented in statuses.js
+		onModifySpe: function (spe, pokemon) {
+			if (pokemon.getItem() && pokemon.getItem().onPlate) {
+				return this.chainModify(2);
+			}
+		},
 		id: "spiralpower",
 		name: "Spiral Power",
 	},
