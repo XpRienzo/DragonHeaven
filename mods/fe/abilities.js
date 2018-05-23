@@ -377,7 +377,7 @@ exports.BattleAbilities = {
 		shortDesc: "When an item is used or lost, Attack and Speed are raised by two stages, while Defense and Special Defense are lowered by one.",
 	onAfterUseItem: function (item, pokemon) {
 			if (pokemon !== this.effectData.target) return;
-			pokemon.addVolatile('armorcast');
+			this.boost({atk: 2, def: -1, spd: -1, spe: 2}, pokemon);
 		},
 		onTakeItem: function (item, pokemon) {
 			pokemon.addVolatile('armorcast');
@@ -9885,5 +9885,36 @@ exports.BattleAbilities = {
 		},
 		id: "blackhole",
 		name: "Black Hole",
+	},
+		"itemize": {
+	    desc: "This Pokemon's Normal-Type moves change type to match this Pokémon's held item and gain a 1.2x boost. (Type-Changing Items: All Drives, all Memories, all Plates, Silk Scarf clones, Berries (Takes Nature Gift types into account), Z-Crystals, Gems)",
+	    shortDesc: "Normal-type moves change to match the held item. Moves that would otherwise be Normal-type have 1.2x power.",
+	    onModifyMovePriority: -1,
+	    onModifyMove: function(move, pokemon) {
+	        if (pokemon.getItem() && move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+	            let item = pokemon.getItem();
+	            let boosted = true;
+	            if (item.onPlate) {
+	                move.type = item.onPlate;
+	            } else if (item.onMemory) {
+	                move.type = item.onMemory;
+	            } else if (item.onDrive) {
+	                move.type = item.onDrive;
+	            } else if (item.onItemize) {
+	                move.type = item.onItemize;
+	            } else if (item.naturalGift) {
+	                move.type = item.nautralGift.type;
+	            } else {
+	                boosted = false;
+	            }
+	            move.itemizeBoosted = boosted;
+	        }
+	    },
+	    onBasePowerPriority: 8,
+	    onBasePower: function(basePower, pokemon, target, move) {
+	        if (move.itemizeBoosted) return this.chainModify([0x1333, 0x1000]);
+	    },
+	    id: "itemize",
+	    name: "Itemize",
 	},
 };
