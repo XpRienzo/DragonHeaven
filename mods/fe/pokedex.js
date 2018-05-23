@@ -10473,7 +10473,31 @@ darkchomp: {
             0: "Pixilate"
         },
     },
-
+celebi: {
+		num: 251,
+		species: "Celebi",
+		types: ["Psychic", "Grass"],
+		gender: "N",
+		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100},
+		abilities: {0: "Natural Cure"},
+		heightm: 0.6,
+		weightkg: 5,
+		color: "Green",
+		eggGroups: ["Undiscovered"],
+	},
+	riolu: {
+		num: 447,
+		species: "Riolu",
+		types: ["Fighting"],
+		genderRatio: {M: 0.875, F: 0.125},
+		baseStats: {hp: 40, atk: 70, def: 40, spa: 35, spd: 40, spe: 60},
+		abilities: {0: "Steadfast", 1: "Inner Focus", H: "Prankster"},
+		heightm: 0.7,
+		weightkg: 20.2,
+		color: "Blue",
+		evos: ["lucario"],
+		eggGroups: ["Undiscovered"],
+	},
     rebell: {
         num: 7500271,
         species: "Rebell",
