@@ -3571,7 +3571,7 @@ exports.BattleAbilities = {
 		shortDesc: "Upon scoring a KO or switching out, the user regains 1/3 max HP.",
 		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
-				source.heal(source.maxhp / 3);
+				this.heal(source.maxhp / 3);
 			}
 		},
 		onSwitchOut: function (pokemon) {
