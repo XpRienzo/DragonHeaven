@@ -377,7 +377,7 @@ exports.BattleAbilities = {
 		shortDesc: "When an item is used or lost, Attack and Speed are raised by two stages, while Defense and Special Defense are lowered by one.",
 	onAfterUseItem: function (item, pokemon) {
 			if (pokemon !== this.effectData.target) return;
-			pokemon.addVolatile('armorcast');
+			this.boost({atk: 2, def: -1, spd: -1, spe: 2}, pokemon);
 		},
 		onTakeItem: function (item, pokemon) {
 			pokemon.addVolatile('armorcast');
@@ -7186,7 +7186,7 @@ exports.BattleAbilities = {
 		shortDesc: "Secondary typing and Normal-type moves change to match its plate or Z-Crystal. Moves that would otherwise be Normal-type have 1.2x power.",
 		onModifyMovePriority: -1,
 		onModifyMove: function (move, pokemon) {
-			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+			if (pokemon.getItem() && move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = pokemon.getItem().onPlate;
 				move.optimizeBoosted = true;
 			}
@@ -9080,7 +9080,12 @@ exports.BattleAbilities = {
 	},
 	"spiralpower": { // TODO: Check if this works
 		shortDesc: "Changes secondary type and doubles Speed while holding a plate or Z-Crystal.",
-		// Implemented in statuses.js
+		// Form Changes implemented in statuses.js
+		onModifySpe: function (spe, pokemon) {
+			if (pokemon.getItem() && pokemon.getItem().onPlate) {
+				return this.chainModify(2);
+			}
+		},
 		id: "spiralpower",
 		name: "Spiral Power",
 	},
@@ -9329,7 +9334,7 @@ exports.BattleAbilities = {
 	    name: "Appropriation",
 	},
 	"scarilyadorable": {
-		shortDesc: "On switch-in, the foe's attack and speed is lowered by two stages. The foe is also is paralyzed 30% of the time. If this Pokemon is targeted with a contact move, the foe has a 30% chance to have their Attack lowered by one stage.",
+		shortDesc: "On switch-in, the foe's attack and speed is lowered by one stage. If this Pokemon is targeted with a contact move, the foe has a 30% chance to have their Attack lowered by one stage.",
 		onStart: function (pokemon) {
 			let activated = false;
 			for (const target of pokemon.side.foe.active) {
@@ -9341,9 +9346,7 @@ exports.BattleAbilities = {
 				if (target.volatiles['substitute']) {
 					this.add('-immune', target, '[msg]');
 				} else {
-					this.boost({atk: -2, spe: -2}, target, pokemon);
-					if (this.randomChance(3, 10)) {
-					target.trySetStatus('par', pokemon);
+					this.boost({atk: -1, spe: -1}, target, pokemon);
 				}
 				}
 			}
@@ -9375,16 +9378,16 @@ exports.BattleAbilities = {
 		name: "Creepy",
 	},
 	"prismskin": {
-		shortDesc: "Restores 1/4 HP when hit by a super-effective move (recovery first then damage). Super-effective moves do 1/4 of the damage. Fire type moves ignore this ability. This ability cannot be bypassed by Mold Breaker or its variants.",
+		shortDesc: "Restores 1/4 HP when hit by a super-effective move (recovery first then damage). Super-effective moves do 1/2 of the damage. This ability can be bypassed by Fire-type moves and only Fire-type moves, regardless of whether the attacker has Mold Breaker or its variants.",
 		onFoeBeforeMove: function (target, source, move) {
-			if (target !== source && move.typeMod > 0 && !source.hasType('Fire')) {
+			if (target !== source && move.typeMod > 0 && move.type !== 'Fire') {
 				this.heal(target.maxhp / 4)
 			}
 		},
 		onSourceModifyDamage: function (damage, source, target, move) {
-			if (move.typeMod > 0 && !target.hasType('Fire')) {
+			if (move.typeMod > 0 && move.type !== 'Fire') {
 				this.debug('Prism Armor neutralize');
-				return this.chainModify(0.25);
+				return this.chainModify(0.5);
 			}
 		},
 		isUnbreakable: true,
@@ -9502,7 +9505,7 @@ exports.BattleAbilities = {
 		shortDesc: "While this Pokémon is on the field, moves that heal the user gain a 1.7x boost and heal for 1.7x more than usual.",
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, attacker, defender, move) {
-			if (move.flags['heal']) {
+			if (move.flags['drain'] || move.flags['heal']) {
 				return this.chainModify(1.7);
 			}
 		},
@@ -9885,5 +9888,36 @@ exports.BattleAbilities = {
 		},
 		id: "blackhole",
 		name: "Black Hole",
+	},
+		"itemize": {
+	    desc: "This Pokemon's Normal-Type moves change type to match this Pokémon's held item and gain a 1.2x boost. (Type-Changing Items: All Drives, all Memories, all Plates, Silk Scarf clones, Berries (Takes Nature Gift types into account), Z-Crystals, Gems)",
+	    shortDesc: "Normal-type moves change to match the held item. Moves that would otherwise be Normal-type have 1.2x power.",
+	    onModifyMovePriority: -1,
+	    onModifyMove: function(move, pokemon) {
+	        if (pokemon.getItem() && move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+	            let item = pokemon.getItem();
+	            let boosted = true;
+	            if (item.onPlate) {
+	                move.type = item.onPlate;
+	            } else if (item.onMemory) {
+	                move.type = item.onMemory;
+	            } else if (item.onDrive) {
+	                move.type = item.onDrive;
+	            } else if (item.onItemize) {
+	                move.type = item.onItemize;
+	            } else if (item.naturalGift) {
+	                move.type = item.nautralGift.type;
+	            } else {
+	                boosted = false;
+	            }
+	            move.itemizeBoosted = boosted;
+	        }
+	    },
+	    onBasePowerPriority: 8,
+	    onBasePower: function(basePower, pokemon, target, move) {
+	        if (move.itemizeBoosted) return this.chainModify([0x1333, 0x1000]);
+	    },
+	    id: "itemize",
+	    name: "Itemize",
 	},
 };
