@@ -1572,8 +1572,50 @@ swampert: {
         color: "Blue",
         eggGroups: ["Undiscovered"],
     },
-    eek: {
+    porylure: {
         num: 750040,
+        species: "Porylure",
+        types: ["Normal", "Ghost"],
+        gender: "N",
+        baseStats: {
+            hp: 82,
+            atk: 67,
+            def: 82,
+            spa: 148,
+            spd: 82,
+            spe: 105
+        },
+        abilities: {
+            0: "Flame Essence"
+        },
+        heightm: 0.95,
+        weightkg: 34.15,
+        color: "Black",
+        eggGroups: ["Undiscovered"],
+    },
+    starchamp: { //Starchamp	Starmie	Machamp	Water	Fighting	75	122	82	82	85	105	551	Natural Guard
+        num: 750041,
+        species: "Starchamp",
+        types: ["Water", "Fighting"],
+        gender: "N",
+        baseStats: {
+            hp: 75,
+            atk: 122,
+            def: 82,
+            spa: 82,
+            spd: 85,
+            spe: 105
+        },
+        abilities: {
+            0: "Natural Guard"
+        },
+        heightm: 1.35,
+        weightkg: 105,
+        color: "Purple",
+        eggGroups: ["Undiscovered"],
+    },
+      eek: {
+        num: 750042,
         species: "Eek",
         types: ["Electric", "Poison"],
         genderRatio: {
@@ -1597,7 +1639,7 @@ swampert: {
         eggGroups: ["Amorphous"],
     },
     hitachi: {
-        num: 750041,
+        num: 750043,
         species: "Hitachi",
         types: ["Fire", "Steel"],
         genderRatio: {
@@ -1621,7 +1663,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     shaymizard: {
-        num: 750042,
+        num: 750044,
         species: "Shaymizard",
         types: ["Fire", "Grass"],
         genderRatio: {
@@ -1645,7 +1687,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     shaymizardmegax: {
-        num: 750042,
+        num: 750044,
         species: "Shaymizard-Mega-X",
         baseSpecies: "Shaymizard",
         forme: "Mega-X",
@@ -1672,7 +1714,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     shaymizardmegay: {
-        num: 750042,
+        num: 750044,
         species: "Shaymizard-Mega-Y",
         baseSpecies: "Shaymizard",
         forme: "Mega-Y",
@@ -1699,7 +1741,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     ferroslashshield: {
-        num: 750043,
+        num: 750045,
         species: "Ferroslash",
 		  baseForme: "Shield",
         types: ["Steel", "Grass"],
@@ -1724,7 +1766,7 @@ swampert: {
         eggGroups: ["Mineral"],
     },
     ferroslashblade: {
-        num: 750043,
+        num: 750045,
         species: "Ferroslash-Blade",
         baseSpecies: "Ferroslash",
         forme: "Blade",
@@ -1751,7 +1793,7 @@ swampert: {
         eggGroups: ["Mineral"],
     },
     hazard: {
-        num: 750044,
+        num: 750046,
         species: "Hazard",
         types: ["Fire", "Dragon"],
         genderRatio: {
@@ -1775,7 +1817,7 @@ swampert: {
         eggGroups: ["Monster", "Dragon"],
     },
     hazardmegax: {
-        num: 750044,
+        num: 750046,
         species: "Hazard-Mega-X",
         baseSpecies: "Hazard",
         forme: "Mega-X",
@@ -1802,7 +1844,7 @@ swampert: {
         eggGroups: ["Monster", "Dragon"],
     },
     hazardmegay: {
-        num: 750044,
+        num: 750046,
         species: "Hazard-Mega-Y",
         baseSpecies: "Hazard",
         forme: "Mega-Y",
@@ -1829,8 +1871,9 @@ swampert: {
         eggGroups: ["Monster", "Dragon"],
     },
 
+
     hitmonklang: {
-        num: 750045,
+        num: 750047,
         species: "Hitmonklang",
         types: ["Steel", "Fighting"],
         genderRatio: {
@@ -1854,7 +1897,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     maladuck: {
-        num: 750046,
+        num: 750048,
         species: "Maladuck",
         types: ["Water", "Dark"],
         genderRatio: {
@@ -1878,7 +1921,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     yangarde: {
-        num: 750047,
+        num: 750049,
         species: "Yangarde",
         types: ["Dragon", "Bug"],
         genderRatio: {
@@ -1902,7 +1945,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     suirizion: {
-        num: 750048,
+        num: 750050,
         species: "Suirizion",
         types: ["Grass", "Water"],
         genderRatio: {
@@ -1926,7 +1969,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     jellivoir: {
-        num: 750049,
+        num: 750051,
         species: "Jellivoir",
         types: ["Ghost", "Fairy"],
         genderRatio: {
@@ -1950,7 +1993,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     jellivoirmega: {
-        num: 750049,
+        num: 750051,
         species: "Jellivoir-Mega",
         baseSpecies: "Jellivoir",
         forme: "Mega",
@@ -1977,7 +2020,7 @@ swampert: {
         eggGroups: ["Amorphous"],
     },
     metabat: {
-        num: 750050,
+        num: 750052,
         species: "Metabat",
         types: ["Steel", "Flying"],
         genderRatio: {
@@ -2001,7 +2044,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     metabatmega: {
-        num: 750050,
+        num: 750052,
         species: "Metabat-Mega",
         baseSpecies: "Metabat",
         forme: "Mega",
@@ -2028,7 +2071,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     dartios: {
-        num: 750051,
+        num: 750053,
         species: "Dartios",
         types: ["Fire", "Dragon"],
         gender: "M",
@@ -2049,7 +2092,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     dartiosmega: {
-        num: 750051,
+        num: 750053,
         species: "Dartios-Mega",
         baseSpecies: "Dartios",
         forme: "Mega",
@@ -2073,7 +2116,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     grenheatja: {
-        num: 750052,
+        num: 750054,
         species: "Grenheatja",
         types: ["Water", "Fire"],
         genderRatio: {
@@ -2097,7 +2140,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     moltie: {
-        num: 750053,
+        num: 750055,
         species: "Moltie",
         types: ["Fairy", "Fire"],
         genderRatio: {
@@ -2121,7 +2164,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     banegross: {
-        num: 750054,
+        num: 750056,
         species: "Banegross",
         types: ["Ghost", "Steel"],
         genderRatio: {
@@ -2145,7 +2188,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     banegrossmegax: {
-        num: 750054,
+        num: 750056,
         species: "Banegross-Mega-X",
         baseSpecies: "Banegross",
         forme: "Mega-X",
@@ -2172,7 +2215,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     banegrossmegay: {
-        num: 750054,
+        num: 750056,
         species: "Banegross-Mega-Y",
         baseSpecies: "Banegross",
         forme: "Mega-Y",
@@ -2199,7 +2242,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     herasir: {
-        num: 750055,
+        num: 750057,
         species: "Herasir",
         types: ["Fighting", "Bug"],
         genderRatio: {
@@ -2223,7 +2266,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     herasirmegah: {
-        num: 750055,
+        num: 750057,
         species: "Herasir-Mega-H",
         baseSpecies: "Herasir",
         forme: "Mega-H",
@@ -2250,7 +2293,7 @@ swampert: {
         eggGroups: ["Bug"],
     },
     herasirmegap: {
-        num: 750055,
+        num: 750057,
         species: "Herasir-Mega-P",
         baseSpecies: "Herasir",
         forme: "Mega-P",
@@ -2277,7 +2320,7 @@ swampert: {
         eggGroups: ["Bug"],
     },
     mismagivoir: {
-        num: 750056,
+        num: 750058,
         species: "Mismagivoir",
         types: ["Fairy", "Ghost"],
         genderRatio: {
@@ -2301,7 +2344,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     mismagivoirmega: {
-        num: 750056,
+        num: 750058,
         species: "Mismagivoir-Mega",
         baseSpecies: "Mismagivoir",
         forme: "Mega",
@@ -2324,7 +2367,7 @@ swampert: {
         eggGroups: ["Amorphous"],
     },
     harem: {
-        num: 750057,
+        num: 750059,
         species: "Harem",
         types: ["Dragon", "Ice"],
         genderRatio: {
@@ -2348,7 +2391,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     mana: {
-        num: 750058,
+        num: 750060,
         species: "Mana",
         types: ["Ghost", "Electric"],
         genderRatio: {
@@ -2372,7 +2415,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     manamega: {
-        num: 750058,
+        num: 750060,
         species: "Mana-Mega",
         baseSpecies: "Mana",
         forme: "Mega",
@@ -2395,7 +2438,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     lucharma: {
-        num: 750059,
+        num: 750061,
         species: "Lucharma",
         types: ["Fighting", "Flying"],
         genderRatio: {
@@ -2419,7 +2462,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     swank: {
-        num: 750060,
+        num: 750062,
         species: "Swank",
         types: ["Water", "Steel"],
         genderRatio: {
@@ -2443,7 +2486,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     swankmega: {
-        num: 750060,
+        num: 750062,
         species: "Swank-Mega",
         baseSpecies: "Swank",
         forme: "Mega",
@@ -2470,7 +2513,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     casting: {
-        num: 750061,
+        num: 750063,
         species: "Casting",
         types: ["Poison", "Normal"],
         genderRatio: {
@@ -2494,7 +2537,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     sablemimez: {
-        num: 750062,
+        num: 750064,
         species: "Sablemimez",
         types: ["Ghost", "Fairy"],
         genderRatio: {
@@ -2518,7 +2561,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     sablemimezmega: {
-        num: 750062,
+        num: 750064,
         species: "Sablemimez-Mega",
         baseSpecies: "Sablemimez",
         forme: "Mega",
@@ -2545,7 +2588,7 @@ swampert: {
         eggGroups: ["Human-Like"],
     },
     aegiline: {
-        num: 750063,
+        num: 750065,
         species: "Aegiline",
 		  baseForme: "Shield",
         types: ["Steel", "Bug"],
@@ -2571,7 +2614,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
 	    aegilineblade: {
-        num: 750064,
+        num: 750066,
         species: "Aegiline-Blade",
         baseSpecies: "Aegiline",
         forme: "Blade",
@@ -2598,7 +2641,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     houndlion: {
-        num: 750064,
+        num: 750066,
         species: "Houndlion",
         types: ["Dark", "Steel"],
         genderRatio: {
@@ -2622,7 +2665,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     houndlionmega: {
-        num: 750064,
+        num: 750066,
         species: "Houndlion-Mega",
         baseSpecies: "Houndlion",
         forme: "Mega",
@@ -2649,7 +2692,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     loppeye: {
-        num: 750065,
+        num: 750067,
         species: "Loppeye",
         types: ["Ghost", "Normal"],
         genderRatio: {
@@ -2673,8 +2716,9 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
 
+
     loppeyemegax: {
-        num: 750065,
+        num: 750067,
         species: "Loppeye-Mega-X",
         baseSpecies: "Loppeye",
         forme: "Mega-X",
@@ -2701,7 +2745,7 @@ swampert: {
         eggGroups: ["Human-Like"],
     },
     loppeyemegay: {
-        num: 750065,
+        num: 750067,
         species: "Loppeye-Mega-Y",
         baseSpecies: "Loppeye",
         forme: "Mega-Y",
@@ -2728,7 +2772,7 @@ swampert: {
         eggGroups: ["Human-Like"],
     },
     bastioking: {
-        num: 750066,
+        num: 750068,
         species: "Bastioking",
         types: ["Water", "Steel"],
         genderRatio: {
@@ -2752,7 +2796,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     peatran: {
-        num: 750067,
+        num: 750069,
         species: "Peatran",
         types: ["Fire", "Flying"],
         genderRatio: {
@@ -2777,7 +2821,7 @@ swampert: {
         otherFormes: ["peatranmega"],
     },
     peatranmega: {
-        num: 750067,
+        num: 750069,
         species: "Peatran-Mega",
         baseSpecies: "Peatran",
         forme: "Mega",
@@ -2804,7 +2848,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     manatar: {
-        num: 750068,
+        num: 750070,
         species: "Manatar",
         types: ["Water", "Dark"],
         genderRatio: {
@@ -2828,7 +2872,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     manatarmega: {
-        num: 750068,
+        num: 750070,
         species: "Manatar-Mega",
         baseSpecies: "Manatar",
         forme: "Mega",
@@ -2855,7 +2899,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     aurortoise: {
-        num: 750069,
+        num: 750071,
         species: "Aurortoise",
         types: ["Water", "Ice"],
         genderRatio: {
@@ -2879,7 +2923,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     aurortoisemega: {
-        num: 750069,
+        num: 750071,
         species: "Aurortoise-Mega",
         baseSpecies: "Aurortoise",
         forme: "Mega",
@@ -2906,7 +2950,7 @@ swampert: {
         eggGroups: ["Monster"],
     },
     metsir: {
-        num: 750070,
+        num: 750072,
         species: "Metsir",
         types: ["Steel", "Bug"],
         genderRatio: {
@@ -2930,7 +2974,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     metsirmegam: {
-        num: 750070,
+        num: 750072,
         species: "Mestir-Mega-M",
         baseSpecies: "Metsir",
         forme: "Mega-M",
@@ -2957,7 +3001,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     metsirmegap: {
-        num: 750070,
+        num: 750072,
         species: "Metsir-Mega-P",
         baseSpecies: "Metsir",
         forme: "Mega-P",
@@ -2984,7 +3028,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     fablesteel: {
-        num: 750071,
+        num: 750073,
         species: "Fablesteel",
         types: ["Fairy", "Steel"],
         genderRatio: {
@@ -3008,7 +3052,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     houdini: {
-        num: 750072,
+        num: 750074,
         species: "Houdini",
         types: ["Ghost", "Normal"],
         genderRatio: {
@@ -3032,7 +3076,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     houdinimega: {
-        num: 750072,
+        num: 750074,
         species: "Houdini-Mega",
         baseSpecies: "Houdini",
         forme: "Mega",
@@ -3059,7 +3103,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     shot: {
-        num: 750073,
+        num: 750075,
         species: "Shot",
         types: ["Grass", "Flying"],
         genderRatio: {
@@ -3083,7 +3127,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     shotmega: {
-        num: 750073,
+        num: 750075,
         species: "Shot-Mega",
         baseSpecies: "Shot",
         forme: "Mega",
@@ -3110,7 +3154,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     leafadon: {
-        num: 750074,
+        num: 750076,
         species: "Leafadon",
         types: ["Grass", "Ground"],
         genderRatio: {
@@ -3134,7 +3178,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     mampharos: {
-        num: 750075,
+        num: 750077,
         species: "Mampharos",
         types: ["Electric"],
         genderRatio: {
@@ -3158,7 +3202,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     mampharosmegam: {
-        num: 750075,
+        num: 750077,
         species: "Mampharos-Mega-M",
         baseSpecies: "Mampharos",
         forme: "Mega-M",
@@ -3185,7 +3229,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     mampharosmegaa: {
-        num: 750075,
+        num: 750077,
         species: "Mampharos-Mega-A",
         baseSpecies: "Mampharos",
         forme: "Mega-A",
@@ -3212,7 +3256,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     krookz: {
-        num: 750076,
+        num: 750078,
         species: "Krook-Z",
         types: ["Ground", "Normal"],
         genderRatio: {
@@ -3236,7 +3280,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     entaria: {
-        num: 750077,
+        num: 750079,
         species: "Entaria",
         types: ["Fire", "Dragon"],
         genderRatio: {
@@ -3260,7 +3304,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     entariamega: {
-        num: 750077,
+        num: 750079,
         species: "Entaria-Mega",
         baseSpecies: "Entaria",
         forme: "Mega",
@@ -3287,7 +3331,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     blasterain: {
-        num: 750078,
+        num: 750080,
         species: "Blasterain",
         types: ["Water", "Bug"],
         genderRatio: {
@@ -3311,7 +3355,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     blasterainmega: {
-        num: 750078,
+        num: 750080,
         species: "Blasterain-Mega",
         baseSpecies: "Blasterain",
         forme: "Mega",
@@ -3338,7 +3382,7 @@ swampert: {
         eggGroups: ["Water1"],
     },
     dianbro: {
-        num: 750079,
+        num: 750081,
         species: "Dianbro",
         types: ["Water", "Fairy"],
         genderRatio: {
@@ -3362,7 +3406,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     dianbromega: {
-        num: 750079,
+        num: 750081,
         species: "Dianbro-Mega",
         baseSpecies: "Dianbro",
         forme: "Mega",
@@ -3389,7 +3433,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     chatotorus: {
-        num: 750080,
+        num: 750082,
         species: "Chatotorus",
         types: ["Normal", "Flying"],
         gender: "M",
@@ -3410,7 +3454,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     blisskiss: {
-        num: 750081,
+        num: 750083,
         species: "Blisskiss",
         types: ["Normal", "Fairy"],
         gender: "F",
@@ -3431,7 +3475,7 @@ swampert: {
         eggGroups: ["Fairy"],
     },
     toxisharp: {
-        num: 750082,
+        num: 750084,
         species: "Toxisharp",
         types: ["Dark", "Poison"],
         genderRatio: {
@@ -3455,7 +3499,7 @@ swampert: {
         eggGroups: ["Human-Like"],
     },
     darmega: {
-        num: 750083,
+        num: 750085,
         species: "Darmega",
         types: ["Dark", "Bug"],
         genderRatio: {
@@ -3479,7 +3523,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     lagi: {
-        num: 750084,
+        num: 750086,
         species: "Lag-I",
         types: ["Ground", "Ice"],
         genderRatio: {
@@ -3503,7 +3547,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     heatloom: {
-        num: 750085,
+        num: 750087,
         species: "Heatloom",
         types: ["Steel", "Grass"],
         genderRatio: {
@@ -3527,7 +3571,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     golislash: {
-        num: 750086,
+        num: 750088,
         species: "Golislash",
 		  baseForme: "Defense",
         types: ["Ghost", "Steel"],
@@ -3552,7 +3596,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     golislashpower: {
-        num: 750086,
+        num: 750088,
         species: "Golislash-Power",
         baseSpecies: "Golislash",
         forme: "Power",
@@ -3579,7 +3623,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     hooporus: {
-        num: 750087,
+        num: 750089,
         species: "Hooporus",
         types: ["Ghost", "Dragon"],
         genderRatio: {
@@ -3603,7 +3647,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     lopunnini: {
-        num: 750088,
+        num: 750090,
         species: "Lopunnini",
         types: ["Fire", "Normal"],
         genderRatio: {
@@ -3627,7 +3671,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     loppuninimega: {
-        num: 750088,
+        num: 750090,
         species: "Lopunnini-Mega",
         baseSpecies: "Lopunnini",
         forme: "Mega",
@@ -3650,7 +3694,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     volcagon: {
-        num: 750089,
+        num: 750091,
         species: "Volcagon",
         types: ["Fire", "Ground"],
         genderRatio: {
@@ -3674,7 +3718,7 @@ swampert: {
         eggGroups: ["Bug"],
     },
     enterrak: {
-        num: 750090,
+        num: 750092,
         species: "Enterrak",
         types: ["Fire", "Fighting"],
         genderRatio: {
@@ -3698,7 +3742,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     aeroraptor: {
-        num: 750091,
+        num: 750093,
         species: "Aeroraptor",
         types: ["Normal", "Flying"],
         genderRatio: {
@@ -3722,7 +3766,7 @@ swampert: {
         eggGroups: ["Flying"],
     },
     aeroraptormega: {
-        num: 750091,
+        num: 750093,
         species: "Aeroraptor-Mega",
         baseSpecies: "Aeroraptor",
         forme: "Mega",
@@ -3745,7 +3789,7 @@ swampert: {
         eggGroups: ["Flying"],
     },
     sans: {
-        num: 750092,
+        num: 750094,
         species: "Sans",
         types: ["Normal", "Ground"],
         genderRatio: {
@@ -3769,7 +3813,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     lucasol: {
-        num: 750093,
+        num: 750095,
         species: "Lucasol",
         types: ["Fighting", "Dark"],
         genderRatio: {
@@ -3793,7 +3837,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     lucasolmegal: {
-        num: 750093,
+        num: 750095,
         species: "Lucasol-Mega-L",
         baseSpecies: "Lucasol",
         forme: "Mega L",
@@ -3816,7 +3860,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     lucasolmegaa: {
-        num: 750093,
+        num: 750095,
         species: "Lucasol-Mega-A",
         baseSpecies: "Lucasol",
         forme: "Mega A",
@@ -3839,7 +3883,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     sceptilusaur: {
-        num: 750094,
+        num: 750096,
         species: "Sceptilusaur",
         types: ["Poison", "Grass"],
         genderRatio: {
@@ -3863,7 +3907,7 @@ swampert: {
         eggGroups: ["Monster"],
     },
     sceptilusaurmegax: {
-        num: 750094,
+        num: 750096,
         species: "Sceptilusaur-Mega-X",
         baseSpecies: "Sceptilusaur",
         forme: "Mega X",
@@ -3886,7 +3930,7 @@ swampert: {
         eggGroups: ["Monster"],
     },
     sceptilusaurmegay: {
-        num: 750094,
+        num: 750096,
         species: "Sceptilusaur-Mega-Y",
         baseSpecies: "Sceptilusaur",
         forme: "Mega Y",
@@ -3909,7 +3953,7 @@ swampert: {
         eggGroups: ["Monster"],
     },
     houndectric: {
-        num: 750095,
+        num: 750097,
         species: "Houndectric",
         types: ["Electric", "Dark"],
         genderRatio: {
@@ -3933,7 +3977,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     houndectricmegam: {
-        num: 750095,
+        num: 750097,
         species: "Houndectric-Mega-M",
         baseSpecies: "Houndectric",
         forme: "Mega M",
@@ -3956,7 +4000,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     houndectricmegah: {
-        num: 750095,
+        num: 750097,
         species: "Houndectric-Mega-H",
         baseSpecies: "Houndectric",
         forme: "Mega H",
@@ -3979,7 +4023,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     exdoom: {
-        num: 750096,
+        num: 750098,
         species: "Exdoom",
         types: ["Normal", "Fire"],
         genderRatio: {
@@ -4003,7 +4047,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     exdoommega: {
-        num: 750096,
+        num: 750098,
         species: "Exdoom-Mega",
         baseSpecies: "Exdoom",
         forme: "Mega",
@@ -4026,7 +4070,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     gyaramence: {
-        num: 750097,
+        num: 750099,
         species: "Gyaramence",
         types: ["Water", "Dragon"],
         genderRatio: {
@@ -4050,7 +4094,7 @@ swampert: {
         eggGroups: ["Dragon"],
     },
     gyaramencemegag: {
-        num: 750097,
+        num: 750099,
         species: "Gyaramence-Mega-G",
         baseSpecies: "Gyaramence",
         forme: "Mega G",
@@ -4073,7 +4117,7 @@ swampert: {
         eggGroups: ["Dragon"],
     },
     gyaramencemegas: {
-        num: 750097,
+        num: 750099,
         species: "Gyaramence-Mega-S",
         baseSpecies: "Gyaramence",
         forme: "Mega S",
@@ -4096,7 +4140,7 @@ swampert: {
         eggGroups: ["Dragon"],
     },
     thunderblast: {
-        num: 750098,
+        num: 7500100,
         species: "Thunderblast",
         types: ["Water", "Electric"],
         gender: "M",
@@ -4117,7 +4161,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     thunderblastmega: {
-        num: 750098,
+        num: 7500100,
         species: "Thunderblast-Mega",
         baseSpecies: "Thunderblast",
         forme: "Mega",
@@ -4141,7 +4185,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     snoopa: {
-        num: 750099,
+        num: 7500101,
         species: "Snoopa",
         types: ["Ghost", "Normal"],
         genderRatio: {
@@ -4165,7 +4209,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     empoleking: {
-        num: 7500100,
+        num: 7500102,
         species: "Empoleking",
         types: ["Water", "Steel"],
         genderRatio: {
@@ -4189,7 +4233,7 @@ swampert: {
         eggGroups: ["Water 1"],
     },
     heathorn: {
-        num: 7500101,
+        num: 7500103,
         species: "Heathorn",
         types: ["Grass", "Steel"],
         genderRatio: {
@@ -4213,7 +4257,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     galvantulys: {
-        num: 7500102,
+        num: 7500104,
         species: "Galvantulys",
         types: ["Electric", "Psychic"],
         genderRatio: {
@@ -4237,7 +4281,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     hazygon: {
-        num: 7500103,
+        num: 7500105,
         species: "Hazygon",
         types: ["Psychic", "Dragon"],
         genderRatio: {
@@ -4261,7 +4305,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     jellie: {
-        num: 7500104,
+        num: 7500106,
         species: "Jellie",
         types: ["Ghost", "Fairy"],
         genderRatio: {
@@ -4285,7 +4329,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     zaggron: {
-        num: 7500105,
+        num: 7500107,
         species: "Zaggron",
         types: ["Flying", "Steel"],
         genderRatio: {
@@ -4332,7 +4376,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     malaras: {
-        num: 7500106,
+        num: 7500108,
         species: "Malaras",
         types: ["Dark", "Ice"],
         genderRatio: {
@@ -4356,7 +4400,7 @@ swampert: {
         eggGroups: ["Water 1"],
     },
     umbord: {
-        num: 7500107,
+        num: 7500109,
         species: "Umbord",
         types: ["Water", "Dark"],
         genderRatio: {
@@ -4380,7 +4424,7 @@ swampert: {
         eggGroups: ["Field"],
     },
     eruption: {
-        num: 7500108,
+        num: 7500110,
         species: "Eruption",
         types: ["Fire", "Water"],
         genderRatio: {
@@ -4427,7 +4471,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     porygardezy: {
-        num: 7500109,
+        num: 7500111,
         species: "Porygarde-Zy",
         types: ["Normal", "Dragon"],
         genderRatio: {
@@ -4451,7 +4495,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     raptorus: {
-        num: 7500110,
+        num: 7500112,
         species: "Raptorus",
         types: ["Ground", "Flying"],
         gender: "M",
@@ -4472,7 +4516,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     sickle: {
-        num: 7500111,
+        num: 7500113,
         species: "Sickle",
         types: ["Bug", "Steel"],
         genderRatio: {
@@ -4519,7 +4563,7 @@ swampert: {
         eggGroups: ["Bug"],
     },
     koulion: {
-        num: 7500112,
+        num: 7500114,
         species: "Koulion",
         types: ["Electric", "Steel"],
         genderRatio: {
@@ -4543,7 +4587,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
     dongoro: {
-        num: 7500113,
+        num: 7500115,
         species: "Dongoro",
         types: ["Ground", "Dark"],
         genderRatio: {
@@ -4593,7 +4637,7 @@ swampert: {
         eggGroups: ["Undiscovered"],
     },
 darkchomp: {
-        num: 7500114,
+        num: 7500116,
         species: "Darkchomp",
         types: ["Dark", "Dragon"],
         genderRatio: {
@@ -4616,7 +4660,7 @@ darkchomp: {
 		  fusion: ["darkrai", "garchomp"],
     },
     darkchompmega: {
-        num: 7500114,
+        num: 7500116,
         species: "Darkchomp-Mega",
         baseSpecies: "Darkchomp",
         forme: "Mega",
@@ -4639,7 +4683,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     jelluk: {
-        num: 7500115,
+        num: 7500117,
         species: "Jelluk",
         types: ["Poison", "Water"],
         genderRatio: {
@@ -4663,7 +4707,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     crustlecross: {
-        num: 7500116,
+        num: 7500118,
         species: "Crustlecross",
         types: ["Rock", "Fighting"],
         genderRatio: {
@@ -4687,7 +4731,7 @@ darkchomp: {
         eggGroups: ["Bug"],
     },
     crustlecrossmega: {
-        num: 7500116,
+        num: 7500118,
         species: "Crustlecross-Mega",
         baseSpecies: "Crustlecross",
         forme: "Mega",
@@ -4710,7 +4754,7 @@ darkchomp: {
         eggGroups: ["Bug"],
     },
     wigglyman: {
-        num: 7500117,
+        num: 7500119,
         species: "Wigglyman",
         types: ["Water", "Fairy"],
         genderRatio: {
@@ -4734,7 +4778,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     magnetic: {
-        num: 7500118,
+        num: 7500120,
         species: "Magnetic",
         types: ["Water", "Electric"],
         genderRatio: {
@@ -4758,7 +4802,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     zorogonz: {
-        num: 7500119,
+        num: 7500121,
         species: "Zorogon-Z",
         types: ["Normal", "Dark"],
         gender: "N",
@@ -4779,7 +4823,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     thundini: {
-        num: 7500120,
+        num: 7500122,
         species: "Thundini",
         types: ["Electric", "Fire"],
         genderRatio: {
@@ -4803,7 +4847,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     clawdra: {
-        num: 7500121,
+        num: 7500123,
         species: "Clawdra",
         types: ["Water", "Dragon"],
         genderRatio: {
@@ -4827,7 +4871,7 @@ darkchomp: {
         eggGroups: ["Water 1"],
     },
     shaymode: {
-        num: 7500122,
+        num: 7500124,
         species: "Shaymode",
         types: ["Grass", "Electric"],
         gender: "N",
@@ -4848,7 +4892,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     armortran: {
-        num: 7500123,
+        num: 7500125,
         species: "Armortran",
         types: ["Steel", "Flying"],
         genderRatio: {
@@ -4872,7 +4916,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     gonzap: {
-        num: 7500124,
+        num: 7500126,
         species: "Gonzap",
         types: ["Dragon", "Electric"],
         genderRatio: {
@@ -4896,7 +4940,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     bouffanine: {
-        num: 7500125,
+        num: 7500127,
         species: "Bouffanine",
         types: ["Normal", "Fire"],
         genderRatio: {
@@ -4920,7 +4964,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     dedsteel: {
-        num: 7500126,
+        num: 7500128,
         species: "Dedsteel",
         types: ["Steel", "Fairy"],
         gender: "N",
@@ -4941,7 +4985,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     avaizard: {
-        num: 7500127,
+        num: 7500129,
         species: "Avaizard",
         types: ["Ice", "Fire"],
         genderRatio: {
@@ -4965,7 +5009,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     avaizardmegax: {
-        num: 7500127,
+        num: 7500129,
         species: "Avaizard-Mega-X",
         baseSpecies: "Avaizard",
         forme: "Mega X",
@@ -4988,7 +5032,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     avaizardmegay: {
-        num: 7500127,
+        num: 7500129,
         species: "Avaizard-Mega-Y",
         baseSpecies: "Avaizard",
         forme: "Mega Y",
@@ -5011,7 +5055,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     cargolure: {
-        num: 7500128,
+        num: 7500130,
         species: "Cargolure",
         types: ["Ghost", "Fire"],
         genderRatio: {
@@ -5035,7 +5079,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     alakario: {
-        num: 7500129,
+        num: 7500131,
         species: "Alakario",
         types: ["Psychic", "Fighting"],
         genderRatio: {
@@ -5059,7 +5103,7 @@ darkchomp: {
         eggGroups: ["Human-Like"],
     },
     alakariomegal: {
-        num: 7500129,
+        num: 7500131,
         species: "Alakario-Mega-L",
         baseSpecies: "Alakario",
         forme: "Mega L",
@@ -5082,7 +5126,7 @@ darkchomp: {
         eggGroups: ["Human-Like"],
     },
     alakariomegaa: {
-        num: 7500129,
+        num: 7500131,
         species: "Alakario-Mega-A",
         baseSpecies: "Alakario",
         forme: "Mega A",
@@ -5105,7 +5149,7 @@ darkchomp: {
         eggGroups: ["Human-Like"],
     },
     cazantor: {
-        num: 7500130,
+        num: 7500132,
         species: "Cazantor",
         types: ["Bug", "Steel"],
         genderRatio: {
@@ -5129,7 +5173,7 @@ darkchomp: {
         eggGroups: ["Bug"],
     },
     cazantormega: {
-        num: 7500130,
+        num: 7500132,
         species: "Cazantor-Mega",
         baseSpecies: "Cazantor",
         forme: "Mega",
@@ -5152,7 +5196,7 @@ darkchomp: {
         eggGroups: ["Bug"],
     },
     gallete: {
-        num: 7500131,
+        num: 7500133,
         species: "Gallete",
         types: ["Fighting", "Ghost"],
         gender: "M",
@@ -5173,7 +5217,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     galletemegag: {
-        num: 7500131,
+        num: 7500133,
         species: "Gallete-Mega-G",
         baseSpecies: "Gallete",
         forme: "Mega",
@@ -5197,7 +5241,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     galletemegab: {
-        num: 7500131,
+        num: 7500133,
         species: "Gallete-Mega-B",
         baseSpecies: "Gallete",
         forme: "Mega",
@@ -5221,7 +5265,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     aurantrum: {
-        num: 7500132,
+        num: 7500134,
         species: "Aurantrum",
         types: ["Ice", "Dragon"],
         genderRatio: {
@@ -5245,7 +5289,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     steelthorn: {
-        num: 7500133,
+        num: 7500135,
         species: "Steelthorn",
         types: ["Grass", "Steel"],
         genderRatio: {
@@ -5269,7 +5313,7 @@ darkchomp: {
         eggGroups: ["Mineral"],
     },
     steelthornmega: {
-        num: 7500133,
+        num: 7500135,
         species: "Steelthorn-Mega",
         baseSpecies: "Steelthorn",
         forme: "Mega",
@@ -5292,7 +5336,7 @@ darkchomp: {
         eggGroups: ["Mineral"],
     },
     venoqueen: {
-        num: 7500134,
+        num: 7500136,
         species: "Venoqueen",
         types: ["Ground", "Bug"],
         gender: "F",
@@ -5313,7 +5357,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
        polyform2: {
-        num: 7500135,
+        num: 7500137,
         species: "Polyform2",
         types: ["Normal"],
         gender: "N",
@@ -5335,7 +5379,7 @@ darkchomp: {
         otherFormes: ["polyform2sunny", "polyform2sunsnow", "polyform2rainy", "polyform2snowy", "polyform2sandy", "polyform2spooky"],
     },
     polyform2sunny: {
-        num: 7500135,
+        num: 7500137,
         species: "Polyform2-Sunny",
         baseSpecies: "Polyform2",
         forme: "Sunny",
@@ -5359,7 +5403,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     polyform2sunsnow: {
-        num: 7500135,
+        num: 7500137,
         species: "Polyform2",
         species: "Polyform2-Sunsnow",
         baseSpecies: "Polyform2",
@@ -5384,7 +5428,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     polyform2rainy: {
-        num: 7500135,
+        num: 7500137,
         species: "Polyform2",
         species: "Polyform2-Rainy",
         baseSpecies: "Polyform2",
@@ -5409,7 +5453,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     polyform2snowy: {
-        num: 7500135,
+        num: 7500137,
         species: "Polyform2",
         species: "Polyform2-Snowy",
         baseSpecies: "Polyform2",
@@ -5434,7 +5478,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     polyform2sandy: {
-        num: 7500135,
+        num: 7500137,
         species: "Polyform2",
         species: "Polyform2-Sandy",
         baseSpecies: "Polyform2",
@@ -5459,7 +5503,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     polyform2spooky: {
-        num: 7500135,
+        num: 7500137,
         species: "Polyform2",
         species: "Polyform2-Spooky",
         baseSpecies: "Polyform2",
@@ -5484,7 +5528,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     scraftia: {
-        num: 7500136,
+        num: 7500138,
         species: "Scraftia",
         types: ["Fighting", "Dragon"],
         genderRatio: {
@@ -5508,7 +5552,7 @@ darkchomp: {
         eggGroups: ["Dragon"],
     },
     scraftiamega: {
-        num: 7500136,
+        num: 7500138,
         species: "Scraftia-Mega",
         baseSpecies: "Scraftia",
         forme: "Mega",
@@ -5531,7 +5575,7 @@ darkchomp: {
         eggGroups: ["Dragon"],
     },
     slurpum: {
-        num: 7500137,
+        num: 7500139,
         species: "Slurpum",
         types: ["Fairy", "Fighting"],
         genderRatio: {
@@ -5555,7 +5599,7 @@ darkchomp: {
         eggGroups: ["Fairy"],
     },
     thundersaurus: {
-        num: 7500138,
+        num: 7500140,
         species: "Thundersaurus",
         types: ["Grass", "Electric"],
         gender: "M",
@@ -5576,7 +5620,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     thundersaurusmega: {
-        num: 7500138,
+        num: 7500140,
         species: "Thundersaurus-Mega",
         baseSpecies: "Thundersaurus",
         forme: "Mega",
@@ -5599,7 +5643,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     rhyperlax: {
-        num: 7500139,
+        num: 7500141,
         species: "Rhyperlax",
         types: ["Normal", "Rock"],
         genderRatio: {
@@ -5623,7 +5667,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     lopunne: {
-        num: 7500140,
+        num: 7500142,
         species: "Lopunne",
         types: ["Normal"],
         genderRatio: {
@@ -5670,7 +5714,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     hootoise: {
-        num: 7500141,
+        num: 7500143,
         species: "Hootoise",
         types: ["Water", "Ghost"],
         genderRatio: {
@@ -5717,7 +5761,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     lietaur: {
-        num: 7500142,
+        num: 7500144,
         species: "Lietaur",
         types: ["Normal", "Dark"],
         gender: "M",
@@ -5738,7 +5782,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     laprazone: {
-        num: 7500143,
+        num: 7500145,
         species: "Laprazone",
         types: ["Ice", "Steel"],
         gender: "N",
@@ -5759,7 +5803,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     hydraulic: {
-        num: 7500144,
+        num: 7500146,
         species: "Hydraulic",
         types: ["Water", "Dragon"],
         genderRatio: {
@@ -5783,7 +5827,7 @@ darkchomp: {
         eggGroups: ["Dragon"],
     },
     klinkle: {
-        num: 7500145,
+        num: 7500147,
         species: "Klinkle",
         types: ["Electric", "Steel"],
         gender: "N",
@@ -5804,7 +5848,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     metanlee: {
-        num: 7500146,
+        num: 7500148,
         species: "Metanlee",
         types: ["Steel", "Fighting"],
         gender: "N",
@@ -5825,7 +5869,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 	 metanleemega: {
-        num: 7500146,
+        num: 7500148,
         species: "Metanlee-Mega",
         baseSpecies: "Metanlee",
         forme: "Mega",
@@ -5849,7 +5893,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     kangoruskhan: {
-        num: 7500147,
+        num: 7500149,
         species: "Kangorus-Khan",
         types: ["Normal", "Dragon"],
         gender: "F",
@@ -5870,7 +5914,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     heebleye: {
-        num: 7500148,
+        num: 7500150,
         species: "Heebleye",
         types: ["Psychic", "Dark"],
         genderRatio: {
@@ -5894,7 +5938,7 @@ darkchomp: {
         eggGroups: ["Human-Like"],
     },
 	 heebleyemega: {
-        num: 7500148,
+        num: 7500150,
         species: "Heebleye-Mega",
         baseSpecies: "Metanlee",
         forme: "Mega",
@@ -5917,7 +5961,7 @@ darkchomp: {
         eggGroups: ["Human-Like"],
     },
     crygotran: {
-        num: 7500149,
+        num: 7500151,
         species: "Crygotran",
         types: ["Ice", "Steel"],
         gender: "N",
@@ -5938,7 +5982,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     dugterra: {
-        num: 7500150,
+        num: 7500152,
         species: "Dugterra",
         types: ["Fighting", "Ground"],
         genderRatio: {
@@ -5962,7 +6006,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     garbagorde: {
-        num: 7500151,
+        num: 7500153,
         species: "Garbagorde",
         types: ["Poison", "Ground"],
         gender: "N",
@@ -5983,7 +6027,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     cherform: {
-        num: 7500152,
+        num: 7500154,
         species: "Cherform",
         types: ["Grass", "Normal"],
         genderRatio: {
@@ -6008,7 +6052,7 @@ darkchomp: {
      	  otherFormes: ["cherformsunny", "cherformrainy", "cherformsnowy", "cherformsandy", "cherformspooky"],
     },
     cherformsunny: {
-        num: 7500152,
+        num: 7500154,
         species: "Cherform-Sunny",
         baseSpecies: "Cherform",
         forme: "Sunny",
@@ -6035,7 +6079,7 @@ darkchomp: {
         eggGroups: ["Fairy"],
     },
     cherformrainy: {
-        num: 7500152,
+        num: 7500154,
         species: "Cherform-Rainy",
         baseSpecies: "Cherform",
         forme: "Rainy",
@@ -6062,7 +6106,7 @@ darkchomp: {
         eggGroups: ["Fairy"],
     },
     cherformsnowy: {
-        num: 7500152,
+        num: 7500154,
         species: "Cherform-Snowy",
         baseSpecies: "Cherform",
         forme: "Snowy",
@@ -6089,7 +6133,7 @@ darkchomp: {
         eggGroups: ["Fairy"],
     },
     cherformsandy: {
-        num: 7500152,
+        num: 7500154,
         species: "Cherform-Sandy",
         baseSpecies: "Cherform",
         forme: "Sandy",
@@ -6116,7 +6160,7 @@ darkchomp: {
         eggGroups: ["Fairy"],
     },
     cherformspooky: {
-        num: 7500152,
+        num: 7500154,
         species: "Cherform-Spooky",
         baseSpecies: "Cherform",
         forme: "Sandy",
@@ -6143,7 +6187,7 @@ darkchomp: {
         eggGroups: ["Fairy"],
     },
     porygrigus: {
-        num: 7500153,
+        num: 7500155,
         species: "Porygrigus",
         types: ["Normal", "Ghost"],
         gender: "N",
@@ -6164,7 +6208,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     zoroldeo: {
-        num: 7500154,
+        num: 7500156,
         species: "Zoroldeo",
         types: ["Dark", "Fighting"],
         genderRatio: {
@@ -6186,7 +6230,7 @@ darkchomp: {
         color: "Blue",
     },
     stundos: {
-        num: 7500155,
+        num: 7500157,
         species: "Stundos",
         types: ["Ground", "Electric"],
         genderRatio: {
@@ -6210,7 +6254,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 	macaroon: {
-        num: 7500156,
+        num: 7500158,
         species: "Macaroon",
         types: ["Fire", "Ground"],
         genderRatio: {
@@ -6234,7 +6278,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     dank: {
-        num: 7500157,
+        num: 7500159,
         species: "Dank",
         types: ["Dark", "Fairy"],
         gender: "N",
@@ -6255,7 +6299,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     rapipom: {
-        num: 7500158,
+        num: 7500160,
         species: "Rapipom",
         types: ["Normal", "Fire"],
         genderRatio: {
@@ -6279,7 +6323,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     tadpole: {
-        num: 7500159,
+        num: 7500161,
         species: "Tadpole",
         types: ["Dragon", "Water"],
         genderRatio: {
@@ -6303,7 +6347,7 @@ darkchomp: {
         eggGroups: ["Water 1"],
     },
     draegarados: {
-        num: 7500160,
+        num: 7500162,
         species: "Draegarados",
         types: ["Poison", "Water"],
         genderRatio: {
@@ -6327,7 +6371,7 @@ darkchomp: {
         eggGroups: ["Dragon"],
     },
     draegaradosmega: {
-        num: 7500160,
+        num: 7500162,
         species: "Draegarados-Mega",
         baseSpecies: "Draegarados",
         forme: "Mega",
@@ -6354,7 +6398,7 @@ darkchomp: {
         eggGroups: ["Dragon"],
     },
     grangoro: {
-        num: 7500161,
+        num: 7500163,
         species: "Grangoro",
         types: ["Dark", "Fairy"],
         genderRatio: {
@@ -6378,7 +6422,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     babuffe: {
-        num: 7500162,
+        num: 7500164,
         species: "Babuffe",
         types: ["Ghost", "Psychic"],
         genderRatio: {
@@ -6402,7 +6446,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     babuffemega: {
-        num: 7500162,
+        num: 7500164,
         species: "Babuffe-Mega",
         baseSpecies: "Babuffe",
         forme: "Mega",
@@ -6429,7 +6473,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     galionz: {
-        num: 7500163,
+        num: 7500165,
         species: "Galion-Z",
         types: ["Normal", "Ice"],
         gender: "N",
@@ -6450,7 +6494,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     galionzmega: {
-        num: 7500162,
+        num: 7500164,
         species: "Galion-Z-Mega",
         baseSpecies: "Galion-Z",
         forme: "Mega",
@@ -6474,7 +6518,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     steelweez: {
-        num: 7500164,
+        num: 7500166,
         species: "Steelweez",
         types: ["Poison", "Steel"],
         gender: "N",
@@ -6495,7 +6539,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     thunderbee: {
-        num: 7500165,
+        num: 7500167,
         species: "Thundurbee",
         types: ["Bug", "Electric"],
         gender: "M",
@@ -6516,7 +6560,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     gallatross: {
-        num: 7500166,
+        num: 7500168,
         species: "Gallatross",
         types: ["Electric", "Fighting"],
         gender: "M",
@@ -6537,7 +6581,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     gallatrossmega: {
-        num: 7500166,
+        num: 7500168,
         species: "Gallatross-Mega",
         baseSpecies: "Gallatross",
         forme: "Mega",
@@ -6561,7 +6605,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     victant: {
-        num: 7500167,
+        num: 7500169,
         species: "Victant",
         types: ["Bug", "Fire"],
         genderRatio: {
@@ -6585,7 +6629,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     rosetteeternal: {
-        num: 7500168,
+        num: 7500170,
         species: "Rosette-Eternal",
         types: ["Fairy", "Poison"],
         gender: "F",
@@ -6606,7 +6650,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     conkelvire: {
-        num: 7500169,
+        num: 7500171,
         species: "Conkelvire",
         types: ["Fighting", "Electric"],
         genderRatio: {
@@ -6630,7 +6674,7 @@ darkchomp: {
         eggGroups: ["Human-Like"],
     },
     landia: {
-        num: 7500170,
+        num: 7500172,
         species: "Landia",
         types: ["Dragon", "Flying"],
         genderRatio: {
@@ -6654,7 +6698,7 @@ darkchomp: {
         eggGroups: ["Dragon"],
     },
     landiamega: {
-        num: 7500170,
+        num: 7500172,
         species: "Landia-Mega",
         baseSpecies: "Landia",
         forme: "Mega",
@@ -6681,7 +6725,7 @@ darkchomp: {
         eggGroups: ["Dragon"],
     },
     odelay: {
-        num: 7500171,
+        num: 7500173,
         species: "Odelay",
         types: ["Water", "Rock"],
         genderRatio: {
@@ -6705,7 +6749,7 @@ darkchomp: {
         eggGroups: ["Water 3"],
     },
     thundercast: {
-        num: 7500172,
+        num: 7500174,
         species: "Thundercast",
         types: ["Electric", "Normal"],
         gender: "M",
@@ -6726,7 +6770,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     sceptetteeternal: {
-        num: 7500173,
+        num: 7500175,
         species: "Sceptette-Eternal",
         types: ["Fairy", "Grass"],
         gender: "F",
@@ -6747,7 +6791,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     sceptetteeternalmega: {
-        num: 7500173,
+        num: 7500175,
         species: "Sceptette-Eternal-Mega",
         baseSpecies: "Sceptette-Eternal",
         forme: "Mega",
@@ -6771,7 +6815,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     raillink: {
-        num: 7500174,
+        num: 7500176,
         species: "Rail Link",
         types: ["Normal", "Water"],
         genderRatio: {
@@ -6795,7 +6839,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     agrippa: {
-        num: 7500175,
+        num: 7500177,
         species: "Agrippa",
         types: ["Fighting", "Steel"],
         genderRatio: {
@@ -6846,7 +6890,7 @@ darkchomp: {
         eggGroups: ["Water 2"],
     },
     mewelli: {
-        num: 7500177,
+        num: 7500179,
         species: "Mewelli",
         types: ["Water", "Psychic"],
         genderRatio: {
@@ -6870,7 +6914,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     bael: {
-        num: 7500178,
+        num: 7500180,
         species: "Bael",
         types: ["Ghost", "Dragon"],
         genderRatio: {
@@ -6894,7 +6938,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     baelmega: {
-        num: 7500178,
+        num: 7500180,
         species: "Bael-Mega",
         baseSpecies: "Bael",
         forme: "Mega",
@@ -6921,7 +6965,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     simigoat: {
-        num: 7500179,
+        num: 7500181,
         species: "Simigoat",
         types: ["Fire", "Grass"],
         genderRatio: {
@@ -6945,7 +6989,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     miltrank: {
-        num: 7500180,
+        num: 7500182,
         species: "Miltrank",
         types: ["Normal", "Steel"],
         gender: "F",
@@ -6966,7 +7010,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     furfraught: {
-        num: 7500181,
+        num: 7500183,
         species: "Furfraught",
         types: ["Normal", "Fighting"],
         genderRatio: {
@@ -6990,7 +7034,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     tyranking: {
-        num: 7500182,
+        num: 7500184,
         species: "Tyranking",
         types: ["Rock", "Poison"],
         gender: "M",
@@ -7011,7 +7055,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     tyrankingmega: {
-        num: 7500182,
+        num: 7500184,
         species: "Tyranking-Mega",
         baseSpecies: "Tyranking",
         forme: "Mega",
@@ -7035,7 +7079,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     supermuk: {
-        num: 7500183,
+        num: 7500185,
         species: "Supermuk",
         types: ["Ghost", "Poison"],
         genderRatio: {
@@ -7059,7 +7103,7 @@ darkchomp: {
         eggGroups: ["Amorphous"],
     },
     mentor: {
-        num: 7500184,
+        num: 7500186,
         species: "Mentor",
         types: ["Ghost", "Steel"],
         genderRatio: {
@@ -7083,7 +7127,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     mentormega: {
-        num: 7500184,
+        num: 7500186,
         species: "Mentor-Mega",
         baseSpecies: "Mentor",
         forme: "Mega",
@@ -7110,7 +7154,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     elektra: {
-        num: 7500185,
+        num: 7500187,
         species: "Elektra",
         types: ["Psychic", "Electric"],
         genderRatio: {
@@ -7134,7 +7178,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     elektramega: {
-        num: 7500185,
+        num: 7500187,
         species: "Elektra-Mega",
         baseSpecies: "Elektra",
         forme: "Mega",
@@ -7161,7 +7205,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     escagon: {
-        num: 7500186,
+        num: 7500188,
         species: "Escagon",
         types: ["Dragon", "Steel"],
         genderRatio: {
@@ -7185,7 +7229,7 @@ darkchomp: {
         eggGroups: ["Bug"],
     },
     golmanitan: {
-        num: 7500187,
+        num: 7500189,
         species: "Golmanitan",
         types: ["Ground", "Fire"],
         genderRatio: {
@@ -7209,7 +7253,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     sunflorrim: {
-        num: 7500188,
+        num: 7500190,
         species: "Sunflorrim",
         types: ["Grass"],
         genderRatio: {
@@ -7233,7 +7277,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     unconventional: {
-        num: 7500189,
+        num: 7500191,
         species: "Unconventional",
         types: ["Fire", "Rock"],
         genderRatio: {
@@ -7257,7 +7301,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     ambiccino: {
-        num: 7500190,
+        num: 7500192,
         species: "Ambiccino",
         types: ["Normal"],
         genderRatio: {
@@ -7281,7 +7325,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     parp: {
-        num: 7500191,
+        num: 7500193,
         species: "Parp",
         types: ["Normal", "Dark"],
         genderRatio: {
@@ -7305,7 +7349,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     zyflare: {
-        num: 7500192,
+        num: 7500194,
         species: "Zyflare",
         types: ["Fire", "Dragon"],
         genderRatio: {
@@ -7329,7 +7373,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     probs: {
-        num: 7500193,
+        num: 7500195,
         species: "Probs",
         types: ["Dragon", "Steel"],
         gender: "F",
@@ -7350,7 +7394,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     probsmega: {
-        num: 7500193,
+        num: 7500195,
         species: "Probs-Mega",
         baseSpecies: "Probs",
         forme: "Mega",
@@ -7374,7 +7418,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     hentai: {
-        num: 7500194,
+        num: 7500196,
         species: "Hentai",
         types: ["Poison", "Fire"],
         genderRatio: {
@@ -7398,7 +7442,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     tornastar: {
-        num: 7500195,
+        num: 7500197,
         species: "Tornastar",
         types: ["Flying", "Water"],
         gender: "M",
@@ -7419,7 +7463,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     magmovire: {
-        num: 7500196,
+        num: 7500198,
         species: "Magmovire",
         types: ["Fire", "Electric"],
         genderRatio: {
@@ -7443,7 +7487,7 @@ darkchomp: {
         eggGroups: ["Human-Like"],
     },
     volgon: {
-        num: 7500197,
+        num: 7500199,
         species: "Volgon",
         types: ["Ground", "Electric"],
         genderRatio: {
@@ -7467,7 +7511,7 @@ darkchomp: {
         eggGroups: ["Bug"],
     },
     tapuloom: {
-        num: 7500198,
+        num: 7500200,
         species: "Tapu Loom",
         types: ["Grass", "Fighting"],
         genderRatio: {
@@ -7491,7 +7535,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     lucashadow: {
-        num: 7500199,
+        num: 7500201,
         species: "Lucashadow",
         types: ["Fighting", "Ghost"],
         genderRatio: {
@@ -7515,7 +7559,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     lucashadowmega: {
-        num: 7500199,
+        num: 7500201,
         species: "Lucashadow-Mega",
         baseSpecies: "Lucashadow",
         forme: "Mega",
@@ -7542,7 +7586,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     cradilego: {
-        num: 7500200,
+        num: 7500202,
         species: "Cradilego",
         types: ["Poison", "Grass"],
         gender: "N",
@@ -7563,7 +7607,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     astrolith: {
-        num: 7500201,
+        num: 7500203,
         species: "Astrolith",
 		  baseForme: "Clear",
         types: ["Rock", "Normal"],
@@ -7586,7 +7630,7 @@ darkchomp: {
      	  otherFormes: ["astrolithstar", "astrolithcomet", "astrolithneutron", "astrolithmeteor", "astrolithnova"],
     },
     astrolithstar: {
-        num: 7500201,
+        num: 7500203,
         species: "Astrolith-Star",
         baseSpecies: "Astrolith",
         forme: "Star",
@@ -7610,7 +7654,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     astrolithcomet: {
-        num: 7500201,
+        num: 7500203,
         species: "Astrolith-Comet",
         baseSpecies: "Astrolith",
         forme: "Comet",
@@ -7634,7 +7678,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     astrolithneutron: {
-        num: 7500201,
+        num: 7500203,
         species: "Astrolith-Neutron",
         baseSpecies: "Astrolith",
         forme: "Neutron",
@@ -7658,7 +7702,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     astrolithmeteor: {
-        num: 7500201,
+        num: 7500203,
         species: "Astrolith-Meteor",
         baseSpecies: "Astrolith",
         forme: "Meteor",
@@ -7682,7 +7726,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     astrolithnova: {
-        num: 7500201,
+        num: 7500203,
         species: "Astrolith-Nova",
         baseSpecies: "Astrolith",
         forme: "Nova",
@@ -7706,7 +7750,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     kyraurem: {
-        num: 7500202,
+        num: 7500204,
         species: "Kyraurem",
         types: ["Rock", "Ice"],
         genderRatio: {
@@ -7730,7 +7774,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     kyauremmega: {
-        num: 7500202,
+        num: 7500204,
         species: "Kyaurem-Mega",
         baseSpecies: "Kyaurem",
         forme: "Mega",
@@ -7757,7 +7801,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     hetrarna: {
-        num: 7500203,
+        num: 7500205,
         species: "Hetrarna",
         types: ["Fire", "Fairy"],
         genderRatio: {
@@ -7781,7 +7825,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     xurkivoir: {
-        num: 7500204,
+        num: 7500206,
         species: "Xurkivoir",
         types: ["Electric", "Fairy"],
         gender: "N",
@@ -7802,7 +7846,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     xurkivoirmega: {
-        num: 7500204,
+        num: 7500206,
         species: "Xurkivoir-Mega",
         baseSpecies: "Xurkivoir",
         forme: "Mega",
@@ -7826,7 +7870,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     vikarona: {
-        num: 7500205,
+        num: 7500207,
         species: "Vikarona",
         types: ["Electric", "Fire"],
         genderRatio: {
@@ -7850,7 +7894,7 @@ darkchomp: {
         eggGroups: ["Bug"],
     },
     mudgoat: {
-        num: 7500206,
+        num: 7500208,
         species: "Mudgoat",
         types: ["Grass", "Ground"],
         genderRatio: {
@@ -7874,7 +7918,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     theridel: {
-        num: 7500207,
+        num: 7500209,
         species: "Theridel",
         types: ["Ghost", "Ground"],
         gender: "M",
@@ -7895,7 +7939,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     shrek: {
-        num: 7500208,
+        num: 7500210,
         species: "Shrek",
         types: ["Grass", "Flying"],
         genderRatio: {
@@ -7919,7 +7963,7 @@ darkchomp: {
         eggGroups: ["Fairy"],
     },
     vitality: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality",
         types: ["Normal", "Fire"],
         gender: "N",
@@ -7941,7 +7985,7 @@ darkchomp: {
     },
 	
     vitalityfire: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Fire",
         baseSpecies: "Vitality",
         forme: "Fire",
@@ -7965,8 +8009,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalitywater: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Water",
         baseSpecies: "Vitality",
         forme: "Water",
@@ -7990,8 +8035,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalityelectric: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Electric",
         baseSpecies: "Vitality",
         forme: "Electric",
@@ -8015,8 +8061,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalitygrass: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Grass",
         baseSpecies: "Vitality",
         forme: "Grass",
@@ -8040,8 +8087,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalityice: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Ice",
         baseSpecies: "Vitality",
         forme: "Ice",
@@ -8065,7 +8113,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     vitalityfighting: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Fighting",
         baseSpecies: "Vitality",
         forme: "Fighting",
@@ -8089,8 +8137,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalitypoison: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Poison",
         baseSpecies: "Vitality",
         forme: "Poison",
@@ -8114,7 +8163,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     vitalityground: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Ground",
         baseSpecies: "Vitality",
         forme: "Ground",
@@ -8138,7 +8187,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     vitalityflying: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Flying",
         baseSpecies: "Vitality",
         forme: "Flying",
@@ -8162,7 +8211,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     vitalitypsychic: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Psychic",
         baseSpecies: "Vitality",
         forme: "Psychic",
@@ -8186,8 +8235,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalitybug: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Bug",
         baseSpecies: "Vitality",
         forme: "Bug",
@@ -8211,8 +8261,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalitydragon: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Dragon",
         baseSpecies: "Vitality",
         forme: "Dragon",
@@ -8236,8 +8287,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalitydark: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Dark",
         baseSpecies: "Vitality",
         forme: "Dark",
@@ -8261,8 +8313,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalitysteel: {
-        num: 7500209,
+        num: 7500211,
         species: "Vitality-Steel",
         baseSpecies: "Vitality",
         forme: "Steel",
@@ -8286,8 +8339,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     vitalityfairy: {
-        num: 7500253,
+        num: 7500255,
         species: "Vitality-Fairy",
         baseSpecies: "Vitality",
         forme: "Fairy",
@@ -8311,7 +8365,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     necromega: {
-        num: 7500210,
+        num: 7500212,
         species: "Necromega",
         types: ["Flying", "Psychic"],
         genderRatio: {
@@ -8335,7 +8389,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     malaquanid: {
-        num: 7500211,
+        num: 7500213,
         species: "Malaquanid",
         types: ["Dark", "Bug"],
         genderRatio: {
@@ -8359,7 +8413,7 @@ darkchomp: {
         eggGroups: ["Water 1"],
     },
     scrapunny: {
-        num: 7500212,
+        num: 7500214,
         species: "Scrapunny",
         types: ["Normal", "Dark"],
         genderRatio: {
@@ -8383,7 +8437,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     bezong: {
-        num: 7500213,
+        num: 7500215,
         species: "Bezong",
         types: ["Normal", "Psychic"],
         gender: "N",
@@ -8404,7 +8458,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     valcro: {
-        num: 7500214,
+        num: 7500216,
         species: "Valcro",
         types: ["Normal", "Flying"],
         genderRatio: {
@@ -8428,7 +8482,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     smelly: {
-        num: 7500215,
+        num: 7500217,
         species: "Smelly",
         types: ["Normal"],
         genderRatio: {
@@ -8452,7 +8506,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     tapumeme: {
-        num: 7500216,
+        num: 7500218,
         species: "Tapu Meme",
         types: ["Psychic", "Fairy"],
         gender: "N",
@@ -8473,7 +8527,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     tapumemedank: {
-        num: 7500216,
+        num: 7500218,
         species: "Tapu Meme-Dank",
         baseSpecies: "Tapu Meme",
         forme: "Dank",
@@ -8497,7 +8551,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     comcott: {
-        num: 7500217,
+        num: 7500219,
         species: "Comcott",
         types: ["Fairy", "Grass"],
         genderRatio: {
@@ -8521,7 +8575,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 	minislash: {
-	        num: 7500218,
+	        num: 7500220,
 	        species: "Minislash",
 	        baseForme: "Meteor",
 	        types: ["Rock", "Ghost"],
@@ -8547,7 +8601,7 @@ darkchomp: {
 	        otherFormes: ["minislashblade"],
 	    },
  	minislashblade: {
-	        num: 7500218,
+	        num: 7500220,
 	        species: "Minislash-Blade",
 	        baseSpecies: "Minislash",
 	        forme: "Blade",
@@ -8574,7 +8628,7 @@ darkchomp: {
 	        eggGroups: ["Mineral"],
 	    },
     crematoria: {
-        num: 7500219,
+        num: 7500221,
         species: "Crematoria",
         types: ["Flying", "Psychic"],
         genderRatio: {
@@ -8598,7 +8652,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     crematoriamegax: {
-        num: 7500219,
+        num: 7500221,
         species: "Crematoria-Mega-X",
         baseSpecies: "Crematoria",
         forme: "Mega",
@@ -8625,8 +8679,9 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
 
+
     crematoriamegay: {
-        num: 7500219,
+        num: 7500221,
         species: "Crematoria-Mega-Y",
         baseSpecies: "Crematoria",
         forme: "Mega",
@@ -8653,7 +8708,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     pherothorn: {
-        num: 7500220,
+        num: 7500222,
         species: "Pherothorn",
         types: ["Bug", "Steel"],
         genderRatio: {
@@ -8677,7 +8732,7 @@ darkchomp: {
         eggGroups: ["Undiscovered"],
     },
     archking: {
-        num: 7500221,
+        num: 7500223,
         species: "Archking",
         types: ["Water", "Flying"],
         genderRatio: {
@@ -8701,7 +8756,7 @@ darkchomp: {
         eggGroups: ["Water 3"],
     },
     slampa: {
-        num: 7500222,
+        num: 7500224,
         species: "Slampa",
         types: ["Water", "Dragon"],
         genderRatio: {
@@ -8725,7 +8780,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     slampamega: {
-        num: 7500222,
+        num: 7500224,
         species: "Slampa-Mega",
         baseSpecies: "Slampa",
         forme: "Mega",
@@ -8752,7 +8807,7 @@ darkchomp: {
         eggGroups: ["Monster"],
     },
     decidactyl: {
-        num: 7500223,
+        num: 7500225,
         species: "Decidactyl",
         types: ["Ghost", "Flying"],
         genderRatio: {
@@ -8776,7 +8831,7 @@ darkchomp: {
         eggGroups: ["Flying"],
     },
     lycanape: {
-        num: 7500224,
+        num: 7500226,
         species: "Lycanape",
         types: ["Rock", "Fighting"],
         genderRatio: {
@@ -8800,7 +8855,7 @@ darkchomp: {
         eggGroups: ["Field"],
     },
     golisoptops: {
-        num: 7500225,
+        num: 7500227,
         species: "Golisotops",
         types: ["Bug", "Water"],
         genderRatio: {
@@ -8824,7 +8879,7 @@ darkchomp: {
         eggGroups: ["Water 3"],
     },
     pewearalola: {
-        num: 7500226,
+        num: 7500228,
         species: "Perwear-Alola",
         types: ["Fighting", "Dark"],
         genderRatio: {
@@ -8846,8 +8901,9 @@ darkchomp: {
         eggGroups: ["Field"],
     },
 
+
     mudape: {
-        num: 7500227,
+        num: 7500229,
         species: "Mudape",
         types: ["Fighting", "Ground"],
         genderRatio: {
@@ -8870,7 +8926,7 @@ darkchomp: {
     },
 
     kira: {
-        num: 7500228,
+        num: 7500230,
         species: "Kira",
         types: ["Dragon", "Steel"],
 		  gender: "N",
@@ -8886,10 +8942,12 @@ darkchomp: {
             0: "Beast's Focus"
         },
 
+
     },
 
+
     exelegoalola: {
-        num: 7500229,
+        num: 7500231,
         species: "Exelego-Alola",
         types: ["Rock", "Dragon"],
 		  gender: "N",
@@ -8905,10 +8963,12 @@ darkchomp: {
             0: "Frisky Beast"
         },
 
+
     },
 
+
     joltarina: {
-        num: 7500230,
+        num: 7500232,
         species: "Joltarina",
         types: ["Water", "Electric"],
         genderRatio: {
@@ -8927,10 +8987,12 @@ darkchomp: {
             0: "Volt Torrent"
         },
 
+
     },
 
+
     dhelchamp: {
-        num: 7500231,
+        num: 7500233,
         species: "Dhelchamp",
         types: ["Grass", "Fighting"],
 		  gender: "N",
@@ -8946,10 +9008,12 @@ darkchomp: {
             0: "Ancient Mariner"
         },
 
+
     },
 
+
     mimian: {
-        num: 7500232,
+        num: 7500234,
         species: "Mimian",
         types: ["Psychic", "Fighting"],
         genderRatio: {
@@ -8968,10 +9032,12 @@ darkchomp: {
             0: "Monkey See Monkey Do"
         },
 
+
     },
 
+
     aerodako: {
-        num: 7500233,
+        num: 7500235,
         species: "Aero Dako",
         types: ["Rock", "Electric"],
         genderRatio: {
@@ -8990,10 +9056,12 @@ darkchomp: {
             0: "Rocky Surge"
         },
 
+
     },
 
+
     aerodakomega: {
-        num: 7500233,
+        num: 7500235,
         species: "Aero Dako-Mega",
         baseSpecies: "Aero Dako",
         forme: "Mega",
@@ -9015,10 +9083,12 @@ darkchomp: {
             0: "Tough Claws"
         },
 
+
     },
 
+
     tapujojo: {
-        num: 7500234,
+        num: 7500236,
         species: "Tapu Jojo",
         types: ["Ice", "Electric"],
         gender: "F",
@@ -9034,10 +9104,12 @@ darkchomp: {
             0: "Supercharge Surge"
         },
 
+
     },
 
+
     magicarticgear: {
-        num: 7500235,
+        num: 7500237,
         species: "Magic Artic Gear",
         types: ["Steel", "Flying"],
         gender: "N",
@@ -9053,10 +9125,12 @@ darkchomp: {
             0: "Broken Heart"
         },
 
+
     },
 
+
     necroltres: {
-        num: 7500236,
+        num: 7500238,
         species: "Necroltres",
         types: ["Psychic", "Fire"],
         gender: "N",
@@ -9072,10 +9146,12 @@ darkchomp: {
             0: "Diamond Armor"
         },
 
+
     },
 
+
     kartanbull: {
-        num: 7500237,
+        num: 7500239,
         species: "Kartanbull",
         types: ["Steel", "Fairy"],
         gender: "N",
@@ -9091,10 +9167,12 @@ darkchomp: {
             0: "Subdue"
         },
 
+
     },
 
+
     venustoise: {
-        num: 7500238,
+        num: 7500240,
         species: "Venustoise",
         types: ["Water", "Poison"],
         genderRatio: {
@@ -9113,10 +9191,12 @@ darkchomp: {
             0: "Sun Bath"
         },
 
+
     },
 
+
     venustoisemegag: {
-        num: 7500238,
+        num: 7500240,
         species: "Venustoise-Mega-Green",
         baseSpecies: "Venustoise",
         forme: "Mega",
@@ -9138,10 +9218,12 @@ darkchomp: {
             0: "Thick Fat"
         },
 
+
     },
 
+
     venustoisemegab: {
-        num: 7500238,
+        num: 7500240,
         species: "Venustoise-Mega-Blue",
         baseSpecies: "Venustoise",
         forme: "Mega",
@@ -9163,10 +9245,12 @@ darkchomp: {
             0: "Mega Launcher"
         },
 
+
     },
 
+
     kingkek: {
-        num: 7500239,
+        num: 7500241,
         species: "King Kek",
         types: ["Normal"],
         baseStats: {
@@ -9181,10 +9265,12 @@ darkchomp: {
             0: "Lazy Camo"
         },
 
+
     },
 
+
     sigillow: {
-        num: 7500240,
+        num: 7500242,
         species: "Sigillow",
         types: ["Normal", "Psychic"],
         baseStats: {
@@ -9199,9 +9285,10 @@ darkchomp: {
             0: "Overwhelming"
         },
 
+
     },
     covally: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally",
         types: ["Normal", "Fairy"],
         gender: "N",
@@ -9217,10 +9304,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyfire: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Fire",
         baseSpecies: "Covally",
         gender: "N",
@@ -9239,10 +9328,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallywater: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Water",
         baseSpecies: "Covally",
         gender: "N",
@@ -9261,10 +9352,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyelectric: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Electric",
         baseSpecies: "Covally",
         gender: "N",
@@ -9283,10 +9376,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallygrass: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Grass",
         baseSpecies: "Covally",
         gender: "N",
@@ -9305,10 +9400,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyice: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Ice",
         baseSpecies: "Covally",
         gender: "N",
@@ -9327,10 +9424,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyfighting: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Fighting",
         baseSpecies: "Covally",
         gender: "N",
@@ -9349,10 +9448,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallypoison: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Poison",
         baseSpecies: "Covally",
         gender: "N",
@@ -9371,10 +9472,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyground: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Ground",
         baseSpecies: "Covally",
         gender: "N",
@@ -9393,10 +9496,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyflying: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Fire",
         baseSpecies: "Covally",
         gender: "N",
@@ -9415,10 +9520,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallypsychic: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Psychic",
         baseSpecies: "Covally",
         gender: "N",
@@ -9437,11 +9544,14 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
 
+
+
     covallybug: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Bug",
         baseSpecies: "Covally",
         gender: "N",
@@ -9460,10 +9570,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyrock: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Rock",
         baseSpecies: "Covally",
         gender: "N",
@@ -9482,10 +9594,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyghost: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Ghost",
         baseSpecies: "Covally",
         gender: "N",
@@ -9504,10 +9618,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallydragon: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Dragon",
         baseSpecies: "Covally",
         gender: "N",
@@ -9526,10 +9642,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallydark: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Dark",
         baseSpecies: "Covally",
         gender: "N",
@@ -9548,10 +9666,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallysteel: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Steel",
         baseSpecies: "Covally",
         gender: "N",
@@ -9570,10 +9690,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     covallyfairy: {
-        num: 7500241,
+        num: 7500243,
         species: "Covally-Fairy",
         baseSpecies: "Covally",
         gender: "N",
@@ -9592,10 +9714,12 @@ darkchomp: {
             0: "Triage System"
         },
 
+
     },
 
+
     toxamola: {
-        num: 7500242,
+        num: 7500244,
         species: "Toxamola",
         types: ["Water", "Poison"],
         baseStats: {
@@ -9610,9 +9734,10 @@ darkchomp: {
             0: "Regenerator"
         },
 
+
     },
     melon: {
-        num: 7500243,
+        num: 7500245,
         species: "Melon",
         types: ["Fairy", "Psychic"],
         gender: "N",
@@ -9629,8 +9754,9 @@ darkchomp: {
         },
     },
 
+
     melonpirouette: {
-        num: 7500243,
+        num: 7500245,
         species: "Melon-Pirouette",
         baseSpecies: "Melon",
         gender: "N",
@@ -9650,8 +9776,9 @@ darkchomp: {
         },
     },
 
+
     kyutomwhite: {
-        num: 7500244,
+        num: 7500246,
         species: "Kyutom-White",
         types: ["Ice", "Electric"],
         gender: "N",
@@ -9668,8 +9795,9 @@ darkchomp: {
         },
     },
 
+
     xernemite: {
-        num: 7500245,
+        num: 7500247,
         species: "Xernemite",
         types: ["Steel", "Fairy"],
         gender: "N",
@@ -9686,8 +9814,9 @@ darkchomp: {
         },
     },
 
+
     cherron: {
-        num: 7500246,
+        num: 7500248,
         species: "Cherron",
         types: ["Grass", "Ground"],
         baseStats: {
@@ -9703,8 +9832,9 @@ darkchomp: {
         },
     },
 
+
     cherronprimal: {
-        num: 7500246,
+        num: 7500248,
         species: "Cherron-Primal",
         baseSpecies: "Cherron",
         forme: "Primal",
@@ -9719,12 +9849,13 @@ darkchomp: {
             spe: 87
         },
         abilities: {
-            0: "A1"
+            0: "AA"
         },
     },
 
+
     dialcatty: {
-        num: 7500247,
+        num: 7500249,
         species: "Dialcatty",
         types: ["Steel", "Normal"],
         gender: "N",
@@ -9741,8 +9872,9 @@ darkchomp: {
         },
     },
 
+
     lunatic: {
-        num: 7500248,
+        num: 7500250,
         species: "Lunatic",
         types: ["Fairy", "Ghost"],
         baseStats: {
@@ -9758,8 +9890,9 @@ darkchomp: {
         },
     },
 
+
     granho: {
-        num: 7500249,
+        num: 7500251,
         species: "Gran-Ho",
         types: ["Fairy", "Fire"],
         gender: "N",
@@ -9776,8 +9909,9 @@ darkchomp: {
         },
     },
 
+
     lies: {
-        num: 7500250,
+        num: 7500252,
         species: "Lies",
         types: ["Fairy", "Dark"],
         baseStats: {
@@ -9793,8 +9927,9 @@ darkchomp: {
         },
     },
 
+
     viva: {
-        num: 7500251,
+        num: 7500253,
         species: "Viva",
         types: ["Steel", "Flying"],
         baseStats: {
@@ -9810,8 +9945,9 @@ darkchomp: {
         },
     },
 
+
     girutukumuka: {
-        num: 7500252,
+        num: 7500254,
         species: "Girutukumuka",
         types: ["Water", "Ghost"],
         baseStats: {
@@ -9827,7 +9963,7 @@ darkchomp: {
         },
     },
     omneus: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus",
         types: ["Water", "Normal"],
         gender: "N",
@@ -9844,8 +9980,9 @@ darkchomp: {
         },
     },
 
+
     omneusfire: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Fire",
         baseSpecies: "Omneus",
         forme: "Fire",
@@ -9865,8 +10002,9 @@ darkchomp: {
         },
     },
 
+
     omneuswater: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Water",
         baseSpecies: "Omneus",
         forme: "Water",
@@ -9886,8 +10024,9 @@ darkchomp: {
         },
     },
 
+
     omneuselectric: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Electric",
         baseSpecies: "Omneus",
         forme: "Electric",
@@ -9907,8 +10046,9 @@ darkchomp: {
         },
     },
 
+
     omneusgrass: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Grass",
         baseSpecies: "Omneus",
         forme: "Grass",
@@ -9928,8 +10068,9 @@ darkchomp: {
         },
     },
 
+
     omneusice: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Ice",
         baseSpecies: "Omneus",
         forme: "Ice",
@@ -9949,8 +10090,9 @@ darkchomp: {
         },
     },
 
+
     omneusfighting: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Fighting",
         baseSpecies: "Omneus",
         forme: "Fighting",
@@ -9970,8 +10112,9 @@ darkchomp: {
         },
     },
 
+
     omneuspoison: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Poison",
         baseSpecies: "Omneus",
         forme: "Poison",
@@ -9991,8 +10134,9 @@ darkchomp: {
         },
     },
 
+
     omneusground: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Ground",
         baseSpecies: "Omneus",
         forme: "Ground",
@@ -10012,8 +10156,9 @@ darkchomp: {
         },
     },
 
+
     omneusflying: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Flying",
         baseSpecies: "Omneus",
         forme: "Flying",
@@ -10033,8 +10178,9 @@ darkchomp: {
         },
     },
 
+
     omneuspsychic: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Psychic",
         baseSpecies: "Omneus",
         forme: "Psychic",
@@ -10054,8 +10200,9 @@ darkchomp: {
         },
     },
 
+
     omneusbug: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Bug",
         baseSpecies: "Omneus",
         forme: "Bug",
@@ -10075,8 +10222,9 @@ darkchomp: {
         },
     },
 
+
     omneusdragon: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Dragon",
         baseSpecies: "Omneus",
         forme: "Dragon",
@@ -10096,8 +10244,9 @@ darkchomp: {
         },
     },
 
+
     omneusdark: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Dark",
         baseSpecies: "Omneus",
         forme: "Dark",
@@ -10117,8 +10266,9 @@ darkchomp: {
         },
     },
 
+
     omneussteel: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Steel",
         baseSpecies: "Omneus",
         forme: "Steel",
@@ -10138,8 +10288,9 @@ darkchomp: {
         },
     },
 
+
     omneusfairy: {
-        num: 7500253,
+        num: 7500255,
         species: "Omneus-Fairy",
         baseSpecies: "Omneus",
         forme: "Fairy",
@@ -10159,8 +10310,9 @@ darkchomp: {
         },
     },
 
+
     pheralie: {
-        num: 7500254,
+        num: 7500256,
         species: "Pheralie",
         types: ["Ice", "Fighting"],
         baseStats: {
@@ -10176,8 +10328,9 @@ darkchomp: {
         },
     },
 
+
     pheraliemega: {
-        num: 7500254,
+        num: 7500256,
         species: "Pheralie-Mega",
         baseSpecies: "Pheralie",
         forme: "Mega",
@@ -10196,8 +10349,9 @@ darkchomp: {
         },
     },
 
+
     tsarakion: {
-        num: 7500255,
+        num: 7500257,
         species: "Tsarakion",
         types: ["Grass", "Fighting"],
         gender: "F",
@@ -10214,8 +10368,9 @@ darkchomp: {
         },
     },
 
+
     scipod: {
-        num: 7500256,
+        num: 7500258,
         species: "Scipod",
         types: ["Steel", "Bug"],
         baseStats: {
@@ -10231,8 +10386,9 @@ darkchomp: {
         },
     },
 
+
     scipodmega: {
-        num: 7500256,
+        num: 7500258,
         species: "Scipod-Mega",
         baseSpecies: "Scipod",
         forme: "Mega",
@@ -10251,8 +10407,9 @@ darkchomp: {
         },
     },
 
+
     necrozmerupt: {
-        num: 7500257,
+        num: 7500259,
         species: "Necrozmerupt",
         types: ["Fire", "Psychic"],
         gender: "N",
@@ -10269,8 +10426,9 @@ darkchomp: {
         },
     },
 
+
     necrozmeruptmega: {
-        num: 7500257,
+        num: 7500259,
         species: "Necrozmerupt-Mega",
         baseSpecies: "Necrozmerupt",
         gender: "N",
@@ -10290,8 +10448,9 @@ darkchomp: {
         },
     },
 
+
     banekyu: {
-        num: 7500258,
+        num: 7500260,
         species: "Banekyu",
         types: ["Ghost", "Fairy"],
         baseStats: {
@@ -10308,7 +10467,7 @@ darkchomp: {
     },
 	
     banekyubusted: {
-        num: 7500258,
+        num: 7500260,
         species: "Banekyu-Busted",
         baseSpecies: "Banekyu",
         forme: "Busted",
@@ -10327,8 +10486,9 @@ darkchomp: {
         },
     },
 
+
     banekyumega: {
-        num: 7500258,
+        num: 7500260,
         species: "Banekyu-Mega",
         baseSpecies: "Banekyu",
         forme: "Mega",
@@ -10347,8 +10507,9 @@ darkchomp: {
         },
     },
 
+
     ninxys: {
-        num: 7500259,
+        num: 7500261,
         species: "Ninxys",
         types: ["Psychic", "Bug"],
         gender: "N",
@@ -10365,8 +10526,9 @@ darkchomp: {
         },
     },
 
+
     heratana: {
-        num: 7500260,
+        num: 7500262,
         species: "Heratana",
         types: ["Bug", "Steel"],
         gender: "N",
@@ -10383,8 +10545,9 @@ darkchomp: {
         },
     },
 
+
     heratanamega: {
-        num: 7500260,
+        num: 7500262,
         species: "Heratana-Mega",
         baseSpecies: "Heratana",
         forme: "Mega",
@@ -10404,8 +10567,9 @@ darkchomp: {
         },
     },
 
+
     plumin: {
-        num: 7500261,
+        num: 7500263,
         species: "Plumin",
         types: ["Electric"],
         baseStats: {
@@ -10421,8 +10585,9 @@ darkchomp: {
         },
     },
 
+
     oxyblissdefense: {
-        num: 7500262,
+        num: 7500264,
         species: "Oxybliss-Defense",
         types: ["Psychic", "Normal"],
         gender: "N",
@@ -10439,8 +10604,9 @@ darkchomp: {
         },
     },
 
+
     diggercatealola: {
-        num: 7500263,
+        num: 7500265,
         species: "Diggercate-Alola",
         types: ["Normal", "Ground"],
         baseStats: {
@@ -10456,8 +10622,9 @@ darkchomp: {
         },
     },
 
+
     inferperior: {
-        num: 7500264,
+        num: 7500266,
         species: "Inferperior",
         types: ["Grass", "Fire"],
         genderRatio: {
@@ -10477,8 +10644,9 @@ darkchomp: {
         },
     },
 
+
     mimukyu: {
-        num: 7500265,
+        num: 7500267,
         species: "Mimukyu",
         types: ["Dark", "Fairy"],
         baseStats: {
@@ -10495,7 +10663,7 @@ darkchomp: {
 		 otherFormes: ["mimukyubusted"],
     },
 	mimukyubusted: {
-        num: 7500265,
+        num: 7500267,
         species: "Mimukyu-Busted",
 		baseSpecies: "Mimukyu",
 		forme: "Busted",
@@ -10514,7 +10682,7 @@ darkchomp: {
         },
     },
     axatree: {
-        num: 7500266,
+        num: 7500268,
         species: "Axatree",
         types: ["Psychic", "Electric"],
         gender: "N",
@@ -10531,8 +10699,9 @@ darkchomp: {
         },
     },
 
+
     axatreemega: {
-        num: 7500266,
+        num: 7500268,
         species: "Axatree-Mega",
         baseSpecies: "Axatree",
         forme: "Mega",
@@ -10552,8 +10721,9 @@ darkchomp: {
         },
     },
 
+
     cresspal: {
-        num: 7500267,
+        num: 7500269,
         species: "Cresspal",
         types: ["Normal", "Psychic"],
         gender: "F",
@@ -10570,8 +10740,9 @@ darkchomp: {
         },
     },
 
+
     necrior: {
-        num: 7500268,
+        num: 7500270,
         species: "Necrior",
         types: ["Grass", "Psychic"],
         gender: "N",
@@ -10588,8 +10759,9 @@ darkchomp: {
         },
     },
 
+
     cinshado: {
-        num: 7500269,
+        num: 7500271,
         species: "Cinshado",
         types: ["Normal", "Fighting"],
         genderRatio: {
@@ -10609,8 +10781,9 @@ darkchomp: {
         },
     },
 
+
     altellow: {
-        num: 7500270,
+        num: 7500272,
         species: "Altellow",
         types: ["Dragon", "Normal"],
         baseStats: {
@@ -10626,8 +10799,9 @@ darkchomp: {
         },
     },
 
+
     altellowmega: {
-        num: 7500270,
+        num: 7500272,
         species: "Altellow-Mega",
         baseSpecies: "Altellow",
         forme: "Mega",
@@ -10671,7 +10845,7 @@ celebi: {
 		eggGroups: ["Undiscovered"],
 	},
     rebell: {
-        num: 7500271,
+        num: 7500273,
         species: "Rebell",
         types: ["Fighting", "Psychic"],
         genderRatio: {
@@ -10692,8 +10866,9 @@ celebi: {
 		 fusion: ["Riolu", "Celebi"],
     },
 
+
     combarde: {
-        num: 7500272,
+        num: 7500274,
         species: "Combarde",
         types: ["Fighting", "Ground"],
         gender: "N",
@@ -10710,8 +10885,9 @@ celebi: {
         },
     },
 
+
     dittsey: {
-        num: 7500273,
+        num: 7500275,
         species: "Dittsey",
         types: ["Normal"],
         gender: "N",
@@ -10728,7 +10904,7 @@ celebi: {
         },
     },
     aravealola: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola",
         types: ["Electric", "Normal"],
         gender: "N",
@@ -10745,8 +10921,9 @@ celebi: {
         },
     },
 
+
     aravealolafire: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Fire",
         baseSpecies: "A Rave-Alola",
         forme: "Fire",
@@ -10766,8 +10943,9 @@ celebi: {
         },
     },
 
+
     aravealolawater: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Water",
         baseSpecies: "A Rave-Alola",
         forme: "Water",
@@ -10787,8 +10965,9 @@ celebi: {
         },
     },
 
+
     aravealolaelectric: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Electric",
         baseSpecies: "A Rave-Alola",
         forme: "Electric",
@@ -10808,8 +10987,9 @@ celebi: {
         },
     },
 
+
     aravealolagrass: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Grass",
         baseSpecies: "A Rave-Alola",
         forme: "Grass",
@@ -10829,8 +11009,9 @@ celebi: {
         },
     },
 
+
     aravealolaice: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Ice",
         baseSpecies: "A Rave-Alola",
         forme: "Ice",
@@ -10850,8 +11031,9 @@ celebi: {
         },
     },
 
+
     aravealolafighting: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Fighting",
         baseSpecies: "A Rave-Alola",
         forme: "Fighting",
@@ -10871,8 +11053,9 @@ celebi: {
         },
     },
 
+
     aravealolapoison: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Poison",
         baseSpecies: "A Rave-Alola",
         forme: "Poison",
@@ -10892,8 +11075,9 @@ celebi: {
         },
     },
 
+
     aravealolaground: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Ground",
         baseSpecies: "A Rave-Alola",
         forme: "Ground",
@@ -10913,8 +11097,9 @@ celebi: {
         },
     },
 
+
     aravealolaflying: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Flying",
         baseSpecies: "A Rave-Alola",
         forme: "Flying",
@@ -10934,8 +11119,9 @@ celebi: {
         },
     },
 
+
     aravealolapsychic: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Psychic",
         baseSpecies: "A Rave-Alola",
         forme: "Psychic",
@@ -10955,8 +11141,9 @@ celebi: {
         },
     },
 
+
     aravealolabug: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Bug",
         baseSpecies: "A Rave-Alola",
         forme: "Bug",
@@ -10976,8 +11163,9 @@ celebi: {
         },
     },
 
+
     aravealolarock: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Rock",
         baseSpecies: "A Rave-Alola",
         forme: "Rock",
@@ -10997,8 +11185,9 @@ celebi: {
         },
     },
 
+
     aravealolaghost: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Ghost",
         baseSpecies: "A Rave-Alola",
         forme: "Ghost",
@@ -11018,8 +11207,9 @@ celebi: {
         },
     },
 
+
     aravealoladragon: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Dragon",
         baseSpecies: "A Rave-Alola",
         forme: "Dragon",
@@ -11039,8 +11229,9 @@ celebi: {
         },
     },
 
+
     aravealoladark: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Dark",
         baseSpecies: "A Rave-Alola",
         forme: "Dark",
@@ -11060,8 +11251,9 @@ celebi: {
         },
     },
 
+
     aravealolasteel: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Steel",
         baseSpecies: "A Rave-Alola",
         forme: "Steel",
@@ -11081,8 +11273,9 @@ celebi: {
         },
     },
 
+
     aravealolafairy: {
-        num: 7500274,
+        num: 7500276,
         species: "A Rave-Alola-Fairy",
         baseSpecies: "A Rave-Alola",
         forme: "Fairy",
@@ -11102,8 +11295,9 @@ celebi: {
         },
     },
 
+
     miminja: {
-        num: 7500275,
+        num: 7500277,
         species: "Miminja",
         types: ["Dark", "Ghost"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -11120,8 +11314,9 @@ celebi: {
         },
     },
 
+
     miminjareborn: {
-        num: 7500275,
+        num: 7500277,
         species: "Miminja-Reborn",
         baseSpecies: "Miminja",
         forme: "Reborn",
@@ -11141,8 +11336,9 @@ celebi: {
         },
     },
 
+
     murkaleo: {
-        num: 7500276,
+        num: 7500278,
         species: "Murkaleo",
         types: ["Flying", "Steel"],
         gender: "N",
@@ -11159,8 +11355,9 @@ celebi: {
         },
     },
 
+
     zecronaw: {
-        num: 7500277,
+        num: 7500279,
         species: "Zecronaw",
         types: ["Electric", "Water"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -11177,8 +11374,9 @@ celebi: {
         },
     },
 
+
     quinda: {
-        num: 7500278,
+        num: 7500280,
         species: "Quinda",
         types: ["Normal", "Flying"],
         gender: "N",
@@ -11195,8 +11393,9 @@ celebi: {
         },
     },
 
+
     sablegigas: {
-        num: 7500279,
+        num: 7500281,
         species: "sablegigas",
         types: ["Normal", "Ghost"],
         gender: "N",
@@ -11213,8 +11412,9 @@ celebi: {
         },
     },
 
+
     sablegigasmega: {
-        num: 7500279,
+        num: 7500281,
         species: "Sablegigas-Mega",
         baseSpecies: "Sablegigas",
         forme: "Mega",
@@ -11234,8 +11434,9 @@ celebi: {
         },
     },
 
+
     galvillon: {
-        num: 7500280,
+        num: 7500282,
         species: "Galvillon",
         types: ["Electric", "Flying"],
         baseStats: {
@@ -11251,8 +11452,9 @@ celebi: {
         },
     },
 
+
     kyonun: {
-        num: 7500281,
+        num: 7500283,
         species: "Kyonun",
         types: ["Electric", "Water"],
         baseStats: {
@@ -11268,8 +11470,9 @@ celebi: {
         },
     },
 
+
     kyonunprimal: {
-        num: 7500281,
+        num: 7500283,
         species: "Kyonun-Primal",
         baseSpecies: "Kyonun",
         forme: "Primal",
@@ -11288,8 +11491,9 @@ celebi: {
         },
     },
 
+
     abomasorus: {
-        num: 7500282,
+        num: 7500284,
         species: "Abomasorus",
         types: ["Ice", "Ground"],
         gender: "M",
@@ -11306,7 +11510,7 @@ celebi: {
         },
     },
     abomasorusmega: {
-        num: 7500282,
+        num: 7500284,
         species: "Abomasorus-Mega",
         baseSpecies: "Abomasorus",
         forme: "Mega",
@@ -11326,8 +11530,9 @@ celebi: {
         },
     },
 
+
     toxicario: {
-        num: 7500283,
+        num: 7500285,
         species: "Toxicario",
         types: ["Poison", "Fighting"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -11344,8 +11549,9 @@ celebi: {
         },
     },
 
+
     toxicariomega: {
-        num: 7500283,
+        num: 7500285,
         species: "Toxicario-Mega",
         baseSpecies: "Toxicario",
         forme: "Mega",
@@ -11365,8 +11571,9 @@ celebi: {
         },
     },
 
+
     washoxchromosome: {
-        num: 7500284,
+        num: 7500286,
         species: "Washox",
         gender: "N",
 		  baseForme: "Chromosome",
@@ -11384,8 +11591,9 @@ celebi: {
         },
     },
 
+
     washoxstrand: {
-        num: 7500284,
+        num: 7500286,
         species: "Washox-Strand",
         baseSpecies: "Washox",
         gender: "N",
@@ -11405,8 +11613,9 @@ celebi: {
         },
     },
 
+
     hoorbok: {
-        num: 7500285,
+        num: 7500287,
         species: "Hoorbok",
         types: ["Poison", "Dark"],
         baseStats: {
@@ -11422,8 +11631,9 @@ celebi: {
         },
     },
 
+
     ninetalesprime: {
-		  num: 39,
+		  num: 38,
 		  species: "Ninetales-Prime",
 		  baseSpecies: "Ninetales",
         genderRatio: {M: 25.0, F: 75.0},
@@ -11443,8 +11653,9 @@ celebi: {
         },
     },
 
+
     blampa: {
-        num: 7500287,
+        num: 7500289,
         species: "Blampa",
         types: ["Water", "Dragon"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -11461,8 +11672,9 @@ celebi: {
         },
     },
 
+
     blampamega: {
-        num: 7500287,
+        num: 7500289,
         species: "Blampa-Mega",
         baseSpecies: "Blampa",
         forme: "Mega",
@@ -11482,8 +11694,9 @@ celebi: {
         },
     },
 
+
     origamiswan: {
-        num: 7500288,
+        num: 7500290,
         species: "Origami-Swan",
         types: ["Psychic", "Steel"],
         gender: "N",
@@ -11500,8 +11713,9 @@ celebi: {
         },
     },
 
+
     kecleus: {
-        num: 7500289,
+        num: 7500291,
         species: "Kecleus",
         types: ["Normal"],
         baseStats: {
@@ -11517,8 +11731,9 @@ celebi: {
         },
     },
 
+
     fearroh: {
-        num: 7500290,
+        num: 7500292,
         species: "Fear-Roh",
         types: ["Flying"],
         baseStats: {
@@ -11534,8 +11749,9 @@ celebi: {
         },
     },
 
+
     neoprene: {
-        num: 7500291,
+        num: 7500293,
         species: "Neoprene",
         types: ["Steel"],
         gender: "N",
@@ -11552,8 +11768,9 @@ celebi: {
         },
     },
 
+
     maroramalola: {
-        num: 7500292,
+        num: 7500294,
         species: "Maroram-Alola",
         types: ["Fire"],
         baseStats: {
@@ -11569,8 +11786,9 @@ celebi: {
         },
     },
 
+
     genny: {
-        num: 7500293,
+        num: 7500295,
         species: "Genny",
         types: ["Bug"],
         gender: "N",
@@ -11587,8 +11805,9 @@ celebi: {
         },
     },
 
+
     sylvoko: {
-        num: 7500294,
+        num: 7500296,
         species: "Sylvoko",
         types: ["Fairy"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -11605,8 +11824,9 @@ celebi: {
         },
     },
 
+
     miniancie: {
-        num: 7500295,
+        num: 7500297,
         species: "Miniancie",
 		  baseForme: "Ore",
         types: ["Rock"],
@@ -11624,8 +11844,9 @@ celebi: {
         },
     },
 
+
     minianciejewel: {
-        num: 7500295,
+        num: 7500297,
         species: "Miniancie-Jewel",
         baseSpecies: "Miniancie",
         gender: "N",
@@ -11641,12 +11862,13 @@ celebi: {
             spe: 115
         },
         abilities: {
-            0: "A1"
+            0: "AA"
         },
     },
 
+
     tapudede: {
-        num: 7500296,
+        num: 7500298,
         species: "Tapu Dede",
         types: ["Grass"],
         gender: "N",
@@ -11663,8 +11885,9 @@ celebi: {
         },
     },
 
+
     shenala: {
-        num: 7500297,
+        num: 7500299,
         species: "Shenala",
         types: ["Ghost"],
         gender: "N",
@@ -11681,8 +11904,9 @@ celebi: {
         },
     },
 
+
     entir: {
-        num: 7500298,
+        num: 7500300,
         species: "Entir",
         types: ["Fire", "Bug"],
         baseStats: {
@@ -11698,8 +11922,9 @@ celebi: {
         },
     },
 
+
     entirmega: {
-        num: 7500298,
+        num: 7500300,
         species: "Entir-Mega",
         baseSpecies: "Entir",
         forme: "Mega",
@@ -11718,7 +11943,7 @@ celebi: {
         },
     },
     giramini: {
-        num: 7500299,
+        num: 7500301,
         species: "Giramini",
         types: ["Ghost", "Rock"],
         gender: "N",
@@ -11735,7 +11960,7 @@ celebi: {
         },
     },
     giraminiunleashed: {
-        num: 7500299,
+        num: 7500301,
         species: "Giramini-Unleashed",
         baseSpecies: "Giramini",
         forme: "Unleashed",
@@ -11755,8 +11980,9 @@ celebi: {
         },
     },
 
+
     aquapod: {
-        num: 7500300,
+        num: 7500302,
         species: "Aquapod",
         types: ["Water", "Bug"],
         baseStats: {
@@ -11772,7 +11998,7 @@ celebi: {
         },
     },
     reshivine: {
-        num: 7500301,
+        num: 7500303,
         species: "Reshivine",
         types: ["Dragon", "Grass"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -11789,7 +12015,7 @@ celebi: {
         },
     },
     rosium: {
-        num: 7500302,
+        num: 7500304,
         species: "Rosium",
         types: ["Poison", "Grass"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -11806,8 +12032,9 @@ celebi: {
         },
     },
 
+
     valveon: {
-        num: 7500303,
+        num: 7500305,
         species: "Valveon",
         types: ["Water", "Fairy"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -11827,8 +12054,9 @@ celebi: {
 		 eggGroups: ["Field"],
     },
 
+
     raptalon: {
-        num: 7500304,
+        num: 7500306,
         species: "Raptalon",
         types: ["Flying", "Fire"],
         baseStats: {
@@ -11844,8 +12072,9 @@ celebi: {
         },
     },
 
+
     deoxurkoutlet: {
-        num: 7500305,
+        num: 7500307,
         species: "Deoxurk-Outlet",
         types: ["Psychic", "Electric"],
         gender: "N",
@@ -11862,8 +12091,9 @@ celebi: {
         },
     },
 
+
     dio: {
-        num: 7500306,
+        num: 7500308,
         species: "Dio",
         types: ["Steel", "Normal"],
         baseStats: {
@@ -11879,8 +12109,9 @@ celebi: {
         },
     },
 
+
     generott: {
-        num: 7500307,
+        num: 7500309,
         species: "Generott",
         types: ["Water", "Bug"],
         gender: "N",
@@ -11897,8 +12128,9 @@ celebi: {
         },
     },
 
+
     darminup: {
-        num: 7500308,
+        num: 7500310,
         species: "Darmin",
 		  baseForme: "Up",
         types: ["Fire", "Normal"],
@@ -11915,8 +12147,9 @@ celebi: {
         },
     },
 
+
     darmindown: {
-        num: 7500308,
+        num: 7500310,
         species: "Darmin-Down",
         baseSpecies: "Darmin",
         forme: "Down",
@@ -11935,8 +12168,9 @@ celebi: {
         },
     },
 
+
     conkeldurus: {
-        num: 7500309,
+        num: 7500311,
         species: "Conkeldurus",
         types: ["Electric", "Fighting"],
         gender: "M",
@@ -11953,8 +12187,9 @@ celebi: {
         },
     },
 
+
     fisktres: {
-        num: 7500310,
+        num: 7500312,
         species: "Fisktres",
         types: ["Ground", "Flying"],
         baseStats: {
@@ -11970,8 +12205,9 @@ celebi: {
         },
     },
 
+
     landana: {
-        num: 7500311,
+        num: 7500313,
         species: "Landana",
         types: ["Ground", "Flying"],
         baseStats: {
@@ -11987,8 +12223,9 @@ celebi: {
         },
     },
 
+
     regimiki: {
-        num: 7500312,
+        num: 7500314,
         species: "Regimiki",
         types: ["Normal", "Water"],
         baseStats: {
@@ -12004,8 +12241,9 @@ celebi: {
         },
     },
 
+
     star: {
-        num: 7500313,
+        num: 7500315,
         species: "Star",
         types: ["Fairy", "Dark"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -12022,8 +12260,9 @@ celebi: {
         },
     },
 
+
     starbutterfly: {
-        num: 7500313,
+        num: 7500315,
         species: "Star-Butterfly",
         baseSpecies: "Star",
         forme: "Butterfly",
@@ -12043,8 +12282,9 @@ celebi: {
         },
     },
 
+
     gardelego: {
-        num: 7500314,
+        num: 7500316,
         species: "Gardelego",
         types: ["Fairy", "Poison"],
         baseStats: {
@@ -12060,8 +12300,9 @@ celebi: {
         },
     },
 
+
     gardelegomega: {
-        num: 7500314,
+        num: 7500316,
         species: "Gardelego-Mega",
         baseSpecies: "Gardelego",
         forme: "Mega",
@@ -12080,8 +12321,9 @@ celebi: {
         },
     },
 
+
     maltarione: {
-        num: 7500315,
+        num: 7500317,
         species: "Maltarione",
         types: ["Steel", "Dragon"],
         gender: "N",
@@ -12098,8 +12340,9 @@ celebi: {
         },
     },
 
+
     maltarionemega: {
-        num: 7500315,
+        num: 7500317,
         species: "Maltarione-Mega",
         baseSpecies: "Maltarione",
         gender: "N",
@@ -12119,8 +12362,9 @@ celebi: {
         },
     },
 
+
     maskle: {
-        num: 7500316,
+        num: 7500318,
         species: "Maskle",
         types: ["Bug", "Rock"],
         baseStats: {
@@ -12136,8 +12380,9 @@ celebi: {
         },
     },
 
+
     cowardice: {
-        num: 7500317,
+        num: 7500319,
         species: "Cowardice",
         types: ["Bug", "Ground"],
         gender: "F",
@@ -12154,8 +12399,9 @@ celebi: {
         },
     },
 
+
     guzzbro: {
-        num: 7500318,
+        num: 7500320,
         species: "Guzzbro",
         types: ["Dragon", "Water"],
         baseStats: {
@@ -12171,8 +12417,9 @@ celebi: {
         },
     },
 
+
     guzzbromega: {
-        num: 7500318,
+        num: 7500320,
         species: "Guzzbro-Mega",
         baseSpecies: "Guzzbro",
         forme: "Mega",
@@ -12191,8 +12438,9 @@ celebi: {
         },
     },
 
+
     zycannon: {
-        num: 7500319,
+        num: 7500321,
         species: "Zycannon",
         types: ["Ground", "Normal"],
         gender: "N",
@@ -12209,8 +12457,9 @@ celebi: {
         },
     },
 
+
     zeeeee: {
-        num: 7500320,
+        num: 7500322,
         species: "Zeeeee",
         types: ["Ground", "Normal"],
         gender: "N",
@@ -12227,8 +12476,9 @@ celebi: {
         },
     },
 
+
     zeeeeecomplete: {
-        num: 7500320,
+        num: 7500322,
         species: "Zeeeee-Complete",
         baseSpecies: "Zeeeee",
         forme: "Complete",
@@ -12248,8 +12498,9 @@ celebi: {
         },
     },
 
+
     peridot: {
-        num: 7500321,
+        num: 7500323,
         species: "Peridot",
         types: ["Flying", "Electric"],
         gender: "N",
@@ -12266,8 +12517,9 @@ celebi: {
         },
     },
 
+
     peridotmega: {
-        num: 7500321,
+        num: 7500323,
         species: "Peridot-Mega",
         baseSpecies: "Peridot",
         forme: "Mega",
@@ -12286,8 +12538,9 @@ celebi: {
         },
     },
 
+
     stundicuno: {
-        num: 7500322,
+        num: 7500324,
         species: "Stundicuno",
         types: ["Ground", "Ice"],
         baseStats: {
@@ -12303,8 +12556,9 @@ celebi: {
         },
     },
 
+
     aloha: {
-        num: 7500323,
+        num: 7500325,
         species: "Aloha",
         types: ["Psychic", "Dark"],
         baseStats: {
@@ -12320,8 +12574,9 @@ celebi: {
         },
     },
 
+
     alohamega: {
-        num: 7500323,
+        num: 7500325,
         species: "Aloha-Mega",
         baseSpecies: "Aloha",
         forme: "Mega",
@@ -12340,8 +12595,9 @@ celebi: {
         },
     },
 
+
     zekloom: {
-        num: 7500324,
+        num: 7500326,
         species: "Zekloom",
         types: ["Electric", "Fighting"],
         baseStats: {
@@ -12357,8 +12613,9 @@ celebi: {
         },
     },
 
+
     gengalure: {
-        num: 7500325,
+        num: 7500327,
         species: "Gengalure",
         types: ["Ghost", "Fire"],
         baseStats: {
@@ -12374,8 +12631,9 @@ celebi: {
         },
     },
 
+
     ferrolord: {
-        num: 7500326,
+        num: 7500328,
         species: "Ferrolord",
         types: ["Steel", "Dragon"],
         gender: "N",
@@ -12392,8 +12650,9 @@ celebi: {
         },
     },
 
+
     dad: {
-        num: 7500327,
+        num: 7500329,
         species: "Dad",
         types: ["Normal", "Dark"],
         gender: "N",
@@ -12410,8 +12669,9 @@ celebi: {
         },
     },
 
+
     glaive: {
-        num: 7500328,
+        num: 7500330,
         species: "Glaive",
         types: ["Ghost", "Ground"],
         gender: "N",
@@ -12428,8 +12688,9 @@ celebi: {
         },
     },
 
+
     glaiveprimal: {
-        num: 7500328,
+        num: 7500330,
         species: "Glaive-Primal",
         baseSpecies: "Glaive",
         forme: "Primal",
@@ -12449,8 +12710,9 @@ celebi: {
         },
     },
 
+
     kyurpedo: {
-        num: 7500329,
+        num: 7500331,
         species: "Kyurpedo",
         types: ["Ice", "Dark"],
         gender: "N",
@@ -12467,8 +12729,9 @@ celebi: {
         },
     },
 
+
     kyurpedomega: {
-        num: 7500329,
+        num: 7500331,
         species: "Kyurpedo-Mega",
         baseSpecies: "Kyurpedo",
         forme: "Mega",
@@ -12488,8 +12751,9 @@ celebi: {
         },
     },
 
+
     gearchamp: {
-        num: 7500330,
+        num: 7500332,
         species: "Gearchamp",
         types: ["Fighting", "Fairy"],
         gender: "N",
@@ -12506,8 +12770,9 @@ celebi: {
         },
     },
 
+
     luau: {
-        num: 7500331,
+        num: 7500333,
         species: "Luau",
         types: ["Ghost", "Ground"],
         baseStats: {
@@ -12523,8 +12788,9 @@ celebi: {
         },
     },
 
+
     luaumega: {
-        num: 7500331,
+        num: 7500333,
         species: "Luau-Mega",
         baseSpecies: "Luau",
         forme: "Mega",
@@ -12543,8 +12809,9 @@ celebi: {
         },
     },
 
+
     dotsensu: {
-        num: 7500332,
+        num: 7500334,
         species: "Dot-Sensu",
         types: ["Normal", "Ghost"],
         gender: "N",
@@ -12561,8 +12828,9 @@ celebi: {
         },
     },
 
+
     darkhunter: {
-        num: 7500333,
+        num: 7500335,
         species: "Dark Hunter",
         types: ["Rock", "Dark"],
         gender: "N",
@@ -12579,8 +12847,9 @@ celebi: {
         },
     },
 
+
     guzzpex: {
-        num: 7500334,
+        num: 7500336,
         species: "Guzzpex",
         types: ["Poison", "Dark"],
         baseStats: {
@@ -12596,8 +12865,9 @@ celebi: {
         },
     },
 
+
     dedede: {
-        num: 7500335,
+        num: 7500337,
         species: "Dedede",
         types: ["Ice", "Electric"],
         baseStats: {
@@ -12613,8 +12883,9 @@ celebi: {
         },
     },
 
+
     cosmill: {
-        num: 7500336,
+        num: 7500338,
         species: "Cosmill",
         types: ["Psychic", "Fairy"],
         baseStats: {
@@ -12630,8 +12901,9 @@ celebi: {
         },
     },
 
+
     maginera: {
-        num: 7500337,
+        num: 7500339,
         species: "Maginera",
         types: ["Fairy", "Fire"],
         gender: "N",
@@ -12648,8 +12920,9 @@ celebi: {
         },
     },
 
+
     catdeer: {
-        num: 7500338,
+        num: 7500340,
         species: "Catdeer",
         types: ["Normal", "Dark"],
         baseStats: {
@@ -12665,8 +12938,9 @@ celebi: {
         },
     },
 
+
     hooptrio: {
-        num: 7500339,
+        num: 7500341,
         species: "Hooptrio",
         types: ["Ground", "Dark"],
         baseStats: {
@@ -12682,8 +12956,9 @@ celebi: {
         },
     },
 
+
     fablefin: {
-        num: 7500340,
+        num: 7500342,
         species: "Fablefin",
         types: ["Fairy"],
         genderRatio: {M: 25.0, F: 75.0},
@@ -12700,8 +12975,9 @@ celebi: {
         },
     },
 
+
     klefz: {
-        num: 7500341,
+        num: 7500343,
         species: "Klef-Z",
         types: ["Normal", "Fairy"],
         gender: "N",
@@ -12718,8 +12994,9 @@ celebi: {
         },
     },
 
+
     tropisteela: {
-        num: 7500342,
+        num: 7500344,
         species: "Tropisteela",
         types: ["Flying", "Steel"],
         gender: "N",
@@ -12736,8 +13013,9 @@ celebi: {
         },
     },
 
+
     pokemon: {
-        num: 7500343,
+        num: 7500345,
         species: "Pokemon",
         types: ["Water", "Fighting"],
         gender: "N",
@@ -12754,8 +13032,9 @@ celebi: {
         },
     },
 
+
     nosegod: {
-        num: 7500344,
+        num: 7500346,
         species: "Nose God",
         types: ["Normal", "Rock"],
         gender: "N",
@@ -12772,8 +13051,9 @@ celebi: {
         },
     },
 
+
     swampterra: {
-        num: 7500345,
+        num: 7500347,
         species: "Swampterra",
         types: ["Ground", "Water"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -12790,8 +13070,9 @@ celebi: {
         },
     },
 
+
     swampterramega: {
-        num: 7500345,
+        num: 7500347,
         species: "Swampterra-Mega",
         baseSpecies: "Swampterra",
         forme: "Mega",
@@ -12811,8 +13092,9 @@ celebi: {
         },
     },
 
+
     zeklade: {
-        num: 7500346,
+        num: 7500348,
         species: "Zeklade",
         types: ["Dragon", "Steel"],
         gender: "N",
@@ -12829,8 +13111,9 @@ celebi: {
         },
     },
 
+
     grequa: {
-        num: 7500347,
+        num: 7500349,
         species: "Grequa",
         types: ["Water", "Bug"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -12847,8 +13130,9 @@ celebi: {
         },
     },
 
+
     alteyer: {
-        num: 7500348,
+        num: 7500350,
         species: "Alteyer",
         types: ["Ghost", "Flying"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -12865,8 +13149,9 @@ celebi: {
         },
     },
 
+
     alteyermega: {
-        num: 7500348,
+        num: 7500350,
         species: "Alteyer-Mega",
         baseSpecies: "Alteyer",
         forme: "Mega",
@@ -12886,7 +13171,7 @@ celebi: {
         },
     },
     scrafting: {
-        num: 7500349,
+        num: 7500351,
         species: "Scrafting",
         types: ["Fighting", "Normal"],
         baseStats: {
@@ -12902,8 +13187,9 @@ celebi: {
         },
     },
 
+
     not: {
-        num: 7500350,
+        num: 7500352,
         species: "Not",
         types: ["Flying", "Normal"],
         baseStats: {
@@ -12919,8 +13205,9 @@ celebi: {
         },
     },
 
+
     notmega: {
-        num: 7500350,
+        num: 7500352,
         species: "Not-Mega",
         baseSpecies: "Not",
         forme: "Mega",
@@ -12939,8 +13226,9 @@ celebi: {
         },
     },
 
+
     joltsol: {
-        num: 7500351,
+        num: 7500353,
         species: "Joltsol",
         types: ["Electric", "Dark"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -12957,8 +13245,9 @@ celebi: {
         },
     },
 
+
     joltsolmega: {
-        num: 7500351,
+        num: 7500353,
         species: "Joltsol-Mega",
         baseSpecies: "Joltsol",
         forme: "Mega",
@@ -12978,8 +13267,9 @@ celebi: {
         },
     },
 
+
     topaz: {
-        num: 7500352,
+        num: 7500354,
         species: "Topaz",
         types: ["Rock", "Fairy"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -12996,8 +13286,9 @@ celebi: {
         },
     },
 
+
     dolphin: {
-        num: 7500353,
+        num: 7500355,
         species: "Dolphin",
         types: ["Fire", "Normal"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -13014,8 +13305,9 @@ celebi: {
         },
     },
 
+
     snorligatr: {
-        num: 7500354,
+        num: 7500356,
         species: "Snorligatr",
         types: ["Normal", "Water"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -13032,8 +13324,9 @@ celebi: {
         },
     },
 
+
     emponite: {
-        num: 7500355,
+        num: 7500357,
         species: "Emponite",
         types: ["Steel", "Dragon"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -13050,8 +13343,9 @@ celebi: {
         },
     },
 
+
     leafrou: {
-        num: 7500356,
+        num: 7500358,
         species: "Leafrou",
         types: ["Normal", "Grass"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -13068,8 +13362,9 @@ celebi: {
         },
     },
 
+
     mimiblim: {
-        num: 7500357,
+        num: 7500359,
         species: "Mimiblim",
         types: ["Ghost"],
         baseStats: {
@@ -13086,7 +13381,7 @@ celebi: {
 		 otherFormes: ["mimiblimbusted"],
     },
 mimiblimbusted: {
-        num: 7500357,
+        num: 7500359,
         species: "Mimiblim-Busted",
 			baseSpecies: "Mimiblim",
 			forme: "Busted",
@@ -13105,7 +13400,7 @@ mimiblimbusted: {
         },
     },
     warcanein: {
-        num: 7500358,
+        num: 7500360,
         species: "Warcanein",
         types: ["Water", "Fire"],
         genderRatio: {M: 62.5, F: 37.5},
@@ -13122,8 +13417,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarce: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce",
         types: ["Normal", "Dark"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -13140,8 +13436,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcefire: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Fire",
         baseSpecies: "Zorarce",
         forme: "Fire",
@@ -13161,8 +13458,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcewater: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Water",
         baseSpecies: "Zorarce",
         forme: "Water",
@@ -13182,8 +13480,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarceelectric: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Electric",
         baseSpecies: "Zorarce",
         forme: "Electric",
@@ -13203,8 +13502,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcegrass: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Grass",
         baseSpecies: "Zorarce",
         forme: "Grass",
@@ -13224,8 +13524,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarceice: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Ice",
         baseSpecies: "Zorarce",
         forme: "Ice",
@@ -13245,8 +13546,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcefighting: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Fighting",
         baseSpecies: "Zorarce",
         forme: "Fighting",
@@ -13266,8 +13568,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcepoison: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Poison",
         baseSpecies: "Zorarce",
         forme: "Poison",
@@ -13287,8 +13590,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarceground: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Ground",
         baseSpecies: "Zorarce",
         forme: "Ground",
@@ -13308,8 +13612,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarceflying: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Flying",
         baseSpecies: "Zorarce",
         forme: "Flying",
@@ -13329,8 +13634,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcepsychic: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Psychic",
         baseSpecies: "Zorarce",
         forme: "Psychic",
@@ -13350,8 +13656,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcebug: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Bug",
         baseSpecies: "Zorarce",
         forme: "Bug",
@@ -13371,8 +13678,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcerock: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Rock",
         baseSpecies: "Zorarce",
         forme: "Rock",
@@ -13392,8 +13700,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarceghost: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Ghost",
         baseSpecies: "Zorarce",
         forme: "Ghost",
@@ -13413,8 +13722,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcedragon: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-dragon",
         baseSpecies: "Zorarce",
         forme: "Dragon",
@@ -13434,8 +13744,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcedark: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Dark",
         baseSpecies: "Zorarce",
         forme: "Dark",
@@ -13455,8 +13766,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcesteel: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Steel",
         baseSpecies: "Zorarce",
         forme: "Steel",
@@ -13476,8 +13788,9 @@ mimiblimbusted: {
         },
     },
 
+
     zorarcefairy: {
-        num: 7500359,
+        num: 7500361,
         species: "Zorarce-Fairy",
         baseSpecies: "Zorarce",
         forme: "Fairy",
@@ -13497,8 +13810,9 @@ mimiblimbusted: {
         },
     },
 
+
     happislashfriendly: {
-        num: 7500360,
+        num: 7500362,
         species: "Happislash",
 		  baseForme: "Friendly",
         gender: "F",
@@ -13516,8 +13830,9 @@ mimiblimbusted: {
         },
     },
 
+
     happislashunfriendly: {
-        num: 7500360,
+        num: 7500362,
         species: "Happislash-Unfriendly",
         baseSpecies: "Happislash",
         forme: "Unfriendly",
@@ -13537,8 +13852,9 @@ mimiblimbusted: {
         },
     },
 
+
     torkobulu: {
-        num: 7500361,
+        num: 7500363,
         species: "Torko Bulu",
         types: ["Grass", "Fire"],
         gender: "N",
@@ -13555,8 +13871,9 @@ mimiblimbusted: {
         },
     },
 
+
     pheroxish: {
-        num: 7500362,
+        num: 7500364,
         species: "Pheroxish",
         types: ["Water", "Fighting"],
         baseStats: {
@@ -13572,8 +13889,9 @@ mimiblimbusted: {
         },
     },
 
+
     padunk: {
-        num: 7500363,
+        num: 7500365,
         species: "Padunk",
         types: ["Poison", "Dark"],
         baseStats: {
@@ -13589,8 +13907,9 @@ mimiblimbusted: {
         },
     },
 
+
     magnelure: {
-        num: 7500364,
+        num: 7500366,
         species: "Magnelure",
         types: ["Electric", "Fire"],
         gender: "N",
@@ -13607,8 +13926,9 @@ mimiblimbusted: {
         },
     },
 
+
     shucklord: {
-        num: 7500365,
+        num: 7500367,
         species: "Shucklord",
         types: ["Bug", "Dragon"],
         baseStats: {
@@ -13624,8 +13944,9 @@ mimiblimbusted: {
         },
     },
 
+
     mtndew: {
-        num: 7500366,
+        num: 7500368,
         species: "Mtn Dew",
         types: ["Steel", "Psychic"],
         gender: "N",
@@ -13642,8 +13963,9 @@ mimiblimbusted: {
         },
     },
 
+
     altearnia: {
-        num: 7500367,
+        num: 7500369,
         species: "Altearnia",
         types: ["Dragon", "Steel"],
         gender: "N",
@@ -13660,8 +13982,9 @@ mimiblimbusted: {
         },
     },
 
+
     altearniamega: {
-        num: 7500367,
+        num: 7500369,
         species: "Altearnia-Mega",
         baseSpecies: "Altearnia",
         forme: "Mega",
@@ -13681,8 +14004,9 @@ mimiblimbusted: {
         },
     },
 
+
     regigiot: {
-        num: 7500368,
+        num: 7500370,
         species: "Regigiot",
         types: ["Flying", "Ice"],
         gender: "N",
@@ -13699,8 +14023,9 @@ mimiblimbusted: {
         },
     },
 
+
     regigiotmega: {
-        num: 7500368,
+        num: 7500370,
         species: "Regigiot-Mega",
         baseSpecies: "Regigiot",
         forme: "Mega",
@@ -13720,8 +14045,9 @@ mimiblimbusted: {
         },
     },
 
+
     kasukabe: {
-        num: 7500369,
+        num: 7500371,
         species: "Kasukabe",
         types: ["Normal", "Fighting"],
         gender: "F",
@@ -13738,8 +14064,9 @@ mimiblimbusted: {
         },
     },
 
+
     sakamaki: {
-        num: 7500370,
+        num: 7500372,
         species: "Sakamaki",
         types: ["Dragon", "Steel"],
         baseStats: {
@@ -13755,8 +14082,9 @@ mimiblimbusted: {
         },
     },
 
+
     sakamakimega: {
-        num: 7500370,
+        num: 7500372,
         species: "Sakamaki-Mega",
         baseSpecies: "Sakamaki",
         forme: "Mega",
@@ -13775,8 +14103,9 @@ mimiblimbusted: {
         },
     },
 
+
     mapuiasu: {
-        num: 7500371,
+        num: 7500373,
         species: "Mapu Iasu",
         types: ["Ghost", "Fairy"],
         genderRatio: {M: 25.0, F: 75.0},
@@ -13793,8 +14122,9 @@ mimiblimbusted: {
         },
     },
 
+
     mapuauhe: {
-        num: 7500372,
+        num: 7500374,
         species: "Mapu Auhe",
         types: ["Fire", "Grass"],
         genderRatio: {M: 25.0, F: 75.0},
@@ -13811,8 +14141,9 @@ mimiblimbusted: {
         },
     },
 
+
     mapumoli: {
-        num: 7500373,
+        num: 7500375,
         species: "Mapu Moli",
         types: ["Electric"],
         genderRatio: {M: 25.0, F: 75.0},
@@ -13829,8 +14160,9 @@ mimiblimbusted: {
         },
     },
 
+
     mapubupa: {
-        num: 7500374,
+        num: 7500376,
         species: "Mapu Bupa",
         types: ["Psychic"],
         genderRatio: {M: 25.0, F: 75.0},
@@ -13847,8 +14179,9 @@ mimiblimbusted: {
         },
     },
 
+
     meazle: {
-        num: 7500375,
+        num: 7500377,
         species: "Meazle",
         types: ["Psychic", "Poison"],
         gender: "F",
@@ -13865,8 +14198,9 @@ mimiblimbusted: {
         },
     },
 
+
     parantis: {
-        num: 7500376,
+        num: 7500378,
         species: "Parantis",
         types: ["Bug", "Grass"],
         baseStats: {
@@ -13882,8 +14216,9 @@ mimiblimbusted: {
         },
     },
 
+
     dinna: {
-        num: 7500377,
+        num: 7500379,
         species: "Dinna",
         types: ["Normal", "Psychic"],
         gender: "N",
@@ -13900,8 +14235,9 @@ mimiblimbusted: {
         },
     },
 
+
     sylvias: {
-        num: 7500378,
+        num: 7500380,
         species: "Sylvias",
         types: ["Dragon", "Fairy"],
         gender: "F",
@@ -13918,8 +14254,9 @@ mimiblimbusted: {
         },
     },
 
+
     sylviasmega: {
-        num: 7500378,
+        num: 7500380,
         species: "Sylvias-Mega",
         baseSpecies: "Sylvias",
         forme: "Mega",
@@ -13935,12 +14272,13 @@ mimiblimbusted: {
             spe: 85
         },
         abilities: {
-            0: "A1"
+            0: "AA"
         },
     },
 
+
     mightyyvel: {
-        num: 7500379,
+        num: 7500381,
         species: "Mighty Yvel",
         types: ["Dark"],
         baseStats: {
@@ -13956,8 +14294,9 @@ mimiblimbusted: {
         },
     },
 
+
     tyranwak: {
-        num: 7500380,
+        num: 7500382,
         species: "Tyranwak",
         types: ["Rock", "Ghost"],
         genderRatio: {M: 75.0, F: 25.0},
@@ -13974,8 +14313,9 @@ mimiblimbusted: {
         },
     },
 
+
     volcanoemblem: {
-        num: 7500381,
+        num: 7500383,
         species: "Volcano Emblem",
         types: ["Flying", "Fire"],
         gender: "N",
@@ -13992,8 +14332,9 @@ mimiblimbusted: {
         },
     },
 
+
     pelikoko: {
-        num: 7500382,
+        num: 7500384,
         species: "Peli Koko",
         types: ["Water", "Electric"],
         gender: "N",
@@ -14010,8 +14351,9 @@ mimiblimbusted: {
         },
     },
 
+
     mimitto: {
-        num: 7500383,
+        num: 7500385,
         species: "Mimitto",
         types: ["Normal", "Fairy"],
         gender: "N",
@@ -14028,8 +14370,9 @@ mimiblimbusted: {
         },
     },
 
+
     eellee: {
-        num: 7500384,
+        num: 7500386,
         species: "Eel-Lee",
         types: ["Electric", "Fire"],
         baseStats: {
@@ -14045,8 +14388,9 @@ mimiblimbusted: {
         },
     },
 
+
     celesir: {
-        num: 7500385,
+        num: 7500387,
         species: "Celesir",
         types: ["Steel", "Bug"],
         gender: "N",
@@ -14063,8 +14407,9 @@ mimiblimbusted: {
         },
     },
 
+
     celesirmega: {
-        num: 7500385,
+        num: 7500387,
         species: "Celesir-Mega",
         baseSpecies: "Celesir",
         forme: "Mega",
@@ -14084,8 +14429,9 @@ mimiblimbusted: {
         },
     },
 
+
     nymph: {
-        num: 7500386,
+        num: 7500388,
         species: "Nymph",
         types: ["Fairy", "Grass"],
         genderRatio: {M: 87.5, F: 12.5},
@@ -14102,8 +14448,9 @@ mimiblimbusted: {
         },
     },
 
+
     kyokid: {
-        num: 7500387,
+        num: 7500389,
         species: "Kyokid",
         types: ["Water", "Electric"],
         gender: "N",
@@ -14120,8 +14467,9 @@ mimiblimbusted: {
         },
     },
 
+
     kyokidprimal: {
-        num: 7500387,
+        num: 7500389,
         species: "Kyokid-Primal",
         baseSpecies: "Kyokid",
         forme: "Primal",
@@ -14141,8 +14489,9 @@ mimiblimbusted: {
         },
     },
 
+
     lemorusincarnate: {
-        num: 7500388,
+        num: 7500390,
         species: "Lemorus-Incarnate",
         types: ["Ground", "Electric"],
         gender: "M",
@@ -14159,8 +14508,9 @@ mimiblimbusted: {
         },
     },
 
+
     absoko: {
-        num: 7500389,
+        num: 7500391,
         species: "Absoko",
         types: ["Dark", "Fairy"],
         baseStats: {
@@ -14176,8 +14526,9 @@ mimiblimbusted: {
         },
     },
 
+
     absokomega: {
-        num: 7500389,
+        num: 7500391,
         species: "Absoko-Mega",
         baseSpecies: "Absoko",
         forme: "Mega",
@@ -14196,8 +14547,9 @@ mimiblimbusted: {
         },
     },
 
+
     permafrost: {
-        num: 7500390,
+        num: 7500392,
         species: "Permafrost",
         types: ["Steel", "Fairy"],
         baseStats: {
@@ -14213,8 +14565,9 @@ mimiblimbusted: {
         },
     },
 
+
     giradino: {
-        num: 7500391,
+        num: 7500393,
         species: "Giradino",
         types: ["Ghost", "Normal"],
         baseStats: {
@@ -14230,8 +14583,9 @@ mimiblimbusted: {
         },
     },
 
+
     giradinomega: {
-        num: 7500391,
+        num: 7500393,
         species: "Giradino-Mega",
         baseSpecies: "Giradino",
         forme: "Mega",
@@ -14250,7 +14604,7 @@ mimiblimbusted: {
         },
     },
     xurkizard: {
-        num: 7500392,
+        num: 7500394,
         species: "Xurkizard",
         types: ["Electric", "Fire"],
         gender: "N",
@@ -14267,8 +14621,9 @@ mimiblimbusted: {
         },
     },
 
+
     xurkizardmegax: {
-        num: 7500392,
+        num: 7500394,
         species: "Xurkizard-Mega-X",
         baseSpecies: "Xurkizard",
         forme: "Mega",
@@ -14288,8 +14643,9 @@ mimiblimbusted: {
         },
     },
 
+
     xurkizardmegay: {
-        num: 7500392,
+        num: 7500394,
         species: "Xurkizard-Mega-Y",
         baseSpecies: "Xurkizard",
         forme: "Mega",
@@ -14309,8 +14665,9 @@ mimiblimbusted: {
         },
     },
 
+
     skarmeye: {
-        num: 7500393,
+        num: 7500395,
         species: "Skarmeye",
         types: ["Steel", "Ghost"],
         baseStats: {
@@ -14326,8 +14683,9 @@ mimiblimbusted: {
         },
     },
 
+
     marshern: {
-        num: 7500394,
+        num: 7500396,
         species: "Marshern",
         types: ["Ground", "Fairy"],
         gender: "N",
@@ -14344,8 +14702,9 @@ mimiblimbusted: {
         },
     },
 
+
     grovyltal: {
-        num: 7500395,
+        num: 7500397,
         species: "Grovyltal",
         types: ["Grass", "Dark"],
         gender: "N",
@@ -14362,8 +14721,9 @@ mimiblimbusted: {
         },
     },
 
+
     rairai: {
-        num: 7500396,
+        num: 7500398,
         species: "Rairai",
         types: ["Dark", "Electric"],
         gender: "N",
@@ -14380,8 +14740,9 @@ mimiblimbusted: {
         },
     },
 
+
     dramasnow: {
-        num: 7500397,
+        num: 7500399,
         species: "Dramasnow",
         types: ["Dragon", "Ice"],
         baseStats: {
@@ -14397,8 +14758,9 @@ mimiblimbusted: {
         },
     },
 
+
     dramasnowmega: {
-        num: 7500397,
+        num: 7500399,
         species: "Dramasnow-Mega",
         baseSpecies: "Dramasnow",
         forme: "Mega",
@@ -14417,8 +14779,9 @@ mimiblimbusted: {
         },
     },
 
+
     chaosii: {
-        num: 7500398,
+        num: 7500400,
         species: "Chaos II",
         types: ["Normal", "Fighting"],
         genderRatio: {M: 37.5, F: 62.5},
@@ -14435,7 +14798,7 @@ mimiblimbusted: {
         },
     },
     slowmarina: {
-        num: 7500399,
+        num: 7500401,
         species: "Slowmarina",
         types: ["Water", "Fairy"],
         genderRatio: {
@@ -14459,7 +14822,7 @@ mimiblimbusted: {
         eggGroups: ["Water 1"]
     },
     slowmarinamega: {
-        num: 7500399,
+        num: 7500401,
         species: "Slowmarina-Mega",
         baseSpecies: "Slowmarina",
         forme: "Mega",
@@ -14486,7 +14849,7 @@ mimiblimbusted: {
         eggGroups: ["Water 1"]
     },
     kartaria: {
-        num: 7500400,
+        num: 7500402,
         species: "Kartaria",
         types: ["Steel", "Dragon"],
         genderRatio: {
@@ -14510,7 +14873,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     kartariamega: {
-        num: 7500400,
+        num: 7500402,
         species: "Kartaria-Mega",
         baseSpecies: "Kartaria",
         forme: "Mega",
@@ -14537,7 +14900,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     altarbat: {
-        num: 7500401,
+        num: 7500403,
         species: "Altarbat",
         types: ["Poison", "Dragon"],
         genderRatio: {
@@ -14561,7 +14924,7 @@ mimiblimbusted: {
         eggGroups: ["Flying"],
     },
     altarbatmega: {
-        num: 7500401,
+        num: 7500403,
         species: "Altarbat-Mega",
         baseSpecies: "Altarbat",
         forme: "Mega",
@@ -14588,7 +14951,7 @@ mimiblimbusted: {
         eggGroups: ["Flying"],
     },
     darkelectrode: {
-        num: 7500402,
+        num: 7500404,
         species: "Dark Electrode",
         types: ["Electric", "Dark"],
         gender: "N",
@@ -14605,7 +14968,7 @@ mimiblimbusted: {
         },
     },
     vanilele: {
-        num: 7500403,
+        num: 7500405,
         species: "Vani Lele",
         types: ["Ice", "Psychic"],
         gender: "N",
@@ -14626,7 +14989,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     shiinofey: {
-        num: 7500404,
+        num: 7500406,
         species: "Shiinofey",
         types: ["Grass", "Fairy"],
         genderRatio: {
@@ -14650,7 +15013,7 @@ mimiblimbusted: {
         eggGroups: ["Grass"],
     },
     algantine: {
-        num: 7500405,
+        num: 7500407,
         species: "Algantine",
         types: ["Poison", "Water"],
         genderRatio: {
@@ -14674,7 +15037,7 @@ mimiblimbusted: {
         eggGroups: ["Water 1"],
     },
     regetta: {
-        num: 7500406,
+        num: 7500408,
         species: "Regetta",
         types: ["Ice", "Psychic"],
         gender: "N",
@@ -14696,7 +15059,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     regettacompressed: {
-        num: 7500406,
+        num: 7500408,
         species: "Regetta-Compressed",
         baseSpecies: "Regetta",
         forme: "Compressed",
@@ -14720,7 +15083,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     heataria: {
-        num: 7500407,
+        num: 7500409,
         species: "Heataria",
         types: ["Dragon", "Steel"],
         baseStats: {
@@ -14736,7 +15099,7 @@ mimiblimbusted: {
         },
     },
     heatariamega: {
-        num: 7500407, // 103	140	118	140	105	78
+        num: 7500409, // 103	140	118	140	105	78
         species: "Heataria-Mega",
         baseSpecies: "Heataria",
         forme: "Mega",
@@ -14755,7 +15118,7 @@ mimiblimbusted: {
         },
     },
     gardecuno: {
-        num: 7500408,
+        num: 7500410,
         species: "Gardecuno",
         types: ["Ice", "Fairy"],
         genderRatio: {
@@ -14779,8 +15142,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     gardecunomega: {
-        num: 7500408,
+        num: 7500410,
         species: "Gardecuno-Mega",
         baseSpecies: "Gardecuno",
         forme: "Mega",
@@ -14807,7 +15171,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     sparklingart: {
-        num: 7500408,
+        num: 7500410,
         species: "Sparkling Art",
         types: ["Steel", "Flying"],
         genderRatio: {
@@ -14830,401 +15194,9 @@ mimiblimbusted: {
         color: "Gray",
         eggGroups: ["Undiscovered"],
     },
-   vallysect: {
-        num: 7500412,
-        species: "Vallysect",
-        types: ["Bug", "Normal"],
-        gender: "N",
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-	
-    vallysectfire: {
-        num: 7500412,
-        species: "Vallysect-Fire",
-        baseSpecies: "Vallysect",
-        forme: "Fire",
-        formeLetter: "F",
-        gender: "N",
-        types: ["Bug", "Fire"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectwater: {
-        num: 7500412,
-        species: "Vallysect-Water",
-        baseSpecies: "Vallysect",
-        forme: "Water",
-        formeLetter: "W",
-        gender: "N",
-        types: ["Bug", "Water"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectelectric: {
-        num: 7500412,
-        species: "Vallysect-Electric",
-        baseSpecies: "Vallysect",
-        forme: "Electric",
-        formeLetter: "E",
-        gender: "N",
-        types: ["Bug", Electric"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectgrass: {
-        num: 7500412,
-        species: "Vallysect-Grass",
-        baseSpecies: "Vallysect",
-        forme: "Grass",
-        formeLetter: "G",
-        gender: "N",
-        types: ["Bug", "Grass"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectice: {
-        num: 7500412,
-        species: "Vallysect-Ice",
-        baseSpecies: "Vallysect",
-        forme: "Ice",
-        formeLetter: "I",
-        gender: "N",
-        types: ["Bug", "Ice"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-    vallysectfighting: {
-        num: 7500412,
-        species: "Vallysect-Fighting",
-        baseSpecies: "Vallysect",
-        forme: "Fighting",
-        formeLetter: "F",
-        gender: "N",
-        types: ["Bug", "Fighting"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectpoison: {
-        num: 7500412,
-        species: "Vallysect-Poison",
-        baseSpecies: "Vallysect",
-        forme: "Poison",
-        formeLetter: "P",
-        gender: "N",
-        types: ["Bug", "Poison"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-    vallysectground: {
-        num: 7500412,
-        species: "Vallysect-Ground",
-        baseSpecies: "Vallysect",
-        forme: "Ground",
-        formeLetter: "G",
-        gender: "N",
-        types: ["Bug", "Ground"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-    vallysectflying: {
-        num: 7500412,
-        species: "Vallysect-Flying",
-        baseSpecies: "Vallysect",
-        forme: "Flying",
-        formeLetter: "F",
-        gender: "N",
-        types: ["Bug", "Flying"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-    vallysectpsychic: {
-        num: 7500412,
-        species: "Vallysect-Psychic",
-        baseSpecies: "Vallysect",
-        forme: "Psychic",
-        formeLetter: "P",
-        gender: "N",
-        types: ["Bug", "Psychic"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectbug: {
-        num: 7500412,
-        species: "Vallysect-Bug",
-        baseSpecies: "Vallysect",
-        forme: "Bug",
-        formeLetter: "B",
-        gender: "N",
-        types: ["Bug"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectdragon: {
-        num: 7500412,
-        species: "Vallysect-Dragon",
-        baseSpecies: "Vallysect",
-        forme: "Dragon",
-        formeLetter: "D",
-        gender: "N",
-        types: ["Bug", "Dragon"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectdark: {
-        num: 7500412,
-        species: "Vallysect-Dark",
-        baseSpecies: "Vallysect",
-        forme: "Dark",
-        formeLetter: "D",
-        gender: "N",
-        types: ["Bug", "Dark"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectsteel: {
-        num: 7500412,
-        species: "Vallysect-Steel",
-        baseSpecies: "Vallysect",
-        forme: "Steel",
-        formeLetter: "S",
-        gender: "N",
-        types: ["Bug", "Steel"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-
-    vallysectfairy: {
-        num: 7500253,
-        species: "Vallysect-Fairy",
-        baseSpecies: "Vallysect",
-        forme: "Fairy",
-        formeLetter: "F",
-        gender: "N",
-        types: ["Bug", "Fairy"],
-        baseStats: {
-            hp: 90,
-            atk: 120,
-            def: 95,
-            spa: 120,
-            spd: 95,
-            spe: 104
-        },
-        abilities: {
-            0: "Genetic Algorithm"
-        },
-        heightm: 1.9,
-        weightkg: 91.5,
-        color: "Purple",
-        eggGroups: ["Undiscovered"],
-    },
-	
+    // Vallysect 7500409
     mamozone: {
-        num: 7500410,
+        num: 7500412,
         species: "Mamozone",
         types: ["Ground", "Steel"],
         genderRatio: {
@@ -15244,8 +15216,9 @@ mimiblimbusted: {
         },
     },
 
+
     slakoem: {
-        num: 7500411,
+        num: 7500413,
         species: "Slakoem",
         types: ["Normal", "Psychic"],
         genderRatio: {
@@ -15265,7 +15238,7 @@ mimiblimbusted: {
         },
     },
     audala: {
-        num: 7500412,
+        num: 7500414,
         species: "Audala",
         types: ["Ghost", "Normal"],
         genderRatio: {
@@ -15289,8 +15262,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     audalamega: {
-        num: 7500412,
+        num: 7500414,
         species: "Audala-Mega",
         baseSpecies: "Audala",
         forme: "Mega",
@@ -15317,8 +15291,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     sandgarde: {
-        num: 7500413,
+        num: 7500415,
         species: "Sandgarde",
         types: ["Ground", "Dragon"],
         gender: "N",
@@ -15340,8 +15315,9 @@ mimiblimbusted: {
         otherFormes: ["sandgardecastle"],
     },
 
+
     sandgardecastle: {
-        num: 7500413,
+        num: 7500415,
         species: "Sandgarde-Castle",
         baseSpecies: "Sandgarde",
         forme: "Castle",
@@ -15365,8 +15341,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     triagonal: {
-        num: 7500414,
+        num: 7500416,
         species: "Triagonal",
         types: ["Electric", "Ice"],
         genderRatio: {
@@ -15390,8 +15367,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     triagonalmega: {
-        num: 7500414,
+        num: 7500416,
         species: "Triagonal-Mega",
         baseSpecies: "Triagonal",
         forme: "Mega",
@@ -15418,8 +15396,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     exfeycofa: {
-        num: 7500415,
+        num: 7500417,
         species: "Exfey-Cola",
         types: ["Fairy", "Grass"],
         genderRatio: {
@@ -15444,8 +15423,10 @@ mimiblimbusted: {
     },
 
 
+
+
     komodreigon: {
-        num: 7500416,
+        num: 7500418,
         species: "Komodreigon",
         types: ["Dragon", "Fighting"],
         genderRatio: {
@@ -15466,8 +15447,9 @@ mimiblimbusted: {
         eggGroups: ["Dragon"],
     },
 
+
     dunking: {
-        num: 7500417,
+        num: 7500419,
         species: "Dunking",
         types: ["Normal"],
         genderRatio: {
@@ -15491,11 +15473,12 @@ mimiblimbusted: {
         eggGroups: ["Field"],
     },
 
+
     kudou: {
-        num: 7500418,
+        num: 7500420,
         species: "Kudou",
         types: ["Water", "Electric"],
-        gender: "M",
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 100,
@@ -15513,8 +15496,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     golisorem: {
-        num: 7500419,
+        num: 7500421,
         species: "Golisorem",
         types: ["Ice", "Water"],
         gender: "N",
@@ -15535,8 +15519,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"]
     },
 
+
     tyrazma: {
-        num: 7500420,
+        num: 7500422,
         species: "Tyrazma",
         types: ["Rock", "Psychic"],
         gender: "N",
@@ -15557,8 +15542,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     tyrazmamega: {
-        num: 7500420,
+        num: 7500422,
         species: "Tyrazma-Mega",
         baseSpecies: "Tyrazma",
         forme: "Mega",
@@ -15582,7 +15568,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     parasol: {
-        num: 7500421,
+        num: 7500423,
         species: "Parasol",
         types: ["Bug", "Steel"],
         genderRatio: {
@@ -15606,7 +15592,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     diceus: {
-        num: 7500422,
+        num: 7500424,
         species: "Diceus",
         types: ["Normal"],
         gender: "N",
@@ -15623,7 +15609,7 @@ mimiblimbusted: {
         },
     },
     nintwo: {
-        num: 7500423,
+        num: 7500425,
         species: "Nintwo",
         types: ["Bug", "Psychic"],
         genderRatio: {
@@ -15643,7 +15629,7 @@ mimiblimbusted: {
         },
     },
     nintwomegax: {
-        num: 7500423,
+        num: 7500425,
         species: "Nintwo-Mega-X",
         baseSpecies: "Nintwo",
         forme: "Mega",
@@ -15662,7 +15648,7 @@ mimiblimbusted: {
         },
     },
     nintwomegay: {
-        num: 7500423,
+        num: 7500425,
         species: "Nintwo-Mega-Y",
         baseSpecies: "Nintwo",
         forme: "Mega",
@@ -15681,7 +15667,7 @@ mimiblimbusted: {
         },
     },
     kommew: {
-        num: 7500424,
+        num: 7500426,
         species: "Kommew",
         types: ["Fighting", "Psychic"],
         genderRatio: {
@@ -15701,7 +15687,7 @@ mimiblimbusted: {
         },
     },
 	tamatoa: {
-        num: 7500425,
+        num: 7500427,
         species: "Tamatoa",
         types: ["Grass", "Water"],
         genderRatio: {
@@ -15725,7 +15711,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     pelippex: {
-        num: 7500426,
+        num: 7500428,
         species: "Pelippex",
         types: ["Water", "Poison"],
         genderRatio: {
@@ -15749,8 +15735,9 @@ mimiblimbusted: {
         eggGroups: ["Water 1"],
     },
 
+
      kyzor: {
-        num: 7500427,
+        num: 7500429,
         species: "Kyzor",
         types: ["Dragon", "Steel"],
         genderRatio: {
@@ -15774,8 +15761,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     kyzormega: {
-        num: 7500427,
+        num: 7500429,
         species: "Kyzor-Mega",
         baseSpecies: "Kyzor",
         forme: "Mega",
@@ -15802,8 +15790,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     gumanitoos: {
-        num: 7500428,
+        num: 7500430,
         species: "Gumanitoos",
         types: ["Normal", "Ghost"],
         genderRatio: {
@@ -15823,7 +15812,7 @@ mimiblimbusted: {
         },
     },
     xurkino: {
-        num: 7500429,
+        num: 7500431,
         species: "Xurkino",
         types: ["Electric", "Normal"],
         gender: "N",
@@ -15844,8 +15833,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     xurkinomega: {
-        num: 7500429,
+        num: 7500431,
         species: "Xurkino-Mega",
         baseSpecies: "Xurkino",
         forme: "Mega",
@@ -15869,8 +15859,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     yvelchan: {
-        num: 7500430,
+        num: 7500432,
         species: "Yvel-Chan",
         types: ["Flying", "Normal"],
         baseStats: {
@@ -15890,8 +15881,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     heatreon: {
-        num: 7500431,
+        num: 7500433,
         species: "Heatreon",
         types: ["Steel", "Fairy"],
         genderRatio: {
@@ -15911,8 +15903,9 @@ mimiblimbusted: {
         },
     },
 
+
     altarigarde: {
-        num: 7500432,
+        num: 7500434,
         species: "Altarigarde",
         types: ["Ground", "Flying"],
         gender: "N",
@@ -15933,8 +15926,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     altarigardemega: {
-        num: 7500432,
+        num: 7500434,
         species: "Altarigarde-Mega",
         baseSpecies: "Altarigarde",
         forme: "Mega",
@@ -15958,7 +15952,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
     flycanion: {
-        num: 7500433,
+        num: 7500435,
         species: "Flycanion",
         types: ["Ground", "Fire"],
         genderRatio: {
@@ -15982,8 +15976,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     belle: {
-        num: 7500434,
+        num: 7500436,
         species: "Belle",
         types: ["Steel", "Fairy"],
         genderRatio: {
@@ -16007,8 +16002,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     maui: {
-        num: 7500435,
+        num: 7500437,
         species: "Māui",
         types: ["Electric", "Poison"],
         genderRatio: {
@@ -16032,8 +16028,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     garzone: {
-        num: 75004346,
+        num: 75004348,
         species: "Garzone",
         types: ["Dragon", "Electric"],
         gender: "N",
@@ -16054,7 +16051,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 	garzonemega: {
-        num: 75004346,
+        num: 75004348,
         species: "Garzone-Mega",
         baseSpecies: "Garzone",
         gender: "N",
@@ -16078,8 +16075,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 
+
     shitpost: {
-        num: 7500437,
+        num: 7500439,
         species: "Shitpost",
         types: ["Dark", "Steel"],
         genderRatio: {
@@ -16102,9 +16100,9 @@ mimiblimbusted: {
         color: "Green",
         eggGroups: ["Undiscovered"],
     },
-// Cat Bed: 75004348
+// Cat Bed: 7500438
 	catbed: {
-        num: 7500438,
+        num: 7500440,
         species: "Cat Bed",
         types: ["Fire", "Fairy"],
         baseStats: { // 85	65	120	120	112	82
@@ -16123,7 +16121,7 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 	 trampoline: {
-        num: 7500439,
+        num: 7500441,
         species: "Trampoline",
         types: ["Electric", "Dark"], 
         genderRatio: {
@@ -16147,7 +16145,7 @@ mimiblimbusted: {
     },
     
 trampolinemega: {
-        num: 7500439,
+        num: 7500441,
         species: "Trampoline-Mega",
         baseSpecies: "Trampoline",
         forme: "Mega",
@@ -16173,8 +16171,9 @@ trampolinemega: {
         eggGroups: ["Field"],
     }, 
 
+
 arcalie: {
-        num: 7500440,
+        num: 7500442,
         species: "Arcalie",
         types: ["Fire", "Dark"],
         genderRatio: {
@@ -16195,8 +16194,9 @@ arcalie: {
         eggGroups: ["Field"],
     },
 
+
 stakeye: {
-        num: 7500441,
+        num: 7500443,
         species: "Stakeye",
         types: ["Steel", "Ghost"],
         gender: "N",
@@ -16215,7 +16215,7 @@ stakeye: {
     },
     
 stakeyemega: {
-        num: 7500441,
+        num: 7500443,
         species: "Stakeye-Mega",
         baseSpecies: "Stakeye",
         forme: "Mega",
@@ -16236,8 +16236,9 @@ stakeyemega: {
         eggGroups: ["Undiscovered"],
     },
 
+
 lycanperiordusk: {
-        num: 7500442,
+        num: 7500444,
         species: "Lycanperior-Dusk",
         types: ["Rock", "Grass"],
         genderRatio: {
@@ -16258,8 +16259,9 @@ lycanperiordusk: {
         eggGroups: ["Field"],
     },
 
+
 gigafini: {
-        num: 7500443,
+        num: 7500445,
         species: "Giga Fini",
         types: ["Rock", "Water"],
         gender: "N",
@@ -16277,8 +16279,9 @@ gigafini: {
         eggGroups: ["Undiscovered"],
     },
 
+
 stalossaka: {
-        num: 7500444,
+        num: 7500446,
         species: "Stalossaka",
         types: ["Steel", "Ghost"],
         gender: "N",
@@ -16296,8 +16299,9 @@ stalossaka: {
 		eggGroups: ["Undiscovered"],
     },
 
+
 stakamise: {
-        num: 7500444,
+        num: 7500446,
         species: "Stakamise",
         types: ["Steel", "Grass"],
         baseStats: {
@@ -16313,6 +16317,8 @@ stakamise: {
         abilities: {0: "Metal Monster"},
 		eggGroups: ["Undiscovered"],
     },
+
+
 
 
 	deoxysattack: {
@@ -16331,8 +16337,9 @@ stakamise: {
 		eggGroups: ["Undiscovered"],
 	},
 
+
 auroritar: {
-        num: 7500447,
+        num: 7500449,
         species: "Auroritar",
         types: ["Rock"],
         genderRatio: {
@@ -16353,8 +16360,9 @@ auroritar: {
 		  eggGroups: ["Monster"],
     },
 
+
 auroritarmega: {
-        num: 7500447,
+        num: 7500449,
         species: "Auroritar-Mega",
         baseSpecies: "Auroritar",
         forme: "Mega",
@@ -16378,7 +16386,7 @@ auroritarmega: {
 		  eggGroups: ["Monster"],
     }, 
  necrynxcutewig: {
-		num: 7500448,
+		num: 7500450,
 		species: "Necrynx",
 	   baseForme: "Cute Wig",
 		types: ["Ice", "Psychic"],
@@ -16399,7 +16407,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	necrynxultra: {
-		num: 7500448,
+		num: 7500450,
 		species: "Necrynx-Ultra",
 		baseSpecies: "Necrynx",
 		forme: "Ultra",
@@ -16422,7 +16430,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippally: {
-		num: 7500449,
+		num: 7500451,
 		species: "Hippally",
 		types: ["Ground", "Normal"],
 		gender: "N",
@@ -16442,7 +16450,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyfire: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Fire",
 		baseSpecies: "Hippally",
 		forme: "Fire",
@@ -16465,7 +16473,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallywater: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Water",
 		baseSpecies: "Hippally",
 		forme: "Water",
@@ -16488,7 +16496,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyelectric: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Electric",
 		baseSpecies: "Hippally",
 		forme: "Electric",
@@ -16511,7 +16519,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallygrass: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Grass",
 		baseSpecies: "Hippally",
 		forme: "Grass",
@@ -16534,7 +16542,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyice: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Ice",
 		baseSpecies: "Hippally",
 		forme: "Ice",
@@ -16557,7 +16565,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyfighting: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Fighting",
 		baseSpecies: "Hippally",
 		forme: "Fighting",
@@ -16580,7 +16588,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyground: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Ground",
 		baseSpecies: "Hippally",
 		forme: "Fighting",
@@ -16603,7 +16611,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallypoison: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Poison",
 		baseSpecies: "Hippally",
 		forme: "Poison",
@@ -16626,7 +16634,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyflying: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Flying",
 		baseSpecies: "Hippally",
 		forme: "Flying",
@@ -16649,7 +16657,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallypsychic: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Psychic",
 		baseSpecies: "Hippally",
 		forme: "Psychic",
@@ -16672,7 +16680,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallybug: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Bug",
 		baseSpecies: "Hippally",
 		forme: "Bug",
@@ -16695,7 +16703,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyrock: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Rock",
 		baseSpecies: "Hippally",
 		forme: "Rock",
@@ -16718,7 +16726,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyghost: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Ghost",
 		baseSpecies: "Hippally",
 		forme: "Ghost",
@@ -16741,7 +16749,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallydragon: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Dragon",
 		baseSpecies: "Hippally",
 		forme: "Dragon",
@@ -16764,7 +16772,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallydark: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Dark",
 		baseSpecies: "Hippally",
 		forme: "Dark",
@@ -16787,7 +16795,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallysteel: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Psychic",
 		baseSpecies: "Hippally",
 		forme: "Psychic",
@@ -16810,7 +16818,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	hippallyfairy: {
-		num: 7500450,
+		num: 7500452,
 		species: "Hippally-Fairy",
 		baseSpecies: "Hippally",
 		forme: "Fairy",
@@ -16833,7 +16841,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	necroquaduskbubble: {
-		num: 7500451,
+		num: 7500453,
 		species: "Necroqua",
 	   baseForme: "Dusk Bubble",
 		types: ["Steel", "Water"],
@@ -16854,7 +16862,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	necroquaultra: {
-		num: 7500451,
+		num: 7500453,
 		species: "Necroqua-Ultra",
 		baseSpecies: "Necroqua-Dusk-Bubble",
 		forme: "Ultra",
@@ -16877,7 +16885,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	poize: {
-		num: 7500452,
+		num: 7500454,
 		species: "Poize",
 		types: ["Electric", "Poison"],
 		gender: "N",
@@ -16897,7 +16905,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	magnettanorth: {
-		num: 7500453,
+		num: 7500455,
 		species: "Magnetta",
 	   baseForme: "North",
 		types: ["Steel", "Psychic"],
@@ -16918,7 +16926,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	magnettasouth: {
-		num: 7500453,
+		num: 7500455,
 		species: "Magnetta-South",
 		baseSpecies: "Magnetta",
 		forme: "South",
@@ -16941,7 +16949,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	kromork: {
-		num: 7500454,
+		num: 7500456,
 		species: "Kromork",
 		types: ["Electric", "Ground"],
 		baseStats: {
@@ -16960,7 +16968,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	watafak: {
-		num: 7500455,
+		num: 7500457,
 		species: "Watafak",
 		types: ["Steel", "Psychic"],
 		gender: "N",
@@ -16980,7 +16988,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	necrozeraindawndisguise: {
-		num: 7500456,
+		num: 7500458,
 		species: "Necrozerain",
 	   baseForme: "Dawn Disguise",
 		types: ["Bug", "Ghost"],
@@ -17000,7 +17008,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	necrozrainultra: {
-		num: 7500456,
+		num: 7500458,
 		species: "Necrozerain-Ultra",
 		baseSpecies: "Necrozerain",
 		forme: "Ultra",
@@ -17022,7 +17030,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	quagsirom: {
-		num: 7500457,
+		num: 7500459,
 		species: "Quagsirom",
 		types: ["Water", "Electric"],
 		baseStats: { // 117 117 102 92  102 62  592
@@ -17041,7 +17049,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	bunny: {
-		num: 7500458,
+		num: 7500460,
 		species: "Bunny",
 		types: ["Dragon", "Normal"],
 		gender: "N",
@@ -17059,10 +17067,10 @@ auroritarmega: {
 		  heightm: 0.8,
 		  weightkg: 19.5,
 		  eggGroups: ["Undiscovered"],
-		dexentry: "This fusion seems to be made of thousands of cells of other pokémon. It is a higly mutable and unstable species. A notable ability it has is being able to utilize every Mega Stone, resulting in a lot of different forms it can transform into. This is most likely due to the aforementioned different cells that form it. A single cell is known as a Rabbit Core. It is speculated that the Rabbit Cores can absorb DNA from multiple Pokémon before uniting into Bunny, which would then explain species-specific items being abe to interact with Bunny. Not much research has been done, however the species with the closest to a pure DNA seems to share some relation with Buneary.",
+		dexentry: "This fusion seems to be made of thousands of cells of other pokémon. It is a higly mutable and unstable species. A notable ability it has is being able to utilize every Mega Ston7, resulting in a lot of different forms it can transform into. This is most likely due to the aforementioned different cells that form it. A single cell is known as a Rabbit Core. It is speculated that the Rabbit Cores can absorb DNA from multiple Pokémon before uniting into Bunny, which would then explain species-specific items being abe to interact with Bunny. Not much research has been don7, however the species with the closest to a pure DNA seems to share some relation with Buneary.",
 	},
 	kingrat: {
-		num: 7500459,
+		num: 7500461,
 		species: "King Rat",
 		types: ["Normal"],
 		baseStats: {
@@ -17081,7 +17089,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	gamera: {
-		num: 7500460,
+		num: 7500462,
 		species: "Gamera",
 		types: ["Water", "Dark"],
         genderRatio: {
@@ -17104,7 +17112,7 @@ auroritarmega: {
 		  eggGroups: ["Monster"],
 	},
 	gameramegax: {
-		num: 7500460,
+		num: 7500462,
 		species: "Gamera-Mega-X",
 		baseSpecies: "Gamera",
 		forme: "Mega",
@@ -17130,7 +17138,7 @@ auroritarmega: {
 		  eggGroups: ["Monster"],
 	},
 	gameramegay: {
-		num: 7500460,
+		num: 7500462,
 		species: "Gamera-Mega-Y",
 		baseSpecies: "Gamera",
 		forme: "Mega",
@@ -17178,7 +17186,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	suiceon: {
-		num: 7500462,
+		num: 7500464,
 		species: "Suiceon",
 		types: ["Water"],
 		gender: "N",
@@ -17198,7 +17206,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	raikeon: {
-		num: 7500463,
+		num: 7500465,
 		species: "Raikeon",
 		types: ["Electric"],
 		gender: "N",
@@ -17218,7 +17226,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	enteon: {
-		num: 7500464,
+		num: 7500466,
 		species: "Enteon",
 		types: ["Fire"],
 		gender: "N",
@@ -17238,7 +17246,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	vilossom: {
-		num: 7500465,
+		num: 7500467,
 		species: "Vilossom",
 		types: ["Poison", "Grass"],
 		baseStats: {
@@ -17259,7 +17267,7 @@ auroritarmega: {
 		  eggGroups: ["Grass"],
 	},
 	gholemisealola: {
-		num: 7500466,
+		num: 7500468,
 		species: "Gholemise-Alola",
 		types: ["Electric", "Grass"],
 		gender: "N",
@@ -17279,7 +17287,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	tallsteelegg: {
-		num: 7500467,
+		num: 7500469,
 		species: "Tall Steel Egg",
 		types: ["Dragon", "Steel"],
 		gender: "N",
@@ -17299,7 +17307,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	zerpuff: {
-		num: 7500468,
+		num: 7500470,
 		species: "Zerpuff",
 		types: ["Electric", "Fairy"],
 		baseStats: {
@@ -17318,7 +17326,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	lycakingdusk: {
-		num: 7500469,
+		num: 7500471,
 		species: "Lycaking-Dusk",
 		types: ["Rock", "Ground"],
 		gender: "M",
@@ -17338,7 +17346,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	tornadelnaga: {
-		num: 7500470,
+		num: 7500472,
 		species: "Tornadel-Naga",
 		types: ["Flying", "Poison"],
 		gender: "N",
@@ -17358,7 +17366,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	necropurugly: {
-		num: 7500471,
+		num: 7500473,
 		species: "Necropur",
 	   baseForme: "Ugly",
 		types: ["Steel", "Normal"],
@@ -17379,7 +17387,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	necropurbeautiful: {
-		num: 7500471,
+		num: 7500473,
 		species: "Necropur-Beautiful",
 		baseSpecies: "Necropur",
 		forme: "Beautiful",
@@ -17402,7 +17410,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	flyorusguard: {
-		num: 7500472,
+		num: 7500474,
 		species: "Flyorus Guard",
 		types: ["Ground", "Dragon"],
 		gender: "M",
@@ -17422,7 +17430,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	lamparadenoche: {
-		num: 7500473,
+		num: 7500475,
 		species: "Lampara",
 		forme: "De-Noche",
 		types: ["Water", "Psychic"],
@@ -17442,7 +17450,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	lamparadelava: {
-		num: 7500473,
+		num: 7500475,
 		species: "Lampara-De-Lava",
 		baseSpecies: "Lampara",
 		forme: "Ultra",
@@ -17464,7 +17472,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	balloon: {
-		num: 7500474,
+		num: 7500476,
 		species: "Balloon",
 		types: ["Ghost", "Fire"],
 		gender: "N",
@@ -17484,7 +17492,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	tyrannosaurus: {
-		num: 7500475,
+		num: 7500477,
 		species: "Tyrannosaurus",
 		types: ["Grass", "Rock"],
         genderRatio: {
@@ -17507,7 +17515,7 @@ auroritarmega: {
 		  eggGroups: ["Monster"],
 	},
 	tyrannosaurusmegax: {
-		num: 7500475,
+		num: 7500477,
 		species: "Tyrannosaurus-Mega-X",
 		baseSpecies: "Tyrannosaurus",
 		forme: "Mega",
@@ -17533,7 +17541,7 @@ auroritarmega: {
 		  eggGroups: ["Monster"],
 	},
 	tyrannosaurusmegay: {
-		num: 7500475,
+		num: 7500477,
 		species: "Tyrannosaurus-Mega-Y",
 		baseSpecies: "Tyrannosaurus",
 		forme: "Mega",
@@ -17559,7 +17567,7 @@ auroritarmega: {
 		  eggGroups: ["Monster"],
 	},
 	espeord: {
-		num: 7500476,
+		num: 7500478,
 		species: "Espeord",
 		types: ["Psychic", "Water"],
         genderRatio: {
@@ -17582,7 +17590,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	glacord: {
-		num: 7500477,
+		num: 7500479,
 		species: "Glacord",
 		types: ["Ice", "Water"],
         genderRatio: {
@@ -17605,7 +17613,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	hypango: {
-		num: 7500478,
+		num: 7500480,
 		species: "Hypango",
 		types: ["Psychic", "Fighting"],
 		baseStats: {
@@ -17624,7 +17632,7 @@ auroritarmega: {
 		  eggGroups: ["Human-Like"],
 	},
 	scizion: {
-		num: 7500479,
+		num: 7500481,
 		species: "Scizion",
 		types: ["Bug", "Poison"],
 		baseStats: {
@@ -17643,7 +17651,7 @@ auroritarmega: {
 		  eggGroups: ["Bug"],
 	},
 	scizionmega: {
-		num: 7500479,
+		num: 7500481,
 		species: "Scizion-Mega",
 		baseSpecies: "Scizion",
 		forme: "Mega",
@@ -17665,7 +17673,7 @@ auroritarmega: {
 		  eggGroups: ["Bug"],
 	},
 	fluorine: {
-		num: 7500480,
+		num: 7500482,
 		species: "Fluorine",
 		types: ["Fairy", "Normal"],
 		gender: "F",
@@ -17685,7 +17693,7 @@ auroritarmega: {
 		  eggGroups: ["Fairy"],
 	},
 	fluorinemega: {
-		num: 7500480,
+		num: 7500482,
 		species: "Fluorine-Mega",
 		baseSpecies: "Fluorine",
 		forme: "Mega",
@@ -17708,7 +17716,7 @@ auroritarmega: {
 		  eggGroups: ["Fairy"],
 	},
 	wallray: {
-		num: 7500481,
+		num: 7500483,
 		species: "Wallray",
 		types: ["Ice", "Electric"],
 		baseStats: {
@@ -17730,7 +17738,7 @@ auroritarmega: {
 		num: 53,
 		species: "Persian-Prime",
 		baseSpecies: "Persian",
-		forme: "Persian-Prime",
+		forme: "Prime",
 		formeLetter: "P",
 		types: ["Normal", "Dark"],
 		baseStats: {
@@ -17749,7 +17757,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	octapex: {
-		num: 7500483,
+		num: 7500485,
 		species: "Octapex",
 		types: ["Water", "Poison"],
 		baseStats: {
@@ -17768,7 +17776,7 @@ auroritarmega: {
 		  eggGroups: ["Water 1"],
 	},
 	gooo: {
-		num: 7500484,
+		num: 7500486,
 		species: "Goo-o",
 		types: ["Dragon"],
 		baseStats: {
@@ -17787,7 +17795,7 @@ auroritarmega: {
 		  eggGroups: ["Dragon"],
 	},
 	noivian: {
-		num: 7500485,
+		num: 7500487,
 		species: "Noivian",
 		types: ["Flying", "Dragon"],
 		baseStats: {
@@ -17806,7 +17814,7 @@ auroritarmega: {
 		  eggGroups: ["Flying"],
 	},
 	novianmega: {
-		num: 7500485,
+		num: 7500487,
 		species: "Noivian-Mega",
 		baseSpecies: "Noivian",
 		forme: "Mega",
@@ -17828,7 +17836,7 @@ auroritarmega: {
 		  eggGroups: ["Flying"],
 	},
 	cruski: {
-		num: 7500486,
+		num: 7500488,
 		species: "Cruski",
 		types: ["Steel", "Bug"],
 		baseStats: {
@@ -17847,7 +17855,7 @@ auroritarmega: {
 		  eggGroups: ["Mineral"],
 	},
 	periurora: {
-		num: 7500487,
+		num: 7500489,
 		species: "Periurora",
 		types: ["Ice", "Rock"],
         genderRatio: {
@@ -17870,7 +17878,7 @@ auroritarmega: {
 		  eggGroups: ["Monster"],
 	},
 	apouprobo: {
-		num: 7500488,
+		num: 7500490,
 		species: "Apou Probo",
 		types: ["Steel", "Fairy"],
 		gender: "N",
@@ -17890,7 +17898,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	shedigigas: {
-		num: 7500489,
+		num: 7500491,
 		species: "Shedigigas",
 		types: ["Bug", "Normal"],
 		gender: "N",
@@ -17910,7 +17918,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	chazmaegg: {
-		num: 7500490,
+		num: 7500492,
 		species: "Chazma",
 	   baseForme: "Egg",
 		types: ["Normal", "Ghost"],
@@ -17931,7 +17939,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	chazmahatched: {
-		num: 7500490,
+		num: 7500492,
 		species: "Chazma-Hatched",
 		baseSpecies: "Chazma",
 		forme: "Hatched",
@@ -17954,7 +17962,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	smolitizer: {
-		num: 7500491,
+		num: 7500493,
 		species: "Smolitizer",
 		types: ["Ice", "Steel"],
 		gender: "N",
@@ -17974,7 +17982,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	smolitizerultra: {
-		num: 7500491,
+		num: 7500493,
 		species: "Smolitizer-Ultra",
 		baseSpecies: "Smolitizer",
 		forme: "Ultra",
@@ -17997,7 +18005,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	noirtic: {
-		num: 7500492,
+		num: 7500494,
 		species: "Noirtic",
 		types: ["Ghost", "Flying"],
 		gender: "N",
@@ -18017,7 +18025,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	casserole: {
-		num: 7500493,
+		num: 7500495,
 		species: "Casserole",
 		types: ["Flying", "Normal"],
 		baseStats: {
@@ -18036,7 +18044,7 @@ auroritarmega: {
 		  eggGroups: ["Flying"],
 	},
 	blazel: {
-		num: 7500494,
+		num: 7500496,
 		species: "Blazel",
 		types: ["Fire", "Water"],
         genderRatio: {
@@ -18059,7 +18067,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	blazelmega: {
-		num: 7500494,
+		num: 7500496,
 		species: "Blazel-Mega",
 		baseSpecies: "Blazel",
 		forme: "Mega",
@@ -18085,7 +18093,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	funsparret: {
-		num: 7500495,
+		num: 7500497,
 		species: "Funsparret",
 		types: ["Normal"],
 		baseStats: {
@@ -18104,7 +18112,7 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 	claytar: {
-		num: 7500496,
+		num: 7500498,
 		species: "Claytar",
 		types: ["Ground", "Dark"],
 		gender: "N",
@@ -18124,7 +18132,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	claytarmega: {
-		num: 7500496,
+		num: 7500498,
 		species: "Claytar-Mega",
 		baseSpecies: "Claytar",
 		forme: "Mega",
@@ -18147,7 +18155,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	komally: {
-		num: 7500497,
+		num: 7500499,
 		species: "Komally",
 		types: ["Normal"],
 		gender: "N",
@@ -18167,7 +18175,7 @@ auroritarmega: {
 		  eggGroups: ["Undiscovered"],
 	},
 	joltalesalola: {
-		num: 7500498,
+		num: 7500500,
 		species: "Joltales-Alola",
 		types: ["Electric", "Ice"],
 		baseStats: {
@@ -18185,5 +18193,5 @@ auroritarmega: {
 		  weightkg: 22.2,
 		  eggGroups: ["Field"],
 	},
-	
+
 };
