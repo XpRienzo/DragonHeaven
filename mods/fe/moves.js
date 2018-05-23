@@ -91,6 +91,12 @@ exports.BattleMovedex = {
 			onResidual: function () {
 				this.eachEvent('Terrain');
 			},
+			onSetStatus: function (status, target, source, effect) {
+			if (status.id !== 'brn' && target.hasType('Fairy')) return;
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Beautiful Terrain');
+			return false;
+		},
 			onEnd: function () {
 				this.eachEvent('Terrain');
 				this.add('-fieldend', 'move: Beautiful Terrain');
