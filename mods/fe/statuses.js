@@ -93,7 +93,7 @@ shadowdance: {
     },
 },
 	titanicstrength: {
-		name: 'titanicstrength',
+		name: 'Titanic Strength',
 		id: 'titanicstrength',
 		num: 0,
 		duration: 1,
