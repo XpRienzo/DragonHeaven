@@ -11432,7 +11432,7 @@ celebi: {
         },
     },
 
-    miniancieore: {
+    miniancie: {
         num: 7500295,
         species: "Miniancie",
 		  baseForme: "Ore",
