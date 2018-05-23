@@ -126,12 +126,12 @@ exports.BattleAbilities = {
 		onModifyAtkPriority: 6,
 		onSourceModifyAtk: function (atk, attacker, defender, move) {
 				this.debug('Warpstar Crusader weaken');
-				return this.chainModify(0.80);
+				return this.chainModify(0.5);
 		},
 		onModifySpAPriority: 5,
 		onSourceModifySpA: function (atk, attacker, defender, move) {
 				this.debug('Warpstar Crusader weaken');
-				return this.chainModify(0.80);
+				return this.chainModify(0.5);
 		},
 		onAnyModifyBoost: function (boosts, target) {
 			let source = this.effectData.target;
