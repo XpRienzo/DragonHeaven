@@ -2767,7 +2767,7 @@ exports.BattleItems = {
 		id: "charcoal",
 		name: "Charcoal",
 		spritenum: 61,
-		itemizeType: 'Fire',
+		onItemize: 'Fire',
 		fling: {
 			basePower: 30,
 		},
@@ -2785,7 +2785,7 @@ exports.BattleItems = {
 		id: "mysticwater",
 		name: "Mystic Water",
 		spritenum: 300,
-		itemizeType: 'Water',
+		onItemize: 'Water',
 		fling: {
 			basePower: 30,
 		},
@@ -2802,7 +2802,7 @@ exports.BattleItems = {
 	"miracleseed": {
 		id: "miracleseed",
 		name: "Miracle Seed",
-		itemizeType: 'Grass',
+		onItemize: 'Grass',
 		fling: {
 			basePower: 30,
 		},
@@ -2820,7 +2820,7 @@ exports.BattleItems = {
 	"magnet": {
 		id: "magnet",
 		name: "Magnet",
-		itemizeType: 'Electric',
+		onItemize: 'Electric',
 		spritenum: 273,
 		fling: {
 			basePower: 30,
@@ -2838,7 +2838,7 @@ exports.BattleItems = {
 	"silkscarf": {
 		id: "silkscarf",
 		name: "Silk Scarf",
-		itemizeType: 'Normal',
+		onItemize: 'Normal',
 		spritenum: 444,
 		fling: {
 			basePower: 10,
@@ -2856,7 +2856,7 @@ exports.BattleItems = {
 	"twistedspoon": {
 		id: "twistedspoon",
 		name: "Twisted Spoon",
-		itemizeType: 'Psychic',
+		onItemize: 'Psychic',
 		spritenum: 520,
 		fling: {
 			basePower: 30,
@@ -2874,7 +2874,7 @@ exports.BattleItems = {
 	"blackglasses": {
 		id: "blackglasses",
 		name: "Black Glasses",
-		itemizeType: 'Dark',
+		onItemize: 'Dark',
 		spritenum: 35,
 		fling: {
 			basePower: 30,
@@ -2892,7 +2892,7 @@ exports.BattleItems = {
 	"blackbelt": {
 		id: "blackbelt",
 		name: "Black Belt",
-		itemizeType: 'Fighting',
+		onItemize: 'Fighting',
 		spritenum: 32,
 		fling: {
 			basePower: 30,
@@ -2910,7 +2910,7 @@ exports.BattleItems = {
 	"poisonbarb": {
 		id: "poisonbarb",
 		name: "Poison Barb",
-		itemizeType: 'Poison',
+		onItemize: 'Poison',
 		spritenum: 343,
 		fling: {
 			basePower: 70,
@@ -2929,7 +2929,7 @@ exports.BattleItems = {
 	"sharpbeak": {
 		id: "sharpbeak",
 		name: "Sharp Beak",
-		itemizeType: 'Flying',
+		onItemize: 'Flying',
 		spritenum: 436,
 		fling: {
 			basePower: 50,
@@ -2948,7 +2948,7 @@ exports.BattleItems = {
 		id: "nevermeltice",
 		name: "Never-Melt Ice",
 		spritenum: 305,
-		itemizeType: 'Ice',
+		onItemize: 'Ice',
 		fling: {
 			basePower: 30,
 		},
@@ -2965,7 +2965,7 @@ exports.BattleItems = {
 	"softsand": {
 		id: "softsand",
 		name: "Soft Sand",
-		itemizeType: 'Ground',
+		onItemize: 'Ground',
 		spritenum: 456,
 		fling: {
 			basePower: 10,
@@ -2983,7 +2983,7 @@ exports.BattleItems = {
 	"hardstone": {
 		id: "hardstone",
 		name: "Hard Stone",
-		itemizeType: 'Rock',
+		onItemize: 'Rock',
 		spritenum: 187,
 		fling: {
 			basePower: 100,
@@ -3001,7 +3001,7 @@ exports.BattleItems = {
 	"dragonfang": {
 		id: "dragonfang",
 		name: "Dragon Fang",
-		itemizeType: 'Dragon',
+		onItemize: 'Dragon',
 		spritenum: 106,
 		fling: {
 			basePower: 70,
@@ -3019,7 +3019,7 @@ exports.BattleItems = {
 	"metalcoat": {
 		id: "metalcoat",
 		name: "Metal Coat",
-		itemizeType: 'Steel',
+		onItemize: 'Steel',
 		spritenum: 286,
 		fling: {
 			basePower: 30,
@@ -3037,7 +3037,7 @@ exports.BattleItems = {
 	"silverpowder": {
 		id: "silverpowder",
 		name: "SilverPowder",
-		itemizeType: 'Bug',
+		onItemize: 'Bug',
 		spritenum: 447,
 		fling: {
 			basePower: 10,
@@ -3055,7 +3055,7 @@ exports.BattleItems = {
 	"spelltag": {
 		id: "spelltag",
 		name: "Spell Tag",
-		itemizeType: 'Ghost',
+		onItemize: 'Ghost',
 		spritenum: 461,
 		fling: {
 			basePower: 30,
@@ -3069,5 +3069,365 @@ exports.BattleItems = {
 		num: 247,
 		gen: 2,
 		desc: "Holder's Ghost-type attacks have 1.2x power.",
+	},
+	
+	"firegem": {
+		id: "firegem",
+		name: "Fire Gem",
+		isUnreleased: true,
+		spritenum: 141,
+		isGem: true,
+		onItemize: 'Fire',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status' || ['firepledge', 'grasspledge', 'waterpledge'].includes(move.id)) return;
+			if (move.type === 'Fire') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Fire Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 548,
+		gen: 5,
+		desc: "Holder's first successful Fire-type attack will have 1.3x power. Single use.",
+	},
+	"fightinggem": {
+		id: "fightinggem",
+		name: "Fighting Gem",
+		isUnreleased: true,
+		spritenum: 139,
+		isGem: true,
+		onItemize: 'Fighting',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Fighting') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Fighting Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 553,
+		gen: 5,
+		desc: "Holder's first successful Fighting-type attack will have 1.3x power. Single use.",
+	},
+	"fairygem": {
+		id: "fairygem",
+		name: "Fairy Gem",
+		isUnreleased: true,
+		spritenum: 611,
+		isGem: true,
+		onItemize: 'Fairy',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Fairy') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Fairy Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 715,
+		gen: 6,
+		desc: "Holder's first successful Fairy-type attack will have 1.3x power. Single use.",
+	},
+	"electricgem": {
+		id: "electricgem",
+		name: "Electric Gem",
+		isUnreleased: true,
+		spritenum: 120,
+		isGem: true,
+		onItemize: 'Electric',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status' || ['firepledge', 'grasspledge', 'waterpledge'].includes(move.id)) return;
+			if (move.type === 'Electric') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Electric Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 550,
+		gen: 5,
+		desc: "Holder's first successful Electric-type attack will have 1.3x power. Single use.",
+	},
+	"dragongem": {
+		id: "dragongem",
+		name: "Dragon Gem",
+		isUnreleased: true,
+		spritenum: 107,
+		isGem: true,
+		onItemize: 'Dragon',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Dragon') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Dragon Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 561,
+		gen: 5,
+		desc: "Holder's first successful Dragon-type attack will have 1.3x power. Single use.",
+	},
+	"darkgem": {
+		id: "darkgem",
+		name: "Dark Gem",
+		isUnreleased: true,
+		spritenum: 89,
+		isGem: true,
+		onItemize: 'Dark',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Dark') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Dark Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 562,
+		gen: 5,
+		desc: "Holder's first successful Dark-type attack will have 1.3x power. Single use.",
+	},
+	"buggem": {
+		id: "buggem",
+		name: "Bug Gem",
+		isUnreleased: true,
+		spritenum: 53,
+		isGem: true,
+		onItemize: 'Bug',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Bug') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Bug Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 558,
+		gen: 5,
+		desc: "Holder's first successful Bug-type attack will have 1.3x power. Single use.",
+	},
+	"watergem": {
+		id: "watergem",
+		name: "Water Gem",
+		isUnreleased: true,
+		spritenum: 528,
+		isGem: true,
+		onItemize: 'Water',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status' || ['firepledge', 'grasspledge', 'waterpledge'].includes(move.id)) return;
+			if (move.type === 'Water') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Water Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 549,
+		gen: 5,
+		desc: "Holder's first successful Water-type attack will have 1.3x power. Single use.",
+	},
+	"steelgem": {
+		id: "steelgem",
+		name: "Steel Gem",
+		isUnreleased: true,
+		spritenum: 473,
+		isGem: true,
+		onItemize: 'Steel',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Steel') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Steel Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 563,
+		gen: 5,
+		desc: "Holder's first successful Steel-type attack will have 1.3x power. Single use.",
+	},
+	"rockgem": {
+		id: "rockgem",
+		name: "Rock Gem",
+		isUnreleased: true,
+		spritenum: 415,
+		isGem: true,
+		onItemize: 'Rock',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Rock') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Rock Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 559,
+		gen: 5,
+		desc: "Holder's first successful Rock-type attack will have 1.3x power. Single use.",
+	},
+	"psychicgem": {
+		id: "psychicgem",
+		name: "Psychic Gem",
+		isUnreleased: true,
+		spritenum: 369,
+		isGem: true,
+		onItemize: 'Psychic',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Psychic') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Psychic Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 557,
+		gen: 5,
+		desc: "Holder's first successful Psychic-type attack will have 1.3x power. Single use.",
+	},
+	"poisongem": {
+		id: "poisongem",
+		name: "Poison Gem",
+		isUnreleased: true,
+		spritenum: 344,
+		isGem: true,
+		onItemize: 'Poison',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Poison') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Poison Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 554,
+		gen: 5,
+		desc: "Holder's first successful Poison-type attack will have 1.3x power. Single use.",
+	},
+	"normalgem": {
+		id: "normalgem",
+		name: "Normal Gem",
+		spritenum: 307,
+		isGem: true,
+		onItemize: 'Normal',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status' || ['firepledge', 'grasspledge', 'waterpledge'].includes(move.id)) return;
+			if (move.type === 'Normal') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Normal Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 564,
+		gen: 5,
+		desc: "Holder's first successful Normal-type attack will have 1.3x power. Single use.",
+	},
+	"icegem": {
+		id: "icegem",
+		name: "Ice Gem",
+		isUnreleased: true,
+		spritenum: 218,
+		isGem: true,
+		onItemize: 'Ice',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Ice') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Ice Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 552,
+		gen: 5,
+		desc: "Holder's first successful Ice-type attack will have 1.3x power. Single use.",
+	},
+	"groundgem": {
+		id: "groundgem",
+		name: "Ground Gem",
+		isUnreleased: true,
+		spritenum: 182,
+		isGem: true,
+		onItemize: 'Ground',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Ground') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Ground Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 555,
+		gen: 5,
+		desc: "Holder's first successful Ground-type attack will have 1.3x power. Single use.",
+	},
+	"grassgem": {
+		id: "grassgem",
+		name: "Grass Gem",
+		isUnreleased: true,
+		spritenum: 172,
+		isGem: true,
+		onItemize: 'Grass',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status' || ['firepledge', 'grasspledge', 'waterpledge'].includes(move.id)) return;
+			if (move.type === 'Grass') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Grass Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 551,
+		gen: 5,
+		desc: "Holder's first successful Grass-type attack will have 1.3x power. Single use.",
+	},
+	"ghostgem": {
+		id: "ghostgem",
+		name: "Ghost Gem",
+		isUnreleased: true,
+		spritenum: 161,
+		isGem: true,
+		onItemize: 'Ghost',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Ghost') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Ghost Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 560,
+		gen: 5,
+		desc: "Holder's first successful Ghost-type attack will have 1.3x power. Single use.",
+	},
+	"flyinggem": {
+		id: "flyinggem",
+		name: "Flying Gem",
+		isUnreleased: true,
+		spritenum: 149,
+		isGem: true,
+		onItemize: 'Flying',
+		onSourceTryPrimaryHit: function (target, source, move) {
+			if (target === source || move.category === 'Status') return;
+			if (move.type === 'Flying') {
+				if (source.useItem()) {
+					this.add('-enditem', source, 'Flying Gem', '[from] gem', '[move] ' + move.name);
+					source.addVolatile('gem');
+				}
+			}
+		},
+		num: 556,
+		gen: 5,
+		desc: "Holder's first successful Flying-type attack will have 1.3x power. Single use.",
 	},
 };
