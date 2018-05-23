@@ -134,7 +134,7 @@ shadowdance: {
 		onSwitchInPriority: 101,
 		onSwitchIn: function (pokemon) {
 			let type = 'Normal';
-			if (pokemon.ability === 'multitype') {
+			if (pokemon.ability === 'spiralpower') {
 				// @ts-ignore
 				type = pokemon.getItem().onPlate;
 				// @ts-ignore
