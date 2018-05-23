@@ -5730,7 +5730,8 @@ exports.BattleAbilities = {
 						bestStat = source.stats[i];
 					}
 				}
-				this.boost({[stat]: 1, atk: 1}, source);
+				this.boost({[stat]: 1}, source);
+				this.boost({atk: 1}, source);
 			}
 		},
 		id: "bloodthirst",
