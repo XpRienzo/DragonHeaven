@@ -7727,10 +7727,7 @@ darkchomp: {
         species: "Astrolith",
 		  baseForme: "Clear",
         types: ["Rock", "Normal"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 75,
@@ -7755,10 +7752,7 @@ darkchomp: {
         forme: "Star",
         formeLetter: "S",
         types: ["Rock", "Fire"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 115,
@@ -7782,10 +7776,7 @@ darkchomp: {
         forme: "Comet",
         formeLetter: "C",
         types: ["Rock", "Water"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 115,
@@ -7809,10 +7800,7 @@ darkchomp: {
         forme: "Neutron",
         formeLetter: "N",
         types: ["Rock", "Ice"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 115,
@@ -7836,10 +7824,7 @@ darkchomp: {
         forme: "Meteor",
         formeLetter: "M",
         types: ["Rock", "Flying"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 115,
@@ -7863,10 +7848,7 @@ darkchomp: {
         forme: "Nova",
         formeLetter: "N",
         types: ["Rock", "Ghost"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 115,
@@ -7962,10 +7944,7 @@ darkchomp: {
         num: 7500204,
         species: "Xurkivoir",
         types: ["Electric", "Fairy"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 80,
             atk: 80,
@@ -7989,10 +7968,7 @@ darkchomp: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Electric", "Fairy"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 80,
             atk: 100,
@@ -8109,10 +8085,378 @@ darkchomp: {
         num: 7500209,
         species: "Vitality",
         types: ["Normal", "Fire"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
+        gender: "N",
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
         },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+	
+    vitalityfire: {
+        num: 7500209,
+        species: "Vitality-Fire",
+        baseSpecies: "Omneus",
+        forme: "Fire",
+        formeLetter: "F",
+        gender: "N",
+        types: ["Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalitywater: {
+        num: 7500209,
+        species: "Vitality-Water",
+        baseSpecies: "Vitality",
+        forme: "Water",
+        formeLetter: "W",
+        gender: "N",
+        types: ["Water", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalityelectric: {
+        num: 7500209,
+        species: "Vitality-Electric",
+        baseSpecies: "Vitality",
+        forme: "Electric",
+        formeLetter: "E",
+        gender: "N",
+        types: ["Electric", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalitygrass: {
+        num: 7500209,
+        species: "Vitality-Grass",
+        baseSpecies: "Vitality",
+        forme: "Grass",
+        formeLetter: "G",
+        gender: "N",
+        types: ["Grass", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalityice: {
+        num: 7500209,
+        species: "Vitality-Ice",
+        baseSpecies: "Vitality",
+        forme: "Ice",
+        formeLetter: "I",
+        gender: "N",
+        types: ["Ice", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+    vitalityfighting: {
+        num: 7500209,
+        species: "Vitality-Fighting",
+        baseSpecies: "Vitality",
+        forme: "Fighting",
+        formeLetter: "F",
+        gender: "N",
+        types: ["Fighting", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalitypoison: {
+        num: 7500209,
+        species: "Vitality-Poison",
+        baseSpecies: "Vitality",
+        forme: "Poison",
+        formeLetter: "P",
+        gender: "N",
+        types: ["Poison", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+    vitalityground: {
+        num: 7500209,
+        species: "Vitality-Ground",
+        baseSpecies: "Vitality",
+        forme: "Ground",
+        formeLetter: "G",
+        gender: "N",
+        types: ["Ground", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+    vitalityflying: {
+        num: 7500209,
+        species: "Vitality-Flying",
+        baseSpecies: "Vitality",
+        forme: "Flying",
+        formeLetter: "F",
+        gender: "N",
+        types: ["Flying", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+    vitalitypsychic: {
+        num: 7500209,
+        species: "Vitality-Psychic",
+        baseSpecies: "Vitality",
+        forme: "Psychic",
+        formeLetter: "P",
+        gender: "N",
+        types: ["Psychic", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalitybug: {
+        num: 7500209,
+        species: "Vitality-Bug",
+        baseSpecies: "Vitality",
+        forme: "Bug",
+        formeLetter: "B",
+        gender: "N",
+        types: ["Bug", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalitydragon: {
+        num: 7500209,
+        species: "Vitality-Dragon",
+        baseSpecies: "Vitality",
+        forme: "Dragon",
+        formeLetter: "D",
+        gender: "N",
+        types: ["Dragon", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalitydark: {
+        num: 7500209,
+        species: "Vitality-Dark",
+        baseSpecies: "Vitality",
+        forme: "Dark",
+        formeLetter: "D",
+        gender: "N",
+        types: ["Dark", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalitysteel: {
+        num: 7500209,
+        species: "Vitality-Steel",
+        baseSpecies: "Vitality",
+        forme: "Steel",
+        formeLetter: "S",
+        gender: "N",
+        types: ["Steel", "Fire"],
+        baseStats: {
+            hp: 117,
+            atk: 107,
+            def: 97,
+            spa: 97,
+            spd: 97,
+            spe: 107
+        },
+        abilities: {
+            0: "Victory System"
+        },
+        heightm: 1.36,
+        weightkg: 52.25,
+        color: "Gray",
+        eggGroups: ["Undiscovered"],
+    },
+
+    vitalityfairy: {
+        num: 7500253,
+        species: "Vitality-Fairy",
+        baseSpecies: "Vitality",
+        forme: "Fairy",
+        formeLetter: "F",
+        gender: "N",
+        types: ["Steel", "Fairy"],
         baseStats: {
             hp: 117,
             atk: 107,
@@ -8205,10 +8549,7 @@ darkchomp: {
         num: 7500213,
         species: "Bezong",
         types: ["Normal", "Psychic"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 113,
             atk: 114,
@@ -8277,10 +8618,7 @@ darkchomp: {
         num: 7500216,
         species: "Tapu Meme",
         types: ["Psychic", "Fairy"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 81,
@@ -8304,10 +8642,7 @@ darkchomp: {
         forme: "Dank",
         formeLetter: "D",
         types: ["Psychic", "Fighting"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 85,
             atk: 133,
