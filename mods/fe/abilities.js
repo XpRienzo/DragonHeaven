@@ -4528,7 +4528,6 @@ exports.BattleAbilities = {
 		onEnd: function (pokemon) {
 			pokemon.removeVolatile('titanicstrength');
 		},
-		},
 		id: "titanicstrength",
 		name: "Titanic Strength",
 	},
