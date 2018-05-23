@@ -9792,5 +9792,75 @@ exports.BattleAbilities = {
 		id: "mirage",
 		name: "Mirage",
 	},
+	"titaniumtoothpaste": {
+		shortDesc: "This Pokemon cannot be statused or have its stats lowered. If either of these would have occured or if this Pokemon is switching out, it heals 33% of its HP.",
+		onBoost: function (boost, target, source, effect) {
+			if (source && target === source) return;
+			let showMsg = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					// @ts-ignore
+					delete boost[i];
+					showMsg = true;
+				}
+			}
+			if (showMsg && !effect.secondaries) {
+			this.add("-fail", target, "unboost", "[from] ability: Titanium Toothpaste", "[of] " + target);
+				this.heal(target.maxhp / 3);
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+				if (effect && effect.status) {
+					this.add('-activate', target, 'ability: Titanium Toothpaste');
+					this.heal(target.maxhp / 3);
+				}
+				return false;
+			},
+		id: "titaniumtoothpaste",
+		name: "Titanium Toothpaste",
+	},
+	"farmersdelight": {
+		desc: "Upon consuming a Berry or knocking a foe out, boosts this pokémon's highest non-HP stat by one stage. Upon knocking a foe out, or under sun, 100% chance to restore berry. Otherwise, 50% chance to restore berry at the end of every turn.",
+		shortDesc: "Upon consuming a Berry or knocking a foe out, boosts this pokémon's highest non-HP stat by one stage. Upon knocking a foe out, or under sun, 100% chance to restore berry. Otherwise, 50% chance to restore berry at the end of every turn.",
+		id: "farmersdelight",
+		name: "Farmer's Delight",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			if (this.isWeather(['sunnyday', 'desolateland']) || this.randomChance(1, 2)) {
+				if (pokemon.hp && !pokemon.item && this.getItem(pokemon.lastItem).isBerry) {
+					pokemon.setItem(pokemon.lastItem);
+					pokemon.lastItem = '';
+					this.add('-item', pokemon, pokemon.getItem(), '[from] ability: Farmer\'s Delight');
+					let stat = 'atk';
+					let bestStat = 0;
+					for (let i in pokemon.stats) {
+					if (pokemon.stats[i] > bestStat) {
+						stat = i;
+						bestStat = pokemon.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, pokemon);
+				}
+			}
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+				source.setItem(source.lastItem);
+					source.lastItem = '';
+					this.add('-item', source, source.getItem(), '[from] ability: Farmer\'s Delight');
+			}
+		},
+	},
 	
 };
