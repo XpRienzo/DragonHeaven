@@ -2849,16 +2849,12 @@ exports.BattleAbilities = {
 	"landsshield": {
 		shortDesc: "Halves damage taken if either at full health or hit Super Effectively, both stack.",
 		onSourceModifyDamage: function (damage, source, target, move) {
-         let mod = 1;
 			if (target.hp >= target.maxhp) {
-				mod = mod * 0.5;
-				this.debug('Shadow Shield weaken');
+				return this.chainModify(0.5);
 			}
 			if (move.typeMod > 0) {
-				mod = mod * 0.5;
-				this.debug('Prism Armor neutralize');
-          }
-          return this.chainModify(mod);
+				return this.chainModify(0.5);
+			}
 		},
 		id: "landsshield",
 		name: "Land's Shield",
@@ -4779,11 +4775,9 @@ exports.BattleAbilities = {
 				return this.chainModify(1.25);
 			}
 		},
-		onUpdate: function(move) {
+		onAfterMove: function(move, pokemon) {
 			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name === 'Arm Thrust' || move.name === 'Hammer Arm' || move.name === 'Needle Arm') {
-				this.boost({
-					atk: 1
-				});
+				this.boost({atk: 1}, pokemon);
 			}
 		},
 		id: "caestus",
@@ -4885,14 +4879,20 @@ exports.BattleAbilities = {
 	},
 	"meangirl": {
 		shortDesc: "Raises Attack by 1 stage whenever a Pokemon of the same gender enters battle. This also triggers when switching in on such a Pokemon.",
-		onSwitchIn: function(attacker, defender) {
-			if (attacker.gender && defender.gender) {
-					this.boost({atk: 1}, attacker, defender);
+		onSwitchIn: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+			if (pokemon.gender && target.gender) {
+					this.boost({atk: 1}, pokemon);
+			}
 			}
 		},
-		onFoeSwitchIn: function(attacker, defender) {
-			if (attacker.gender && defender.gender) {
-					this.boost({atk: 1}, attacker, defender);
+		onFoeSwitchIn: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+			if (pokemon.gender && target.gender) {
+					this.boost({atk: 1}, pokemon);
+			}
 			}
 		},
 		id: "meangirl",
@@ -4950,9 +4950,7 @@ exports.BattleAbilities = {
 						bestStat = target.stats[i];
 					}
 				}
-				this.boost({
-					[stat]: 1
-				}, target);
+				this.boost({[stat]: 1}, target);
 			}
 		},
 		id: "beastbarbs",
