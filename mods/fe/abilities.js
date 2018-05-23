@@ -8521,11 +8521,9 @@ exports.BattleAbilities = {
 	"mentalfear": {
 		shortDesc: "Always appear as full health to the opponent.",
 		onUpdate: function (pokemon) {
-				let details = pokemon.template.species + (pokemon.hp === pokemon.maxhp) + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				let details = (pokemon.hp === pokemon.maxhp);
 				this.add('replace', pokemon, details);
-				this.add('-end', pokemon, 'Illusion');
 		},
-		isUnbreakable: true,
 		id: "mentalfear",
 		name: "Mental Fear",
 	},
@@ -9865,5 +9863,27 @@ exports.BattleAbilities = {
 			}
 		},
 	},
-	
+	"calamity": { // TODO: Check this
+		shortDesc: "Prevents the increase the PP cost of the user.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Calamity');
+		},
+		onDeductPP: function (pokemon) {
+			return null;
+		},
+		id: "calamity",
+		name: "Calamity",
+	},
+	"blackhole": {
+		desc: "Any moves used against this Pokemon that would affect its stats negatively will fail. Note that abilities like Intimidate can decrease its stats.",
+		shortDesc: "Any moves used against this Pokemon that would affect its stats negatively will fail. Note that abilities like Intimidate can decrease its stats.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.boosts < 0) {
+					this.add('-immune', target, '[msg]', '[from] ability: Black Hole');
+				return null;
+			}
+		},
+		id: "blackhole",
+		name: "Black Hole",
+	},
 };
