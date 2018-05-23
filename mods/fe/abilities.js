@@ -1675,23 +1675,15 @@ exports.BattleAbilities = {
 	"sharparmor": {
 		shortDesc: "Atk is raised by 2 when hit by a Water-type move and lowered by 2 when hit by a Fire-type; gives immunity to Water-type moves.",
 		onAfterDamage: function(damage, target, source, effect) {
-			if (effect && effect.type === 'Water') {
-				this.boost({
-					atk: 2
-				});
-			}
-		},
-		onAfterDamage: function(damage, target, source, effect) {
-			if (effect && effect.type === 'Fire') {
+			else if (effect && effect.type === 'Fire') {
 				this.boost({
 					atk: -2
 				});
 			}
 		},
-		onTryHit: function(target, source, move) {
+		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Water') {
-				move.accuracy = true;
-				if (!target.addVolatile('sharparmor')) {
+				if (!this.boost({atk: 2})) {
 					this.add('-immune', target, '[msg]', '[from] ability: Sharp Armor');
 				}
 				return null;
