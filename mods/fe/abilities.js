@@ -3879,8 +3879,8 @@ exports.BattleAbilities = {
 	},
 	"panicmode": {
 		shortDesc: "This Pokemon's moves have +1 priority when this Pokemon is burned, paralyzed, or poisoned. Ignores the burn Attack drop.",
-		onModifyPriority: function(priority, move, effect) {
-			if (effect.id === 'psn' || effect.id === 'tox' || effect.id === 'brn' || effect.id === 'par') return priority + 1;
+		onModifyPriority: function (priority, move, pokemon) {
+			if (pokemon.status === 'psn' || pokemon.status === 'tox' || pokemon.status === 'brn' || pokemon.status === 'par') return priority + 1;
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, pokemon) {
@@ -9695,4 +9695,100 @@ exports.BattleAbilities = {
 		id: "crystallizedshield",
 		name: "Crystallized Shield",
 	},
+	"foodcoloring": { // TODO: Make it eat certain berries earlier
+		desc: "This Pokemon eats certain berries earlier. If a Pokemon on this team (including itself) is holding a berry, this Pokemon has 1.5x Special Attack.",
+		shortDesc: "This Pokemon eats certain berries earlier. If a Pokemon on this team (including itself) is holding a berry, this Pokemon has 1.5x Special Attack.",
+		onModifySpAPriority: 5,
+		onModifySpA: function (spa, pokemon) {
+			if (pokemon.side.active.length === 1) {
+				return;
+			}
+			for (const allyActive of pokemon.side.active) {
+				if (allyActive && allyActive.position !== pokemon.position && !allyActive.fainted && allyActive.item.isBerry || pokemon.item.isBerry) {
+					return this.chainModify(1.5);
+				}
+			}
+		},
+		id: "foodcoloring",
+		name: "Food Coloring",
+	},
+	"scarysandwich": {
+		shortDesc: "The foe cannot eat berries or use Ground, Rock or Steel-type moves. This Pokemon's moves have 1.3x power if it is holding a berry.",
+		onPreStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Scary Sandwich', pokemon.side.foe);
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, pokemon, target, move) {
+			if (pokemon.item.isBerry) return this.chainModify(1.3);
+		},
+		onDisableMove: function (pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (moveSlot.id.type === 'Rock' || moveSlot.id.type === 'Ground' || moveSlot.id.type === 'Steel') {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+		onFoeTryEatItem: false,
+		id: "scarysandwich",
+		name: "Scary Sandwich",
+	},
+	"testcram": {
+		desc: "This Pokemon is immune to Ground-type moves. When this Pokemon is asleep, it is grounded and can ONLY be hit by Ground-type moves.",
+		shortDesc: "This Pokemon is immune to Ground-type moves. When this Pokemon is asleep, it is grounded and can ONLY be hit by Ground-type moves.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground' && target.status !== 'slp') {
+				this.add('-immune', target, '[msg]', '[from] ability: Test Cram');
+				return null;
+			}
+			else if (target !== source && move.type !== 'Ground' && target.status === 'slp') {
+				this.add('-immune', target, '[msg]', '[from] ability: Test Cram');
+				return null;
+			}
+		},
+		id: "testcram",
+		name: "Test Cram",
+	},
+	"sippityhoo": {
+		desc: "If a foe with a removable item attacks the Pokémon with this ability, the item is lost and this Pokémon's Attack goes up by one stage. Furthermore, if the pokémon with this ability is not holding an item, it will steal the item and won't take damage from the attack. ",
+		shortDesc: "If a foe with a removable item attacks the Pokémon with this ability, the item is lost and this Pokémon's Attack goes up by one stage. Furthermore, if the pokémon with this ability is not holding an item, it will steal the item and won't take damage from the attack. ",
+		onSourceHit: function (target, source, move) {
+			if (!move || !target) return;
+			if (target !== source && move.category !== 'Status') {
+				if (source.item || source.volatiles['gem'] || source.volatiles['fling']) return;
+				let yourItem = target.takeItem(source);
+				if (!yourItem) return;
+				if (!source.setItem(yourItem)) {
+					target.item = yourItem.id; // bypass setItem so we don't break choicelock or anything
+					source.addVolatile('sippityhoo');
+					return;
+				}
+				this.add('-item', source, yourItem, '[from] ability: Sippity Hoo', '[of] ' + target);
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && target.volatiles['sippityhoo']) {
+				this.add('-immune', target, '[msg]', '[from] ability: Sippity Hoo');
+				target.removeVolatile('sippityhoo');
+				return null;
+			}
+			if (target !== source && target.item) {
+				target.takeItem();
+				this.add('-activate', source, 'ability: Sippity Hoo');
+			}
+		},
+		id: "sippityhoo",
+		name: "Sippity Hoo",
+	},
+	"mirage": {
+		shortDesc: "If the foe has any boosted stat, this Pokemon is immune to their contact moves.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && target.postivieBoosts() > 0 && move.flags['contact']) {
+					this.add('-immune', target, '[msg]', '[from] ability: Mirage');
+				return null;
+			}
+		},
+		id: "mirage",
+		name: "Mirage",
+	},
+	
 };
