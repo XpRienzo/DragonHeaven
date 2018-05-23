@@ -9655,7 +9655,7 @@ darkchomp: {
     melonpirouette: {
         num: 7500243,
         species: "Melon-Pirouette",
-        baseSpecies: "Pokemon",
+        baseSpecies: "Melon",
         gender: "N",
         forme: "Pirouette",
         formeLetter: "P",
@@ -11294,7 +11294,7 @@ celebi: {
     kyonunprimal: {
         num: 7500281,
         species: "Kyonun-Primal",
-        baseSpecies: "Pokemon",
+        baseSpecies: "Kyonun",
         forme: "Primal",
         formeLetter: "P",
         types: ["Electric", "Water"],
@@ -11331,7 +11331,7 @@ celebi: {
     abomasorusmega: {
         num: 7500282,
         species: "Abomasorus-Mega",
-        baseSpecies: "Pokemon",
+        baseSpecies: "Abomasorus",
         forme: "Mega",
         formeLetter: "M",
         gender: "M",
@@ -17692,7 +17692,7 @@ auroritarmega: {
 	blazelmega: {
 		num: 7500494,
 		species: "Blazel-Mega",
-		baseSpecies: "Pokemon",
+		baseSpecies: "Blazel",
 		forme: "Mega",
 		formeLetter: "M",
 		types: ["Fire", "Water"],
