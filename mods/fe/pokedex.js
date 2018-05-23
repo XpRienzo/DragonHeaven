@@ -531,10 +531,7 @@ swampert: {
         num: 750015,
         species: "Vepsicor",
         types: ["Bug", "Ground"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 82,
             atk: 97,
@@ -770,10 +767,7 @@ swampert: {
         num: 750024,
         species: "Sawkape",
         types: ["Fire", "Fighting"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 85,
             atk: 124,
@@ -2060,10 +2054,7 @@ swampert: {
         num: 750051,
         species: "Dartios",
         types: ["Fire", "Dragon"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 100,
             atk: 130,
@@ -2087,10 +2078,7 @@ swampert: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Fire", "Dragon"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 100,
             atk: 170,
@@ -3427,10 +3415,7 @@ swampert: {
         num: 750080,
         species: "Chatotorus",
         types: ["Normal", "Flying"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 93,
             atk: 105,
@@ -3451,10 +3436,7 @@ swampert: {
         num: 750081,
         species: "Blisskiss",
         types: ["Normal", "Fairy"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 185,
             atk: 45,
@@ -4140,10 +4122,7 @@ swampert: {
         num: 750098,
         species: "Thunderblast",
         types: ["Water", "Electric"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 80,
             atk: 94,
@@ -4167,6 +4146,7 @@ swampert: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Water", "Electric"],
+        gender: "M",
         baseStats: {
             hp: 80,
             atk: 114,
@@ -4497,10 +4477,7 @@ swampert: {
         num: 7500110,
         species: "Raptorus",
         types: ["Ground", "Flying"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 89,
             atk: 150,
@@ -4807,10 +4784,7 @@ darkchomp: {
         num: 7500119,
         species: "Zorogon-Z",
         types: ["Normal", "Dark"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 72,
             atk: 92,
@@ -4879,10 +4853,7 @@ darkchomp: {
         num: 7500122,
         species: "Shaymode",
         types: ["Grass", "Electric"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 80,
             atk: 75,
@@ -4975,10 +4946,7 @@ darkchomp: {
         num: 7500126,
         species: "Dedsteel",
         types: ["Steel", "Fairy"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 80,
             atk: 66,
@@ -5210,10 +5178,7 @@ darkchomp: {
         num: 7500131,
         species: "Gallete",
         types: ["Fighting", "Ghost"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 76,
             atk: 130,
@@ -5237,6 +5202,7 @@ darkchomp: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Fighting", "Ghost"],
+        gender: "M",
         baseStats: {
             hp: 76,
             atk: 170,
@@ -5260,6 +5226,7 @@ darkchomp: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Fighting", "Ghost"],
+        gender: "M",
         baseStats: {
             hp: 76,
             atk: 180,
@@ -5351,10 +5318,7 @@ darkchomp: {
         num: 7500134,
         species: "Venoqueen",
         types: ["Ground", "Bug"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 90,
             atk: 97,
@@ -5375,10 +5339,7 @@ darkchomp: {
         num: 7500135,
         species: "Polyform2",
         types: ["Normal"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 98,
             atk: 75,
@@ -5403,10 +5364,7 @@ darkchomp: {
         forme: "Sunny",
         formeLetter: "S",
         types: ["Fire"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 98,
             atk: 75,
@@ -5431,10 +5389,7 @@ darkchomp: {
         forme: "Sunsnow",
         formeLetter: "S",
         types: ["Fire", "Ice"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 98,
             atk: 75,
@@ -5459,10 +5414,7 @@ darkchomp: {
         forme: "Rainy",
         formeLetter: "R",
         types: ["Water"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 98,
             atk: 75,
@@ -5487,10 +5439,7 @@ darkchomp: {
         forme: "Snowy",
         formeLetter: "S",
         types: ["Ice"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 98,
             atk: 75,
@@ -5515,10 +5464,7 @@ darkchomp: {
         forme: "Sandy",
         formeLetter: "S",
         types: ["Rock"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 98,
             atk: 75,
@@ -5543,10 +5489,7 @@ darkchomp: {
         forme: "Spooky",
         formeLetter: "S",
         types: ["Ghost"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 98,
             atk: 75,
@@ -5638,10 +5581,7 @@ darkchomp: {
         num: 7500138,
         species: "Thundersaurus",
         types: ["Grass", "Electric"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 90,
             atk: 100,
@@ -5803,10 +5743,7 @@ darkchomp: {
         num: 7500142,
         species: "Lietaur",
         types: ["Normal", "Dark"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 79,
             atk: 104,
@@ -5827,10 +5764,7 @@ darkchomp: {
         num: 7500143,
         species: "Laprazone",
         types: ["Ice", "Steel"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 106,
             atk: 77,
@@ -5875,10 +5809,7 @@ darkchomp: {
         num: 7500145,
         species: "Klinkle",
         types: ["Electric", "Steel"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 70,
             atk: 75,
@@ -5899,10 +5830,7 @@ darkchomp: {
         num: 7500146,
         species: "Metanlee",
         types: ["Steel", "Fighting"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 75,
             atk: 138,
@@ -5925,6 +5853,7 @@ darkchomp: {
         baseSpecies: "Metanlee",
         forme: "Mega",
         formeLetter: "M",
+        gender: "N",
         types: ["Steel", "Fighting"],
         baseStats: {
             hp: 75,
@@ -5946,10 +5875,7 @@ darkchomp: {
         num: 7500147,
         species: "Kangorus-Khan",
         types: ["Normal", "Dragon"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 100,
             atk: 131,
@@ -6017,10 +5943,7 @@ darkchomp: {
         num: 7500149,
         species: "Crygotran",
         types: ["Ice", "Steel"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 80,
             atk: 70,
@@ -6065,10 +5988,7 @@ darkchomp: {
         num: 7500151,
         species: "Garbagorde",
         types: ["Poison", "Ground"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 105,
             atk: 105,
@@ -6249,10 +6169,7 @@ darkchomp: {
         num: 7500153,
         species: "Porygrigus",
         types: ["Normal", "Ghost"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 90,
             atk: 65,
@@ -6343,10 +6260,7 @@ darkchomp: {
         num: 7500157,
         species: "Dank",
         types: ["Dark", "Fairy"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 70,
             atk: 70,
@@ -6541,10 +6455,7 @@ darkchomp: {
         num: 7500163,
         species: "Galion-Z",
         types: ["Normal", "Ice"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 82,
             atk: 80,
@@ -6568,10 +6479,7 @@ darkchomp: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Normal", "Ice"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 82,
             atk: 120,
@@ -6592,10 +6500,7 @@ darkchomp: {
         num: 7500164,
         species: "Steelweez",
         types: ["Poison", "Steel"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 82,
             atk: 82,
@@ -6616,10 +6521,7 @@ darkchomp: {
         num: 7500165,
         species: "Thundurbee",
         types: ["Bug", "Electric"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 72,
             atk: 120,
@@ -6640,10 +6542,7 @@ darkchomp: {
         num: 7500166,
         species: "Gallatross",
         types: ["Electric", "Fighting"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 86,
             atk: 130,
@@ -6667,10 +6566,7 @@ darkchomp: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Electric", "Fighting"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 86,
             atk: 170,
@@ -6715,10 +6611,7 @@ darkchomp: {
         num: 7500168,
         species: "Rosette-Eternal",
         types: ["Fairy", "Poison"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 77,
             atk: 67,
@@ -6838,10 +6731,7 @@ darkchomp: {
         num: 7500172,
         species: "Thundercast",
         types: ["Electric", "Normal"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 74,
             atk: 102,
@@ -6862,10 +6752,7 @@ darkchomp: {
         num: 7500173,
         species: "Sceptette-Eternal",
         types: ["Fairy", "Grass"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 72,
             atk: 75,
@@ -6889,10 +6776,7 @@ darkchomp: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Fairy", "Dragon"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 72,
             atk: 100,
@@ -7087,10 +6971,7 @@ darkchomp: {
         num: 7500180,
         species: "Miltrank",
         types: ["Normal", "Steel"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 101,
             atk: 105,
@@ -7135,10 +7016,7 @@ darkchomp: {
         num: 7500182,
         species: "Tyranking",
         types: ["Rock", "Poison"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 100,
             atk: 128,
@@ -7162,10 +7040,7 @@ darkchomp: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Rock", "Poison"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 100,
             atk: 158,
@@ -7480,10 +7355,7 @@ darkchomp: {
         num: 7500193,
         species: "Probs",
         types: ["Dragon", "Steel"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 90,
             atk: 67,
@@ -7507,10 +7379,7 @@ darkchomp: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Dragon", "Steel"],
-        genderRatio: {
-            M: 0.0,
-            F: 100.0
-        },
+        gender: "F",
         baseStats: {
             hp: 90,
             atk: 87,
@@ -7555,10 +7424,7 @@ darkchomp: {
         num: 7500195,
         species: "Tornastar",
         types: ["Flying", "Water"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 80,
             atk: 90,
@@ -7702,10 +7568,7 @@ darkchomp: {
         num: 7500200,
         species: "Cradilego",
         types: ["Poison", "Grass"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 102,
             atk: 67,
@@ -8037,10 +7900,7 @@ darkchomp: {
         num: 7500207,
         species: "Theridel",
         types: ["Ghost", "Ground"],
-        genderRatio: {
-            M: 100.0,
-            F: 0.0
-        },
+        gender: "M",
         baseStats: {
             hp: 74,
             atk: 100,
@@ -11308,6 +11168,7 @@ celebi: {
         num: 7500276,
         species: "Murkaleo",
         types: ["Flying", "Steel"],
+        gender: "N",
         baseStats: {
             hp: 98,
             atk: 115,
@@ -14770,10 +14631,7 @@ mimiblimbusted: {
         num: 7500403,
         species: "Vani Lele",
         types: ["Ice", "Psychic"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 70,
             atk: 90,
@@ -14842,10 +14700,7 @@ mimiblimbusted: {
         num: 7500406,
         species: "Regetta",
         types: ["Ice", "Psychic"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
 		  baseForme: "Frozen",
         baseStats: {
             hp: 90,
@@ -14870,6 +14725,7 @@ mimiblimbusted: {
         forme: "Compressed",
         formeLetter: "C",
         types: ["Ice", "Fighting"],
+        gender: "N",
         baseStats: {
             hp: 90,
             atk: 134,
@@ -14890,10 +14746,6 @@ mimiblimbusted: {
         num: 7500407,
         species: "Heataria",
         types: ["Dragon", "Steel"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
         baseStats: {
             hp: 103,
             atk: 100,
@@ -15296,10 +15148,7 @@ mimiblimbusted: {
         num: 7500419,
         species: "Golisorem",
         types: ["Ice", "Water"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 100,
             atk: 147,
@@ -15321,10 +15170,7 @@ mimiblimbusted: {
         num: 7500420,
         species: "Tyrazma",
         types: ["Rock", "Psychic"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 118,
             atk: 120,
@@ -15349,10 +15195,7 @@ mimiblimbusted: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Rock", "Psychic"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 118,
             atk: 150,
@@ -15614,10 +15457,7 @@ mimiblimbusted: {
         num: 7500429,
         species: "Xurkino",
         types: ["Electric", "Normal"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 93,
             atk: 74,
@@ -15642,10 +15482,7 @@ mimiblimbusted: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Electric", "Fairy"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 93,
             atk: 74,
@@ -15709,10 +15546,7 @@ mimiblimbusted: {
         num: 7500432,
         species: "Altarigarde",
         types: ["Ground", "Flying"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 91,
             atk: 105,
@@ -15737,10 +15571,7 @@ mimiblimbusted: {
         forme: "Mega",
         formeLetter: "M",
         types: ["Ground", "Fairy"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        gender: "N",
         baseStats: {
             hp: 91,
             atk: 145,
