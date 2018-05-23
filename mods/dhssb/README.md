@@ -53,6 +53,30 @@ EVs: 252 HP / 252 Atk / 252 Def / 252 SpA / 252 SpD / 252 Spe
 
 **Yo Mamma Joke:** +1 Priority| Physical Move| 180 Base Power| User recovers 75% of the damage dealt| PP:10| Flying Type
 
+### Mareanie
+![Mareanie](http://www.smogon.com/dex/media/sprites/xy/mareanie.gif)
+
+Mareanie @ Spandan's Phone
+
+Ability: Corrosion
+
+EVs: 252 HP / 252 Atk / 252 Def / 252 SpA / 252 SpD / 252 Spe
+- Toxic  
+- Get HP Code - Restores HP.  
+- Get Boost Code - Boosts stats if Mareanie is holding Spandan's Phone 
+- Here's my phone <3 - Mareanie gives its phone to the opponent.
+- I'm Toxic You're Slippin Under (Z-Move)
+
+**I'm Toxic You're Slippin Under** +3 Priority| Physical Move| 250 Base Power| Uses the target's attack to deal sum Poison damage.| PP:10| Poison Type
+**Spandan's Phone**: Special Item.
+If the user is not one of Spandan's alts, the Phone will self destruct, dealing one fourth of the Pokemon's HP as damage.
+If the user is Mareanie: 
+- Get HP Code restores 75%
+- Get Boost Code boosts Defense, Special Defense and Speed by one
+- The Z-Move is usable
+- On activation, Spandan's alts are boosted (+2 in Defenses)
+
+
 ### Snaquaza 
 Lapras @ Leftovers
 

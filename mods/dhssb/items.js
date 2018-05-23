@@ -21,7 +21,7 @@ exports.BattleItems = {
 			}
 			this.add('message', "INVALID USER. DEVICE WILL NOW GO INTO SELF DESTRUCT");
 			this.add('message', "*kaboom*")
-			this.damage(target.maxhp / 4);
+			this.directDamage(target.maxhp / 4);
 			this.add('-enditem', target, 'Spandan\'s Phone');
 			target.item = '';
 			this.itemData = {id: '', target: this};
