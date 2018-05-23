@@ -4775,7 +4775,7 @@ exports.BattleAbilities = {
 				return this.chainModify(1.25);
 			}
 		},
-		onAfterHit: function (target, source, move) {
+		onAfterMoveSecondary: function (target, source, move) {
 			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name === 'Arm Thrust' || move.name === 'Hammer Arm' || move.name === 'Needle Arm') {
 				source.addVolatile('caestus');
 			}
