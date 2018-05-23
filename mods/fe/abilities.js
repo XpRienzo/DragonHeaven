@@ -4777,15 +4777,8 @@ exports.BattleAbilities = {
 		},
 		onAfterMoveSecondary: function (target, source, move) {
 			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name === 'Arm Thrust' || move.name === 'Hammer Arm' || move.name === 'Needle Arm') {
-				source.addVolatile('caestus');
+				this.boost({atk: 1}, source);
 			}
-		},
-		effect: {
-			duration: 1,
-			onUpdate: function (pokemon) {
-				this.boost({atk: 1}, pokemon);
-				pokemon.removeVolatile('caestus');
-			},
 		},
 		id: "caestus",
 		name: "Caestus",
