@@ -1,6 +1,33 @@
 "use strict";
 
 exports.BattleMovedex = {
+	"cosmictrap": {
+		num: 681,
+		accuracy: 100,
+		basePower: 50,
+		basePowerCallback: function (pokemon, target, move) {
+			return move.basePower + 20 * pokemon.positiveBoosts();
+		},
+		category: "Physical",
+		desc: "Power is equal to 50+(X*20), where X is the user's total stat stage changes that are greater than 0. +1 defenses.",
+		shortDesc: " + 20 power for each of the user's stat boosts. +1 defenses.",
+		id: "cosmictrap",
+		name: "Cosmic Trap",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					def: 1,
+					spd: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Dark",
+	},
 	"imtoxicyoureslippinunder": {
 		accuracy: true,
 		basePower: 250,

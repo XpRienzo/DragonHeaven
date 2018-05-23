@@ -1,6 +1,41 @@
 'use strict';
 
 exports.BattleAbilities = {
+	"halt": {
+		desc: "Prevents adjacent opposing Pokemon from choosing to switch out unless they are immune to trapping or also have this Ability.",
+		shortDesc: "Prevents adjacent foes from choosing to switch unless they also have this Ability.",
+		onFoeTrapPokemon: function (pokemon) {
+			if (this.isAdjacent(pokemon, this.effectData.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
+			if (!source) source = this.effectData.target;
+			pokemon.maybeTrapped = true;
+		},
+		onAnyModifyBoost: function (boosts, target) {
+			let source = this.effectData.target;
+			if (source === target) return;
+			if (source === this.activePokemon && target === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (target === this.activePokemon && source === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		onStart: function (pokemon) {
+				this.add('-start', pokemon, 'Ingrain');
+				pokemon.addVolatile('ingrain');
+				this.add('-start', pokemon, 'Aqua Ring');
+				pokemon.addVolatile('aquaring');
+		},
+		id: "halt",
+		name: "Halt!",
+	},
 	"bruteforce": {
 		shortDesc: "Combo of a lot of abilities",
 		/*onModifyMove: function (move) {
