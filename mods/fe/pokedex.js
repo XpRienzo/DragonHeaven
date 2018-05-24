@@ -9965,7 +9965,7 @@ darkchomp: {
     omneus: {
         num: 7500255,
         species: "Omneus",
-        types: ["Water", "Normal"],
+        types: ["Water"],
         gender: "N",
         baseStats: {
             hp: 77,
