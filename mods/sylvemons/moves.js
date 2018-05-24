@@ -671,11 +671,9 @@ exports.BattleMovedex = {
 		onHit: function(pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
+			} else {
+				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
-		},
-		onPrepareHit: function(target, source, move) {
-			this.attrLastMove('[still]');
-			this.add('-anim', target, "Acid Armor", source);
 		},
 		secondary: false,
 		target: "self",
