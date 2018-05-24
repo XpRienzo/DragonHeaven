@@ -9926,4 +9926,33 @@ exports.BattleAbilities = {
 		id: "shutupandjam",
 		name: "Shut Up And Jam",
 	},
+	"hotairballoon": {
+		desc: "After each consecutive kill, This pokemon gets +1 Special Attack, and +1 to it's highest stat. If Highest stat is Special Attack, then the second boost will be nullified.",
+		shortDesc: "After each consecutive kill, This pokemon gets +1 Special Attack, and +1 to it's highest stat. If Highest stat is Special Attack, then the second boost will be nullified.",
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				source.addVolatile('hotairballoon');
+			}
+		},
+		effect: {
+			onRestart: function (target, source, effect) {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({spa: 1}, source);
+				if (stat !== 'spa') {
+				this.boost({[stat]: 1}, source);
+				}
+				source.removeVolatile('hotairballoon');
+			}
+			},
+		},
+		id: "hotairballoon",
+		name: "Hot Air Balloon",
+	},
 };
