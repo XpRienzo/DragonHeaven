@@ -9909,4 +9909,19 @@ exports.BattleAbilities = {
 	    id: "itemize",
 	    name: "Itemize",
 	},
+	"shutupandjam": { //TODO: This is a WIP
+		desc: "Cannot be stopped from selecting and using a move (unless it is switching).",
+		shortDesc: "Cannot be stopped from selecting and using a move (unless it is switching).",
+		onUpdate: function (pokemon) {
+			if (pokemon.volatiles['mustrecharge', 'twoturnmove']) {
+				pokemon.removeVolatile('mustrecharge');
+				pokemon.removeVolatile('twoturnmove');
+			}
+		},
+		onDisableMove: function (pokemon) {
+				return null;
+		},
+		id: "shutupandjam",
+		name: "Shut Up And Jam",
+	},
 };
