@@ -1674,11 +1674,9 @@ exports.BattleAbilities = {
 	},
 	"sharparmor": {
 		shortDesc: "Atk is raised by 2 when hit by a Water-type move and lowered by 2 when hit by a Fire-type; gives immunity to Water-type moves.",
-		onAfterDamage: function(damage, target, source, effect) {
-			else if (effect && effect.type === 'Fire') {
-				this.boost({
-					atk: -2
-				});
+		onAfterDamage: function (damage, target, source, effect) {
+			if (effect && effect.type === 'Fire') {
+				this.boost({atk: -2});
 			}
 		},
 		onTryHit: function (target, source, move) {
