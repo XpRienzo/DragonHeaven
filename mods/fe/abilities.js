@@ -9916,8 +9916,8 @@ exports.BattleAbilities = {
 			if (pokemon.volatiles['mustrecharge']) {
 				pokemon.removeVolatile('mustrecharge');
 			}
-			else if (pokemon.volatiles['twoturnmove']) {
-				pokemon.removeVolatile('twoturnmove');
+			else if (pokemon.volatiles['lockedmove']) {
+				pokemon.removeVolatile('lockedmove');
 			}
 		},
 		onDisableMove: function (pokemon) {
