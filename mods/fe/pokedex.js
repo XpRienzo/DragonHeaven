@@ -18180,4 +18180,283 @@ auroritarmega: {
 		  eggGroups: ["Field"],
 	},
 
+
+	pluffatisse: {
+		num: 7500501,
+		species: "Pluffatisse",
+		types: ["Fairy"],
+		baseStats: {
+			hp: 101,
+			atk: 86,
+			def: 89,
+			spa: 102,
+			spd: 92,
+			spe: 60,
+		},
+		abilities: {
+			0: "Ambulance"
+		},
+		  heightm: 0.8,
+		  weightkg: 10.25,
+		  eggGroups: ["Fairy"],
+	},
+	lars: {
+		num: 7500502,
+		species: "Lars",
+		types: ["Normal", "Ghost"],
+		baseStats: {
+			hp: 92,
+			atk: 112,
+			def: 92,
+			spa: 65,
+			spd: 100,
+			spe: 122,
+		},
+		abilities: {
+			0: "Bingo Bongo"
+		},
+		  heightm: 0.95,
+		  weightkg: 48.85,
+		  eggGroups: ["Undiscovered"],
+	},
+	theye: {
+		num: 7500503,
+		species: "Theye",
+		types: ["Fighting", "Ghost"],
+		gender: "M",
+		baseStats: {
+			hp: 95,
+			atk: 97,
+			def: 90,
+			spa: 57,
+			spd: 85,
+			spe: 57,
+		},
+		abilities: {
+			0: "Floating Grounds"
+		},
+		  heightm: 0.9,
+		  weightkg: 33.25,
+		  eggGroups: ["Human-Like"],
+	},
+	theyemega: {
+		num: 7500503,
+		species: "Theye-Mega",
+		baseSpecies: "Theye",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Ground", "Dark"],
+		gender: "M",
+		baseStats: {
+			hp: 95,
+			atk: 107,
+			def: 140,
+			spa: 77,
+			spd: 135,
+			spe: 27,
+		},
+		abilities: {
+			0: "Magic Bounce"
+		},
+		  heightm: 0.9,
+		  weightkg: 183.25,
+		  eggGroups: ["Human-Like"],
+	},
+	chillax: { num: 7500504, species: "Chillax",
+		types: ["Normal", "Dragon"],
+		genderRatio: "{M: 50.0, F: 50.0}",
+		baseStats: {hp: 103, atk: 126, def: 102, spa: 80, spd: 92, spe: 83},
+		abilities: {0: "Mellow Vibe"},
+		heightm: 1.75,
+		weightkg: 245.5,
+		color: "Yellow",
+		eggGroups: ["Monster"],
+	},
+	masterpiece: {
+	        num: 7500505,
+	        species: "Masterpiece",
+	        types: ["Fire", "Grass"],
+	        genderRatio: "{M: 75.0, F: 25.0}",
+	        baseStats: {
+	            hp: 82,
+	            atk: 97,
+	            def: 92,
+	            spa: 100,
+	            spd: 95,
+	            spe: 86
+	        },
+	        abilities: {
+	            0: "Magnum Opus"
+	        },
+	        heightm: 2.6,
+	        weightkg: 283,
+	        color: "Green",
+	        eggGroups: ["Field"],
+	    },
+	    masterpiecemega: {
+	        num: 7500505,
+	        species: "Masterpiece-Mega",
+	        baseSpecies: "Masterpiece",
+	        forme: "Mega",
+	        formeLetter: "M",
+	        types: ["Fire", "Grass"],
+	        genderRatio: {
+	            M: 75.0,
+	            F: 25.0
+	        },
+	        baseStats: {
+	            hp: 82,
+	            atk: 117,
+	            def: 122,
+	            spa: 140,
+	            spd: 125,
+	            spe: 66
+	        },
+	        abilities: {
+	            0: "Sheer Force"
+	        },
+			heightm: 3.2,
+		    	weightkg: 383.5,
+		    	color: "Green",
+		    	eggGroups: ["Field"],
+		},
+		celemence: {
+        num: 7500506,
+        species: "Celemence",
+        types: ["Steel", "Flying"],
+        gender: "N",
+        baseStats: {
+            hp: 97,
+            atk: 118,
+            def: 120,
+            spa: 108,
+            spd: 120,
+            spe: 80
+        },
+        abilities: {
+            0: "Beast Roar"
+        },
+        heightm: 9.2,
+        weightkg: 999.9,
+        color: "Blue",
+        eggGroups: ["Undiscovered"],
+    },
+    celemencemega: {
+        num: 7500506,
+        species: "Celemence-Mega",
+        baseSpecies: "Celemence",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Steel", "Flying"],
+        gender: "N",
+        baseStats: {
+            hp: 97,
+            atk: 128,
+            def: 170,
+            spa: 118,
+            spd: 130,
+            spe: 100
+        },
+        abilities: {
+            0: "Aerilate"
+        },
+        heightm: 9.2,
+        weightkg: 1009.9,
+        color: "Blue",
+        eggGroups: ["Undiscovered"],
+    },
+		saladreigonce: {
+        num: 7500507,
+        species: "Saladreigonce",
+        types: ["Steel", "Flying"],
+	        genderRatio: {
+	            M: 50.0,
+	            F: 50.0
+	        },
+        baseStats: {
+            hp: 103,
+            atk: 130,
+            def: 95,
+            spa: 127,
+            spd: 95,
+            spe: 109
+        },
+        abilities: {
+            0: "Cocky"
+        },
+        heightm: 1.65,
+        weightkg: 131.3,
+        color: "Blue",
+        eggGroups: ["Dragon"],
+    },
+    celemencemega: {
+        num: 7500507,
+        species: "Saladreigonce-Mega",
+        baseSpecies: "Saladreigonce",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Dark", "Flying"],
+	        genderRatio: {
+	            M: 50.0,
+	            F: 50.0
+	        },
+        baseStats: {
+            hp: 103,
+            atk: 140,
+            def: 145,
+            spa: 137,
+            spd: 105,
+            spe: 119
+        },
+        abilities: {
+            0: "Aerilate"
+        },
+        heightm: 1.95,
+        weightkg: 141.3,
+        color: "Blue",
+        eggGroups: ["Dragon"],
+    },
+		salasaur: {
+        num: 7500508,
+        species: "Salasaur",
+        types: ["Poison"],
+	     gender: "F",
+        baseStats: {
+            hp: 84,
+            atk: 83,
+            def: 81,
+            spa: 115,
+            spd: 90,
+            spe: 108
+        },
+        abilities: {
+            0: "Poison Pores"
+        },
+        heightm: 1.6,
+        weightkg: 61.1,
+        eggGroups: ["Monster"],
+    },
+    salasaurmega: {
+        num: 7500508,
+        species: "Salasaur-Mega",
+        baseSpecies: "Salasaur",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Poison"],
+	     gender: "F",
+        baseStats: {
+            hp: 84,
+            atk: 83,
+            def: 81,
+            spa: 115,
+            spd: 90,
+            spe: 108
+        },
+        abilities: {
+            0: "Poison Pores"
+        },
+        heightm: 2.0,
+        weightkg: 116.6,
+        eggGroups: ["Monster"],
+    },
 };
