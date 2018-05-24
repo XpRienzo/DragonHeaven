@@ -6277,12 +6277,12 @@ exports.BattleAbilities = {
 		},
 		name: "Uninhabitable",
 	},
-		"crushing": {
+	"crushing": {
 		shortDesc: "Recoil from moves used against this Pokemon is doubled.",
-		onFoeModifyMove: function (move) {
-			let recoilmod = move.recoil[0];
-			if (move.recoil) {
-				recoilmod *= 2;
+		onSourceDamage: function (damage, target, source, effect) {
+			if (effect.id === 'recoil') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return this.chainModify(2);
 			}
 		},
 		id: "crushing",
