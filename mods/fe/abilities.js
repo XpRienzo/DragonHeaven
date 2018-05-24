@@ -9913,8 +9913,10 @@ exports.BattleAbilities = {
 		desc: "Cannot be stopped from selecting and using a move (unless it is switching).",
 		shortDesc: "Cannot be stopped from selecting and using a move (unless it is switching).",
 		onUpdate: function (pokemon) {
-			if (pokemon.volatiles['mustrecharge', 'twoturnmove']) {
+			if (pokemon.volatiles['mustrecharge']) {
 				pokemon.removeVolatile('mustrecharge');
+			}
+			else if (pokemon.volatiles['twoturnmove']) {
 				pokemon.removeVolatile('twoturnmove');
 			}
 		},
