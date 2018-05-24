@@ -9912,6 +9912,11 @@ exports.BattleAbilities = {
 	"shutupandjam": { //TODO: This is a WIP
 		desc: "Cannot be stopped from selecting and using a move (unless it is switching).",
 		shortDesc: "Cannot be stopped from selecting and using a move (unless it is switching).",
+		onBeforeMove: function(move, pokemon){
+	         if (pokemon.status === 'slp') {
+						move.sleepUsable = true;
+				}
+		},
 		onUpdate: function (pokemon) {
 			if (pokemon.volatiles['mustrecharge']) {
 				pokemon.removeVolatile('mustrecharge');
