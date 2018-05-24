@@ -214,7 +214,7 @@ shadowdance: {
 					type = 'Normal';
 				}
 			}
-			pokemon.setType('Water', type);
+			pokemon.addType('type', true);
 		},
 	},
 };
