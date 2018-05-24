@@ -9313,7 +9313,7 @@ exports.BattleAbilities = {
 	        if (!pokemon.runImmunity(move.type)) return;
 	        return 0;
 	    },
-	    onUpdate: function(pokemon) {
+	    Update: function(pokemon) {
 	        if (pokemon.template.speciesid === 'mimukyu' && this.effectData.busted) {
 	            let template = this.getTemplate('Mimukyu-Busted');
 	            pokemon.formeChange(template);
@@ -9339,7 +9339,6 @@ exports.BattleAbilities = {
 					this.add('-immune', target, '[msg]');
 				} else {
 					this.boost({atk: -1, spe: -1}, target, pokemon);
-				}
 				}
 			}
 		},
