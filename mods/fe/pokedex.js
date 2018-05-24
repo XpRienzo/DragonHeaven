@@ -9849,7 +9849,7 @@ darkchomp: {
             spe: 87
         },
         abilities: {
-            0: "AA"
+            0: "Desolate Land"
         },
     },
 
@@ -11862,7 +11862,7 @@ celebi: {
             spe: 115
         },
         abilities: {
-            0: "AA"
+            0: "Crystallized Shield"
         },
     },
 
@@ -14258,7 +14258,7 @@ mimiblimbusted: {
             spe: 85
         },
         abilities: {
-            0: "AA"
+            0: "Levitate"
         },
     },
 
