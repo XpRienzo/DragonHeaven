@@ -9777,7 +9777,7 @@ exports.BattleAbilities = {
 	"mirage": {
 		shortDesc: "If the foe has any boosted stat, this Pokemon is immune to their contact moves.",
 		onTryHit: function (target, source, move) {
-			if (target !== source && target.postivieBoosts() > 0 && move.flags['contact']) {
+			if (target !== source && target.positiveBoosts() > 0 && move.flags['contact']) {
 					this.add('-immune', target, '[msg]', '[from] ability: Mirage');
 				return null;
 			}
