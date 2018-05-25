@@ -8841,8 +8841,8 @@ exports.BattleAbilities = {
 	    onTryHit: function(source, target, move) {
 	        let immune = false;
 	        for (const moveSlot of target.moveSlots) {
-	            const holderMove = moveSlot.id;
-	            if (holderMove && holderMove.type === move.type && holderMove.multihit) {
+	            let holderMove = moveSlot.id;
+	            if (holderMove && move.type === holderMove.type && holderMove.multihit) {
 	                immune = true;
 	            }
 	            if (immune) {
