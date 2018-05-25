@@ -9957,8 +9957,12 @@ exports.BattleAbilities = {
 	"slimedrench": { //TODO: This is a WIP as well
 		shortDesc: "If the foe is poisoned, whenever it tries to heal (with an item or move), it takes that amount of damage.",
 		onFoeTryHeal: function (pokemon, heal) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+			return null;
 			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
-				this.damage(heal, pokemon);
+				this.damage(heal, target);
+			}
 			}
 		},
 		id: "slimedrench",
