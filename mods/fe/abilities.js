@@ -8839,13 +8839,8 @@ exports.BattleAbilities = {
 	        }
 	    },
 	    onTryHit: function(source, target, move) {
-	        let immune = false;
 	        for (const moveSlot of target.moveSlots) {
-	            let holderMove = moveSlot.id;
-	            if (holderMove && move.type === holderMove.type && holderMove.multihit) {
-	                immune = true;
-	            }
-	            if (immune) {
+	            if (moveSlot.id && move.type === moveSlot.id.type && moveSlot.id.multihit) {
 	                this.add('-immune', target, '[msg]', '[from] ability: Horsetail Armor');
 	                return null;
 	            }
