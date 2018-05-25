@@ -186,7 +186,7 @@ shadowdance: {
 			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Fire') {
 				return this.chainModify(1/3);
 			}
-			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') {
+			/*if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') {
 				return this.chainModify(3);
 			}
 			if (effect.id === 'sandstorm' && defender.hasType('Rock')) {
@@ -197,7 +197,7 @@ shadowdance: {
 			}
 			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Fire') {
 				return this.chainModify(3);
-			}
+			}*/
 		},
 	},
 	vitality: {
