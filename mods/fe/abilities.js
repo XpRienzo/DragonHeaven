@@ -3497,10 +3497,10 @@ exports.BattleAbilities = {
 		name: "Underwater Screen",
 	},
 	"mountainclimber": {
-		shortDesc: "Speed under Hail or Sand is 2.5x, immunity to both.",
+		shortDesc: "Speed under Hail or Sand is 4x, immunity to both.",
 		onModifySpe: function(spe, pokemon) {
 			if (this.isWeather('hail') || this.isWeather('sandstorm')) {
-				return this.chainModify(2.5);
+				return this.chainModify(4);
 			}
 		},
 		onImmunity: function(type, pokemon) {
@@ -10222,7 +10222,7 @@ exports.BattleAbilities = {
 		onBasePower: function (basePower, attacker, defender, move, effect) {
 			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Fire') return this.chainModify(1/3);
 			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') return this.chainModify(3);
-			if (effect.id === 'sandstorm' && defender.hasType('Rock')) return this.chainModify(1.5);
+			if (effect.id === 'sandstorm' && defender.hasType('Rock') && move.category === 'Special') return this.chainModify(2.25);
 			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Water') return this.chainModify(1/3);
 			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Fire') return this.chainModify(3);
 		},
