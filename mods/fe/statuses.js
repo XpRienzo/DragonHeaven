@@ -181,37 +181,19 @@ shadowdance: {
 		name: 'WeatherBreak',
 		id: 'weatherbreak',
 		num: 0,
-		onBasePowerPriority: 8,
-		onBasePower: function (basePower, attacker, defender, move) {
-			if (this.isWeather(['sunnyday', 'desolateland']) && move.type === 'Fire') {
-				return this.chainModify(1/3);
-			}
-			if (this.isWeather(['sunnyday', 'desolateland']) && move.type === 'Water') {
-				return this.chainModify(3);
-			}
-			if (this.isWeather(['sandstorm']) && defender.hasType('Rock')) {
-				return this.chainModify(1.5);
-			}
-			if (this.isWeather(['raindance', 'primordialsea']) && move.type === 'Water') {
-				return this.chainModify(1/3);
-			}
-			if (this.isWeather(['raindance', 'primordialsea']) && move.type === 'Fire') {
-				return this.chainModify(3);
+		onTryPrimaryHit: function (target, source, move) {
+			if (!source.volatiles['atmosphericperversion']){
+				move.isInInvertedWeather = true;
 			}
 		},
-		onHeal: function (pokemon, effect) {
-			if (this.isWeather(['raindance', 'primordialsea']) && effect.id === 'dryskin') {
-				return null;
-			}
-		},
-		onSourceDamage: function (pokemon, effect) {
-			if (this.isWeather(['sunnyday', 'desolateland']) && effect.id === 'solarpower') {
-				return null;
-			}
-		},
-		onWeather: function (target, source, effect) {
-			if (this.isWeather(['sunnyday', 'desolateland']) && effect.id === 'dryskin') {
-				this.heal(target.maxhp / 8, target, target);
+	},
+	atmosphericperversion: { // https://hastebin.com/emuxidukok.pas
+		name: 'AtmosphericPerversion',
+		id: 'atmosphericperversion',
+		num: 0,
+		onTryPrimaryHit: function (target, source, move) {
+			if (!source.volatiles['weatherbreak']){
+				move.isInInvertedWeather = true;
 			}
 		},
 	},
