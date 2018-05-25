@@ -10286,7 +10286,7 @@ exports.BattleAbilities = {
 					target.removeVolatile('atmosphericperversion');
 				}
 			}
-		}
+		},
       //TODO: THIS IS INCOMPLETE. If two mons with Weather Break are on the field at the same time, things should only happen as if one mon with said ability was on the field. Also, Weather Ball deals halved damaged instead of doubled and has inverse type effectiveness in inverted weather. 
 		id: "atmosphericperversion",
 		name: "Atmospheric Perversion",
