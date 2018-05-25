@@ -3499,12 +3499,12 @@ exports.BattleAbilities = {
 	"mountainclimber": {
 		shortDesc: "Speed under Hail or Sand is 4x, immunity to both.",
 		onModifySpe: function(spe, pokemon) {
-			if (this.isWeather('hail') || this.isWeather('sandstorm')) {
+			if (this.isWeather('hail') || this.isWeather('sandstorm') || this.isWeather('solarsnow')) {
 				return this.chainModify(4);
 			}
 		},
 		onImmunity: function(type, pokemon) {
-			if (type === 'hail' || type === 'sandstorm') return false;
+			if (type === 'hail' || type === 'sandstorm' || type === 'solarsnow') return false;
 		},
 		id: "mountainclimber",
 		name: "Mountain Climber",
@@ -10217,27 +10217,105 @@ exports.BattleAbilities = {
 		shortDesc: "Inverts weather effects.",
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Weather Break');
-		},
-		onBasePowerPriority: 8,
-		onBasePower: function (basePower, attacker, defender, move, effect) {
-			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Fire') return this.chainModify(1/3);
-			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') return this.chainModify(3);
-			if (effect.id === 'sandstorm' && defender.hasType('Rock') && move.category === 'Special') return this.chainModify(2.25);
-			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Water') return this.chainModify(1/3);
-			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Fire') return this.chainModify(3);
-		},
-		onAnyTryPrimaryHit: function (target, source, move) {
-			move.invertedWeather = true;
-        //Changes from the weather would be implemented in the moves themselves. 
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					target.addVolatile('weatherbreak');
+				}
+			}
 		},
 		onAnyDamage: function (damage, target, source, effect) {
-			if (effect && (effect.id === 'sandstorm' || effect.id === 'hail' || effect.id === 'solarsnow')) {
+			if (effect && (effect.id === 'sandstorm' || effect.id === 'hail' || effect.id === 'solarsnow') && !target.volatiles['atmosphericperversion']) {
             this.heal(target.maxhp / 16);
 				return false;
 			}
 		},
+		onEnd: function (pokemon) {
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					if (target.hasAbility('weatherbreak')) return;
+				}
+			}
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					target.removeVolatile('weatherbreak');
+				}
+			}
+		}
       //TODO: THIS IS INCOMPLETE. If two mons with Weather Break are on the field at the same time, things should only happen as if one mon with said ability was on the field. Also, Weather Ball deals halved damaged instead of doubled and has inverse type effectiveness in inverted weather. 
 		id: "weatherbreak",
 		name: "Weather Break",
+	},
+	"atmosphericperversion": {
+		desc: "All weather-based effects, including abilities and passive stat increases, are reversed.",
+		shortDesc: "Inverts weather effects.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Atmospheric Perversion');
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					target.addVolatile('atmosphericperversion');
+				}
+			}
+		},
+		onAnyDamage: function (damage, target, source, effect) {
+			if (effect && (effect.id === 'sandstorm' || effect.id === 'hail' || effect.id === 'solarsnow') && !target.volatiles['weatherbreak']) {
+            this.heal(target.maxhp / 16);
+				return false;
+			}
+		},
+		onEnd: function (pokemon) {
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					if (target.hasAbility('atmosphericperversion') || target.hasAbility('weathercontradiction')) return;
+				}
+			}
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					target.removeVolatile('atmosphericperversion');
+				}
+			}
+		}
+      //TODO: THIS IS INCOMPLETE. If two mons with Weather Break are on the field at the same time, things should only happen as if one mon with said ability was on the field. Also, Weather Ball deals halved damaged instead of doubled and has inverse type effectiveness in inverted weather. 
+		id: "atmosphericperversion",
+		name: "Atmospheric Perversion",
+	},
+	"weathercontradiction": {
+		desc: "The effects of stat changes (for this Pokemon only) and weather is reversed.",
+		shortDesc: "Inverts weather effects and stat changes.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Weather Contradiction');
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					target.addVolatile('atmosphericperversion');
+				}
+			}
+		},
+		onBoost: function (boost, target, source, effect) {
+			if (effect && effect.id === 'zpower') return;
+			for (let i in boost) {
+				// @ts-ignore
+				boost[i] *= -1;
+			}
+		},
+		onAnyDamage: function (damage, target, source, effect) {
+			if (effect && (effect.id === 'sandstorm' || effect.id === 'hail' || effect.id === 'solarsnow') && !target.volatiles['weatherbreak']) {
+            this.heal(target.maxhp / 16);
+				return false;
+			}
+		},
+		onEnd: function (pokemon) {
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					if (target.hasAbility('atmosphericperversion') || target.hasAbility('weathercontradiction')) return;
+				}
+			}
+			for (const side of this.sides) {
+				for (const target of side.active) {
+					target.removeVolatile('atmosphericperversion');
+				}
+			}
+		}
+      //TODO: THIS IS INCOMPLETE. If two mons with Weather Break are on the field at the same time, things should only happen as if one mon with said ability was on the field. Also, Weather Ball deals halved damaged instead of doubled and has inverse type effectiveness in inverted weather. 
+		id: "weathercontradiction",
+		name: "Weather Contradiction",
 	},
 };
