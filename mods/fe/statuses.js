@@ -182,14 +182,14 @@ shadowdance: {
 		id: 'weatherbreak',
 		num: 0,
 		onBasePowerPriority: 8,
-		onAnyModifyDamage: function (damage, source, target, move, effect) {
-			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Fire') {
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (this.isWeather(['sunnyday', 'desolateland']) && move.type === 'Fire') {
 				return this.chainModify(1/3);
 			}
-			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') {
+			/*if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') {
 				return this.chainModify(3);
 			}
-			if (effect.id === 'sandstorm' && target.hasType('Rock')) {
+			if (effect.id === 'sandstorm' && defender.hasType('Rock')) {
 				return this.chainModify(1.5);
 			}
 			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Water') {
@@ -197,7 +197,7 @@ shadowdance: {
 			}
 			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Fire') {
 				return this.chainModify(3);
-			}
+			}*/
 		},
 	},
 	vitality: {
