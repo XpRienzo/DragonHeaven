@@ -10213,4 +10213,32 @@ exports.BattleAbilities = {
 		id: "beasteye",
 		name: "Beast Eye",
 	},
+	"weatherbreak": {
+		desc: "All weather-based effects, including abilities and passive stat increases, are reversed.",
+		shortDesc: "Inverts weather effects.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Weather Break');
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move, effect) {
+			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Fire') return this.chainModify(1/3);
+			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') return this.chainModify(3);
+			if (effect.id === 'sandstorm' && defender.hasType('Rock')) return this.chainModify(1.5);
+			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Water') return this.chainModify(1/3);
+			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Fire') return this.chainModify(3);
+		},
+		onAnyTryPrimaryHit: function (target, source, move) {
+			move.invertedWeather = true;
+        //Changes from the weather would be implemented in the moves themselves. 
+		},
+		onAnyDamage: function (damage, target, source, effect) {
+			if (effect && (effect.id === 'sandstorm' || effect.id === 'hail' || effect.id === 'solarsnow')) {
+            this.heal(target.maxhp / 16);
+				return false;
+			}
+		},
+      //TODO: THIS IS INCOMPLETE. If two mons with Weather Break are on the field at the same time, things should only happen as if one mon with said ability was on the field. Also, Weather Ball deals halved damaged instead of doubled and has inverse type effectiveness in inverted weather. 
+		id: "weatherbreak",
+		name: "Weather Break",
+	},
 };
