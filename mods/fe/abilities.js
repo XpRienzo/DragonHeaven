@@ -9954,14 +9954,14 @@ exports.BattleAbilities = {
 		id: "hotairballoon",
 		name: "Hot Air Balloon",
 	},
-	/*"slimedrench": { //TODO: This is a WIP as well
+	"slimedrench": { //TODO: This is a WIP as well
 		shortDesc: "If the foe is poisoned, whenever it tries to heal (with an item or move), it takes that amount of damage.",
-		onFoeTryHeal: function (pokemon, effect) {
+		onFoeTryHeal: function (pokemon, heal) {
 			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
-				this.damage(
+				this.damage(heal, pokemon);
 			}
 		},
 		id: "slimedrench",
 		name: "Slime Drench",
-	},*/
+	},
 };
