@@ -199,12 +199,12 @@ shadowdance: {
 				return this.chainModify(3);
 			}
 		},
-		onTryHeal: function (pokemon, effect) {
+		onHeal: function (pokemon, effect) {
 			if (this.isWeather(['raindance', 'primordialsea']) && effect.id === 'dryskin') {
 				return null;
 			}
 		},
-		onDamage: function (pokemon, effect) {
+		onSourceDamage: function (pokemon, effect) {
 			if (this.isWeather(['sunnyday', 'desolateland']) && effect.id === 'solarpower') {
 				return null;
 			}
