@@ -177,7 +177,7 @@ shadowdance: {
 				}
 			},
 	},
-	weatherbreak: {
+	weatherbreak: { // https://hastebin.com/emuxidukok.pas
 		name: 'WeatherBreak',
 		id: 'weatherbreak',
 		num: 0,
@@ -202,6 +202,16 @@ shadowdance: {
 		onHeal: function (pokemon, effect) {
 			if (this.isWeather(['raindance', 'primordialsea']) && effect.id === 'dryskin') {
 				return null;
+			}
+		},
+		onDamage: function (pokemon, effect) {
+			if (this.isWeather(['sunnyday', 'desolateland']) && effect.id === 'solarpower') {
+				return null;
+			}
+		},
+		onWeather: function (target, source, effect) {
+			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && target.hasAbility('solarpower')) {
+				this.heal(target.maxhp / 8, target, target);
 			}
 		},
 	},
