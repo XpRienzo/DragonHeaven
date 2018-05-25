@@ -203,6 +203,7 @@ shadowdance: {
 			if (this.isWeather(['raindance', 'primordialsea']) && effect.id === 'dryskin') {
 				return null;
 			}
+		},
 	},
 	vitality: {
 		name: 'Vitality',
