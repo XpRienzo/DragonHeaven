@@ -184,7 +184,7 @@ shadowdance: {
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, attacker, defender, move, effect) {
 			if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Fire') {
-				return this.chainModify(1/3);
+				return this.chainModify(0.33);
 			}
 			/*if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') {
 				return this.chainModify(3);
