@@ -186,6 +186,17 @@ shadowdance: {
 				move.isInInvertedWeather = true;
 			}
 		},
+		onBasePowerPriority: -1,
+		onBasePower: function (basePower, attacker, defender, move, effect) {
+			if (!attacker.volatiles['atmosphericperversion']){
+				if (this.isWeather('sunnyday') && move.type === 'Fire') return this.chainModify(1/3);
+				if (this.isWeather('solarsnow') && move.type === 'Fire' && !defender.hasType(['Ice', 'Fire', 'Grass'])) return this.chainModify(1/3);
+				if (this.isWeather(['sunnyday', 'solarsnow']) && move.type === 'Water') return this.chainModify(3);
+				if (this.isWeather('sandstorm') && defender.hasType('Rock') && move.category === 'Special') return this.chainModify(2.25);
+				if (this.isWeather('raindance') && move.type === 'Water') return this.chainModify(1/3);
+				if (this.isWeather('raindance') && move.type === 'Fire') return this.chainModify(3);
+			}
+		},
 	},
 	atmosphericperversion: { // https://hastebin.com/emuxidukok.pas
 		name: 'AtmosphericPerversion',
@@ -194,6 +205,17 @@ shadowdance: {
 		onTryPrimaryHit: function (target, source, move) {
 			if (!source.volatiles['weatherbreak']){
 				move.isInInvertedWeather = true;
+			}
+		},
+		onBasePowerPriority: -1,
+		onBasePower: function (basePower, attacker, defender, move, effect) {
+			if (!attacker.volatiles['weatherbreak']){
+				if (this.isWeather('sunnyday') && move.type === 'Fire') return this.chainModify(1/3);
+				if (this.isWeather('solarsnow') && move.type === 'Fire' && !defender.hasType(['Ice', 'Fire', 'Grass'])) return this.chainModify(1/3);
+				if (this.isWeather(['sunnyday', 'solarsnow']) && move.type === 'Water') return this.chainModify(3);
+				if (this.isWeather('sandstorm') && defender.hasType('Rock') && move.category === 'Special') return this.chainModify(2.25);
+				if (this.isWeather('raindance') && move.type === 'Water') return this.chainModify(1/3);
+				if (this.isWeather('raindance') && move.type === 'Fire') return this.chainModify(3);
 			}
 		},
 	},
