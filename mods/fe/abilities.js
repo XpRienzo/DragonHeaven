@@ -9912,6 +9912,11 @@ exports.BattleAbilities = {
 	"shutupandjam": { //TODO: This is a WIP
 		desc: "Cannot be stopped from selecting and using a move (unless it is switching).",
 		shortDesc: "Cannot be stopped from selecting and using a move (unless it is switching).",
+		onBeforeMove: function(move, pokemon){
+	         if (pokemon.status === 'slp') {
+						move.sleepUsable = true;
+				}
+		},
 		onUpdate: function (pokemon) {
 			if (pokemon.volatiles['mustrecharge']) {
 				pokemon.removeVolatile('mustrecharge');
@@ -9954,11 +9959,11 @@ exports.BattleAbilities = {
 		id: "hotairballoon",
 		name: "Hot Air Balloon",
 	},
-	/*"shutupandjam": { //TODO: This is a WIP as well
+	/*"slimedrench": { //TODO: This is a WIP as well
 		shortDesc: "If the foe is poisoned, whenever it tries to heal (with an item or move), it takes that amount of damage.",
-		onFoeHeal: function (pokemon) {
+		onFoeTryHeal: function (pokemon, effect) {
 			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
-				this.dam
+				this.damage(
 			}
 		},
 		id: "slimedrench",

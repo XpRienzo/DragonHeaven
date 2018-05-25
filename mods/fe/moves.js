@@ -766,8 +766,8 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 100,
 		category: "Physical",
-		desc: "Lowers the user's Defense by 1 stage. If this move is successful, it breaks through the target's Baneful Bunker, Detect, King's Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally.",
-		shortDesc: "Lowers user's Def by 1; breaks protection.",
+		desc: "Lowers the user's Defense by 1 stage. This move cannot be used successfully unless the user's current form, while considering Transform, is Hoopa Unbound. If this move is successful, it breaks through the target's Baneful Bunker, Detect, King's Shield, Protect, or Spiky Shield for this turn, allowing other Pokemon to attack the target normally. If the target's side is protected by Crafty Shield, Mat Block, Quick Guard, or Wide Guard, that protection is also broken for this turn and other Pokemon may attack the target's side normally.",
+		shortDesc: "Hoopa-U: Lowers user's Def by 1; breaks protection.",
 		id: "hyperspacefury",
 		isViable: true,
 		name: "Hyperspace Fury",
@@ -775,6 +775,19 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {mirror: 1, authentic: 1},
 		breaksProtect: true,
+		onTry: function (pokemon) {
+			let moveUsers = ['Hoopa-Unbound', 'Hoorbok', 'Hooptrio']; 
+			if (moveUsers.includes(pokemon.template.species)) {
+				return;
+			}
+			this.add('-hint', "Only a Pokemon whose form is Hoopa Unbound can use this move.");
+			if (pokemon.template.species === 'Hoopa') {
+				this.add('-fail', pokemon, 'move: Hyperspace Fury', '[forme]');
+				return null;
+			}
+			this.add('-fail', pokemon, 'move: Hyperspace Fury');
+			return null;
+		},
 		self: {
 			boosts: {
 				def: -1,
@@ -791,8 +804,8 @@ exports.BattleMovedex = {
 		accuracy: 50,
 		basePower: 0,
 		category: "Status",
-		desc: "Causes the target to fall asleep.",
-		shortDesc: "Puts the foe(s) to sleep.",
+		desc: "Causes the target to fall asleep. This move cannot be used successfully unless the user's current form, while considering Transform, is Darkrai.",
+		shortDesc: "Darkrai: Puts the foe(s) to sleep.",
 		id: "darkvoid",
 		isViable: true,
 		name: "Dark Void",
@@ -800,6 +813,15 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
 		status: 'slp',
+		onTryMove: function (pokemon, target, move) {
+			let moveUsers = ['Darkrai', 'Darmega', 'Darkchomp', 'Darkchomp-Mega' 'Dank', 'Dark Hunter', 'Rairai', 'Dark Electrode']; 
+			if (moveUsers.includes(pokemon.template.species) || move.hasBounced) {
+				return;
+			}
+			this.add('-fail', pokemon, 'move: Dark Void');
+			this.add('-hint', "Only a Pokemon whose form is Darkrai can use this move.");
+			return null;
+		},
 		secondary: false,
 		target: "allAdjacentFoes",
 		type: "Dark",
