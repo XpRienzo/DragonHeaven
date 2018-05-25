@@ -6279,10 +6279,9 @@ exports.BattleAbilities = {
 	},
 	"crushing": {
 		shortDesc: "Recoil from moves used against this Pokemon is doubled.",
-		onSourceDamage: function (damage, target, source, effect) {
+		onFoeModifyDamage: function (damage, target, source, effect) {
 			if (effect.id === 'recoil') {
-				if (!this.activeMove) throw new Error("Battle.activeMove is null");
-				if (this.activeMove.id !== 'struggle') return this.chainModify(2);
+				this.chainModify(2);
 			}
 		},
 		id: "crushing",
