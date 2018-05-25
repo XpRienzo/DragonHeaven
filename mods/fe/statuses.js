@@ -210,7 +210,7 @@ shadowdance: {
 			}
 		},
 		onWeather: function (target, source, effect) {
-			if (effect.id === 'raindance' || effect.id === 'primordialsea' && effect.id === 'dryskin') {
+			if (this.isWeather(['sunnyday', 'desolateland']) && effect.id === 'dryskin') {
 				this.heal(target.maxhp / 8, target, target);
 			}
 		},
