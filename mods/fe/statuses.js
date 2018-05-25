@@ -186,18 +186,18 @@ shadowdance: {
 			if (this.isWeather(['sunnyday', 'desolateland']) && move.type === 'Fire') {
 				return this.chainModify(1/3);
 			}
-			/*if (effect.id === 'sunnyday' || effect.id === 'desolateland' && move.type === 'Water') {
+			if (this.isWeather(['sunnyday', 'desolateland']) && move.type === 'Water') {
 				return this.chainModify(3);
 			}
-			if (effect.id === 'sandstorm' && defender.hasType('Rock')) {
+			if (this.isWeather(['sandstorm']) && defender.hasType('Rock')) {
 				return this.chainModify(1.5);
 			}
-			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Water') {
+			if (this.isWeather(['raindance', 'primordialsea']) && move.type === 'Water') {
 				return this.chainModify(1/3);
 			}
-			if (effect.id === 'raindance' || effect.id === 'primordialsea' && move.type === 'Fire') {
+			if (this.isWeather(['raindance', 'primordialsea']) && move.type === 'Fire') {
 				return this.chainModify(3);
-			}*/
+			}
 		},
 	},
 	vitality: {
