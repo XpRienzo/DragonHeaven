@@ -9961,6 +9961,16 @@ exports.BattleAbilities = {
 			if (!target || target.fainted) continue;
 			return null;
 			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
+				let heal = this.heal(target.hp);
+				this.damage(heal, target);
+			}
+			}
+		},
+		onFoeHeal: function (pokemon, heal) {
+			for (const target of pokemon.side.foe.active) {
+			if (!target || target.fainted) continue;
+			return null;
+			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
 				this.damage(heal, target);
 			}
 			}
