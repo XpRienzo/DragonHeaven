@@ -5285,13 +5285,13 @@ exports.BattleAbilities = {
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual: function (pokemon) {
-			if (pokemon.name === 'Darmin-Up') {
+			if (pokemon.name === 'Darmin') {
 			this.add('-formechange', pokemon, 'Darmin-Down', '[msg]');
 			pokemon.formeChange("Darmin-Down");
 			}
 			else if (pokemon.name === 'Darmin-Down') {
-			this.add('-formechange', pokemon, 'Darmin-Up', '[msg]');
-			pokemon.formeChange("Darmin-Up");
+			this.add('-formechange', pokemon, 'Darmin', '[msg]');
+			pokemon.formeChange("Darmin");
 			}
 		},
 		id: "rhythm",
