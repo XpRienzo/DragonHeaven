@@ -729,7 +729,7 @@ exports.BattleAbilities = {
 		name: "Static Storm",
 	},
 	"dreadedflames": {
-		shortDesc: "Gains a 1.5x boost to fire moves on the turn of entry, and lowers opponent's defence on entry.",
+		shortDesc: "Gains a 1.5x boost to fire moves on the turn of entry, and lowers opponent's Attack on entry.",
 		onStart: function (pokemon) {
 			let activated = false;
 			for (const target of pokemon.side.foe.active) {
@@ -741,7 +741,7 @@ exports.BattleAbilities = {
 				if (target.volatiles['substitute']) {
 					this.add('-immune', target, '[msg]');
 				} else {
-					this.boost({def: -1}, target, pokemon);
+					this.boost({atk: -1}, target, pokemon);
 				}
 			}
 		},
@@ -3786,10 +3786,10 @@ exports.BattleAbilities = {
 		name: "Healthy Meal",
 	},
 	"christmasspirit": {
-		shortDesc: "Halves super-effective damage. Halves damage from Fire and Ice-typed moves. These stack. Cannot be bypassed by Mold Breaker or similar effects.",
+		shortDesc: "3/4 super-effective damage. Halves damage from Fire and Ice-typed moves. These stack. Cannot be bypassed by Mold Breaker or similar effects.",
 		onSourceModifyDamage: function(damage, source, target, move) {
 			if (move.typeMod > 0) {
-				return this.chainModify(0.75);
+				return this.chainModify(0.5);
 			}
 		},
 		onModifyAtkPriority: 6,
@@ -4277,6 +4277,19 @@ exports.BattleAbilities = {
 			if (target !== source && target.item && move.type === 'Fire' || move.type === 'Ice') {
 				this.add('-immune', target, '[msg]', '[from] ability: Magic Fat');
 				return null;
+			}
+		},
+		onSourceModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Ice' || move.type === 'Fire' && !defender.item) {
+				this.debug('Thick Fat weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onSourceModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Ice' || move.type === 'Fire' && !defender.item) {
+				this.debug('Thick Fat weaken');
+				return this.chainModify(0.5);
 			}
 		},
 		id: "magicfat",
@@ -8550,7 +8563,7 @@ exports.BattleAbilities = {
 	    id: "magicworker",
 	    name: "Magicworker",
 	},
-	"poisonpores": {
+	"poisonpores": { //TODO: Salasaur doesn't halve the speed of Poisoned Pokemon anymore. It gains the regular effect of Corrosion to make up for it.
 	    desc: "When this Pokemon is on the field, all Poison and Steel-types have their speed doubled. If a Pokemon is poisoned, their speed is halved.",
 	    shortDesc: "Doubles the speed of all active Poison- and Steel-types, and halves the speed of all active poisoned Pokemon.",
 	    onAnyModifySpe: function(spe, pokemon) {
