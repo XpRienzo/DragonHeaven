@@ -813,7 +813,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
 		status: 'slp',
-		onTryMove: function (pokemon, target, move) {
+		/*onTryMove: function (pokemon, target, move) { // The let moveUsers line crashes, will fix some time soon
 			let moveUsers = ['Darkrai', 'Darmega', 'Darkchomp', 'Darkchomp-Mega' 'Dank', 'Dark Hunter', 'Rairai', 'Dark Electrode']; 
 			if (moveUsers.includes(pokemon.template.species) || move.hasBounced) {
 				return;
@@ -821,7 +821,7 @@ exports.BattleMovedex = {
 			this.add('-fail', pokemon, 'move: Dark Void');
 			this.add('-hint', "Only a Pokemon whose form is Darkrai can use this move.");
 			return null;
-		},
+		},*/
 		secondary: false,
 		target: "allAdjacentFoes",
 		type: "Dark",
