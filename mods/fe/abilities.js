@@ -9954,14 +9954,13 @@ exports.BattleAbilities = {
 		id: "hotairballoon",
 		name: "Hot Air Balloon",
 	},
-	"slimedrench": { //TODO: This is a WIP as well
+	/*"slimedrench": { //TODO: This is a WIP as well
 		shortDesc: "If the foe is poisoned, whenever it tries to heal (with an item or move), it takes that amount of damage.",
 		onFoeTryHeal: function (pokemon, heal) {
 			for (const target of pokemon.side.foe.active) {
 			if (!target || target.fainted) continue;
 			return null;
 			if (pokemon.status === 'psn' || pokemon.status === 'tox') {
-				let heal = this.heal(target.hp);
 				this.damage(heal, target);
 			}
 			}
@@ -9977,5 +9976,99 @@ exports.BattleAbilities = {
 		},
 		id: "slimedrench",
 		name: "Slime Drench",
+	},*/
+	"bodyguard": {
+		shortDesc: "Grants immunity to moves that would lower this Pokemon's stats.",
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.boosts < 0) {
+					this.add('-immune', target, '[msg]', '[from] ability: Bodyguard');
+				return null;
+			}
+		},
+		id: "bodyguard",
+		name: "Bodyguard",
 	},
+	"apathy": {
+		shortDesc: "Whenever this pokemon is afflicted by a status or move restricting affect, it is removed from it and applied to the opposing pokemon. If the effect cannot be inflicted, it is removed. Item induced restrictions do not count.",
+		id: "apathy",
+		name: "Apathy",
+		onTryHitPriority: 1,
+		onTryHit: function (target, source, move) {
+			if (target === source || move.hasBounced || !move.flags['reflectable']) {
+				return;
+			}
+			let newMove = this.getMoveCopy(move.id);
+			newMove.hasBounced = true;
+			newMove.pranksterBoosted = false;
+			this.useMove(newMove, target, source);
+			return null;
+		},
+		onAllyTryHitSide: function (target, source, move) {
+			if (target.side === source.side || move.hasBounced || !move.flags['reflectable']) {
+				return;
+			}
+			let newMove = this.getMoveCopy(move.id);
+			newMove.hasBounced = true;
+			newMove.pranksterBoosted = false;
+			this.useMove(newMove, this.effectData.target, source);
+			return null;
+		},
+		onUpdate: function (pokemon) {
+			if (pokemon.volatiles['attract']) {
+				this.add('-activate', pokemon, 'ability: Oblivious');
+				pokemon.removeVolatile('attract');
+				this.add('-end', pokemon, 'move: Attract', '[from] ability: Apathy');
+			}
+			if (pokemon.volatiles['taunt']) {
+				this.add('-activate', pokemon, 'ability: Apathy');
+				pokemon.removeVolatile('taunt');
+				// Taunt's volatile already sends the -end message when removed
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'attract') return false;
+		},
+		onTryHit: function (pokemon, target, move) {
+			if (move.id === 'attract' || move.id === 'captivate' || move.id === 'taunt') {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Apathy');
+				return null;
+			}
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Apathy');
+			return false;
+		},
+		effect: {
+			duration: 1,
+		},
+	},
+	"powerdrain": {
+		shortDesc: "Grants immunity to moves that would lower this Pokemon's stats.",
+		onFoeTryDeductPP: function (pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				this.setStatus('par', target);
+			}
+		},
+		id: "powerdrain",
+		name: "Power Drain",
+	},
+	"adaptingbody": {
+		shortDesc: "Gains Adaptability and heals for 12% max HP when in weather for more than one turn.",
+		onWeather: function (target, source, effect) {
+			if (target.activeTurns > 1) {
+				this.heal(target.maxhp / 8, target, target);
+				let oldAbility = target.setAbility('adaptability');
+			if (oldAbility) {
+				this.add('-ability', target, 'Adaptability', '[from] ability: Adapting Body');
+				return;
+			}
+			return false;
+			}
+		},
+		id: "adaptingbody",
+		name: "Adapting Body",
+	},
+	
 };
