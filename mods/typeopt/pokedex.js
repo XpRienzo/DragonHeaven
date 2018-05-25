@@ -799,7 +799,7 @@ exports.BattlePokedex = {
 	seviper: {
 		inherit: true,
 		species: "Seviper",
-		types: ["Poison"],
+		types: ["Dragon", "Poison"],
 		baseStats: {
 			hp: 90,
 			atk: 125,
