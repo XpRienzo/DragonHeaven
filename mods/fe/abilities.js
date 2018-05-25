@@ -10192,7 +10192,7 @@ exports.BattleAbilities = {
 					}
 				}
 			if (source && target === source) return;
-			if (boost.[stat] && boost.[stat] < 0) {
+			if (boost.stat && boost.stat < 0) {
 				delete boost.atk;
 				if (!effect.secondaries) this.add("-fail", target, "unboost", "Attack", "[from] ability: Beast Eye", "[of] " + target);
 				this.boost({[stat]: 1}, target);
