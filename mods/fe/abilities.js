@@ -9855,7 +9855,7 @@ exports.BattleAbilities = {
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Calamity');
 		},
-		onDeductPP: function (pokemon) {
+		onTryDeductPP: function (pokemon) {
 			return null;
 		},
 		id: "calamity",
@@ -9923,8 +9923,45 @@ exports.BattleAbilities = {
 		onDisableMove: function (pokemon) {
 				return null;
 		},
+		onChargeMove: function (pokemon, target, move) {
+				this.debug('power herb - remove charge turn for ' + move.id);
+				return false; // skip charge turn
+		},
 		id: "shutupandjam",
 		name: "Shut Up And Jam",
+	},
+	"mellowvibe": { //TODO: This is a WIP as well
+		desc: "This Pokémon can never be prevented from selecting a move and using it. This Pokémon is unaffected by debuffs and damage from its own moves.",
+		shortDesc: "This Pokémon can never be prevented from selecting a move and using it. This Pokémon is unaffected by debuffs and damage from its own moves.",
+		onBeforeMove: function(move, pokemon){
+	         if (pokemon.status === 'slp') {
+						move.sleepUsable = true;
+				}
+		},
+		onUpdate: function (pokemon) {
+			if (pokemon.volatiles['mustrecharge']) {
+				pokemon.removeVolatile('mustrecharge');
+			}
+			if (pokemon.volatiles['lockedmove']) {
+				pokemon.removeVolatile('lockedmove');
+			}
+			
+		},
+		onDisableMove: function (pokemon) {
+				return null;
+		},
+		onChargeMove: function (pokemon, target, move) {
+				this.debug('power herb - remove charge turn for ' + move.id);
+				return false; // skip charge turn
+		},
+		onDamage: function (damage, target, source, effect) {
+			if (effect.id === 'recoil') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return null;
+			}
+		},
+		id: "mellowvibe",
+		name: "Mellow Vibe",
 	},
 	"hotairballoon": {
 		desc: "After each consecutive kill, This pokemon gets +1 Special Attack, and +1 to it's highest stat. If Highest stat is Special Attack, then the second boost will be nullified.",
@@ -10070,5 +10107,111 @@ exports.BattleAbilities = {
 		id: "adaptingbody",
 		name: "Adapting Body",
 	},
-	
+	"diamondarmor": {
+		shortDesc: "Super-effective moves deal only ¾ of their normal damage. Negates any PP-depleting Ability.",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod > 0) {
+				return this.chainModify(0.75);
+			}
+		},
+		onTryDeductPP: function (pokemon) {
+			return null;
+		},
+		id: "diamondarmor",
+		name: "Diamond Armor",
+	},
+	"beastscopycat": {
+		shortDesc: "Upon switchin in, replace one of user's stats with the foe's highest non-HP stat. Upon knocking a foe out, this Pokémon's highest stat is raised by one stage.",
+		onStart: function (target, source, effect) {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+				source.stats[stat] = target.stats[stat];
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		id: "beastscopycat",
+		name: "Beast's Copycat",
+	},
+	"unfriend": {
+		shortDesc: "If Happislash, changes to Unfriendly Forme before attempting to use an attacking move, and changes to Friendly Forme before attempting to use King's Shield. Takes 1/2 damage from other Pokemon's attacks when in Friendly Forme.",
+		onBeforeMovePriority: 0.5,
+		onBeforeMove: function (attacker, defender, move) {
+			if (attacker.template.baseSpecies !== 'Happislash' || attacker.transformed) return;
+			if (move.category === 'Status' && move.id !== 'kingsshield') return;
+			let targetSpecies = (move.id === 'kingsshield' ? 'Happislash' : 'Happislash-Unfriendly');
+			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
+				this.add('-formechange', attacker, targetSpecies, '[from] ability: Unfriend');
+			}
+		},
+		onFoeBasePowerPriority: 8,
+		onFoeBasePower: function (basePower, pokemon) {
+			let boosted = true;
+			let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+			for (const target of allActives) {
+				if (target === pokemon) continue;
+				if (pokemon.baseForme === 'Friendly') {
+					boosted = false;
+					break;
+				}
+			}
+			if (boosted) {
+				this.debug('Analytic boost');
+				return this.chainModify(0.5);
+			}
+		},
+		id: "unfriend",
+		name: "Unfriend",
+	},
+	"beasteye": {
+		shortDesc: "Highest non-HP stat can't be lowered. If this would happen or if this Pokémon is to land a KO, it gets +1 to that stat.",
+		onBoost: function (boost, target, source, effect) {
+			let stat = 'atk';
+				let bestStat = 0;
+				for (let i in target.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = target.stats[i];
+					}
+				}
+			if (source && target === source) return;
+			if (boost.[stat] && boost.[stat] < 0) {
+				delete boost.atk;
+				if (!effect.secondaries) this.add("-fail", target, "unboost", "Attack", "[from] ability: Beast Eye", "[of] " + target);
+				this.boost({[stat]: 1}, target);
+			}
+		},
+		onSourceFaint: function (target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				let stat = 'atk';
+				let bestStat = 0;
+				for (let i in source.stats) {
+					if (source.stats[i] > bestStat) {
+						stat = i;
+						bestStat = source.stats[i];
+					}
+				}
+				this.boost({[stat]: 1}, source);
+			}
+		},
+		id: "beasteye",
+		name: "Beast Eye",
+	},
 };
