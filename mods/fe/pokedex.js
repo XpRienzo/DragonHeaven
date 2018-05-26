@@ -8878,7 +8878,7 @@ darkchomp: {
         weightkg: 74.25,
         color: "Gray",
         eggGroups: ["Water 3"],
-      dexentry: "It is theorized that Kabutops is a distant ancestor of Golisopod. With this theory known, a hypothetical specimen of an intermediate generation was created. It would seem that this generation was closer to our times than long back, as it has much of Golisopod's features. However, it remains having the two blades on its uppermost pair of arms."
+      dexentry: "It is theorized that Kabutops is a distant ancestor of Golisopod. With this theory known, a hypothetical specimen of an intermediate generation was created. It would seem that this generation was closer to our times than long back, as it has much of Golisopod's features. However, it remains having the two blades on its uppermost pair of arms.",
     },
     pewearalola: {
         num: 7500228,
@@ -9009,7 +9009,7 @@ darkchomp: {
         abilities: {
             0: "Ancient Mariner"
         },
-       dexentry: "A rogue team of former Team Rocket members created this fusion. It is said to be able to remove the anchor attached to its head and swing it around crazily for an extremely powerful Power Whip or Anchor Shot. At the same time, it is able to fight with its four arms against any enemies trying to dodge the attack"
+       dexentry: "A rogue team of former Team Rocket members created this fusion. It is said to be able to remove the anchor attached to its head and swing it around crazily for an extremely powerful Power Whip or Anchor Shot. At the same time, it is able to fight with its four arms against any enemies trying to dodge the attack",
 
 
     },
@@ -9193,7 +9193,7 @@ darkchomp: {
         abilities: {
             0: "Sun Bath"
         },
-    dexentries: Two of our grunts, who were on the trail of the Pewter and Cerulean Gym Leaders at the time, have encountered a Gastly proficient in the art of illusions. This Gastly used a Venusaur and a Blastoise illusion to scare a Bulbasaur and Squirtle, then combined them to form Venustoise. While the plans to create a Venustoise were postponed for some time, a breakthrough in combining the rarely-seen abilities of Pokémon was discovered, and one of the first fusions to be created from this breakthrough was a live Bulbasquirt. When brought to Level 16, it evolved into an Ivytortle, and at Level 34, Ivytortle evolved into the same fusion depicted back in the Maiden's Peak illusion: Venustoise."
+    dexentry: "Two of our grunts, who were on the trail of the Pewter and Cerulean Gym Leaders at the time, have encountered a Gastly proficient in the art of illusions. This Gastly used a Venusaur and a Blastoise illusion to scare a Bulbasaur and Squirtle, then combined them to form Venustoise. While the plans to create a Venustoise were postponed for some time, a breakthrough in combining the rarely-seen abilities of Pokémon was discovered, and one of the first fusions to be created from this breakthrough was a live Bulbasquirt. When brought to Level 16, it evolved into an Ivytortle, and at Level 34, Ivytortle evolved into the same fusion depicted back in the Maiden's Peak illusion: Venustoise.",
 
     },
 
@@ -11471,7 +11471,7 @@ celebi: {
         abilities: {
             0: "Electron Rain"
         },
-    dexentries: "Of the rare cases of a DNA Fusion not being done by Team Rocket. This powerful mermaid-like rodent was created by Team Aqua, after succesful capture of the Blue Orb. Their attempts at testing the Blue Orb on different species reacted with a Minun, which had then recieved Kyogre's powers contained in the Orb, becoming Kyonun. It swims through the oceans at high speeds, and has tremendous power when it is raining, capable of delievering shocks of over 10.000 Volts."
+    dexentry: "Of the rare cases of a DNA Fusion not being done by Team Rocket. This powerful mermaid-like rodent was created by Team Aqua, after succesful capture of the Blue Orb. Their attempts at testing the Blue Orb on different species reacted with a Minun, which had then recieved Kyogre's powers contained in the Orb, becoming Kyonun. It swims through the oceans at high speeds, and has tremendous power when it is raining, capable of delievering shocks of over 10.000 Volts."
     },
 
 
@@ -12035,8 +12035,7 @@ celebi: {
         abilities: {
             0: "Operation Overgrow"
         },
-       dexentries: "After evolving from Roseleef, Subject #304 broke out of confinement. Subject #74, even when Mega Evolved, was taken out effortlessly, as was Subject #83. Subject #59, which is only meant to be used in dire situations, was required to restrain it. 
-       Subject #304 has been successfully inhibited. Though it still has very strong Grass-type moves, it is no longer likely to effortlessly break through our most defensive fusions."
+       dexentry: "After evolving from Roseleef, Subject #304 broke out of confinement. Subject #74, even when Mega Evolved, was taken out effortlessly, as was Subject #83. Subject #59, which is only meant to be used in dire situations, was required to restrain it. Subject #304 has been successfully inhibited. Though it still has very strong Grass-type moves, it is no longer likely to effortlessly break through our most defensive fusions.",
     },
 
 
@@ -13102,7 +13101,7 @@ celebi: {
         abilities: {
             0: "Unstable Voltage"
         },
-        dexentry: "As Experiments #242 and #304, among others, need to be restrained in some way, shape, or form, some DNA was taken from the Dark Stone from Unova and combined with Doublade DNA. The resulting construct appears to have swords for arms, two tassels as wings, and a body made of the same substance as Doublade's sheath. While this fusion always hits its mark, it unfortunately is guaranteed to be hit by any attacks aimed for it."
+        dexentry: "As Experiments #242 and #304, among others, need to be restrained in some way, shape, or form, some DNA was taken from the Dark Stone from Unova and combined with Doublade DNA. The resulting construct appears to have swords for arms, two tassels as wings, and a body made of the same substance as Doublade's sheath. While this fusion always hits its mark, it unfortunately is guaranteed to be hit by any attacks aimed for it.",
     },
 
 
@@ -14518,7 +14517,7 @@ mimiblimbusted: {
         abilities: {
             0: "Dark Surge"
         },
-     dexentries: " rare, legendary entity created in a laboratory by Team Rocket. It was made using the powerful forces of Tapu Koko, the guardian of Melemele, combined with an Absol. Results did not go as intended, as it kept the pure heart of Koko, and does not obey Team Rocket at all. This species is said to warn the coming of a terrible thunderstorm, and only ever appearing before one is near."
+     dexentry: " rare, legendary entity created in a laboratory by Team Rocket. It was made using the powerful forces of Tapu Koko, the guardian of Melemele, combined with an Absol. Results did not go as intended, as it kept the pure heart of Koko, and does not obey Team Rocket at all. This species is said to warn the coming of a terrible thunderstorm, and only ever appearing before one is near."
     },
 
 
