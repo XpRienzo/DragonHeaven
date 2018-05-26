@@ -18469,7 +18469,7 @@ auroritarmega: {
         eggGroups: ["Monster"],
     },
     emulia: { 
-    num: 7500509
+    num: 7500509,
     species: "Emulia",
     types: ["Electric", "Flying"],
     genderRatio: "{M: 50.0, F: 50.0}",
@@ -18487,11 +18487,11 @@ auroritarmega: {
   heightm: 5.2,
   weightkg: 110.5,
   color: "White",
-  eggGroups: ["Field"], ["Undiscovered"]
-}
+  eggGroups: ["Field", "Undiscovered"],
+},
     brabominable: { 
-    num: 7500510
-    species: "brabominable",
+    num: 7500510,
+    species: "Brabominable",
     types: ["Fighting", "Water"],
     genderRatio: "{M: 50.0, F: 50.0}",
     baseStats: {
@@ -18508,10 +18508,10 @@ auroritarmega: {
   heightm: 1.7,
   weightkg: 138,
   color: "White",
-  eggGroups: ["Water 3"]
-}
+  eggGroups: ["Water 3"],
+},
     klinkarel: { 
-    num: 7500511
+    num: 7500511,
     species: "Klinkarel",
     types: ["Steel", "Water"],
     genderRatio: "{M: 50.0, F: 50.0}",
@@ -18527,6 +18527,6 @@ auroritarmega: {
       0: "Positivity"
   },
   color: "White",
-  eggGroups: ["Undiscovered"]
-}
+  eggGroups: ["Undiscovered"],
+},
 };
