@@ -754,12 +754,93 @@ exports.BattleMovedex = {
 							if (move.solarsnowboosted) {
 			            return typeMod + this.getEffectiveness('Ice', type);
 							}
-		                },
+		},
 		secondary: false,
 		target: "normal",
 		type: "Normal",
 		zMovePower: 160,
 		contestType: "Beautiful",
+	},
+	
+	"defog": {
+		num: 432,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Lowers the target's evasiveness by 1 stage. If this move is successful and whether or not the target's evasiveness was affected, the effects of Reflect, Light Screen, Aurora Veil, Safeguard, Mist, Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the target's side, and the effects of Spikes, Toxic Spikes, Stealth Rock, and Sticky Web end for the user's side. Ignores a target's substitute, although a substitute will still block the lowering of evasiveness.",
+		shortDesc: "-1 evasion; clears user and target side's hazards.",
+		id: "defog",
+		isViable: true,
+		name: "Defog",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		onHit: function (target, source, move) {
+			if (!target.volatiles['substitute'] || move.infiltrates) this.boost({evasion: -1});
+			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'stealthseed', 'cosmicweb', 'slipperyweb', 'stickyvenom'];
+			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'stealthseed', 'cosmicweb', 'slipperyweb', 'stickyvenom'];
+			let success = false;
+			for (const targetCondition of removeTarget) {
+				if (target.side.removeSideCondition(targetCondition)) {
+					if (!removeAll.includes(targetCondition)) continue;
+					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Defog', '[of] ' + target);
+					success = true;
+				}
+			}
+			for (const sideCondition of removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Defog', '[of] ' + source);
+					success = true;
+				}
+			}
+			return success;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Flying",
+		zMoveBoost: {accuracy: 1},
+		contestType: "Cool",
+	},
+	"rapidspin": {
+		num: 229,
+		accuracy: 100,
+		basePower: 20,
+		category: "Physical",
+		desc: "If this move is successful and the user has not fainted, the effects of Leech Seed and partial-trapping moves end for the user, and all hazards are removed from the user's side of the field.",
+		shortDesc: "Frees user from hazards/partial trap/Leech Seed.",
+		id: "rapidspin",
+		isViable: true,
+		name: "Rapid Spin",
+		pp: 40,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			onHit: function (pokemon) {
+				if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
+					this.add('-end', pokemon, 'Leech Seed', '[from] move: Rapid Spin', '[of] ' + pokemon);
+				}
+				if (pokemon.hp && pokemon.removeVolatile('rootdrag')) {
+					this.add('-end', pokemon, 'Root Drag', '[from] move: Rapid Spin', '[of] ' + pokemon);
+				}
+				if (pokemon.hp && pokemon.removeVolatile('magicdrain')) {
+					this.add('-end', pokemon, 'Magic Drain', '[from] move: Rapid Spin', '[of] ' + pokemon);
+				}
+				let sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'stealthseed', 'cosmicweb', 'stickyvenom'];
+				for (const condition of sideConditions) {
+					if (pokemon.hp && pokemon.side.removeSideCondition(condition)) {
+						this.add('-sideend', pokemon.side, this.getEffect(condition).name, '[from] move: Rapid Spin', '[of] ' + pokemon);
+					}
+				}
+				if (pokemon.hp && pokemon.volatiles['partiallytrapped']) {
+					pokemon.removeVolatile('partiallytrapped');
+				}
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMovePower: 100,
+		contestType: "Cool",
 	},
 	"hyperspacefury": { // Hyperspace for all 
 		num: 621,
