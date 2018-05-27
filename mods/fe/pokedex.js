@@ -5121,8 +5121,8 @@ darkchomp: {
         abilities: {
             0: "Adaptability"
         },
-        heightm: 1.345,
-        weightkg: 51,
+        heightm: 1.445,
+        weightkg: 54.5,
         color: "Yellow",
         eggGroups: ["Human-Like"],
     },
@@ -5142,9 +5142,9 @@ darkchomp: {
             spe: 150
         },
         abilities: {
-            0: "Adaptability"
+            0: "Trace"
         },
-        heightm: 1.345,
+        heightm: 1.045,
         weightkg: 51,
         color: "Yellow",
         eggGroups: ["Human-Like"],
@@ -5196,9 +5196,9 @@ darkchomp: {
         color: "Gray",
         eggGroups: ["Bug"],
     },
-    gallete: {
+    gallette: {
         num: 7500133,
-        species: "Gallete",
+        species: "Gallette",
         types: ["Fighting", "Ghost"],
         gender: "M",
         baseStats: {
@@ -5217,10 +5217,10 @@ darkchomp: {
         color: "Black",
         eggGroups: ["Amorphous"],
     },
-    galletemegag: {
+    gallettemegag: {
         num: 7500133,
-        species: "Gallete-Mega-G",
-        baseSpecies: "Gallete",
+        species: "Gallette-Mega-G",
+        baseSpecies: "Gallette",
         forme: "Mega",
         formeLetter: "M",
         types: ["Fighting", "Ghost"],
@@ -5237,14 +5237,14 @@ darkchomp: {
             0: "Steadfast"
         },
         heightm: 1.345,
-        weightkg: 32.25,
+        weightkg: 36.65,
         color: "Black",
         eggGroups: ["Amorphous"],
     },
-    galletemegab: {
+    gallettemegab: {
         num: 7500133,
-        species: "Gallete-Mega-B",
-        baseSpecies: "Gallete",
+        species: "Gallette-Mega-B",
+        baseSpecies: "Gallette",
         forme: "Mega",
         formeLetter: "M",
         types: ["Fighting", "Ghost"],
@@ -5260,8 +5260,8 @@ darkchomp: {
         abilities: {
             0: "Prankster"
         },
-        heightm: 1.345,
-        weightkg: 32.25,
+        heightm: 1.445,
+        weightkg: 32.75,
         color: "Black",
         eggGroups: ["Amorphous"],
     },
@@ -5286,7 +5286,7 @@ darkchomp: {
         },
         heightm: 2.59,
         weightkg: 247.5,
-        color: "Black",
+        color: "Red",
         eggGroups: ["Monster"],
     },
     steelthorn: {
@@ -5331,8 +5331,8 @@ darkchomp: {
         abilities: {
             0: "Sand Force"
         },
-        heightm: 5.09,
-        weightkg: 255,
+        heightm: 6.39,
+        weightkg: 595,
         color: "Gray",
         eggGroups: ["Mineral"],
     },
