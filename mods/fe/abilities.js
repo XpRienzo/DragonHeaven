@@ -2246,7 +2246,7 @@ exports.BattleAbilities = {
 	"permafrost": {
 		shortDesc: "Immune to Fire and Ground.",
 		onTryHit: function(target, source, move) {
-			if (target !== source && move.type === 'Ground' || move.type === 'Fire') {
+			if (target !== source && (move.type === 'Ground' || move.type === 'Fire')) {
 				this.add('-immune', target, '[msg]', '[from] ability: Permafrost');
 				return null;
 			}
@@ -2293,7 +2293,7 @@ exports.BattleAbilities = {
 		name: "Stunning Bug",
 	},
 	"champion": {
-		shortDesc: "Users Attack is 1.5x.",
+		shortDesc: "User's Attack is 1.5x.",
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk) {
 			return this.chainModify(1.5);
@@ -2303,6 +2303,7 @@ exports.BattleAbilities = {
 	},
 	'venomstream': {
 		shortDesc: "Uses Toxic Spikes on switch in",
+		onStartPriority: -1,
 		onStart: function(source) {
 			this.useMove('Toxic Spikes', source);
 		},
@@ -2320,7 +2321,7 @@ exports.BattleAbilities = {
 		id: "sunaura",
 		name: "Sun Aura",
 	},
-	'tropicalstorm': {
+	"tropicalstorm": {
 		shortDesc: "Tailwind on switch in",
 		onStart: function(source) {
 			this.useMove('Tailwind', source);
@@ -9172,7 +9173,7 @@ exports.BattleAbilities = {
 		name: "Power Forward",
 	},
 	"weathercaster": {
-		shortDesc: "While this Pokemon is active, the effects of weather conditions are disabled.",
+		shortDesc: "While this Pokemon is active, its secondary type changes.",
 		onStart: function (pokemon) {
 			this.add('-ability', pokemon, 'Weather Caster');
 			let type = this.getMove(pokemon.moveSlots[0].id).type;
@@ -9336,6 +9337,31 @@ exports.BattleAbilities = {
 	"spiralpower": { // TODO: Check if this works
 		shortDesc: "Changes secondary type and doubles Speed while holding a plate or Z-Crystal.",
 		// Form Changes implemented in statuses.js
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+			let type = 'Normal';
+			if (pokemon.ability === 'spiralpower') {
+				// @ts-ignore
+				type = pokemon.getItem().onPlate;
+				// @ts-ignore
+				if (!type || type === true) {
+					type = 'Normal';
+				}
+			}
+			if(type === 'Water'){
+				pokemon.setType('Water');
+			} else {
+				pokemon.setType('Water', type);
+			}
+		},
+		onTakeItem: function (item, pokemon, source) {
+			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp || !pokemon.getItem().onPlate) return;
+			if (!this.activeMove) throw new Error("Battle.activeMove is null");
+			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
+				this.add('-activate', pokemon, 'ability: Sticky Hold');
+				return false;
+			}
+		},
 		onModifySpe: function (spe, pokemon) {
 			if (pokemon.getItem() && pokemon.getItem().onPlate) {
 				return this.chainModify(2);
@@ -9415,7 +9441,7 @@ exports.BattleAbilities = {
 					}
 				}
 			}
-			if (warnMoves.length > 0){
+			if (warnMoves.length){
 				pokemon.baseStats.hp = warnBp;
 				pokemon.baseStats.atk = warnBp;
 				pokemon.baseStats.def = warnBp;
@@ -10225,7 +10251,7 @@ exports.BattleAbilities = {
 				return null;
 		},
 		onChargeMove: function (pokemon, target, move) {
-				this.debug('power herb - remove charge turn for ' + move.id);
+				this.debug('mellow vibe - remove charge turn for ' + move.id);
 				return false; // skip charge turn
 		},
 		onDamage: function (damage, target, source, effect) {
