@@ -1975,7 +1975,7 @@ exports.BattleMovedex = {
                     this.add('-sideend', pokemon.side, 'move: Stealth Seed', '[of] ' + pokemon);
                     pokemon.side.removeSideCondition('stealthseed');
                 } else {
-                    pokemon.addVolatile('leechseed');
+                    pokemon.addVolatile('leechseed', this.effectData.target);
                 }
             },
         },
