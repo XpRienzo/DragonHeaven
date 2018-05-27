@@ -18187,8 +18187,6 @@ auroritarmega: {
 		  weightkg: 22.2,
 		  eggGroups: ["Field"],
 	},
-
-
 	pluffatisse: {
 		num: 7500501,
 		species: "Pluffatisse",
@@ -18397,7 +18395,7 @@ auroritarmega: {
         color: "Blue",
         eggGroups: ["Dragon"],
     },
-    celemencemega: {
+    saladreigoncemega: {
         num: 7500507,
         species: "Saladreigonce-Mega",
         baseSpecies: "Saladreigonce",
@@ -18488,9 +18486,49 @@ auroritarmega: {
   color: "White",
   eggGroups: ["Field", "Undiscovered"],
 },
-    brabominable: { 
+    klinkarel: { 
     num: 7500510,
-    species: "Brabominable",
+    species: "Klinkarel",
+    types: ["Steel", "Water"],
+    genderRatio: "{M: 50.0, F: 50.0}",
+    baseStats: {
+    hp: 69, 
+	 atk: 102, 
+	 def: 87, 
+	 spa: 72, 
+    spd: 72, 
+    spe: 100
+  },
+  abilities: {
+      0: "Positivity"
+  },
+  color: "White",
+  eggGroups: ["Undiscovered"],
+},
+    gumshoe: { 
+    num: 7500511,
+    species: "Gumshoe",
+    types: ["Dark", "Normal"],
+    genderRatio: "{M: 50.0, F: 50.0}",
+    baseStats: { //89	125	72	60	82	95
+    hp: 89, 
+	 atk: 125, 
+	 def: 72, 
+	 spa: 60, 
+    spd: 82, 
+    spe: 95
+  },
+  abilities: {
+      0: "Jealous Aggressor"
+  },
+  heightm: 0.9,
+  weightkg: 24.1,
+  color: "Black",
+  eggGroups: ["Field"],
+},
+    barbominable: { 
+    num: 7500512,
+    species: "Barbominable",
     types: ["Fighting", "Water"],
     genderRatio: "{M: 50.0, F: 50.0}",
     baseStats: {
@@ -18509,23 +18547,87 @@ auroritarmega: {
   color: "White",
   eggGroups: ["Water 3"],
 },
-    klinkarel: { 
-    num: 7500511,
-    species: "Klinkarel",
-    types: ["Steel", "Water"],
-    genderRatio: "{M: 50.0, F: 50.0}",
+    asterisk: { 
+    num: 7500513,
+    species: "Asterisk",
+    types: ["Poison", "Flying"],
+    genderRatio: "{M: 75.0, F: 25.0}",
     baseStats: {
-    hp: 69, 
-	 atk: 102, 
-	 def: 87, 
-	 spa: 72, 
-    spd: 72, 
-    spe: 100
+    hp: 82, 
+	 atk: 70, 
+	 def: 90, 
+	 spa: 132, 
+    spd: 120, 
+    spe: 95
   },
   abilities: {
-      0: "Positivity"
+      0: "Starburst"
   },
-  color: "White",
-  eggGroups: ["Undiscovered"],
+  heightm: 1.2,
+  weightkg: 26.25,
+  eggGroups: ["Fairy"],
 },
+    togetrio: { 
+    num: 7500514,
+    species: "Togetrio",
+    types: ["Ground", "Electric"],
+    genderRatio: "{M: 50.0, F: 50.0}",
+    baseStats: {
+    hp: 60, 
+	 atk: 109, 
+	 def: 66, 
+	 spa: 55, 
+    spd: 81, 
+    spe: 118
+  },
+  abilities: {
+      0: "Quick Trap"
+  },
+  heightm: 0.5,
+  weightkg: 18.3,
+  eggGroups: ["Field"],
+},
+		centenarian: {
+        num: 7500515,
+        species: "Centenarian",
+        types: ["Electric", "Fighting"],
+		  genderRatio: "{M: 75.0, F: 25.0}",
+        baseStats: {
+            hp: 83,
+            atk: 99,
+            def: 75,
+            spa: 114,
+            spd: 75,
+            spe: 116
+        },
+        abilities: {
+            0: "Aeon Flux"
+        },
+        heightm: 1.35,
+        weightkg: 47.6,
+        eggGroups: ["Field"],
+    },
+    centenarianmega: {
+        num: 7500515,
+        species: "Centenarian-Mega",
+        baseSpecies: "Centenarian",
+        forme: "Mega",
+        formeLetter: "M",
+        types: ["Electric", "Fighting"],
+		  genderRatio: "{M: 75.0, F: 25.0}",
+        baseStats: {
+            hp: 83,
+            atk: 99,
+            def: 95,
+            spa: 144,
+            spd: 95,
+            spe: 146
+        },
+        abilities: {
+            0: "Intimidate"
+        },
+        heightm: 1.65,
+        weightkg: 51.4,
+        eggGroups: ["Field"],
+    },
 };
