@@ -18239,7 +18239,7 @@ auroritarmega: {
 			spe: 57,
 		},
 		abilities: {
-			0: "Floating Grounds"
+			0: "Panic Mode"
 		},
 		  heightm: 0.9,
 		  weightkg: 33.25,
