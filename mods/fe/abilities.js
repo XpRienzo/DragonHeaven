@@ -3185,13 +3185,25 @@ exports.BattleAbilities = {
 		name: "Ambition",
 	},
 	"poweroftwo": {
-		shortDesc: "This Pokemon's Attack and Speed are doubled.",
+		shortDesc: "This Pokemon's Attack and Speed are doubled under rain.",
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk) {
-			return this.chainModify(2);
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(0.5);
+				}
+			}
 		},
 		onModifySpe: function(spe) {
-			return this.chainModify(2);
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(0.5);
+				}
+			}
 		},
 		id: "poweroftwo",
 		name: "Power of Two",
