@@ -2634,14 +2634,14 @@ exports.BattleAbilities = {
 	},
 	"pixielure": {
 		shortDesc: "Prevents Fairy-types from switching out.",
-		onFoeTrapPokemon: function(pokemon) {
-			if (!pokemon.hasAbility('shadowtag') && this.isAdjacent(pokemon, this.effectData.target) && pokemon.type === 'Fairy') {
+		onFoeTrapPokemon: function (pokemon) {
+			if (pokemon.hasType('Fairy') && this.isAdjacent(pokemon, this.effectData.target)) {
 				pokemon.tryTrap(true);
 			}
 		},
-		onFoeMaybeTrapPokemon: function(pokemon, source) {
+		onFoeMaybeTrapPokemon: function (pokemon, source) {
 			if (!source) source = this.effectData.target;
-			if (!pokemon.hasAbility('shadowtag') && this.isAdjacent(pokemon, source) && pokemon.type === 'Fairy') {
+			if ((!pokemon.knownType || pokemon.hasType('Fairy')) && this.isAdjacent(pokemon, source)) {
 				pokemon.maybeTrapped = true;
 			}
 		},
@@ -5281,9 +5281,7 @@ exports.BattleAbilities = {
 			if ((source.side === this.effectData.target.side || effect.id === 'perishsong') && effect.priority > 0.1 && effect.target !== 'foeSide') {
 				this.attrLastMove('[still]');
 				this.add('cant', this.effectData.target, 'ability: Queens Command', effect, '[of] ' + target);
-				this.boost({
-					atk: 1
-				});
+				this.boost({atk: 1}, source, target);
 				return false;
 			}
 		},
