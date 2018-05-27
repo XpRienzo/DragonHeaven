@@ -7418,6 +7418,20 @@ exports.BattleAbilities = {
 	"optimize": {
 		desc: "This Pokemon's secondary typing changes depending on what plate or Z-Crystal it is holding. This Pokemon's Normal-type moves also become that type and have 1.2x power.",
 		shortDesc: "Secondary typing and Normal-type moves change to match its plate or Z-Crystal. Moves that would otherwise be Normal-type have 1.2x power.",
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+				// @ts-ignore
+				let type = pokemon.getItem().onPlate;
+				// @ts-ignore
+				if (!type || type === true) {
+					type = 'Normal';
+			}
+			if (type === 'Electric'){
+				pokemon.setType('Electric');
+			} else {
+				pokemon.setType('Electric', type);
+			}
+		},
 		onModifyMovePriority: -1,
 		onModifyMove: function (move, pokemon) {
 			if (pokemon.getItem() && move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
@@ -9196,7 +9210,41 @@ exports.BattleAbilities = {
 	},
 	"victorysystem": { // TODO: Check if this works
 		shortDesc: "Holding a Memory changes this Pokemon's primary type and multiplies its accuracy by 1.5.",
-		// RKS System's type-changing itself is implemented in statuses.js
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+				// @ts-ignore
+				let type = pokemon.getItem().onMemory;
+				// @ts-ignore
+				if (!type || type === true) {
+					type = 'Normal';
+				}
+			if(type === 'Fire'){
+				pokemon.setType('Fire');
+			} else {
+				pokemon.setType(type, 'Fire');
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'embargo' && pokemon.getItem() && pokemon.getItem().onMemory) return false;
+		},
+		onTryHit: function (pokemon, target, move) {
+			if (move.id === 'embargo' && pokemon.getItem() && pokemon.getItem().onMemory) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Victory System');
+				return null;
+			}
+		},
+		onTakeItem: function (item, pokemon, source) {
+			if (!pokemon.getItem().onMemory || this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp) return;
+			if (!this.activeMove) throw new Error("Battle.activeMove is null");
+			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
+				return false;
+			}
+		},
+		onSourceModifyAccuracy: function (accuracy) {
+			if (typeof accuracy !== 'number') return;
+			this.debug('compoundeyes - enhancing accuracy');
+			return accuracy * 1.5;
+		},
 		id: "victorysystem",
 		name: "Victory System",
 	},
@@ -9354,11 +9402,19 @@ exports.BattleAbilities = {
 				pokemon.setType('Water', type);
 			}
 		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'embargo' && pokemon.getItem() && pokemon.getItem().onPlate) return false;
+		},
+		onTryHit: function (pokemon, target, move) {
+			if (move.id === 'embargo' && pokemon.getItem() && pokemon.getItem().onPlate) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Spiral Power');
+				return null;
+			}
+		},
 		onTakeItem: function (item, pokemon, source) {
-			if (this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp || !pokemon.getItem().onPlate) return;
+			if (!pokemon.getItem().onPlate || this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp) return;
 			if (!this.activeMove) throw new Error("Battle.activeMove is null");
 			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
-				this.add('-activate', pokemon, 'ability: Sticky Hold');
 				return false;
 			}
 		},
