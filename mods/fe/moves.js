@@ -722,38 +722,69 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {bullet: 1, protect: 1, mirror: 1},
-		onModifyMove: function (move) {
+		onModifyMove: function (move, pokemon) {
 			switch (this.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
 				move.type = 'Fire';
-				move.basePower *= 2;
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					move.basePower *= 2;
+				} else {
+					move.basePower *= 0.5;
+				}
 				break;
 			case 'raindance':
 			case 'primordialsea':
 				move.type = 'Water';
-				move.basePower *= 2;
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					move.basePower *= 2;
+				} else {
+					move.basePower *= 0.5;
+				}
 				break;
 			case 'sandstorm':
 				move.type = 'Rock';
-				move.basePower *= 2;
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					move.basePower *= 2;
+				} else {
+					move.basePower *= 0.5;
+				}
 				break;
 			case 'hail':
 				move.type = 'Ice';
-				move.basePower *= 2;
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					move.basePower *= 2;
+				} else {
+					move.basePower *= 0.5;
+				}
+				break;
+			case 'shadowdance':
+				move.type = 'Ghost';
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					move.basePower *= 2;
+				} else {
+					move.basePower *= 0.5;
+				}
 				break;
 			case 'solarsnow':
 				move.type = 'Fire';
 		      move.solarsnowboosted = true;
-				move.basePower *= 2;
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					move.basePower *= 2;
+				} else {
+					move.basePower *= 0.5;
+				}
 				break;
 			}
 		},
-		onEffectiveness: function (typeMod, type, move) {
-			            // @ts-ignore
-							if (move.solarsnowboosted) {
-			            return typeMod + this.getEffectiveness('Ice', type);
-							}
+		onEffectiveness: function (typeMod, type, move, target) {
+			   // @ts-ignore
+				let mod = typeMod; 
+				if (move.solarsnowboosted) {
+			        mod = mod + this.getEffectiveness('Ice', type);
+				}
+				if (pokemon.volatiles['atmosphericperversion'] != pokemon.volatiles['weatherbreak']) mod = mod * -1;
+				return mod; 
 		},
 		secondary: false,
 		target: "normal",
