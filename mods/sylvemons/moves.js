@@ -1656,13 +1656,13 @@ exports.BattleMovedex = {
 			mirror: 1,
 		},
 		onModifyMove: function (move) {
-			switch (this.effectivePseudoWeather()) {
-			case 'trickroom':
+			if (this.effectivePseudoWeather('trickroom')) {
+			/*case 'trickroom':
 			case 'wonderroom':
 			case 'inverseroom':
-			case 'magicroom':
+			case 'magicroom':*/
 			move.basePower *= 1.5;
-			break;
+			//break;
 			}
 		},
 		secondary: false,
