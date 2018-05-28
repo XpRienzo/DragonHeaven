@@ -5,12 +5,12 @@ exports.BattlePokedex = {
 		species: "Lycanroc",
 		types: ["Rock", "Normal"],
 		baseStats: {
-			hp: 75,
-			atk: 120,
-			def: 60,
+			hp: 85,
+			atk: 133,
+			def: 65,
 			spa: 55,
-			spd: 60,
-			spe: 117
+			spd: 95,
+			spe: 137
 		},
 		abilities: {0: "Keen Eye", 1: "Sand Rush", H: "Rock Head"},
 	},
@@ -144,8 +144,8 @@ exports.BattlePokedex = {
 		species: "Farfetch'd",
 		types: ["Flying", "Fighting"],
 		baseStats: {
-			hp: 52,
-			atk: 100,
+			hp: 103,
+			atk: 130,
 			def: 85,
 			spa: 55,
 			spd: 62,
@@ -270,16 +270,16 @@ exports.BattlePokedex = {
 		types: ["Grass", "Electric"],
 		baseStats: {
 			hp: 87,
-			atk: 117,
-			def: 77,
-			spa: 81,
+			atk: 57,
+			def: 87,
+			spa: 121,
 			spd: 87,
-			spe: 121
+			spe: 131
 		},
 		abilities: {
-			0: "Harvest",
-			1: "Cheek Pouch",
-			H: "Sap Sipper"
+			0: "Chlorophyll",
+			1: "Volt Absorb",
+			H: "Overgrow"
 		},
 	},
 	bellossom: {
@@ -605,16 +605,16 @@ exports.BattlePokedex = {
 		species: "Garbodor",
 		types: ["Steel", "Poison"],
 		baseStats: {
-			hp: 100,
+			hp: 90,
 			atk: 130,
 			def: 107,
 			spa: 40,
 			spd: 107,
-			spe: 86
+			spe: 96
 		},
 		abilities: {
 			0: "Levitate",
-			1: "Oblivious",
+			1: "Skill Link",
 			H: "Defiant"
 		},
 	},
@@ -837,12 +837,12 @@ exports.BattlePokedex = {
 		species: "Wishiwashi",
 		types: ["Water"],
 		baseStats: {
-			hp: 80,
-			atk: 130,
-			def: 100,
-			spa: 140,
-			spd: 100,
-			spe: 20
+			hp: 45,
+			atk: 110,
+			def: 45,
+			spa: 110,
+			spd: 45,
+			spe: 150
 		},
 		abilities: {
 			0: "Schooling"
@@ -1105,8 +1105,8 @@ exports.BattlePokedex = {
 		baseStats: {
 			hp: 140,
 			atk: 60,
-			def: 80,
-			spa: 130,
+			def: 45,
+			spa: 160,
 			spd: 100,
 			spe: 65
 		},
@@ -1319,17 +1319,17 @@ exports.BattlePokedex = {
 		species: "Guzzlord",
 		types: ["Ghost", "Dragon"],
 		baseStats: {
-			hp: 173,
-			atk: 111,
-			def: 73,
-			spa: 97,
-			spd: 73,
-			spe: 43
+			hp: 113,
+			atk: 71,
+			def: 67,
+			spa: 139,
+			spd: 67,
+			spe: 113
 		},
 		abilities: {
 			0: "Beast Boost",
 			1: "Gluttony",
-			H: "Sap Sipper"
+			H: "Unaware"
 		},
 	},
 	victini: {
@@ -1429,9 +1429,9 @@ exports.BattlePokedex = {
 		baseStats: {
 			hp: 50,
 			atk: 65,
-			def: 105,
-			spa: 105,
-			spd: 105,
+			def: 127,
+			spa: 115,
+			spd: 127,
 			spe: 86
 		},
 		abilities: {
