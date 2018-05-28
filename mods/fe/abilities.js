@@ -10558,7 +10558,6 @@ exports.BattleAbilities = {
 						bestStat = source.stats[i];
 					}
 				}
-				this.boost({[stat]: 1}, source);
 				source.stats[stat] = target.stats[stat];
 		},
 		onSourceFaint: function (target, source, effect) {
