@@ -8,6 +8,26 @@ exports.BattleItems = {
 		            },
            		desc: "Extends Trick Room, Magic Room and Wonder Room to 8 turns, instead of 5",
       	},
+	"safetysocks": {
+		            id: "safetysocks",
+		            name: "Safety Socks",
+		            fling: {
+		           	        basePower: 10,
+		            },
+			onDamage: function (damage, target, source, effect) {
+				if (effect.id === 'stealthrock' || effect.id === 'spikes' || effect.id === 'toxicspikes') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				return null;
+			}
+		},
+		onUpdate: function (target, source, effect) {
+				if (effect.id === 'stickyweb' || effect.id === 'toxicspikes') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				return null;
+			}
+		},
+      desc: "The holder is unaffected by entry hazards.",
+      	},
 	"adrenalineorb": {
 		id: "adrenalineorb",
 		name: "Adrenaline Orb",
