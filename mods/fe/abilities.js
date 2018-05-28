@@ -195,7 +195,7 @@ exports.BattleAbilities = {
 		shortDesc: "If Sunny Day is active, this Pokemon's Sp. Atk is 1.5x; loses 1/8 max HP per turn.",
 		onModifySpAPriority: 5,
 		onModifySpA: function (spa, pokemon) {
-			if (this.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) {
 				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
 					return this.chainModify(1.5);
 				} 	else {
@@ -850,13 +850,17 @@ exports.BattleAbilities = {
 		onResidual: function(pokemon, effect) {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || target.fainted) continue;
-				if (this.random(10) < 3) {
-				target.trySetStatus('par', target, effect);
+				if (this.isWeather(['hail', 'solarsnow']) && this.random(10) < 3) {
+					if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+						target.trySetStatus('par', target, effect);
+					} else {
+						target.cureStatus();
+					}
 				}
 			}
 		},
 		onImmunity: function(type, pokemon) {
-			if (type === 'hail') return false;
+			if (type === 'hail' || type === 'solarsnow') return false;
 		},
 		id: "staticstorm",
 		name: "Static Storm",
@@ -3186,13 +3190,25 @@ exports.BattleAbilities = {
 		name: "Ambition",
 	},
 	"poweroftwo": {
-		shortDesc: "This Pokemon's Attack and Speed are doubled.",
+		shortDesc: "This Pokemon's Attack and Speed are doubled under rain.",
 		onModifyAtkPriority: 5,
-		onModifyAtk: function(atk) {
-			return this.chainModify(2);
+		onModifyAtk: function(atk, pokemon) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(0.5);
+				}
+			}
 		},
-		onModifySpe: function(spe) {
-			return this.chainModify(2);
+		onModifySpe: function(spe, pokemon) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(0.5);
+				}
+			}
 		},
 		id: "poweroftwo",
 		name: "Power of Two",
@@ -4589,7 +4605,7 @@ exports.BattleAbilities = {
 				} 	else {
 					return this.chainModify(0.25);
 				}
-			} else if (move.flags['pulse'] && this.isWeather(['sunnyday', 'desolateland'])) {
+			} else if (move.flags['pulse'] && this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) {
 				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
 					return this.chainModify(0.25);
 				} 	else {
@@ -4604,7 +4620,7 @@ exports.BattleAbilities = {
 				} 	else {
 					return this.chainModify(0.5);
 				}
-			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
+			} else if (this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) {
 				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
 					return this.chainModify(0.5);
 				} 	else {
@@ -5239,24 +5255,40 @@ exports.BattleAbilities = {
 		shortDesc: "Under Sun or Rain, Speed is doubled and regains 1/8 of max health at the end of the turn. Ignores Sun's Water Debuff.",
 		onModifySpe: function(spe, pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea', 'sunnyday', 'desolateland', 'solarsnow'])) {
-				return this.chainModify(2);
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(0.5);
+				}
 			}
 		},
 		onWeather: function(target, source, effect) {
 			if (effect.id === 'sunnyday' || effect.id === 'desolateland' || effect.id === 'solarsnow' || effect.id === 'raindance' || effect.id === 'primordialsea') {
-				this.heal(target.maxhp / 8, target, target);
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
+					this.heal(target.maxhp / 8, target, target);
+				} 	else {
+					this.damage(target.maxhp / 8, target, target);
+				}
 			}
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, attacker, defender, move) {
 			if (move.type === 'Water' && this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) {
-				return this.chainModify(2);
+				if (attacker.volatiles['atmosphericperversion'] == attacker.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(2 / 3);
+				}
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function(atk, attacker, defender, move) {
 			if (move.type === 'Water' && this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) {
-				return this.chainModify(2);
+				if (attacker.volatiles['atmosphericperversion'] == attacker.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(2 / 3);
+				}
 			}
 		},
 		onImmunity: function (type, pokemon) {
@@ -10203,7 +10235,7 @@ exports.BattleAbilities = {
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual: function (pokemon) {
-			if (this.isWeather(['sunnyday', 'desolateland']) || this.randomChance(1, 2)) {
+			if ((this.isWeather(['sunnyday', 'desolateland', 'solarsnow']) || this.randomChance(1, 2)) == (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak'])) {
 				if (pokemon.hp && !pokemon.item && this.getItem(pokemon.lastItem).isBerry) {
 					pokemon.setItem(pokemon.lastItem);
 					pokemon.lastItem = '';
