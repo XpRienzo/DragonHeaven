@@ -1644,6 +1644,12 @@ exports.BattleMovedex = {
 	"pragmastrike": {
 		accuracy: 100,
 		basePower: 75,
+		basePowerCallback: function (pokemon, target, move) {
+			if (this.pseudoWeather.trickroom || this.pseudoWeather.wonderroom || this.pseudoWeather.inverseroom || this.pseudoWeather.magicroom) {
+				return move.basePower * 1.5;
+			}
+			return move.basePower;
+		},
 		category: "Physical",
 		desc: "Has a 100% chance to lower the target's Speed by 1 stage.",
 		shortDesc: "If a Room is active, 1.5x power; destroys the Room.",
@@ -1655,18 +1661,8 @@ exports.BattleMovedex = {
 			protect: 1,
 			mirror: 1,
 		},
-		onModifyMove: function (move) {
-			if (this.pseudoWeather.trickroom) {
-			/*case 'trickroom':
-			case 'wonderroom':
-			case 'inverseroom':
-			case 'magicroom':*/
-			move.basePower *= 1.5;
-			//break;
-			}
-		},
 		secondary: false,
-		onTryHit: function(target, source) {
+		onAfterHit: function(target, source) {
 			this.removePseudoWeather('trickroom');
 			this.removePseudoWeather('magicroom');
 			this.removePseudoWeather('wonderroom');
