@@ -4016,17 +4016,32 @@ exports.BattleAbilities = {
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function(atk, attacker, defender, move) {
+			let mod = 1;
 			if (move.type === 'Fire' && attacker.hp <= attacker.maxhp / 3) {
-				return this.chainModify(1.5);
+					mod *= 1.5;
 			}
 			if (this.isWeather(['raindance', 'primordialsea'])) {
-				return this.chainModify(2);
+				if (attacker.volatiles['atmosphericperversion'] == attacker.volatiles['weatherbreak']){
+					mod *= 2;
+				} else {
+					mod *= 0.5;
+				}
 			}
+			return this.chainModify(mod);
 		},
 		onModifySpe: function(spe, pokemon) {
+			let mod = 1;
 			if (pokemon.hp <= pokemon.maxhp / 3) {
-				return this.chainModify(1.5);
+					mod *= 1.5;
 			}
+			if (this.isWeather(['raindance', 'primordialsea'])) {
+				if (attacker.volatiles['atmosphericperversion'] == attacker.volatiles['weatherbreak']){
+					mod *= 2;
+				} else {
+					mod *= 0.5;
+				}
+			}
+			return this.chainModify(mod);
 		},
 		id: "heatseeker",
 		name: "Heat Seeker",
