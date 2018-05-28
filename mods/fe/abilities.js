@@ -4033,18 +4033,18 @@ exports.BattleAbilities = {
 	},
 	"bingobongo": {
 		shortDesc: "Normal and Fighting-type moves have 1.5x power and can hit Ghost-types.",
-		onBasePowerPriority: 8,
-		onBasePower: function(move) {
-			if (move.type === 'Normal' || move.type === 'Fighting') {
-				return this.chainModify(1.5);
-			}
-		},
 		onModifyMovePriority: -5,
 		onModifyMove: function(move) {
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};
 			if (move.ignoreImmunity !== true) {
 				move.ignoreImmunity['Fighting'] = true;
 				move.ignoreImmunity['Normal'] = true;
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function(move) {
+			if (move.type === 'Normal' || move.type === 'Fighting') {
+				return this.chainModify(1.5);
 			}
 		},
 		id: "bingobongo",
