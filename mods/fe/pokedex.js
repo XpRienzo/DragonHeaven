@@ -15385,7 +15385,7 @@ mimiblimbusted: {
     },
 
 
-    exfeycofa: {
+    exfeycola: {
         num: 7500417,
         species: "Exfey-Cola",
         types: ["Fairy", "Grass"],
@@ -15409,10 +15409,7 @@ mimiblimbusted: {
         color: "Green",
         eggGroups: ["Grass"],
     },
-
-
-
-
+	
     komodreigon: {
         num: 7500418,
         species: "Komodreigon",
