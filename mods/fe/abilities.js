@@ -8293,45 +8293,45 @@ exports.BattleAbilities = {
 		id: "melodyoftheheart",
 		name: "Melody of the Heart",
 	},
-	"amplify": {
+	"mixtape": {
 			shortDesc: "If hit by a Fire-type or Sound-based move, the Pokemon's own moves of that sort are powered up. Immune to both. ",
-          		onTryHit: function (target, source, move) {
+          onTryHit: function (target, source, move) {
 			if (target !== source && (move.type === 'Fire' || move.flags['sound'])) {
 				move.accuracy = true;
-				if (!target.addVolatile('amplify')) {
-					this.add('-immune', target, '[msg]', '[from] ability: Amplify');
+				if (!target.addVolatile('mixtape')) {
+					this.add('-immune', target, '[msg]', '[from] ability: Mix Tape');
 				}
 				return null;
 			}
 		},
 		onEnd: function (pokemon) {
-			pokemon.removeVolatile('amplify');
+			pokemon.removeVolatile('mixtape');
 		},
 		effect: {
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart: function (target) {
-				this.add('-start', target, 'ability: Amplify');
+				this.add('-start', target, 'ability: Mix Tape');
 			},
 			onModifyAtkPriority: 5,
 			onModifyAtk: function (atk, attacker, defender, move) {
 				if (move.type === 'Fire' || move.flags['sound']) {
-					this.debug('Amplify boost');
+					this.debug('Mix Tape boost');
 					return this.chainModify(1.5);
 				}
 			},
 			onModifySpAPriority: 5,
 			onModifySpA: function (atk, attacker, defender, move) {
 				if (move.type === 'Fire' || move.flags['sound']) {
-					this.debug('Amplify boost');
+					this.debug('Mix Tape boost');
 					return this.chainModify(1.5);
 				}
 			},
 			onEnd: function (target) {
-				this.add('-end', target, 'ability: Amplify', '[silent]');
+				this.add('-end', target, 'ability: Mix Tape', '[silent]');
 			},
 		},
-		id: "amplify",
-		name: "Amplify",
+		id: "mixtape",
+		name: "Mix Tape",
 		},
 	"beastroar": {
         shortDesc: "Lowers the foe’s highest stat by 1 stage.",
