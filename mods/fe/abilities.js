@@ -6483,7 +6483,7 @@ exports.BattleAbilities = {
 			} else if (totalspd > totaldef) {
 				this.useMove('Light Screen', pokemon);
 			}
-			else if (totalspd = totaldef) {
+			else {
 				this.useMove('Aurora Veil', pokemon);
 			}
 		},
