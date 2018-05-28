@@ -1656,7 +1656,7 @@ exports.BattleMovedex = {
 			mirror: 1,
 		},
 		onModifyMove: function (move) {
-			if (this.effectivePseudoWeather('trickroom')) {
+			if (this.pseudoWeather.trickroom) {
 			/*case 'trickroom':
 			case 'wonderroom':
 			case 'inverseroom':
