@@ -6804,8 +6804,8 @@ exports.BattleAbilities = {
 			if (!pokemon.hp) return;
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				if (target.status === 'slp' || target.hasAbility('comatose')) {
-					this.damage(pokemon.maxhp / 8, pokemon, pokemon);
+				if (target.status === 'slp' || target.hasAbility('comatose') || target.hasAbility('sleepingsystem')) {
+					this.damage(target.maxhp / 8, target, target);
 				}
 			}
 		},
@@ -6817,7 +6817,7 @@ exports.BattleAbilities = {
 				if (boost[i] < 0) {
 					// @ts-ignore
 					this.damage(source.maxhp / 8, source, target);
-                                        delete boost[i];
+               delete boost[i];
 					showMsg = true;
 				}
 			}
