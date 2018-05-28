@@ -1380,8 +1380,8 @@ swampert: {
         species: "Vapornine",
         types: ["Water", "Fire"],
         genderRatio: {
-            M: 75.0,
-            F: 25.0
+            M: 81.25,
+            F: 18.75
         },
         baseStats: {
             hp: 120,
@@ -4039,7 +4039,7 @@ swampert: {
             spe: 92
         },
         abilities: {
-            0: "Amplify"
+            0: "Mix Tape"
         },
         heightm: 1.45,
         weightkg: 59.5,
@@ -20462,27 +20462,6 @@ eggGroups: ["Undiscovered"],
 				  color: "Yellow",
 		        eggGroups: ["Undiscovered"],
 		    },
-					quendorus: {
-		            num: 7500561,
-		            species: "Quendorus",
-		            types: ["Bug", "Flying"],
-		            gender: "N",
-		            baseStats: {
-		                hp: 99,
-		                atk: 107,
-		                def: 96,
-		                spa: 107,
-		                spd: 96,
-		                spe: 70
-		            },
-		            abilities: {
-		                0: "Scary Sandwich"
-		            },
-		            heightm: 1.35,
-		            weightkg: 53.25,
-		            color: "Yellow",
-		            eggGroups: ["Undiscovered"],
-		        },
 		        farfect: {
 		            num: 7500562, 
 					  	species: "Farfect",
@@ -20525,5 +20504,207 @@ eggGroups: ["Undiscovered"],
 		            color: "Green",
 		            eggGroups: ["Undiscovered"],
 		        },
-		
+					polipolihotter: {
+						num: 7500564,
+						species: "Polipoli-Hotter",
+						types: ["Water", "Fighting"],
+						baseStats: {hp: 100, atk: 95, def: 95, spa: 90, spd: 105, spe: 90},
+						abilities: {0: "Full Steam Ahead"},
+						heightm: 1.2,
+						weightkg: 43.95,
+						color: "Green",
+						prevo: "poliwhirl",
+						evoLevel: 25,
+						eggGroups: ["Water 1"],
+					},
+		   	 zebstoar: {
+		   	     num: 7500565,
+		   	     species: "Zebstoar",
+		   	     types: ["Electric", "Fire"],
+        			  genderRatio: {
+         	  			M: 75.0,
+         	   	 	F: 25.0
+				  	   },
+		   	     baseStats: {
+		   	         hp: 102,
+		   	         atk: 121,
+		   	         def: 74,
+		   	         spa: 100,
+		   	         spd: 74,
+		   	         spe: 100
+		   	     },
+		   	     abilities: {
+		   	         0: "Juggernaut"
+		   	     },
+		   	     heightm: 1.6,
+		   	     weightkg: 114.75,
+		   	     eggGroups: ["Field"],
+		   	 },
+		   	 frostapex: {
+		   	     num: 7500566,
+		   	     species: "Frostapex",
+		   	     types: ["Ice", "Poison"],
+        			  gender: "N",
+		   	     baseStats: { //70	64	129	99	124	60
+		   	         hp: 70,
+		   	         atk: 64,
+		   	         def: 129,
+		   	         spa: 99,
+		   	         spd: 124,
+		   	         spe: 60
+		   	     },
+		   	     abilities: {
+		   	         0: "Air Raider"
+		   	     },
+		   	     heightm: 0.5,
+		   	     weightkg: 7.4,
+		   	     eggGroups: ["Undiscovered"],
+		   	 },
+		   	 passcraft: {
+		   	     num: 7500567,
+		   	     species: "Passcraft",
+		   	     types: ["Fighting"],
+		   	     baseStats: { //92	115	112	52	97	79
+		   	         hp: 92,
+		   	         atk: 115,
+		   	         def: 112,
+		   	         spa: 52,
+		   	         spd: 97,
+		   	         spe: 79
+		   	     },
+		   	     abilities: {
+		   	         0: "Interception"
+		   	     },
+		   	     heightm: 1.55,
+		   	     weightkg: 56.4,
+		   	     eggGroups: ["Field"],
+		   	 },
+		   	 shoo: {
+		   	     num: 7500568,
+		   	     species: "Shoo",
+		   	     types: ["Fairy", "Ghost"],
+        			  gender: "N",
+		   	     baseStats: {
+		   	         hp: 107,
+		   	         atk: 87,
+		   	         def: 82,
+		   	         spa: 130,
+		   	         spd: 130,
+		   	         spe: 65
+					  },
+		   	     abilities: {
+		   	         0: "Itemize"
+		   	     },
+   				  heightm: 0.8,
+   				  weightkg: 16.3,
+				     color: "Pink",
+		   	     eggGroups: ["Undiscovered"],
+		   	 },
+		   	 amunra: {
+		   	     num: 7500569,
+		   	     species: "Amun-Ra",
+		   	     types: ["Electric", "Ghost"],
+        			  gender: "N",
+		   	     baseStats: {
+		   	         hp: 80,
+		   	         atk: 60,
+		   	         def: 130,
+		   	         spa: 130,
+		   	         spd: 103,
+		   	         spe: 45
+					  },
+		   	     abilities: {
+		   	         0: "The Hidden One"
+		   	     },
+   				  heightm: 1.45,
+   				  weightkg: 128.25,
+		   	     eggGroups: ["Mineral"],
+		   	 },
+				 marowakprime: {
+					num: 105,
+					species: "Marowak-Prime",
+					baseSpecies: "Marowak",
+					forme: "Prime",
+					formeLetter: "P",
+					types: ["Ground", "Fire"],
+					baseStats: {
+						hp: 85,
+						atk: 110,
+						def: 125,
+						spa: 45,
+						spd: 70,
+						spe: 75,
+					},
+					abilities: {
+						0: "Mountain Climber"
+					},
+					heightm: 1.0,
+					weightkg: 39.5,
+					color: "Brown",
+					eggGroups: ["Monster"],
+				},
+		   	 arceon: {
+		   	     num: 7500571,
+		   	     species: "Arceon",
+		   	     types: ["Fire", "Psychic"],
+        			  genderRatio: {
+          				M: 81.25,
+        				   F: 18.75
+        			  },
+		   	     baseStats: {
+		   	         hp: 80,
+		   	         atk: 60,
+		   	         def: 130,
+		   	         spa: 130,
+		   	         spd: 103,
+		   	         spe: 45
+					  },
+		   	     abilities: {
+		   	         0: "Magic Mirror"
+		   	     },
+     				  heightm: 1.4,
+        			  weightkg: 90.75,
+		   	     eggGroups: ["Field"],
+		   	 },
+				 pigment: {
+		   	 	num: 7500572,
+	       	 	species: "Pigment",
+	       	 	types: ["Psychic", "Electric"],
+	       	 	baseStats: {
+	       	     hp: 85,
+	       	     atk: 70,
+	       	     def: 72,
+	       	     spa: 107,
+	       	     spd: 95,
+	       	 	  spe: 102
+	        	 	},
+	        	 	abilities: {
+	        	 	    0: "Food Coloring"
+	        	 	},
+	          	heightm: 1.2,
+	        	 	weightkg: 55.85,
+	       	 	eggGroups: ["Field"],
+	    		 },
+	    		 pigmentmega: {
+					num: 7500572,
+					species: "Pigment-Mega",
+	        		baseSpecies: "Pigment",
+	        		forme: "Mega",
+	        		formeLetter: "M",
+	        		types: ["Psychic", "Electric"],
+	       	 	baseStats: {
+	       	   	  hp: 85,
+	       	   	  atk: 70,
+	       	   	  def: 92,
+	       	   	  spa: 137,
+	       	   	  spd: 115,
+	       	 		  spe: 132
+	        	 	},
+	        		abilities: {
+	        		    0: "Intimidate"
+	        		},
+	          	heightm: 1.5,
+	        	 	weightkg: 59.65,
+	       	 	eggGroups: ["Field"],
+	    		},
 };
