@@ -4584,16 +4584,32 @@ exports.BattleAbilities = {
 			if (move.flags['pulse']) {
 				return this.chainModify(1.5);
 			} else if (move.flags['pulse'] && this.isWeather(['raindance', 'primordialsea'])) {
-				return this.chainModify(2);
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(0.25);
+				}
 			} else if (move.flags['pulse'] && this.isWeather(['sunnyday', 'desolateland'])) {
-				return this.chainModify(0.25);
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(0.25);
+				} 	else {
+					return this.chainModify(2);
+				}
 			}
 		},
 		onModifySpe: function(spe, pokemon) {
 			if (this.isWeather(['raindance', 'primordialsea'])) {
-				return this.chainModify(2);
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(2);
+				} 	else {
+					return this.chainModify(0.5);
+				}
 			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
-				return this.chainModify(0.5);
+				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+					return this.chainModify(0.5);
+				} 	else {
+					return this.chainModify(2);
+				}
 			}
 		},
 		id: "stormlauncher",
