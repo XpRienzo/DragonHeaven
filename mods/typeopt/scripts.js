@@ -27,7 +27,7 @@ init: function () {
 	this.modData('Learnsets', 'toucannon').learnset.earthquake = ['7L1'];
 	
 	this.modData('Learnsets', 'wigglytuff').learnset.airslash = ['7L1'];
-	this.modData('Learnsets', 'wigglytuff').learnset.earthpower = ['7L1'];
+	this.modData('Learnsets', 'wigglytuff').learnset.nastyplot = ['7L1'];
 	this.modData('Learnsets', 'wigglytuff').learnset.drainingkiss = ['7L1'];
 	
 	this.modData('Learnsets', 'poliwrath').learnset.aquajet = ['7L1'];
@@ -69,7 +69,7 @@ init: function () {
 	this.modData('Learnsets', 'porygonz').learnset.volstswitch = ['7L1'];
 	
 	this.modData('Learnsets', 'guzzlord').learnset.shadowball = ['7L1'];
-	this.modData('Learnsets', 'guzzlord').learnset.bellydrum = ['7L1'];
+	this.modData('Learnsets', 'guzzlord').learnset.nastyplot = ['7L1'];
 	this.modData('Learnsets', 'guzzlord').learnset.slackoff = ['7L1'];
 	
 	this.modData('Learnsets', 'victini').learnset.playrough = ['7L1'];
