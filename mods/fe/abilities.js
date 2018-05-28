@@ -5445,7 +5445,7 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 			if (target === source || move.category === 'Status' || move.type === '???' || move.id === 'struggle') return;
 			this.debug('Wonder Guard immunity: ' + move.id);
-			if (target.hp = target.maxhp) {
+			if (target.hp >= target.maxhp) {
 				this.add('-immune', target, '[msg]', '[from] ability: Shadow Guard');
 				return null;
 			}
