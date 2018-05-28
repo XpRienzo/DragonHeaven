@@ -5121,8 +5121,8 @@ darkchomp: {
         abilities: {
             0: "Adaptability"
         },
-        heightm: 1.345,
-        weightkg: 51,
+        heightm: 1.445,
+        weightkg: 54.5,
         color: "Yellow",
         eggGroups: ["Human-Like"],
     },
@@ -5142,9 +5142,9 @@ darkchomp: {
             spe: 150
         },
         abilities: {
-            0: "Adaptability"
+            0: "Trace"
         },
-        heightm: 1.345,
+        heightm: 1.045,
         weightkg: 51,
         color: "Yellow",
         eggGroups: ["Human-Like"],
@@ -5196,9 +5196,9 @@ darkchomp: {
         color: "Gray",
         eggGroups: ["Bug"],
     },
-    gallete: {
+    gallette: {
         num: 7500133,
-        species: "Gallete",
+        species: "Gallette",
         types: ["Fighting", "Ghost"],
         gender: "M",
         baseStats: {
@@ -5217,10 +5217,10 @@ darkchomp: {
         color: "Black",
         eggGroups: ["Amorphous"],
     },
-    galletemegag: {
+    gallettemegag: {
         num: 7500133,
-        species: "Gallete-Mega-G",
-        baseSpecies: "Gallete",
+        species: "Gallette-Mega-G",
+        baseSpecies: "Gallette",
         forme: "Mega",
         formeLetter: "M",
         types: ["Fighting", "Ghost"],
@@ -5237,14 +5237,14 @@ darkchomp: {
             0: "Steadfast"
         },
         heightm: 1.345,
-        weightkg: 32.25,
+        weightkg: 36.65,
         color: "Black",
         eggGroups: ["Amorphous"],
     },
-    galletemegab: {
+    gallettemegab: {
         num: 7500133,
-        species: "Gallete-Mega-B",
-        baseSpecies: "Gallete",
+        species: "Gallette-Mega-B",
+        baseSpecies: "Gallette",
         forme: "Mega",
         formeLetter: "M",
         types: ["Fighting", "Ghost"],
@@ -5260,8 +5260,8 @@ darkchomp: {
         abilities: {
             0: "Prankster"
         },
-        heightm: 1.345,
-        weightkg: 32.25,
+        heightm: 1.445,
+        weightkg: 32.75,
         color: "Black",
         eggGroups: ["Amorphous"],
     },
@@ -5286,7 +5286,7 @@ darkchomp: {
         },
         heightm: 2.59,
         weightkg: 247.5,
-        color: "Black",
+        color: "Red",
         eggGroups: ["Monster"],
     },
     steelthorn: {
@@ -5331,8 +5331,8 @@ darkchomp: {
         abilities: {
             0: "Sand Force"
         },
-        heightm: 5.09,
-        weightkg: 255,
+        heightm: 6.39,
+        weightkg: 595,
         color: "Gray",
         eggGroups: ["Mineral"],
     },
@@ -8580,10 +8580,7 @@ darkchomp: {
 	        species: "Minislash",
 	        baseForme: "Meteor",
 	        types: ["Rock", "Ghost"],
-	        genderRatio: {
-	            M: 0.0,
-	            F: 0.0
-	        },
+	        gender: "N",
 	        baseStats: {
 	            hp: 70,
 	            atk: 65,
@@ -8608,10 +8605,7 @@ darkchomp: {
 	        forme: "Blade",
 	        formeLetter: "B",
 	        types: ["Rock", "Ghost"],
-	        genderRatio: {
-	            M: 0.0,
-	            F: 0.0
-	        },
+	        gender: "N",
 	        baseStats: {
 	            hp: 70,
 	            atk: 135,
@@ -15391,7 +15385,7 @@ mimiblimbusted: {
     },
 
 
-    exfeycofa: {
+    exfeycola: {
         num: 7500417,
         species: "Exfey-Cola",
         types: ["Fairy", "Grass"],
@@ -15415,10 +15409,7 @@ mimiblimbusted: {
         color: "Green",
         eggGroups: ["Grass"],
     },
-
-
-
-
+	
     komodreigon: {
         num: 7500418,
         species: "Komodreigon",
@@ -16315,7 +16306,7 @@ stakamise: {
 
 
 
-	deoxysattack: {
+	deoxysconfused: {
 		num: 386,
 		species: "Deoxys-Confused",
 		baseSpecies: "Deoxys",
@@ -16330,8 +16321,6 @@ stakamise: {
 		color: "Red",
 		eggGroups: ["Undiscovered"],
 	},
-
-
 auroritar: {
         num: 7500449,
         species: "Auroritar",
@@ -18239,7 +18228,7 @@ auroritarmega: {
 			spe: 57,
 		},
 		abilities: {
-			0: "Floating Grounds"
+			0: "Panic Mode"
 		},
 		  heightm: 0.9,
 		  weightkg: 33.25,
@@ -18443,191 +18432,1993 @@ auroritarmega: {
         eggGroups: ["Monster"],
     },
     salasaurmega: {
-        num: 7500508,
-        species: "Salasaur-Mega",
-        baseSpecies: "Salasaur",
-        forme: "Mega",
-        formeLetter: "M",
-        types: ["Poison"],
-	     gender: "F",
-        baseStats: {
-            hp: 84,
-            atk: 83,
-            def: 81,
-            spa: 115,
-            spd: 90,
-            spe: 108
+            num: 7500508,
+            species: "Salasaur-Mega",
+            baseSpecies: "Salasaur",
+            forme: "Mega",
+            formeLetter: "M",
+            types: ["Poison"],
+            gender: "F",
+            baseStats: {
+                hp: 84,
+                atk: 83,
+                def: 81,
+                spa: 115,
+                spd: 90,
+                spe: 108
+            },
+            abilities: {
+                0: "Poison Pores"
+            },
+            heightm: 2.0,
+            weightkg: 116.6,
+            eggGroups: ["Monster"],
         },
-        abilities: {
-            0: "Poison Pores"
+        emulia: {
+            num: 7500509,
+            species: "Emulia",
+            types: ["Electric", "Flying"],
+            genderRatio: "{M: 50.0, F: 50.0}",
+            baseStats: {
+                hp: 100,
+                atk: 82,
+                def: 115,
+                spa: 82,
+                spd: 107,
+                spe: 106
+            },
+            abilities: {
+                0: "Shock Trap"
+            },
+            heightm: 5.2,
+            weightkg: 110.5,
+            color: "White",
+            eggGroups: ["Field", "Undiscovered"],
         },
-        heightm: 2.0,
-        weightkg: 116.6,
-        eggGroups: ["Monster"],
-    },
-    emulia: { 
-    num: 7500509,
-    species: "Emulia",
-    types: ["Electric", "Flying"],
-    genderRatio: "{M: 50.0, F: 50.0}",
-    baseStats: {
-    hp: 100, 
-	 atk: 82, 
-	 def: 115, 
-	 spa: 82, 
-    spd: 107, 
-    spe: 106
-  },
-  abilities: {
-      0: "Shock Trap"
-  },
-  heightm: 5.2,
-  weightkg: 110.5,
-  color: "White",
-  eggGroups: ["Field", "Undiscovered"],
-},
-    klinkarel: { 
-    num: 7500510,
-    species: "Klinkarel",
-    types: ["Steel", "Water"],
-    genderRatio: "{M: 50.0, F: 50.0}",
-    baseStats: {
-    hp: 69, 
-	 atk: 102, 
-	 def: 87, 
-	 spa: 72, 
-    spd: 72, 
-    spe: 100
-  },
-  abilities: {
-      0: "Positivity"
-  },
-  color: "White",
-  eggGroups: ["Undiscovered"],
-},
-    gumshoe: { 
-    num: 7500511,
-    species: "Gumshoe",
-    types: ["Dark", "Normal"],
-    genderRatio: "{M: 50.0, F: 50.0}",
-    baseStats: { //89	125	72	60	82	95
-    hp: 89, 
-	 atk: 125, 
-	 def: 72, 
-	 spa: 60, 
-    spd: 82, 
-    spe: 95
-  },
-  abilities: {
-      0: "Jealous Aggressor"
-  },
-  heightm: 0.9,
-  weightkg: 24.1,
-  color: "Black",
-  eggGroups: ["Field"],
-},
-    barbominable: { 
-    num: 7500512,
-    species: "Barbominable",
-    types: ["Fighting", "Water"],
-    genderRatio: "{M: 50.0, F: 50.0}",
-    baseStats: {
-    hp: 94, 
-	 atk: 128, 
-	 def: 106, 
-	 spa: 68, 
-    spd: 86, 
-    spe: 65
-  },
-  abilities: {
-      0: "Fisticuffs"
-  },
-  heightm: 1.7,
-  weightkg: 138,
-  color: "White",
-  eggGroups: ["Water 3"],
-},
-    asterisk: { 
-    num: 7500513,
-    species: "Asterisk",
-    types: ["Poison", "Flying"],
-    genderRatio: "{M: 75.0, F: 25.0}",
-    baseStats: {
-    hp: 82, 
-	 atk: 70, 
-	 def: 90, 
-	 spa: 132, 
-    spd: 120, 
-    spe: 95
-  },
-  abilities: {
-      0: "Starburst"
-  },
-  heightm: 1.2,
-  weightkg: 26.25,
-  eggGroups: ["Fairy"],
-},
-    togetrio: { 
-    num: 7500514,
-    species: "Togetrio",
-    types: ["Ground", "Electric"],
-    genderRatio: "{M: 50.0, F: 50.0}",
-    baseStats: {
-    hp: 60, 
-	 atk: 109, 
-	 def: 66, 
-	 spa: 55, 
-    spd: 81, 
-    spe: 118
-  },
-  abilities: {
-      0: "Quick Trap"
-  },
-  heightm: 0.5,
-  weightkg: 18.3,
-  eggGroups: ["Field"],
-},
-		centenarian: {
-        num: 7500515,
-        species: "Centenarian",
-        types: ["Electric", "Fighting"],
-		  genderRatio: "{M: 75.0, F: 25.0}",
-        baseStats: {
-            hp: 83,
-            atk: 99,
-            def: 75,
-            spa: 114,
-            spd: 75,
-            spe: 116
+        klinkarel: {
+            num: 7500510,
+            species: "Klinkarel",
+            types: ["Steel", "Water"],
+            genderRatio: "{M: 50.0, F: 50.0}",
+            baseStats: {
+                hp: 69,
+                atk: 102,
+                def: 87,
+                spa: 72,
+                spd: 72,
+                spe: 100
+            },
+            abilities: {
+                0: "Positivity"
+            },
+            color: "White",
+            eggGroups: ["Undiscovered"],
         },
-        abilities: {
-            0: "Aeon Flux"
+        gumshoe: {
+            num: 7500511,
+            species: "Gumshoe",
+            types: ["Dark", "Normal"],
+            genderRatio: "{M: 50.0, F: 50.0}",
+            baseStats: { //89	125	72	60	82	95
+                hp: 89,
+                atk: 125,
+                def: 72,
+                spa: 60,
+                spd: 82,
+                spe: 95
+            },
+            abilities: {
+                0: "Jealous Aggressor"
+            },
+            heightm: 0.9,
+            weightkg: 24.1,
+            color: "Black",
+            eggGroups: ["Field"],
         },
-        heightm: 1.35,
-        weightkg: 47.6,
-        eggGroups: ["Field"],
-    },
-    centenarianmega: {
-        num: 7500515,
-        species: "Centenarian-Mega",
-        baseSpecies: "Centenarian",
-        forme: "Mega",
-        formeLetter: "M",
-        types: ["Electric", "Fighting"],
-		  genderRatio: "{M: 75.0, F: 25.0}",
-        baseStats: {
-            hp: 83,
-            atk: 99,
-            def: 95,
-            spa: 144,
-            spd: 95,
-            spe: 146
+        barbominable: {
+            num: 7500512,
+            species: "Barbominable",
+            types: ["Fighting", "Water"],
+            genderRatio: "{M: 50.0, F: 50.0}",
+            baseStats: {
+                hp: 94,
+                atk: 128,
+                def: 106,
+                spa: 68,
+                spd: 86,
+                spe: 65
+            },
+            abilities: {
+                0: "Fisticuffs"
+            },
+            heightm: 1.7,
+            weightkg: 138,
+            color: "White",
+            eggGroups: ["Water 3"],
         },
-        abilities: {
-            0: "Intimidate"
+        asterisk: {
+            num: 7500513,
+            species: "Asterisk",
+            types: ["Poison", "Flying"],
+            genderRatio: "{M: 75.0, F: 25.0}",
+            baseStats: {
+                hp: 82,
+                atk: 70,
+                def: 90,
+                spa: 132,
+                spd: 120,
+                spe: 95
+            },
+            abilities: {
+                0: "Starburst"
+            },
+            heightm: 1.2,
+            weightkg: 26.25,
+            eggGroups: ["Fairy"],
         },
-        heightm: 1.65,
-        weightkg: 51.4,
-        eggGroups: ["Field"],
-    },
+        togetrio: {
+            num: 7500514,
+            species: "Togetrio",
+            types: ["Ground", "Electric"],
+            genderRatio: "{M: 50.0, F: 50.0}",
+            baseStats: {
+                hp: 60,
+                atk: 109,
+                def: 66,
+                spa: 55,
+                spd: 81,
+                spe: 118
+            },
+            abilities: {
+                0: "Quick Trap"
+            },
+            heightm: 0.5,
+            weightkg: 18.3,
+            eggGroups: ["Field"],
+        },
+        centenarian: {
+            num: 7500515,
+            species: "Centenarian",
+            types: ["Electric", "Fighting"],
+            genderRatio: "{M: 75.0, F: 25.0}",
+            baseStats: {
+                hp: 83,
+                atk: 99,
+                def: 75,
+                spa: 114,
+                spd: 75,
+                spe: 116
+            },
+            abilities: {
+                0: "Aeon Flux"
+            },
+            heightm: 1.35,
+            weightkg: 47.6,
+            eggGroups: ["Field"],
+        },
+        centenarianmega: {
+            num: 7500515,
+            species: "Centenarian-Mega",
+            baseSpecies: "Centenarian",
+            forme: "Mega",
+            formeLetter: "M",
+            types: ["Electric", "Fighting"],
+            genderRatio: "{M: 75.0, F: 25.0}",
+            baseStats: {
+                hp: 83,
+                atk: 99,
+                def: 95,
+                spa: 144,
+                spd: 95,
+                spe: 146
+            },
+            abilities: {
+                0: "Intimidate"
+            },
+            heightm: 1.65,
+            weightkg: 51.4,
+            eggGroups: ["Field"],
+        },
+        kyutana: {
+            num: 7500516,
+            species: "Kyutana",
+            types: ["Ghost", "Grass"],
+            genderRatio: "{M: 50.0, F: 50.0}",
+            baseStats: {
+                hp: 70,
+                atk: 145,
+                def: 105,
+                spa: 55,
+                spd: 80,
+                spe: 105
+            },
+            abilities: {
+                0: "Beast Costume"
+            },
+            heightm: 0.25,
+            weightkg: 0.4,
+            eggGroups: ["Undiscovered"],
+        },
+        amdremarye: {
+            num: 7500517,
+            species: "Amdre-Marye",
+            types: ["Electric", "Psychic"],
+            gender: "N",
+            baseStats: {
+                hp: 70,
+                atk: 127,
+                def: 52,
+                spa: 167,
+                spd: 55,
+                spe: 122
+            },
+            abilities: {
+                0: "Short Circuit"
+            },
+            heightm: 1.55,
+            weightkg: 61.15,
+			   color: "Red",
+            eggGroups: ["Undiscovered"],
+        },
+        amdremaryemega: {
+            num: 7500517,
+            species: "Amdre-Marye-Mega",
+            baseSpecies: "Amdre-Marye",
+            forme: "Mega",
+            formeLetter: "M",
+            types: ["Electric", "Dragon"],
+            gender: "N",
+            baseStats: {
+                hp: 70,
+                atk: 147,
+                def: 72,
+                spa: 217,
+                spd: 75,
+                spe: 112
+            },
+            abilities: {
+                0: "Mold Breaker"
+            },
+            heightm: 1.55,
+            weightkg: 61.15,
+			   color: "Red",
+            eggGroups: ["Undiscovered"],
+        },
+	dondon: {
+	    num: 7500518,
+	    species: "Dondon",
+	    types: ["Ground"],
+	    baseStats: {
+	        hp: 104,
+	        atk: 121,
+	        def: 124,
+	        spa: 69,
+	        spd: 71,
+	        spe: 53
+	    },
+	    abilities: {
+	        0: "Solid Sand"
+	    },
+	    heightm: 1.5,
+	    weightkg: 210,
+	    color: "Brown",
+	    eggGroups: ["Field"],
+	},
+	xerdian: {
+	    num: 7500519,
+	    species: "Xerdian",
+	    types: ["Fairy", "Bug"],
+	    baseStats: {
+	        hp: 90,
+	        atk: 103,
+	        def: 85,
+	        spa: 100,
+	        spd: 104,
+	        spe: 92
+	    },
+	    abilities: {
+	        0: "Fae Fist"
+	    },
+	    heightm: 2.2,
+	    weightkg: 125.3,
+	    color: "Blue",
+	    eggGroups: ["Undiscovered"],
+	},
+	genin: {
+	    num: 7500520,
+	    species: "Genin",
+	    types: ["Steel", "Flying"],
+	    baseStats: {
+	        hp: 90,
+	        atk: 103,
+	        def: 85,
+	        spa: 100,
+	        spd: 104,
+	        spe: 92
+	    },
+	    abilities: {
+	        0: "Malware"
+	    },
+	    heightm: 1.15,
+	    weightkg: 47.25,
+	    color: "Purple",
+	    eggGroups: ["Undiscovered"],
+	},
+	aryvel: {
+	    num: 7500521,
+	    species: "Aryvel",
+	    types: ["Poison", "Dark"],
+	    baseStats: {
+	        hp: 98,
+	        atk: 110,
+	        def: 102,
+	        spa: 105,
+	        spd: 94,
+	        spe: 69
+	    },
+	    abilities: {
+	        0: "Nightmare Fuel"
+	    },
+	    heightm: 3.45,
+	    weightkg: 118.25,
+	    eggGroups: ["Undiscovered"],
+	},
+	swolax: { num: 7500522, species: "Swolax",
+types: ["Normal", "Fighting"],
+genderRatio: "{M: 87.5, F: 12.5}",
+baseStats: {hp: 139, atk: 131, def: 109, spa: 59, spd: 101, spe: 54},
+abilities: {0: "Blood-made Crops"},
+heightm: 2.25,
+weightkg: 396.8,
+color: "Black",
+eggGroups: ["Undiscovered"],
+},
+	mendoza: { num: 7500523, species: "Mendoza",
+types: ["Dark", "Ghost"],
+gender: "F",
+baseStats: {hp: 104, atk: 96, def: 100, spa: 87, spd: 107, spe: 85},
+abilities: {0: "Mirage"},
+heightm: 1.4,
+weightkg: 38.05,
+color: "Brown",
+eggGroups: ["Flying"],
+},
+	goohoo: { num: 7500524, species: "Goohoo",
+types: ["Dragon", "Ghost"],
+gender: "N",
+baseStats: {hp: 85, atk: 125, def: 85, spa: 130, spd: 140, spe: 75},
+abilities: {0: "Sippity Hoo"},
+heightm: 1.3,
+weightkg: 79.8,
+color: "Purple",
+eggGroups: ["Undiscovered"],
+},
+	kyervine: {
+	    num: 7500525,
+	    species: "Kyervine",
+	    types: ["Grass", "Water"],
+            gender: "N",
+	    baseStats: {
+	        hp: 98,
+	        atk: 110,
+	        def: 102,
+	        spa: 105,
+	        spd: 94,
+	        spe: 69
+	    },
+	    abilities: {
+	        0: "Atmospheric Perversion"
+	    },
+	    heightm: 2.65,
+	    weightkg: 184,
+	    eggGroups: ["Undiscovered"],
+	},
+        kyervineprimal: {
+            num: 7500525,
+            species: "Kyervine-Primal",
+            baseSpecies: "Kyervine",
+            forme: "Primal",
+            formeLetter: "P",
+            types: ["Electric", "Dragon"],
+            gender: "N",
+	    baseStats: {
+	        hp: 98,
+	        atk: 110,
+	        def: 102,
+	        spa: 105,
+	        spd: 94,
+	        spe: 69
+	    },
+	    abilities: {
+	        0: "Primordial Sea"
+	    },
+	    heightm: 7.95,
+	    weightkg: 262,
+	    eggGroups: ["Undiscovered"],
+       },
+	pototonz: {
+	    num: 7500526,
+	    species: "Pototon-Z",
+	    types: ["Normal", "Flying"],
+            gender: "N",
+	    baseStats: {
+	        hp: 80,
+	        atk: 72,
+	        def: 57,
+	        spa: 133,
+	        spd: 58,
+	        spe: 110
+	    },
+	    abilities: {
+	        0: "Adaptive Eye"
+	    },
+	    heightm: 2.65,
+	    weightkg: 184,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeus: {
+	    num: 7500527,
+	    species: "Tropeus",
+	    types: ["Grass", "Normal"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusfire: {
+	    num: 7500527,
+       species: "Tropeus-Fire",
+       baseSpecies: "Tropeus",
+       forme: "Fire",
+       formeLetter: "F",
+	    types: ["Grass", "Fire"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeuswater: {
+	    num: 7500527,
+       species: "Tropeus-Water",
+       baseSpecies: "Tropeus",
+       forme: "Water",
+       formeLetter: "W",
+	    types: ["Grass", "Water"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeuselectric: {
+	    num: 7500527,
+       species: "Tropeus-Electric",
+       baseSpecies: "Tropeus",
+       forme: "Electric",
+       formeLetter: "E",
+	    types: ["Grass", "Electric"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusgrass: {
+	    num: 7500527,
+       species: "Tropeus-Grass",
+       baseSpecies: "Tropeus",
+       forme: "Grass",
+       formeLetter: "G",
+	    types: ["Grass"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusice: {
+	    num: 7500527,
+       species: "Tropeus-Ice",
+       baseSpecies: "Tropeus",
+       forme: "Ice",
+       formeLetter: "I",
+	    types: ["Grass", "Ice"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusfighting: {
+	    num: 7500527,
+       species: "Tropeus-Fighting",
+       baseSpecies: "Tropeus",
+       forme: "Fighting",
+       formeLetter: "F",
+	    types: ["Grass", "Fighting"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeuspoison: {
+	    num: 7500527,
+       species: "Tropeus-Poison",
+       baseSpecies: "Tropeus",
+       forme: "Poison",
+       formeLetter: "P",
+	    types: ["Grass", "Poison"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusground: {
+	    num: 7500527,
+       species: "Tropeus-Ground",
+       baseSpecies: "Tropeus",
+       forme: "Ground",
+       formeLetter: "G",
+	    types: ["Grass", "Ground"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusflying: {
+	    num: 7500527,
+       species: "Tropeus-Flying",
+       baseSpecies: "Tropeus",
+       forme: "Flying",
+       formeLetter: "F",
+	    types: ["Grass", "Flying"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeuspsychic: {
+	    num: 7500527,
+       species: "Tropeus-Psychic",
+       baseSpecies: "Tropeus",
+       forme: "Psychic",
+       formeLetter: "P",
+	    types: ["Grass", "Psychic"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusbug: {
+	    num: 7500527,
+       species: "Tropeus-Bug",
+       baseSpecies: "Tropeus",
+       forme: "Bug",
+       formeLetter: "B",
+	    types: ["Grass", "Bug"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusrock: {
+	    num: 7500527,
+       species: "Tropeus-Rock",
+       baseSpecies: "Tropeus",
+       forme: "Rock",
+       formeLetter: "R",
+	    types: ["Grass", "Rock"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusghost: {
+	    num: 7500527,
+       species: "Tropeus-Ghost",
+       baseSpecies: "Tropeus",
+       forme: "Ghost",
+       formeLetter: "G",
+	    types: ["Grass", "Ghost"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusdragon: {
+	    num: 7500527,
+       species: "Tropeus-Dragon",
+       baseSpecies: "Tropeus",
+       forme: "Dragon",
+       formeLetter: "D",
+	    types: ["Grass", "Dragon"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusdark: {
+	    num: 7500527,
+       species: "Tropeus-Dark",
+       baseSpecies: "Tropeus",
+       forme: "Dark",
+       formeLetter: "D",
+	    types: ["Grass", "Dark"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeussteel: {
+	    num: 7500527,
+       species: "Tropeus-Steel",
+       baseSpecies: "Tropeus",
+       forme: "Steel",
+       formeLetter: "S",
+	    types: ["Grass", "Steel"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},
+	tropeusfairy: {
+	    num: 7500527,
+       species: "Tropeus-Fairy",
+       baseSpecies: "Tropeus",
+       forme: "Fairy",
+       formeLetter: "F",
+	    types: ["Grass", "Fairy"],
+	    baseStats: {
+	        hp: 120,
+	        atk: 100,
+	        def: 105,
+	        spa: 100,
+	        spd: 105,
+	        spe: 98
+	    },
+	    abilities: {
+	        0: "God of Fertility"
+	    },
+	    heightm: 2.6,
+	    weightkg: 210,
+	    eggGroups: ["Undiscovered"],
+	},	metabell: {
+	        num: 7500528,
+	        species: "Metabell",
+	        types: ["Grass", "Steel"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 80,
+	            atk: 127,
+	            def: 100,
+	            spa: 97,
+	            spd: 90,
+	            spe: 90
+	        },
+	        abilities: {
+	            0: "Indigestion"
+	        },
+	        heightm: 1.65,
+	        weightkg: 282.75,
+	        eggGroups: ["Undiscovered"],
+	    },
+	    metabellmega: {
+	        num: 7500528,
+	        species: "Metabell-Mega",
+	        baseSpecies: "Metabell",
+	        forme: "Mega",
+	        formeLetter: "M",
+	        types: ["Grass", "Steel"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 80,
+	            atk: 137,
+	            def: 120,
+	            spa: 107,
+	            spd: 110,
+	            spe: 130
+	        },
+	        abilities: {
+	            0: "Tough Claws"
+	        },
+	        heightm: 1.65,
+	        weightkg: 675.65,
+	        eggGroups: ["Undiscovered"],
+	    },
+	taiwan: {
+	    num: 7500529,
+	    species: "Taiwan",
+	    types: ["Grass", "Ice"],
+       gender: "N",
+	    baseStats: {
+	        hp: 64,
+	        atk: 170,
+	        def: 98,
+	        spa: 52,
+	        spd: 58,
+	        spe: 137
+	    },
+	    abilities: {
+	        0: "Beast Bootleg"
+	    },
+	    heightm: 0.7,
+	    weightkg: 17.05,
+		 color: "White",
+	    eggGroups: ["Undiscovered"],
+	},
+	apouterro: {
+	        num: 7500530,
+	        species: "Apou Terro",
+	        types: ["Grass", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 92,
+	            atk: 97,
+	            def: 100,
+	            spa: 122,
+	            spd: 100,
+	            spe: 75
+	        },
+	        abilities: {
+	            0: "Beast Bootleg"
+	        },
+	        heightm: 1.7,
+	        weightkg: 164.3,
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapus: {
+	        num: 7500531,
+	        species: "Castapus",
+	        types: ["Normal", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Gray",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapussmarty: {
+	        num: 7500531,
+	        species: "Castapus-Smarty",
+	        baseSpecies: "Castapus",
+	        forme: "Smarty",
+	        formeLetter: "S",
+	        types: ["Psychic", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Pink",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapusstormy: {
+	        num: 7500531,
+	        species: "Castapus-Stormy",
+	        baseSpecies: "Castapus",
+	        forme: "Stormy",
+	        formeLetter: "S",
+	        types: ["Electric", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Yellow",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapusgrassy: {
+	        num: 7500531,
+	        species: "Castapus-Grassy",
+	        baseSpecies: "Castapus",
+	        forme: "Grassy",
+	        formeLetter: "G",
+	        types: ["Grass", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Green",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapusmisty: {
+	        num: 7500531,
+	        species: "Castapus-Misty",
+	        baseSpecies: "Castapus",
+	        forme: "Misty",
+	        formeLetter: "M",
+	        types: ["Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Pink",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapusrocky: {
+	        num: 7500531,
+	        species: "Castapus-Rocky",
+	        baseSpecies: "Castapus",
+	        forme: "Rocky",
+	        formeLetter: "R",
+	        types: ["Rock", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Brown",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapusmurky: {
+	        num: 7500531,
+	        species: "Castapus-Murky",
+	        baseSpecies: "Castapus",
+	        forme: "Murky",
+	        formeLetter: "M",
+	        types: ["Dark", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Black",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapuskelpy: {
+	        num: 7500531,
+	        species: "Castapus-Kelpy",
+	        baseSpecies: "Castapus",
+	        forme: "Kelpy",
+	        formeLetter: "K",
+	        types: ["Water", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Blue",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapussludgy: {
+	        num: 7500531,
+	        species: "Castapus-Sludgy",
+	        baseSpecies: "Castapus",
+	        forme: "Sludgy",
+	        formeLetter: "S",
+	        types: ["Poison", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Purple",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapusbeauty: {
+	        num: 7500531,
+	        species: "Castapus-Beauty",
+	        baseSpecies: "Castapus",
+	        forme: "Beauty",
+	        formeLetter: "B",
+	        types: ["Fire", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Red",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    castapussturdy: {
+	        num: 7500531,
+	        species: "Castapus-Sturdy",
+	        baseSpecies: "Castapus",
+	        forme: "Sturdy",
+	        formeLetter: "S",
+	        types: ["Steel", "Fairy"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 70,
+	            atk: 77,
+	            def: 72,
+	            spa: 120,
+	            spd: 92,
+	            spe: 102
+	        },
+	        abilities: {
+	            0: "Geologist"
+	        },
+	        heightm: 0.8,
+	        weightkg: 9.7,
+	        color: "Gray",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    ractusdel: {
+	        num: 7500532,
+	        species: "Ractusdel",
+	        types: ["Grass", "Dragon"],
+	        baseStats: {
+	            hp: 74,
+	            atk: 79,
+	            def: 70,
+	            spa: 136,
+	            spd: 70,
+	            spe: 110
+	        },
+	        abilities: {
+	            0: "Aqua Booster"
+	        },
+	        heightm: 2.3,
+	        weightkg: 89,
+	        eggGroups: ["Undiscovered"],
+	    },
+	    cornite: {
+	        num: 7500533,
+	        species: "Cornite",
+	        types: ["Rock", "Flying"],
+	        genderRatio: "{M: 50.0, F: 50.0}",
+	        baseStats: {
+	            hp: 88,
+	            atk: 104,
+	            def: 105,
+	            spa: 92,
+	            spd: 107,
+	            spe: 67
+	        },
+	        abilities: {
+	            0: "Graceful Exit"
+	        },
+	        heightm: 0.6,
+	        weightkg: 5.0,
+	        color: "Brown",
+	        eggGroups: ["Water 1"],
+	    },
+	    passadust: {
+	        num: 7500534,
+	        species: "Passadust",
+	        types: ["Fighting", "Flying"],
+	        gender: "M",
+	        baseStats: {
+	            hp: 89,
+	            atk: 130,
+	            def: 85,
+	            spa: 75,
+	            spd: 75,
+	            spe: 120
+	        },
+	        abilities: {
+	            0: "Chain Heal"
+	        },
+	        heightm: 1.7,
+	        weightkg: 72.9,
+	        color: "White",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    bangma: {
+	        num: 7500535,
+	        species: "Bangma",
+	        types: ["Ghost", "Rock"],
+	        genderRatio: "{M: 50.0, F: 50.0}",
+	        baseStats: {
+	            hp: 72,
+	            atk: 92,
+	            def: 102,
+	            spa: 96,
+	            spd: 81,
+	            spe: 57
+	        },
+	        abilities: {
+	            0: "Cold Body"
+	        },
+	        heightm: 0.8,
+	        weightkg: 55.0,
+	        color: "Black",
+	        eggGroups: ["Amorphous"],
+	    },
+	    bangmamega: {
+	        num: 7500535,
+	        species: "Bangma-Mega",
+	        baseSpecies: "Bangma",
+	        forme: "Mega",
+	        formeLetter: "M",
+	        types: ["Ghost", "Rock"],
+	        genderRatio: {
+	            M: 50.0,
+	            F: 50.0
+	        },
+	        baseStats: {
+	            hp: 72,
+	            atk: 142,
+	            def: 112,
+	            spa: 106,
+	            spd: 101,
+	            spe: 67
+	        },
+	        abilities: {
+	            0: "Prankster"
+	        },
+	        heightm: 0.9,
+	        weightkg: 55.5,
+	        color: "Black",
+	        eggGroups: ["Amorphous"],
+	    },
+	    weeeeds: {
+	        num: 7500536,
+	        species: "Weeeeds",
+	        types: ["Steel", "Psychic"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 92,
+	            atk: 75,
+	            def: 105,
+	            spa: 65,
+	            spd: 100,
+	            spe: 55
+	        },
+	        abilities: {
+	            0: "Dangerous Addiction"
+	        },
+	        heightm: 0.5,
+	        weightkg: 11.4,
+	        color: "Grey",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    cherroh: {
+	        num: 7500537,
+	        species: "Cherr-Oh",
+	        types: ["Grass", "Fire"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 95,
+	            atk: 110,
+	            def: 90,
+	            spa: 98,
+	            spd: 121,
+	            spe: 87
+	        },
+	        abilities: {
+	            0: "Care Package"
+	        },
+	        heightm: 2.15,
+	        weightkg: 104.15,
+	        color: "Red",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    rotillwashaz: {
+	        num: 7500538,
+	        species: "Rotill-Washaz",
+	        types: ["Electric", "Water"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 95,
+	            atk: 57,
+	            def: 98,
+	            spa: 92,
+	            spd: 98,
+	            spe: 68
+	        },
+	        abilities: {
+	            0: "Root Rum"
+	        },
+	        heightm: 0.55,
+	        weightkg: 14.4,
+	        color: "Blue",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    mienzy: {
+	        num: 7500539,
+	        species: "Mienzy",
+	        types: ["Fighting", "Dragon"],
+	        genderRatio: "{M: 50.0, F: 50.0}",
+	        baseStats: {
+	            hp: 59,
+	            atk: 132,
+	            def: 65,
+	            spa: 78,
+	            spd: 72,
+	            spe: 130
+	        },
+	        abilities: {
+	            0: "Aura of Pain"
+	        },
+	        heightm: 1.4,
+	        weightkg: 35.5,
+	        color: "Black",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    whiscor: {
+	        num: 7500540,
+	        species: "Whiscor",
+	        types: ["Bug", "Ground"],
+	        genderRatio: "{M: 50.0, F: 50.0}",
+	        baseStats: {
+	            hp: 67,
+	            atk: 85,
+	            def: 122,
+	            spa: 52,
+	            spd: 87,
+	            spe: 81
+	        },
+	        abilities: {
+	            0: "Healing Hell"
+	        },
+	        heightm: 1.6,
+	        weightkg: 50.5,
+	        color: "Grey",
+	        eggGroups: ["Bug"],
+	    },
+	    yvenne: {
+	        num: 7500541,
+	        species: "Yvenne",
+	        types: ["Electric", "Flying"],
+	        genderRatio: "{M: 50.0, F: 50.0}",
+	        baseStats: {
+	            hp: 96,
+	            atk: 94,
+	            def: 76,
+	            spa: 126,
+	            spd: 82,
+	            spe: 120
+	        },
+	        abilities: {
+	            0: "Pouch Aura"
+	        },
+	        heightm: 3.0,
+	        weightkg: 102.6,
+	        color: "Red",
+	        eggGroups: ["Undiscovered"],
+	    },
+		unozam: {
+	        num: 7500542,
+	        species: "Unozam",
+	        types: ["Psychic"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 51,
+	            atk: 61,
+	            def: 46,
+	            spa: 123,
+	            spd: 71,
+	            spe: 104
+	        },
+	        abilities: {
+	            0: "Hidden Advantage"
+	        },
+	        heightm: 1,
+	        weightkg: 26.5,
+	        color: "Black",
+	        eggGroups: ["Undiscovered"],
+	    },
+	    unozammega: {
+	        num: 7500542,
+	        species: "Unozam-Mega",
+	        baseSpecies: "Unozam",
+	        forme: "Mega",
+	        formeLetter: "M",
+	        types: ["Psychic"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 51,
+	            atk: 61,
+	            def: 66,
+	            spa: 163,
+	            spd: 81,
+	            spe: 134
+	        },
+	        abilities: {
+	            0: "Trace"
+	        },
+	        heightm: 0.7,
+	        weightkg: 26.5,
+	        color: "Black",
+	        eggGroups: ["Undiscovered"],
+	    },
+		kyubeatblack: {
+	        num: 7500543,
+	        species: "Kyubeat-Black",
+	        types: ["Ice", "Bug"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 95,
+	            atk: 135,
+	            def: 100,
+	            spa: 83,
+	            spd: 100,
+	            spe: 90
+	        },
+	        abilities: {
+	            0: "Volt Field"
+	        },
+	        heightm: 2,
+	        weightkg: 171.35,
+	        color: "Gray",
+	        eggGroups: ["Undiscovered"],
+	    },
+		kahoot: {
+	        num: 7500544,
+	        species: "Kahoot",
+	        types: ["Dark", "Electric"],
+	        gender: "N",
+	        baseStats: {
+	            hp: 90,
+	            atk: 95,
+	            def: 94,
+	            spa: 110,
+	            spd: 84,
+	            spe: 78
+	        },
+	        abilities: {
+	            0: "Test Cram"
+	        },
+	        heightm: 0.6,
+	        weightkg: 13.8,
+	        color: "Black",
+	        eggGroups: ["Undiscovered"],
+	    },
+		laprasnow: {
+	        num: 7500545,
+	        species: "Laprasnow",
+	        types: ["Grass", "Water"],
+	        baseStats: {
+	            hp: 120,
+	            atk: 98,
+	            def: 87,
+	            spa: 98,
+	            spd: 100,
+	            spe: 70
+	        },
+	        abilities: {
+	            0: "Snow Absorb"
+	        },
+	        heightm: 2.35,
+	        weightkg: 177.75,
+	        color: "Blue",
+	        eggGroups: ["Monster"],
+	    },
+	    laprasnowmega: {
+	        num: 7500545,
+	        species: "Laprasnow-Mega",
+	        baseSpecies: "Laprasnow",
+	        forme: "Mega",
+	        formeLetter: "M",
+	        types: ["Grass", "Water"],
+	        baseStats: {
+	            hp: 120,
+	            atk: 138,
+	            def: 117,
+	            spa: 138,
+	            spd: 120,
+	            spe: 40
+	        },
+	        abilities: {
+	            0: "Snow Warning"
+	        },
+	        heightm: 2.85,
+	        weightkg: 227.25,
+	        color: "Blue",
+	        eggGroups: ["Monster"],
+	    },
+		kars: {
+	        num: 7500546,
+	        species: "Kars",
+	        types: ["Fairy"],
+	        baseStats: {
+	            hp: 43,
+	            atk: 40,
+	            def: 40,
+	            spa: 65,
+	            spd: 55,
+	            spe: 55
+	        },
+	        abilities: {
+	            0: "Ultimate Lifeform"
+	        },
+	        heightm: 0.6,
+	        weightkg: 13.4,
+	        color: "White",
+	        eggGroups: ["Amorphous"],
+	    },
+		fletchitina: {
+	        num: 7500547,
+	        species: "Fletchitina",
+	        types: ["Fire", "Ghost"],
+	        baseStats: {
+	            hp: 106,
+	            atk: 96,
+	            def: 86,
+	            spa: 108,
+	            spd: 87,
+	            spe: 87
+	        },
+	        abilities: {
+	            0: "Gale Levitation"
+	        },
+	        heightm: 3.8,
+	        weightkg: 333,
+	        color: "Red",
+	        eggGroups: ["Undiscovered"],
+	    },
+		bibokrook: {
+	        num: 7500548,
+	        species: "Bibokrook",
+	        types: ["Dark", "Water"],
+	        baseStats: {
+	            hp: 97,
+	            atk: 111,
+	            def: 80,
+	            spa: 70,
+	            spd: 75,
+	            spe: 91
+	        },
+	        abilities: {
+	            0: "Confidence Boost"
+	        },
+	        heightm: 1.25,
+	        weightkg: 63.9,
+	        color: "Red",
+	        eggGroups: ["Field"],
+	    },
+	lycanitan: {
+	        num: 7500549,
+	        species: "Lycanitan",
+	        baseForme: "Nightmare",
+	        types: ["Fire", "Rock"],
+	        baseStats: {
+	            hp: 100,
+	            atk: 138,
+	            def: 70,
+	            spa: 52,
+	            spd: 70,
+	            spe: 112
+	        },
+	        abilities: {
+	            0: "Paw Prayer"
+	        },
+	        heightm: 1.05,
+	        weightkg: 58.95,
+	        eggGroups: ["Field"],
+	        otherFormes: ["lycanitandaydream"],
+	    },
+	lycanitandaydream: {
+	        num: 7500549,
+	        species: "Lycanitan-Daydream",
+	        baseSpecies: "Lycanitan",
+	        forme: "Daydream",
+	        formeLetter: "D",
+	        types: ["Fire", "Psychic"],
+	        baseStats: {
+	            hp: 100,
+	            atk: 52,
+	            def: 120,
+	            spa: 138,
+	            spd: 120,
+	            spe: 82
+	        },
+	        abilities: {
+	            0: "Paw Prayer"
+	        },
+	        heightm: 1.05,
+	        weightkg: 58.95,
+	        eggGroups: ["Field"],
+	    },
+	minirill: {
+	        num: 7500550,
+	        species: "Minirill",
+	        baseForme: "Antisocial",
+	        types: ["Fairy", "Flying"],
+			  gender: "N",
+	        baseStats: {
+	            hp: 65,
+	            atk: 41,
+	            def: 85,
+	            spa: 41,
+	            spd: 85,
+	            spe: 68
+	        },
+	        abilities: {
+	            0: "Social Life"
+	        },
+	        heightm: 0.35,
+	        weightkg: 44.1,
+	        eggGroups: ["Undiscovered"],
+	        otherFormes: ["minirillsocial"],
+	    },
+	minirillsocial: {
+	        num: 7500550,
+	        species: "Minirill-Social",
+	        baseSpecies: "Minirill",
+	        forme: "Social",
+	        formeLetter: "S",
+	        types: ["Fairy", "Flying"],
+			  gender: "N",
+	        baseStats: {
+	            hp: 65,
+	            atk: 85,
+	            def: 41,
+	            spa: 85,
+	            spd: 41,
+	            spe: 128
+	        },
+	        abilities: {
+	            0: "Social Life"
+	        },
+	        heightm: 0.35,
+	        weightkg: 4.4,
+	        eggGroups: ["Undiscovered"],
+	    },
+		tomb2: {
+	        num: 7500551,
+	        species: "Tomb2",
+	        types: ["Ghost", "Normal"],
+	        baseStats: {
+	            hp: 87,
+	            atk: 86,
+	            def: 109,
+	            spa: 98,
+	            spd: 111,
+	            spe: 47
+	        },
+	        abilities: {
+	            0: "Firewall"
+	        },
+	        heightm: 0.8,
+	        weightkg: 70.25,
+	        color: "Red",
+	        eggGroups: ["Undiscovered"],
+	    },
+	pikachuash: {
+	        num: 25,
+	        species: "Pikachu-Ash",
+	        baseSpecies: "Pikachu",
+	        forme: "Ash",
+	        formeLetter: "A",
+	        types: ["Electric"],
+			  gender: "M",
+	        baseStats: {
+	            hp: 35,
+	            atk: 75,
+	            def: 40,
+	            spa: 50,
+	            spd: 50,
+	            spe: 110
+	        },
+	        abilities: {
+	            0: "Friction Charge"
+	        },
+	        heightm: 0.4,
+	        weightkg: 6,
+	        color: "Yellow",
+	        eggGroups: ["Undiscovered"],
+			  otherForms: ["pikachuashhoenn", "pikachuashsinnoh", "pikachuashunova", "pikachuashkalos", "pikachuashalola"],
+	    },
+		talestoutaloland: {
+	        num: 7500553,
+	        species: "Talestout-Aloland",
+	        types: ["Fairy", "Normal"],
+	        baseStats: {
+	            hp: 89,
+	            atk: 98,
+	            def: 92,
+	            spa: 73,
+	            spd: 105,
+	            spe: 104
+	        },
+	        abilities: {
+	            0: "Blizzard Blur"
+	        },
+	        heightm: 1.15,
+	        weightkg: 40.45,
+	        eggGroups: ["Field"],
+	    },
+	grousle: {
+	    num: 7500554,
+	    species: "Grousle",
+	    types: ["Ground", "Electric"],
+       gender: "N",
+	    baseStats: {
+	        hp: 90,
+	        atk: 100,
+	        def: 90,
+	        spa: 110,
+	        spd: 94,
+	        spe: 92
+	    },
+	    abilities: {
+	        0: "Solar Panel"
+	    },
+	    heightm: 1.95,
+	    weightkg: 477.1,
+	    eggGroups: ["Undiscovered"],
+	    otherFormes: ["grousleprimal"],
+	},
+        grousleprimal: {
+            num: 7500554,
+            species: "Grousle-Primal",
+            baseSpecies: "Grousle",
+            forme: "Primal",
+            formeLetter: "P",
+	    		types: ["Ground", "Electric"],
+      		gender: "N",
+	   		baseStats: {
+			        hp: 90,
+	        		  atk: 130,
+			        def: 110,
+	  		     	  spa: 160,
+	        		  spd: 94,
+	       		  spe: 92
+	   		 },
+	    		abilities: {
+	        		0: "Desolate Land"
+	    		},
+	    		heightm: 3.45,
+	    		weightkg: 526.8,
+	    		eggGroups: ["Undiscovered"],
+       },
+		region: {
+	        num: 7500555,
+	        species: "Region",
+	        types: ["Ice"],
+	        baseStats: {
+	            hp: 92,
+	            atk: 55,
+	            def: 125,
+	            spa: 115,
+	            spd: 147,
+	            spe: 57
+	        },
+	        abilities: {
+	            0: "Tour To Russia"
+	        },
+	        heightm: 1.3,
+	        weightkg: 100.45,
+	        eggGroups: ["Undiscovered"],
+	    },
+		wagonite: {
+		        num: 7500556,
+		        species: "Wagonite",
+		        types: ["Water", "Flying"],
+		        baseStats: {
+		            hp: 92,
+		            atk: 55,
+		            def: 125,
+		            spa: 115,
+		            spd: 147,
+		            spe: 57
+		        },
+		        abilities: {
+		            0: "Ice Scale"
+		        },
+		        heightm: 1.8,
+		        weightkg: 180.3,
+		        eggGroups: ["Water 1"],
+		    },
+		    drewni: {
+		        num: 7500557,
+		        species: "Drewni",
+		        types: ["Dragon", "Psychic"],
+		        gender: "N",
+		        baseStats: {
+		            hp: 105,
+		            atk: 120,
+		            def: 99,
+		            spa: 115,
+		            spd: 100,
+		            spe: 100
+		        },
+		        abilities: {
+		            0: "Synch Scale"
+		        },
+		        heightm: 1.3,
+		        weightkg: 107,
+		        color: "Orange",
+		        eggGroups: ["Undiscovered"],
+		    },
+		    topper: {
+		        num: 7500558,
+		        species: "Topper",
+		        types: ["Fairy", "Flying"],
+        		  genderRatio: {
+           			M: 75.0,
+            	 	F: 25.0
+			  	   },
+		        baseStats: {
+		            hp: 82,
+		            atk: 60,
+		            def: 107,
+		            spa: 117,
+		            spd: 102,
+		            spe: 82
+		        },
+		        abilities: {
+		            0: "Afterstorm"
+		        },
+		        heightm: 1.35,
+		        weightkg: 33,
+		        eggGroups: ["Flying"],
+		    },
+		    qwilala: {
+		        num: 7500559,
+		        species: "Qwilala",
+		        types: ["Poison", "Ghost"],
+		        baseStats: {
+		            hp: 101,
+		            atk: 104,
+		            def: 102,
+		            spa: 101,
+		            spd: 101,
+		            spe: 91
+		        },
+		        abilities: {
+		            0: "Poison Shield"
+		        },
+		        heightm: 2.25,
+		        weightkg: 61.95,
+				  color: "Gray",
+		        eggGroups: ["Undiscovered"],
+		    },
+		    accelerateddetox: {
+		        num: 7500560,
+		        species: "Accelerated Detox",
+		        types: ["Electric", "Psychic"],
+				  gender: "N",
+		        baseStats: {
+		            hp: 101,
+		            atk: 104,
+		            def: 102,
+		            spa: 101,
+		            spd: 101,
+		            spe: 91
+		        },
+		        abilities: {
+		            0: "Purgative Nostrum"
+		        },
+		        heightm: 1.45,
+		        weightkg: 63.7,
+				  color: "Red",
+		        eggGroups: ["Undiscovered"],
+		    },
+		    quendorus: {
+		        num: 7500561,
+		        species: "Quendorus",
+		        types: ["Bug", "Flying"],
+				  gender: "N",
+		        baseStats: {
+		            hp: 99,
+		            atk: 107,
+		            def: 96,
+		            spa: 107,
+		            spd: 96,
+		            spe: 70
+		        },
+		        abilities: {
+		            0: "Scary Sandwich"
+		        },
+		        heightm: 1.35,
+		        weightkg: 53.25,
+				  color: "Yellow",
+		        eggGroups: ["Undiscovered"],
+		    },
+					quendorus: {
+		            num: 7500561,
+		            species: "Quendorus",
+		            types: ["Bug", "Flying"],
+		            gender: "N",
+		            baseStats: {
+		                hp: 99,
+		                atk: 107,
+		                def: 96,
+		                spa: 107,
+		                spd: 96,
+		                spe: 70
+		            },
+		            abilities: {
+		                0: "Scary Sandwich"
+		            },
+		            heightm: 1.35,
+		            weightkg: 53.25,
+		            color: "Yellow",
+		            eggGroups: ["Undiscovered"],
+		        },
+		        farfect: {
+		            num: 7500562, 
+					  	species: "Farfect",
+		            types: ["Normal", "Bug"],
+		            gender: "N",
+		            baseStats: {
+		                hp: 61,
+		                atk: 125,
+		                def: 80,
+		                spa: 90,
+		                spd: 80,
+		                spe: 91
+		            },
+		            abilities: {
+		                0: "Rebel"
+		            },
+		            heightm: 1.5,
+		            weightkg: 82.5,
+		            color: "Brown",
+		            eggGroups: ["Undiscovered"],
+		        },
+					cocaine: {
+		            num: 7500563, 
+		            species: "Cocaine",
+		            types: ["Water", "Grass"],
+		            gender: "N",
+		            baseStats: {
+		                hp: 90,
+		                atk: 110,
+		                def: 110,
+		                spa: 130,
+		                spd: 110,
+		                spe: 90
+		            },
+		            abilities: {
+		                0: "Anesthesia"
+		            },
+		            heightm: 1.15,
+		            weightkg: 100,
+		            color: "Green",
+		            eggGroups: ["Undiscovered"],
+		        },
 };
