@@ -8445,12 +8445,12 @@ exports.BattleAbilities = {
 	"moldedstall": {
         shortDesc: "No abilities have an effect, other than this one, until after this Pokemon acts.",
         onFoeBeforeMove: function(pokemon, target) {
-			  let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
-			for (const target of allActives) {
-			  if (target !== pokemon && this.willMove(target)) {
-                              pokemon.addVolatile('teraarmor');
-			  }
-		  	}
+				let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
+				for (const target of allActives) {
+			  		if (target !== pokemon && this.willMove(target)) {
+                  pokemon.addVolatile('teraarmor');
+			  		}
+		  		}
         },
 		onModifyMove: function(move) {
 			move.ignoreAbility = true;
