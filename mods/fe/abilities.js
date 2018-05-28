@@ -10769,4 +10769,43 @@ exports.BattleAbilities = {
 		id: "sleepingsystem",
 		name: "Sleeping System",
 	},
+	"prototype": { // TODO: Check if this works
+		shortDesc: "Changes secondary type and doubles Speed while holding a plate or Z-Crystal.",
+		// Form Changes implemented in statuses.js
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+			let type1 = pokemon.getItem().onPlate;
+			// @ts-ignore
+			if (!type1 || type1 === true) {
+				type1 = 'Normal';
+			}
+			let type2 = this.getMove(pokemon.moveSlots[0].id).type;
+			if (!type2){
+				type2 = 'Normal';
+			}
+			if(type1 === type2){
+				pokemon.setType(type1);
+			} else {
+				pokemon.setType(type1, type2);
+			}
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'embargo' && pokemon.getItem() && pokemon.getItem().onPlate) return false;
+		},
+		onTryHit: function (pokemon, target, move) {
+			if (move.id === 'embargo' && pokemon.getItem() && pokemon.getItem().onPlate) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Prototype');
+				return null;
+			}
+		},
+		onTakeItem: function (item, pokemon, source) {
+			if (!pokemon.getItem().onPlate || this.suppressingAttackEvents() && pokemon !== this.activePokemon || !pokemon.hp) return;
+			if (!this.activeMove) throw new Error("Battle.activeMove is null");
+			if ((source && source !== pokemon) || this.activeMove.id === 'knockoff') {
+				return false;
+			}
+		},
+		id: "prototype",
+		name: "Prototype",
+	},
 };
