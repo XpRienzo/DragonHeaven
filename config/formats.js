@@ -3980,12 +3980,12 @@ exports.Formats = [
 		{
 		name: "[Gen 7] Suicide Cup",
 		desc: [
-			"The first side to lose of their Pok&eacute;mon wins.",
+			"The first side to lose all of their Pok&eacute;mon wins.",
 		],
 
 		mod: 'suicidecup',
 		ruleset: ['[Gen 7] Anything Goes', 'Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'Evasion Moves Clause'],
-		banlist: ['Assault Vest', 'Explosion', 'Final Gambit', 'Healing Wish', 'Lunar Dance', 'Magic Room', 'Memento', 'Self Destruct', 'Shedinja', 'Misty Terrain', 'Misty Surge', 'Infiltrator'],
+		banlist: ['Assault Vest', 'Explosion', 'Final Gambit', 'Healing Wish', 'Lunar Dance', 'Magic Guard', 'Magic Room', 'Memento', 'Self Destruct', 'Shedinja', 'Misty Terrain', 'Misty Surge', 'Infiltrator'],
 		onValidateSet: function (set) {
 			if(set.level !== 100) return [`All Pokemon should be Level 100. (${set.name || set.species} is Level ${set.level})`];
 		},
