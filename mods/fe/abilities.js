@@ -10683,4 +10683,27 @@ exports.BattleAbilities = {
 		id: "weathercontradiction",
 		name: "Weather Contradiction",
 	},
+	"sleepingsystem": {
+      desc: "This Pokémon would change types to match it's held drive. This Pokémon counts as asleep and always holding all drives. (Multi-Attack is still Normal.)",
+		shortDesc: "This Pokemon is treated as if it were alseep and also all types at once.",
+		onSwitchInPriority: 102,
+		onSwitchIn: function (pokemon) {
+				pokemon.setType('Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Rock', 'Psychic', 'Bug', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy');
+		},
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			if (move.id === 'multiattack'){
+                move.type = 'Normal';
+           }
+		},
+		onSetStatus: function (status, target, source, effect) {
+			if (!effect || !effect.status) return false;
+			this.add('-immune', target, '[msg]', '[from] ability: Sleeping System');
+			return false;
+		},
+		// Permanent sleep "status" implemented in the relevant sleep-checking effects
+		isUnbreakable: true,
+		id: "sleepingsystem",
+		name: "Sleeping System",
+	},
 };
