@@ -6994,7 +6994,7 @@ exports.BattleMovedex = {
 		category: "Special",
 		desc: "Ignores accuracy checks and type immunities to hit the target, even if it is Ghost-type.",
 		shortDesc: "Ignores both accuracy checks and type immunities.",
-		id: "fireblast",
+		id: "miracleblast",
 		isViable: true,
 		name: "Miracle Blast",
 		pp: 5,
