@@ -1661,7 +1661,8 @@ exports.BattleMovedex = {
 			case 'wonderroom':
 			case 'inverseroom':
 			case 'magicroom':
-				move.basePower *= 1.5;
+			move.basePower *= 1.5;
+			break;
 			}
 		},
 		secondary: false,
