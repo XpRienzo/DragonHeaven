@@ -6475,8 +6475,8 @@ exports.BattleAbilities = {
 			let totalspd = 0;
 			for (const target of pokemon.side.foe.active) {
 				if (!target || target.fainted) continue;
-				totaldef += target.getStat('def', false, true);
-				totalspd += target.getStat('spd', false, true);
+				totaldef += target.getStat('atk', false, true);
+				totalspd += target.getStat('spa', false, true);
 			}
 			if (totaldef && totaldef > totalspd) {
 				this.useMove('Reflect', pokemon);
