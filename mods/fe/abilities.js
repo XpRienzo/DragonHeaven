@@ -10859,4 +10859,13 @@ exports.BattleAbilities = {
 		id: "prototype",
 		name: "Prototype",
 	},
+	"afterstorm": {
+		desc: "Summons Rainbow Sky for 5 turns; during Rainbow Sky, moves have their secondary effect chance doubled and said moves have 50% more power; moves with no secondary effect inflict 50% less damage (also moves afflicted by Sheer Force and variants that nullify secondary effect).",
+		shortDesc: "On switch-in, this Pokemon summons Rainbow Sky for five turns.",
+		onStart: function (source) {
+			this.setWeather('afterstorm');
+		},
+		id: "afterstorm",
+		name: "Afterstorm",
+	},
 };
