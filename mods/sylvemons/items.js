@@ -20,12 +20,6 @@ exports.BattleItems = {
 				return null;
 			}
 		},
-		onUpdate: function (target, source, effect) {
-				if (effect.id === 'stickyweb' || effect.id === 'toxicspikes') {
-				if (!this.activeMove) throw new Error("Battle.activeMove is null");
-				return null;
-			}
-		},
       desc: "The holder is unaffected by entry hazards.",
       	},
 	"adrenalineorb": {
