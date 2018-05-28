@@ -1,7 +1,7 @@
 'use strict';
 
 exports.BattleMovedex = {
-	//Below are moves only relevant 
+	//Below are moves only relevant for abilities.
 	"rockyterrain": {
 		accuracy: true,
 		basePower: 0,
@@ -202,6 +202,12 @@ exports.BattleMovedex = {
 			onStart: function (pokemon) {
 				this.add('-endability', pokemon);
 				this.singleEvent('End', this.getAbility(pokemon.ability), pokemon.abilityData, pokemon, pokemon, 'teraarmor');
+			},
+			onTryHit: function (pokemon, target, move) {
+				target.removeVolatile('teraarmor');
+			},
+			onResidual: function (pokemon) {
+				pokemon.removeVolatile('teraarmor');
 			},
 		},
 		secondary: false,
@@ -777,13 +783,15 @@ exports.BattleMovedex = {
 				break;
 			}
 		},
-		onEffectiveness: function (typeMod, type, move, target) {
+		onEffectiveness: function (typeMod, type, move) {
 			   // @ts-ignore
-				let mod = typeMod; 
+				let mod = typeMod;
 				if (move.solarsnowboosted) {
 			        mod = mod + this.getEffectiveness('Ice', type);
 				}
-				if (pokemon.volatiles['atmosphericperversion'] != pokemon.volatiles['weatherbreak']) mod = mod * -1;
+				if (move.isInInvertedWeather){
+					mod = mod * -1;	
+				}
 				return mod; 
 		},
 		secondary: false,
@@ -6994,7 +7002,7 @@ exports.BattleMovedex = {
 		category: "Special",
 		desc: "Ignores accuracy checks and type immunities to hit the target, even if it is Ghost-type.",
 		shortDesc: "Ignores both accuracy checks and type immunities.",
-		id: "fireblast",
+		id: "miracleblast",
 		isViable: true,
 		name: "Miracle Blast",
 		pp: 5,

@@ -22,7 +22,7 @@ let BattleStatuses = {
 		},
 		onBeforeMovePriority: 1,
 		onBeforeMove: function (pokemon) {
-			if (this.randomChance(1, 4) && !pokemon.hasAbility('therapeutic') && !pokemon.hasAbility('shutupandjam')) {
+			if (this.randomChance(1, 4) && !pokemon.hasAbility('therapeutic') && !pokemon.hasAbility('shutupandjam') && !pokemon.hasAbility('mellowvibe')) {
 				this.add('cant', pokemon, 'par');
 				return false;
 			}
@@ -58,7 +58,7 @@ let BattleStatuses = {
 				return;
 			}
 			this.add('cant', pokemon, 'frz');
-			if (pokemon.hasAbility('therapeutic') || pokemon.hasAbility('shutupandjam')){
+			if (pokemon.hasAbility('therapeutic') || pokemon.hasAbility('shutupandjam') && !pokemon.hasAbility('mellowvibe')){
 				return;
 			}
 			return false;
@@ -159,6 +159,54 @@ shadowdance: {
                 moveSlot.pp = moveSlot.pp - 2;
             }
         }
+    },
+    onEnd: function() {
+        this.add('-weather', 'none');
+    },
+},
+	
+afterstorm: {
+    name: 'Afterstorm',
+    id: 'afterstorm',
+    num: 0,
+    effectType: 'Weather',
+    duration: 5,
+    durationCallback: function(source, effect) {
+        return 5;
+    },
+	 onModifyDamagePriority: -2,
+    onWeatherModifyDamage: function(damage, attacker, defender, move) {
+			if (move.secondaries) {
+            this.debug('Rainbow Sky secondary boost');
+            return this.chainModify(1.5);
+        } else {
+            this.debug('Rainbow Sky suppress');
+            return this.chainModify(0.5);
+        }
+    },
+	 onModifyMovePriority: -2,
+	 onWeatherModifyMove: function(attacker, defender, move) {
+			if (move.secondaries) {
+				this.debug('doubling secondary chance');
+				for (const secondary of move.secondaries) {
+					// @ts-ignore
+					secondary.chance *= 2;
+				}
+			}
+	 },
+    onStart: function(battle, source, effect) {
+        if (effect && effect.effectType === 'Ability') {
+            if (this.gen <= 5) this.effectData.duration = 0;
+            this.add('-weather', 'Afterstorm', '[from] ability: ' + effect, '[of] ' + source);
+        } else {
+            this.add('-weather', 'Afterstorm');
+            this.add('Afterstorm');
+        }
+    },
+    onResidualOrder: 1,
+    onResidual: function() {
+        this.add('-weather', 'Afterstorm', '[upkeep]');
+        if (this.isWeather('afterstorm')) this.eachEvent('Weather');
     },
     onEnd: function() {
         this.add('-weather', 'none');
