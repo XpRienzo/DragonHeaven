@@ -1,7 +1,7 @@
 'use strict';
 
 exports.BattleMovedex = {
-	//Below are moves only relevant 
+	//Below are moves only relevant for abilities.
 	"rockyterrain": {
 		accuracy: true,
 		basePower: 0,
@@ -202,6 +202,12 @@ exports.BattleMovedex = {
 			onStart: function (pokemon) {
 				this.add('-endability', pokemon);
 				this.singleEvent('End', this.getAbility(pokemon.ability), pokemon.abilityData, pokemon, pokemon, 'teraarmor');
+			},
+			onTryHit: function (pokemon, target, move) {
+				target.removeVolatile('teraarmor');
+			},
+			onResidual: function (pokemon) {
+				pokemon.removeVolatile('teraarmor');
 			},
 		},
 		secondary: false,
