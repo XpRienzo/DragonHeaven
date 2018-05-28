@@ -47,6 +47,9 @@ exports.BattleMovedex = {
 				return 5;
 			},
 			onStart: function(target, source) {
+			this.removePseudoWeather('trickroom');
+			this.removePseudoWeather('magicroom');
+			this.removePseudoWeather('wonderroom');
 				this.add('-fieldstart', 'move: Inverse Room', '[of] ' + source);
 			},
 			onRestart: function (target, source) {
@@ -1408,6 +1411,9 @@ exports.BattleMovedex = {
 				return 5;
 			},
 			onStart: function(target, source) {
+			this.removePseudoWeather('magicroom');
+			this.removePseudoWeather('wonderroom');
+			this.removePseudoWeather('inverseroom');
 				this.add('-fieldstart', 'move: Trick Room', '[of] ' + source);
 			},
 			onRestart: function(target, source) {
@@ -1453,6 +1459,9 @@ exports.BattleMovedex = {
 				return 5;
 			},
 			onStart: function(target, source) {
+			this.removePseudoWeather('trickroom');
+			this.removePseudoWeather('wonderroom');
+			this.removePseudoWeather('inverseroom');
 				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
 			},
 			onRestart: function(target, source) {
@@ -1497,6 +1506,9 @@ exports.BattleMovedex = {
 				return 5;
 			},
 			onStart: function (side, source) {
+			this.removePseudoWeather('trickroom');
+			this.removePseudoWeather('magicroom');
+			this.removePseudoWeather('inverseroom');
 				this.add('-fieldstart', 'move: Wonder Room', '[of] ' + source);
 			},
 			onRestart: function (target, source) {
