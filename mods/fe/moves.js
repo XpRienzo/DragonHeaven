@@ -783,13 +783,15 @@ exports.BattleMovedex = {
 				break;
 			}
 		},
-		onEffectiveness: function (typeMod, type, move, target) {
+		onEffectiveness: function (typeMod, type, move) {
 			   // @ts-ignore
-				let mod = typeMod; 
+				let mod = typeMod;
 				if (move.solarsnowboosted) {
 			        mod = mod + this.getEffectiveness('Ice', type);
 				}
-				if (pokemon.volatiles['atmosphericperversion'] != pokemon.volatiles['weatherbreak']) mod = mod * -1;
+				if (move.isInInvertedWeather){
+					mod = mod * -1;	
+				}
 				return mod; 
 		},
 		secondary: false,
