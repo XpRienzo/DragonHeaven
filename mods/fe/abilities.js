@@ -10806,7 +10806,7 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon is treated as if it were alseep and also all types at once.",
 		onSwitchInPriority: 102,
 		onSwitchIn: function (pokemon) {
-				pokemon.addType('Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Rock', 'Psychic', 'Bug', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy');
+				pokemon.setType('Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Rock', 'Psychic', 'Bug', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy');
 		},
 		onModifyMovePriority: -1,
 		onModifyMove: function (move) {
