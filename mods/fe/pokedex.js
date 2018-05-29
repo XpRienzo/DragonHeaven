@@ -942,7 +942,7 @@ swampert: {
             spe: 125
         },
         abilities: {
-            0: "Refigerate"
+            0: "Refrigerate"
         },
         heightm: 2,
         weightkg: 75.5,
@@ -10481,6 +10481,7 @@ darkchomp: {
         abilities: {
             0: "Cursed Cloak"
         },
+		  eggGroups: ["Amorphous"],
     },
 
 
@@ -10502,6 +10503,7 @@ darkchomp: {
         abilities: {
             0: "Prankster"
         },
+		  eggGroups: ["Amorphous"],
     },
 
 
@@ -11353,9 +11355,9 @@ celebi: {
     },
 
 
-    zecronaw: {
+    zekronaw: {
         num: 7500279,
-        species: "Zecronaw",
+        species: "Zekronaw",
         types: ["Electric", "Water"],
         genderRatio: {M: 87.5, F: 12.5},
         baseStats: {
@@ -11393,7 +11395,7 @@ celebi: {
 
     sablegigas: {
         num: 7500281,
-        species: "sablegigas",
+        species: "Sablegigas",
         types: ["Normal", "Ghost"],
         gender: "N",
         baseStats: {
@@ -11447,6 +11449,7 @@ celebi: {
         abilities: {
             0: "Compound Eyes"
         },
+		  eggGroups: ["Bug"],
     },
 
 
@@ -13469,7 +13472,8 @@ eggGroups: ["Undiscovered", ], },
         abilities: {
             0: "Disguise Burden"
         },
-		 otherFormes: ["mimiblimbusted"],
+		  otherFormes: ["mimiblimbusted"],
+		  eggGroups: ["Amorphous"],
     },
 mimiblimbusted: {
         num: 7500359,
@@ -13489,6 +13493,7 @@ mimiblimbusted: {
         abilities: {
             0: "Disguise Burden"
         },
+		  eggGroups: ["Amorphous"],
     },
     warcanein: {
         num: 7500360,
@@ -15495,7 +15500,7 @@ mimiblimbusted: {
             hp: 83,
             atk: 88,
             def: 97,
-            spa: 133,
+            spa: 113,
             spd: 102,
             spe: 82
         },
@@ -20420,12 +20425,12 @@ eggGroups: ["Undiscovered"],
 		        types: ["Electric", "Psychic"],
 				  gender: "N",
 		        baseStats: {
-		            hp: 101,
-		            atk: 104,
-		            def: 102,
-		            spa: 101,
-		            spd: 101,
-		            spe: 91
+		            hp: 57,
+		            atk: 130,
+		            def: 50,
+		            spa: 130,
+		            spd: 50,
+		            spe: 170
 		        },
 		        abilities: {
 		            0: "Purgative Nostrum"
@@ -20622,15 +20627,15 @@ eggGroups: ["Undiscovered"],
 					formeLetter: "P",
 					types: ["Ground", "Fire"],
 					baseStats: {
-						hp: 85,
-						atk: 110,
+						hp: 75,
+						atk: 95,
 						def: 125,
-						spa: 45,
-						spd: 70,
-						spe: 75,
+						spa: 65,
+						spd: 95,
+						spe: 60,
 					},
 					abilities: {
-						0: "Mountain Climber"
+						0: "Rock Head"
 					},
 					heightm: 1.0,
 					weightkg: 39.5,
@@ -20855,7 +20860,7 @@ eggGroups: ["Undiscovered"],
   						   species: "Nut",
  						   types: ["Water", "Steel"],
    				  		gender: "N",
-						   baseStats: {hp: 66, atk: 77, def: 103, spa: 142, spd: 103, spe: 98},
+						   baseStats: {hp: 66, atk: 131, def: 81, spa: 89, spd: 72, spe: 91},
  						   abilities: {0: "Hardened Body"},
  						   heightm: 2.2,
 						   weightkg: 236,
@@ -20907,7 +20912,7 @@ eggGroups: ["Undiscovered"],
 					wall: {
 					  num: 7500585,
 				     species: "Wall",
-				     types: ["Water", "Steel"],
+				     types: ["Normal", "Steel"],
    				  gender: "N",
 				     baseStats: {hp: 80, atk: 140, def: 135, spa: 54, spd: 94, spe: 29},
 				     abilities: {0: "No Immigrants Allowed"},
@@ -20951,6 +20956,7 @@ eggGroups: ["Undiscovered"],
 			    heightm: 2,
 			    weightkg: 76.75,
 			    color: "Brown",
+				 prevo: "typeblade",
 			    eggGroups: ["Undiscovered"],
 			    otherFormes: ["aegivallyguerilla"],
 				},
@@ -21004,6 +21010,7 @@ eggGroups: ["Undiscovered"],
     			     abilities: {0: "Ravage"},
      			     heightm: 1.9,
     			     weightkg: 120.5,
+					  evos: ["aegivally"],
      			     color: "Purple",
      			     eggGroups: ["Undiscovered"],
 				},
