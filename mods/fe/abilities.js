@@ -8746,10 +8746,7 @@ exports.BattleAbilities = {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
 					moveSlot.pp = (moveSlot.pp+1)/2;
-					let oldAbility = pokemon.setBaseAbility('runaway', target);
-					if (oldAbility) {
-					this.add('-activate', target, 'ability: Run Away', this.getAbility(oldAbility).name, '[of] ' + pokemon);
-				}
+					pokemon.baseAbility = 'runaway';
 				}
 			}
 		},
