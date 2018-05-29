@@ -8746,6 +8746,10 @@ exports.BattleAbilities = {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
 					moveSlot.pp = (moveSlot.pp+1)/2;
+					let oldAbility = pokemon.setBaseAbility('runaway', target);
+					if (oldAbility) {
+					this.add('-activate', target, 'ability: Run Away', this.getAbility(oldAbility).name, '[of] ' + pokemon);
+				}
 				}
 			}
 		},
@@ -10802,7 +10806,7 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon is treated as if it were alseep and also all types at once.",
 		onSwitchInPriority: 102,
 		onSwitchIn: function (pokemon) {
-				pokemon.setType('Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Rock', 'Psychic', 'Bug', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy');
+				pokemon.addType('Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Rock', 'Psychic', 'Bug', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy');
 		},
 		onModifyMovePriority: -1,
 		onModifyMove: function (move) {
@@ -10868,4 +10872,28 @@ exports.BattleAbilities = {
 		id: "afterstorm",
 		name: "Afterstorm",
 	},
+	"singularity": { //TODO: Check for the Protect part
+		shortDesc: "This Pokemon can only be KOed every other turn, unless it uses Protect when it could be KOed.",
+		onTryHit: function (pokemon, target, move) {
+			if (move.ohko) {
+				this.add('-immune', pokemon, '[msg]', '[from] ability: Singularity');
+				pokemon.addVolatile('singularity');
+				return null;
+			}
+		},
+		onDamagePriority: -100,
+		onDamage: function (damage, target, source, effect) {
+			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
+				this.add('-ability', target, 'Singularity');
+				target.addVolatile('singularity');
+				return target.hp - 1;
+			}
+		},
+		effect: {
+			duration: 2,
+		},
+		id: "singularity",
+		name: "Singularity",
+	},
+	
 };
