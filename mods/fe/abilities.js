@@ -8737,16 +8737,21 @@ exports.BattleAbilities = {
 		id: "synchroveil",
 		name: "Synchro Veil",
 	},
+	"pressuratefried": {
+		shortDesc: "Post Pressurate ability.",
+		id: "pressuratefried",
+		name: "Pressurate Fried",
+		rating: 0,
+	},
 	"pressurate": {
 		shortDesc: "Opponent's moves' PPs are halved when this Pokémon enters the field.",
 		onStart: function (pokemon) {
-                        //TODO: Make it only work once per battle
 			this.add('-ability', pokemon, 'Pressurate');
 			for (const target of pokemon.side.foe.active) {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
 					moveSlot.pp = (moveSlot.pp+1)/2;
-					pokemon.baseAbility = 'runaway';
+					pokemon.baseAbility = 'pressuratefried';
 				}
 			}
 		},
@@ -9916,7 +9921,7 @@ exports.BattleAbilities = {
 		id: "christmasparade",
 		name: "Christmas Parade",
 	},
-	"shocktrap": { // TODO: Make it work only once
+	"shocktrap": { // TODO: Make part 2 work only once
 		shortDesc: "Takes 50% damage from all attacks when its HP is full. If it takes a direct attack at full HP, the attacker is paralyzed. (Note: the latter effect only works once.)",
 		onSourceModifyDamage: function(damage, source, target, move) {
 			if (target.hp >= target.maxhp) {
