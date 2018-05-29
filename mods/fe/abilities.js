@@ -10876,10 +10876,15 @@ exports.BattleAbilities = {
 	},
 	"singularity": { //TODO: Check for the Protect part
 		shortDesc: "This Pokemon can only be KOed every other turn, unless it uses Protect when it could be KOed.",
+		onBeforeMovePriority: 9,
+		onBeforeMove: function (pokemon, target, move) {
+			if (!pokemon.removeVolatile('singularity') && !move.stallingMove) {
+					pokemon.addVolatile('singularity');
+			}
+		},
 		onTryHit: function (pokemon, target, move) {
 			if (move.ohko) {
 				this.add('-immune', pokemon, '[msg]', '[from] ability: Singularity');
-				pokemon.addVolatile('singularity');
 				return null;
 			}
 		},
@@ -10887,7 +10892,6 @@ exports.BattleAbilities = {
 		onDamage: function (damage, target, source, effect) {
 			if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === 'Move') {
 				this.add('-ability', target, 'Singularity');
-				target.addVolatile('singularity');
 				return target.hp - 1;
 			}
 		},
