@@ -176,21 +176,25 @@ afterstorm: {
     },
 	 onModifyDamagePriority: -2,
     onWeatherModifyDamage: function(damage, attacker, defender, move) {
-			if (move.secondaries) {
-            this.debug('Rainbow Sky secondary boost');
-            return this.chainModify(1.5);
-        } else {
+			if (move.secondaries == move.isInInvertedWeather) {
             this.debug('Rainbow Sky suppress');
             return this.chainModify(0.5);
+        } else {
+            this.debug('Rainbow Sky boost');
+            return this.chainModify(1.5);
         }
     },
 	 onModifyMovePriority: -2,
 	 onWeatherModifyMove: function(attacker, defender, move) {
 			if (move.secondaries) {
 				this.debug('doubling secondary chance');
-				for (const secondary of move.secondaries) {
-					// @ts-ignore
-					secondary.chance *= 2;
+				if (move.isInInvertedWeather) {
+					delete move.secondaries;
+				}else{
+					for (const secondary of move.secondaries) {
+						// @ts-ignore
+						secondary.chance *= 2;
+					}
 				}
 			}
 	 },
@@ -264,6 +268,7 @@ afterstorm: {
 				if (this.isWeather('sandstorm') && defender.hasType('Rock') && move.category === 'Special') return this.chainModify(2.25);
 				if (this.isWeather('raindance') && move.type === 'Water') return this.chainModify(1/3);
 				if (this.isWeather('raindance') && move.type === 'Fire') return this.chainModify(3);
+				if (this.isWeather('shadowdance') && move.type === 'Ghost') return this.chainModify(1/3);
 			}
 		},
 	},
