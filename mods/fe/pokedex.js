@@ -18238,7 +18238,7 @@ auroritarmega: {
 	komally: {
 		num: 7500499,
 		species: "Komally",
-		types: ["Normal"],
+		types: ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Rock", "Psychic", "Bug", "Ghost", "Dark", "Steel", "Fairy"],
 		gender: "N",
 		baseStats: {
 			hp: 85,
