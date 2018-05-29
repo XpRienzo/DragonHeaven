@@ -42,7 +42,7 @@ lycanroc: {learnset: {
 		taunt: ["7M"],
 		toxic: ["7M"],
     doubleedge: ["7M"],
-    wildcharge: ["7M"],
+    headsmash: ["7M"],
     earthquake: ["7M"],
 	}},
 	emboar: {learnset: {
@@ -595,7 +595,7 @@ lycanroc: {learnset: {
 		workup: ["7M", "5M"],
 		yawn: ["3S0"],
 		crosschop: ["7L1"],
-		brickbreak: ["7L1"],
+		focusenergy: ["7L1"],
 		highjumpkick: ["7L1"],
 	}},
 	hariyama: {learnset: {
@@ -1206,9 +1206,9 @@ lycanroc: {learnset: {
 		uturn: ["7M", "6M"],
 		voltswitch: ["7M", "7L26", "6M", "6L26"],
 		wildcharge: ["7M", "6M"],
-		petalblizzard: ["7L1"],
-		leechseed: ["7L1"],
-		swordsdance: ["7L1"],
+		nastyplot: ["7L1"],
+		weatherball: ["7L1"],
+		solarbeam: ["7L1"],
 	}},
 	bellossom: {learnset: {
 		absorb: ["3L1"],
@@ -2613,7 +2613,7 @@ lycanroc: {learnset: {
 		venoshock: ["7M", "6M", "5M"],
 		meteormash: ["7L1"],
 		earthquake: ["7L1"],
-		recover: ["7L1"],
+		bulletseed: ["7L1"],
 	}},
 		cresselia: {learnset: {
 		allyswitch: ["7T"],
@@ -3766,7 +3766,7 @@ lycanroc: {learnset: {
 		whirlpool: ["7E"],
 		aquajet: ["7L1"],
 		bellydrum: ["7L1"],
-		gyroball: ["7L1"],
+		rockslide: ["7L1"],
 	}},
 	araquanid: {learnset: {
 		aquaring: ["7L26"],
@@ -4762,5 +4762,7 @@ lycanroc: {learnset: {
 	}},
 		rotomfan: {learnset: {
 		moonblast: ["7L1"],
+		partingshot: ["7L1"],
+		recover: ["7L1"],
 	}},
 };
