@@ -7633,4 +7633,42 @@ exports.BattleMovedex = {
 		zMovePower: 175,
 		contestType: "Cute",
 	},
+	
+	"focusedfatiguepunch": {
+		accuracy: 100,
+		basePower: 110,
+		category: "Physical",
+		desc: "Heals 75% of damage dealt. If this Pokémon is hit before using this move, it heals nothing.",
+		shortDesc: "Heals 75% of damage dealt if the Pokémon was not hit before this move is used.",
+		id: "focusedfatiguepunch",
+		isViable: true,
+		name: "Focused Fatigue Punch",
+		pp: 20,
+		drain: [3, 4],
+		flags: {contact: 1, protect: 1, punch: 1},
+		beforeTurnCallback: function (pokemon) {
+			pokemon.addVolatile('focusedfatiguepunch');
+		},
+		onModifyMove: function (move, pokemon) {
+			if (pokemon.volatiles['focusedfatiguepunch'] && pokemon.volatiles['focusedfatiguepunch'].lostFocus) {
+				delete move.drain;
+			}
+		},
+		effect: {
+			duration: 1,
+			onStart: function (pokemon) {
+				this.add('-singleturn', pokemon, 'move: Focused Fatigue Punch');
+			},
+			onHit: function (pokemon, source, move) {
+				if (move.category !== 'Status') {
+					pokemon.volatiles['focusedfatiguepunch'].lostFocus = true;
+				}
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 185,
+		contestType: "Tough",
+	},
 };
