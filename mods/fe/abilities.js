@@ -8751,9 +8751,9 @@ exports.BattleAbilities = {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
 					moveSlot.pp = (moveSlot.pp+1)/2;
-					pokemon.baseAbility = 'pressuratefried';
 				}
 			}
+			pokemon.baseAbility = 'pressuratefried';
 		},
 		id: "pressurate",
 		name: "Pressurate",
@@ -9727,6 +9727,7 @@ exports.BattleAbilities = {
 				for (const moveSlot of target.moveSlots) {
 					moveSlot.pp = (moveSlot.pp+1)/2;
 				}
+				pokemon.baseAbility = 'trace';
 				return;
 			}
 		},
