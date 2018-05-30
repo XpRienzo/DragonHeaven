@@ -9080,15 +9080,9 @@ exports.BattleAbilities = {
 		name: "Zero Awareness",
 	},
 	"ravage": {
-		shortDesc: "This Pokémon's moves always crit and it avoids crits, but its physical attacks have 0.9* accuracy.",
+		shortDesc: "This Pokémon's moves always crit and it cannot be critted.",
 		onModifyMove: function(move) {
 			move.willCrit = true;
-		},
-		onModifyMovePriority: -1,
-		onModifyMove: function (move) {
-			if (move.category === 'Physical' && typeof move.accuracy === 'number') {
-				move.accuracy *= 0.9;
-			}
 		},
 		onCriticalHit: false,
 		id: "ravage",
