@@ -216,6 +216,66 @@ exports.BattleMovedex = {
 		zMoveBoost: {spe: 1},
 		contestType: "Tough",
 	},
+	"darkterrain": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "For 5 turns, the terrain becomes Dark Terrain. During the effect, the power of Dark-type attacks made by grounded Pokemon is multiplied by 1.5 and grounded Pokemon cannot fall asleep; Pokemon already asleep do not wake up. Camouflage transforms the user into an Electric type, Nature Power becomes Thunderbolt, and Secret Power has a 30% chance to cause paralysis. Fails if the current terrain is Electric Terrain.",
+		shortDesc: "5 turns. Grounded: +Dark power, can't sleep.",
+		id: "darkterrain",
+		name: "Dark Terrain",
+		pp: 10,
+		priority: 0,
+		flags: {nonsky: 1},
+		terrain: 'darkterrain',
+		effect: {
+			duration: 5,
+			durationCallback: function (source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onSetStatus: function (status, target, source, effect) {
+				if (status.id === 'slp' && target.isGrounded() && !target.isSemiInvulnerable()) {
+					if (effect.effectType === 'Move' && !effect.secondaries) {
+						this.add('-activate', target, 'move: Electric Terrain');
+					}
+					return false;
+				}
+			},
+			onTryAddVolatile: function (status, target) {
+				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
+				if (status.id === 'yawn') {
+					this.add('-activate', target, 'move: Electric Terrain');
+					return null;
+				}
+			},
+			onBasePower: function (basePower, attacker, defender, move) {
+				if (move.type === 'Dark' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
+					this.debug('dark terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onStart: function (battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Dark Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Dark Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onEnd: function () {
+				this.add('-fieldend', 'move: Dark Terrain');
+			},
+		},
+		secondary: false,
+		target: "all",
+		type: "Dark",
+		zMoveBoost: {spe: 1},
+		contestType: "Clever",
+	},
 		"metronome": {
 		num: 118,
 		accuracy: true,
@@ -948,6 +1008,42 @@ exports.BattleMovedex = {
 		zMoveEffect: 'clearnegativeboost',
 		contestType: "Clever",
 	},
+	"minimize": {
+		num: 107,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "Raises the user's evasiveness by 2 stages. Whether or not the user's evasiveness was changed, Body Slam, Dragon Rush, Flying Press, Heat Crash, Heavy Slam, Malicious Moonsault, Phantom Force, Shadow Force, Steamroller, and Stomp will not check accuracy and have their damage doubled if used against the user while it is active.",
+		shortDesc: "Raises the user's evasiveness by 2.",
+		id: "minimize",
+		name: "Minimize",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		volatileStatus: 'minimize',
+		effect: {
+			noCopy: true,
+			onSourceModifyDamage: function (damage, source, target, move) {
+				if (['stomp', 'steamroller', 'bodyslam', 'flyingpress', 'dragonrush', 'phantomforce', 'heatcrash', 'shadowforce', 'heavyslam', 'maliciousmoonsault', 'drainingslam'].includes(move.id)) {
+					return this.chainModify(2);
+				}
+			},
+			onAccuracy: function (accuracy, target, source, move) {
+				if (['stomp', 'steamroller', 'bodyslam', 'flyingpress', 'dragonrush', 'phantomforce', 'heatcrash', 'shadowforce', 'heavyslam', 'maliciousmoonsault', 'drainingslam'].includes(move.id)) {
+					return true;
+				}
+				return accuracy;
+			},
+		},
+		boosts: {
+			evasion: 2,
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'clearnegativeboost',
+		contestType: "Cute",
+	},
     "scorchingwater": {
         accuracy: 100,
         basePower: 70,
@@ -976,66 +1072,6 @@ exports.BattleMovedex = {
         zMovePower: 140,
         contestType: "Tough",
     },
-	"darkterrain": {
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		desc: "For 5 turns, the terrain becomes Dark Terrain. During the effect, the power of Dark-type attacks made by grounded Pokemon is multiplied by 1.5 and grounded Pokemon cannot fall asleep; Pokemon already asleep do not wake up. Camouflage transforms the user into an Electric type, Nature Power becomes Thunderbolt, and Secret Power has a 30% chance to cause paralysis. Fails if the current terrain is Electric Terrain.",
-		shortDesc: "5 turns. Grounded: +Dark power, can't sleep.",
-		id: "darkterrain",
-		name: "Dark Terrain",
-		pp: 10,
-		priority: 0,
-		flags: {nonsky: 1},
-		terrain: 'darkterrain',
-		effect: {
-			duration: 5,
-			durationCallback: function (source, effect) {
-				if (source && source.hasItem('terrainextender')) {
-					return 8;
-				}
-				return 5;
-			},
-			onSetStatus: function (status, target, source, effect) {
-				if (status.id === 'slp' && target.isGrounded() && !target.isSemiInvulnerable()) {
-					if (effect.effectType === 'Move' && !effect.secondaries) {
-						this.add('-activate', target, 'move: Electric Terrain');
-					}
-					return false;
-				}
-			},
-			onTryAddVolatile: function (status, target) {
-				if (!target.isGrounded() || target.isSemiInvulnerable()) return;
-				if (status.id === 'yawn') {
-					this.add('-activate', target, 'move: Electric Terrain');
-					return null;
-				}
-			},
-			onBasePower: function (basePower, attacker, defender, move) {
-				if (move.type === 'Dark' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
-					this.debug('dark terrain boost');
-					return this.chainModify(1.5);
-				}
-			},
-			onStart: function (battle, source, effect) {
-				if (effect && effect.effectType === 'Ability') {
-					this.add('-fieldstart', 'move: Dark Terrain', '[from] ability: ' + effect, '[of] ' + source);
-				} else {
-					this.add('-fieldstart', 'move: Dark Terrain');
-				}
-			},
-			onResidualOrder: 21,
-			onResidualSubOrder: 2,
-			onEnd: function () {
-				this.add('-fieldend', 'move: Dark Terrain');
-			},
-		},
-		secondary: false,
-		target: "all",
-		type: "Dark",
-		zMoveBoost: {spe: 1},
-		contestType: "Clever",
-	},
     "boilingpoint": {
         accuracy: 100,
         basePower: 80,
@@ -7167,7 +7203,41 @@ exports.BattleMovedex = {
 		zMoveBoost: {atk: 1},
 		contestType: "Tough",
 	},
-	/* Draining Slam */
+	
+	"drainingslam": {
+		accuracy: 100,
+		basePower: 75,
+		onModifyMove: function (move, pokemon, target) {
+			let targetWeight = target.getWeight();
+			let pokemonWeight = pokemon.getWeight();
+			if (pokemonWeight > targetWeight * 5) {
+				move.drain = [1, 1];
+			}
+			else if (pokemonWeight > targetWeight * 4) {
+				move.drain = [3, 4];
+			}
+			else if (pokemonWeight > targetWeight * 3) {
+				move.drain = [1, 2];
+			}
+			else if (pokemonWeight > targetWeight * 2) {
+				move.drain = [1, 4];
+			}
+		},
+		category: "Physical",
+		desc: "Drains the target's HP. Percentage depends on how the user's weight compared to that of the target: 0% drain if less than twice as much, 25% drain if less than three times as much, 50% drain if less than 4 times as much, 75% drain if less than 5 times as much, and 100% drain if more than 5 times as much. Doubles in power and ignores accuracy checks if the target has used Minimize.",
+		shortDesc: "Drains more the heavier the user than the target.",
+		id: "drainingslam",
+		isViable: true,
+		name: "Draining Slam",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, nonsky: 1},
+		secondary: false,
+		target: "normal",
+		type: "Grass",
+		zMovePower: 140,
+		contestType: "Tough",
+	},
 	
 	"charbagh": {
 		accuracy: true,
@@ -7380,16 +7450,19 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 75,
 		category: "Physical",
-		desc: "Has a 100% chance to lower the target's Defense by 1 stage.",
-		shortDesc: "100% chance to lower the target's Defense by 1.",
+		desc: "Drains 50% of the damage dealt. Lowers the target's Attack by 2 stages.",
+		shortDesc: "Drains 50% of the damage dealt. Lowers the target's Attack by 2 stages.",
 		id: "drainwing",
 		isViable: true,
 		name: "Drain Wing",
 		pp: 15,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
-		boosts: {
+		secondary: {
+			chance: 100,
+			boosts: {
 				atk: -2,
+			},
 		},
 		drain: [1, 2],
 		target: "normal",
@@ -7397,5 +7470,5 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Cute",
 	},
-	
+	/* Shoulder Roll */
 };

@@ -119,7 +119,7 @@ exports.BattleAbilities = {
 			}
 		},
 		onModifyAtkPriority: 3,
-		onAllyModifyAtk: function (atk) {
+		onAllyModifyAtk: function (atk, pokemon) {
 			if (this.effectData.target.baseTemplate.baseSpecies !== 'Cherrim') return;
 			if (this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) {
 				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
@@ -130,7 +130,7 @@ exports.BattleAbilities = {
 			}
 		},
 		onModifySpDPriority: 4,
-		onAllyModifySpD: function (spd) {
+		onAllyModifySpD: function (spd, pokemon) {
 			if (this.effectData.target.baseTemplate.baseSpecies !== 'Cherrim') return;
 			if (this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) {
 				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
@@ -151,7 +151,7 @@ exports.BattleAbilities = {
 		shortDesc: "If Hail is active, this Pokemon heals 1/16 of its max HP each turn; immunity to Hail.",
 		onWeather: function (target, source, effect) {
 			if (effect.id === 'hail' || effect.id === 'solarsnow') {
-				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
 					this.heal(target.maxhp / 16);
 				} else {
 					this.damage(target.maxhp / 16, target, target);
@@ -205,7 +205,7 @@ exports.BattleAbilities = {
 		},
 		onWeather: function (target, source, effect) {
 			if (effect.id === 'sunnyday' || effect.id === 'desolateland' || effect.id === 'solarsnow') {
-				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
 					this.damage(target.maxhp / 8, target, target);
 				} else {
 					this.heal(target.maxhp / 8);
@@ -225,7 +225,7 @@ exports.BattleAbilities = {
 		desc: "If Hail is active, this Pokemon's evasiveness is multiplied by 1.25. This Pokemon takes no damage from Hail.",
 		shortDesc: "If Hail is active, this Pokemon's evasiveness is 1.25x; immunity to Hail.",
 		onImmunity: function (type, pokemon) {
-			if (type === ['hail', 'solarsnow']) return false;
+			if (type === 'hail' || type === 'solarsnow') return false;
 		},
 		onModifyAccuracy: function (accuracy, target) {
 			if (typeof accuracy !== 'number') return;
@@ -294,7 +294,7 @@ exports.BattleAbilities = {
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual: function (pokemon) {
-			if ((this.isWeather(['sunnyday', 'desolateland', 'solarsnow']) || this.randomChance(1, 2)) == (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak'])) {
+			if ((this.isWeather(['sunnyday', 'desolateland', 'solarsnow']) || this.randomChance(1, 2)) == (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak'])) {
 				if (pokemon.hp && !pokemon.item && this.getItem(pokemon.lastItem).isBerry) {
 					pokemon.setItem(pokemon.lastItem);
 					pokemon.lastItem = '';
@@ -310,7 +310,7 @@ exports.BattleAbilities = {
 		shortDesc: "If Rain Dance is active, this Pokemon heals 1/16 of its max HP each turn.",
 		onWeather: function (target, source, effect) {
 			if (effect.id === 'rain') {
-				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
 					this.heal(target.maxhp / 16);
 				} else {
 					this.damage(target.maxhp / 16, target, target);
@@ -344,7 +344,7 @@ exports.BattleAbilities = {
 		onImmunity: function (type, pokemon) {
 			if (type === 'sandstorm') return false;
 		},
-		onModifyAccuracy: function (accuracy) {
+		onModifyAccuracy: function (accuracy, target) {
 			if (typeof accuracy !== 'number') return;
 			if (this.isWeather('sandstorm')) {
 				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
@@ -830,7 +830,7 @@ exports.BattleAbilities = {
 		onImmunity: function(type, pokemon) {
 			if (type === 'sandstorm') return false;
 		},
-		onModifyAccuracy: function(accuracy) {
+		onModifyAccuracy: function(accuracy, target) {
 			if (typeof accuracy !== 'number') return;
 			if (this.isWeather('sandstorm')) {
 				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
@@ -8751,9 +8751,9 @@ exports.BattleAbilities = {
 				if (target.fainted) continue;
 				for (const moveSlot of target.moveSlots) {
 					moveSlot.pp = (moveSlot.pp+1)/2;
-					pokemon.baseAbility = 'pressuratefried';
 				}
 			}
+			pokemon.baseAbility = 'pressuratefried';
 		},
 		id: "pressurate",
 		name: "Pressurate",
@@ -9727,6 +9727,7 @@ exports.BattleAbilities = {
 				for (const moveSlot of target.moveSlots) {
 					moveSlot.pp = (moveSlot.pp+1)/2;
 				}
+				pokemon.baseAbility = 'trace';
 				return;
 			}
 		},
