@@ -7470,5 +7470,30 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Cute",
 	},
-	/* Shoulder Roll */
+	"shoulderroll": {
+		accuracy: 90,
+		basePower: 60,
+		category: "Physical",
+		desc: "The user takes half damage from the target if this attack hits.",
+		shortDesc: "Usually goes first. Halves damage from the target if it does so.",
+		id: "shoulderroll",
+		isViable: true,
+		name: "Shoulder Roll",
+		pp: 10,
+		priority: 1,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		volatileStatus: 'shoulderroll',
+		effect: {
+				onBasePower: function (basePower, pokemon, target) {
+						if (target === this.effectData.source){
+								return this.chainModify(0.5);
+						}
+				},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 160,
+		contestType: "Tough",
+	},
 };
