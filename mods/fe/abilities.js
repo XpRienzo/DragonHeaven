@@ -4363,7 +4363,7 @@ exports.BattleAbilities = {
 	"icescale": {
 		shortDesc: "Halves damage taken in hail. Takes no damage from Hail.",
 		onModifyDefPriority: 6,
-		onModifyDef: function(def, effect) {
+		onModifyDef: function(def, pokemon) {
 			if (this.isWeather(['hail', 'solarsnow'])) {
 				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
 					return this.chainModify(2);
@@ -4373,7 +4373,7 @@ exports.BattleAbilities = {
 			}
 		},
 		onModifySpDPriority: 6,
-		onModifySpD: function(spd, effect) {
+		onModifySpD: function(spd, pokemon) {
 			if (this.isWeather(['hail', 'solarsnow'])) {
 				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
 					return this.chainModify(2);
@@ -8329,7 +8329,7 @@ exports.BattleAbilities = {
 		shortDesc: "Recovers 33% of max HP upon switching out, or at the end of every turn in Hail. Takes no Hail damage.",
 		onWeather: function (target, source, effect) {
 			if (effect.id === 'hail' || effect.id === 'solarsnow') {
-				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
 					this.heal(target.maxhp / 3);
 				} else {
 					this.damage(target.maxhp / 3, target, target);
