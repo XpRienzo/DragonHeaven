@@ -1148,7 +1148,7 @@ exports.BattleAbilities = {
 		onBeforeMove: function(attacker, defender, move) {
 			if (attacker.template.baseSpecies !== 'Ferroslash') return;
 			if (move.category === 'Status' && move.id !== 'kingsshield' && move.id !== 'leechshield') return;
-			var targetSpecies = (move.id === 'kingsshield' ? 'Ferroslash' : 'Ferroslash-Blade');
+			var targetSpecies = ((move.id === 'kingsshield' || move.id === 'leechshield') ? 'Ferroslash' : 'Ferroslash-Blade');
 			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
 				this.add('-formechange', attacker, targetSpecies);
 			}
@@ -10897,5 +10897,31 @@ exports.BattleAbilities = {
 		},
 		id: "singularity",
 		name: "Singularity",
+	},
+	
+	"combinationdrive": {
+		desc: "The Pokémon changes form depending on how it battles. Entering Power Forme empowers Punch and Slash based moves by x1.5 for one attack.",
+		shortDesc: "If Golislash, changes Forme to Power before attacks and Defense before King's Shield. Certain moves are boosted whilst transitioning.",
+		onBeforeMovePriority: 0.5,
+		onBeforeMove: function (attacker, defender, move) {
+			if (attacker.template.baseSpecies !== 'Golislash' || attacker.transformed) return;
+			if (move.category === 'Status' && move.id !== 'kingsshield') return;
+			let slashmoves = ['psychocut', 'cut', 'slash', 'nightslash', 'solarblade', 'leafblade', 'xscissor', 'crosspoison', 'airslash', 'aircutter', 'furycutter', 'sacredsword', 'secretsword', 'razorshell']; 
+			let targetSpecies = (move.id === 'kingsshield' ? 'Golislash' : 'Golislash-Power');
+			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
+				this.add('-formechange', attacker, targetSpecies, '[from] ability: Combination Drive');
+				if (move.flags['punch'] || slashmoves.includes(move.id)){
+					move.combinationdriveboosted = true;	
+				}
+			}
+		},
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.combinationdriveboosted) {
+				this.debug('Combination Drive boost');
+				return this.chainModify(1.5);
+			}
+		},
+		id: "combinationdrive",
+		name: "Combination Drive",
 	},
 };
