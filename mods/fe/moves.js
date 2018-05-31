@@ -315,6 +315,109 @@ exports.BattleMovedex = {
 		type: "Normal",
 		contestType: "Cute",
 	},
+	"worryseed": {
+		num: 388,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "Causes the target's Ability to become Insomnia. Fails if the target's Ability is Insomnia, Multitype, Stance Change, or Truant.",
+		shortDesc: "The target's Ability becomes Insomnia.",
+		id: "worryseed",
+		name: "Worry Seed",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
+		onTryHit: function (pokemon) {
+			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'insomnia', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'truant', 'resurrection', 'magicalwand', 'sleepingsystem', 'cursedcloak', 'appropriation', 'disguiseburden', 'hideandseek', 'beastcostume', 'spiralpower', 'optimize', 'prototype', 'typeillusionist', 'godoffertility', 'foundation', 'sandyconstruct', 'victorysystem', 'techequip', 'technicalsystem', 'triagesystem', 'geneticalgorithm', 'effectsetter', 'tacticalcomputer', 'mitosis', 'barbstance', 'errormacro', 'combinationdrive', 'stanceshield', 'unfriend', 'desertmirage', 'sociallife', 'cosmology', 'crystallizedshield', 'compression'];
+			if (bannedAbilities.includes(pokemon.ability)) {
+				return false;
+			}
+		},
+		onHit: function (pokemon) {
+			let oldAbility = pokemon.setAbility('insomnia');
+			if (oldAbility) {
+				this.add('-ability', pokemon, 'Insomnia', '[from] move: Worry Seed');
+				if (pokemon.status === 'slp') {
+					pokemon.cureStatus();
+				}
+				return;
+			}
+			return false;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Grass",
+		zMoveBoost: {spe: 1},
+		contestType: "Clever",
+	},
+	
+	"simplebeam": {
+		num: 493,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "Causes the target's Ability to become Simple. Fails if the target's Ability is Multitype, Simple, Stance Change, or Truant.",
+		shortDesc: "The target's Ability becomes Simple.",
+		id: "simplebeam",
+		name: "Simple Beam",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
+		onTryHit: function (pokemon) {
+			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'simple', 'stancechange', 'truant', 'resurrection', 'magicalwand', 'sleepingsystem', 'cursedcloak', 'appropriation', 'disguiseburden', 'hideandseek', 'beastcostume', 'spiralpower', 'optimize', 'prototype', 'typeillusionist', 'godoffertility', 'foundation', 'sandyconstruct', 'victorysystem', 'techequip', 'technicalsystem', 'triagesystem', 'geneticalgorithm', 'effectsetter', 'tacticalcomputer', 'mitosis', 'barbstance', 'errormacro', 'combinationdrive', 'stanceshield', 'unfriend', 'desertmirage', 'sociallife', 'cosmology', 'crystallizedshield', 'compression'];
+			if (bannedAbilities.includes(pokemon.ability)) {
+				return false;
+			}
+		},
+		onHit: function (pokemon) {
+			let oldAbility = pokemon.setAbility('simple');
+			if (oldAbility) {
+				this.add('-ability', pokemon, 'Simple', '[from] move: Simple Beam');
+				return;
+			}
+			return false;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMoveBoost: {spa: 1},
+		contestType: "Cute",
+	},
+	
+	"entrainment": {
+		num: 494,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "Causes the target's Ability to become the same as the user's. Fails if the target's Ability is Multitype, Stance Change, Truant, or the same Ability as the user, or if the user's Ability is Flower Gift, Forecast, Illusion, Imposter, Multitype, Stance Change, Trace, or Zen Mode.",
+		shortDesc: "The target's Ability changes to match the user's.",
+		id: "entrainment",
+		name: "Entrainment",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
+		onTryHit: function (target, source) {
+			if (target === source) return false;
+			let bannedTargetAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'truant', 'resurrection', 'magicalwand', 'sleepingsystem', 'cursedcloak', 'appropriation', 'disguiseburden', 'hideandseek', 'beastcostume', 'spiralpower', 'optimize', 'prototype', 'typeillusionist', 'godoffertility', 'foundation', 'sandyconstruct', 'victorysystem', 'techequip', 'technicalsystem', 'triagesystem', 'geneticalgorithm', 'effectsetter', 'tacticalcomputer', 'mitosis', 'barbstance', 'errormacro', 'combinationdrive', 'stanceshield', 'unfriend', 'desertmirage', 'sociallife', 'cosmology', 'crystallizedshield', 'compression'];
+			let bannedSourceAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'zenmode', 'resurrection', 'magicalwand', 'sleepingsystem', 'cursedcloak', 'appropriation', 'disguiseburden', 'hideandseek', 'beastcostume', 'spiralpower', 'optimize', 'prototype', 'typeillusionist', 'godoffertility', 'foundation', 'sandyconstruct', 'victorysystem', 'techequip', 'technicalsystem', 'triagesystem', 'geneticalgorithm', 'effectsetter', 'tacticalcomputer', 'mitosis', 'barbstance', 'errormacro', 'combinationdrive', 'stanceshield', 'unfriend', 'desertmirage', 'sociallife', 'cosmology', 'crystallizedshield', 'compression'];
+			if (bannedTargetAbilities.includes(target.ability) || bannedSourceAbilities.includes(source.ability) || target.ability === source.ability) {
+				return false;
+			}
+		},
+		onHit: function (target, source) {
+			let oldAbility = target.setAbility(source.ability);
+			if (oldAbility) {
+				this.add('-ability', target, this.getAbility(target.ability).name, '[from] move: Entrainment');
+				return;
+			}
+			return false;
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMoveBoost: {spd: 1},
+		contestType: "Cute",
+	},
 		"wish": {
 		num: 273,
 		accuracy: true,
@@ -7470,5 +7573,122 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Cute",
 	},
-	/* Shoulder Roll */
+	"shoulderroll": {
+		accuracy: 90,
+		basePower: 60,
+		category: "Physical",
+		desc: "The user takes half damage from the target if this attack hits.",
+		shortDesc: "Usually goes first. Halves damage from the target if it does so.",
+		id: "shoulderroll",
+		isViable: true,
+		name: "Shoulder Roll",
+		pp: 10,
+		priority: 1,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		volatileStatus: 'shoulderroll',
+		effect: {
+				onBasePower: function (basePower, pokemon, target) {
+						if (target === this.effectData.source){
+								return this.chainModify(0.5);
+						}
+				},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 160,
+		contestType: "Tough",
+	},
+	"playrestlessly": {
+		accuracy: 90,
+		basePower: 90,
+		category: "Physical",
+		desc: "Changes the target's Ability to Insomnia (if applicable).",
+		shortDesc: "Changes target's ability to Insomnia.",
+		id: "playrestlessly",
+		isViable: true,
+		name: "Play Restlessly",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 100,
+			onHit: function (pokemon) {
+				let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'simple', 'stancechange', 'truant', 'resurrection', 'magicalwand', 'sleepingsystem', 'cursedcloak', 'appropriation', 'disguiseburden', 'hideandseek', 'beastcostume', 'spiralpower', 'optimize', 'prototype', 'typeillusionist', 'godoffertility', 'foundation', 'sandyconstruct', 'victorysystem', 'techequip', 'technicalsystem', 'triagesystem', 'geneticalgorithm', 'effectsetter', 'tacticalcomputer', 'mitosis', 'barbstance', 'errormacro', 'combinationdrive', 'stanceshield', 'unfriend', 'desertmirage', 'sociallife', 'cosmology', 'crystallizedshield', 'compression'];
+				if (bannedAbilities.includes(pokemon.ability)) {
+					return;
+				}
+				let oldAbility = pokemon.setAbility('insomnia');
+				if (oldAbility) {
+					this.add('-ability', pokemon, 'Insomnia', '[from] move: Play Restlessly');
+					if (pokemon.status === 'slp') {
+						pokemon.cureStatus();
+					}
+				}
+				return;
+			},
+		},
+		target: "normal",
+		type: "Fairy",
+		zMovePower: 175,
+		contestType: "Cute",
+	},
+	
+	"focusedfatiguepunch": {
+		accuracy: 100,
+		basePower: 110,
+		category: "Physical",
+		desc: "Heals 75% of damage dealt. If this Pokémon is hit before using this move, it heals nothing.",
+		shortDesc: "Heals 75% of damage dealt if the Pokémon was not hit before this move is used.",
+		id: "focusedfatiguepunch",
+		isViable: true,
+		name: "Focused Fatigue Punch",
+		pp: 20,
+		drain: [3, 4],
+		flags: {contact: 1, protect: 1, punch: 1},
+		beforeTurnCallback: function (pokemon) {
+			pokemon.addVolatile('focusedfatiguepunch');
+		},
+		onModifyMove: function (move, pokemon) {
+			if (pokemon.volatiles['focusedfatiguepunch'] && pokemon.volatiles['focusedfatiguepunch'].lostFocus) {
+				delete move.drain;
+			}
+		},
+		effect: {
+			duration: 1,
+			onStart: function (pokemon) {
+				this.add('-singleturn', pokemon, 'move: Focused Fatigue Punch');
+			},
+			onHit: function (pokemon, source, move) {
+				if (move.category !== 'Status') {
+					pokemon.volatiles['focusedfatiguepunch'].lostFocus = true;
+				}
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 185,
+		contestType: "Tough",
+	},
+	"snapdragon": {
+		accuracy: 95,
+		basePower: 30,
+		category: "Physical",
+		desc: "Hits two to five times, each hit restoring the user's HP by 75% of the damage dealt. Has a 1/3 chance to hit two or three times, and a 1/6 chance to hit four or five times. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Ability Skill Link, this move will always hit five times.",
+		shortDesc: "Hits 2-5 times. 75% of the damage dealt is regained by the user as HP.",
+		id: "snapdragon",
+		isViable: true,
+		name: "Snapdragon",
+		pp: 10,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		drain: [3, 4],
+		multihit: [2, 5],
+		secondary: false,
+		target: "normal",
+		type: "Fairy",
+		zMovePower: 140,
+		contestType: "Cool",
+	},
 };

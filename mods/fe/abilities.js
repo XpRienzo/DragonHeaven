@@ -230,7 +230,7 @@ exports.BattleAbilities = {
 		onModifyAccuracy: function (accuracy, target) {
 			if (typeof accuracy !== 'number') return;
 			if (this.isWeather(['hail', 'solarsnow'])) {
-				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
+				if (target && (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak'])){
 					this.debug('Snow Cloak - decreasing accuracy');
 					return accuracy * 0.8;
 				} else {
@@ -347,7 +347,7 @@ exports.BattleAbilities = {
 		onModifyAccuracy: function (accuracy, target) {
 			if (typeof accuracy !== 'number') return;
 			if (this.isWeather('sandstorm')) {
-				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
+				if (target && (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak'])){
 					this.debug('Sand Veil - decreasing accuracy');
 					return accuracy * 0.8;
 				} else {
@@ -833,9 +833,11 @@ exports.BattleAbilities = {
 		onModifyAccuracy: function(accuracy, target) {
 			if (typeof accuracy !== 'number') return;
 			if (this.isWeather('sandstorm')) {
-				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
+				if (target && (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak'])){
+					this.debug('Sand Veil - decreasing accuracy');
 					return accuracy * 0.8;
 				} else {
+					this.debug('Inverted Sand Veil - boosting accuracy');
 					return accuracy * 1.25;
 				}
 			}
@@ -9078,15 +9080,9 @@ exports.BattleAbilities = {
 		name: "Zero Awareness",
 	},
 	"ravage": {
-		shortDesc: "This Pokémon's moves always crit and it avoids crits, but its physical attacks have 0.9* accuracy.",
+		shortDesc: "This Pokémon's moves always crit and it cannot be critted.",
 		onModifyMove: function(move) {
 			move.willCrit = true;
-		},
-		onModifyMovePriority: -1,
-		onModifyMove: function (move) {
-			if (move.category === 'Physical' && typeof move.accuracy === 'number') {
-				move.accuracy *= 0.9;
-			}
 		},
 		onCriticalHit: false,
 		id: "ravage",
