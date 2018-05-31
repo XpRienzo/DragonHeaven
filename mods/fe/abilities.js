@@ -1147,7 +1147,7 @@ exports.BattleAbilities = {
 		onBeforeMovePriority: 11,
 		onBeforeMove: function(attacker, defender, move) {
 			if (attacker.template.baseSpecies !== 'Ferroslash') return;
-			if (move.category === 'Status' && move.id !== 'kingsshield') return;
+			if (move.category === 'Status' && move.id !== 'kingsshield' && move.id !== 'leechshield') return;
 			var targetSpecies = (move.id === 'kingsshield' ? 'Ferroslash' : 'Ferroslash-Blade');
 			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
 				this.add('-formechange', attacker, targetSpecies);
@@ -10898,5 +10898,4 @@ exports.BattleAbilities = {
 		id: "singularity",
 		name: "Singularity",
 	},
-	
 };
