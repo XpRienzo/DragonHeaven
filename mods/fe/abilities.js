@@ -474,7 +474,7 @@ exports.BattleAbilities = {
 			this.add('-ability', pokemon, 'Intense Rivalry');
 		},
 		onModifyMove: function(basePower, attacker, defender, move) {
-			if (attacker.gender && defender.gender) {
+			if (attacker.gender && defender.gender && attacker.gender === defender.gender) {
 				move.ignoreAbility = true;
 			}
 		},
