@@ -1499,11 +1499,15 @@ exports.BattleAbilities = {
 			if (move.category === 'Physical') return 'Special';
 			return 'Physical';
 		},
+		onModifyMove: function (move){
+			if ((!move.defensiveCategory && move.category === 'Special') || (move.defensiveCategory && move.defensiveCategory === 'Special')) move.defensiveCategory = "Physical";	
+			else if ((!move.defensiveCategory && move.category === 'Physical') || (move.defensiveCategory && move.defensiveCategory === 'Physical')) move.defensiveCategory = "Special";
+		},
 		onBeforeMovePriority: 11,
 		onBeforeMove: function(attacker, defender, move) {
-			if (attacker.template.baseSpecies !== 'Aegislash') return;
+			if (attacker.template.baseSpecies !== 'Aegiline') return;
 			if (move.category === 'Status' && move.id !== 'kingsshield') return;
-			var targetSpecies = (move.id === 'kingsshield' ? 'Aegilene' : 'Aegislash-Saber');
+			var targetSpecies = (move.id === 'kingsshield' ? 'Aegiline' : 'Aegiline-Blade');
 			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
 				this.add('-formechange', attacker, targetSpecies);
 			}
