@@ -1153,6 +1153,12 @@ exports.BattleAbilities = {
 				this.add('-formechange', attacker, targetSpecies);
 			}
 		},
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move && move.flags['contact'] && target.template.species === 'Ferroslash') {
+				this.damage(source.maxhp / 8, source, target);
+			}
+		},
 		id: "barbstance",
 		name: "Barb Stance",
 	},
