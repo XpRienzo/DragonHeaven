@@ -1392,12 +1392,12 @@ exports.BattleAbilities = {
 		},
 		onModifySpe: function(spe, pokemon) {
 			if (pokemon.status === 'par') {
-				return this.chainModify(1.5);
+				return this.chainModify(2);
 			}
 		},
 		onModifyAtk: function(atk, pokemon) {
 			if (pokemon.status === 'brn') {
-				return this.chainModify(1.5);
+				return this.chainModify(2);
 			}
 		},
 		id: "hardbody",
@@ -1411,8 +1411,8 @@ exports.BattleAbilities = {
 		stopAttackEvents: true,
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, pokemon) {
-			if (pokemon.status) {
-				return this.chainModify(1.5);
+			if (pokemon.status === 'brn') {
+				return this.chainModify(3);
 			}
 		},
 		id: "gutbreaker",
@@ -5561,7 +5561,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'atk') {     
+			if (stat === 'atk' && !pokemon.hasAbility('hardbody')) {     
           return this.chainModify(0.5);
 			}
 		},
@@ -5575,7 +5575,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'def') {
+			if (stat === 'def' && !pokemon.hasAbility('hardbody')) {
 				return this.chainModify(0.5);
 			}
 		},
@@ -5589,7 +5589,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'spa') {
+			if (stat === 'spa' && !pokemon.hasAbility('hardbody')) {
 				return this.chainModify(0.5);
 			}
 		},
@@ -5603,7 +5603,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'spd') {
+			if (stat === 'spd' && !pokemon.hasAbility('hardbody')) {
 				return this.chainModify(0.5);
 			}
 		},
@@ -5616,7 +5616,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'spe') {
+			if (stat === 'spe' && !pokemon.hasAbility('hardbody')) {
 				return this.chainModify(0.5);
             }
 		},
@@ -6141,7 +6141,7 @@ exports.BattleAbilities = {
 			if (!pokemon.hp) return;
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				if (target.status === 'par' || target.hasAbility('comatose')) {
+				if (target.status === 'par') {
 					this.damage(target.maxhp / 8, target, pokemon);
 				}
 			}
