@@ -7691,4 +7691,73 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Cool",
 	},
+	
+	"shocksuck": {
+		accuracy: 100,
+		basePower: 65,
+		basePowerCallback: function (pokemon, target, move) {
+			// You can't get here unless the pursuit succeeds
+			if (target.beingCalledBack) {
+				this.debug('Pursuit damage boost');
+				return move.basePower * 2;
+			}
+			return move.basePower;
+		},
+		category: "Special",
+		desc: "If an adjacent foe switches out this turn, this move hits that Pokemon before it leaves the field, even if it was not the original target. If the user moves after a foe using Parting Shot, U-turn, or Volt Switch, but not Baton Pass, it will hit that foe before it leaves the field. Power doubles and no accuracy check is done if the user hits a foe switching out, and the user's turn is over; if a foe faints from this, the replacement Pokemon does not become active until the end of the turn.",
+		shortDesc: "Power doubles if a foe is switching out.",
+		id: "shocksuck",
+		isViable: true,
+		name: "Shock Suck",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		beforeTurnCallback: function (pokemon) {
+			for (const side of this.sides) {
+				if (side === pokemon.side) continue;
+				side.addSideCondition('shocksuck', pokemon);
+				if (!side.sideConditions['shocksuck'].sources) {
+					side.sideConditions['shocksuck'].sources = [];
+				}
+				side.sideConditions['shocksuck'].sources.push(pokemon);
+			}
+		},
+		onModifyMove: function (move, source, target) {
+			if (target && target.beingCalledBack) move.accuracy = true;
+		},
+		onTryHit: function (target, pokemon) {
+			target.side.removeSideCondition('shocksuck');
+		},
+		effect: {
+			duration: 1,
+			onBeforeSwitchOut: function (pokemon) {
+				this.debug('Shock Suck start');
+				let alreadyAdded = false;
+				for (const source of this.effectData.sources) {
+					if (!this.cancelMove(source) || !source.hp) continue;
+					if (!alreadyAdded) {
+						this.add('-activate', pokemon, 'move: Shock Suck');
+						alreadyAdded = true;
+					}
+					// Run through each action in queue to check if the Pursuit user is supposed to Mega Evolve this turn.
+					// If it is, then Mega Evolve before moving.
+					if (source.canMegaEvo || source.canUltraBurst) {
+						for (const [actionIndex, action] of this.queue.entries()) {
+							if (action.pokemon === source && action.choice === 'megaEvo') {
+								this.runMegaEvo(source);
+								this.queue.splice(actionIndex, 1);
+								break;
+							}
+						}
+					}
+					this.runMove('shocksuck', source, this.getTargetLoc(pokemon, source));
+				}
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Electric",
+		zMovePower: 150,
+		contestType: "Clever",
+	},
 };
