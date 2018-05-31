@@ -527,4 +527,48 @@ abilities: {0: "Unbreakable"},
 			abilities: {0: "Inner Focus", 1: "Pressure", H: "Long Reach"},  
 			prevo: "Riolu"
 	 },
+	 delibird: {
+		num: 225,
+		species: "Delibird",
+		types: ["Ice", "Flying"],
+		baseStats: {hp: 45, atk: 55, def: 45, spa: 65, spd: 45, spe: 75},
+		abilities: {0: "Vital Spirit", 1: "Hustle", H: "Insomnia"},
+		heightm: 0.9,
+		weightkg: 16,
+		color: "Red",
+		eggGroups: ["Water 1", "Field"],
+		otherFormes: ["prisent", "deliblaze", "krampost", "punchex"],
+	},
+	 prisent: {
+			num: 9042,
+			species: "Prisent",
+			types: ["Ice", "Fighting"], 
+			baseStats:{hp: 90, atk: 65, def: 90, spa: 65, spd: 80, spe: 85}, // 90 / 65 / 90 / 65 / 80 / 85
+			abilities: {0: "Keen Eye", 1: "Huge Power", H: "Justified"},  
+			prevo: "Delibird"
+	 },
+	 deliblaze: {
+			num: 9043,
+			species: "Deliblaze",
+			types: ["Ice", "Fire"], 
+			baseStats:{hp: 55, atk: 90, def: 55, spa: 105, spd: 55, spe: 115}, //55 / 90 / 55 / 105 / 55 / 115 
+			abilities: {0: "Flash Fire", 1: "Hustle", H: "Adaptability"},  
+			prevo: "Delibird"
+	 },
+	 krampost: {
+			num: 9044,
+			species: "Krampost",
+			types: ["Ice", "Dark"], 
+			baseStats:{hp: 70, atk: 35, def: 60, spa: 130, spd: 60, spe: 120}, //70 / 35 / 60 / 130 / 60 / 120
+			abilities: {0: "Infiltrator", 1: "Contrary", H: "Intimidate"},  
+			prevo: "Delibird"
+	 },
+	 punchex: {
+			num: 9045,
+			species: "Punchex",
+			types: ["Ice", "Fighting"], 
+			baseStats:{hp: 105, atk: 55, def: 90, spa: 75, spd: 55, spe: 95}, //105/55/90/75/55/95
+			abilities: {0: "Huge Power", 1: "Tough Claws", H: "Slush Rush"},  
+			prevo: "Delibird"
+	 },
 };
