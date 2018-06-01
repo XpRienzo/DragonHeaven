@@ -1,6 +1,25 @@
 'use strict';
 
 exports.BattleItems = {
+	"lifeorb": {
+		id: "lifeorb",
+		name: "Life Orb",
+		spritenum: 249,
+		fling: {
+			basePower: 30,
+		},
+		onModifyDamage: function (damage, source, target, move) {
+			return this.chainModify([0x14CC, 0x1000]);
+		},
+		onAfterMoveSecondarySelf: function (source, target, move) {
+			if (source && source !== target && move && move.category !== 'Status' && !source.hasAbility('sheerflight')) {
+				this.damage(source.maxhp / 10, source, source, this.getItem('lifeorb'));
+			}
+		},
+		num: 270,
+		gen: 4,
+		desc: "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack.",
+	},
     "swampamarite": {
         id: "swampamarite",
         name: "swampamarite",

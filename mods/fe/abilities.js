@@ -474,7 +474,7 @@ exports.BattleAbilities = {
 			this.add('-ability', pokemon, 'Intense Rivalry');
 		},
 		onModifyMove: function(basePower, attacker, defender, move) {
-			if (attacker.gender && defender.gender) {
+			if (attacker.gender && defender.gender && attacker.gender === defender.gender) {
 				move.ignoreAbility = true;
 			}
 		},
@@ -1147,10 +1147,16 @@ exports.BattleAbilities = {
 		onBeforeMovePriority: 11,
 		onBeforeMove: function(attacker, defender, move) {
 			if (attacker.template.baseSpecies !== 'Ferroslash') return;
-			if (move.category === 'Status' && move.id !== 'kingsshield') return;
-			var targetSpecies = (move.id === 'kingsshield' ? 'Ferroslash' : 'Ferroslash-Blade');
+			if (move.category === 'Status' && move.id !== 'kingsshield' && move.id !== 'leechshield') return;
+			var targetSpecies = ((move.id === 'kingsshield' || move.id === 'leechshield') ? 'Ferroslash' : 'Ferroslash-Blade');
 			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
 				this.add('-formechange', attacker, targetSpecies);
+			}
+		},
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move && move.flags['contact'] && target.template.species === 'Ferroslash') {
+				this.damage(source.maxhp / 8, source, target);
 			}
 		},
 		id: "barbstance",
@@ -1392,12 +1398,12 @@ exports.BattleAbilities = {
 		},
 		onModifySpe: function(spe, pokemon) {
 			if (pokemon.status === 'par') {
-				return this.chainModify(1.5);
+				return this.chainModify(2);
 			}
 		},
 		onModifyAtk: function(atk, pokemon) {
 			if (pokemon.status === 'brn') {
-				return this.chainModify(1.5);
+				return this.chainModify(2);
 			}
 		},
 		id: "hardbody",
@@ -1411,8 +1417,8 @@ exports.BattleAbilities = {
 		stopAttackEvents: true,
 		onModifyAtkPriority: 5,
 		onModifyAtk: function(atk, pokemon) {
-			if (pokemon.status) {
-				return this.chainModify(1.5);
+			if (pokemon.status === 'brn') {
+				return this.chainModify(3);
 			}
 		},
 		id: "gutbreaker",
@@ -1493,11 +1499,15 @@ exports.BattleAbilities = {
 			if (move.category === 'Physical') return 'Special';
 			return 'Physical';
 		},
+		onModifyMove: function (move){
+			if ((!move.defensiveCategory && move.category === 'Special') || (move.defensiveCategory && move.defensiveCategory === 'Special')) move.defensiveCategory = "Physical";	
+			else if ((!move.defensiveCategory && move.category === 'Physical') || (move.defensiveCategory && move.defensiveCategory === 'Physical')) move.defensiveCategory = "Special";
+		},
 		onBeforeMovePriority: 11,
 		onBeforeMove: function(attacker, defender, move) {
-			if (attacker.template.baseSpecies !== 'Aegislash') return;
+			if (attacker.template.baseSpecies !== 'Aegiline') return;
 			if (move.category === 'Status' && move.id !== 'kingsshield') return;
-			var targetSpecies = (move.id === 'kingsshield' ? 'Aegilene' : 'Aegislash-Saber');
+			var targetSpecies = (move.id === 'kingsshield' ? 'Aegiline' : 'Aegiline-Blade');
 			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
 				this.add('-formechange', attacker, targetSpecies);
 			}
@@ -5561,7 +5571,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'atk') {     
+			if (stat === 'atk' && !pokemon.hasAbility('hardbody')) {     
           return this.chainModify(0.5);
 			}
 		},
@@ -5575,7 +5585,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'def') {
+			if (stat === 'def' && !pokemon.hasAbility('hardbody')) {
 				return this.chainModify(0.5);
 			}
 		},
@@ -5589,7 +5599,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'spa') {
+			if (stat === 'spa' && !pokemon.hasAbility('hardbody')) {
 				return this.chainModify(0.5);
 			}
 		},
@@ -5603,7 +5613,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'spd') {
+			if (stat === 'spd' && !pokemon.hasAbility('hardbody')) {
 				return this.chainModify(0.5);
 			}
 		},
@@ -5616,7 +5626,7 @@ exports.BattleAbilities = {
 					bestStat = pokemon.stats[i];
 				}
 			}
-			if (stat === 'spe') {
+			if (stat === 'spe' && !pokemon.hasAbility('hardbody')) {
 				return this.chainModify(0.5);
             }
 		},
@@ -6141,7 +6151,7 @@ exports.BattleAbilities = {
 			if (!pokemon.hp) return;
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !target.hp) continue;
-				if (target.status === 'par' || target.hasAbility('comatose')) {
+				if (target.status === 'par') {
 					this.damage(target.maxhp / 8, target, pokemon);
 				}
 			}
@@ -10899,4 +10909,29 @@ exports.BattleAbilities = {
 		name: "Singularity",
 	},
 	
+	"combinationdrive": {
+		desc: "The Pokémon changes form depending on how it battles. Entering Power Forme empowers Punch and Slash based moves by x1.5 for one attack.",
+		shortDesc: "If Golislash, changes Forme to Power before attacks and Defense before King's Shield. Certain moves are boosted whilst transitioning.",
+		onBeforeMovePriority: 0.5,
+		onBeforeMove: function (attacker, defender, move) {
+			if (attacker.template.baseSpecies !== 'Golislash' || attacker.transformed) return;
+			if (move.category === 'Status' && move.id !== 'kingsshield') return;
+			let slashmoves = ['psychocut', 'cut', 'slash', 'nightslash', 'solarblade', 'leafblade', 'xscissor', 'crosspoison', 'airslash', 'aircutter', 'furycutter', 'sacredsword', 'secretsword', 'razorshell']; 
+			let targetSpecies = (move.id === 'kingsshield' ? 'Golislash' : 'Golislash-Power');
+			if (attacker.template.species !== targetSpecies && attacker.formeChange(targetSpecies)) {
+				this.add('-formechange', attacker, targetSpecies, '[from] ability: Combination Drive');
+				if (move.flags['punch'] || slashmoves.includes(move.id)){
+					move.combinationdriveboosted = true;	
+				}
+			}
+		},
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (move.combinationdriveboosted) {
+				this.debug('Combination Drive boost');
+				return this.chainModify(1.5);
+			}
+		},
+		id: "combinationdrive",
+		name: "Combination Drive",
+	},
 };
