@@ -29,6 +29,17 @@ learnistor: function(target, room, user) {
 		this.sendReplyBox(`${buf}</div>`);
 	},
 	istorlisthelp: ["/istorlist - Shows the list of Istor Pokemon."],
+	crossoverchaos: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Crossover Chaos Pokemon</h2></center>`;
+		let feDex = require('../mods/crossoverchaos/pokedex.js').BattlePokedex;
+		if (!feDex) return this.errorReply("Error Fetching FE Data.");
+		Object.values(feDex).forEach(mon => {
+			buf += `<button name="send" value="/dt ${mon.species}, crossoverchaos" style="background:none;border:none;">${mon.species}</button><br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
+	crossoverchaoshelp: ["/crossoverchaos - Shows the list of Pokemon in Crossover Chaos."],
 	felist: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
