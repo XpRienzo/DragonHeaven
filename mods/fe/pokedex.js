@@ -20339,14 +20339,14 @@ eggGroups: ["Undiscovered"],
 		wagonite: {
 		        num: 7500556,
 		        species: "Wagonite",
-		        types: ["Water", "Flying"],
+		        types: ["Water", "Flying"], //110	117	102	107	105	82
 		        baseStats: {
-		            hp: 92,
-		            atk: 55,
-		            def: 125,
-		            spa: 115,
-		            spd: 147,
-		            spe: 57
+		            hp: 110,
+		            atk: 117,
+		            def: 102,
+		            spa: 107,
+		            spd: 105,
+		            spe: 82
 		        },
 		        abilities: {
 		            0: "Ice Scale"
