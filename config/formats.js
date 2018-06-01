@@ -4198,7 +4198,14 @@ exports.Formats = [
 		team: 'randomCHOONMONSFactory',
 		ruleset: ['Pokemon', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
 	},*/
-	
+	{
+		name: "[Gen 7] Crossover Chaos",
+		desc: ["&bullet; <a href=https://www.smogon.com/forums/threads/.3623813/>Crossover Chaos</a>",
+		      ],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: [],
+		mod: 'crossoverchaos',
+	},
 	{
   		name: "[Gen 7] Eevee'd",
   		desc: ["&bullet; <a href=http://www.smogon.com/forums/threads/eeveed-current-slate-sliggoo-and-sunkern-submissions.3602933/>Eeveed</a>",
