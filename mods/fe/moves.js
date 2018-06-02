@@ -8227,4 +8227,32 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Beautiful",
 	},
+	"dracobrine": {
+		accuracy: 95,
+		basePower: 130,
+		category: "Special",
+		desc: "Lowers the user's Special Attack by 2 stages unless the target has less than or equal to half of its maximum HP remaining.",
+		shortDesc: "Lowers the user's Sp. Atk by 2 if the target's HP is above 50%.",
+		id: "dracobrine",
+		name: "Draco Brine",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onModifyMovePriority: 4,
+		onModifyMove: function (move, pokemon, target) {
+			if (target.hp * 2 < target.maxhp) {
+				delete move.self.boosts;
+			}
+		},
+		self: {
+			boosts: {
+				spa: -2,
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Water",
+		zMovePower: 195,
+		contestType: "Beautiful",
+	},
 };
