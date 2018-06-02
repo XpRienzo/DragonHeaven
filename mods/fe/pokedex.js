@@ -5941,7 +5941,7 @@ darkchomp: {
 	 heebleyemega: {
         num: 7500150,
         species: "Heebleye-Mega",
-        baseSpecies: "Metanlee",
+        baseSpecies: "Heebleye",
         forme: "Mega",
         formeLetter: "M",
         types: ["Psychic", "Dark"],
@@ -5986,10 +5986,6 @@ darkchomp: {
         num: 7500152,
         species: "Dugterra",
         types: ["Fighting", "Ground"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 73,
             atk: 124,
@@ -6031,10 +6027,6 @@ darkchomp: {
         num: 7500154,
         species: "Cherform",
         types: ["Grass", "Normal"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 80,
             atk: 75,
@@ -6059,10 +6051,6 @@ darkchomp: {
         forme: "Sunny",
         formeLetter: "S",
         types: ["Grass", "Fire"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 80,
             atk: 75,
@@ -6086,10 +6074,6 @@ darkchomp: {
         forme: "Rainy",
         formeLetter: "R",
         types: ["Grass", "Water"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 80,
             atk: 75,
@@ -6113,10 +6097,6 @@ darkchomp: {
         forme: "Snowy",
         formeLetter: "S",
         types: ["Grass", "Ice"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 80,
             atk: 75,
@@ -6140,10 +6120,6 @@ darkchomp: {
         forme: "Sandy",
         formeLetter: "S",
         types: ["Grass", "Rock"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 80,
             atk: 75,
@@ -6164,13 +6140,9 @@ darkchomp: {
         num: 7500154,
         species: "Cherform-Spooky",
         baseSpecies: "Cherform",
-        forme: "Sandy",
+        forme: "Spooky",
         formeLetter: "S",
         types: ["Grass", "Ghost"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 80,
             atk: 75,
@@ -6213,8 +6185,8 @@ darkchomp: {
         species: "Zoroldeo",
         types: ["Dark", "Fighting"],
         genderRatio: {
-            M: 87.5,
-            F: 12.5
+            M: 0.875,
+            F: 0.125
         },
         baseStats: {
             hp: 75,
@@ -6234,10 +6206,6 @@ darkchomp: {
         num: 7500157,
         species: "Stundos",
         types: ["Ground", "Electric"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 110,
             atk: 88,
@@ -6258,10 +6226,6 @@ darkchomp: {
         num: 7500158,
         species: "Macaroon",
         types: ["Fire", "Ground"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 90,
             atk: 86,
@@ -6303,10 +6267,6 @@ darkchomp: {
         num: 7500160,
         species: "Rapipom",
         types: ["Normal", "Fire"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 80,
             atk: 110,
@@ -6327,10 +6287,6 @@ darkchomp: {
         num: 7500161,
         species: "Tadpole",
         types: ["Dragon", "Water"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 100,
             atk: 124,
@@ -6351,10 +6307,6 @@ darkchomp: {
         num: 7500162,
         species: "Draegarados",
         types: ["Poison", "Water"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
         baseStats: {
             hp: 90,
             atk: 110,
@@ -6377,11 +6329,7 @@ darkchomp: {
         baseSpecies: "Draegarados",
         forme: "Mega",
         formeLetter: "M",
-        types: ["Poison", "Water"],
-        genderRatio: {
-            M: 50.0,
-            F: 50.0
-        },
+        types: ["Poison", "Dark"],
         baseStats: {
             hp: 90,
             atk: 140,
@@ -6394,7 +6342,7 @@ darkchomp: {
             0: "Mold Breaker"
         },
         heightm: 4.15,
-        weightkg: 158.25,
+        weightkg: 228.25,
         color: "Blue",
         eggGroups: ["Dragon"],
     },
@@ -6403,8 +6351,8 @@ darkchomp: {
         species: "Grangoro",
         types: ["Dark", "Fairy"],
         genderRatio: {
-            M: 37.5,
-            F: 62.5
+            M: 0.375,
+            F: 0.625
         },
         baseStats: {
             hp: 102,
@@ -17899,7 +17847,7 @@ auroritarmega: {
 		  weightkg: 52.8,
 		  eggGroups: ["Flying"],
 	},
-	novianmega: {
+	noivianmega: {
 		num: 7500487,
 		species: "Noivian-Mega",
 		baseSpecies: "Noivian",
