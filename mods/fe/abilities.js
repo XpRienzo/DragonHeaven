@@ -10902,7 +10902,7 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon can only be KOed every other turn, unless it uses Protect when it could be KOed.",
 		onBeforeMovePriority: 9,
 		onBeforeMove: function (pokemon, target, move) {
-			if (!pokemon.removeVolatile('singularity') && !move.stallingMove) {
+			if (!move.stallingMove && !pokemon.removeVolatile('singularity')) {
 					pokemon.addVolatile('singularity');
 			}
 		},
