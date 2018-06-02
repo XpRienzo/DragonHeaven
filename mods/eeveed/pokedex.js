@@ -644,4 +644,62 @@ abilities: {0: "Unbreakable"},
 			abilities: {0: "Water Bubble", 1: "Swarm", H: "Speed Boost"}, 
 			prevo: "Ledian"
 	 },
+	 lumineon: {
+		num: 457,
+		species: "Lumineon",
+		types: ["Water"],
+		baseStats: {hp: 69, atk: 69, def: 76, spa: 69, spd: 86, spe: 91},
+		abilities: {0: "Swift Swim", 1: "Storm Drain", H: "Water Veil"},
+		heightm: 1.2,
+		weightkg: 24,
+		color: "Blue",
+		prevo: "finneon",
+		evoLevel: 31,
+		eggGroups: ["Water 2"],
+		otherFormes: ["lumalance", "chloroseon", "enticineon", "lumispark", "inferneon"],
+	},
+	 lumalance: {
+			num: 9053,
+			species: "Lumalance",
+			types: ["Water", "Normal"], 
+			baseStats:{hp: 95, atk: 95, def: 95, spa: 95, spd: 95, spe: 95}, // 95 / 95 / 95 / 95 / 95 / 95 (570)
+			abilities: {0: "Nature's Gift"}, 
+		 // Nature's Gift: The stat boosted by its nature is increased by 30%
+			prevo: "Lumineon"
+	 },
+	 chloroseon: {
+			num: 9054,
+			species: "Chloroseon",
+			types: ["Water", "Grass"], 
+			baseStats:{hp: 129, atk: 69, def: 125, spa: 102, spd: 76, spe: 69}, // 129 / 69 / 125 / 102 / 76 / 69
+			abilities: {0: "Chlorophyll", 1: "Sap Sipper", H: "Symbiosis"}, 
+			prevo: "Lumineon"
+	 },
+	 enticineon: {
+			num: 9055,
+			species: "Enticineon",
+			types: ["Water", "Electric"], 
+			baseStats:{hp: 105, atk: 70, def: 80, spa: 125, spd: 80, spe: 110}, // 105 / 70 / 80 / 125 / 80 / 110
+			abilities: {0: "Swift Swim", 1: "Lightning Rod", H: "Sharkbait"}, 
+		 	// Sharkbait: Traps in Water-Type foes
+			prevo: "Lumineon"
+	 },
+	 lumispark: {
+			num: 9056,
+			species: "Lumispark",
+			types: ["Water", "Electric"], 
+			baseStats:{hp: 96, atk: 46, def: 76, spa: 129, spd: 89, spe: 129}, 
+			abilities: {0: "Swift Swim", 1: "Storm Drain", H: "Electrified Water"}, 
+		 	// This Pokémon's Water-type moves gain a 1.2x boost and deal double damage on Flying and Water-type foes
+			prevo: "Lumineon"
+	 },
+	 inferneon : {
+			num: 9057,
+			species: "Inferneon",
+			types: ["Water", "Fire"], 
+			baseStats:{hp: 110, atk: 60, def: 130, spa: 110, spd: 130, spe: 30}, // 110 / 60 / 130 / 110 / 130 / 30
+			abilities: {0: "Swift Swim", 1: "Erodeproof", H: "Flash Fire"}, 
+		 	// Ground and Rock attacks do half damage against this pokemon.
+			prevo: "Lumineon"
+	 },
 };
