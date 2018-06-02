@@ -761,8 +761,8 @@ exports.BattleAbilities = {
 		},
 		onDamagePriority: -100,
 		onDamage: function(damage, target, source, effect) {
-			if (source.ability === 'mummy' && damage >= target.hp && target.hp > 1 && effect && effect.effectType === 'Move') {
-				this.add('-activate', target, 'Sturdy');
+			if (source.ability === 'mummy' && damage >= target.hp && target.hp >= 2 && effect && effect.effectType === 'Move') {
+				this.add('-activate', target, 'Mummy Fortitude');
 				return target.hp - 1;
 			}
 		},
@@ -770,7 +770,7 @@ exports.BattleAbilities = {
 			if (source && source !== target && move && move.flags['contact'] && source.ability !== 'mummy') {
 				let oldAbility = source.setAbility('mummy', target);
 				if (oldAbility) {
-					this.add('-activate', target, 'ability: Mummy', this.getAbility(oldAbility).name, '[of] ' + source);
+					this.add('-activate', target, 'ability: Mummy Fortitude', this.getAbility(oldAbility).name, '[of] ' + source);
 				}
 			}
 		},
@@ -2292,9 +2292,11 @@ exports.BattleAbilities = {
 		name: "Charged Up",
 	},
 	"khanqueror": {
+		desc: "Ignores type immunities while attacking, be it through abilities or type matchups.",
 		shortDesc: "Ignores type immunities while attacking",
 		onModifyMovePriority: -5,
 		onModifyMove: function(move) {
+			move.ignoreAbility = true;
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};
 			if (move.ignoreImmunity !== true) {
 				move.ignoreImmunity = true;
