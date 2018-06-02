@@ -571,4 +571,77 @@ abilities: {0: "Unbreakable"},
 			abilities: {0: "Huge Power", 1: "Tough Claws", H: "Slush Rush"},  
 			prevo: "Delibird"
 	 },
+	 // Ledian
+	 ledian: {
+		num: 166,
+		species: "Ledian",
+		types: ["Bug", "Flying"],
+		baseStats: {hp: 55, atk: 35, def: 50, spa: 55, spd: 110, spe: 85},
+		abilities: {0: "Swarm", 1: "Early Bird", H: "Iron Fist"},
+		heightm: 1.4,
+		weightkg: 35.6,
+		color: "Red",
+		prevo: "ledyba",
+		evoLevel: 18,
+		eggGroups: ["Bug"],
+		otherFormes: ["techled", "ledrake", "ledyvalor", "ledwill", "ledizap", "lediqueen", "ledibubble"],
+	},
+	 techled: {
+			num: 9046,
+			species: "Techled",
+			types: ["Bug", "Electric"], 
+			baseStats:{hp: 75, atk: 110, def: 65, spa: 110, spd: 65, spe: 105}, //75 / 110 / 65 / 110 / 65 / 105
+			abilities: {0: "Battery", 1: "Download", H: "Motor Drive"},  
+			prevo: "Ledian"
+	 },
+	 ledrake: {
+			num: 9047,
+			species: "Ledrake",
+			types: ["Bug", "Dragon"], 
+			baseStats:{hp: 75, atk: 110, def: 65, spa: 110, spd: 65, spe: 105}, //85 / 90 / 80 / 65 / 80 / 130
+			abilities: {0: "Bravery", 1: "Pixieproof", H: "Tough Claws"},  // (Pixieproof: The Pokémon with this Ability will bounce Fairy-type Moves, without any harms, back to the user of these moves.)
+			prevo: "Ledian"
+	 },
+	 ledyvalor: {
+			num: 9048,
+			species: "Ledyvalor",
+			types: ["Bug", "Fighting"], 
+			baseStats:{hp: 75, atk: 110, def: 65, spa: 110, spd: 65, spe: 105}, // 80 / 120 / 50 / 65 / 120 / 105 
+			abilities: {0: "Steadfast", 1: "Justified", H: "Iron Fist"}, 
+			prevo: "Ledian"
+	 },
+	 ledwill: {
+			num: 9049,
+			species: "Ledwill",
+			types: ["Bug", "Psychic"], 
+			baseStats:{hp: 70, atk: 50, def: 70, spa: 120, spd: 110, spe: 110}, // 70 / 50 / 70 / 120 / 110 / 110
+			abilities: {0: "Levitate", 1: "Power Convert", H: "Comatose"}, 
+		 // (Power Convert: The users Physical moves are converted to Special moves.)
+			prevo: "Ledian"
+	 },
+	 ledizap: {
+			num: 9050,
+			species: "Ledizap",
+			types: ["Bug", "Electric"], 
+			baseStats:{hp: 65, atk: 109, def: 75, spa: 64, spd: 84, spe: 133}, // 65 / 109 / 75 / 64 / 84 / 133
+			abilities: {0: "Galvanize"}, 
+			prevo: "Ledian"
+	 },
+	 lediqueen: {
+			num: 9051,
+			species: "Lediqueen",
+			types: ["Bug", "Psychic"], 
+			baseStats:{hp: 134, atk: 43, def: 57, spa: 101, spd: 126, spe: 74}, // 134 / 43 / 57 / 101 / 126 / 74
+			abilities: {0: "Synchronize", H: "Swarm Aura"}, 
+		 // Bug-type moves' power is increased by 30% (Fairy/Dark Aura clone).
+			prevo: "Ledian"
+	 },
+	 ledibubble: {
+			num: 9052,
+			species: "Ledibubble",
+			types: ["Bug", "Water"], 
+			baseStats:{hp: 105, atk: 75, def: 90, spa: 55, spd: 105, spe: 100}, // 105/75/90/55/105/100
+			abilities: {0: "Water Bubble", 1: "Swarm", H: "Speed Boost"}, 
+			prevo: "Ledian"
+	 },
 };
