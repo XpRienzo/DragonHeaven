@@ -8070,4 +8070,161 @@ exports.BattleMovedex = {
 		zMovePower: 180,
 		contestType: "Tough",
 	},
+	
+	"confound": {
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "For the next three turns, if the target uses a move, it will be picked at random.",
+		shortDesc: "Causes the target's next three moves to be randomly chosen.",
+		id: "confound",
+		name: "Confound",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
+		volatileStatus: 'confound',
+		effect: {
+			duration: 3,
+			noCopy: true,
+			onStart: function (pokemon) {
+				this.add('-start', pokemon, 'Confound');
+			},
+			onBeforeMovePriority: 8,
+			onBeforeMove: function (pokemon, target, move) {
+				let warnMoves = [];
+				for (const moveSlot of pokemon.moveSlots) {
+					let move = this.getMove(moveSlot.move);
+					warnMoves.push(move);
+				}
+				let calledMove = this.sample(warnMoves);
+				let newMove = this.getMoveCopy(calledMove.id);
+				this.useMove(newMove, target, pokemon);
+				return false;
+			},
+			onEnd: function (pokemon) {
+				this.add('-end', pokemon, 'Confound');
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Normal",
+		zMoveBoost: {spe: 1},
+		contestType: "Cute",
+	},
+	"abilitybuster": {
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		desc: "+3 Priority. 100% flinch. Changes target's Ability to Simple if it hits. Only works on first turn out.",
+		shortDesc: "Hits first. First turn out only. 100% flinch chance. Target's ability becomes Simple.",
+		id: "abilitybuster",
+		isViable: true,
+		name: "Ability Buster",
+		pp: 10,
+		priority: 3,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTry: function (pokemon, target) {
+			if (pokemon.activeTurns > 1) {
+				this.attrLastMove('[still]');
+				this.add('-fail', pokemon);
+				this.add('-hint', "Ability Buster only works on your first turn out.");
+				return null;
+			}
+		},
+		secondary: {
+			chance: 100,
+			volatileStatus: 'flinch',
+			onHit: function (pokemon) {
+				let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'simple', 'stancechange', 'truant', 'resurrection', 'magicalwand', 'sleepingsystem', 'cursedcloak', 'appropriation', 'disguiseburden', 'hideandseek', 'beastcostume', 'spiralpower', 'optimize', 'prototype', 'typeillusionist', 'godoffertility', 'foundation', 'sandyconstruct', 'victorysystem', 'techequip', 'technicalsystem', 'triagesystem', 'geneticalgorithm', 'effectsetter', 'tacticalcomputer', 'mitosis', 'barbstance', 'errormacro', 'combinationdrive', 'stanceshield', 'unfriend', 'desertmirage', 'sociallife', 'cosmology', 'crystallizedshield', 'compression', 'whatdoesthisdo'];
+				if (bannedAbilities.includes(pokemon.ability)) {
+					return;
+				}
+				let oldAbility = pokemon.setAbility('simple');
+				if (oldAbility) {
+					this.add('-ability', pokemon, 'Simple', '[from] move: Ability Buster');
+				}
+				return;
+			},
+		},
+		target: "normal",
+		type: "Normal",
+		zMovePower: 100,
+		contestType: "Cute",
+	},
+	"phantompulse": {
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		desc: "Ignores protection moves. 20% chance to confuse target.",
+		shortDesc: "Hits through protection. 20% chance to confuse the target.",
+		id: "phantompulse",
+		name: "Phantom Pulse",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, pulse: 1, mirror: 1, distance: 1},
+		breaksProtect: true,
+		secondary: {
+			chance: 20,
+			volatileStatus: 'confusion',
+		},
+		target: "normal",
+		type: "Ghost",
+		zMovePower: 175,
+		contestType: "Cool",
+	},
+	"berserkrush": {
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		desc: "20% chance to flinch on each hit. Deals damage to one adjacent foe at random. The user spends two or three turns locked into this move and becomes confused after the last turn of the effect if it is not already. If the user is prevented from moving or the attack is not successful against the target on the first turn of the effect or the second turn of a three-turn effect, the effect ends without causing confusion. If this move is called by Sleep Talk, the move is used for one turn and does not confuse the user.",
+		shortDesc: "Lasts 2-3 turns. Confuses the user afterwards.",
+		id: "berserkrush",
+		isViable: true,
+		name: "Berserk Rush",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			volatileStatus: 'lockedmove',
+		},
+		onAfterMove: function (pokemon) {
+			if (pokemon.volatiles['lockedmove'] && pokemon.volatiles['lockedmove'].duration === 1) {
+				pokemon.removeVolatile('lockedmove');
+			}
+		},
+		secondary: {
+			chance: 20,
+			volatileStatus: 'flinch',
+		},
+		target: "randomNormal",
+		type: "Dark",
+		zMovePower: 190,
+		contestType: "Cool",
+	},
+	"titaniumcannon": {
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		desc: "Has a 10% chance to lower the target's Special Defense by 1 stage. This move's type effectiveness against Steel is changed to be super effective no matter what this move's type is.",
+		shortDesc: "Deals super-effective damage against Steel-types. Has a 10% chance to lower the target's Special Defense by 1 stage.",
+		id: "titaniumcannon",
+		isViable: true,
+		name: "Titanium Cannon",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onEffectiveness: function (typeMod, type) {
+			if (type === 'Steel') return 1;
+		},
+		secondary: {
+			chance: 10,
+			boosts: {
+				spd: -1,
+			},
+		},
+		target: "normal",
+		type: "Steel",
+		zMovePower: 140,
+		contestType: "Beautiful",
+	},
 };
