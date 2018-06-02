@@ -17487,8 +17487,8 @@ auroritarmega: {
 		num: 7500475,
 		species: "Lampara-De-Lava",
 		baseSpecies: "Lampara",
-		forme: "Ultra",
-		formeLetter: "U",
+		forme: "De-Lava",
+		formeLetter: "L",
 		types: ["Water", "Dragon"],
 		baseStats: {
 			hp: 113,
