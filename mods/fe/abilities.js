@@ -6956,19 +6956,13 @@ exports.BattleAbilities = {
 	},
 	"thermogenesis": {
 		shortDesc: "This Pokemon has the resistances of fire types.",
-		onModifyAtkPriority: 6,
-		onSourceModifyAtk: function (atk, attacker, defender, move) {
-			if (move.type === 'Ice' || move.type === 'Fire' || move.type === 'Bug' || move.type === 'Grass' || move.type === 'Steel' || move.type === 'Fairy') {
-				this.debug('Thermogenesis weaken');
-				return this.chainModify(0.5);
+		onEffectiveness: function(typeMod, target, type, move) {
+			let typeCheck = this.battle.getEffectiveness(move, 'Fire');
+			typeCheck = this.battle.singleEvent('Effectiveness', move, null, 'Fire', move, null, typeCheck);
+			if (typeCheck < 0){
+				return typeMod - 1;
 			}
-		},
-		onModifySpAPriority: 5,
-		onSourceModifySpA: function (atk, attacker, defender, move) {
-			if (move.type === 'Ice' || move.type === 'Fire' || move.type === 'Bug' || move.type === 'Grass' || move.type === 'Steel' || move.type === 'Fairy') {
-				this.debug('Thermogenesis weaken');
-				return this.chainModify(0.5);
-			}
+			return typeMod;
 		},
 		id: "thermogenesis",
 		name: "Thermogenesis",
@@ -7309,7 +7303,7 @@ exports.BattleAbilities = {
 				return -typeMod;
 			}
 		},
-                //TODO: Check to see if this is actually implemented properly.
+      //TODO: Check to see if this is actually implemented properly.
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk, pokemon) {
 			if (pokemon.status === 'burn') {
@@ -8895,10 +8889,10 @@ exports.BattleAbilities = {
 	
 	"advocatescale": {
 		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
-			onEffectiveness: function(typeMod, target, type, move) {
-				if (move && !this.getImmunity(move, type)) return 1;
-				return -typeMod;
-			},
+		onEffectiveness: function(typeMod, target, type, move) {
+			if (move && !this.getImmunity(move, type)) return 1;
+			return -typeMod;
+		},
 		id: "advocatescale",
 		name: "Advocate Scale",
 	},
