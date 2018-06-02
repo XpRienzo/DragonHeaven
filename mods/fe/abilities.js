@@ -9350,7 +9350,7 @@ exports.BattleAbilities = {
 			if(type === 'Fire'){
 				pokemon.setType('Fire');
 			} else {
-				pokemon.setType(type, 'Fire');
+				pokemon.setType([type, 'Fire']);
 			}
 		},
 		onImmunity: function (type, pokemon) {
@@ -9517,18 +9517,16 @@ exports.BattleAbilities = {
 		onSwitchInPriority: 101,
 		onSwitchIn: function (pokemon) {
 			let type = 'Normal';
-			if (pokemon.ability === 'spiralpower') {
-				// @ts-ignore
-				type = pokemon.getItem().onPlate;
-				// @ts-ignore
-				if (!type || type === true) {
-					type = 'Normal';
-				}
+			// @ts-ignore
+			type = pokemon.getItem().onPlate;
+			// @ts-ignore
+			if (!type || type === true) {
+				type = 'Normal';
 			}
 			if(type === 'Water'){
 				pokemon.setType('Water');
 			} else {
-				pokemon.setType('Water', type);
+				pokemon.setType(['Water', type]);
 			}
 		},
 		onImmunity: function (type, pokemon) {
