@@ -180,4 +180,54 @@ exports.BattleAbilities = {
 		id: "reaperslice",
 		name: "Reaper Slice",
 	},
+	"pixieproof": {
+		shortDesc: "The Pokémon with this Ability will bounce Fairy-type Moves, without any harms, back to the user of these moves.",
+		onTryHit: function (target, source, move) {
+			if (move.type === 'Fairy') {
+				this.add('-immune', target, '[msg]', '[from] ability: Pixieproof');
+				let newMove = this.getMoveCopy(move.id);
+				if (target.ability !== 'pixieproof') {
+				this.useMove(newMove, this.effectData.target, source);
+				}
+				return null;
+			}
+		},
+		onAllyTryHitSide: function (target, source, move) {
+			if (move.type === 'Fairy') {
+			this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Pixieproof');
+			let newMove = this.getMoveCopy(move.id);
+			if (target.ability !== 'pixieproof') {
+			this.useMove(newMove, this.effectData.target, source);
+			}
+			}
+			return null;
+		},
+		id: "pixieproof",
+		name: "Pixieproof",
+	},
+	powerconvert: {
+		shortDesc: "The users Physical moves are converted to Special moves.",
+		onModifyMovePriority: 8,
+		onModifyMove: function(move, pokemon) {
+			if (move.category === 'Physical') move.category = 'Special';
+		},
+		id: "powerconvert",
+		name: "Power Convert",
+	},
+	"swarmaura": {
+		desc: "While this Pokemon is active, the power of Bug-type moves used by active Pokemon is multiplied by 1.33.",
+		shortDesc: "While this Pokemon is active, a Bug move used by any Pokemon has 1.33x power.",
+		onStart: function (pokemon) {
+			this.add('-ability', pokemon, 'Swarm Aura');
+		},
+		onAnyBasePower: function (basePower, source, target, move) {
+			if (target === source || move.category === 'Status' || move.type !== 'Bug') return;
+			if (!move.auraBooster) move.auraBooster = this.effectData.target;
+			if (move.auraBooster !== this.effectData.target) return;
+			return this.chainModify([move.hasAuraBreak ? 0x0C00 : 0x1547, 0x1000]);
+		},
+		isUnbreakable: true,
+		id: "swarmaura",
+		name: "Swarm Aura",
+	},
 };
