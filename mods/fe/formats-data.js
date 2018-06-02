@@ -2830,6 +2830,16 @@ exports.BattleFormatsData = { //
         tier: "OU",
         requiredItem: "celemenceite",
     },
+	/* A bunch of items later... */
+	
+    nut: {
+        tier: "OU",
+    },
+    ultraburstnut: {
+        tier: "OU",
+        requiredItem: "Ultranecrozium Z",
+		  battleOnly: true,
+    },
 };
 /* 
 requiredItem: "saldreigonceite",
