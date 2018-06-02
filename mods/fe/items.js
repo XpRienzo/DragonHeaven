@@ -2754,7 +2754,6 @@ exports.BattleItems = {
 		gen: 7,
 		desc: "Lunala or Dawn Wings Necrozma with Moongeist Beam can use a special Z-Move.",
 	},
-	/* This is Ultranecrozium Z code. Not sure if it can Ultra Burst mons, but it's here just in case.
 	
 	"ultranecroziumz": {
 		inherit: true,
@@ -2764,12 +2763,12 @@ exports.BattleItems = {
 		onTakeItem: false,
 		zMove: "Light That Burns the Sky",
 		zMoveFrom: "Photon Geyser",
-		zMoveUser: ["Necrozma-Ultra", "Necrynx-Ultra", "Necroqua-Ultra", "Necrozerain-Ultra", "Necropur-Beautiful", "Lampara-De-Lava", "Chazma-Hatched", "Smotilizer-Ultra", "Necrotune-Ultra", "Ultra Burst Nut"],
+		zMoveUser: ["Necrozma-Ultra", "Necrynx-Ultra", "Necroqua-Ultra", "Necrozerain-Ultra", "Necropur-Beautiful", "Lampara-De-Lava", "Chazma-Hatched", "Smotilizer-Ultra", "Necrotune-Ultra", "Ultra Burst Nut", "Bunny-Ultra"],
 		num: 923,
 		gen: 7,
 		desc: "Dusk Mane/Dawn Wings Necrozma: Ultra Burst, then Z-Move w/ Photon Geyser.",
 	},
-	*/
+	
 	"marshadiumz": {
 		id: "marshadiumz",
 		name: "Marshadium Z",
