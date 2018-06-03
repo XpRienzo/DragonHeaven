@@ -5702,6 +5702,23 @@ exports.BattleAbilities = {
 		shortDesc: "When the user switches in, all opponents on the field have their stat changes inverted.",
 		onStart: function(source) {
 			this.useMove('Topsy-Turvy', source);
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Bad Influence', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					for (let i in target.boosts) {
+						if (target.boosts[i] === 0) continue;
+						target.boosts[i] = -target.boosts[i];
+					}
+					this.add('-invertboost', target, '[from] ability: Bad Influence');
+				}
+			}
 		},
 		id: "badinfluence",
 		name: "Bad Influence",
@@ -10074,7 +10091,7 @@ exports.BattleAbilities = {
 		name: "Friction Charge",
 	},
 	"tommysroom": {
-		shortDesc: "This Pokémon ignores other Pokémon's stat stages when attacking or being attacked. Takes half damage from Pokémon with stat changes and deals double damage to them.",
+		shortDesc: "This Pokémon ignores other Pokémon's stat stages when attacking or being attacked. Takes half damage from Pokémon with stat changes.",
 		id: "tommysroom",
 		name: "Tommy's Room",
 		onAnyModifyBoost: function (boosts, target) {
@@ -10094,11 +10111,6 @@ exports.BattleAbilities = {
 		onSourceModifyDamage: function (damage, source, target, boosts) {
 			if (target.boosts > 0) {
 				return this.chainModify(0.5);
-			}
-		},
-		onModifyDamage: function (damage, source, target, boosts) {
-			if (target.boosts > 0) {
-				return this.chainModify(2);
 			}
 		},
 	},
