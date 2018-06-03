@@ -8227,4 +8227,50 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Beautiful",
 	},
+	"dracobrine": {
+		accuracy: 95,
+		basePower: 130,
+		category: "Special",
+		desc: "Lowers the user's Special Attack by 2 stages unless the target has less than or equal to half of its maximum HP remaining.",
+		shortDesc: "Lowers the user's Sp. Atk by 2 if the target's HP is above 50%.",
+		id: "dracobrine",
+		name: "Draco Brine",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onModifyMovePriority: 4,
+		onModifyMove: function (move, pokemon, target) {
+			if (target.hp * 2 < target.maxhp) {
+				delete move.self.boosts;
+			}
+		},
+		self: {
+			boosts: {
+				spa: -2,
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Water",
+		zMovePower: 195,
+		contestType: "Beautiful",
+	},
+	"snowhalation": {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		isViable: true,
+		desc: "Summons a mix of Sun and Hail for 5 turns (8 with Heat or Icy Rock). Moves and abilities powered up by either retain their benefits. Any Pokemon that is neither Grass-, Fire-, nor Ice-type is damaged at the end of each turn. Additionally, Fire-type moves deal boosted damage except against the aforementioned types, while Water moves have decreased damage.",
+		shortDesc: "Summons Sun and Hail simultaneously for 5 turns, powering up Fire-type moves except against certain types and weakening Water-type moves.",
+		id: "snowhalation",
+		name: "Snow Halation",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		weather: 'SolarSnow',
+		secondary: false,
+		target: "all",
+		type: "Ice",
+		zMoveBoost: {spe: 1},
+	},
 };

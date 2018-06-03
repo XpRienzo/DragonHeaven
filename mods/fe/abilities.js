@@ -6956,19 +6956,13 @@ exports.BattleAbilities = {
 	},
 	"thermogenesis": {
 		shortDesc: "This Pokemon has the resistances of fire types.",
-		onModifyAtkPriority: 6,
-		onSourceModifyAtk: function (atk, attacker, defender, move) {
-			if (move.type === 'Ice' || move.type === 'Fire' || move.type === 'Bug' || move.type === 'Grass' || move.type === 'Steel' || move.type === 'Fairy') {
-				this.debug('Thermogenesis weaken');
-				return this.chainModify(0.5);
+		onEffectiveness: function(typeMod, target, type, move) {
+			let typeCheck = this.battle.getEffectiveness(move, 'Fire');
+			typeCheck = this.battle.singleEvent('Effectiveness', move, null, 'Fire', move, null, typeCheck);
+			if (typeCheck < 0){
+				return typeMod - 1;
 			}
-		},
-		onModifySpAPriority: 5,
-		onSourceModifySpA: function (atk, attacker, defender, move) {
-			if (move.type === 'Ice' || move.type === 'Fire' || move.type === 'Bug' || move.type === 'Grass' || move.type === 'Steel' || move.type === 'Fairy') {
-				this.debug('Thermogenesis weaken');
-				return this.chainModify(0.5);
-			}
+			return typeMod;
 		},
 		id: "thermogenesis",
 		name: "Thermogenesis",
@@ -7309,7 +7303,7 @@ exports.BattleAbilities = {
 				return -typeMod;
 			}
 		},
-                //TODO: Check to see if this is actually implemented properly.
+      //TODO: Check to see if this is actually implemented properly.
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk, pokemon) {
 			if (pokemon.status === 'burn') {
@@ -8895,10 +8889,10 @@ exports.BattleAbilities = {
 	
 	"advocatescale": {
 		shortDesc: "Weaknesses become resistances, and resistances become weaknesses.",
-			onEffectiveness: function(typeMod, target, type, move) {
-				if (move && !this.getImmunity(move, type)) return 1;
-				return -typeMod;
-			},
+		onEffectiveness: function(typeMod, target, type, move) {
+			if (move && !this.getImmunity(move, type)) return 1;
+			return -typeMod;
+		},
 		id: "advocatescale",
 		name: "Advocate Scale",
 	},
@@ -9350,7 +9344,7 @@ exports.BattleAbilities = {
 			if(type === 'Fire'){
 				pokemon.setType('Fire');
 			} else {
-				pokemon.setType(type, 'Fire');
+				pokemon.setType([type, 'Fire']);
 			}
 		},
 		onImmunity: function (type, pokemon) {
@@ -9517,18 +9511,16 @@ exports.BattleAbilities = {
 		onSwitchInPriority: 101,
 		onSwitchIn: function (pokemon) {
 			let type = 'Normal';
-			if (pokemon.ability === 'spiralpower') {
-				// @ts-ignore
-				type = pokemon.getItem().onPlate;
-				// @ts-ignore
-				if (!type || type === true) {
-					type = 'Normal';
-				}
+			// @ts-ignore
+			type = pokemon.getItem().onPlate;
+			// @ts-ignore
+			if (!type || type === true) {
+				type = 'Normal';
 			}
 			if(type === 'Water'){
 				pokemon.setType('Water');
 			} else {
-				pokemon.setType('Water', type);
+				pokemon.setType(['Water', type]);
 			}
 		},
 		onImmunity: function (type, pokemon) {
@@ -10815,9 +10807,24 @@ exports.BattleAbilities = {
 	"sleepingsystem": {
       desc: "This Pokémon would change types to match it's held drive. This Pokémon counts as asleep and always holding all drives. (Multi-Attack is still Normal.)",
 		shortDesc: "This Pokemon is treated as if it were alseep and also all types at once.",
-		onSwitchInPriority: 102,
-		onSwitchIn: function (pokemon) {
-				pokemon.setType('Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Rock', 'Psychic', 'Bug', 'Ghost', 'Dragon', 'Dark', 'Steel', 'Fairy');
+		onImmunity: function (type, pokemon) {
+			if (['Normal', 'Fighting', 'Poison', 'Ground', 'Electric', 'Dragon', 'Psychic', 'Ghost', 'sandstorm', 'hail', 'solarsnow'].includes(type)) return false;
+		},
+		onEffectiveness: function(typeMod, target, type, move) {
+			let totalTypeMod = 0;
+			for (const types of this.battle.data.TypeChart) {
+				let typeMod = this.battle.getEffectiveness(move, types);
+				typeMod = this.battle.singleEvent('Effectiveness', move, null, types, move, null, typeMod);
+				totalTypeMod += this.battle.runEvent('Effectiveness', this, types, move, typeMod);
+			}
+			return totalTypeMod;
+		},
+		onPrepareHit: function (source, target, move) {
+			if (move.hasBounced) return;
+			let type = move.type;
+			if (type && type !== '???' && source.getTypes().join() !== type) {
+				if (!source.setType(type)) return;
+			}
 		},
 		onModifyMovePriority: -1,
 		onModifyMove: function (move) {
@@ -10826,7 +10833,7 @@ exports.BattleAbilities = {
            }
 		},
 		onSetStatus: function (status, target, source, effect) {
-			if (!effect || !effect.status) return false;
+			if (!effect || !effect.status || effect.status !== 'slp') return false;
 			this.add('-immune', target, '[msg]', '[from] ability: Sleeping System');
 			return false;
 		},
@@ -10849,10 +10856,10 @@ exports.BattleAbilities = {
 			if (!type2){
 				type2 = 'Normal';
 			}
-			if(type1 === type2){
+			if (type1 === type2){
 				pokemon.setType(type1);
 			} else {
-				pokemon.setType(type1, type2);
+				pokemon.setType([type1, type2]);
 			}
 		},
 		onImmunity: function (type, pokemon) {
@@ -10887,7 +10894,7 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon can only be KOed every other turn, unless it uses Protect when it could be KOed.",
 		onBeforeMovePriority: 9,
 		onBeforeMove: function (pokemon, target, move) {
-			if (!pokemon.removeVolatile('singularity') && !move.stallingMove) {
+			if (!move.stallingMove && !pokemon.removeVolatile('singularity')) {
 					pokemon.addVolatile('singularity');
 			}
 		},
