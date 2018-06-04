@@ -178,4 +178,102 @@ kirby: {
 		baseStats: {hp: 60, atk: 87, def: 53, spa: 117, spd: 53, spe: 130},
 		abilities: {0: "Merciless", 1: "Early Bird", H: "Extra Toxic"},
 	},
+	shovelknight: {
+    num: 6000043,
+    species: "Shovel Knight", /* Shovel Knight */
+    types: ["Steel", "Ground"],
+    gender: "M",
+    baseStats: {hp: 60, atk: 120, def: 130, spa: 60, spd: 130, spe: 90},
+    abilities: {0: "Battle Armor"},
+},
+cuphead: {
+    num: 6000044,
+    species: "Cuphead", /* Cuphead */
+    types: ["Water", "Dark"],
+    gender: "M",
+    baseStats: {hp: 80, atk: 80, def: 60, spa: 120, spd: 60, spe: 100},
+    abilities: {0: "Soul-Heart"},
+},
+shantae: {
+    num: 6000045,
+    species: "Shantae", /* Shantae */
+    types: ["Psychic", "Normal"],
+    gender: "F",
+    baseStats: {hp: 100, atk: 120, def: 70, spa: 110, spd: 90, spe: 100},
+    abilities: {0: "Magic Guard"},
+},
+
+chainchomp: {
+    num: 6000046,
+    species: "Chain Chomp", /* Super Mario Bros */
+    types: ["Steel"],
+    gender: "M",
+    baseStats: {hp: 50, atk: 105, def: 185, spa: 55, spd: 75, spe: 20},
+    abilities: {0: "Strong Jaw", 1: "Steelworker", 2: "Unchained"},
+},
+isabelle: {
+    num: 6000047,
+    species: "Isabelle", /* Animal Crossing */
+    types: ["Normal"],
+    gender: "F",
+    baseStats: {hp: 100, atk: 55, def: 100, spa: 55, spd: 100, spe: 60},
+    abilities: {0: "Friend Guard", 1: "Flower Gift", 2: "Harvest"},
+},
+amaterasu: {
+    num: 6000048,
+    species: "Amaterasu", /* Ōkami */
+    types: ["Fire"],
+    gender: "F",
+    baseStats: {hp: 70, atk: 110, def: 80, spa: 120, spd: 90, spe: 130},
+    abilities: {0: "Astral Pouch"},
+},
+	mario: {
+    num: 6000049,
+    species: "Mario", /* Super Mario Bros */
+    types: ["Normal", "Ground"],
+    gender: "M",
+    baseStats: {hp: 90, atk: 120, def: 90, spa: 70, spd: 90, spe: 110},
+    abilities: {0: "Steelworker"},
+	},
+mariofire: {
+    num: 6000049,
+    species: "Mario-Fire", /* Super Mario Bros */
+    types: ["Ground", "Fire"],
+    gender: "M",
+    baseStats: {hp: 90, atk: 70, def: 85, spa: 140, spd: 85, spe: 100},
+    abilities: {0: "Steelworker"},
+	},
+marioice: {
+    num: 6000049,
+    species: "Mario-Ice", /* Super Mario Bros */
+    types: ["Ground", "Ice"],
+    gender: "M",
+    baseStats: {hp: 90, atk: 50, def: 115, spa: 160, spd: 115, spe: 40},
+    abilities: {0: "Steelworker"},  
+	},
+mariopropeller: {
+    num: 6000049,
+    species: "Mario-Propeller", /* Super Mario Bros */
+    types: ["Normal", "Flying"],
+    gender: "M",
+    baseStats: {hp: 90, atk: 140, def: 70, spa: 70, spd: 70, spe: 130},
+    abilities: {0: "Steelworker"},
+	},
+sonic: { 
+	 num: 6000050,
+    species: "Sonic", /* Sonic the Hedgehog */
+    types: ["Normal"],
+    gender: "M",
+    baseStats: {hp: 70, atk: 135, def: 60, spa: 95, spd: 60, spe: 150},
+    abilities: {0: "Speed Boost"},
+	},
+sonicsuper: {
+    num: 6000050,
+    species: "Sonic-Super", /* Sonic the Hedgehog */
+    types: ["Flying", "Normal"],
+    gender: "M",
+    baseStats: {hp: 70, atk: 160, def: 60, spa: 160, spd: 60, spe: 160},
+    abilities: {0: "Aerilate"},
+	},
+	
 };
