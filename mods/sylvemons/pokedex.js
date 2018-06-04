@@ -234,20 +234,4 @@ exports.BattlePokedex = {
         types: ["Grass", "Ghost"],
         abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Shadow Surge"},
     },
-    zekrom: {
-        inherit: true,
-        types: ["Electric", "Dark"],
-    },
-    reshiram: {
-        inherit: true,
-        types: ["Fire", "Fairy"],
-    },
-     kyuremblack: {
-        inherit: true,
-        types: ["Dragon", "Dark"],
-    },
-     kyuremwhite: {
-        inherit: true,
-        types: ["Dragon", "Fairy"],
-    },
 };
