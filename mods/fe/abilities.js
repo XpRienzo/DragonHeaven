@@ -10055,7 +10055,7 @@ exports.BattleAbilities = {
 	"frictioncharge": {
 		shortDesc: "When hit by an Electric-type move or contact move, increases the power of own contact moves by 1.5x (similar to what Flash Fire does with Fire moves). Grants immunity to Electric-type moves.",
 		onTryHit: function (target, source, move) {
-			if (target !== source && move.type === 'Fire') {
+			if (target !== source && move.type === 'Electric') {
 				move.accuracy = true;
 				if (!target.addVolatile('frictioncharge')) {
 					this.add('-immune', target, '[msg]', '[from] ability: Friction Charge');
@@ -10077,17 +10077,9 @@ exports.BattleAbilities = {
 			onStart: function (target) {
 				this.add('-start', target, 'ability: Friction Charge');
 			},
-			onModifyAtkPriority: 5,
-			onModifyAtk: function (atk, attacker, defender, move) {
-				if (move.type === 'Electric') {
-					this.debug('Friction Charge boost');
-					return this.chainModify(1.5);
-				}
-			},
-			onModifySpAPriority: 5,
-			onModifySpA: function (atk, attacker, defender, move) {
-				if (move.type === 'Electric') {
-					this.debug('Friction Charge boost');
+			onBasePowerPriority: 8,
+			onBasePower: function (basePower, attacker, defender, move) {
+				if (move.flags['contact']) {
 					return this.chainModify(1.5);
 				}
 			},
