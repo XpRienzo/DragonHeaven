@@ -1073,7 +1073,7 @@ exports.BattleAbilities = {
 	"naturalguard": {
 		shortDesc: "Starchamp's moves cannot miss unless it's suffering from a major status. Cures itself of status when it switches.",
 		onAnyAccuracy: function(accuracy, target, source, move) {
-			if (move && (source === this.effectData.target && source.status === 'psn' && source.status === 'tox' && source.status === 'brn' && source.status === 'frz' && source.status === 'par')) {
+			if (move && (source === this.effectData.target && !source.status)) {
 				return true;
 			}
 			return accuracy;
