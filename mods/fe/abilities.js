@@ -6596,13 +6596,13 @@ exports.BattleAbilities = {
 			if (effect.effectType !== 'Move') {
 				let stat = 'atk';
 				let bestStat = 0;
-				for (let i in source.stats) {
+				for (let i in target.stats) {
 					if (source.stats[i] > bestStat) {
 						stat = i;
-						bestStat = source.stats[i];
+						bestStat = target.stats[i];
 					}
 				}
-				this.boost({[stat]: 1}, source);
+				this.boost({[stat]: 1}, target);
 				return false;
 			}
 		},
