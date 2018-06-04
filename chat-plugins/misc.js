@@ -646,4 +646,66 @@ fdjshelp:function (target, room, user, connection, cmd) {
 	mdjshelp:function (target, room, user, connection, cmd) {
 	this.sendReplyBox('/mdjs Mega Pokemon 1, 2, 3... for coding mega stones requirement in formats-data.js.');
 },
+	movesdis: function (target, room, user, connection, cmd) {
+    if (!this.runBroadcast()) return;
+    if (!target) return this.parse('/learnchelp');
+    if (!target) target = 'help';
+    let separated = target.split(",");
+	let separated2 = target.split(" ");
+let move = (("" + separated2[0]).trim()).toLowerCase();
+let pokemon1 = (("" + separated[2]).trim()).toLowerCase();
+let pokemon2 = (("" + separated[1]).trim()).toLowerCase();
+let pokemon3 = (("" + separated[2]).trim()).toLowerCase();
+let pokemon4 = (("" + separated[3]).trim()).toLowerCase();
+let pokemon5 = (("" + separated[4]).trim()).toLowerCase();
+let pokemon6 = (("" + separated[5]).trim()).toLowerCase();
+let pokemon7 = (("" + separated[6]).trim()).toLowerCase();
+let pokemon8 = (("" + separated[7]).trim()).toLowerCase();
+let pokemon9 = (("" + separated[8]).trim()).toLowerCase();
+let pokemon10 = (("" + separated[9]).trim()).toLowerCase();
+let pokemon11 = (("" + separated[10]).trim()).toLowerCase();
+let pokemon12 = (("" + separated[11]).trim()).toLowerCase();
+let pokemon13 = (("" + separated[12]).trim()).toLowerCase();
+let pokemon14 = (("" + separated[13]).trim()).toLowerCase();
+let pokemon15= (("" + separated[14]).trim()).toLowerCase();
+let pokemon16= (("" + separated[15]).trim()).toLowerCase();
+let pokemon17= (("" + separated[16]).trim()).toLowerCase();
+let pokemon18 = (("" + separated[17]).trim()).toLowerCase();
+let pokemon19 = (("" + separated[18]).trim()).toLowerCase();
+let pokemon20 = (("" + separated[19]).trim()).toLowerCase();
+let pokemon21 = (("" + separated[20]).trim()).toLowerCase();
+let pokemon22 = (("" + separated[21]).trim()).toLowerCase();
+let pokemon23= (("" + separated[22]).trim()).toLowerCase();
+let pokemon24 = (("" + separated[23]).trim()).toLowerCase();
+let pokemon25 = (("" + separated[24]).trim()).toLowerCase();
+let pokemon26 = (("" + separated[25]).trim()).toLowerCase();
+let pokemon27 = (("" + separated[26]).trim()).toLowerCase();
+let pokemon28 = (("" + separated[27]).trim()).toLowerCase();
+let pokemon29 = (("" + separated[28]).trim()).toLowerCase();
+let pokemon30= (("" + separated[29]).trim()).toLowerCase();
+let pokemon31 = (("" + separated[30]).trim()).toLowerCase();
+let pokemon32= (("" + separated[31]).trim()).toLowerCase();
+let pokemon33= (("" + separated[32]).trim()).toLowerCase();
+let pokemon34= (("" + separated[33]).trim()).toLowerCase();
+let pokemon35= (("" + separated[34]).trim()).toLowerCase();
+let pokemon36= (("" + separated[35]).trim()).toLowerCase();
+let pokemon37 = (("" + separated[36]).trim()).toLowerCase();
+let pokemon38= (("" + separated[37]).trim()).toLowerCase();
+let pokemon39 = (("" + separated[38]).trim()).toLowerCase();
+let pokemon40 = (("" + separated[39]).trim()).toLowerCase();
+let pokemon41 = (("" + separated[40]).trim()).toLowerCase();
+let pokemon42 = (("" + separated[41]).trim()).toLowerCase();
+let pokemon43= (("" + separated[42]).trim()).toLowerCase();
+let pokemon44= (("" + separated[43]).trim()).toLowerCase();
+let pokemon45= (("" + separated[44]).trim()).toLowerCase();
+let pokemon46= (("" + separated[45]).trim()).toLowerCase();
+let pokemon47 = (("" + separated[46]).trim()).toLowerCase();
+let pokemon48= (("" + separated[47]).trim()).toLowerCase();
+let pokemon49 = (("" + separated[48]).trim()).toLowerCase();
+let pokemon50= (("" + separated[49]).trim()).toLowerCase();
+   this.sendReplyBox('<center><button name="receive" value="|html| "&sol;&sol; "+move+" <br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon1+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon2+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon3+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon4+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon5+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon6+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon7+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon8+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon9+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon10+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon11+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon12+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon13+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon14+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon15+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon16+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon17+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon18+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon19+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon20+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon21+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon22+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon23+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon24+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon25+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon26+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon27+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon28+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon29+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon30+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon31+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon32+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon33+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon34+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon35+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon36+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon37+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon38+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon39+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon40+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon41+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon42+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon43+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon44+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon45+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon46+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon47+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon48+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon49+"&#39;).learnset."+move+" = [&#39;7L1&#39;];<br>this.modData(&#39;Learnsets&#39;, &#39;"+pokemon50+"&#39;).learnset."+move+" = [&#39;7L1&#39;];"" style="background-color:black;color:aqua;font-size:36px;border: 6px solid aqua;">Generate</button></center><br><marquee direction="left"><img src="http://www.pokestadium.com/assets/img/sprites/misc/icons/charizard-mega-x.png" width="40" height="30"></marquee>');
+	},
+movesdishelp:function (target, room, user, connection, cmd) {
+	this.sendReplyBox('Movesets coding!');
+}, 
 };
