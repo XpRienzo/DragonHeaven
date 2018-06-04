@@ -298,7 +298,7 @@ init: function () {
 	for (let i in this.data.Pokedex) {
 	let learnset = (this.data.Learnsets[i]) ? this.data.Learnsets[i].learnset : false;
 	let pokemon = this.data.Pokedex[i];
-	if (pokemon.types.indexOf('Rock') > -1) {
+	if (pokemon.hasType('Rock')) {
 					if (learnset.meteorshower) {
 						this.modData('Learnsets', i).learnset.meteorshower = learnset.meteorshower.push('6L1');
 					} else {
