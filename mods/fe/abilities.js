@@ -10199,7 +10199,7 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-			if (pokemon.item.isBerry) return this.chainModify(1.3);
+			if (pokemon.item.naturalGift) return this.chainModify(1.3);
 		},
 		onDisableMove: function (pokemon) {
 				for (const moveSlot of pokemon.moveSlots) {
