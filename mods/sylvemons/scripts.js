@@ -300,9 +300,9 @@ init: function () {
 	let pokemon = this.data.Pokedex[i];
 	if (pokemon.hasType('Rock')) {
 					if (learnset.meteorshower) {
-						this.modData('Learnsets', i).learnset.meteorshower = learnset.meteorshower.push('6L1');
+						this.modData('Learnsets', i).learnset.meteorshower = learnset.meteorshower.push('7L1');
 					} else {
-						this.modData('Learnsets', i).learnset.meteorshower = ['6L1'];
+						this.modData('Learnsets', i).learnset.meteorshower = ['7L1'];
 					}
 				}
 	}
