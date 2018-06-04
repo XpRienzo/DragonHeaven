@@ -579,4 +579,44 @@ exports.BattleAbilities = {
 		id: "solecaliber",
 		name: "Sole Caliber",
 	},
+	"sandveil": {
+		shortDesc: "Under Sandstorm, this Pokemon takes 33% less damage from all but NvE moves (Includes Stealth Rocks)",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0 && this.isWeather('sandstorm')) {
+				return this.chainModify(0.67);
+			}
+		},
+		id: "sandveil",
+		name: "Sand Veil",
+	},
+	"snowcloak": {
+		shortDesc: "Under Sandstorm, this Pokemon takes 33% less damage from all but NvE moves (Includes Stealth Rocks)",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0 && this.isWeather('hail')) {;
+				return this.chainModify(0.67);
+			}
+		},
+		id: "snowcloak",
+		name: "Snow Cloak",
+	},
+	"wetsuit": {
+		shortDesc: "Under Rain, this Pokemon takes 33% less damage from all but NvE moves (Includes Stealth Rocks)",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0 && this.isWeather(['raindance', 'primordialsea'])) {
+				return this.chainModify(0.67);
+			}
+		},
+		id: "wetsuit",
+		name: "Wet Suit",
+	},
+	"bask": {
+		shortDesc: "Under Harsh Sunlight, this Pokemon takes 33% less damage from all but NvE moves (Includes Stealth Rocks)",
+		onSourceModifyDamage: function (damage, source, target, move) {
+			if (move.typeMod < 0 && this.isWeather(['desolateland'])) {
+				return this.chainModify(0.67);
+			}
+		},
+		id: "bask",
+		name: "Bask",
+	},
 };
