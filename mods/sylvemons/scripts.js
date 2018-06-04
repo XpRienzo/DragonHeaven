@@ -305,13 +305,13 @@ init: function () {
 						this.modData('Learnsets', i).learnset.meteorshower = ['7L1'];
 					}
 				}
-		if (pokemon.types.indexOf('Flying') > -1) {
+	/*if (pokemon.types.indexOf('Flying') > -1) {
 					if (learnset.aircurrent) {
 						this.modData('Learnsets', i).learnset.aircurrent = learnset.aircurrent.push('7L1');
 					} else {
 						this.modData('Learnsets', i).learnset.aircurrent = ['7L1'];
 					}
-				}
+				}*/
 		/*if (learnset) {
 				//Everyone who has access to Tailwind now has access to Air Current.
 				if (learnset.tailwind) {
