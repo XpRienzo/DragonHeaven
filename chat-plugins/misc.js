@@ -653,7 +653,7 @@ fdjshelp:function (target, room, user, connection, cmd) {
     let separated = target.split(",");
 	let separated2 = target.split(" ");
 let move = (("" + separated2[0]).trim()).toLowerCase();
-	let move = 'replacethis';
+	//let move = 'replacethis';
 let pokemon1 = (("" + separated[2]).trim()).toLowerCase();
 let pokemon2 = (("" + separated[1]).trim()).toLowerCase();
 let pokemon3 = (("" + separated[2]).trim()).toLowerCase();
