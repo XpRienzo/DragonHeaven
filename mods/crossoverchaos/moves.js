@@ -42,7 +42,7 @@ let BattleMovedex = {
         pp: 10,
         priority: 0,
         flags: {protect: 1, mirror: 1, authentic: 1, contact: 1, distance: 1},
-        critRatio: 2
+        critRatio: 2,
         secondary: false,
         target: "normal",
         type: "Ground",
@@ -60,7 +60,7 @@ let BattleMovedex = {
         pp: 5,
         priority: 0,
         flags: {contact: 1, charge: 1, mirror: 1},
-        breaksProtect: true
+        breaksProtect: true,
         secondary: false,
         target: "normal",
         type: "Steel",
@@ -269,7 +269,7 @@ let BattleMovedex = {
         onEffectiveness: function (typeMod, type) {
             if (type === 'Ghost') return 1;
         },
-        secondary: false
+        secondary: false,
         target: "normal",
         type: "Flying",
         zMovePower: 140,
