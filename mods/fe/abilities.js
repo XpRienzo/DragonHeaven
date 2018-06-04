@@ -9767,7 +9767,7 @@ exports.BattleAbilities = {
 	            this.debug('Iron Fist boost');
 	            let warnMoves = [];
 	            let warnBp = move.basePower;
-	            for (const moveSlot of target.moveSlots) {
+	            for (const moveSlot of attacker.moveSlots) {
 	                let moves = this.getMove(moveSlot.move);
 	                let bp = moves.basePower;
 	                if (moves.ohko) bp = 160;
@@ -9775,11 +9775,11 @@ exports.BattleAbilities = {
 	                if (!bp && moves.category !== 'Status') bp = 80;
 	                if (bp > warnBp) {
 	                    warnMoves = [
-	                        [moves, target]
+	                        [moves, attacker]
 	                    ];
 	                    warnBp = bp;
 	                } else if (bp === warnBp) {
-	                    warnMoves.push([moves, target]);
+	                    warnMoves.push([moves, attacker]);
 	                }
 	            }
 	            return this.chainModify(warnBp / move.basePower);
