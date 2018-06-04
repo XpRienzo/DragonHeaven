@@ -2,9 +2,6 @@
 
 exports.BattleScripts = {
 init: function () {
-	for (let i in this.data.Pokedex) {
-			let learnset = (this.data.Learnsets[i]) ? this.data.Learnsets[i].learnset : false;
-			let pokemon = this.data.Pokedex[i];
 // Flame Bullet
 	this.modData('Learnsets', 'octillery').learnset.flamebullet = ['7L1'];
   this.modData('Learnsets', 'toucannon').learnset.flamebullet = ['7L1'];
@@ -298,6 +295,9 @@ init: function () {
   this.modData('Learnsets', 'heliolisk').learnset.dragonrage= ['7L1'];
   this.modData('Learnsets', 'lugia').learnset.dragonrage= ['7L1'];
 	
+	for (let i in this.data.Pokedex) {
+	let learnset = (this.data.Learnsets[i]) ? this.data.Learnsets[i].learnset : false;
+	let pokemon = this.data.Pokedex[i];
 	if (pokemon.types.indexOf('Rock') > -1) {
 					if (learnset.meteorshower) {
 						this.modData('Learnsets', i).learnset.meteorshower = learnset.meteorshower.push('7L1');
