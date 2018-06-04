@@ -305,6 +305,56 @@ init: function () {
 						this.modData('Learnsets', i).learnset.meteorshower = ['7L1'];
 					}
 				}
-	}
-	},
+		if (pokemon.types.indexOf('Flying') > -1) {
+					if (learnset.meteorshower) {
+						this.modData('Learnsets', i).learnset.aircurrent = learnset.aircurrent.push('7L1');
+					} else {
+						this.modData('Learnsets', i).learnset.aircurrent = ['7L1'];
+					}
+				}
+		if (learnset) {
+				//Everyone who has access to Tailwind now has access to Air Current.
+				if (learnset.tailwind) {
+					if (learnset.aircurrent) {
+						this.modData('Learnsets', i).learnset.aircurrent = learnset.aircurrent.push('7L1');
+					} else {
+						this.modData('Learnsets', i).learnset.aircurrent = ['7L1'];
+					}
+				}
+			if (pokemon.types.indexOf('Ghost') > -1 && pokemon.species !== 'frillish' && pokemon.species !== 'Jellicent' && pokemon.species !== 'Litwick' && pokemon.species !== 'Lampent' && pokemon.species !== 'Chandelure' && pokemon.species !== 'Honedge' && pokemon.species !== 'Aegislash' && pokemon.species !== 'Oricorio-Sensu' && pokemon.species !== 'Lunala' && pokemon.species !== 'Blacephalon') {
+					if (learnset.shadowcharge) {
+						this.modData('Learnsets', i).learnset.shadowcharge = learnset.shadowcharge.push('7L1');
+					} else {
+						this.modData('Learnsets', i).learnset.shadowcharge = ['7L1'];
+					}
+				}
+			if (learnset) {
+				//Everyone who has access to dazzling gleam now has access to moonblast.
+				if (learnset.sunnyday || learnset.sandstorm || learnset.hail || learnset.raindance && pokemon.hasType('Dark') || pokemon.hasType('Ghost')) {
+					if (learnset.moonblast) {
+						this.modData('Learnsets', i).learnset.shadowsky = learnset.shadowsky.push('7L1');
+					} else {
+						this.modData('Learnsets', i).learnset.shadowsky = ['7L1'];
+					}
+				}
+			if (learnset) {
+				//Everyone who has access to Tailwind now has access to Air Current.
+				if (learnset.charge && pokemon.species !== 'Tapu Koko') {
+					if (learnset.ionabsorb) {
+						this.modData('Learnsets', i).learnset.ionabsorb = learnset.ionabsorb.push('7L1');
+					} else {
+						this.modData('Learnsets', i).learnset.ionabsorb = ['7L1'];
+					}
+				}	
+			if (learnset) {
+				//Everyone who has access to Tailwind now has access to Air Current.
+				if (learnset.naturepower) {
+					if (learnset.allterrainblast) {
+						this.modData('Learnsets', i).learnset.allterrainblast = learnset.allterrainblast.push('7L1');
+					} else {
+						this.modData('Learnsets', i).learnset.allterrainblast = ['7L1'];
+					}
+				}
+}
+},
 };
