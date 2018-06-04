@@ -294,8 +294,86 @@ init: function () {
   this.modData('Learnsets', 'helioptile').learnset.dragonrage= ['7L1'];
   this.modData('Learnsets', 'heliolisk').learnset.dragonrage= ['7L1'];
   this.modData('Learnsets', 'lugia').learnset.dragonrage= ['7L1'];
+
+	// Meteor Shower 
+	this.modData('Learnsets', 'amaura').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'aggron').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'amaura').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'anorith').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'arceus-rock').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'archen').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'archeops').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'armaldo').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'aron').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'aurorus').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'barbaracle').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'bastiodon').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'binacle').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'boldore').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'bonsly').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'carbink').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'carracosta').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'corsola').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'cradily').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'cranidos').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'crustle').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'diancie').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'dwebble').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'geodude').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'gigalith').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'golem').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'graveler').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'kabuto').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'kabutops').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'lairon').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'larvitar').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'lileep').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'lunatone').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'lycanroc').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'magcargo').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'minior').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'nihilego').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'nosepass').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'omanyte').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'omastar').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'onix').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'probopass').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'pupitar').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'rampardos').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'regirock').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'relicanth').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'rhydon').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'rhyhorn').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'rhyperior').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'rockruff').learnset.meteorshower = ['7L1'];"
+this.modData('Learnsets', 'shuckle').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'shieldon').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'shuckle').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'silvallyrock').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'solrock').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'stakataka').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'sudowoodo').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'terrakion').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'tirtouga').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'tyranitar').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'tyrantrum').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'tyrunt').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'nidoking').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'nidoqueen').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'dialga').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'necrozma').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'deoxys').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'elygem').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'beheeyem').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'staryu').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'starmie').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'cleffa').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'clefairy').learnset.meteorshower = ['7L1'];
+this.modData('Learnsets', 'clefable').learnset.meteorshower = ['7L1'];
+
+
 	
-	for (let i in this.data.Pokedex) {
+	/*for (let i in this.data.Pokedex) {
 	let learnset = (this.data.Learnsets[i]) ? this.data.Learnsets[i].learnset : false;
 	let pokemon = this.data.Pokedex[i];
 	if (pokemon.hasType('Rock')) {
@@ -305,6 +383,6 @@ init: function () {
 						this.modData('Learnsets', i).learnset.meteorshower = ['7L1'];
 					}
 				}
-	}
+	}*/
 	},
 };
