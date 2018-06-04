@@ -1044,6 +1044,14 @@ exports.BattleAbilities = {
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, attacker, defender, move) {
 			if (basePower <= 60) {
+				if (pokemon.side.active.length > 1) {
+					for (const allyActive of attacker.side.active) {
+						if (allyActive && allyActive.position !== attacker.position && !allyActive.fainted && allyActive.hasAbility(['minus', 'plus', 'technician', 'chargedup', 'electronrain', 'foodcoloring', 'electrotechnic', 'positivegrowth', 'codeunknown', 'positivity', 'technicutter', 'sturdytech', 'precision', 'strikeandpass', 'completelyserious', 'guerillawarfare', 'operationovergrow', 'frenzy', 'eyeofhorus', 'technicalsystem', 'engineer', 'pressurizer', 'prodigy', 'techfur', 'bingobongo', 'starburst', 'technologicalarmor'])) {
+							this.debug('Greater Math Surge boost');
+							return this.chainModify(2);
+						}
+					}
+				}
 				this.debug('Math Surge boost');
 				return this.chainModify(1.5);
 			}
