@@ -86,8 +86,8 @@ let BattleMovedex = {
         contestType: "Tough",
     },
     "phasingram": {
-        num: 533,
-        accuracy: 40004,
+        num: 40004,
+        accuracy: 100,
         basePower: 90,
         category: "Physical",
         desc: "Ignores the target's stat stage changes, including evasiveness.",
@@ -264,10 +264,7 @@ let BattleMovedex = {
         priority: 0,
         flags: {protect: 1, mirror: 1},
         onEffectiveness: function (typeMod, type) {
-            if (type === 'Dark') return 1;
-        },
-        onEffectiveness: function (typeMod, type) {
-            if (type === 'Ghost') return 1;
+            if (type === 'Dark' || type === 'Ghost') return 1;
         },
         secondary: false,
         target: "normal",
