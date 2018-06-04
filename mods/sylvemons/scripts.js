@@ -312,7 +312,7 @@ init: function () {
 						this.modData('Learnsets', i).learnset.aircurrent = ['7L1'];
 					}
 				}
-		if (learnset) {
+		/*if (learnset) {
 				//Everyone who has access to Tailwind now has access to Air Current.
 				if (learnset.tailwind) {
 					if (learnset.aircurrent) {
@@ -354,7 +354,7 @@ init: function () {
 					} else {
 						this.modData('Learnsets', i).learnset.allterrainblast = ['7L1'];
 					}
-				}
+				}*/
 }
 },
 };
