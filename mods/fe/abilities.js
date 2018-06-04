@@ -9796,9 +9796,9 @@ exports.BattleAbilities = {
 	        if (effect && effect.effectType === 'Move' && target.template.speciesid === 'mimukyu' && !target.transformed) {
 	            this.add('-activate', target, 'ability: Appropriation');
 	            this.effectData.busted = true;
-	            let ability = this.getAbility(target.ability);
+	            let ability = this.getAbility(source.ability);
 	            let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode'];
-	            if (!bannedAbilities.includes(source.ability)) this.effectData.target.setAbility(ability);
+	            if (!bannedAbilities.includes(source.ability)) target.setAbility(ability);
 	            return 0;
 	        }
 	    },
@@ -9809,7 +9809,7 @@ exports.BattleAbilities = {
 	        if (!pokemon.runImmunity(move.type)) return;
 	        return 0;
 	    },
-	    Update: function(pokemon) {
+	    onUpdate: function(pokemon) {
 	        if (pokemon.template.speciesid === 'mimukyu' && this.effectData.busted) {
 	            let template = this.getTemplate('Mimukyu-Busted');
 	            pokemon.formeChange(template);
