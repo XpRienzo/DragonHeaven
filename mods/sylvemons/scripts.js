@@ -595,6 +595,95 @@ this.modData('Learnsets', 'xurkitree').learnset.ionabsorb = ['7L1'];
 this.modData('Learnsets', 'zapdos').learnset.ionabsorb = ['7L1'];
 this.modData('Learnsets', 'zebstrika').learnset.ionabsorb = ['7L1'];
 	
+// Plume Cannon
+	this.modData('Learnsets', 'fearow').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'spearow').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'fearow').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'togetic').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'togekiss').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'murkrow').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'honchkrow').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'ho-oh').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'starly').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'staravia').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'staraptor').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'rufflet').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'braviary').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'vullaby').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'mandibuzz').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'rowlet').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'dartrix').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'decidueye').learnset.plumecannon = ['7L1'];
+this.modData('Learnsets', 'dunsparce').learnset.plumecannon = ['7L1'];
+
+// Spike Cannon
+	this.modData('Learnsets', 'ferrothorn').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'ferroseed').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'ferrothorn').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'escavalier').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'pinsir').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'metagross').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'lucario').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'forretress').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'skarmory').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'excadrill').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'pawniard').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'bisharp').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'togedemaru').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'cobalion').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'octillery').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'beedrill').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'skorupi').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'drapion').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'venipede').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'whirlipede').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'scolipede').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'heracross').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'maractus').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'chesnaught').learnset.spikecannon = ['7L1'];
+this.modData('Learnsets', 'cacturne').learnset.spikecannon = ['7L1'];
+	
+//Arm Thrust
+	this.modData('Learnsets', 'machop').learnset.armthrust = ['7L1'];
+this.modData('Learnsets', 'machoke').learnset.armthrust = ['7L1'];
+this.modData('Learnsets', 'machamp').learnset.armthrust = ['7L1'];
+this.modData('Learnsets', 'aipom').learnset.armthrust = ['7L1'];
+this.modData('Learnsets', 'abipom').learnset.armthrust = ['7L1'];
+
+// Astonish
+this.modData('Learnsets', 'krokrok').learnset.astonish = ['7L1'];
+this.modData('Learnsets', 'sandile').learnset.astonish = ['7L1'];
+this.modData('Learnsets', 'krokrok').learnset.astonish = ['7L1'];
+this.modData('Learnsets', 'krookodile').learnset.astonish = ['7L1'];
+this.modData('Learnsets', 'marowak-alola').learnset.astonish = ['7L1'];
+
+// Dual Chop
+this.modData('Learnsets', 'hariyama').learnset.dualchop = ['7L1'];
+this.modData('Learnsets', 'hydregion').learnset.dualchop = ['7L1'];
+this.modData('Learnsets', 'hariyama').learnset.dualchop = ['7L1'];
+this.modData('Learnsets', 'charmander').learnset.dualchop = ['7L1'];
+this.modData('Learnsets', 'charmeleon').learnset.dualchop = ['7L1'];
+this.modData('Learnsets', 'charizard').learnset.dualchop = ['7L1'];
+this.modData('Learnsets', 'necrozma').learnset.dualchop = ['7L1'];
+	
+// Wild Charge
+this.modData('Learnsets', 'pichu').learnset.wildcharge = ['7L1'];
+this.modData('Learnsets', 'pikachu').learnset.wildcharge = ['7L1'];
+this.modData('Learnsets', 'raichu').learnset.wildcharge = ['7L1'];
+this.modData('Learnsets', 'togedemaru').learnset.wildcharge = ['7L1'];
+this.modData('Learnsets', 'tapukoko').learnset.wildcharge = ['7L1'];
+
+// Seed Bomb
+this.modData('Learnsets', 'pichu').learnset.seedbomb = ['7L1'];
+this.modData('Learnsets', 'pikachu').learnset.seedbomb = ['7L1'];
+this.modData('Learnsets', 'raichu').learnset.seedbomb = ['7L1'];
+this.modData('Learnsets', 'plusle').learnset.seedbomb = ['7L1'];
+this.modData('Learnsets', 'minun').learnset.seedbomb = ['7L1'];
+	this.modData('Learnsets', 'emolga').learnset.seedbomb = ['7L1'];
+	this.modData('Learnsets', 'dedenne').learnset.seedbomb = ['7L1'];
+	this.modData('Learnsets', 'bunnelby').learnset.seedbomb = ['7L1'];
+	this.modData('Learnsets', 'arceus').learnset.seedbomb = ['7L1'];
+	
 	/*for (let i in this.data.Pokedex) {
 	let learnset = (this.data.Learnsets[i]) ? this.data.Learnsets[i].learnset : false;
 	let pokemon = this.data.Pokedex[i];
