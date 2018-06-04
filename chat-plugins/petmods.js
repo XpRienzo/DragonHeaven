@@ -40,6 +40,16 @@ learnistor: function(target, room, user) {
 		this.sendReplyBox(`${buf}</div>`);
 	},
 	crossoverchaoshelp: ["/crossoverchaos - Shows the list of Pokemon in Crossover Chaos."],
+	crossovermoves: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Crossover Chaos Moves</h2></center>`;
+		let eternalDex = require('../mods/crossoverchaos/moves.js').BattleMovedex;
+		if (!eternalDex) return this.errorReply("Error Fetching Eternal Data.");
+		Object.values(eternalDex).forEach(move => {
+			buf += `<button name="send" value="/dt ${move.id}, crossoverchaos" style="background:none;border:none;">${move.id}</button><br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
 	felist: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
