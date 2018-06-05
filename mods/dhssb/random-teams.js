@@ -7,6 +7,12 @@ class RandomSeasonalTeams extends RandomTeams {
 		let team = [];
 		let variant = (this.random(2) === 1);
 		let sets = {
+			'Dr. wh0 cares': {
+				species: 'Hippowdon', ability: 'No one!', item: 'Leftovers', gender: 'M',
+				moves: ['Stealth Rock', 'Roar', 'Rock Tomb'],
+				signatureMove: "Wh0s Pills are These",
+				evs: {hp: 252, atk:252, def:252, spd:252}, nature: 'Brave',
+			},
 			'Brodaha': {
 				species: 'Muk-Alola', ability: 'Halt!', item: 'Leftovers', gender: 'M',
 				moves: ['Cosmic Power', 'Taunt', 'Roar'],
