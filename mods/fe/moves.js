@@ -2798,6 +2798,9 @@ exports.BattleMovedex = {
         defensiveCategory: "Special",
         desc: "Deals damage to the target based on its Special Defense instead of Defense. Has a 100% chance to confuse the target if its Defense is higher than its Special Defense.",
         shortDesc: "Damages target based on Sp. Def, not Defense. 100% chance to confuse if target has low Sp. Def.",
+        id: "celestialfist",
+        isViable: true,
+        name: "Celestial Fist",
         pp: 10,
         priority: 0,
         flags: {

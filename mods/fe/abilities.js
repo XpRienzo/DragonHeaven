@@ -1044,6 +1044,14 @@ exports.BattleAbilities = {
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, attacker, defender, move) {
 			if (basePower <= 60) {
+				if (pokemon.side.active.length > 1) {
+					for (const allyActive of attacker.side.active) {
+						if (allyActive && allyActive.position !== attacker.position && !allyActive.fainted && allyActive.hasAbility(['minus', 'plus', 'technician', 'chargedup', 'electronrain', 'foodcoloring', 'electrotechnic', 'positivegrowth', 'codeunknown', 'positivity', 'technicutter', 'sturdytech', 'precision', 'strikeandpass', 'completelyserious', 'guerillawarfare', 'operationovergrow', 'frenzy', 'eyeofhorus', 'technicalsystem', 'engineer', 'pressurizer', 'prodigy', 'techfur', 'bingobongo', 'starburst', 'technologicalarmor'])) {
+							this.debug('Greater Math Surge boost');
+							return this.chainModify(2);
+						}
+					}
+				}
 				this.debug('Math Surge boost');
 				return this.chainModify(1.5);
 			}
@@ -1073,7 +1081,7 @@ exports.BattleAbilities = {
 	"naturalguard": {
 		shortDesc: "Starchamp's moves cannot miss unless it's suffering from a major status. Cures itself of status when it switches.",
 		onAnyAccuracy: function(accuracy, target, source, move) {
-			if (move && (source === this.effectData.target && source.status === 'psn' && source.status === 'tox' && source.status === 'brn' && source.status === 'frz' && source.status === 'par')) {
+			if (move && (source === this.effectData.target && !source.status)) {
 				return true;
 			}
 			return accuracy;
@@ -6588,13 +6596,13 @@ exports.BattleAbilities = {
 			if (effect.effectType !== 'Move') {
 				let stat = 'atk';
 				let bestStat = 0;
-				for (let i in source.stats) {
+				for (let i in target.stats) {
 					if (source.stats[i] > bestStat) {
 						stat = i;
-						bestStat = source.stats[i];
+						bestStat = target.stats[i];
 					}
 				}
-				this.boost({[stat]: 1}, source);
+				this.boost({[stat]: 1}, target);
 				return false;
 			}
 		},
@@ -9759,7 +9767,7 @@ exports.BattleAbilities = {
 	            this.debug('Iron Fist boost');
 	            let warnMoves = [];
 	            let warnBp = move.basePower;
-	            for (const moveSlot of target.moveSlots) {
+	            for (const moveSlot of attacker.moveSlots) {
 	                let moves = this.getMove(moveSlot.move);
 	                let bp = moves.basePower;
 	                if (moves.ohko) bp = 160;
@@ -9767,11 +9775,11 @@ exports.BattleAbilities = {
 	                if (!bp && moves.category !== 'Status') bp = 80;
 	                if (bp > warnBp) {
 	                    warnMoves = [
-	                        [moves, target]
+	                        [moves, attacker]
 	                    ];
 	                    warnBp = bp;
 	                } else if (bp === warnBp) {
-	                    warnMoves.push([moves, target]);
+	                    warnMoves.push([moves, attacker]);
 	                }
 	            }
 	            return this.chainModify(warnBp / move.basePower);
@@ -9788,9 +9796,9 @@ exports.BattleAbilities = {
 	        if (effect && effect.effectType === 'Move' && target.template.speciesid === 'mimukyu' && !target.transformed) {
 	            this.add('-activate', target, 'ability: Appropriation');
 	            this.effectData.busted = true;
-	            let ability = this.getAbility(target.ability);
+	            let ability = this.getAbility(source.ability);
 	            let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode'];
-	            if (!bannedAbilities.includes(source.ability)) this.effectData.target.setAbility(ability);
+	            if (!bannedAbilities.includes(source.ability)) target.setAbility(ability);
 	            return 0;
 	        }
 	    },
@@ -9801,7 +9809,7 @@ exports.BattleAbilities = {
 	        if (!pokemon.runImmunity(move.type)) return;
 	        return 0;
 	    },
-	    Update: function(pokemon) {
+	    onUpdate: function(pokemon) {
 	        if (pokemon.template.speciesid === 'mimukyu' && this.effectData.busted) {
 	            let template = this.getTemplate('Mimukyu-Busted');
 	            pokemon.formeChange(template);
@@ -10047,7 +10055,7 @@ exports.BattleAbilities = {
 	"frictioncharge": {
 		shortDesc: "When hit by an Electric-type move or contact move, increases the power of own contact moves by 1.5x (similar to what Flash Fire does with Fire moves). Grants immunity to Electric-type moves.",
 		onTryHit: function (target, source, move) {
-			if (target !== source && move.type === 'Fire') {
+			if (target !== source && move.type === 'Electric') {
 				move.accuracy = true;
 				if (!target.addVolatile('frictioncharge')) {
 					this.add('-immune', target, '[msg]', '[from] ability: Friction Charge');
@@ -10069,17 +10077,9 @@ exports.BattleAbilities = {
 			onStart: function (target) {
 				this.add('-start', target, 'ability: Friction Charge');
 			},
-			onModifyAtkPriority: 5,
-			onModifyAtk: function (atk, attacker, defender, move) {
-				if (move.type === 'Electric') {
-					this.debug('Friction Charge boost');
-					return this.chainModify(1.5);
-				}
-			},
-			onModifySpAPriority: 5,
-			onModifySpA: function (atk, attacker, defender, move) {
-				if (move.type === 'Electric') {
-					this.debug('Friction Charge boost');
+			onBasePowerPriority: 8,
+			onBasePower: function (basePower, attacker, defender, move) {
+				if (move.flags['contact']) {
 					return this.chainModify(1.5);
 				}
 			},
@@ -10199,7 +10199,7 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon, target, move) {
-			if (pokemon.item.isBerry) return this.chainModify(1.3);
+			if (pokemon.item.naturalGift) return this.chainModify(1.3);
 		},
 		onDisableMove: function (pokemon) {
 				for (const moveSlot of pokemon.moveSlots) {
