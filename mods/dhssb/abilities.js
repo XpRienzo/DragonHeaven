@@ -1,6 +1,23 @@
 'use strict';
 
 exports.BattleAbilities = {
+	"noone": {
+		shortDesc: "Nullifies all abilities on field.",
+		onStart: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				target.addVolatile('gastroacid');
+			}
+		},
+		onUpdate: function(pokemon) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				target.addVolatile('gastroacid');
+			}
+		},
+		id: "noone",
+		name: "No one",
+	},
 	"halt": {
 		desc: "Applies ingrain and Aqua ring on switch-in, traps opponent + unaware",
 		shortDesc: "Applies ingrain and Aqua ring on switch-in, traps opponent + unaware.",
