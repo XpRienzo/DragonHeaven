@@ -2,7 +2,6 @@
 
 exports.BattleMovedex = {
 	"wh0spillsarethese": {
-		num: 254,
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
