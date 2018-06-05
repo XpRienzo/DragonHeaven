@@ -8302,4 +8302,31 @@ exports.BattleMovedex = {
 		zMovePower: 180,
 		contestType: "Clever",
 	},
+	"mindshatter": {
+		accuracy: 85,
+		basePower: 130,
+		category: "Physical",
+		desc: "If this attack is not successful, the user loses half of its maximum HP, rounded down, as crash damage. Pokemon with the Ability Magic Guard are unaffected by crash damage. Has a 20% chance to lower the target's Defense by 1 stage.",
+		shortDesc: "User is hurt by 50% of its max HP if it misses. 20% chance to lower the target's Def by 1.",
+		id: "mindshatter",
+		isViable: true,
+		name: "Mind Shatter",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, gravity: 1},
+		hasCustomRecoil: true,
+		onMoveFail: function (target, source, move) {
+			this.damage(source.maxhp / 2, source, source, 'mindshatter');
+		},
+		secondary: {
+			chance: 20,
+			boosts: {
+				def: -1,
+			},
+		},
+		target: "normal",
+		type: "Psychic",
+		zMovePower: 195,
+		contestType: "Clever",
+	},
 };
