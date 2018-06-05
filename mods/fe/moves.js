@@ -8276,4 +8276,30 @@ exports.BattleMovedex = {
 		type: "Ice",
 		zMoveBoost: {spe: 1},
 	},
+	"chargedgears": {
+		accuracy: 85,
+		basePower: 50,
+		category: "Special",
+		desc: "Hits twice, with each hit having a 70% chance to raise the user's Special Attack by 1 stage. If the first hit breaks the target's substitute, it will take damage for the second hit.",
+		shortDesc: "Hits 2 times. Each hit has 70% chance to raise the user's Sp. Atk by 1.",
+		id: "chargedgears",
+		isViable: true,
+		name: "Charged Gears",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		multihit: 2,
+		secondary: {
+			chance: 70,
+			self: {
+				boosts: {
+					spa: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Electric",
+		zMovePower: 180,
+		contestType: "Clever",
+	},
 };
