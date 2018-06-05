@@ -10816,27 +10816,13 @@ exports.BattleAbilities = {
 		id: "weathercontradiction",
 		name: "Weather Contradiction",
 	},
+
 	"sleepingsystem": {
       desc: "This Pokémon would change types to match it's held drive. This Pokémon counts as asleep and always holding all drives. (Multi-Attack is still Normal.)",
 		shortDesc: "This Pokemon is treated as if it were alseep and also all types at once.",
-		onImmunity: function (type, pokemon) {
-			if (['Normal', 'Fighting', 'Poison', 'Ground', 'Electric', 'Dragon', 'Psychic', 'Ghost', 'sandstorm', 'hail', 'solarsnow'].includes(type)) return false;
-		},
-		onEffectiveness: function(typeMod, target, type, move) {
-			let totalTypeMod = 0;
-			for (const types of this.battle.data.TypeChart) {
-				let typeMod = this.battle.getEffectiveness(move, types);
-				typeMod = this.battle.singleEvent('Effectiveness', move, null, types, move, null, typeMod);
-				totalTypeMod += this.battle.runEvent('Effectiveness', this, types, move, typeMod);
-			}
-			return totalTypeMod;
-		},
-		onPrepareHit: function (source, target, move) {
-			if (move.hasBounced) return;
-			let type = move.type;
-			if (type && type !== '???' && source.getTypes().join() !== type) {
-				if (!source.setType(type)) return;
-			}
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+				pokemon.setType(['Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Rock', 'Bug', 'Ghost', 'Psychic', 'Dragon', 'Dark', 'Steel', 'Fairy']);
 		},
 		onModifyMovePriority: -1,
 		onModifyMove: function (move) {
@@ -10845,7 +10831,7 @@ exports.BattleAbilities = {
            }
 		},
 		onSetStatus: function (status, target, source, effect) {
-			if (!effect || !effect.status || effect.status !== 'slp') return false;
+			if (!effect || !effect.status) return false;
 			this.add('-immune', target, '[msg]', '[from] ability: Sleeping System');
 			return false;
 		},
@@ -10870,8 +10856,10 @@ exports.BattleAbilities = {
 			}
 			if (type1 === type2){
 				pokemon.setType(type1);
+				this.add('-start', pokemon, 'typechange', type1, '[from] Prototype');
 			} else {
 				pokemon.setType([type1, type2]);
+				this.add('-start', pokemon, 'typechange', [type1, type2], '[from] Prototype');
 			}
 		},
 		onImmunity: function (type, pokemon) {
