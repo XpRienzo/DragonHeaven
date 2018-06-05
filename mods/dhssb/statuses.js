@@ -1,5 +1,14 @@
 'use strict';
 exports.BattleStatuses = {
+	drwh0cares: {
+		exists: true,
+		onStart: function () {
+			this.add('c|&Dr.wh0 cares|THE DOCTOR IS IN.............but wh0 cares');
+		},
+		onFaint: function(pokemon) {
+			this.add('c|&Dr.wh0 cares|wh0 just left');
+		},
+	},
 	mareanie: {
 		exists: true,
 		onStart: function () {
