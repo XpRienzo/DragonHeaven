@@ -1,6 +1,48 @@
 "use strict";
 
 exports.BattleMovedex = {
+	"wh0spillsarethese": {
+		num: 254,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Stockpile + Slack Off.",
+		id: "wh0spillsarethese",
+		name: "Wh0s Pills are These",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1, heal: 1},
+		heal: [1, 2],
+		onTryHit: function (pokemon) {
+			if (pokemon.volatiles['wh0spillsarethese'] && pokemon.volatiles['wh0spillsarethese'].layers >= 3) return false;
+		},
+		volatileStatus: 'wh0spillsarethese',
+		effect: {
+			noCopy: true,
+			onStart: function (target) {
+				this.effectData.layers = 1;
+				this.add('-start', target, 'wh0spillsarethese' + this.effectData.layers);
+				this.boost({def: 1, spd: 1}, target, target, this.getMove('wh0spillsarethese'));
+			},
+			onRestart: function (target) {
+				if (this.effectData.layers >= 3) return false;
+				this.effectData.layers++;
+				this.add('-start', target, 'wh0spillsarethese' + this.effectData.layers);
+				this.boost({def: 1, spd: 1}, target, target, this.getMove('wh0spillsarethese'));
+			},
+			onEnd: function (target) {
+				let layers = this.effectData.layers * -1;
+				this.effectData.layers = 0;
+				this.boost({def: layers, spd: layers}, target, target, this.getMove('wh0spillsarethese'));
+				this.add('-end', target, 'Wh0s Pills are These');
+			},
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal",
+		zMoveEffect: 'heal',
+		contestType: "Tough",
+	},
 	"cosmictrap": {
 		num: 681,
 		accuracy: 100,
