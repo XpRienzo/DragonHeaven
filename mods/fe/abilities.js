@@ -7172,9 +7172,9 @@ exports.BattleAbilities = {
 				return false;
 			}
 		},
-	       onResidual: function (pokemon) {
-			if (this.isTerrain('grassyterrain')) this.heal(target.maxhp / 8);
-			},
+	   onResidual: function (pokemon) {
+			if (this.isTerrain('grassyterrain')) this.heal(pokemon.maxhp / 8);
+		},
 		id: "grassyheal",
 		name: "Grassy Heal",
 	},
