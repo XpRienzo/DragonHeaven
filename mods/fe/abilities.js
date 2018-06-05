@@ -3020,7 +3020,7 @@ exports.BattleAbilities = {
 			for (let i = 0; i < foeactive.length; i++) {
 				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
 				if (!activated) {
-					this.add('-ability', pokemon, 'Intimidate', 'boost');
+					this.add('-ability', pokemon, 'Pecking Order', 'boost');
 					activated = true;
 				}
 				if (foeactive[i].volatiles['substitute']) {
@@ -8281,22 +8281,22 @@ exports.BattleAbilities = {
 		onBeforeMove: function (pokemon, target, move) {
 			if (pokemon.removeVolatile('staredown')) {
 				this.add('cant', pokemon, 'ability: Stare Down');
-			        let activated = false;
-			        for (const target of pokemon.side.foe.active) {
-				        if (!target || !this.isAdjacent(target, pokemon)) continue;
-				        if (!activated) {
-				        	this.add('-ability', pokemon, 'Intimidate', 'boost');
+			   let activated = false;
+			   for (const target of pokemon.side.foe.active) {
+				   if (!target || !this.isAdjacent(target, pokemon)) continue;
+				   if (!activated) {
+					    	this.add('-ability', pokemon, 'Stare Down', 'boost');
 				        	activated = true;
-			        	}
-				        if (target.volatiles['substitute']) {
+			      }
+				   if (target.volatiles['substitute']) {
 				        	this.add('-immune', target, '[msg]');
-				        } else {
+				   } else {
 				        	this.boost({atk: -1}, target, pokemon);
-				        }
-        			}
-		       		return false;
-		       	}
-		       	pokemon.addVolatile('staredown');
+				   }
+        		 }
+		     return false;
+		     }
+		    pokemon.addVolatile('staredown');
 		},
 		effect: {
 			duration: 2,
@@ -8560,7 +8560,7 @@ exports.BattleAbilities = {
 		},
 		onWeather: function (target, source, effect) {
 			if (effect.id === 'hail' || effect.id === 'solarsnow') {
-				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
 					this.heal(target.maxhp / 4);
 				} else {
 					this.damage(target.maxhp / 4, target, target);
@@ -9828,7 +9828,7 @@ exports.BattleAbilities = {
 			for (const target of pokemon.side.foe.active) {
 				if (!target || !this.isAdjacent(target, pokemon)) continue;
 				if (!activated) {
-					this.add('-ability', pokemon, 'Intimidate', 'boost');
+					this.add('-ability', pokemon, 'Scarily Adorable', 'boost');
 					activated = true;
 				}
 				if (target.volatiles['substitute']) {
