@@ -8560,7 +8560,7 @@ exports.BattleAbilities = {
 		},
 		onWeather: function (target, source, effect) {
 			if (effect.id === 'hail' || effect.id === 'solarsnow') {
-				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
 					this.heal(target.maxhp / 4);
 				} else {
 					this.damage(target.maxhp / 4, target, target);
