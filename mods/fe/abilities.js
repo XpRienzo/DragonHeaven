@@ -7108,13 +7108,17 @@ exports.BattleAbilities = {
 	    name: "Photosynthetic Grace",
 	},
 	"completelyserious": {
-		desc: "Moves of 70 BP or less gain a 33% damage bonus. They also do double damage, and the userâ€™s raw Speed is doubled, if the user consumes or is not holding a Held Item.",
-		shortDesc: "Moves of 70BP or less deal x2.667 damage. Holder's raw speed is doubled if there isn't a held item.",
+		desc: "Moves of 60 BP or less gain a 50% damage bonus. They do double damage, and the user’s raw Speed is doubled, if the user consumes or is not holding a Held Item.",
+		shortDesc: "Moves of 60BP or less deal x1.5 damage. With an item, Speed is doubled and the damage multiplier for the aforementioned moves hits x3 instead.",
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, attacker, defender, move) {
-			if (basePower <= 70) {
+			if (basePower <= 60) {
 				this.debug('Technician boost');
-				return this.chainModify(2.667);
+				if (!attacker.item) {
+					return this.chainModify(3);
+				} else{
+					return this.chainModify(1.5);
+				}
 			}
 		},
 		onModifySpe: function (spe, pokemon) {
