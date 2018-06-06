@@ -525,7 +525,8 @@ exports.BattleAbilities = {
 		effect: {
 			duration: 1,
 			onStart: function (pokemon){
-				this.boost({atk: 2, def: -1, spd: -1, spe: 2}, pokemon);	
+				let stat = this.sample(['def', 'spa', 'spd']);
+				this.boost({atk: 2, [stat]: -1, spe: 2}, pokemon);	
 				pokemon.removeVolatile('armorcast');
 			},
 		},
@@ -2212,35 +2213,37 @@ exports.BattleAbilities = {
 		name: "Sturdy Fire",
 	},
 	"kindle": {
-		shortDesc: "During hail, its Fire moves are powered up by 1.5x and recovers 1/16 HP every turn.",
-		onModifyAtkPriority: 5,
-		onModifyAtk: function (atk, attacker, defender, move) {
-			if (move.type === 'Fire' && this.isWeather(['hail', 'solarsnow'])) {
+		shortDesc: "During hail or sun, this Pokemon's Special Attack is 1.5x and recovers 1/16 HP every turn. Stacks when both are active.",
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (this.isWeather(['sunnday', 'desolateland', 'hail'])) {
 				this.debug('Blaze boost');
 				if (attacker.volatiles['atmosphericperversion'] == attacker.volatiles['weatherbreak']){
 					return this.chainModify(1.5);
 				} else {
 					return this.chainModify(0.6666667);
 				}
-			}
-		},
-		onModifySpAPriority: 5,
-		onModifySpA: function (atk, attacker, defender, move) {
-			if (move.type === 'Fire' && this.isWeather(['hail', 'solarsnow'])) {
+			} else if (this.isWeather(['solarsnow'])) {
 				this.debug('Blaze boost');
 				if (attacker.volatiles['atmosphericperversion'] == attacker.volatiles['weatherbreak']){
-					return this.chainModify(1.5);
+					return this.chainModify(2.25);
 				} else {
-					return this.chainModify(0.6666667);
+					return this.chainModify(0.44444);
 				}
 			}
 		},
 		onWeather: function(target, source, effect) {
-			if (effect.id === 'hail' || effect.id === 'solarsnow') {
+			if (effect.id === 'hail' || effect.id === 'sunnyday' || effect.id === 'desolatelland') {
 				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
 					this.heal(target.maxhp / 16, target, target);
 				} else {
 					this.damage(target.maxhp / 16, target, target);
+				}
+			} else if (effect.id === 'solarsnow') {
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
+					this.heal(target.maxhp / 8, target, target);
+				} else {
+					this.damage(target.maxhp / 8, target, target);
 				}
 			}
 		},
@@ -2513,13 +2516,20 @@ exports.BattleAbilities = {
 		name: "Indulgence",
 	},
 	"determination": {
-		shortDesc: "Prevents other Pokemon from lowering this Pokemon's Attack stat stage.",
+		shortDesc: "Prevents other Pokemon from lowering this Pokemon's Attack or Special Attack stat stages.",
 		onBoost: function(boost, target, source, effect) {
 			if (source && target === source) return;
-			if (boost['atk'] && boost['atk'] < 0 && target.hp <= target.maxhp / 2) {
+			let showMsg = false;
+			if (boost['atk'] && boost['atk'] < 0) {
 				delete boost['atk'];
-				if (!effect.secondaries) this.add("-fail", target, "unboost", "Attack", "[from] ability: Determination", "[of] " + target);
+				showMsg = true;
 			}
+			if (boost['spa'] && boost['spa'] < 0) {
+				delete boost['spa'];
+				showMsg = true;			
+			}
+			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: Determination", "[of] " + target);
+
 		},
 		id: "determination",
 		name: "Determination",
@@ -3923,12 +3933,16 @@ exports.BattleAbilities = {
 		name: "Too Thick",
 	},
 	"techfur": {
-		shortDesc: "This Pokemon's moves of 60 power or less have 3x power. Includes Struggle.",
+		shortDesc: "This Pokemon's moves of 60 power or less, including Struggle, have 2x power. Defense is doubled.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
 			if (basePower <= 60) {
-				return this.chainModify(3);
+				return this.chainModify(2);
 			}
+		},
+		onModifyDefPriority: 6,
+		onModifyDef: function (def) {
+			return this.chainModify(2);
 		},
 		id: "techfur",
 		name: "Tech Fur",
@@ -4743,25 +4757,22 @@ exports.BattleAbilities = {
 		name: "Clear Pouch",
 	},
 	"precision": {
-		desc: "This Pokemon's moves of 60 power or less have their power multiplied by 1.5. Does affect Struggle.",
-		shortDesc: "This Pokemon's moves of 60 power or less have 1.5x power. Includes Struggle.",
+		shortDesc: "Technician + Hustle.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
-			if (basePower <= 75) {
-				return this.chainModify(2);
+			if (basePower <= 60) {
+				return this.chainModify(1.5);
 				move.technicianBoosted = true;
 			}
 		},
 		onModifyAtkPriority: 5,
-		onModifyAtk: function(atk, move) {
-			if (!move.technicianBoosted) {
-				return this.modify(atk, 1.33);
-			}
+		onModifyAtk: function (atk) {
+			return this.modify(atk, 1.5);
 		},
 		onModifyMovePriority: -1,
 		onModifyMove: function(move) {
 			if (move.category === 'Physical' && typeof move.accuracy === 'number') {
-				move.accuracy *= 0.9;
+				move.accuracy *= 0.8;
 			}
 		},
 		id: "precision",
@@ -5144,21 +5155,12 @@ exports.BattleAbilities = {
 		name: "Hyper Protection",
 	},
 	"sandslurp": {
-		shortDesc: "Using or being the target of Ground- and Water-type moves heals this Pokémon for 1/8th of its maximum health. This increases to 1/6th in Sandstorm.",
+		desc: "Being the target of Ground- and Water-type moves heals this Pokémon for 1/4th of its maximum health. Immunity to Ground- and Water-type moves.",
+		shortDesc: "Nullifies Ground- and Water-type damage to heal this Pokémon for 1/4th of its maximum health.",
 		onTryHit: function(target, source, move) {
 			if (target !== source && move.type === 'Water' || move.type === 'Ground') {
-				this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
-				this.heal(target.maxhp / 8);
-				return null;
-			} else if (target !== source && move.type === 'Water' || move.type === 'Ground' && this.isWeather('sandstorm')) {
-				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
-					if(!this.heal(target.maxhp / 6)){
-						this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
-					}
-				} else {
-					if(!this.heal(target.maxhp / 12)){
-						this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
-					}
+				if (!this.heal(target.maxhp / 4)){
+					this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
 				}
 				return null;
 			}
@@ -5918,13 +5920,16 @@ exports.BattleAbilities = {
 		name: "Familiar Maneuvering",
 	},
 	"powersurge": {
-		shortDesc: "Immune to Electric-type moves. When hit by one, next attack is a guaranteed crit.",
+		shortDesc: "Higher crit ratio. Immune to Electric-type moves. When hit by one, next attack is a guaranteed crit.",
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Electric') {
 					this.add('-immune', target, '[msg]', '[from] ability: Power Surge');
 					target.addVolatile('laserfocus');
 					return null;
 			}
+		},
+		onModifyCritRatio: function (critRatio) {
+			return critRatio + 1;
 		},
 		id: "powersurge",
 		name: "Power Surge",
@@ -7172,9 +7177,9 @@ exports.BattleAbilities = {
 				return false;
 			}
 		},
-	       onResidual: function (pokemon) {
-			if (this.isTerrain('grassyterrain')) this.heal(target.maxhp / 8);
-			},
+	   onResidual: function (pokemon) {
+			if (this.isTerrain('grassyterrain')) this.heal(pokemon.maxhp / 8);
+		},
 		id: "grassyheal",
 		name: "Grassy Heal",
 	},
@@ -8901,13 +8906,6 @@ exports.BattleAbilities = {
 		onSwitchIn: function (source) {
 			this.setTerrain('beautifulterrain');
 		},
-		onAfterDamage: function (damage, target, source, move) {
-			if (move && move.flags['contact'] && !this.isTerrain('beautifulterrain')) {
-				if (this.randomChance(3, 10)) {
-					source.trySetStatus('brn', target);
-				}
-			}
-		},
 		id: "beautifulobliterationweapon",
 		name: "Beautiful Obliteration Weapon",
 	},
@@ -9066,13 +9064,6 @@ exports.BattleAbilities = {
 		shortDesc: "On switch-in, this Pokemon summons Radioactive Terrain, which powers up Electric- and Poison-type moves and poisons anything that can be poisoned. Contact can inflict poison.",
 		onStart: function (source) {
 			this.setTerrain('radioactiveterrain');
-		},
-		onAfterDamage: function (damage, target, source, move) {
-			if (move && move.flags['contact'] && !this.isTerrain('radioactiveterrain')) {
-				if (this.randomChance(3, 10)) {
-					source.trySetStatus('psn', target);
-				}
-			}
 		},
 		id: "radioactivesurge",
 		name: "Radioactive Surge",
@@ -10816,27 +10807,13 @@ exports.BattleAbilities = {
 		id: "weathercontradiction",
 		name: "Weather Contradiction",
 	},
+
 	"sleepingsystem": {
       desc: "This Pokémon would change types to match it's held drive. This Pokémon counts as asleep and always holding all drives. (Multi-Attack is still Normal.)",
 		shortDesc: "This Pokemon is treated as if it were alseep and also all types at once.",
-		onImmunity: function (type, pokemon) {
-			if (['Normal', 'Fighting', 'Poison', 'Ground', 'Electric', 'Dragon', 'Psychic', 'Ghost', 'sandstorm', 'hail', 'solarsnow'].includes(type)) return false;
-		},
-		onEffectiveness: function(typeMod, target, type, move) {
-			let totalTypeMod = 0;
-			for (const types of this.battle.data.TypeChart) {
-				let typeMod = this.battle.getEffectiveness(move, types);
-				typeMod = this.battle.singleEvent('Effectiveness', move, null, types, move, null, typeMod);
-				totalTypeMod += this.battle.runEvent('Effectiveness', this, types, move, typeMod);
-			}
-			return totalTypeMod;
-		},
-		onPrepareHit: function (source, target, move) {
-			if (move.hasBounced) return;
-			let type = move.type;
-			if (type && type !== '???' && source.getTypes().join() !== type) {
-				if (!source.setType(type)) return;
-			}
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+				pokemon.setType(['Normal', 'Fire', 'Water', 'Electric', 'Grass', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Rock', 'Bug', 'Ghost', 'Psychic', 'Dragon', 'Dark', 'Steel', 'Fairy']);
 		},
 		onModifyMovePriority: -1,
 		onModifyMove: function (move) {
@@ -10845,7 +10822,7 @@ exports.BattleAbilities = {
            }
 		},
 		onSetStatus: function (status, target, source, effect) {
-			if (!effect || !effect.status || effect.status !== 'slp') return false;
+			if (!effect || !effect.status) return false;
 			this.add('-immune', target, '[msg]', '[from] ability: Sleeping System');
 			return false;
 		},
@@ -10870,8 +10847,10 @@ exports.BattleAbilities = {
 			}
 			if (type1 === type2){
 				pokemon.setType(type1);
+				this.add('-start', pokemon, 'typechange', type1, '[from] Prototype');
 			} else {
 				pokemon.setType([type1, type2]);
+				this.add('-start', pokemon, 'typechange', [type1, type2], '[from] Prototype');
 			}
 		},
 		onImmunity: function (type, pokemon) {
