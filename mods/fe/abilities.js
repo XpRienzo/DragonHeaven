@@ -2516,14 +2516,17 @@ exports.BattleAbilities = {
 		shortDesc: "Prevents other Pokemon from lowering this Pokemon's Attack or Special Attack stat stages.",
 		onBoost: function(boost, target, source, effect) {
 			if (source && target === source) return;
+			let showMsg = false;
 			if (boost['atk'] && boost['atk'] < 0) {
 				delete boost['atk'];
-				if (!effect.secondaries) this.add("-fail", target, "unboost", "Attack", "[from] ability: Determination", "[of] " + target);
+				showMsg = true;
 			}
 			if (boost['spa'] && boost['spa'] < 0) {
 				delete boost['spa'];
-				if (!effect.secondaries) this.add("-fail", target, "unboost", "Special Attack", "[from] ability: Determination", "[of] " + target);
+				showMsg = true;			
 			}
+			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: Determination", "[of] " + target);
+
 		},
 		id: "determination",
 		name: "Determination",
