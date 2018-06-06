@@ -10047,7 +10047,7 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 				for (const moveSlot of target.moveSlots) {
 					let hiddenmove = this.getMove(moveSlot.move);
-					if (target !== source && move.type === hiddenmove.type) {
+					if (target !== source && (move.type === hiddenmove.type || (['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === target.hpType))) {
 						this.add('-immune', target, '[msg]', '[from] ability: Hidden Advantage');
 						return null;
 				}
@@ -10067,8 +10067,8 @@ exports.BattleAbilities = {
 		},
 		effect: {
 			onModifyPriority: function (priority, pokemon, target, move) {
-			return priority + 1;
-		},
+				return priority + 1;
+			},
 		},
 		id: "galelevitation",
 		name: "Gale Levitation",
@@ -10963,5 +10963,20 @@ exports.BattleAbilities = {
 		},
 		id: "combinationdrive",
 		name: "Combination Drive",
+	},
+	
+	"aeonflux": {
+		desc: "This Pokémon's Electric-type moves and punch moves gain a 20% boost to their Base Power before applying STAB; the percentage bonuses bonuses stack multiplicatively. Additionally, this Pokémon's punch moves use its Special Attack stat to determine their damage, though they still deal physical damage.",
+		shortDesc: "This Pokemon's punch-based and Electric-type attacks have 1.2x power, which stack. Punching moves run off this Pokemon's SpAtk instead of Atk.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			
+			if (move.flags['punch']) {
+				this.debug('Iron Fist boost');
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		id: "aeonflux",
+		name: "Aeon Flux",
 	},
 };
