@@ -4606,7 +4606,7 @@ exports.BattleAbilities = {
 		name: "Charm Star",
 	},
 	"magicfat": {
-		shortDesc: "Immune to Fire and Ice type moves as long as it holds an item.",
+		shortDesc: "Immune to Fire and Ice type moves as long as it holds an item. Halves damage from those moves if it's not holding an item.",
 		onTryHit: function(target, source, move) {
 			if (target !== source && target.item && move.type === 'Fire' || move.type === 'Ice') {
 				this.add('-immune', target, '[msg]', '[from] ability: Magic Fat');
@@ -4614,14 +4614,14 @@ exports.BattleAbilities = {
 			}
 		},
 		onSourceModifyAtk: function (atk, attacker, defender, move) {
-			if (move.type === 'Ice' || move.type === 'Fire' && !defender.item) {
+			if (move.type === 'Ice' || move.type === 'Fire') {
 				this.debug('Thick Fat weaken');
 				return this.chainModify(0.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onSourceModifySpA: function (atk, attacker, defender, move) {
-			if (move.type === 'Ice' || move.type === 'Fire' && !defender.item) {
+			if (move.type === 'Ice' || move.type === 'Fire') {
 				this.debug('Thick Fat weaken');
 				return this.chainModify(0.5);
 			}
