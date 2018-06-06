@@ -4747,25 +4747,22 @@ exports.BattleAbilities = {
 		name: "Clear Pouch",
 	},
 	"precision": {
-		desc: "This Pokemon's moves of 60 power or less have their power multiplied by 1.5. Does affect Struggle.",
-		shortDesc: "This Pokemon's moves of 60 power or less have 1.5x power. Includes Struggle.",
+		shortDesc: "Technician + Hustle.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
-			if (basePower <= 75) {
-				return this.chainModify(2);
+			if (basePower <= 60) {
+				return this.chainModify(1.5);
 				move.technicianBoosted = true;
 			}
 		},
 		onModifyAtkPriority: 5,
-		onModifyAtk: function(atk, move) {
-			if (!move.technicianBoosted) {
-				return this.modify(atk, 1.33);
-			}
+		onModifyAtk: function (atk) {
+			return this.modify(atk, 1.5);
 		},
 		onModifyMovePriority: -1,
 		onModifyMove: function(move) {
 			if (move.category === 'Physical' && typeof move.accuracy === 'number') {
-				move.accuracy *= 0.9;
+				move.accuracy *= 0.8;
 			}
 		},
 		id: "precision",
