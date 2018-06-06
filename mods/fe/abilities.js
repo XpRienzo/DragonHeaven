@@ -5144,21 +5144,12 @@ exports.BattleAbilities = {
 		name: "Hyper Protection",
 	},
 	"sandslurp": {
-		shortDesc: "Using or being the target of Ground- and Water-type moves heals this Pokémon for 1/8th of its maximum health. This increases to 1/6th in Sandstorm.",
+		desc: "Being the target of Ground- and Water-type moves heals this Pokémon for 1/4th of its maximum health. Immunity to Ground- and Water-type moves.",
+		shortDesc: "Nullifies Ground- and Water-type damage to heal this Pokémon for 1/4th of its maximum health.",
 		onTryHit: function(target, source, move) {
 			if (target !== source && move.type === 'Water' || move.type === 'Ground') {
-				this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
-				this.heal(target.maxhp / 8);
-				return null;
-			} else if (target !== source && move.type === 'Water' || move.type === 'Ground' && this.isWeather('sandstorm')) {
-				if (pokemon.volatiles['atmosphericperversion'] == pokemon.volatiles['weatherbreak']){
-					if(!this.heal(target.maxhp / 6)){
-						this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
-					}
-				} else {
-					if(!this.heal(target.maxhp / 12)){
-						this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
-					}
+				if (!this.heal(target.maxhp / 4)){
+					this.add('-immune', target, '[msg]', '[from] ability: Sand Slurp');
 				}
 				return null;
 			}
