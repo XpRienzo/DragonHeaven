@@ -525,7 +525,8 @@ exports.BattleAbilities = {
 		effect: {
 			duration: 1,
 			onStart: function (pokemon){
-				this.boost({atk: 2, def: -1, spd: -1, spe: 2}, pokemon);	
+				let stat = this.sample(['def', 'spa', 'spd']);
+				this.boost({atk: 2, [stat]: -1, spe: 2}, pokemon);	
 				pokemon.removeVolatile('armorcast');
 			},
 		},
