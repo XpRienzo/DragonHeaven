@@ -5110,16 +5110,26 @@ exports.BattleAbilities = {
 	    name: "Evaporate",
 	},
 	"caestus": {
-		shortDesc: "Arm, hand, and punching moves do 25% more damage where applicable and raise this Pokémon's Attack by one stage after their use.",
+		shortDesc: "Arm, hand, and punching moves do 20% more damage. Raise this Pokémon's Attack by two stages when this Pokemon’s stats are lowered.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
-			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name === 'Arm Thrust' || move.name === 'Hammer Arm' || move.name === 'Needle Arm') {
-				return this.chainModify(1.25);
+			if (move.flags['punch'] || move.name === 'Arm Thrust' || move.name === 'Needle Arm') {
+				return this.chainModify(1.2);
 			}
 		},
-		onAfterMoveSecondary: function (target, source, move) {
-			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name === 'Arm Thrust' || move.name === 'Hammer Arm' || move.name === 'Needle Arm') {
-				this.boost({atk: 1}, source);
+		onAfterEachBoost: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({atk: 2}, target, target, null, true);
 			}
 		},
 		id: "caestus",
