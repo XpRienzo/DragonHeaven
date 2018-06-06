@@ -15633,11 +15633,11 @@ mimiblimbusted: {
         types: ["Normal"],
         gender: "N",
         baseStats: {
-            hp: 104,
+            hp: 84,
             atk: 84,
-            def: 84,
+            def: 94,
             spa: 84,
-            spd: 84,
+            spd: 94,
             spe: 104
         },
         abilities: {
