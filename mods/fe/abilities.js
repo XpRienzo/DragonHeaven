@@ -9008,18 +9008,14 @@ exports.BattleAbilities = {
 	    id: "magicworker",
 	    name: "Magicworker",
 	},
-	"poisonpores": { //TODO: Salasaur doesn't halve the speed of Poisoned Pokemon anymore. It gains the regular effect of Corrosion to make up for it.
+	"poisonpores": {
 	    desc: "When this Pokemon is on the field, all Poison and Steel-types have their speed doubled. If a Pokemon is poisoned, their speed is halved.",
 	    shortDesc: "Doubles the speed of all active Poison- and Steel-types, and halves the speed of all active poisoned Pokemon.",
+		 //TODO: Implement Corrosion effects. The heart of the system has Corrosion's effects hard-coded into it.
 	    onAnyModifySpe: function(spe, pokemon) {
-	        let mod = 1;
 	        if (pokemon.hasType('Poison') || pokemon.hasType('Steel')) {
-	            mod *= 2;
+	            return this.chainModify(2);
 	        }
-	        if (pokemon.status && (pokemon.status === 'psn' || pokemon.status === 'tox')) {
-	            mod = mod / 2;
-	        }
-	        return mod;
 	    },
 	    id: "poisonpores",
 	    name: "Poison Pores",
