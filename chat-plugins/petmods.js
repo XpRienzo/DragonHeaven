@@ -161,7 +161,7 @@ learnistor: function(target, room, user) {
 	fusionmoves: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Pokemon Moves</h2></center>`;
-		let eternalDex = require('../mods/fusion/moves.js').BattleMovedex;
+		let eternalDex = require('../mods/fe/moves.js').BattleMovedex;
 		if (!eternalDex) return this.errorReply("Error Fetching Fusion Data.");
 		Object.values(eternalDex).forEach(move => {
 			buf += `<button name="send" value="/dt ${move.id}, Fusion" style="background:none;border:none;">${move.id}</button><br>`;
