@@ -8892,13 +8892,6 @@ exports.BattleAbilities = {
 		onSwitchIn: function (source) {
 			this.setTerrain('beautifulterrain');
 		},
-		onAfterDamage: function (damage, target, source, move) {
-			if (move && move.flags['contact'] && !this.isTerrain('beautifulterrain')) {
-				if (this.randomChance(3, 10)) {
-					source.trySetStatus('brn', target);
-				}
-			}
-		},
 		id: "beautifulobliterationweapon",
 		name: "Beautiful Obliteration Weapon",
 	},
@@ -9057,13 +9050,6 @@ exports.BattleAbilities = {
 		shortDesc: "On switch-in, this Pokemon summons Radioactive Terrain, which powers up Electric- and Poison-type moves and poisons anything that can be poisoned. Contact can inflict poison.",
 		onStart: function (source) {
 			this.setTerrain('radioactiveterrain');
-		},
-		onAfterDamage: function (damage, target, source, move) {
-			if (move && move.flags['contact'] && !this.isTerrain('radioactiveterrain')) {
-				if (this.randomChance(3, 10)) {
-					source.trySetStatus('psn', target);
-				}
-			}
 		},
 		id: "radioactivesurge",
 		name: "Radioactive Surge",
