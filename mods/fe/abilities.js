@@ -5270,7 +5270,7 @@ exports.BattleAbilities = {
 		shortDesc: "When this Pokémon is below 50% health, the Base Power and secondary effect chance of moves with secondary effects are doubled.",
 		onModifyMovePriority: -2,
 		onModifyMove: function(move, pokemon) {
-			if (move.secondaries && pokemon.hp <= pokemon.maxhp / 2) {
+			if (move.secondaries && pokemon.hp <= pokemon.maxhp / 3) {
 				this.debug('doubling secondary chance');
 				for (const secondary of move.secondaries) {
 					// @ts-ignore
@@ -5280,7 +5280,7 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
-			if (attacker.hp <= attacker.maxhp / 2) {
+			if (attacker.hp <= attacker.maxhp / 3 && move.secondaries) {
 				return this.chainModify(2);
 			}
 		},
