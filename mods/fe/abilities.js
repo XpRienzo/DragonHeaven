@@ -5504,8 +5504,11 @@ exports.BattleAbilities = {
 		name: "Sharpshooter",
 	},
 	"rubberup": {
-		shortDesc: "Whenever another Pokémon faints or has its stats lowered, this Pokémon has its Special Attack stat boosted by 2 combat stages.",
-		onAnyAfterEachBoost: function (boost, pokemon, source) {
+		shortDesc: "When this Pokemon has a stat lowered by the foe, +2 Special Attack. If an opponent faints, the holder gets +1 Special Attack, +2 if the foe had a lowered stat upon death. Multiple stats lowered do not stack.",
+		onAfterEachBoost: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
 			let statsLowered = false;
 			for (let i in boost) {
 				// @ts-ignore
@@ -5514,11 +5517,21 @@ exports.BattleAbilities = {
 				}
 			}
 			if (statsLowered) {
-				this.boost({spa: 2}, this.effectData.target);
+				this.boost({spa: 2}, target, target, null, true);
 			}
 		},
-		onAnyFaint: function () {
-			this.boost({spa: 2}, this.effectData.target);
+		onAnyFaint: function (pokemon) {
+			let loweredstats = false;
+			for (let stat in pokemon.boosts) {
+				if (pokemon.boosts[stat] < 0) {
+					loweredstats = true;
+				}
+			}
+			if (loweredstats){
+				this.boost({spa: 2}, this.effectData.target);
+			} else {
+				this.boost({spa: 1}, this.effectData.target);
+			}
 		},
 		id: "rubberup",
 		name: "Rubber Up",
