@@ -5138,16 +5138,13 @@ exports.BattleAbilities = {
 	"fusionpowered": {
 		shortDesc: "This Pokémon's STAB moves do 3x damage rather than 1.5x, but have 33% recoil. Moves with a recoil element do 1.25x bonus damage.",
 		onModifyMove: function(move) {
-			move.stab = 3;
-			if (move.stab) {
-				move.recoil = [1, 3];
-			}
+			move.stab = 2;
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
-			if (move.recoil || move.hasCustomRecoil) {
+			if (move.recoil || move.hasCustomRecoil || attacker.hasType(move.type)) {
 				this.debug('Reckless boost');
-				return this.chainModify(1.25);
+				return this.chainModify(1.2);
 			}
 		},
 		id: "fusionpowered",
