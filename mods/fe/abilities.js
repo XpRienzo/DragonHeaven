@@ -3923,12 +3923,16 @@ exports.BattleAbilities = {
 		name: "Too Thick",
 	},
 	"techfur": {
-		shortDesc: "This Pokemon's moves of 60 power or less have 3x power. Includes Struggle.",
+		shortDesc: "This Pokemon's moves of 60 power or less, including Struggle, have 2x power. Defense is doubled.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
 			if (basePower <= 60) {
-				return this.chainModify(3);
+				return this.chainModify(2);
 			}
+		},
+		onModifyDefPriority: 6,
+		onModifyDef: function (def) {
+			return this.chainModify(2);
 		},
 		id: "techfur",
 		name: "Tech Fur",
