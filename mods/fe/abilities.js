@@ -2213,35 +2213,37 @@ exports.BattleAbilities = {
 		name: "Sturdy Fire",
 	},
 	"kindle": {
-		shortDesc: "During hail, its Fire moves are powered up by 1.5x and recovers 1/16 HP every turn.",
-		onModifyAtkPriority: 5,
-		onModifyAtk: function (atk, attacker, defender, move) {
-			if (move.type === 'Fire' && this.isWeather(['hail', 'solarsnow'])) {
+		shortDesc: "During hail or sun, this Pokemon's Special Attack is 1.5x and recovers 1/16 HP every turn. Stacks when both are active.",
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (this.isWeather(['sunnday', 'desolateland', 'hail'])) {
 				this.debug('Blaze boost');
 				if (attacker.volatiles['atmosphericperversion'] == attacker.volatiles['weatherbreak']){
 					return this.chainModify(1.5);
 				} else {
 					return this.chainModify(0.6666667);
 				}
-			}
-		},
-		onModifySpAPriority: 5,
-		onModifySpA: function (atk, attacker, defender, move) {
-			if (move.type === 'Fire' && this.isWeather(['hail', 'solarsnow'])) {
+			} else if (this.isWeather(['solarsnow'])) {
 				this.debug('Blaze boost');
 				if (attacker.volatiles['atmosphericperversion'] == attacker.volatiles['weatherbreak']){
-					return this.chainModify(1.5);
+					return this.chainModify(2.25);
 				} else {
-					return this.chainModify(0.6666667);
+					return this.chainModify(0.44444);
 				}
 			}
 		},
 		onWeather: function(target, source, effect) {
-			if (effect.id === 'hail' || effect.id === 'solarsnow') {
+			if (effect.id === 'hail' || effect.id === 'sunnyday' || effect.id === 'desolatelland') {
 				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
 					this.heal(target.maxhp / 16, target, target);
 				} else {
 					this.damage(target.maxhp / 16, target, target);
+				}
+			} else if (effect.id === 'solarsnow') {
+				if (target.volatiles['atmosphericperversion'] == target.volatiles['weatherbreak']){
+					this.heal(target.maxhp / 8, target, target);
+				} else {
+					this.damage(target.maxhp / 8, target, target);
 				}
 			}
 		},
