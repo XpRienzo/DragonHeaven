@@ -4211,15 +4211,22 @@ exports.BattleAbilities = {
 		name: "Fisticuffst",
 	},
 	"starburst": {
-		shortDesc: "This Pokémon's moves with 60 Base Power or less or that have a secondary effect have their base power doubled. These effects stack.",
+		shortDesc: "This Pokémon's moves with 60 Base Power or less or that have a secondary effect deal x1.5 damage. Secondary effects are doubled.",
 		onModifyMovePriority: -2,
 		onModifyMove: function(move) {
-			if (move.secondaries && move.basePower <= 60) {
+			if (move.secondaries) {
 				this.debug('doubling secondary chance');
 				for (const secondary of move.secondaries) {
 					// @ts-ignore
 					secondary.chance *= 2;
 				}
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60 || move.secondaries) {
+				this.debug('Starburst boost');
+				return this.chainModify(1.5);
 			}
 		},
 		id: "starburst",
