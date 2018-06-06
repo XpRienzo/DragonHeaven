@@ -2244,19 +2244,19 @@ exports.BattleItems = {
         gen: 6,
         desc: "If holder is a garzone, this item allows it to Mega Evolve in battle.",
     },
-    "trampolineite": {
-        id: "trampolineite",
-        name: "trampolineite",
+    "roarampite": {
+        id: "roarampite",
+        name: "roarampite",
         spritenum: 580,
 
-        megaStone: "Trampoline-Mega",
-        megaEvolves: "Trampoline",
+        megaStone: "Roaramp-Mega",
+        megaEvolves: "Roaramp",
         onTakeItem: function(item, source) {
             if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
             return true;
         },
         gen: 6,
-        desc: "If holder is a trampoline, this item allows it to Mega Evolve in battle.",
+        desc: "If holder is a Roaramp, this item allows it to Mega Evolve in battle.",
     },
     "stakeyeite": {
         id: "stakeyeite",
