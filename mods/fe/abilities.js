@@ -2513,12 +2513,16 @@ exports.BattleAbilities = {
 		name: "Indulgence",
 	},
 	"determination": {
-		shortDesc: "Prevents other Pokemon from lowering this Pokemon's Attack stat stage.",
+		shortDesc: "Prevents other Pokemon from lowering this Pokemon's Attack or Special Attack stat stages.",
 		onBoost: function(boost, target, source, effect) {
 			if (source && target === source) return;
-			if (boost['atk'] && boost['atk'] < 0 && target.hp <= target.maxhp / 2) {
+			if (boost['atk'] && boost['atk'] < 0) {
 				delete boost['atk'];
 				if (!effect.secondaries) this.add("-fail", target, "unboost", "Attack", "[from] ability: Determination", "[of] " + target);
+			}
+			if (boost['spa'] && boost['spa'] < 0) {
+				delete boost['spa'];
+				if (!effect.secondaries) this.add("-fail", target, "unboost", "Special Attack", "[from] ability: Determination", "[of] " + target);
 			}
 		},
 		id: "determination",
