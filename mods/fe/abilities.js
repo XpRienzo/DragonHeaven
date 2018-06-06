@@ -5909,13 +5909,16 @@ exports.BattleAbilities = {
 		name: "Familiar Maneuvering",
 	},
 	"powersurge": {
-		shortDesc: "Immune to Electric-type moves. When hit by one, next attack is a guaranteed crit.",
+		shortDesc: "Higher crit ratio. Immune to Electric-type moves. When hit by one, next attack is a guaranteed crit.",
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Electric') {
 					this.add('-immune', target, '[msg]', '[from] ability: Power Surge');
 					target.addVolatile('laserfocus');
 					return null;
 			}
+		},
+		onModifyCritRatio: function (critRatio) {
+			return critRatio + 1;
 		},
 		id: "powersurge",
 		name: "Power Surge",
