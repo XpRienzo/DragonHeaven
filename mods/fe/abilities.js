@@ -10047,7 +10047,7 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 				for (const moveSlot of target.moveSlots) {
 					let hiddenmove = this.getMove(moveSlot.move);
-					if (target !== source && (move.type === hiddenmove.type || (['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === target.hpType))) {
+					if (target !== source && !(['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === 'Normal') && (move.type === hiddenmove.type) || (['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === target.hpType))) {
 						this.add('-immune', target, '[msg]', '[from] ability: Hidden Advantage');
 						return null;
 				}
