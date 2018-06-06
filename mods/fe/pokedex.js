@@ -13855,7 +13855,7 @@ mimiblimbusted: {
     },
 
 
-    happislashfriendly: {
+    happislash: {
         num: 7500362,
         species: "Happislash",
 		  baseForme: "Friendly",
