@@ -6726,20 +6726,23 @@ exports.BattleAbilities = {
 			switch (this.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
-				forme = 'Polyform2-Sunny';
+				if (pokemon.template.speciesid !== 'polyform2sunny') forme = 'Polyform2-Sunny';
 				break;
-                        case 'solarsnow':
-				forme = 'Polyform2-Sunsnow';
+         case 'solarsnow':
+				if (pokemon.template.speciesid !== 'polyform2sunsnow') forme = 'Polyform2-Sunsnow';
 				break;
 			case 'raindance':
 			case 'primordialsea':
-				forme = 'Polyform2-Rainy';
+				if (pokemon.template.speciesid !== 'polyform2rainy') forme = 'Polyform2-Rainy';
 				break;
 			case 'hail':
-				forme = 'Polyform2-Snowy';
+				if (pokemon.template.speciesid !== 'polyform2snowy') forme = 'Polyform2-Snowy';
 				break;
 			case 'sandstorm':
-				forme = 'Polyform2-Sandy';
+				if (pokemon.template.speciesid !== 'polyform2sandy') forme = 'Polyform2-Sandy';
+				break;
+			case 'shadowdance':
+				if (pokemon.template.speciesid !== 'polyform2spooky') forme = 'Polyform2-Spooky';
 				break;
 			default:
 				if (pokemon.template.speciesid !== 'polyform2') forme = 'Polyform2';
