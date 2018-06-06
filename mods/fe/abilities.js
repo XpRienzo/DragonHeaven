@@ -8561,17 +8561,17 @@ exports.BattleAbilities = {
 		name: "Unamazed",
 	},
 	"jealousaggressor": {
-		shortDesc: "Deals double damage to Pokemon holding an item.",
+		shortDesc: "Deals double damage to Pokemon not holding an item.",
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk, attacker, defender) {
-			if (defender.item) {
+			if (!defender.item) {
 				this.debug('Jealous Aggressor boost');
 				return this.chainModify(2);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function (atk, attacker, defender) {
-			if (defender.item) {
+			if (!defender.item) {
 				this.debug('Jealous Aggressor boost');
 				return this.chainModify(2);
 			}
