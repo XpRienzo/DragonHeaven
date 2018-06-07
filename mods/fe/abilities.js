@@ -11006,4 +11006,22 @@ exports.BattleAbilities = {
 		id: "triagesystem",
 		name: "Triage System",
 	},
+	"rainregen": {
+		shortDesc: "Sets Rain on switchin. Heals 33% of its max HP every time it sets Rain.",
+		onStart: function (source) {
+			for (const action of this.queue) {
+				if (action.choice === 'runPrimal' && action.pokemon === source && source.template.speciesid === 'kyogre') return;
+				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
+			}
+			this.setWeather('raindance');
+		},
+		onUpdate: function (source) {
+			if (this.setWeather('raindance')) {
+				this.heal(source.maxhp / 3);
+				this.add('-activate', source, 'ability: Rain Regen');
+			}
+		},
+		id: "rainregen",
+		name: "Rain Regen",
+	},
 };
