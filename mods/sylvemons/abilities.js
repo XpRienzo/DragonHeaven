@@ -534,7 +534,7 @@ exports.BattleAbilities = {
 	"surgesurfer": {
 		shortDesc: "If a Terrain is active, this Pokemon's Speed is doubled.",
 		onModifySpe: function (spe) {
-			if (this.isTerrain['electricterrain' || 'psychicterrain' || 'grassyterrain' || 'mistyterrain']) {
+			if (this.isTerrain('electricterrain') || this.isTerrain('psychicterrain') || this.isTerrain('mistyterrain') || this.isTerrain('grassyterrain')) {
 				return this.chainModify(2);
 			}
 		},
