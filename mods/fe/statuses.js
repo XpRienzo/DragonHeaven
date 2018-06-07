@@ -391,6 +391,24 @@ afterstorm: {
 			pokemon.addType('type', true);
 		},
 	},
+	valcro: {
+		name: 'Valcro',
+		id: 'valcro',
+		num: 773,
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+			let type = 'Normal';
+			if (pokemon.ability === 'techequip') {
+				// @ts-ignore
+				type = pokemon.getItem().onMemory;
+				// @ts-ignore
+				if (!type || type === true) {
+					type = 'Normal';
+				}
+			}
+			pokemon.setType(type, 'Flying');
+		},
+	},
 };
 
 exports.BattleStatuses = BattleStatuses;
