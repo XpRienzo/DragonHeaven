@@ -10990,4 +10990,15 @@ exports.BattleAbilities = {
 		id: "techequip",
 		name: "Tech Equip",
 	},
+	"technicalsystem": {
+		shortDesc: "If this Pokémon is holding a Memory, it changes type to match that memory and all it's moves are boosted by 1.5.",
+		// Implemented in statuses.js
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+				return this.chainModify(1.5);
+			}
+		},
+		id: "technicalsystem",
+		name: "Technical System",
+	},
 };
