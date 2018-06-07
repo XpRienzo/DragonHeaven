@@ -435,6 +435,37 @@ afterstorm: {
 			pokemon.setType(type, true);
 		},
 	},
+	covally: {
+		name: 'Covally',
+		id: 'covally',
+		num: 7500243,
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+			let type = 'Normal';
+			if (pokemon.ability === 'triagesystem') {
+				// @ts-ignore
+				type = pokemon.getItem().onMemory;
+				// @ts-ignore
+				if (!type || type === true) {
+					type = 'Normal';
+				}
+			}
+			pokemon.setType(type, true);
+		},
+		onModifyMovePriority: -1,
+		onModifyMove: function (move, pokemon) {
+			let type = 'Normal';
+			type = pokemon.getItem().onMemory;
+			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = type;
+			}
+		},
+		onModifyPriority: function (priority, pokemon, target, move) {
+			let type = 'Normal';
+			type = pokemon.getItem().onMemory;
+			if (move && move.type === type) return priority + 3;
+		},
+	},
 };
 
 exports.BattleStatuses = BattleStatuses;
