@@ -394,7 +394,7 @@ afterstorm: {
 	valcro: {
 		name: 'Valcro',
 		id: 'valcro',
-		num: 773,
+		num: 7500216,
 		onSwitchInPriority: 101,
 		onSwitchIn: function (pokemon) {
 			let type = 'Normal';
@@ -415,6 +415,24 @@ afterstorm: {
 					this.add('-immune', target, '[msg]', '[from] ability: Tech Equip');
 				return null;
 			}
+		},
+	},
+	smelly: {
+		name: 'Smelly',
+		id: 'smelly',
+		num: 7500217,
+		onSwitchInPriority: 101,
+		onSwitchIn: function (pokemon) {
+			let type = 'Normal';
+			if (pokemon.ability === 'technicalsystem') {
+				// @ts-ignore
+				type = pokemon.getItem().onMemory;
+				// @ts-ignore
+				if (!type || type === true) {
+					type = 'Normal';
+				}
+			}
+			pokemon.setType(type, true);
 		},
 	},
 };
