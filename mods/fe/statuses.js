@@ -366,13 +366,13 @@ afterstorm: {
 					type = 'Normal';
 				}
 			}
-			pokemon.setType(type, 'Fire');
+			if (type === 'Fire'){
+				pokemon.setType('Fire', true);
+			} else {
+				pokemon.setType([type, 'Fire'], true);
+			}
 		},
 	},
-	onSourceModifyAccuracy: function (accuracy, pokemon) {
-			if (typeof accuracy !== 'number' && pokemon.item.name.includes("Memory")) return;
-			return accuracy * 1.5;
-		},
 	omneus: {
 		name: 'Omneus',
 		id: 'omneus',
@@ -388,7 +388,11 @@ afterstorm: {
 					type = 'Normal';
 				}
 			}
-			pokemon.addType('type', true);
+			if (type === 'Water'){
+				pokemon.setType('Water', true);
+			} else {
+				pokemon.setType(['Water', type], true);
+			}
 		},
 	},
 	valcro: {
@@ -403,10 +407,14 @@ afterstorm: {
 				type = pokemon.getItem().onMemory;
 				// @ts-ignore
 				if (!pokemon.getItem().onMemory) {
-					pokemon.addType('Normal');
+					type = 'Normal';
 				}
 			}
-			pokemon.addType(type, true);
+			if (type === 'Flying'){
+				pokemon.setType('Flying', true);
+			} else {
+				pokemon.setType([type, 'Flying'], true);
+			}
 		},
 		onTryHit: function (target, source, move) {
 			let type = 'Normal';
@@ -450,7 +458,11 @@ afterstorm: {
 					type = 'Normal';
 				}
 			}
-			pokemon.setType(type, true);
+			if (type === 'Fairy'){
+				pokemon.setType('Fairy', true);
+			} else {
+				pokemon.setType([type, 'Fairy'], true);
+			}
 		},
 		onModifyMovePriority: -1,
 		onModifyMove: function (move, pokemon) {
