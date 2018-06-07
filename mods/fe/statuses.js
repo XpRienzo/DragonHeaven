@@ -403,10 +403,10 @@ afterstorm: {
 				type = pokemon.getItem().onMemory;
 				// @ts-ignore
 				if (!type || type === true) {
-					type = 'Normal';
+					pokemon.addType('Normal', true);
 				}
 			}
-			pokemon.setType(type, 'Flying');
+			pokemon.addType(type, true);
 		},
 	},
 };
