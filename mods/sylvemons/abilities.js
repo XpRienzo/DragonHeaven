@@ -119,7 +119,7 @@ exports.BattleAbilities = {
 		name: "Knight's Blade",
 	},
 	"dispersal": {
-		shortDesc: "Boosts the power of sword, cut, slash, and blade moves by 1.5x",
+		shortDesc: "Boosts Bullet Seed, Seed Bomb, and Seed Flare by 1.2x power, and Leech Seed deals 20% more damage and heals 30% more HP each turn.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
 			if (move.name === 'Bullet Seed' || move.name === 'Seed Bomb' || move.name === 'Seed Flare') {
