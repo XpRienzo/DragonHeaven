@@ -8409,7 +8409,7 @@ darkchomp: {
     valcro: {
         num: 7500216,
         species: "Valcro",
-        types: ["Normal", "Flying"],
+        types: ["Flying"],
         genderRatio: {
             M: 0.0,
             F: 0.0
