@@ -13855,7 +13855,7 @@ mimiblimbusted: {
     },
 
 
-    happislashfriendly: {
+    happislash: {
         num: 7500362,
         species: "Happislash",
 		  baseForme: "Friendly",
@@ -15633,11 +15633,11 @@ mimiblimbusted: {
         types: ["Normal"],
         gender: "N",
         baseStats: {
-            hp: 104,
+            hp: 84,
             atk: 84,
-            def: 84,
+            def: 94,
             spa: 84,
-            spd: 84,
+            spd: 94,
             spe: 104
         },
         abilities: {
@@ -16137,9 +16137,9 @@ mimiblimbusted: {
         eggGroups: ["Undiscovered"],
     },
 // Cat Bed: 7500438
-	catbed: {
+	lupuchandel: {
         num: 7500440,
-        species: "Cat Bed",
+        species: "Lupu Chandel",
         types: ["Fire", "Fairy"],
         baseStats: { // 85	65	120	120	112	82
             hp: 85,
@@ -16156,9 +16156,9 @@ mimiblimbusted: {
         weightkg: 27.75,
         eggGroups: ["Undiscovered"],
     },
-	 trampoline: {
+	 roaramp: {
         num: 7500441,
-        species: "Trampoline",
+        species: "Roaramp",
         types: ["Electric", "Dark"], 
         genderRatio: {
             M: 75.0,
@@ -16180,10 +16180,10 @@ mimiblimbusted: {
         eggGroups: ["Field"],
     },
     
-trampolinemega: {
+roarampmega: {
         num: 7500441,
-        species: "Trampoline-Mega",
-        baseSpecies: "Trampoline",
+        species: "Roaramp-Mega",
+        baseSpecies: "Roaramp",
         forme: "Mega",
         formeLetter: "M",
         genderRatio: {

@@ -4211,15 +4211,22 @@ exports.BattleAbilities = {
 		name: "Fisticuffst",
 	},
 	"starburst": {
-		shortDesc: "This Pokémon's moves with 60 Base Power or less or that have a secondary effect have their base power doubled. These effects stack.",
+		shortDesc: "This Pokémon's moves with 60 Base Power or less or that have a secondary effect deal x1.5 damage. Secondary effects are doubled.",
 		onModifyMovePriority: -2,
 		onModifyMove: function(move) {
-			if (move.secondaries && move.basePower <= 60) {
+			if (move.secondaries) {
 				this.debug('doubling secondary chance');
 				for (const secondary of move.secondaries) {
 					// @ts-ignore
 					secondary.chance *= 2;
 				}
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			if (basePower <= 60 || move.secondaries) {
+				this.debug('Starburst boost');
+				return this.chainModify(1.5);
 			}
 		},
 		id: "starburst",
@@ -4599,7 +4606,7 @@ exports.BattleAbilities = {
 		name: "Charm Star",
 	},
 	"magicfat": {
-		shortDesc: "Immune to Fire and Ice type moves as long as it holds an item.",
+		shortDesc: "Immune to Fire and Ice type moves as long as it holds an item. Halves damage from those moves if it's not holding an item.",
 		onTryHit: function(target, source, move) {
 			if (target !== source && target.item && move.type === 'Fire' || move.type === 'Ice') {
 				this.add('-immune', target, '[msg]', '[from] ability: Magic Fat');
@@ -4607,14 +4614,14 @@ exports.BattleAbilities = {
 			}
 		},
 		onSourceModifyAtk: function (atk, attacker, defender, move) {
-			if (move.type === 'Ice' || move.type === 'Fire' && !defender.item) {
+			if (move.type === 'Ice' || move.type === 'Fire') {
 				this.debug('Thick Fat weaken');
 				return this.chainModify(0.5);
 			}
 		},
 		onModifySpAPriority: 5,
 		onSourceModifySpA: function (atk, attacker, defender, move) {
-			if (move.type === 'Ice' || move.type === 'Fire' && !defender.item) {
+			if (move.type === 'Ice' || move.type === 'Fire') {
 				this.debug('Thick Fat weaken');
 				return this.chainModify(0.5);
 			}
@@ -5110,16 +5117,26 @@ exports.BattleAbilities = {
 	    name: "Evaporate",
 	},
 	"caestus": {
-		shortDesc: "Arm, hand, and punching moves do 25% more damage where applicable and raise this Pokémon's Attack by one stage after their use.",
+		shortDesc: "Arm, hand, and punching moves do 20% more damage. Raise this Pokémon's Attack by two stages when this Pokemon’s stats are lowered.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
-			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name === 'Arm Thrust' || move.name === 'Hammer Arm' || move.name === 'Needle Arm') {
-				return this.chainModify(1.25);
+			if (move.flags['punch'] || move.name === 'Arm Thrust' || move.name === 'Needle Arm') {
+				return this.chainModify(1.2);
 			}
 		},
-		onAfterMoveSecondary: function (target, source, move) {
-			if (move.flags['punch'] || move.name === 'Helping Hand' || move.name === 'Arm Thrust' || move.name === 'Hammer Arm' || move.name === 'Needle Arm') {
-				this.boost({atk: 1}, source);
+		onAfterEachBoost: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
+			let statsLowered = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({atk: 2}, target, target, null, true);
 			}
 		},
 		id: "caestus",
@@ -5128,16 +5145,13 @@ exports.BattleAbilities = {
 	"fusionpowered": {
 		shortDesc: "This Pokémon's STAB moves do 3x damage rather than 1.5x, but have 33% recoil. Moves with a recoil element do 1.25x bonus damage.",
 		onModifyMove: function(move) {
-			move.stab = 3;
-			if (move.stab) {
-				move.recoil = [1, 3];
-			}
+			move.stab = 2;
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
-			if (move.recoil || move.hasCustomRecoil) {
+			if (move.recoil || move.hasCustomRecoil || attacker.hasType(move.type)) {
 				this.debug('Reckless boost');
-				return this.chainModify(1.25);
+				return this.chainModify(1.2);
 			}
 		},
 		id: "fusionpowered",
@@ -5260,7 +5274,7 @@ exports.BattleAbilities = {
 		shortDesc: "When this Pokémon is below 50% health, the Base Power and secondary effect chance of moves with secondary effects are doubled.",
 		onModifyMovePriority: -2,
 		onModifyMove: function(move, pokemon) {
-			if (move.secondaries && pokemon.hp <= pokemon.maxhp / 2) {
+			if (move.secondaries && pokemon.hp <= pokemon.maxhp / 3) {
 				this.debug('doubling secondary chance');
 				for (const secondary of move.secondaries) {
 					// @ts-ignore
@@ -5270,7 +5284,7 @@ exports.BattleAbilities = {
 		},
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
-			if (attacker.hp <= attacker.maxhp / 2) {
+			if (attacker.hp <= attacker.maxhp / 3 && move.secondaries) {
 				return this.chainModify(2);
 			}
 		},
@@ -5497,8 +5511,11 @@ exports.BattleAbilities = {
 		name: "Sharpshooter",
 	},
 	"rubberup": {
-		shortDesc: "Whenever another Pokémon faints or has its stats lowered, this Pokémon has its Special Attack stat boosted by 2 combat stages.",
-		onAnyAfterEachBoost: function (boost, pokemon, source) {
+		shortDesc: "When this Pokemon has a stat lowered by the foe, +2 Special Attack. If an opponent faints, the holder gets +1 Special Attack, +2 if the foe had a lowered stat upon death. Multiple stats lowered do not stack.",
+		onAfterEachBoost: function (boost, target, source) {
+			if (!source || target.side === source.side) {
+				return;
+			}
 			let statsLowered = false;
 			for (let i in boost) {
 				// @ts-ignore
@@ -5507,11 +5524,21 @@ exports.BattleAbilities = {
 				}
 			}
 			if (statsLowered) {
-				this.boost({spa: 2}, this.effectData.target);
+				this.boost({spa: 2}, target, target, null, true);
 			}
 		},
-		onAnyFaint: function () {
-			this.boost({spa: 2}, this.effectData.target);
+		onAnyFaint: function (pokemon) {
+			let loweredstats = false;
+			for (let stat in pokemon.boosts) {
+				if (pokemon.boosts[stat] < 0) {
+					loweredstats = true;
+				}
+			}
+			if (loweredstats){
+				this.boost({spa: 2}, this.effectData.target);
+			} else {
+				this.boost({spa: 1}, this.effectData.target);
+			}
 		},
 		id: "rubberup",
 		name: "Rubber Up",
@@ -6699,20 +6726,23 @@ exports.BattleAbilities = {
 			switch (this.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
-				forme = 'Polyform2-Sunny';
+				if (pokemon.template.speciesid !== 'polyform2sunny') forme = 'Polyform2-Sunny';
 				break;
-                        case 'solarsnow':
-				forme = 'Polyform2-Sunsnow';
+         case 'solarsnow':
+				if (pokemon.template.speciesid !== 'polyform2sunsnow') forme = 'Polyform2-Sunsnow';
 				break;
 			case 'raindance':
 			case 'primordialsea':
-				forme = 'Polyform2-Rainy';
+				if (pokemon.template.speciesid !== 'polyform2rainy') forme = 'Polyform2-Rainy';
 				break;
 			case 'hail':
-				forme = 'Polyform2-Snowy';
+				if (pokemon.template.speciesid !== 'polyform2snowy') forme = 'Polyform2-Snowy';
 				break;
 			case 'sandstorm':
-				forme = 'Polyform2-Sandy';
+				if (pokemon.template.speciesid !== 'polyform2sandy') forme = 'Polyform2-Sandy';
+				break;
+			case 'shadowdance':
+				if (pokemon.template.speciesid !== 'polyform2spooky') forme = 'Polyform2-Spooky';
 				break;
 			default:
 				if (pokemon.template.speciesid !== 'polyform2') forme = 'Polyform2';
@@ -7098,13 +7128,17 @@ exports.BattleAbilities = {
 	    name: "Photosynthetic Grace",
 	},
 	"completelyserious": {
-		desc: "Moves of 70 BP or less gain a 33% damage bonus. They also do double damage, and the userâ€™s raw Speed is doubled, if the user consumes or is not holding a Held Item.",
-		shortDesc: "Moves of 70BP or less deal x2.667 damage. Holder's raw speed is doubled if there isn't a held item.",
+		desc: "Moves of 60 BP or less gain a 50% damage bonus. They do double damage, and the user’s raw Speed is doubled, if the user consumes or is not holding a Held Item.",
+		shortDesc: "Moves of 60BP or less deal x1.5 damage. With an item, Speed is doubled and the damage multiplier for the aforementioned moves hits x3 instead.",
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, attacker, defender, move) {
-			if (basePower <= 70) {
+			if (basePower <= 60) {
 				this.debug('Technician boost');
-				return this.chainModify(2.667);
+				if (!attacker.item) {
+					return this.chainModify(3);
+				} else{
+					return this.chainModify(1.5);
+				}
 			}
 		},
 		onModifySpe: function (spe, pokemon) {
@@ -8530,17 +8564,17 @@ exports.BattleAbilities = {
 		name: "Unamazed",
 	},
 	"jealousaggressor": {
-		shortDesc: "Deals double damage to Pokemon holding an item.",
+		shortDesc: "Deals double damage to Pokemon not holding an item.",
 		onModifyAtkPriority: 5,
 		onModifyAtk: function (atk, attacker, defender) {
-			if (defender.item) {
+			if (!defender.item) {
 				this.debug('Jealous Aggressor boost');
 				return this.chainModify(2);
 			}
 		},
 		onModifySpAPriority: 5,
 		onModifySpA: function (atk, attacker, defender) {
-			if (defender.item) {
+			if (!defender.item) {
 				this.debug('Jealous Aggressor boost');
 				return this.chainModify(2);
 			}
@@ -8977,18 +9011,14 @@ exports.BattleAbilities = {
 	    id: "magicworker",
 	    name: "Magicworker",
 	},
-	"poisonpores": { //TODO: Salasaur doesn't halve the speed of Poisoned Pokemon anymore. It gains the regular effect of Corrosion to make up for it.
+	"poisonpores": {
 	    desc: "When this Pokemon is on the field, all Poison and Steel-types have their speed doubled. If a Pokemon is poisoned, their speed is halved.",
 	    shortDesc: "Doubles the speed of all active Poison- and Steel-types, and halves the speed of all active poisoned Pokemon.",
+		 //TODO: Implement Corrosion effects. The heart of the system has Corrosion's effects hard-coded into it.
 	    onAnyModifySpe: function(spe, pokemon) {
-	        let mod = 1;
 	        if (pokemon.hasType('Poison') || pokemon.hasType('Steel')) {
-	            mod *= 2;
+	            return this.chainModify(2);
 	        }
-	        if (pokemon.status && (pokemon.status === 'psn' || pokemon.status === 'tox')) {
-	            mod = mod / 2;
-	        }
-	        return mod;
 	    },
 	    id: "poisonpores",
 	    name: "Poison Pores",
@@ -10017,7 +10047,7 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 				for (const moveSlot of target.moveSlots) {
 					let hiddenmove = this.getMove(moveSlot.move);
-					if (target !== source && move.type === hiddenmove.type) {
+					if (target !== source && ((!(['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === 'Normal') && (move.type === hiddenmove.type)) || (['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === target.hpType)))) {
 						this.add('-immune', target, '[msg]', '[from] ability: Hidden Advantage');
 						return null;
 				}
@@ -10037,8 +10067,8 @@ exports.BattleAbilities = {
 		},
 		effect: {
 			onModifyPriority: function (priority, pokemon, target, move) {
-			return priority + 1;
-		},
+				return priority + 1;
+			},
 		},
 		id: "galelevitation",
 		name: "Gale Levitation",
@@ -10933,5 +10963,20 @@ exports.BattleAbilities = {
 		},
 		id: "combinationdrive",
 		name: "Combination Drive",
+	},
+	
+	"aeonflux": {
+		desc: "This Pokémon's Electric-type moves and punch moves gain a 20% boost to their Base Power before applying STAB; the percentage bonuses bonuses stack multiplicatively. Additionally, this Pokémon's punch moves use its Special Attack stat to determine their damage, though they still deal physical damage.",
+		shortDesc: "This Pokemon's punch-based and Electric-type attacks have 1.2x power, which stack. Punching moves run off this Pokemon's SpAtk instead of Atk.",
+		onBasePowerPriority: 8,
+		onBasePower: function (basePower, attacker, defender, move) {
+			
+			if (move.flags['punch']) {
+				this.debug('Iron Fist boost');
+				return this.chainModify([0x1333, 0x1000]);
+			}
+		},
+		id: "aeonflux",
+		name: "Aeon Flux",
 	},
 };
