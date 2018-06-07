@@ -402,11 +402,19 @@ afterstorm: {
 				// @ts-ignore
 				type = pokemon.getItem().onMemory;
 				// @ts-ignore
-				if (!type || type === true) {
-					pokemon.addType('Normal', true);
+				if (!pokemon.getItem().onMemory) {
+					pokemon.addType('Normal');
 				}
 			}
 			pokemon.addType(type, true);
+		},
+		onTryHit: function (target, source, move) {
+			let type = 'Normal';
+			type = target.getItem().onMemory;
+			if (target !== source && move.type === type) {
+					this.add('-immune', target, '[msg]', '[from] ability: Tech Equip');
+				return null;
+			}
 		},
 	},
 };
