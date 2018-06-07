@@ -1,9 +1,9 @@
-/*'use strict';
+'use strict';
 
 const CHOOSABLE_TARGETS = new Set(['normal', 'any', 'adjacentAlly', 'adjacentAllyOrSelf', 'adjacentFoe']);*/
 
 /**@type {BattleScriptsData} */
-/*let BattleScripts = {
+let BattleScripts = {
 	
 	canUltraBurst: function (pokemon) {
 	if (pokemon.getItem().id === 'ultranecroziumz'){
@@ -32,4 +32,4 @@ const CHOOSABLE_TARGETS = new Set(['normal', 'any', 'adjacentAlly', 'adjacentAll
 		return null;
 	},
 };
-exports.BattleScripts = BattleScripts;*/
+exports.BattleScripts = BattleScripts;
