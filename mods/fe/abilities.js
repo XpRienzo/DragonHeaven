@@ -10970,16 +10970,21 @@ exports.BattleAbilities = {
 		shortDesc: "This Pokemon's punch-based and Electric-type attacks have 1.2x power, which stack. Punching moves run off this Pokemon's SpAtk instead of Atk.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
+			let mod = 1;
 			if (move.flags['punch']) {
-				return this.chainModify([0x1333, 0x1000]);
+				mod = mod * 1.2;
 			}
 			if (move.type === 'Electric') {
-				return this.chainModify([0x1333, 0x1000]);
+				mod = mod * 1.2;
 			}
+			return this.chainModify(mod);
 		},
 		onModifyMovePriority: 8,
 		onModifyMove: function(move, pokemon) {
-			if (move.flags['punch'] && move.category === 'Physical') move.category = 'Special';
+			if (move.flags['punch'] && move.category === 'Physical'){
+				move.category = 'Special';
+				move.defensiveCategory: "Physical";
+			}
 		},
 		id: "aeonflux",
 		name: "Aeon Flux",
@@ -11013,14 +11018,12 @@ exports.BattleAbilities = {
 				if (action.choice === 'runPrimal' && action.pokemon === source && source.template.speciesid === 'kyogre') return;
 				if (action.choice !== 'runSwitch' && action.choice !== 'runPrimal') break;
 			}
-			this.setWeather('raindance');
-		},
-		onUpdate: function (source) {
 			if (this.setWeather('raindance')) {
 				this.heal(source.maxhp / 3);
 				this.add('-activate', source, 'ability: Rain Regen');
 			}
 		},
+		//TODO: If it successfully uses Rain Dance, restore its HP. The problem is, emphasis is on SUCCESSFULLY.
 		id: "rainregen",
 		name: "Rain Regen",
 	},
