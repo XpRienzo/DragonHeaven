@@ -1,27 +1,43 @@
 'use strict';
 exports.BattleItems = {
+	"reversecore": {
+		id: "reversecore",
+		name: "Reverse Core",
+		fling: {
+			basePower: 30,
+		},
+		onTakeItem: false,
+		onStart: function (pokemon) {
+			this.add('The, pokemon, is cloaked in a mysterious power!');
+		},
+		onEffectiveness: function(typeMod, target, type, move) {
+				if (move && !this.getImmunity(move, type)) return 1;
+				return -typeMod;
+			},
+		desc: "Holder's weaknesses and resistances (including immunities) are swapped like in an Inverse Battle.",
+	},
 	"roomextender": {
-		            id: "roomextender",
-		            name: "Room Extender",
-		            fling: {
-		           	        basePower: 60,
-		            },
-           		desc: "Extends Trick Room, Magic Room and Wonder Room to 8 turns, instead of 5",
-      	},
+		id: "roomextender",
+		name: "Room Extender",
+		fling: {
+			basePower: 60,
+		},
+		desc: "Extends Trick Room, Magic Room and Wonder Room to 8 turns, instead of 5",
+	},
 	"safetysocks": {
-		            id: "safetysocks",
-		            name: "Safety Socks",
-		            fling: {
-		           	        basePower: 10,
-		            },
-			onDamage: function (damage, target, source, effect) {
-				if (effect.id === 'stealthrock' || effect.id === 'spikes' || effect.id === 'toxicspikes') {
+		id: "safetysocks",
+		name: "Safety Socks",
+		fling: {
+			basePower: 10,
+		},
+		onDamage: function(damage, target, source, effect) {
+			if (effect.id === 'stealthrock' || effect.id === 'spikes' || effect.id === 'toxicspikes') {
 				if (!this.activeMove) throw new Error("Battle.activeMove is null");
 				return null;
 			}
 		},
-      desc: "The holder is unaffected by entry hazards.",
-      	},
+		desc: "The holder is unaffected by entry hazards.",
+	},
 	"adrenalineorb": {
 		id: "adrenalineorb",
 		name: "Adrenaline Orb",
@@ -398,10 +414,10 @@ exports.BattleItems = {
 			basePower: 80,
 		},
 		onModifyDefPriority: 1,
-		onModifyDef: function (def) {
+		onModifyDef: function(def) {
 			return this.chainModify(1.5);
 		},
-		onDisableMove: function (pokemon) {
+		onDisableMove: function(pokemon) {
 			for (const moveSlot of pokemon.moveSlots) {
 				if (this.getMove(moveSlot.move).category === 'Status') {
 					pokemon.disableMove(moveSlot.id);
@@ -440,9 +456,11 @@ exports.BattleItems = {
 		fling: {
 			basePower: 10,
 		},
-		onUpdate: function (pokemon) {
+		onUpdate: function(pokemon) {
 			if (this.pseudoWeather.trickroom && pokemon.useItem()) {
-				this.boost({spe: -1});
+				this.boost({
+					spe: -1
+				});
 			}
 		},
 		gen: 7,
