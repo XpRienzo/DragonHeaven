@@ -10047,7 +10047,7 @@ exports.BattleAbilities = {
 		onTryHit: function (target, source, move) {
 				for (const moveSlot of target.moveSlots) {
 					let hiddenmove = this.getMove(moveSlot.move);
-					if (target !== source && ((!(['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === 'Normal') && (move.type === hiddenmove.type)) || (['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === target.hpType)))) {
+					if (target !== source && ((!(['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === 'Normal') && (move.type === hiddenmove.type)) || (['hiddenpower', 'hiddengem'].includes(hiddenmove) && move.type === target.hpType))) {
 						this.add('-immune', target, '[msg]', '[from] ability: Hidden Advantage');
 						return null;
 				}
@@ -10969,14 +10969,25 @@ exports.BattleAbilities = {
 		desc: "This Pokémon's Electric-type moves and punch moves gain a 20% boost to their Base Power before applying STAB; the percentage bonuses bonuses stack multiplicatively. Additionally, this Pokémon's punch moves use its Special Attack stat to determine their damage, though they still deal physical damage.",
 		shortDesc: "This Pokemon's punch-based and Electric-type attacks have 1.2x power, which stack. Punching moves run off this Pokemon's SpAtk instead of Atk.",
 		onBasePowerPriority: 8,
-		onBasePower: function (basePower, attacker, defender, move) {
-			
+		onBasePower: function(basePower, attacker, defender, move) {
 			if (move.flags['punch']) {
-				this.debug('Iron Fist boost');
+				return this.chainModify([0x1333, 0x1000]);
+			}
+			if (move.type === 'Electric') {
 				return this.chainModify([0x1333, 0x1000]);
 			}
 		},
+		onModifyMovePriority: 8,
+		onModifyMove: function(move, pokemon) {
+			if (move.flags['punch'] && move.category === 'Physical') move.category = 'Special';
+		},
 		id: "aeonflux",
 		name: "Aeon Flux",
+	},
+	"techequip": {
+		shortDesc: "Holding a memory item will change the user's primary type to that of the memory, and make the user immune to that memory's type.",
+		// Implemented in statuses.js
+		id: "techequip",
+		name: "Tech Equip",
 	},
 };
