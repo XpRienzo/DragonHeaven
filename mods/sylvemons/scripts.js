@@ -438,7 +438,7 @@ this.modData('Learnsets', 'rowlet').learnset.aircurrent = ['7L1'];
 this.modData('Learnsets', 'rufflet').learnset.aircurrent = ['7L1'];
 this.modData('Learnsets', 'salamence').learnset.aircurrent = ['7L1'];
 this.modData('Learnsets', 'scyther').learnset.aircurrent = ['7L1'];
-this.modData('Learnsets', 'shayminsky').learnset.aircurrent = ['7L1'];
+this.modData('Learnsets', 'shaymin').learnset.aircurrent = ['7L1'];
 this.modData('Learnsets', 'sigilyph').learnset.aircurrent = ['7L1'];
 this.modData('Learnsets', 'silvally').learnset.aircurrent = ['7L1'];
 this.modData('Learnsets', 'skarmory').learnset.aircurrent = ['7L1'];
@@ -550,12 +550,14 @@ this.modData('Learnsets', 'trevenant').learnset.shadowcharge = ['7L1'];
 this.modData('Learnsets', 'umbreon').learnset.shadowcharge = ['7L1'];
 this.modData('Learnsets', 'darkrai').learnset.shadowcharge = ['7L1'];
 this.modData('Learnsets', 'noctowl').learnset.shadowcharge = ['7L1'];
-this.modData('Learnsets', 'gothita line').learnset.shadowcharge = ['7L1'];
+this.modData('Learnsets', 'gothita').learnset.shadowcharge = ['7L1'];
+this.modData('Learnsets', 'gothorita').learnset.shadowcharge = ['7L1'];
+this.modData('Learnsets', 'gothitelle').learnset.shadowcharge = ['7L1'];
 this.modData('Learnsets', 'ariados').learnset.shadowcharge = ['7L1'];
 this.modData('Learnsets', 'hypno').learnset.shadowcharge = ['7L1'];
 
 // Ion Absorb
-	this.modData('Learnsets', 'charjabug').learnset.ionabsorb = ['7L1'];
+this.modData('Learnsets', 'charjabug').learnset.ionabsorb = ['7L1'];
 this.modData('Learnsets', 'blitzle').learnset.ionabsorb = ['7L1'];
 this.modData('Learnsets', 'charjabug').learnset.ionabsorb = ['7L1'];
 this.modData('Learnsets', 'chinchou').learnset.ionabsorb = ['7L1'];
