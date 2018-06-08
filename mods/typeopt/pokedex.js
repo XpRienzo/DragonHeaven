@@ -1111,7 +1111,7 @@ exports.BattlePokedex = {
 			spe: 65
 		},
 		abilities: {
-			0: "Competitive",
+			0: "Fur Coat",
 			1: "Aerilate",
 			H: "Technician"
 		},
