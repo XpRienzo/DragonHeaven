@@ -8409,11 +8409,8 @@ darkchomp: {
     valcro: {
         num: 7500216,
         species: "Valcro",
-        types: ["Flying"],
-        genderRatio: {
-            M: 0.0,
-            F: 0.0
-        },
+        types: ["Normal", "Flying"],
+        gender: "N",
         baseStats: {
             hp: 100,
             atk: 92,
