@@ -652,15 +652,14 @@ this.modData('Learnsets', 'aipom').learnset.armthrust = ['7L1'];
 this.modData('Learnsets', 'ambipom').learnset.armthrust = ['7L1'];
 
 // Astonish
-this.modData('Learnsets', 'krokrok').learnset.astonish = ['7L1'];
+this.modData('Learnsets', 'krokorok').learnset.astonish = ['7L1'];
 this.modData('Learnsets', 'sandile').learnset.astonish = ['7L1'];
-this.modData('Learnsets', 'krokrok').learnset.astonish = ['7L1'];
 this.modData('Learnsets', 'krookodile').learnset.astonish = ['7L1'];
 this.modData('Learnsets', 'marowakalola').learnset.astonish = ['7L1'];
 
 // Dual Chop
 this.modData('Learnsets', 'hariyama').learnset.dualchop = ['7L1'];
-this.modData('Learnsets', 'hydregion').learnset.dualchop = ['7L1'];
+this.modData('Learnsets', 'hydreigon').learnset.dualchop = ['7L1'];
 this.modData('Learnsets', 'hariyama').learnset.dualchop = ['7L1'];
 this.modData('Learnsets', 'charmander').learnset.dualchop = ['7L1'];
 this.modData('Learnsets', 'charmeleon').learnset.dualchop = ['7L1'];
