@@ -5689,26 +5689,26 @@ exports.BattleAbilities = {
 		id: "rhythm",
 		name: "Rhythm",
 	},
-		"magicalwand": {
-	shortDesc: "Critical hit ratio is raised by one stage. Transforms into Star-Butterfly after it gets a critical hit. In butterfly form, critical hit ratio is raised by two stages.",
-	onModifyCritRatio: function(critRatio, pokemon) {
-		if (pokemon.baseTemplate.species === 'Star') {
-			return critRatio + 1;
-		} else if (pokemon.template.speciesid === 'starbutterfly') {
-			return critRatio + 2;
-		}
+	"magicalwand": {
+		shortDesc: "Critical hit ratio is raised by one stage. Transforms into Star-Butterfly after it gets a critical hit. In butterfly form, critical hit ratio is raised by two stages.",
+		onModifyCritRatio: function(critRatio, pokemon) {
+			if (pokemon.template.speciesid === 'starbutterfly') {
+				return critRatio + 2;
+			} else if (pokemon.baseTemplate.species === 'Star') {
+				return critRatio + 1;
+			}
+		},
+		onHit: function(target, source, move) {
+			if (!target.hp) return;
+			if (target.baseTemplate.baseSpecies === 'Star' && move && move.effectType === 'Move' && move.crit && target.template.speciesid !== 'starbutterfly') {
+				this.add('-formechange', target, 'Star-Butterfly', '[msg]');
+				target.formeChange("Star-Butterfly");
+				this.add('-ability', target, 'Magical Wand');
+			}
+		},
+		id: "magicalwand",
+		name: "Magical Wand",
 	},
-	onHit: function(target, source, move) {
-		if (!target.hp) return;
-		if (target.baseTemplate.baseSpecies === 'Star' && move && move.effectType === 'Move' && move.crit && target.template.speciesid !== 'starbutterfly') {
-		this.add('-formechange', target, 'Star-Butterfly', '[msg]');
-			target.formeChange("Star-Butterfly");
-			this.add('-ability', target, 'Magical Wand');
-		}
-	},
-	id: "magicalwand",
-	name: "Magical Wand",
-},
 	"medicalexpert": {
 		shortDesc: "This Pokemon's moves have 1.3x the power when inflicted with a status condition or when it moves last. These bonuses stack.",
 		onModifyAtkPriority: 5,
@@ -8956,7 +8956,18 @@ exports.BattleAbilities = {
 "inversearmor": {
     desc: "Type effectiveness of moves that the holder uses or is hit by is inverted (Inverse Battle rules apply; type effectiveness of moves used by Mold Breaker variants users is not influenced by this ability).",
     shortDesc: "Type effectiveness in moves that target or are used by this Pokemon is inverted.",
-    //WARNING: AGAIN, MASSIVE DOUBT AHEAD.
+	 onModifyMove: function (move) {
+		if (!move.ignoreImmunity) move.ignoreImmunity = {};
+		if (move.ignoreImmunity !== true) {
+			move.ignoreImmunity[move.type] = true;
+		}
+	 },
+	 onSourceModifyMove: function (move) {
+		if (!move.ignoreImmunity) move.ignoreImmunity = {};
+		if (move.ignoreImmunity !== true) {
+			move.ignoreImmunity[move.type] = true;
+		}
+	 },
     onEffectiveness: function(typeMod, target, type, move) {
         if (move && !this.getImmunity(move, type)) return 1;
         return -typeMod;
@@ -10154,7 +10165,7 @@ exports.BattleAbilities = {
 		},
 		onResidualOrder: 27,
 		onResidual: function (pokemon) {
-			if (pokemon.baseTemplate.baseSpecies !== 'Minior' || pokemon.transformed || !pokemon.hp) return;
+			if (pokemon.baseTemplate.baseSpecies !== 'Miniancie' || pokemon.transformed || !pokemon.hp) return;
 			if (pokemon.hp > pokemon.maxhp / 2) {
 				if (pokemon.template.speciesid === 'minianciejewel') {
 					pokemon.formeChange(pokemon.set.species);
@@ -10168,19 +10179,19 @@ exports.BattleAbilities = {
 			}
 		},
 		onSetStatus: function (status, target, source, effect) {
-			if (target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			if (target.template.speciesid !== 'miniancie' || target.transformed) return;
 			if (!effect || !effect.status) return false;
 			this.add('-immune', target, '[msg]', '[from] ability: Crystallized Shield');
 			return false;
 		},
 		onTryAddVolatile: function (status, target) {
-			if (target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			if (target.template.speciesid !== 'miniancie' || target.transformed) return;
 			if (status.id !== 'yawn') return;
 			this.add('-immune', target, '[msg]', '[from] ability: Crystallized Shield');
 			return null;
 		},
 		onBoost: function (boost, target, source, effect) {
-			if ((source && target === source) || target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			if ((source && target === source) || target.template.speciesid !== 'miniancie' || target.transformed) return;
 			let showMsg = false;
 			for (let i in boost) {
 				// @ts-ignore
@@ -10641,16 +10652,19 @@ exports.BattleAbilities = {
 	},
 	"beastscopycat": {
 		shortDesc: "Upon switchin in, replace one of user's stats with the foe's highest non-HP stat. Upon knocking a foe out, this Pokémon's highest stat is raised by one stage.",
-		onStart: function (target, source, effect) {
+		onStart: function (pokemon) {
 				let stat = 'atk';
 				let bestStat = 0;
-				for (let i in source.stats) {
-					if (source.stats[i] > bestStat) {
-						stat = i;
-						bestStat = source.stats[i];
+				for (const target of pokemon.side.foe.active) {
+					if (!target || !this.isAdjacent(target, pokemon)) continue;
+					for (let i in target.stats) {
+						if (target.stats[i] > bestStat) {
+							stat = i;
+							bestStat = target.stats[i];
+						}
 					}
 				}
-				source.stats[stat] = target.stats[stat];
+				pokemon.stats[stat] = target.stats[stat];
 		},
 		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
