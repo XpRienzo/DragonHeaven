@@ -693,7 +693,7 @@ abilities: {0: "Unbreakable"},
 		 	// This Pokémon's Water-type moves gain a 1.2x boost and deal double damage on Flying and Water-type foes
 			prevo: "Lumineon"
 	 },
-	 inferneon : {
+	 inferneon: {
 			num: 9057,
 			species: "Inferneon",
 			types: ["Water", "Fire"], 
@@ -701,5 +701,44 @@ abilities: {0: "Unbreakable"},
 			abilities: {0: "Swift Swim", 1: "Erodeproof", H: "Flash Fire"}, 
 		 	// Ground and Rock attacks do half damage against this pokemon.
 			prevo: "Lumineon"
+	 },
+	 ariados: {
+		num: 168,
+		species: "Ariados",
+		types: ["Bug", "Poison"],
+		baseStats: {hp: 70, atk: 90, def: 70, spa: 60, spd: 70, spe: 40},
+		abilities: {0: "Swarm", 1: "Insomnia", H: "Sniper"},
+		heightm: 1.1,
+		weightkg: 33.5,
+		color: "Red",
+		prevo: "spinarak",
+		evoLevel: 22,
+		eggGroups: ["Bug"],
+		otherFormes: ["webaeria", "spidice", "crimider"],
+	},
+	 webaeria: {
+			num: 9058,
+			species: "Webaeria",
+			types: ["Bug", "Flying"], 
+			baseStats:{hp: 70, atk: 120, def: 75, spa: 40, spd: 75, spe: 130}, // 70 / 120 / 75 / 40 / 75 / 130
+			abilities: {0: "Rock Dodger", 1: "Compound Eyes", H: "Guts"},
+		 // (Rock Dodger: Immunity to Rock-type, including Stealth Rock damage. Incoming Rock-type damage will be replaced by Speed boost by one stage.)
+			prevo: "Ariados"
+	 },
+	  spidice: {
+			num: 9059,
+			species: "Spidice",
+			types: ["Bug", "Flying"], 
+			baseStats:{hp: 45, atk: 120, def: 45, spa: 120, spd: 45, spe: 135}, //45 / 120 / 45 / 120 / 45 / 135
+			abilities: {0: "Ice Body", 1: "Compound Eyes", H: "Slush Rush"},
+			prevo: "Ariados"
+	 },
+	 crimider: {
+			num: 9060,
+			species: "Crimider",
+			types: ["Bug", "Dark"], 
+			baseStats:{hp: 120, atk: 150, def: 70, spa: 60, spd: 70, spe: 40}, 
+			abilities: {0: "Frisk", 1: "Moxie", H: "Contrary"},
+			prevo: "Ariados"
 	 },
 };
