@@ -8956,7 +8956,18 @@ exports.BattleAbilities = {
 "inversearmor": {
     desc: "Type effectiveness of moves that the holder uses or is hit by is inverted (Inverse Battle rules apply; type effectiveness of moves used by Mold Breaker variants users is not influenced by this ability).",
     shortDesc: "Type effectiveness in moves that target or are used by this Pokemon is inverted.",
-    //WARNING: AGAIN, MASSIVE DOUBT AHEAD.
+	 onModifyMove: function (move) {
+		if (!move.ignoreImmunity) move.ignoreImmunity = {};
+		if (move.ignoreImmunity !== true) {
+			move.ignoreImmunity[move.type] = true;
+		}
+	 },
+	 onSourceModifyMove: function (move) {
+		if (!move.ignoreImmunity) move.ignoreImmunity = {};
+		if (move.ignoreImmunity !== true) {
+			move.ignoreImmunity[move.type] = true;
+		}
+	 },
     onEffectiveness: function(typeMod, target, type, move) {
         if (move && !this.getImmunity(move, type)) return 1;
         return -typeMod;
