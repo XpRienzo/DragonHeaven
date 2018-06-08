@@ -10154,7 +10154,7 @@ exports.BattleAbilities = {
 		},
 		onResidualOrder: 27,
 		onResidual: function (pokemon) {
-			if (pokemon.baseTemplate.baseSpecies !== 'Minior' || pokemon.transformed || !pokemon.hp) return;
+			if (pokemon.baseTemplate.baseSpecies !== 'Miniancie' || pokemon.transformed || !pokemon.hp) return;
 			if (pokemon.hp > pokemon.maxhp / 2) {
 				if (pokemon.template.speciesid === 'minianciejewel') {
 					pokemon.formeChange(pokemon.set.species);
@@ -10168,19 +10168,19 @@ exports.BattleAbilities = {
 			}
 		},
 		onSetStatus: function (status, target, source, effect) {
-			if (target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			if (target.template.speciesid !== 'miniancie' || target.transformed) return;
 			if (!effect || !effect.status) return false;
 			this.add('-immune', target, '[msg]', '[from] ability: Crystallized Shield');
 			return false;
 		},
 		onTryAddVolatile: function (status, target) {
-			if (target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			if (target.template.speciesid !== 'miniancie' || target.transformed) return;
 			if (status.id !== 'yawn') return;
 			this.add('-immune', target, '[msg]', '[from] ability: Crystallized Shield');
 			return null;
 		},
 		onBoost: function (boost, target, source, effect) {
-			if ((source && target === source) || target.template.speciesid !== 'miniancieore' || target.transformed) return;
+			if ((source && target === source) || target.template.speciesid !== 'miniancie' || target.transformed) return;
 			let showMsg = false;
 			for (let i in boost) {
 				// @ts-ignore
