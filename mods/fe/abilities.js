@@ -11023,6 +11023,12 @@ exports.BattleAbilities = {
 				this.add('-activate', source, 'ability: Rain Regen');
 			}
 		},
+		onAfterMove: function (pokemon, move) {
+			if (move.id === 'raindance' && pokemon.moveThisTurnResult){
+				this.heal(pokemon.maxhp / 3);
+				this.add('-activate', source, 'ability: Rain Regen');
+			}
+		},
 		//TODO: If it successfully uses Rain Dance, restore its HP. The problem is, emphasis is on SUCCESSFULLY.
 		id: "rainregen",
 		name: "Rain Regen",
