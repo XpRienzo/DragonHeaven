@@ -649,7 +649,7 @@ this.modData('Learnsets', 'cacturne').learnset.spikecannon = ['7L1'];
 this.modData('Learnsets', 'machoke').learnset.armthrust = ['7L1'];
 this.modData('Learnsets', 'machamp').learnset.armthrust = ['7L1'];
 this.modData('Learnsets', 'aipom').learnset.armthrust = ['7L1'];
-this.modData('Learnsets', 'abipom').learnset.armthrust = ['7L1'];
+this.modData('Learnsets', 'ambipom').learnset.armthrust = ['7L1'];
 
 // Astonish
 this.modData('Learnsets', 'krokrok').learnset.astonish = ['7L1'];
