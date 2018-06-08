@@ -10641,16 +10641,19 @@ exports.BattleAbilities = {
 	},
 	"beastscopycat": {
 		shortDesc: "Upon switchin in, replace one of user's stats with the foe's highest non-HP stat. Upon knocking a foe out, this Pokémon's highest stat is raised by one stage.",
-		onStart: function (target, source, effect) {
+		onStart: function (pokemon) {
 				let stat = 'atk';
 				let bestStat = 0;
-				for (let i in source.stats) {
-					if (source.stats[i] > bestStat) {
-						stat = i;
-						bestStat = source.stats[i];
+				for (const target of pokemon.side.foe.active) {
+					if (!target || !this.isAdjacent(target, pokemon)) continue;
+					for (let i in target.stats) {
+						if (target.stats[i] > bestStat) {
+							stat = i;
+							bestStat = target.stats[i];
+						}
 					}
 				}
-				source.stats[stat] = target.stats[stat];
+				pokemon.stats[stat] = target.stats[stat];
 		},
 		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move') {
