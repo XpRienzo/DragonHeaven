@@ -4454,7 +4454,7 @@ exports.Formats = [
 				 "&bullet; <a href=https://docs.google.com/spreadsheets/d/18DiYjbZXv1Nm7tU-W0OMgPow0ZO7J2ETJF-hWapwM-o/edit>Sylvemons Archive</a>",
 		      ],
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
-		banlist: ['Stalwart + Calm Mind'],
+		banlist: ['Stalwart + Calm Mind', 'Stakataka'],
 		mod: 'sylvemons',
 	},
 	{
