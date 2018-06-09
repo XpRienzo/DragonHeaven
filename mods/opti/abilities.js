@@ -8,9 +8,9 @@ exports.BattleAbilities = {
 			if (move.type === 'Normal' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Water';
 			}
-			if (move.type === 'Water') {
-				move.accuracy = true; // Add protection break
+			if (move.type === 'Water') { // Add protection break
 				move.breaksProtect = true;
+				move.accuracy = true; 
 			}
 		},
 		id: "fluid",
