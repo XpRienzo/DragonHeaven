@@ -201,18 +201,42 @@ azelf: {
 inherit: true,
 types: ["Psychic", "Fighting"],
 baseStats: {hp: 80, atk: 130, def: 70, spa: 130, spd: 70, spe: 120},
-abilities: {0: "Scrappy", 1: "Infiltrator"},
+abilities: {0: "Scrappy", H: "Infiltrator"},
 },
 mesprit: {
 inherit: true,
 types: ["Psychic", "Fairy"],
 baseStats: {hp: 85, atk: 90, def: 115, spa: 115, spd: 115, spe: 85},
-abilities: {0: "Levitate", 1: "Magic Guard"},
+abilities: {0: "Levitate", H: "Magic Guard"},
 },
 uxie: {
 inherit: true,
 types: ["Psychic"],
 baseStats: {hp: 100, atk: 70, def: 135, spa: 70, spd: 135, spe: 90},
-abilities: {0: "Levitate", 1: "Regenerator"},
-}, 	 	 
+abilities: {0: "Levitate", H: "Regenerator"},
+}, 
+butterfree: {
+inherit: true,
+types: ["Bug", "Psychic"], // 75 HP / 45 Atk / 80 Def / 120 SpA / 105 SpD / 100 Spe | BST: 525
+baseStats: {hp: 75, atk: 45, def: 80, spa: 120, spd: 105, spe: 100},
+abilities: {0: "Tinted Lens", H: "Magic Guard"},
+}, 
+beautifly: {
+inherit: true,
+types: ["Bug", "Fairy"], // 90 HP / 40 Atk / 90 Def / 130 SpA / 90 SpD / 85 Spe | BST: 525
+baseStats: {hp: 90, atk: 40, def: 90, spa: 130, spd: 90, spe: 85},
+abilities: {0: "Competitive", H: "Triage"},
+}, 
+dustox: {
+inherit: true,
+types: ["Bug", "Poison"], // 100 HP / 40 Atk / 110 Def / 90 SpA / 120 SpD / 65 Spe | BST: 525
+baseStats: {hp: 100, atk: 40, def: 110, spa: 90, spd: 120, spe: 65},
+abilities: {0: "Corrosion", H: "Intimidate"},
+}, 
+beedrill: {
+inherit: true,
+types: ["Bug", "Poison"], // Stats: 50 / 120 / 50 / 120 / 50 / 140
+baseStats: {hp: 50, atk: 120, def: 50, spa: 120, spd: 50, spe: 140},
+abilities: {0: "Sniper", 1: "Sheer Force", H: "Technician"},
+},
   };
