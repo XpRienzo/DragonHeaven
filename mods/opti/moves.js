@@ -20,7 +20,7 @@ exports.BattleMovedex = {
 			},
 		 onHit: function (source, target) {
 			 if (target.hasType('Fire')) {
-				  this.boost({atk: 1}, source);
+				  source.boost({atk: 1});
 			 }
 		 },
         target: "normal",
