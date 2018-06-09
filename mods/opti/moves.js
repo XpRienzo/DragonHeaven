@@ -18,11 +18,9 @@ exports.BattleMovedex = {
 				},
 			},
 			},
-		 onHit: function (source, target) {
-			 if (target.hasType('Fire')) {
-				  source.boost({atk: 1});
-			 }
-		 },
+	onAfterMoveSecondarySelf: function (pokemon, target, move) {
+			if (target.hasType('Fire')) this.boost({atk: 1}, pokemon, pokemon, move);
+		},
         target: "normal",
         type: "Fire",
         zMovePower: 160, 
