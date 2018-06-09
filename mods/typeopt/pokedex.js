@@ -1245,7 +1245,7 @@ exports.BattlePokedex = {
 	victreebel: {
 		inherit: true,
 		species: "Victreebel",
-		types: ["Grass", "Water "],
+		types: ["Grass", "Water"],
 		baseStats: {
 			hp: 80,
 			atk: 105,
