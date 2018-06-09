@@ -56,7 +56,9 @@ init: function () {
 	
 	this.modData('Learnsets', 'victreebel').learnset.scald = ['7L1'];
 	this.modData('Learnsets', 'victreebel').learnset.liquidation = ['7L1'];
-	this.modData('Learnsets', 'victreebel').learnset.uturn = ['7L1'];
+	this.modData('Learnsets', 'victreebel').learnset.taunt = ['7L1'];
+	
+	this.modData('Learnsets', 'lunatone').learnset.clearsmog = ['7L1'];
 	
 	this.modData('Learnsets', 'meganium').learnset.dracometeor = ['7L1'];
 	this.modData('Learnsets', 'meganium').learnset.earthpower = ['7L1'];
