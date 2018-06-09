@@ -197,4 +197,22 @@ types: ["Normal"],
 baseStats: {hp: 85, atk: 115, def: 100, spa: 65, spd: 70, spe: 135},
 abilities: {0: "Skill Link", 1: "Technician", H: "Serene Grace"},
 },
+azelf: {
+inherit: true,
+types: ["Psychic", "Fighting"],
+baseStats: {hp: 80, atk: 130, def: 70, spa: 130, spd: 70, spe: 120},
+abilities: {0: "Scrappy", 1: "Infiltrator"},
+},
+mesprit: {
+inherit: true,
+types: ["Psychic", "Fairy"],
+baseStats: {hp: 85, atk: 90, def: 115, spa: 115, spd: 115, spe: 85},
+abilities: {0: "Levitate", 1: "Magic Guard"},
+},
+uxie: {
+inherit: true,
+types: ["Psychic"],
+baseStats: {hp: 100, atk: 70, def: 135, spa: 70, spd: 135, spe: 90},
+abilities: {0: "Levitate", 1: "Regenerator"},
+}, 	 	 
   };
