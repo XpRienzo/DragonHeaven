@@ -18,9 +18,9 @@ exports.BattleMovedex = {
 				},
 			},
 			},
-		 onHit: function (source, target, move) {
+		 onHit: function (source, target) {
 			 if (target.hasType('Fire')) {
-				  this.boost({atk: 1}, source, move);
+				  this.boost({atk: 1}, source);
 			 }
 		 },
         target: "normal",
