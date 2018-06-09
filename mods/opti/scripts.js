@@ -38,5 +38,28 @@ this.modData('Learnsets', 'uxie').learnset.healingwish = ['7L1'];
 this.modData('Learnsets', 'uxie').learnset.slackoff = ['7L1'];
 this.modData('Learnsets', 'uxie').learnset.willowisp = ['7L1'];
 this.modData('Learnsets', 'uxie').learnset.passiveagressivity = ['7L1'];
+	
+this.modData('Learnsets', 'butterfree').learnset.psyshock = ['7L1'];
+this.modData('Learnsets', 'butterfree').learnset.thunderbolt = ['7L1'];
+this.modData('Learnsets', 'butterfree').learnset.icebeam = ['7L1'];
+this.modData('Learnsets', 'butterfree').learnset.flutterdust = ['7L1'];
+	
+this.modData('Learnsets', 'beautifly').learnset.dazzlinggleam = ['7L1'];
+this.modData('Learnsets', 'beautifly').learnset.moonblast = ['7L1'];
+this.modData('Learnsets', 'beautifly').learnset.drainingkiss = ['7L1'];
+this.modData('Learnsets', 'beautifly').learnset.focusblast = ['7L1'];
+this.modData('Learnsets', 'beautifly').learnset.heatwave = ['7L1'];
+this.modData('Learnsets', 'beautifly').learnset.beautydrain = ['7L1'];
+	
+this.modData('Learnsets', 'dustox').learnset.clearsmog = ['7L1'];
+this.modData('Learnsets', 'dustox').learnset.toxicspikes = ['7L1'];
+this.modData('Learnsets', 'dustox').learnset.venomdrench = ['7L1'];
+this.modData('Learnsets', 'dustox').learnset.heatwave = ['7L1'];
+this.modData('Learnsets', 'dustox').learnset.knockoff = ['7L1'];
+this.modData('Learnsets', 'dustox').learnset.toxicturmoil = ['7L1'];
+	
+this.modData('Learnsets', 'beedrill').learnset.wingattack = ['7L1'];
+this.modData('Learnsets', 'beedrill').learnset.feintattack = ['7L1'];
+this.modData('Learnsets', 'beedrill').learnset.stingstorm = ['7L1'];
 },
 };
