@@ -76,5 +76,31 @@ exports.BattleMovedex = {
         type: "Poison",
         zMovePower: 175,
     },
-
+	"passiveagressivity": {
+		accuracy: 100,
+		basePower: 0,
+		damage: 'level',
+		category: "Special",
+		desc: "Deals damage to the target equal to the user's level. 20% chance of raising the user's defences by 1 stage each.",
+		shortDesc: "Does damage equal to the user's level. 20% chance of raising the user's defences by 1 stage each.",
+		id: "seismictoss",
+		isViable: true,
+		name: "Passive-Agressivity",
+		pp: 20,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		secondary: {
+			chance: 20,
+			self: {
+				boosts: {
+					def: 1,
+					spd: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 100,
+		contestType: "Tough",
+	},
 };
