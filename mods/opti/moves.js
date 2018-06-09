@@ -10,14 +10,19 @@ exports.BattleMovedex = {
         pp: 16,
         priority: 0,
         flags: {protect: 1, mirror: 1, contact: 1},
-      secondary: {
+      	secondary: {
 			chance: 100,
 			self: {
 				boosts: {
 					atk: 1,
 				},
 			},
-		},
+			},
+		 onHit: function (pokemon, target, move) {
+			 if (target.hasType('Fire')) {
+				  this.boost({atk: 1}, pokemon, pokemon, move);
+			 }
+		 },
         target: "normal",
         type: "Fire",
         zMovePower: 160, 
@@ -25,6 +30,9 @@ exports.BattleMovedex = {
 	"overclock": {
         accuracy: 100,
         basePower: 40,
+			basePowerCallback: function (pokemon, target, move) {
+			return move.basePower + 20 * pokemon.positiveAtkBoosts();
+			},
         category: "Physical",
         shortDesc: "This move's Base Power rises by 40 for every stage the Attack stat is boosted. User recovers 50% of the damage dealt.",
         id: "overclock",
