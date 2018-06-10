@@ -10997,7 +10997,7 @@ exports.BattleAbilities = {
 		onModifyMove: function(move, pokemon) {
 			if (move.flags['punch'] && move.category === 'Physical'){
 				move.category = 'Special';
-				move.defensiveCategory: "Physical";
+				move.defensiveCategory = "Physical";
 			}
 		},
 		id: "aeonflux",
