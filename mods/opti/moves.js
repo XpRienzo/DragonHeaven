@@ -18,8 +18,12 @@ exports.BattleMovedex = {
 				},
 			},
 			},
-	onAfterMoveSecondarySelf: function (pokemon, target, move) {
+		onAfterMoveSecondarySelf: function (pokemon, target, move) {
 			if (target.hasType('Fire')) this.boost({atk: 1}, pokemon, pokemon, move);
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flare Blitz", target);
 		},
         target: "normal",
         type: "Fire",
@@ -38,6 +42,10 @@ exports.BattleMovedex = {
         pp: 8,
         priority: 0,
         flags: {protect: 1, mirror: 1, contact: 1, punch: 1},
+			onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Flare Blitz", target);
+		},
 		  drain: [1, 2],
         secondary: false,
         target: "normal",
@@ -54,6 +62,10 @@ exports.BattleMovedex = {
         pp: 8,
         priority: 0,
         flags: {protect: 1, mirror: 1, contact: 1},
+			onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Low Kick", target);
+		},
         secondary: false,
         target: "normal",
         type: "Water",
@@ -77,6 +89,10 @@ exports.BattleMovedex = {
 		},
 		  onEffectiveness: function (typeMod, type) {
 			if (type === 'Steel') return 1;
+		},
+			 onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Acid Downpour", target);
 		},
         target: "normal",
         type: "Poison",
@@ -104,6 +120,10 @@ exports.BattleMovedex = {
 				},
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Seismic Toss", target);
+		},
 		target: "normal",
 		type: "Fighting",
 		zMovePower: 100,
@@ -126,6 +146,10 @@ exports.BattleMovedex = {
 				spd: -1,
 				spe: -1,
 			},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Bug Buzz", target);
+		},
 		target: "normal",
 		type: "Bug",
 		zMovePower: 100,
@@ -142,6 +166,10 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, heal: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Beauty Drain", target);
+		},
 		drain: [1, 2],
 		secondary: false,
 		target: "normal",
@@ -173,6 +201,10 @@ exports.BattleMovedex = {
 			}
 			return false;
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Toxic", target);
+		},
 		secondary: false,
 		target: "normal",
 		type: "Poison",
@@ -191,6 +223,10 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Explosion", target);
+		},
 		selfdestruct: "always",
 		secondary: false,
 		target: "allAdjacent",
