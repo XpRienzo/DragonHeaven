@@ -490,6 +490,18 @@ evgutter: function (target, room, user) {
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
+	sylvecheck: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Eternal Pokemon Moves</h2></center>`;
+		let eternalDex = require('../mods/sylvemons/moves.js').BattleMovedex;
+		if (!eternalDex) return this.errorReply("Error Fetching Eternal Data.");
+		Object.values(eternalDex).forEach(move => {
+			if (!move.onPrepareHit) {
+			buf += `'${move.name}': { <br>bp: ${move.basePower}, <br>type: '${move.type}', <br>category: '${move.category}',<br> zp: ${move.zMovePower}<br> },<br>`;
+			}
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
 	datalistool: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
