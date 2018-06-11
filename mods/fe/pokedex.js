@@ -19406,7 +19406,7 @@ auroritarmega: {
 	            spe: 75
 	        },
 	        abilities: {
-	            0: "Beast Bootleg"
+	            0: "Wooded Surge"
 	        },
 	        heightm: 1.7,
 	        weightkg: 164.3,
