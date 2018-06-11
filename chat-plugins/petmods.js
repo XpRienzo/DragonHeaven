@@ -497,7 +497,7 @@ evgutter: function (target, room, user) {
 		if (!eternalDex) return this.errorReply("Error Fetching Eternal Data.");
 		Object.values(eternalDex).forEach(move => {
 			if (!move.onPrepareHit) {
-			buf += `${move.name} | ${move.basePower} | ${move.type} | ${move.category} <br>`;
+			buf += `${move.name} | ${move.basePower} | ${move.accuracy} | ${move.type} | ${move.category} | ${move.shortDesc}<br><br>`;
 			}
 		});
 		this.sendReplyBox(`${buf}</div>`);
