@@ -667,10 +667,6 @@ this.modData('Learnsets', 'charizard').learnset.dualchop = ['7L1'];
 this.modData('Learnsets', 'necrozma').learnset.dualchop = ['7L1'];
 	
 // Wild Charge
-this.modData('Learnsets', 'pichu').learnset.wildcharge = ['7L1'];
-this.modData('Learnsets', 'pikachu').learnset.wildcharge = ['7L1'];
-this.modData('Learnsets', 'raichu').learnset.wildcharge = ['7L1'];
-this.modData('Learnsets', 'togedemaru').learnset.wildcharge = ['7L1'];
 this.modData('Learnsets', 'tapukoko').learnset.wildcharge = ['7L1'];
 
 // Seed Bomb
