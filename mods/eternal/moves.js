@@ -141,6 +141,10 @@ exports.BattleMovedex = {
 			this.useMove("evolutionblastice", source);
 			this.useMove("evolutionblastfairy", source);
 		},
+                onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 		target: "normal",
 		type: "Normal",
 		zMovePower: 200,
@@ -1570,6 +1574,10 @@ exports.BattleMovedex = {
 				volatileStatus: 'confusion',
 			},
 		],
+                onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Fire Punch", target);
+		},
 		target: "normal",
 		type: "Psychic",
 		zMovePower: 175,
@@ -1654,30 +1662,15 @@ exports.BattleMovedex = {
 		onAfterHit: function(target, pokemon) {
 			this.useMove("Baton Pass", pokemon);
 		},
+                onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 		secondary: false,
 		target: "normal",
 		type: "Ghost",
 		zMovePower: 140,
 		contestType: "Cool",
-	},
-	"shipwreckedgalepass": {
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		desc: "The user is replaced with another Pokemon in its party. The selected Pokemon has the user's stat stage changes, confusion, and certain move effects transferred to it.",
-		shortDesc: "User switches, passing stat changes and more.",
-		id: "shipwreckedgalepass",
-		isViable: true,
-		name: "Shipwrecked Gale",
-		pp: 40,
-		priority: 0,
-		flags: {},
-		selfSwitch: 'copyvolatile',
-		secondary: false,
-		target: "self",
-		type: "Normal",
-		zMoveEffect: 'clearnegativeboost',
-		contestType: "Cute",
 	},
 	"gorgeousstrike": {
 		accuracy: 100,
@@ -2527,6 +2520,10 @@ exports.BattleMovedex = {
 				return null;
 			},
 		},
+              onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 		secondary: false,
 		target: "self",
 		type: "Psychic",
@@ -2819,6 +2816,10 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
+onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 					ignoreImmunity: false,
 					onAfterMoveSecondarySelf: function(pokemon, target) {
 						if (!target || target.fainted || target.hp <= 0) pokemon.side.addSideCondition('wish');;
@@ -2830,6 +2831,10 @@ exports.BattleMovedex = {
 			};
 			this.add('-start', source, 'move: Ancient Ritual');
 			return null;
+		},
+onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
 		},
 		secondary: false,
 		target: "normal",
@@ -2921,6 +2926,10 @@ exports.BattleMovedex = {
 					category: "Special",
 					priority: 0,
 					flags: {},
+onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 					drain: [1, 2],
 					effectType: 'Move',
 					isFutureMove: true,
@@ -2931,6 +2940,10 @@ exports.BattleMovedex = {
 			return null;
 		},
         secondary: false,
+onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
         target: "normal",
         type: "Dark",
         zMovePower: 190, 
@@ -3101,6 +3114,10 @@ exports.BattleMovedex = {
 					category: "Physical",
 					priority: 0,
 					flags: {},
+onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 					ignoreImmunity: false,
 					effectType: 'Move',
 					isFutureMove: true,
@@ -3111,6 +3128,10 @@ exports.BattleMovedex = {
 			return null;
 		},
 		secondary: false,
+onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 		target: "normal",
 		type: "Dark",
 		zMovePower: 100,
@@ -3534,6 +3555,10 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {},
+onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 		ignoreImmunity: true,
 		isFutureMove: true,
 		onTry: function(source, target) {
@@ -3575,6 +3600,10 @@ exports.BattleMovedex = {
 					},
 					ignoreImmunity: false,
 					effectType: 'Move',
+onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 					isFutureMove: true,
 					type: 'Psychic',
 				},
