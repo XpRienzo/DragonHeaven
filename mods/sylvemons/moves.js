@@ -511,13 +511,6 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Beautiful",
 	},
-	"wildcharge": {
-		inherit: true,
-		accuracy: 80,
-		basePower: 150,
-		shortDesc: "Has 1/2 recoil",
-		zMovePower: 200,
-	},
 	"meteorshower": {
 		accuracy: 100,
 		basePower: 130,
@@ -677,6 +670,10 @@ exports.BattleMovedex = {
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
 			}
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', target, "Recover", source);
 		},
 		secondary: false,
 		target: "self",
