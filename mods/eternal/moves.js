@@ -2629,6 +2629,10 @@ exports.BattleMovedex = {
 				this.add('-sideend', side, 'move: Searing Screen');
 			},
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
+		},
 		secondary: false,
 		target: "foeSide",
 		type: "type",
@@ -3031,6 +3035,10 @@ onPrepareHit: function(target, source, move) {
 		pp: 5,
 		priority: 0,
 		flags: {charge: 1, nonsky: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Brave Bird", target);
+		},
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
 				this.setWeather('deltastream');
@@ -3691,6 +3699,10 @@ onPrepareHit: function(target, source, move) {
 		flags: {
 			charge: 1,
 			nonsky: 1
+		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Celebrate", target);
 		},
 		terrain: 'grassyterrain',
 		onTry: function(attacker, defender, move) {
