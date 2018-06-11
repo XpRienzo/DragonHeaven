@@ -9,6 +9,7 @@ exports.BattleAbilities = {
 				move.type = 'Water';
 			}
 			if (move.type === 'Water') { // Add protection break
+				delete move.flags['protect'];
 				move.breaksProtect = true;
 				move.accuracy = true; 
 			}
