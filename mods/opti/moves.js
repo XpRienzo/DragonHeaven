@@ -33,7 +33,9 @@ exports.BattleMovedex = {
         accuracy: 100,
         basePower: 40,
 			basePowerCallback: function (pokemon, target, move) {
+			if (pokemon.boosts.atk > 0) {
 			return move.basePower + 40 * pokemon.boosts.atk;
+			}
 			},
         category: "Physical",
         shortDesc: "This move's Base Power rises by 40 for every stage the Attack stat is boosted. User recovers 50% of the damage dealt.",
