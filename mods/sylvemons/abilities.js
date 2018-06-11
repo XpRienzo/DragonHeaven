@@ -118,7 +118,7 @@ exports.BattleAbilities = {
 		id: "knightsblade",
 		name: "Knight's Blade",
 	},
-	"dispersal": {
+	"disperal": {
 		shortDesc: "Boosts Bullet Seed, Seed Bomb, and Seed Flare by 1.2x power, and Leech Seed deals 20% more damage and heals 30% more HP each turn.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
@@ -139,8 +139,8 @@ exports.BattleAbilities = {
 				return Math.ceil((damage * 1.3) - 0.5);
 			}
 		},
-		id: "dispersal",
-		name: "Dispersal",
+		id: "disperal",
+		name: "Disperal",
 	},
 	"megalauncher": {
 		desc: "This Pokemon's pulse moves have their power multiplied by 1.5. Heal Pulse restores 3/4 of a target's maximum HP, rounded half down.",
