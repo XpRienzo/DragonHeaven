@@ -3778,6 +3778,10 @@ onPrepareHit: function(target, source, move) {
         pp: 5,
         priority: 0,
         flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hex", target);
+		},
 		  onBasePowerPriority: 4,
 			onBasePower: function (basePower, pokemon) {
     		if (pokemon.hasMove('thunderwave') || pokemon.hasMove('willowisp') || pokemon.hasMove('toxic')) {
