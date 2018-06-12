@@ -407,7 +407,7 @@ exports.BattlePokedex = {
 	},
 	zoroark: {
 		inherit: true,
-		species: "Zoroarl",
+		species: "Zoroark",
 		types: ["Dark"],
 		baseStats: {
 			hp: 70,
