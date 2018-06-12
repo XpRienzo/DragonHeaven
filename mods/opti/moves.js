@@ -1,108 +1,125 @@
 'use strict'
 exports.BattleMovedex = {
-"backdraft": {
-        accuracy: 100,
-        basePower: 80,
-        category: "Physical",
-        shortDesc: "If this attack damages a target, the User's Attack rises one stage. If this attack targets a Fire-type Pokemon, the User's Attack rises by two stages.",
-        id: "backdraft",
-        name: "Backdraft",
-        pp: 16,
-        priority: 0,
-        flags: {protect: 1, mirror: 1, contact: 1},
-      	secondary: {
+	"backdraft": {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		shortDesc: "If this attack damages a target, the User's Attack rises one stage. If this attack targets a Fire-type Pokemon, the User's Attack rises by two stages.",
+		id: "backdraft",
+		name: "Backdraft",
+		pp: 16,
+		priority: 0,
+		flags: {
+			protect: 1,
+			mirror: 1,
+			contact: 1
+		},
+		secondary: {
 			chance: 100,
 			self: {
 				boosts: {
 					atk: 1,
 				},
 			},
-			},
-		onAfterMoveSecondarySelf: function (pokemon, target, move) {
-			if (target.hasType('Fire')) this.boost({atk: 1}, pokemon, pokemon, move);
+		},
+		onAfterMoveSecondarySelf: function(pokemon, target, move) {
+			if (target.hasType('Fire')) this.boost({
+				atk: 1
+			}, pokemon, pokemon, move);
 		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Flare Blitz", target);
 		},
-        target: "normal",
-        type: "Fire",
-        zMovePower: 160, 
-    },
+		target: "normal",
+		type: "Fire",
+		zMovePower: 160,
+	},
 	"overclock": {
-        accuracy: 100,
-        basePower: 40,
-			basePowerCallback: function (pokemon, target, move) {
+		accuracy: 100,
+		basePower: 40,
+		basePowerCallback: function(pokemon, target, move) {
 			if (pokemon.boosts.atk > 0) {
-			return move.basePower + 40 * pokemon.boosts.atk;
-			}
-			else {
+				return move.basePower + 40 * pokemon.boosts.atk;
+			} else {
 				return move.basePower;
 			}
-			},
-        category: "Physical",
-        shortDesc: "This move's Base Power rises by 40 for every stage the Attack stat is boosted. User recovers 50% of the damage dealt.",
-        id: "overclock",
-        name: "Overclock",
-        pp: 8,
-        priority: 0,
-        flags: {protect: 1, mirror: 1, contact: 1, punch: 1},
-			onPrepareHit: function(target, source, move) {
+		},
+		category: "Physical",
+		shortDesc: "This move's Base Power rises by 40 for every stage the Attack stat is boosted. User recovers 50% of the damage dealt.",
+		id: "overclock",
+		name: "Overclock",
+		pp: 8,
+		priority: 0,
+		flags: {
+			protect: 1,
+			mirror: 1,
+			contact: 1,
+			punch: 1
+		},
+		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Flare Blitz", target);
 		},
-		  drain: [1, 2],
-        secondary: false,
-        target: "normal",
-        type: "Fire",
-        zMovePower: 160, 
-    },
-		 "syncrekick": {
-        accuracy: 100,
-        basePower: 70,
-        category: "Physical",
-        shortDesc: "This move's Base Power rises by 30 for every kick move executed by this Pokemon since switching in.",
-        id: "syncrekick",
-        name: "Syncrekick",
-        pp: 8,
-        priority: 0,
-        flags: {protect: 1, mirror: 1, contact: 1},
-			onPrepareHit: function(target, source, move) {
+		drain: [1, 2],
+		secondary: false,
+		target: "normal",
+		type: "Fire",
+		zMovePower: 160,
+	},
+	"syncrekick": {
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		shortDesc: "This move's Base Power rises by 30 for every kick move executed by this Pokemon since switching in.",
+		id: "syncrekick",
+		name: "Syncrekick",
+		pp: 8,
+		priority: 0,
+		flags: {
+			protect: 1,
+			mirror: 1,
+			contact: 1
+		},
+		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Low Kick", target);
 		},
-        secondary: false,
-        target: "normal",
-        type: "Water",
-        zMovePower: 160,
-    },
-		 "poisonmelt": {
-        accuracy: 100,
-        basePower: 0,
-        category: "Special",
-        shortDesc: "This attack hits Steel-types super effectively and has a 30% chance to decrease the target’s SpD by 1 stage.",
-        id: "poisonmelt",
-        name: "Poison Melt",
-        pp: 16,
-        priority: 0,
-        flags: {protect: 1, mirror: 1,},
-        secondary: {
+		secondary: false,
+		target: "normal",
+		type: "Water",
+		zMovePower: 160,
+	},
+	"poisonmelt": {
+		accuracy: 100,
+		basePower: 0,
+		category: "Special",
+		shortDesc: "This attack hits Steel-types super effectively and has a 30% chance to decrease the target’s SpD by 1 stage.",
+		id: "poisonmelt",
+		name: "Poison Melt",
+		pp: 16,
+		priority: 0,
+		flags: {
+			protect: 1,
+			mirror: 1,
+		},
+		secondary: {
 			chance: 30,
 			boosts: {
 				spd: -1,
 			},
 		},
-		  onEffectiveness: function (typeMod, type) {
+		onEffectiveness: function(typeMod, type) {
 			if (type === 'Steel') return 1;
 		},
-			 onPrepareHit: function(target, source, move) {
+		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Acid Downpour", target);
 		},
-        target: "normal",
-        type: "Poison",
-        zMovePower: 175,
-    },
+		target: "normal",
+		type: "Poison",
+		zMovePower: 175,
+	},
 	"passiveagressivity": {
 		accuracy: 100,
 		basePower: 0,
@@ -115,7 +132,10 @@ exports.BattleMovedex = {
 		name: "Passive-Agressivity",
 		pp: 20,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
 		secondary: {
 			chance: 20,
 			self: {
@@ -145,12 +165,16 @@ exports.BattleMovedex = {
 		name: "Flutter Dust",
 		pp: 10,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {
+			contact: 1,
+			protect: 1,
+			mirror: 1
+		},
 		boosts: {
-				spa: -1,
-				spd: -1,
-				spe: -1,
-			},
+			spa: -1,
+			spd: -1,
+			spe: -1,
+		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Bug Buzz", target);
@@ -170,7 +194,11 @@ exports.BattleMovedex = {
 		name: "Beauty Drain",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, heal: 1},
+		flags: {
+			protect: 1,
+			mirror: 1,
+			heal: 1
+		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Beauty Drain", target);
@@ -192,8 +220,13 @@ exports.BattleMovedex = {
 		name: "Toxic Turmoil",
 		pp: 20,
 		priority: 0,
-		flags: {protect: 1, reflectable: 1, mirror: 1, authentic: 1},
-		onHit: function (target) {
+		flags: {
+			protect: 1,
+			reflectable: 1,
+			mirror: 1,
+			authentic: 1
+		},
+		onHit: function(target) {
 			if (target.lastMove) {
 				let ppDeducted = target.deductPP(target.lastMove.id, 4);
 				if (target.status === 'psn' || target.status === 'tox') {
@@ -213,7 +246,9 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: "normal",
 		type: "Poison",
-		zMoveBoost: {spd: 1},
+		zMoveBoost: {
+			spd: 1
+		},
 		contestType: "Tough",
 	},
 	"stingstorm": {
@@ -227,7 +262,10 @@ exports.BattleMovedex = {
 		name: "Sting Storm",
 		pp: 5,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {
+			protect: 1,
+			mirror: 1
+		},
 		onPrepareHit: function(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Explosion", target);
