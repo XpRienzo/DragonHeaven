@@ -1,5 +1,16 @@
 'use strict';
 exports.BattleItems = {
+	"safetysocks": {
+		id: "safetysocks",
+		name: "Safety Socks",
+		onDamage: function (damage, target, source, effect) {
+			let hazards = ["stealthrock", "stickyweb"];
+			if (effect.sideCondition !== 'Move') {
+				return false;
+			}
+		},
+		desc: "Holder is unaffected by Hazards.",
+	},
 	"reversecore": {
 		id: "reversecore",
 		name: "Reverse Core",
