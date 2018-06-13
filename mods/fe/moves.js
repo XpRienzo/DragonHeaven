@@ -8329,4 +8329,26 @@ exports.BattleMovedex = {
 		zMovePower: 195,
 		contestType: "Clever",
 	},
+	
+	"conquerorscascade": {
+		accuracy: 90,
+		basePower: 30,
+		category: "Physical",
+		desc: "Hits 1-5 times based upon happiness. Max Happiness = 5 hits; number of hits decreases for every 51 happiness lost.",
+		shortDesc: "Hits 1-5 times in one turn. The amount of hits increases with happiness.",
+		id: "conquerorscascade",
+		isViable: true,
+		name: "Conqueror's Cascade",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onModifyMove: function (move, pokemon) {
+			move.multihit = Math.floor((pokemon.happiness / 5) + 1) || 1;
+		},
+		secondary: false,
+		target: "allAdjacentFoes",
+		type: "Dragon",
+		zMovePower: 100,
+		contestType: "Cool",
+	},
 };
