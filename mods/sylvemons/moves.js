@@ -1710,4 +1710,46 @@ exports.BattleMovedex = {
 		zMovePower: 140,
 		contestType: "Tough",
 	},
+	"stickyweb": {
+		inherit: true,
+		effect: {
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Sticky Web');
+			},
+			onSwitchIn: function (pokemon) {
+				if (!pokemon.isGrounded() || pokemon.hasItem('safetysocks')) return;
+				this.add('-activate', pokemon, 'move: Sticky Web');
+				this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], this.getMove('stickyweb'));
+			},
+		},
+	},
+	"toxicspikes": {
+		inherit: true,
+		effect: {
+			// this is a side condition
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectData.layers = 1;
+			},
+			onRestart: function (side) {
+				if (this.effectData.layers >= 2) return false;
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectData.layers++;
+			},
+			onSwitchIn: function (pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (!pokemon.runImmunity('Poison')) return;
+				if (!pokemon.hasItem('safetysocks')) return;
+				if (pokemon.hasType('Poison')) {
+					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('toxicspikes');
+				} else if (this.effectData.layers >= 2) {
+					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
+				} else {
+					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+				}
+			},
+		},
+	},
+
 };
