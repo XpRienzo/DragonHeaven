@@ -1044,6 +1044,63 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Cool",
 	},
+	
+	"brickbreak": {
+		num: 280,
+		accuracy: 100,
+		basePower: 75,
+		category: "Physical",
+		desc: "If this attack does not miss, the effects of Reflect, Light Screen, and Aurora Veil end for the target's side of the field before damage is calculated.",
+		shortDesc: "Destroys screens, unless the target is immune.",
+		id: "brickbreak",
+		isViable: true,
+		name: "Brick Break",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryHit: function (pokemon) {
+			// will shatter screens through sub, before you hit
+			if (pokemon.runImmunity('Fighting')) {
+				pokemon.side.removeSideCondition('reflect');
+				pokemon.side.removeSideCondition('lightscreen');
+				pokemon.side.removeSideCondition('auroraveil');
+				pokemon.side.removeSideCondition('solarshields');
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 140,
+		contestType: "Cool",
+	},
+	"psychicfangs": {
+		num: 706,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		desc: "If this attack does not miss, the effects of Reflect, Light Screen, and Aurora Veil end for the target's side of the field before damage is calculated.",
+		shortDesc: "Destroys screens, unless the target is immune.",
+		id: "psychicfangs",
+		isViable: true,
+		name: "Psychic Fangs",
+		pp: 10,
+		priority: 0,
+		flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
+		onTryHit: function (pokemon) {
+			// will shatter screens through sub, before you hit
+			if (pokemon.runImmunity('Psychic')) {
+				pokemon.side.removeSideCondition('reflect');
+				pokemon.side.removeSideCondition('lightscreen');
+				pokemon.side.removeSideCondition('auroraveil');
+				pokemon.side.removeSideCondition('solarshields');
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Psychic",
+		zMovePower: 160,
+		contestType: "Clever",
+	},
 	"hyperspacefury": { // Hyperspace for all 
 		num: 621,
 		accuracy: true,
@@ -8457,5 +8514,30 @@ exports.BattleMovedex = {
 		type: "Fire",
 		zMoveBoost: {spe: 1},
 		contestType: "Beautiful",
+	},
+	"acco": {
+		accuracy: 100,
+		basePower: 180,
+		category: "Physical",
+		desc: "Lowers the user's Speed, Defense, and Special Defense by 1 stage.",
+		shortDesc: "Lowers the user's Defense, Sp. Def, Speed by 1.",
+		id: "acco",
+		isViable: true,
+		name: "Acco",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			boosts: {
+				spe: -1,
+				def: -1,
+				spd: -1,
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Ground",
+		zMovePower: 220,
+		contestType: "Cool",
 	},
 };
