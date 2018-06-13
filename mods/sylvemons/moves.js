@@ -24,7 +24,26 @@ sound: Has no effect on Pokemon with the Ability Soundproof.
 */
 'use strict';
 exports.BattleMovedex = {
-		"inverseroom": {
+	"shieldslam": {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Damage is calculated using the user's Defense stat, including stat stage changes.",
+		shortDesc: "Uses user's Defense stat in damage calculation.",
+		id: "shieldslam",
+		isViable: true,
+		name: "Shield Slam",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		useTargetOffensive: true,
+		secondary: false,
+		target: "normal",
+		type: "Steel",
+		zMovePower: 160,
+		contestType: "Clever",
+	},
+	"inverseroom": {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
