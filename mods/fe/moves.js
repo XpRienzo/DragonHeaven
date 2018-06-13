@@ -8372,4 +8372,37 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Clever",
 	},
+
+	"synchrobust": {
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		desc: "Removes the target's held item, if applicable. Deals 1.5* damage if the target shares at least one type with the user.",
+		shortDesc: "1.5x damage if foe shares the user's type. Removes target's item.",
+		id: "synchrobust",
+		isViable: true,
+		name: "Synchro Bust",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onBasePowerPriority: 4,
+		onBasePower: function (basePower, source, target, move) {
+			if (target.hasType(source.getTypes())) {
+				return this.chainModify(1.5);
+			}
+		},
+		onAfterHit: function (target, source) {
+			if (source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Synchro Bust', '[of] ' + source);
+				}
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Dark",
+		zMovePower: 160,
+		contestType: "Clever",
+	},
 };
