@@ -1045,6 +1045,11 @@ exports.BattlePokedex = {
 		types: ["Fairy"],
       abilities: {0: "Cute Charm", 1: "Misty Surge", H: "Pixilate"},
 	},
+	huntail: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Swift Swim", 1: "Shark Bait", H: "Water Veil"},
+	},
 	gorebyss: {
 		inherit: true,
 		types: ["Water"],
@@ -1242,72 +1247,126 @@ exports.BattlePokedex = {
 	},
 	pineco: {
 		inherit: true,
-		types: ["Bug"],
       abilities: {0: "Sturdy", 1: "Bulletproof", H: "Overcoat"},
 	},
 	forretress: {
 		inherit: true,
-		types: ["Bug", "Steel" ],
       abilities: {0: "Sturdy", 1: "Bulletproof", H: "Overcoat"},
 	},
 	bergmite: {
 		inherit: true,
-		types: ["Ice"],
       abilities: {0: "Bulletproof", 1: "Ice Body", H: "Sturdy"},
 	},
 	avalugg: {
 		inherit: true,
-		types: ["Ice"],
       abilities: {0: "Bulletproof", 1: "Ice Body", H: "Sturdy"},
 	},
 	rhyperior: {
 		inherit: true,
-		types: ["Ground", "Rock"],
       abilities: {0: "Bulletproof", 1: "Solid Rock", H: "Reckless"},
 	},
 	giratina: {
 		inherit: true,
-		types: ["Ghost", "Dragon"],
       abilities: {0: "Pressure", 1: "Dimension Warp", H: "Telepathy"},
 	},
 	unown: {
 		inherit: true,
-		types: ["Psychic"],
 		abilities: {0: "Levitate", H: "Dimension Warp"},
 	},
 	uxie: {
 		inherit: true,
-		types: ["Psychic"],
 		abilities: {0: "Levitate", H: "Dimension Warp"},
 	},
 	mesprit: {
 		inherit: true,
-		types: ["Psychic"],
 		abilities: {0: "Levitate", H: "Dimension Warp"},
 	},
 	azelf: {
 		inherit: true,
-		types: ["Psychic"],
 		abilities: {0: "Levitate", H: "Dimension Warp"},
 	},
 	nihilego: {
 		inherit: true,
-		types: ["Rock", "Poison"],
 		abilities: {0: "Beast Boost", H: "Dimension Warp"},
 	},
 	porygon: {
 		inherit: true,
-		types: ["Normal"],
       abilities: {0: "Trace", 1: "Download", H: "Dimension Warp"},
 	},
 	porygon2: {
 		inherit: true,
-		types: ["Normal"],
       abilities: {0: "Trace", 1: "Download", H: "Dimension Warp"},
 	},
 	porygonz: {
 		inherit: true,
-		types: ["Normal"],
       abilities: {0: "Adaptability", 1: "Download", H: "Dimension Warp"},
+	},
+	buzzwole: {
+		inherit: true,
+		abilities: {0: "Beast Boost", H: "Perseverance"},
+	},
+	pheromosa: {
+		inherit: true,
+		abilities: {0: "Beast Boost", H: "Sole Caliber"},
+	},
+	taillow: {
+		inherit: true,
+      abilities: {0: "Guts", 1: "Sugar Glider", H: "Scrappy"},
+	},
+	swellow: {
+		inherit: true,
+      abilities: {0: "Guts", 1: "Sugar Glider", H: "Scrappy"},
+	},
+	cottonee: {
+		inherit: true,
+      abilities: {0: "Prankster", 1: "Infiltrator", H: "Sugar Glider"},
+	},
+	whimsicott: {
+		inherit: true,
+      abilities: {0: "Prankster", 1: "Infiltrator", H: "Sugar Glider"},
+	},
+	hoppip: {
+		inherit: true,
+      abilities: {0: "Sugar Glider", 1: "Leaf Guard", H: "Infiltrator"},
+	},
+	skiploom: {
+		inherit: true,
+      abilities: {0: "Sugar Glider", 1: "Leaf Guard", H: "Infiltrator"},
+	},
+	jumpluff: {
+		inherit: true,
+      abilities: {0: "Sugar Glider", 1: "Leaf Guard", H: "Infiltrator"},
+	},
+	emolga: {
+		inherit: true,
+      abilities: {0: "Static", 1: "Sugar Glider", H: "Motor Drive"},
+	},
+	tsareena: {
+		inherit: true,
+      abilities: {0: "Sole Caliber", 1: "Queenly Majesty", H: "Sweet Veil"},
+	},
+	lopunny: {
+		inherit: true,
+      abilities: {0: "Cute Charm", 1: "Klutz", H: "Sole Caliber"},
+	},
+	chinchou: {
+		inherit: true,
+      abilities: {0: "Volt Absorb", 1: "Illuminate", H: "Shark Bait"},
+	},
+	lanturn: {
+		inherit: true,
+      abilities: {0: "Volt Absorb", 1: "Illuminate", H: "Shark Bait"},
+	},
+	wingull: {
+		inherit: true,
+      abilities: {0: "Shark Bait", 1: "Hydration", H: "Rain Dish"},
+	},
+	pelipper: {
+		inherit: true,
+      abilities: {0: "Shark Bait", 1: "Drizzle", H: "Rain Dish"},
+	},
+	stunfisk: {
+		inherit: true,
+      abilities: {0: "Static", 1: "Shark Bait", H: "Sand Veil"},
 	},
 };
