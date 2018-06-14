@@ -217,7 +217,7 @@ exports.BattlePokedex = {
     deerling: {
         inherit: true,
         types: ["Grass", "Fairy"],
-        abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Misty Surge"},
+        abilities: {0: "Surge Surfer", 1: "Sap Sipper", H: "Misty Surge"},
     },
     deerlingautumn: {
         inherit: true,
