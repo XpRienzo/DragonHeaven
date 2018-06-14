@@ -1369,4 +1369,52 @@ exports.BattlePokedex = {
 		inherit: true,
       abilities: {0: "Static", 1: "Shark Bait", H: "Sand Veil"},
 	},
+	cherubi: {
+		inherit: true,
+      abilities: {0: "Bask"},
+	},
+	salazzle: {
+		inherit: true,
+      abilities: {0: "Corrosion", 1: "Bask", H: "Oblivious"},
+	},
+	helioptile: {
+		inherit: true,
+      abilities: {0: "Dry Skin", 1: "Bask", H: "Solar Power"},
+	},
+	heliolisk: {
+		inherit: true,
+      abilities: {0: "Dry Skin", 1: "Bask", H: "Solar Power"},
+	},
+	charmander: {
+		inherit: true,
+      abilities: {0: "Blaze", H: "Bask"},
+	},
+	charmeleon: {
+		inherit: true,
+      abilities: {0: "Blaze", H: "Bask"},
+	},
+	charizard: {
+		inherit: true,
+      abilities: {0: "Blaze", H: "Bask"},
+	},
+	empoleon: {
+		inherit: true,
+      abilities: {0: "Torrent", H: "Wet Suit"},
+	},
+	lotad: {
+		inherit: true,
+      abilities: {0: "Swift Swim", 1: "Wet Suit", H: "Own Tempo"},
+	},
+	lombre: {
+		inherit: true,
+      abilities: {0: "Swift Swim", 1: "Wet Suit", H: "Own Tempo"},
+	},
+	ludicolo: {
+		inherit: true,
+      abilities: {0: "Swift Swim", 1: "Wet Suit", H: "Own Tempo"},
+	},
+	surskit: {
+		inherit: true,
+      abilities: {0: "Swift Swim", H: "Wet Suit"},
+	},
 };
