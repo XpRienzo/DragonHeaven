@@ -33,10 +33,12 @@ exports.BattlePokedex = {
     spritzee: {
         inherit: true,
         types: ["Fairy", "Poison"],
+		  abilities: {0: "Healer", 1: "Misty Surge", H: "Aroma Veil"},
     },
     aromatisse: {
         inherit: true,
         types: ["Fairy", "Poison"],
+		  abilities: {0: "Healer", 1: "Misty Surge", H: "Aroma Veil"},
     },
     stakataka: {
         inherit: true,
