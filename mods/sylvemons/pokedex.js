@@ -1044,4 +1044,19 @@ exports.BattlePokedex = {
 		types: ["Psychic", "Flying"],
       abilities: {0: "Pressure", 1: "Drizzle", H: "Multiscale"},
 	},
+	regirock: {
+		inherit: true,
+		types: ["Rock"],
+      abilities: {0: "Clear Body", 1: "Sand Stream", H: "Sturdy"},
+	},
+	regice: {
+		inherit: true,
+		types: ["Ice"],
+      abilities: {0: "Clear Body", 1: "Snow Warning", H: "Ice Body"},
+	},
+	registeel: {
+		inherit: true,
+		types: ["Steel"],
+      abilities: {0: "Clear Body", 1: "Bulletproof", H: "Light Metal"},
+	},
 };
