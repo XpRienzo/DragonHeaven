@@ -1067,11 +1067,31 @@ exports.BattlePokedex = {
 	solrock: {
 		inherit: true,
 		types: ["Rock", "Psychic"],
-      abilities: {0: "Rock", H: "Drought"},
+      abilities: {0: "Levitate", H: "Drought"},
 	},
 	lunatone: {
 		inherit: true,
 		types: ["Rock", "Psychic"],
-      abilities: {0: "Rock", H: "Sand Stream"},
+      abilities: {0: "Levitate", H: "Sand Stream"},
+	},
+	palossand: {
+		inherit: true,
+		types: ["Ground", "Ghost"],
+      abilities: {0: "Water Compaction", 1: "Sand Stream", H: "Sand Veil"},
+	},
+	larvitar: {
+		inherit: true,
+		types: ["Rock", "Ground"],
+      abilities: {0: "Guts", 1: "Sand Stream", H: "Sand Veil"},
+	},
+	pupitar: {
+		inherit: true,
+		types: ["Rock", "Ground"],
+      abilities: {0: "Guts", H: "Sand Stream"},
+	},
+	cryogonal: {
+		inherit: true,
+		types: ["Ice"],
+      abilities: {0: "Levitate", H: "Snow Warning"},
 	},
 };
