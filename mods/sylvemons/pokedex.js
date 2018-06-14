@@ -419,10 +419,15 @@ exports.BattlePokedex = {
 		types: ["Normal", "Fairy"],
       abilities: {0: "Cute Charm", 1: "Competitive", H: "Housekeeping"},
 	},
+	inkay: {
+		inherit: true,
+		types: ["Dark", "Psychic"],
+      abilities: {0: "Dimension Warp", 1: "Contrary", H: "Infiltrator"},
+	},
 	malamar: {
 		inherit: true,
 		types: ["Dark", "Psychic"],
-      abilities: {0: "Suction Cups", 1: "Contrary", H: "Mind Trick"},
+      abilities: {0: "Dimension Warp", 1: "Contrary", H: "Mind Trick"},
 	},
 	litwick: {
 		inherit: true,
