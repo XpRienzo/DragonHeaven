@@ -19,7 +19,7 @@ heatblastomnienhanced: {
 		formeLetter: "O",
 		types: ["Fire", "Electric"],
 		baseStats: {hp: 80, atk: 150, def: 100, spa: 150, spd: 100, spe: 180},
-		abilities: {0: "Pure Power"},
+		abilities: {0: "Speed Boost"},
 	},
   
  };
