@@ -10,6 +10,13 @@ let BattleFormatsData = {
 		requiredItem: "Omnitrix",
 		tier: "OU",
 	},
+	upgrade: {
+		tier: "OU",
+	},
+	upgradetomnienhanced: {
+		requiredItem: "Omnitrix",
+		tier: "OU",
+	},
 
 };
 
