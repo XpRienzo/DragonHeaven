@@ -799,4 +799,99 @@ exports.BattlePokedex = {
 		types: ["Rock", "Dragon"],
       abilities: {0: "Strong Jaw", H: "Anger Point"},
 	},
+	klink: {
+		inherit: true,
+		types: ["Steel"],
+      abilities: {0: "Plus", 1: "Minus", H: "Technician"},
+	},
+	klang: {
+		inherit: true,
+		types: ["Steel"],
+      abilities: {0: "Plus", 1: "Minus", H: "Technician"},
+	},
+	klinklang: {
+		inherit: true,
+		types: ["Steel"],
+      abilities: {0: "Plus", 1: "Minus", H: "Technician"},
+	},
+	buizel: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Swift Swim", 1: "Technician", H: "Water Veil"},
+	},
+	floatzel: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Swift Swim", 1: "Technician", H: "Water Veil"},
+	},
+	beldum: {
+		inherit: true,
+		types: ["Steel", "Psychic"],
+      abilities: {0: "Clear Body", 1: "Technician", H: "Light Metal"},
+	},
+	metang: {
+		inherit: true,
+		types: ["Steel", "Psychic"],
+      abilities: {0: "Clear Body", 1: "Technician", H: "Light Metal"},
+	},
+	metagross: {
+		inherit: true,
+		types: ["Steel", "Psychic"],
+      abilities: {0: "Clear Body", 1: "Technician", H: "Light Metal"},
+	},
+	meloetta: {
+		inherit: true,
+		types: ["Normal", "Psychic"],
+      abilities: {0: "Serene Grace", H: "Technician"},
+	},
+	meloettapirouette: {
+		inherit: true,
+		types: ["Normal", "Fighting"],
+      abilities: {0: "Serene Grace", H: "Technician"},
+	},
+	tauros: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Intimidate", 1: "Obstinacy", H: "Technician"},
+	},
+	braviary: {
+		inherit: true,
+		types: ["Normal", "Flying"],
+      abilities: {0: "Obstinacy", 1: "Sheer Force", H: "Defiant"},
+	},
+	primeape: {
+		inherit: true,
+		types: ["Fighting"],
+      abilities: {0: "Obstinacy", 1: "Anger Point", H: "Defiant"},
+	},
+	linoone: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Pickup", 1: "Obstinacy", H: "Quick Feet"},
+	},
+	mudbray: {
+		inherit: true,
+		types: ["Ground"],
+      abilities: {0: "Own Tempo", 1: "Stamina", H: "Sole Caliber"},
+	},
+	mudsdale: {
+		inherit: true,
+		types: ["Ground"],
+      abilities: {0: "Obstinacy", 1: "Stamina", H: "Sole Caliber"},
+	},
+	vigoroth: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Vital Spirit", H: "Obstinacy"},
+	},
+	haxorus: {
+		inherit: true,
+		types: ["Dragon"],
+      abilities: {0: "Rivalry", 1: "Obstinacy", H: "Unnerve"},
+	},
+	lucario: {
+		inherit: true,
+		types: ["Fighting", "Steel"],
+      abilities: {0: "Obstinacy", 1: "Inner Focus", H: "Justified"},
+	},
 };
