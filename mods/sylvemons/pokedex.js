@@ -1131,4 +1131,34 @@ exports.BattlePokedex = {
 		types: ["Fairy"],
       abilities: {0: "Flower Veil", 1: "Misty Surge", H: "Symbiosis"},
 	},
+	mareep: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Static", 1: "Electric Surge", H: "Plus"},
+	},
+	flaaffy: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Static", 1: "Electric Surge", H: "Plus"},
+	},
+	ampharos: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Static", 1: "Electric Surge", H: "Plus"},
+	},
+	shinx: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Electric Surge", 1: "Intimidate", H: "Guts"},
+	},
+	luxio: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Electric Surge", 1: "Intimidate", H: "Guts"},
+	},
+	luxray: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Electric Surge", 1: "Intimidate", H: "Guts"},
+	},
 };
