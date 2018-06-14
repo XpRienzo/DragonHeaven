@@ -6,8 +6,16 @@ let BattleItems = {
 		id: "omnitrix",
 		name: "Omnitrix",
 		onTakeItem: false,
-      megaStone: ["Heat Blast-Omni Enhanced", "Upgrade-Omni Enhanced"],
-		megaEvolves: ["Heat Blast", "Upgrade"],
+      megaStone: function(pokemon) {
+			if (pokemon.baseTemplate.baseSpecies === 'Heat Blast') {
+				return "Heat Blast-Omni Enhanced";
+			}
+		},
+		megaEvolves: function(pokemon) {
+			if (pokemon.baseTemplate.baseSpecies === 'Heat Blast') {
+				return "Heat Blast";
+			}
+		},
 		/*onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Omnitrix');
 			if (pokemon.baseTemplate.baseSpecies === 'Heat Blast') {
