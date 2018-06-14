@@ -894,4 +894,19 @@ exports.BattlePokedex = {
 		types: ["Fighting", "Steel"],
       abilities: {0: "Obstinacy", 1: "Inner Focus", H: "Justified"},
 	},
+	darkrai: {
+		inherit: true,
+		types: ["Dark"],
+      abilities: {0: "Bad Dreams", H: "Shadow Surge"},
+	},
+	spiritomb: {
+		inherit: true,
+		types: ["Ghost", "Dark"],
+      abilities: {0: "Pressure", 1: "Shadow Surge", H: "Infiltrator"},
+	},
+	umbreon: {
+		inherit: true,
+		types: ["Dark"],
+      abilities: {0: "Synchronize", 1: "Shadow Surge", H: "Inner Focus"},
+	},
 };
