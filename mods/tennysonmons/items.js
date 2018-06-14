@@ -17,7 +17,7 @@ let BattleItems = {
 			else if (pokemon.baseTemplate.baseSpecies === 'Upgrade') {
 				this.add('-formechange', pokemon, 'Upgrade-Omni Enhanced', '[msg]');
 				pokemon.formeChange("Upgrade-Omni Enhanced");
-				pokemon.setAbility('imposter');
+				pokemon.setAbility('intimidate');
 			}
 		},
     fling: {
