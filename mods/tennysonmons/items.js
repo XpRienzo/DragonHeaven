@@ -7,7 +7,7 @@ let BattleItems = {
 		name: "Omnitrix",
 		onTakeItem: false,
     
-		onStart: function(pokemon) {
+		/*onStart: function(pokemon) {
 			this.add('-item', pokemon, 'Omnitrix');
 			if (pokemon.baseTemplate.baseSpecies === 'Heat Blast') {
 				this.add('-formechange', pokemon, 'Heat Blast-Omni Enhanced', '[msg]');
@@ -19,7 +19,7 @@ let BattleItems = {
 				pokemon.formeChange("Upgrade-Omni Enhanced");
 				pokemon.setAbility('intimidate');
 			}
-		},
+		},*/
     fling: {
 			basePower: 20,
 		},
