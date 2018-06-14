@@ -1161,4 +1161,9 @@ exports.BattlePokedex = {
 		types: ["Electric"],
       abilities: {0: "Electric Surge", 1: "Intimidate", H: "Guts"},
 	},
+	xurkitree: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Beast Boost", H: "Electric Surge"},
+	},
 };
