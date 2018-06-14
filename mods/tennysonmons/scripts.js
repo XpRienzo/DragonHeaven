@@ -919,16 +919,11 @@ let BattleScripts = {
 		let altForme = pokemon.baseTemplate.otherFormes && this.getTemplate(pokemon.baseTemplate.otherFormes[0]);
 		let item = pokemon.getItem();
 		if (altForme && altForme.isMega && altForme.requiredMove && pokemon.baseMoves.includes(toId(altForme.requiredMove)) && !item.zMove) return altForme.species;
+		if (pokemon.formeLetter === 'OE' && item.name === 'Omnitrix') return altForme.species;
 		if (item.megaEvolves !== pokemon.baseTemplate.baseSpecies || item.megaStone === pokemon.species) {
 			return null;
 		}
 		return item.megaStone;
-	},
-  canOmniEvo: function (pokemon) {
-		let altForme = pokemon.baseTemplate.otherFormes && this.getTemplate(pokemon.baseTemplate.otherFormes[0]);
-		if (pokemon.item === 'omnitrix') {
-		return altForme.species;
-    }
 	},
 	canUltraBurst: function (pokemon) {
 		if (['Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane'].includes(pokemon.baseTemplate.species) &&
@@ -941,7 +936,7 @@ let BattleScripts = {
 	runMegaEvo: function (pokemon) {
 		const effectType = pokemon.canMegaEvo ? '-mega' : '-burst';
 		// @ts-ignore
-		const template = this.getTemplate(pokemon.canMegaEvo || pokemon.canUltraBurst || pokemon.canOmniEvo);
+		const template = this.getTemplate(pokemon.canMegaEvo || pokemon.canUltraBurst);
 		const side = pokemon.side;
 
 		// Pokémon affected by Sky Drop cannot mega evolve. Enforce it here for now.
