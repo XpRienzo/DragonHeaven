@@ -17,6 +17,7 @@ exports.BattlePokedex = {
     blissey: {
         inherit: true,
         types: ["Normal", "Fairy"],
+        abilities: {0: "Natural Cure", 1: "Housekeeping", H: "Healer"},
     },
     cresselia: {
         inherit: true,
@@ -43,6 +44,7 @@ exports.BattlePokedex = {
     stakataka: {
         inherit: true,
         types: ["Ghost", "Steel"],
+		  abilities: {0: "Beast Boost", H: "Bulletproof"},
     },
     staraptor: {
         inherit: true,
@@ -69,6 +71,7 @@ exports.BattlePokedex = {
 	xurkitree: {
 		inherit: true,
 		types: ["Electric", "Grass"],
+      abilities: {0: "Beast Boost", H: "Electric Surge"},
 	},
 	servine: {
 		inherit: true,
@@ -406,11 +409,6 @@ exports.BattlePokedex = {
 		types: ["Normal"],
       abilities: {0: "Natural Cure", 1: "Housekeeping", H: "Healer"},
 	},
-	blissey: {
-		inherit: true,
-		types: ["Normal"],
-      abilities: {0: "Natural Cure", 1: "Housekeeping", H: "Healer"},
-	},
 	delcatty: {
 		inherit: true,
 		types: ["Normal"],
@@ -666,10 +664,20 @@ exports.BattlePokedex = {
 		types: ["Bug"],
       abilities: {0: "Shed Skin", H: "Guard Up"},
 	},
+	sewaddle: {
+		inherit: true,
+		types: ["Bug", "Grass"],
+      abilities: {0: "Grassy Surge", 1: "Chlorophyll", H: "Overcoat"},
+	},
 	swadloon: {
 		inherit: true,
 		types: ["Bug", "Grass"],
       abilities: {0: "Leaf Guard", 1: "Chlorophyll", H: "Guard Up"},
+	},
+	leavanny: {
+		inherit: true,
+		types: ["Bug", "Grass"],
+      abilities: {0: "Grassy Surge", 1: "Chlorophyll", H: "Overcoat"},
 	},
 	spewpa: {
 		inherit: true,
@@ -1161,9 +1169,94 @@ exports.BattlePokedex = {
 		types: ["Electric"],
       abilities: {0: "Electric Surge", 1: "Intimidate", H: "Guts"},
 	},
-	xurkitree: {
+	budew: {
 		inherit: true,
-		types: ["Electric"],
-      abilities: {0: "Beast Boost", H: "Electric Surge"},
+		types: ["Grass", "Poison"],
+      abilities: {0: "Grassy Surge", 1: "Poison Point", H: "Leaf Guard"},
+	},
+	roselia: {
+		inherit: true,
+		types: ["Grass", "Poison"],
+      abilities: {0: "Grassy Surge", 1: "Poison Point", H: "Leaf Guard"},
+	},
+	roserade: {
+		inherit: true,
+		types: ["Grass", "Poison"],
+      abilities: {0: "Grassy Surge", 1: "Poison Point", H: "Leaf Guard"},
+	},
+	exeggutor: {
+		inherit: true,
+		types: ["Grass", "Psychic"],
+      abilities: {0: "Chlorophyll", 1: "Grassy Surge", H: "Harvest"},
+	},
+	exeggutoralola: {
+		inherit: true,
+		types: ["Grass", "Dragon"],
+      abilities: {0: "Frisk", 1: "Bask", H: "Harvest"},
+	},
+	skiddo: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Sap Sipper", 1: "Grassy Surge", H: "Grass Pelt"},
+	},
+	gogoat: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Sap Sipper", 1: "Grassy Surge", H: "Grass Pelt"},
+	},
+	gothita: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Psychic Surge", 1: "Competitive", H: "Shadow Tag"},
+	},
+	gothorita: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Psychic Surge", 1: "Competitive", H: "Shadow Tag"},
+	},
+	gothitelle: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Psychic Surge", 1: "Competitive", H: "Shadow Tag"},
+	},
+	deoxys: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Pressure", H: "Psychic Surge"},
+	},
+	deoxysdefense: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Pressure", H: "Psychic Surge"},
+	},
+	deoxysspeed: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Pressure", H: "Psychic Surge"},
+	},
+	steelixmega: {
+		inherit: true,
+		types: ["Steel", "Ground"],
+      abilities: {0: "Bulletproof"},
+	},
+	pineco: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Sturdy", 1: "Bulletproof", H: "Overcoat"},
+	},
+	forretress: {
+		inherit: true,
+		types: ["Bug", "Steel" ],
+      abilities: {0: "Sturdy", 1: "Bulletproof", H: "Overcoat"},
+	},
+	bergmite: {
+		inherit: true,
+		types: ["Ice"],
+      abilities: {0: "Bulletproof", 1: "Ice Body", H: "Sturdy"},
+	},
+	avalugg: {
+		inherit: true,
+		types: ["Ice"],
+      abilities: {0: "Bulletproof", 1: "Ice Body", H: "Sturdy"},
 	},
 };
