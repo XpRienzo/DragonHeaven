@@ -1441,4 +1441,20 @@ exports.BattlePokedex = {
 		inherit: true,
       abilities: {0: "Shell Armor", H: "Stamina"},
 	},
+	mewtwo: {
+		inherit: true,
+      abilities: {0: "Pressure", 1: "Infuriation", H: "Unnerve"},
+	},
+	cyndaquil: {
+		inherit: true,
+      abilities: {0: "Blaze", H: "Infuriation"},
+	},
+	quilava: {
+		inherit: true,
+      abilities: {0: "Blaze", H: "Infuriation"},
+	},
+	typhlosion: {
+		inherit: true,
+      abilities: {0: "Blaze", H: "Infuriation"},
+	},
 };
