@@ -942,7 +942,7 @@ let BattleScripts = {
 	},
 
 	runMegaEvo: function (pokemon) {
-		const effectType = pokemon.canMegaEvo ? '-mega' : '-burst' : '-omni enhanced';
+		const effectType = pokemon.canMegaEvo ? '-mega' : '-omni enhanced';
 		// @ts-ignore
 		const template = this.getTemplate(pokemon.canMegaEvo || pokemon.canUltraBurst || pokemon.canOmniEvo);
 		const side = pokemon.side;
