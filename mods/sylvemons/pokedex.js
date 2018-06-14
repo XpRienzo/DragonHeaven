@@ -449,4 +449,19 @@ exports.BattlePokedex = {
 		types: ["Psychic", "Fighting"],
       abilities: {0: "Knight's Blade"},
 	},
+	oshawott: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Torrent", 1: "Knight's Blade", H: "Shell Armor"},
+	},
+	dewott: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Torrent", 1: "Knight's Blade", H: "Shell Armor"},
+	},
+	samurott: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Torrent", 1: "Knight's Blade", H: "Shell Armor"},
+	},
 };
