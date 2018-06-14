@@ -926,7 +926,7 @@ let BattleScripts = {
 	},
   
   canOmniEvo: function (pokemon) {
-		let altForme = pokemon.baseTemplate.otherFormes && this.getTemplate(pokemon.baseTemplate.otherFormes[0]);
+		let altForme = pokemon.baseTemplate.otherFormes[0];
 		let item = pokemon.getItem();
 		if (item === 'omnitrix' && pokemon.formeLetter === 'OE') {
 		return altForme;
@@ -942,7 +942,7 @@ let BattleScripts = {
 	},
 
 	runMegaEvo: function (pokemon) {
-		const effectType = pokemon.canMegaEvo ? '-mega' : '-burst';
+		const effectType = pokemon.canMegaEvo ? '-mega' : '-burst' : '-omni enhanced';
 		// @ts-ignore
 		const template = this.getTemplate(pokemon.canMegaEvo || pokemon.canUltraBurst || pokemon.canOmniEvo);
 		const side = pokemon.side;
