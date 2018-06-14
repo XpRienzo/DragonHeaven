@@ -416,10 +416,20 @@ exports.BattlePokedex = {
 		types: ["Normal"],
       abilities: {0: "Cute Charm", 1: "Normalize", H: "Housekeeping"},
 	},
+	igglybuff: {
+		inherit: true,
+		types: ["Normal", "Fairy"],
+      abilities: {0: "Misty Surge", 1: "Competitive", H: "Friend Guard"},
+	},
+	jigglypuff: {
+		inherit: true,
+		types: ["Normal", "Fairy"],
+      abilities: {0: "Misty Surge", 1: "Competitive", H: "Friend Guard"},
+	},
 	wigglytuff: {
 		inherit: true,
 		types: ["Normal", "Fairy"],
-      abilities: {0: "Cute Charm", 1: "Competitive", H: "Housekeeping"},
+      abilities: {0: "Misty Surge", 1: "Competitive", H: "Housekeeping"},
 	},
 	inkay: {
 		inherit: true,
