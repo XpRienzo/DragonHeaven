@@ -292,7 +292,7 @@ exports.BattlePokedex = {
 	hoopa: {
       inherit: true,
 		types: ["Psychic", "Ghost"],
-      abilities: {0: "Magician", H: "Magic Healing"},
+      abilities: {0: "Magician", 1: "Dimension Warp", H: "Magic Healing"},
 	},
 	cresselia: {
 		inherit: true,
