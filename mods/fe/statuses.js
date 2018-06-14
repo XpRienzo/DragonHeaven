@@ -477,6 +477,27 @@ afterstorm: {
 			if (move && (move.type === type)) return priority + 3;
 		},
 	},
+	
+	chainheal: {
+		// this is a side condition
+		name: 'chainheal',
+		id: 'chainheal',
+		onStart: function (side, source, sourceEffect) {
+			this.effectData.position = source.position;
+			this.effectData.sourceEffect = sourceEffect;
+			this.add('-activate', source, 'chainheal');
+		},
+		onSwitchInPriority: 1,
+		onSwitchIn: function (target) {
+			if (!target.fainted && target.position === this.effectData.position) {
+				let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'chainheal', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'truant', 'resurrection', 'magicalwand', 'sleepingsystem', 'cursedcloak', 'appropriation', 'disguiseburden', 'hideandseek', 'beastcostume', 'spiralpower', 'optimize', 'prototype', 'typeillusionist', 'godoffertility', 'foundation', 'sandyconstruct', 'victorysystem', 'techequip', 'technicalsystem', 'triagesystem', 'geneticalgorithm', 'effectsetter', 'tacticalcomputer', 'mitosis', 'barbstance', 'errormacro', 'combinationdrive', 'stanceshield', 'unfriend', 'desertmirage', 'sociallife', 'cosmology', 'crystallizedshield', 'compression', 'whatdoesthisdo'];
+				if (!bannedAbilities.includes(target.ability)){
+					target.setAbility('chainheal');
+				}
+				target.side.removeSideCondition('chainheal');
+			}
+		},
+	},
 };
 
 exports.BattleStatuses = BattleStatuses;
