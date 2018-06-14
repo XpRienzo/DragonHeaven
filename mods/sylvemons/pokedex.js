@@ -442,7 +442,7 @@ exports.BattlePokedex = {
 	gallade: {
 		inherit: true,
 		types: ["Psychic", "Fighting"],
-      abilities: {0: "Knight's Blade", H: "Justified"},
+      abilities: {0: "Knight's Blade", 1: "Justified", H: "Guard Up"},
 	},
 	gallademega: {
 		inherit: true,
@@ -548,5 +548,155 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Psychic"],
       abilities: {0: "Time Warp", 1: "Synchronize", H: "Telepathy"},
+	},
+	gulpin: {
+		inherit: true,
+		types: ["Poison"],
+      abilities: {0: "Liquid Ooze", 1: "Corrosion", H: "Gluttony"},
+	},
+	swalot: {
+		inherit: true,
+		types: ["Poison"],
+      abilities: {0: "Liquid Ooze", 1: "Corrosion", H: "Gluttony"},
+	},
+	grimer: {
+		inherit: true,
+		types: ["Poison"],
+      abilities: {0: "Stench", 1: "Corrosion", H: "Poison Touch"},
+	},
+	muk: {
+		inherit: true,
+		types: ["Poison"],
+      abilities: {0: "Stench", 1: "Corrosion", H: "Poison Touch"},
+	},
+	skrelp: {
+		inherit: true,
+		types: ["Poison", "Water"],
+      abilities: {0: "Corrosion", 1: "Poison Touch", H: "Adaptability"},
+	},
+	dragalge: {
+		inherit: true,
+		types: ["Poison", "Dragon"],
+      abilities: {0: "Corrosion", 1: "Poison Touch", H: "Adaptability"},
+	},
+	drifblim: {
+		inherit: true,
+		types: ["Ghost", "Flying"],
+      abilities: {0: "Aftermath", 1: "Air Stream", H: "Flare Boost"},
+	},
+	altaria: {
+		inherit: true,
+		types: ["Dragon", "Flying"],
+      abilities: {0: "Natural Cure", 1: "Air Stream", H: "Cloud Nine"},
+	},
+	swanna: {
+		inherit: true,
+		types: ["Water", "Flying"],
+      abilities: {0: "Air Stream", 1: "Big Pecks", H: "Hydration"},
+	},
+	unfezant: {
+		inherit: true,
+		types: ["Normal", "Flying"],
+      abilities: {0: "Big Pecks", 1: "Air Stream", H: "Rivalry"},
+	},
+	shelmet: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Guard Up", 1: "Shell Armor", H: "Overcoat"},
+	},
+	chespin: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Overgrow", 1: "Guard Up", H: "Bulletproof"},
+	},
+	quilladin: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Overgrow", 1: "Guard Up", H: "Bulletproof"},
+	},
+	chesnaught: {
+		inherit: true,
+		types: ["Grass", "Fighting"],
+      abilities: {0: "Overgrow", 1: "Guard Up", H: "Bulletproof"},
+	},
+	metapod: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Shed Skin", H: "Guard Up"},
+	},
+	kakuna: {
+		inherit: true,
+		types: ["Bug", "Poison"],
+      abilities: {0: "Shed Skin", H: "Guard Up"},
+	},
+	silcoon: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Shed Skin", H: "Guard Up"},
+	},
+	cascoon: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Shed Skin", H: "Guard Up"},
+	},
+	swadloon: {
+		inherit: true,
+		types: ["Bug", "Grass"],
+      abilities: {0: "Leaf Guard", 1: "Chlorophyll", H: "Guard Up"},
+	},
+	spewpa: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Shed Skin", 1: "Friend Guard", H: "Guard Up"},
+	},
+	hitmonchan: {
+		inherit: true,
+		types: ["Fighting"],
+      abilities: {0: "Guard Up", 1: "Iron Fist", H: "Inner Focus"},
+	},
+	burmy: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Shed Skin", 1: "Guard Up", H: "Overcoat"},
+	},
+	burmysandy: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Shed Skin", 1: "Guard Up", H: "Overcoat"},
+	},
+	burmytrash: {
+		inherit: true,
+		types: ["Bug"],
+      abilities: {0: "Shed Skin", 1: "Guard Up", H: "Overcoat"},
+	},
+	wormadam: {
+		inherit: true,
+		types: ["Bug", "Grass"],
+      abilities: {0: "Anticipation", 1: "Guard Up", H: "Overcoat"},
+	},
+	wormadamsandy: {
+		inherit: true,
+		types: ["Bug", "Ground"],
+      abilities: {0: "Anticipation", 1: "Guard Up", H: "Overcoat"},
+	},
+	wormadamtrash: {
+		inherit: true,
+		types: ["Bug", "Steel"],
+      abilities: {0: "Anticipation", 1: "Guard Up", H: "Overcoat"},
+	},
+	mothim: {
+		inherit: true,
+		types: ["Bug", "Flying"],
+      abilities: {0: "Swarm", 1: "Guard Up", H: "Tinted Lens"},
+	},
+	gardevoir: {
+		inherit: true,
+		types: ["Psychic", "Fairy"],
+      abilities: {0: "Synchronize", 1: "Telepathy", H: "Guard Up"},
+	},
+	golisopod: {
+		inherit: true,
+		types: ["Bug", "Water"],
+      abilities: {0: "Emergency Exit", H: "Guard Up"},
 	},
 };
