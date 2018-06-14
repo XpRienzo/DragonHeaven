@@ -444,10 +444,15 @@ exports.BattlePokedex = {
 		types: ["Ghost", "Fire"],
       abilities: {0: "Flash Fire", 1: "Mind Trick", H: "Infiltrator"},
 	},
+	drowzee: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Insomnia", 1: "Psychic Surge", H: "Inner Focus"},
+	},
 	hypno: {
 		inherit: true,
 		types: ["Psychic"],
-      abilities: {0: "Insomnia", 1: "Forewarn", H: "Mind Trick"},
+      abilities: {0: "Insomnia", 1: "Psychic Surge", H: "Mind Trick"},
 	},
 	gallade: {
 		inherit: true,
