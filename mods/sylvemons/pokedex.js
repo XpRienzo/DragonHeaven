@@ -163,6 +163,11 @@ exports.BattlePokedex = {
 		types: ["Rock", "Fire"],
 		abilities: {0: "Tough Claws", 1: "Technician", H: "Adaptability"},
 	},
+	cosmog: {
+		inherit: true,
+		types: ["Psychic"],
+		abilities: {0: "Unaware", H: "Dimension Warp"},
+	},
 	solgaleo: {
 		inherit: true,
 		types: ["Steel", "Fire"],
@@ -1264,5 +1269,45 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Ghost", "Dragon"],
       abilities: {0: "Pressure", 1: "Dimension Warp", H: "Telepathy"},
+	},
+	unown: {
+		inherit: true,
+		types: ["Psychic"],
+		abilities: {0: "Levitate", H: "Dimension Warp"},
+	},
+	uxie: {
+		inherit: true,
+		types: ["Psychic"],
+		abilities: {0: "Levitate", H: "Dimension Warp"},
+	},
+	mesprit: {
+		inherit: true,
+		types: ["Psychic"],
+		abilities: {0: "Levitate", H: "Dimension Warp"},
+	},
+	azelf: {
+		inherit: true,
+		types: ["Psychic"],
+		abilities: {0: "Levitate", H: "Dimension Warp"},
+	},
+	nihilego: {
+		inherit: true,
+		types: ["Rock", "Poison"],
+		abilities: {0: "Beast Boost", H: "Dimension Warp"},
+	},
+	porygon: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Trace", 1: "Download", H: "Dimension Warp"},
+	},
+	porygon2: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Trace", 1: "Download", H: "Dimension Warp"},
+	},
+	porygonz: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Adaptability", 1: "Download", H: "Dimension Warp"},
 	},
 };
