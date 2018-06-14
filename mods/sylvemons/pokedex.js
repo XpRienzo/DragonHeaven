@@ -135,7 +135,7 @@ exports.BattlePokedex = {
 	lycanrocmidnight: {
 		inherit: true,
 		types: ["Rock", "Dark"],
-		abilities: {0: "Keen Eye", 1: "Vital Spirit", H: "Adaptability"},
+		abilities: {0: "Keen Eye", 1: "Obstinacy", H: "Adaptability"},
 	},
 	lycanrocdusk: {
 		inherit: true,
@@ -698,5 +698,85 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Bug", "Water"],
       abilities: {0: "Emergency Exit", H: "Guard Up"},
+	},
+	jangmoo: {
+		inherit: true,
+		types: ["Dragon"],
+      abilities: {0: "Bulletproof", 1: "Soundproof", H: "Scrappy"},
+	},
+	hakamoo: {
+		inherit: true,
+		types: ["Dragon", "Fighting"],
+      abilities: {0: "Bulletproof", 1: "Soundproof", H: "Scrappy"},
+	},
+	kommoo: {
+		inherit: true,
+		types: ["Dragon", "Fighting"],
+      abilities: {0: "Bulletproof", 1: "Soundproof", H: "Scrappy"},
+	},
+	sandile: {
+		inherit: true,
+		types: ["Ground", "Dark"],
+      abilities: {0: "Intimidate", 1: "Moxie", H: "Scrappy"},
+	},
+	krokorok: {
+		inherit: true,
+		types: ["Ground", "Dark"],
+      abilities: {0: "Intimidate", 1: "Moxie", H: "Scrappy"},
+	},
+	krookodile: {
+		inherit: true,
+		types: ["Ground", "Dark"],
+      abilities: {0: "Intimidate", 1: "Moxie", H: "Scrappy"},
+	},
+	cubone: {
+		inherit: true,
+		types: ["Ground"],
+      abilities: {0: "Rock Head", 1: "Scrappy", H: "Battle Armor"},
+	},
+	marowak: {
+		inherit: true,
+		types: ["Ground"],
+      abilities: {0: "Rock Head", 1: "Scrappy", H: "Battle Armor"},
+	},
+	doduo: {
+		inherit: true,
+		types: ["Normal", "Flying"],
+      abilities: {0: "Run Away", 1: "Scrappy", H: "Tangled Feet"},
+	},
+	dodrio: {
+		inherit: true,
+		types: ["Normal", "Flying"],
+      abilities: {0: "Run Away", 1: "Scrappy", H: "Tangled Feet"},
+	},
+	pichu: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Static", 1: "Scrappy", H: "Lightning Rod"},
+	},
+	pikachu: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Static", 1: "Scrappy", H: "Lightning Rod"},
+	},
+	raichu: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Static", 1: "Scrappy", H: "Lightning Rod"},
+	},
+	deino: {
+		inherit: true,
+		types: ["Dark", "Dragon"],
+      abilities: {0: "Hustle", H: "Scrappy"},
+	},
+	zweilous: {
+		inherit: true,
+		types: ["Dark", "Dragon"],
+      abilities: {0: "Hustle", H: "Scrappy"},
+	},
+	hydreigon: {
+		inherit: true,
+		types: ["Dark", "Dragon"],
+      abilities: {0: "Levitate", H: "Scrappy"},
 	},
 };
