@@ -307,6 +307,136 @@ exports.BattlePokedex = {
 	sigilyph: {
 		inherit: true,
 		types: ["Psychic", "Flying"],
-        abilities: {0: "Magic Healing", 1: "Magic Guard", H: "Tinted Lens"},
+      abilities: {0: "Magic Healing", 1: "Magic Guard", H: "Tinted Lens"},
+	},
+	haunter: {
+		inherit: true,
+		types: ["Ghost", "Poison"],
+		abilities: {0: "Levitate", H: "Ethereal Fist"},
+	},
+	gengar: {
+		inherit: true,
+		types: ["Ghost", "Poison"],
+		abilities: {0: "Cursed Body", H: "Ethereal Fist"},
+	},
+	solosis: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Ethereal Fist", 1: "Magic Guard", H: "Regenerator"},
+	},
+	duosion: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Ethereal Fist", 1: "Magic Guard", H: "Regenerator"},
+	},
+	reuniclus: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Ethereal Fist", 1: "Magic Guard", H: "Regenerator"},
+	},
+	alakazam: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Synchronize", 1: "Ethereal Fist", H: "Magic Guard"},
+	},
+	alakazammega: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Ethereal Fist"},
+	},
+	dusknoir: {
+		inherit: true,
+		types: ["Ghost"],
+      abilities: {0: "Pressure", 1: "Ethereal Fist", H: "Frisk"},
+	},
+	shaymin: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Natural Cure", H: "Dispersal"},
+	},
+	sunkern: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Chlorophyll", 1: "Solar Power", H: "Dispersal"},
+	},
+	sunflora: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Chlorophyll", 1: "Solar Power", H: "Dispersal"},
+	},
+	bulbasaur: {
+		inherit: true,
+		types: ["Grass", "Poison"],
+      abilities: {0: "Overgrow", H: "Dispersal"},
+	},
+	ivysaur: {
+		inherit: true,
+		types: ["Grass", "Poison"],
+      abilities: {0: "Overgrow", H: "Dispersal"},
+	},
+	venusaur: {
+		inherit: true,
+		types: ["Grass", "Poison"],
+      abilities: {0: "Overgrow", H: "Dispersal"},
+	},
+	trevenant: {
+		inherit: true,
+		types: ["Ghost", "Grass"],
+      abilities: {0: "Natural Cure", 1: "Dispersal", H: "Harvest"},
+	},
+	cinccino: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Cute Charm", 1: "Housekeeping", H: "Skill Link"},
+	},
+	jirachi: {
+		inherit: true,
+		types: ["Steel", "Psychic"],
+      abilities: {0: "Serene Grace", H: "Housekeeping"},
+	},
+	chansey: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Natural Cure", 1: "Housekeeping", H: "Healer"},
+	},
+	blissey: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Natural Cure", 1: "Housekeeping", H: "Healer"},
+	},
+	delcatty: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Cute Charm", 1: "Normalize", H: "Housekeeping"},
+	},
+	wigglytuff: {
+		inherit: true,
+		types: ["Normal", "Fairy"],
+      abilities: {0: "Cute Charm", 1: "Competitive", H: "Housekeeping"},
+	},
+	malamar: {
+		inherit: true,
+		types: ["Dark", "Psychic"],
+      abilities: {0: "Suction Cups", 1: "Contrary", H: "Mind Trick"},
+	},
+	litwick: {
+		inherit: true,
+		types: ["Ghost", "Fire"],
+      abilities: {0: "Flash Fire", 1: "Mind Trick", H: "Infiltrator"},
+	},
+	lampent: {
+		inherit: true,
+		types: ["Ghost", "Fire"],
+      abilities: {0: "Flash Fire", 1: "Mind Trick", H: "Infiltrator"},
+	},
+	chandelure: {
+		inherit: true,
+		types: ["Ghost", "Fire"],
+      abilities: {0: "Flash Fire", 1: "Mind Trick", H: "Infiltrator"},
+	},
+	hypno: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Insomnia", 1: "Forewarn", H: "Mind Trick"},
 	},
 };
