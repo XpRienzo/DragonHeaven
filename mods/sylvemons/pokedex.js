@@ -1059,4 +1059,19 @@ exports.BattlePokedex = {
 		types: ["Steel"],
       abilities: {0: "Clear Body", 1: "Bulletproof", H: "Light Metal"},
 	},
+	magcargo: {
+		inherit: true,
+		types: ["Fire", "Rock"],
+      abilities: {0: "Drought", 1: "Flame Body", H: "Weak Armor"},
+	},
+	solrock: {
+		inherit: true,
+		types: ["Rock", "Psychic"],
+      abilities: {0: "Rock", H: "Drought"},
+	},
+	lunatone: {
+		inherit: true,
+		types: ["Rock", "Psychic"],
+      abilities: {0: "Rock", H: "Sand Stream"},
+	},
 };
