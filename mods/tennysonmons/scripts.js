@@ -929,7 +929,7 @@ let BattleScripts = {
 			pokemon.getItem().id === 'ultranecroziumz') {
 			return "Necrozma-Ultra";
 		}
-		else if (['OE'].includes(pokemon.baseTemplate.formeLetter) && pokemon.getItem().id === 'omnitrix') {
+		else if (['Omni Enhanced'].includes(pokemon.baseTemplate.forme) && pokemon.getItem().id === 'omnitrix') {
 			return pokemon.species;
 		}
 		return null;
