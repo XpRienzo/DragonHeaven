@@ -697,7 +697,7 @@ exports.BattlePokedex = {
 	gardevoir: {
 		inherit: true,
 		types: ["Psychic", "Fairy"],
-      abilities: {0: "Synchronize", 1: "Telepathy", H: "Guard Up"},
+      abilities: {0: "Synchronize", 1: "Perseverance", H: "Guard Up"},
 	},
 	golisopod: {
 		inherit: true,
