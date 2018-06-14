@@ -1011,7 +1011,7 @@ exports.BattlePokedex = {
 	},
 	lugia: {
 		inherit: true,
-		types: ["Water", "Flying"],
+		types: ["Psychic", "Flying"],
       abilities: {0: "Pressure", 1: "Drizzle", H: "Multiscale"},
 	},
 };
