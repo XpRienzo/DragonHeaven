@@ -512,7 +512,7 @@ exports.BattlePokedex = {
 	dialga: {
 		inherit: true,
 		types: ["Steel", "Dragon"],
-      abilities: {0: "Pressure", 1: "Telepathy", H: "Time Warp"},
+      abilities: {0: "Pressure", 1: "Infuriation", H: "Time Warp"},
 	},
 	baltoy: {
 		inherit: true,
@@ -783,5 +783,15 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Dark", "Dragon"],
       abilities: {0: "Levitate", H: "Scrappy"},
+	},
+	palkia: {
+		inherit: true,
+		types: ["Water", "Dragon"],
+      abilities: {0: "Pressure", H: "Infuriation"},
+	},
+	garchompmega: {
+		inherit: true,
+		types: ["Dragon", "Ground"],
+      abilities: {0: "Sand Veil"},
 	},
 };
