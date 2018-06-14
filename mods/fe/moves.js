@@ -1044,6 +1044,63 @@ exports.BattleMovedex = {
 		zMovePower: 100,
 		contestType: "Cool",
 	},
+	
+	"brickbreak": {
+		num: 280,
+		accuracy: 100,
+		basePower: 75,
+		category: "Physical",
+		desc: "If this attack does not miss, the effects of Reflect, Light Screen, and Aurora Veil end for the target's side of the field before damage is calculated.",
+		shortDesc: "Destroys screens, unless the target is immune.",
+		id: "brickbreak",
+		isViable: true,
+		name: "Brick Break",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryHit: function (pokemon) {
+			// will shatter screens through sub, before you hit
+			if (pokemon.runImmunity('Fighting')) {
+				pokemon.side.removeSideCondition('reflect');
+				pokemon.side.removeSideCondition('lightscreen');
+				pokemon.side.removeSideCondition('auroraveil');
+				pokemon.side.removeSideCondition('solarshields');
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Fighting",
+		zMovePower: 140,
+		contestType: "Cool",
+	},
+	"psychicfangs": {
+		num: 706,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		desc: "If this attack does not miss, the effects of Reflect, Light Screen, and Aurora Veil end for the target's side of the field before damage is calculated.",
+		shortDesc: "Destroys screens, unless the target is immune.",
+		id: "psychicfangs",
+		isViable: true,
+		name: "Psychic Fangs",
+		pp: 10,
+		priority: 0,
+		flags: {bite: 1, contact: 1, protect: 1, mirror: 1},
+		onTryHit: function (pokemon) {
+			// will shatter screens through sub, before you hit
+			if (pokemon.runImmunity('Psychic')) {
+				pokemon.side.removeSideCondition('reflect');
+				pokemon.side.removeSideCondition('lightscreen');
+				pokemon.side.removeSideCondition('auroraveil');
+				pokemon.side.removeSideCondition('solarshields');
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Psychic",
+		zMovePower: 160,
+		contestType: "Clever",
+	},
 	"hyperspacefury": { // Hyperspace for all 
 		num: 621,
 		accuracy: true,
@@ -8328,5 +8385,159 @@ exports.BattleMovedex = {
 		type: "Psychic",
 		zMovePower: 195,
 		contestType: "Clever",
+	},
+	
+	"conquerorscascade": {
+		accuracy: 90,
+		basePower: 30,
+		category: "Physical",
+		desc: "Hits 1-5 times based upon happiness. Max Happiness = 5 hits; number of hits decreases for every 51 happiness lost.",
+		shortDesc: "Hits 1-5 times in one turn. The amount of hits increases with happiness.",
+		id: "conquerorscascade",
+		isViable: true,
+		name: "Conqueror's Cascade",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onModifyMove: function (move, pokemon) {
+			move.multihit = Math.floor((pokemon.happiness / 5) + 1) || 1;
+		},
+		secondary: false,
+		target: "allAdjacentFoes",
+		type: "Dragon",
+		zMovePower: 100,
+		contestType: "Cool",
+	},
+	
+	"falterphase": {
+		accuracy: 100,
+		basePower: 0,
+		damage: 'level',
+		category: "Special",
+		desc: "Deals damage to the target equal to the user's level. If this move is successful and the user has not fainted, the user switches out even if it is trapped and is replaced immediately by a selected party member. The user does not switch out if there are no unfainted party members, or if the target switched out using an Eject Button.",
+		shortDesc: "Does damage equal to the user's level. User switches out after damaging the target.",
+		id: "falterphase",
+		isViable: true,
+		name: "Falter Phase",
+		pp: 30,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		selfSwitch: true,
+		secondary: false,
+		target: "normal",
+		type: "Psychic",
+		zMovePower: 100,
+		contestType: "Clever",
+	},
+
+	"synchrobust": {
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		desc: "Removes the target's held item, if applicable. Deals 1.5* damage if the target shares at least one type with the user.",
+		shortDesc: "1.5x damage if foe shares the user's type. Removes target's item.",
+		id: "synchrobust",
+		isViable: true,
+		name: "Synchro Bust",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onBasePowerPriority: 4,
+		onBasePower: function (basePower, source, target, move) {
+			if (target.hasType(source.getTypes())) {
+				return this.chainModify(1.5);
+			}
+		},
+		onAfterHit: function (target, source) {
+			if (source.hp) {
+				let item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Synchro Bust', '[of] ' + source);
+				}
+			}
+		},
+		secondary: false,
+		target: "normal",
+		type: "Dark",
+		zMovePower: 160,
+		contestType: "Clever",
+	},
+	
+"solarshields": {
+	   accuracy: true,
+		basePower: 0,
+		category: "Status",
+		desc: "For 5 turns, the user and its party members take 0.5x damage from physical and special attacks, or 0.66x damage if in a Double Battle; does not reduce damage further with Reflect or Light Screen. Critical hits ignore this protection. It is removed from the user's side if the user or an ally is successfully hit by Brick Break, Psychic Fangs, or Defog. Brick Break and Psychic Fangs remove the effect before damage is calculated. Lasts for 8 turns if the user is holding Light Clay. Fails unless the weather is Sun.",
+		shortDesc: "For 5 turns, damage to allies is halved. Sun only.",
+		id: "solarshields",
+		isViable: true,
+		name: "Solar Shields",
+		pp: 20,
+		priority: 0,
+		flags: {snatch: 1},
+		sideCondition: 'solarshields',
+		onTryHitSide: function () {
+			if (!this.isWeather(['sunnyday', 'desolateland', 'solarsnow'])) return false;
+		},
+		effect: {
+			duration: 5,
+			durationCallback: function (target, source, effect) {
+				if (source && source.hasItem('lightclay')) {
+					return 8;
+				}
+				return 5;
+			},
+			onAnyModifyDamage: function (damage, source, target, move) {
+				if (target !== source && target.side === this.effectData.target) {
+					if ((target.side.sideConditions['reflect'] && this.getCategory(move) === 'Physical') ||
+							(target.side.sideConditions['lightscreen'] && this.getCategory(move) === 'Special')) {
+						return;
+					}
+					if (!move.crit && !move.infiltrates) {
+						this.debug('Solar Shields weaken');
+						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
+						return this.chainModify(0.5);
+					}
+				}
+			},
+			onStart: function (side) {
+				this.add('-sidestart', side, 'move: Solar Shields');
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 1,
+			onEnd: function (side) {
+				this.add('-sideend', side, 'move: Solar Shields');
+			},
+		},
+		secondary: false,
+		target: "allySide",
+		type: "Fire",
+		zMoveBoost: {spe: 1},
+		contestType: "Beautiful",
+	},
+	"acco": {
+		accuracy: 100,
+		basePower: 180,
+		category: "Physical",
+		desc: "Lowers the user's Speed, Defense, and Special Defense by 1 stage.",
+		shortDesc: "Lowers the user's Defense, Sp. Def, Speed by 1.",
+		id: "acco",
+		isViable: true,
+		name: "Acco",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		self: {
+			boosts: {
+				spe: -1,
+				def: -1,
+				spd: -1,
+			},
+		},
+		secondary: false,
+		target: "normal",
+		type: "Ground",
+		zMovePower: 220,
+		contestType: "Cool",
 	},
 };
