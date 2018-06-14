@@ -794,4 +794,9 @@ exports.BattlePokedex = {
 		types: ["Dragon", "Ground"],
       abilities: {0: "Sand Veil"},
 	},
+	tyrunt: {
+		inherit: true,
+		types: ["Rock", "Dragon"],
+      abilities: {0: "Strong Jaw", H: "Anger Point"},
+	},
 };
