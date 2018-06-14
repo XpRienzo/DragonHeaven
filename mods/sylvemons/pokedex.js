@@ -367,7 +367,7 @@ exports.BattlePokedex = {
 	sunflora: {
 		inherit: true,
 		types: ["Grass"],
-      abilities: {0: "Chlorophyll", 1: "Solar Power", H: "Dispersal"},
+      abilities: {0: "Drought", 1: "Solar Power", H: "Dispersal"},
 	},
 	bulbasaur: {
 		inherit: true,
