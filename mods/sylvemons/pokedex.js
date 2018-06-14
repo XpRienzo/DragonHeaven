@@ -464,4 +464,19 @@ exports.BattlePokedex = {
 		types: ["Water"],
       abilities: {0: "Torrent", 1: "Knight's Blade", H: "Shell Armor"},
 	},
+	honedge: {
+		inherit: true,
+		types: ["Steel", "Ghost"],
+      abilities: {0: "No Guard", 1: "Knight's Blade", H: "Guard Up"},
+	},
+	doublade: {
+		inherit: true,
+		types: ["Steel", "Ghost"],
+      abilities: {0: "No Guard", 1: "Knight's Blade", H: "Guard Up"},
+	},
+	escavalier: {
+		inherit: true,
+		types: ["Bug", "Steel"],
+      abilities: {0: "Guard Up", 1: "Shell Armor", H: "Knight's Blade"},
+	},
 };
