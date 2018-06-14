@@ -11,6 +11,7 @@ let BattleItems = {
 			if (pokemon.baseTemplate.baseSpecies === 'Heat Blast') {
 				this.add('-formechange', pokemon, 'Heat Blast-Omni Enhanced', '[msg]');
 				pokemon.formeChange("Heat Blast-Omni Enhanced");
+				pokemon.setAbility('speedboost');
 			}
 		},
     fling: {
