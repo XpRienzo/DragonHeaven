@@ -14,6 +14,11 @@ exports.BattlePokedex = {
         inherit: true,
         types: ["Dark", "Fairy"],
     },
+	chansey: {
+		inherit: true,
+		types: ["Normal"],
+      abilities: {0: "Natural Cure", 1: "Housekeeping", H: "Healer"},
+	},
     blissey: {
         inherit: true,
         types: ["Normal", "Fairy"],
@@ -403,11 +408,6 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Steel", "Psychic"],
       abilities: {0: "Serene Grace", H: "Housekeeping"},
-	},
-	chansey: {
-		inherit: true,
-		types: ["Normal"],
-      abilities: {0: "Natural Cure", 1: "Housekeeping", H: "Healer"},
 	},
 	delcatty: {
 		inherit: true,
