@@ -199,6 +199,11 @@ exports.BattlePokedex = {
 		types: ["Ground", "Bug"],
 		abilities: {0: "Levitate", 1: "Sand Stream", H: "Tinted Lens"},
 	},
+	remoraid: {
+		inherit: true,
+		types: ["Water"],
+		abilities: {0: "Hustle", 1: "Sniper", H: "Mega Launcher"},
+	},
 	octillery: {
 		inherit: true,
 		types: ["Water", "Fire"],
