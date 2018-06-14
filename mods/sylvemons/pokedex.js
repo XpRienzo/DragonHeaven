@@ -747,12 +747,12 @@ exports.BattlePokedex = {
 	doduo: {
 		inherit: true,
 		types: ["Normal", "Flying"],
-      abilities: {0: "Run Away", 1: "Scrappy", H: "Tangled Feet"},
+      abilities: {0: "Run Away", 1: "Scrappy", H: "Sole Caliber"},
 	},
 	dodrio: {
 		inherit: true,
 		types: ["Normal", "Flying"],
-      abilities: {0: "Run Away", 1: "Scrappy", H: "Tangled Feet"},
+      abilities: {0: "Run Away", 1: "Scrappy", H: "Sole Caliber"},
 	},
 	pichu: {
 		inherit: true,
