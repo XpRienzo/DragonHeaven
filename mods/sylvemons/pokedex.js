@@ -34,6 +34,10 @@ exports.BattlePokedex = {
         inherit: true,
         types: ["Fairy", "Poison"],
     },
+    aromatisse: {
+        inherit: true,
+        types: ["Fairy", "Poison"],
+    },
     stakataka: {
         inherit: true,
         types: ["Ghost", "Steel"],
@@ -174,6 +178,10 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Fire", "Normal"],
 	},
+	slaking: {
+		inherit: true,
+		abilities: {0: "Truant", H: "Klutz"},
+	},
 	trapinch: {
 		inherit: true,
 		types: ["Ground", "Bug"],
@@ -204,7 +212,7 @@ exports.BattlePokedex = {
         types: ["Grass", "Fire"],
         abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Drought"},
     },
-    deerlingspring: {
+    deerling: {
         inherit: true,
         types: ["Grass", "Fairy"],
         abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Misty Surge"},
@@ -224,7 +232,7 @@ exports.BattlePokedex = {
         types: ["Grass", "Fire"],
         abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Drought"},
     },
-    sawsbuckspring: {
+    sawsbuck: {
         inherit: true,
         types: ["Grass", "Fairy"],
         abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Misty Surge"},
@@ -234,4 +242,24 @@ exports.BattlePokedex = {
         types: ["Grass", "Ghost"],
         abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Shadow Surge"},
     },
+	oricorio: {
+      inherit: true,
+		types: ["Fire", "Flying"],
+		abilities: {0: "Dancer", H: "Serene Grace"},
+	},
+	oricoriopompom: {
+      inherit: true,
+		types: ["Electric", "Flying"],
+		abilities: {0: "Dancer", H: "Serene Grace"},
+	},
+	oricoriopau: {
+      inherit: true,
+		types: ["Psychic", "Flying"],
+		abilities: {0: "Dancer", H: "Serene Grace"},
+	},
+	oricoriosensu: {
+      inherit: true,
+		types: ["Ghost", "Flying"],
+		abilities: {0: "Dancer", H: "Serene Grace"},
+	},
 };
