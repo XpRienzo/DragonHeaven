@@ -49,10 +49,12 @@ exports.BattlePokedex = {
 	misdreavus: {
 		inherit: true,
 		types: ["Ghost", "Fairy"],
+		abilities: {0: "Levitate", H: "Magic Healing"},
 	},
 	mismagius: {
 		inherit: true,
 		types: ["Ghost", "Fairy"],
+		abilities: {0: "Levitate", H: "Magic Healing"},
 	},
 	yanmega: {
 		inherit: true,
@@ -261,5 +263,50 @@ exports.BattlePokedex = {
       inherit: true,
 		types: ["Ghost", "Flying"],
 		abilities: {0: "Dancer", H: "Serene Grace"},
+	},
+	audinomega: {
+      inherit: true,
+		types: ["Normal", "Fairy"],
+		abilities: {0: "Magic Healing"},
+	},
+	fennekin: {
+      inherit: true,
+		types: ["Fire"],
+      abilities: {0: "Blaze", H: "Magic Healing"},
+	},
+	braixen: {
+      inherit: true,
+		types: ["Fire"],
+      abilities: {0: "Blaze", H: "Magic Healing"},
+	},
+	delphox: {
+      inherit: true,
+		types: ["Fire", "Psychic"],
+      abilities: {0: "Blaze", H: "Magic Healing"},
+	},
+	hoopa: {
+      inherit: true,
+		types: ["Psychic", "Ghost"],
+      abilities: {0: "Magician", H: "Magic Healing"},
+	},
+	cresselia: {
+		inherit: true,
+		types: ["Psychic"],
+		abilities: {0: "Levitate", H: "Magic Healing"},
+	},
+	chingling: {
+		inherit: true,
+		types: ["Psychic"],
+		abilities: {0: "Levitate", H: "Magic Healing"},
+	},
+	chimecho: {
+		inherit: true,
+		types: ["Psychic"],
+		abilities: {0: "Levitate", H: "Magic Healing"},
+	},
+	sigilyph: {
+		inherit: true,
+		types: ["Psychic", "Flying"],
+        abilities: {0: "Magic Healing", 1: "Magic Guard", H: "Tinted Lens"},
 	},
 };
