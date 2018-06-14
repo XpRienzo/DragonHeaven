@@ -439,4 +439,14 @@ exports.BattlePokedex = {
 		types: ["Psychic"],
       abilities: {0: "Insomnia", 1: "Forewarn", H: "Mind Trick"},
 	},
+	gallade: {
+		inherit: true,
+		types: ["Psychic", "Fighting"],
+      abilities: {0: "Knight's Blade", H: "Justified"},
+	},
+	gallademega: {
+		inherit: true,
+		types: ["Psychic", "Fighting"],
+      abilities: {0: "Knight's Blade"},
+	},
 };
