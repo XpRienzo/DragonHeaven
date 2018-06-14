@@ -10,10 +10,16 @@ let BattleItems = {
 			if (pokemon.baseTemplate.baseSpecies === 'Heat Blast') {
 				return "Heat Blast-Omni Enhanced";
 			}
+			else if (pokemon.baseTemplate.baseSpecies === 'Upgrade') {
+				return "Upgrade-Omni Enhanced";
+			}
 		},
 		megaEvolves: function(pokemon) {
 			if (pokemon.baseTemplate.baseSpecies === 'Heat Blast') {
 				return "Heat Blast";
+			}
+			else if (pokemon.baseTemplate.baseSpecies === 'Upgrade') {
+				return "Upgrade";
 			}
 		},
 		/*megaStone: "Heat Blast-Omni Enhanced",
@@ -31,9 +37,6 @@ let BattleItems = {
 				pokemon.setAbility('intimidate');
 			}
 		},*/
-    fling: {
-			basePower: 20,
-		},
 		desc: "If held by an Alien with an Omni-forme, it allows the Alien to Omni enhance in battle.",
 	},
   
