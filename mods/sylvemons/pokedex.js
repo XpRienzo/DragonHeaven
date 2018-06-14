@@ -909,4 +909,9 @@ exports.BattlePokedex = {
 		types: ["Dark"],
       abilities: {0: "Synchronize", 1: "Shadow Surge", H: "Inner Focus"},
 	},
+	houndoommega: {
+		inherit: true,
+		types: ["Dark", "Fire"],
+      abilities: {0: "Shadow Surge"},
+	},
 };
