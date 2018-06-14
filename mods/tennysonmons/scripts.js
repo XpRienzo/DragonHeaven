@@ -919,7 +919,7 @@ let BattleScripts = {
 		let altForme = pokemon.baseTemplate.otherFormes && this.getTemplate(pokemon.baseTemplate.otherFormes[0]);
 		let item = pokemon.getItem();
 		if (altForme && altForme.isMega && altForme.requiredMove && pokemon.baseMoves.includes(toId(altForme.requiredMove)) && !item.zMove) return altForme.species;
-		if (pokemon.formeLetter === 'OE' && item.name === 'Omnitrix') return altForme.species;
+		if (pokemon.formeLetter === 'OE' && item.name === 'Omnitrix') return item.megaStone;
 		if (item.megaEvolves !== pokemon.baseTemplate.baseSpecies || item.megaStone === pokemon.species) {
 			return null;
 		}
