@@ -1116,4 +1116,19 @@ exports.BattlePokedex = {
 		types: ["Ice"],
       abilities: {0: "Levitate", H: "Snow Warning"},
 	},
+	flabebe: {
+		inherit: true,
+		types: ["Fairy"],
+      abilities: {0: "Flower Veil", 1: "Misty Surge", H: "Symbiosis"},
+	},
+	floette: {
+		inherit: true,
+		types: ["Fairy"],
+      abilities: {0: "Flower Veil", 1: "Misty Surge", H: "Symbiosis"},
+	},
+	florges: {
+		inherit: true,
+		types: ["Fairy"],
+      abilities: {0: "Flower Veil", 1: "Misty Surge", H: "Symbiosis"},
+	},
 };
