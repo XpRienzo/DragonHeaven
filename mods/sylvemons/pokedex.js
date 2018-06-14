@@ -904,11 +904,6 @@ exports.BattlePokedex = {
 		types: ["Ghost", "Dark"],
       abilities: {0: "Pressure", 1: "Shadow Surge", H: "Infiltrator"},
 	},
-	umbreon: {
-		inherit: true,
-		types: ["Dark"],
-      abilities: {0: "Synchronize", 1: "Shadow Surge", H: "Inner Focus"},
-	},
 	houndoommega: {
 		inherit: true,
 		types: ["Dark", "Fire"],
@@ -983,6 +978,41 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Water"],
       abilities: {0: "Water Absorb", 1: "Drizzle", H: "Liquid Voice"},
+	},
+	jolteon: {
+		inherit: true,
+		types: ["Electric"],
+      abilities: {0: "Volt Absorb", 1: "Electric Surge", H: "Quick Feet"},
+	},
+	flareon: {
+		inherit: true,
+		types: ["Fire"],
+      abilities: {0: "Flash Fire", 1: "Drought", H: "Guts"},
+	},
+	espeon: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Synchronize", 1: "Psychic Surge", H: "Magic Bounce"},
+	},
+	umbreon: {
+		inherit: true,
+		types: ["Dark"],
+      abilities: {0: "Synchronize", 1: "Shadow Surge", H: "Inner Focus"},
+	},
+	leafeon: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Leaf Guard", 1: "Grassy Surge", H: "Chlorophyll"},
+	},
+	glaceon: {
+		inherit: true,
+		types: ["Ice"],
+      abilities: {0: "Snow Cloak", 1: "Snow Warning", H: "Ice Body"},
+	},
+	sylveon: {
+		inherit: true,
+		types: ["Fairy"],
+      abilities: {0: "Cute Charm", 1: "Misty Surge", H: "Pixilate"},
 	},
 	gorebyss: {
 		inherit: true,
