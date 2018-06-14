@@ -914,4 +914,104 @@ exports.BattlePokedex = {
 		types: ["Dark", "Fire"],
       abilities: {0: "Shadow Surge"},
 	},
+	wailmer: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Thick Fat", 1: "Liquid Voice", H: "Pressure"},
+	},
+	wailord: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Thick Fat", 1: "Liquid Voice", H: "Pressure"},
+	},
+	guzzlord: {
+		inherit: true,
+		types: ["Dark", "Dragon"],
+      abilities: {0: "Beast Boost", H: "Thick Fat"},
+	},
+	golemalola: {
+		inherit: true,
+		types: ["Rock", "Electric"],
+      abilities: {0: "Mega Launcher", 1: "Sturdy", H: "Galvanize"},
+	},
+	magmortar: {
+		inherit: true,
+		types: ["Fire"],
+      abilities: {0: "Flame Body", 1: "Mega Launcher", H: "Vital Spirit"},
+	},
+	kingdra: {
+		inherit: true,
+		types: ["Water", "Dragon"],
+      abilities: {0: "Swift Swim", 1: "Sniper", H: "Mega Launcher"},
+	},
+	genesect: {
+		inherit: true,
+		types: ["Bug", "Steel"],
+      abilities: {0: "Download", H: "Mega Launcher"},
+	},
+	volcanion: {
+		inherit: true,
+		types: ["Fire", "Water"],
+      abilities: {0: "Water Absorb", H: "Mega Launcher"},
+	},
+	lapras: {
+		inherit: true,
+		types: ["Water", "Ice"],
+      abilities: {0: "Water Absorb", 1: "Thick Fat", H: "Liquid Voice"},
+	},
+	politoed: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Water Absorb", 1: "Liquid Voice", H: "Drizzle"},
+	},
+	tympole: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Liquid Voice", 1: "Hydration", H: "Water Absorb"},
+	},
+	palpitoad: {
+		inherit: true,
+		types: ["Water", "Ground"],
+      abilities: {0: "Liquid Voice", 1: "Hydration", H: "Water Absorb"},
+	},
+	seismitoad: {
+		inherit: true,
+		types: ["Water", "Ground"],
+      abilities: {0: "Liquid Voice", 1: "Poison Touch", H: "Water Absorb"},
+	},
+	vaporeon: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Water Absorb", 1: "Drizzle", H: "Liquid Voice"},
+	},
+	gorebyss: {
+		inherit: true,
+		types: ["Water"],
+      abilities: {0: "Swift Swim", 1: "Liquid Voice", H: "Hydration"},
+	},
+	slowbromega: {
+		inherit: true,
+		types: ["Water", "Psychic"],
+      abilities: {0: "Drizzle"},
+	},
+	articuno: {
+		inherit: true,
+		types: ["Ice", "Flying"],
+      abilities: {0: "Pressure", 1: "Snow Warning", H: "Snow Cloak"},
+	},
+	zapdos: {
+		inherit: true,
+		types: ["Electric", "Flying"],
+      abilities: {0: "Pressure", 1: "Drizzle", H: "Static"},
+	},
+	moltres: {
+		inherit: true,
+		types: ["Fire", "Flying"],
+      abilities: {0: "Pressure", 1: "Drought", H: "Flame Body"},
+	},
+	lugia: {
+		inherit: true,
+		types: ["Water", "Flying"],
+      abilities: {0: "Pressure", 1: "Drizzle", H: "Multiscale"},
+	},
 };
