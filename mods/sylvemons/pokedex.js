@@ -1417,4 +1417,16 @@ exports.BattlePokedex = {
 		inherit: true,
       abilities: {0: "Swift Swim", H: "Wet Suit"},
 	},
+	makuhita: {
+		inherit: true,
+      abilities: {0: "Stamina", 1: "Guts", H: "Sheer Force"},
+	},
+	hariyama: {
+		inherit: true,
+      abilities: {0: "Stamina", 1: "Guts", H: "Sheer Force"},
+	},
+	druddigon: {
+		inherit: true,
+      abilities: {0: "Rough Skin", 1: "Stamina", H: "Mold Breaker"},
+	},
 };
