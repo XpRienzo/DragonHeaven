@@ -1255,4 +1255,14 @@ exports.BattlePokedex = {
 		types: ["Ice"],
       abilities: {0: "Bulletproof", 1: "Ice Body", H: "Sturdy"},
 	},
+	rhyperior: {
+		inherit: true,
+		types: ["Ground", "Rock"],
+      abilities: {0: "Bulletproof", 1: "Solid Rock", H: "Reckless"},
+	},
+	giratina: {
+		inherit: true,
+		types: ["Ghost", "Dragon"],
+      abilities: {0: "Pressure", 1: "Dimension Warp", H: "Telepathy"},
+	},
 };
