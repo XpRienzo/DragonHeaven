@@ -479,4 +479,24 @@ exports.BattlePokedex = {
 		types: ["Bug", "Steel"],
       abilities: {0: "Guard Up", 1: "Shell Armor", H: "Knight's Blade"},
 	},
+	pawniard: {
+		inherit: true,
+		types: ["Dark", "Steel"],
+      abilities: {0: "Defiant", 1: "Knight's Blade", H: "Pressure"},
+	},
+	bisharp: {
+		inherit: true,
+		types: ["Dark", "Steel"],
+      abilities: {0: "Defiant", 1: "Knight's Blade", H: "Pressure"},
+	},
+	tornadus: {
+		inherit: true,
+		types: ["Flying"],
+      abilities: {0: "Prankster", 1: "Forecast", H: "Regenerator"},
+	},
+	maractus: {
+		inherit: true,
+		types: ["Grass"],
+      abilities: {0: "Water Absorb", 1: "Chlorophyll", H: "Forecast"},
+	},
 };
