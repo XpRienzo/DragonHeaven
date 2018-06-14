@@ -499,4 +499,54 @@ exports.BattlePokedex = {
 		types: ["Grass"],
       abilities: {0: "Water Absorb", 1: "Chlorophyll", H: "Forecast"},
 	},
+	celebi: {
+		inherit: true,
+		types: ["Psychic", "Grass"],
+      abilities: {0: "Natural Cure", H: "Time Warp"},
+	},
+	dialga: {
+		inherit: true,
+		types: ["Steel", "Dragon"],
+      abilities: {0: "Pressure", 1: "Telepathy", H: "Time Warp"},
+	},
+	baltoy: {
+		inherit: true,
+		types: ["Ground", "Psychic"],
+      abilities: {0: "Levitate", H: "Time Warp"},
+	},
+	claydol: {
+		inherit: true,
+		types: ["Ground", "Psychic"],
+      abilities: {0: "Levitate", H: "Time Warp"},
+	},
+	elgyem: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Time Warp", 1: "Synchronize", H: "Analytic"},
+	},
+	beheeyem: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Time Warp", 1: "Synchronize", H: "Analytic"},
+	},
+	natu: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Synchronize", 1: "Time Warp", H: "Magic Bounce"},
+	},
+	xatu: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Synchronize", 1: "Time Warp", H: "Magic Bounce"},
+	},
+	munna: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Time Warp", 1: "Synchronize", H: "Telepathy"},
+	},
+	musharna: {
+		inherit: true,
+		types: ["Psychic"],
+      abilities: {0: "Time Warp", 1: "Synchronize", H: "Telepathy"},
+	},
 };
