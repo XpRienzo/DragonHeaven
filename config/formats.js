@@ -4279,7 +4279,7 @@ exports.Formats = [
 		//banlist: ['Illegal'],
 		mod: 'tennysonmons',
 		searchShow: false,
-		challengeShow: false,
+		//challengeShow: false,
 	},
 	{
 		name: "[Gen 7] Move Mastery",
