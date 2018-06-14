@@ -1457,4 +1457,60 @@ exports.BattlePokedex = {
 		inherit: true,
       abilities: {0: "Blaze", H: "Infuriation"},
 	},
+	drampa: {
+		inherit: true,
+      abilities: {0: "Infuriation", 1: "Sap Sipper", H: "Cloud Nine"},
+	},
+	whismur: {
+		inherit: true,
+      abilities: {0: "Soundproof", 1: "Infuriation", H: "Rattled"},
+	},
+	loudred: {
+		inherit: true,
+      abilities: {0: "Soundproof", 1: "Infuriation", H: "Scrappy"},
+	},
+	exploud: {
+		inherit: true,
+      abilities: {0: "Soundproof", 1: "Infuriation", H: "Scrappy"},
+	},
+	chikorita: {
+		inherit: true,
+      abilities: {0: "Overgrow", H: "Perseverance"},
+	},
+	bayleef: {
+		inherit: true,
+      abilities: {0: "Overgrow", H: "Perseverance"},
+	},
+	meganium: {
+		inherit: true,
+      abilities: {0: "Overgrow", H: "Perseverance"},
+	},
+	meditite: {
+		inherit: true,
+      abilities: {0: "Pure Power", H: "Perseverance"},
+	},
+	medicham: {
+		inherit: true,
+      abilities: {0: "Pure Power", H: "Perseverance"},
+	},
+	raikou: {
+		inherit: true,
+      abilities: {0: "Pressure", H: "Stalwart"},
+	},
+	entei: {
+		inherit: true,
+      abilities: {0: "Pressure", H: "Stalwart"},
+	},
+	suicune: {
+		inherit: true,
+      abilities: {0: "Pressure", H: "Stalwart"},
+	},
+	zeraora: {
+		inherit: true,
+      abilities: {0: "Volt Absorb", H: "Stalwart"},
+	},
+	golurk: {
+		inherit: true,
+      abilities: {0: "Iron Fist", 1: "Stalwart", H: "No Guard"},
+	},
 };
