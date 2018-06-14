@@ -1429,4 +1429,16 @@ exports.BattlePokedex = {
 		inherit: true,
       abilities: {0: "Rough Skin", 1: "Stamina", H: "Mold Breaker"},
 	},
+	anorith: {
+		inherit: true,
+      abilities: {0: "Battle Armor", H: "Stamina"},
+	},
+	armaldo: {
+		inherit: true,
+      abilities: {0: "Battle Armor", H: "Stamina"},
+	},
+	turtonator: {
+		inherit: true,
+      abilities: {0: "Shell Armor", H: "Stamina"},
+	},
 };
