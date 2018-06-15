@@ -46,6 +46,7 @@ exports.BattlePokedex = {
 	// Mega changes
 	charizardmegax: {
 		inerit: true,
+		types: ["Fire", "Dragon", "Lev"],
 		baseStats: {
 			hp: 78,
 			atk: 150,
