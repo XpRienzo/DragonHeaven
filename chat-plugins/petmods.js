@@ -450,6 +450,17 @@ evgutter: function (target, room, user) {
 		});
 		this.sendReplyBox(`${buf}</div>`);
 	},
+	cupspeed: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
+		let feDex = require('../mods/fe/pokedex.js').BattlePokedex;
+		if (!feDex) return this.errorReply("Error Fetching FE Data.");
+		Object.values(feDex).forEach(mon => {
+			let speedtierplus = 2.2 * mon.baseStats.spe + 108.9;
+			buf += `${mon.speed}: [IMG]https://www.serebii.net/pokedex-sm/icon/${mon.num}.png[/IMG]<br>`;
+		});
+		this.sendReplyBox(`${buf}</div>`);
+	},
 	apdata: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Moves</h2></center>`;
