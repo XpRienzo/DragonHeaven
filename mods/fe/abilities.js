@@ -8217,24 +8217,11 @@ exports.BattleAbilities = {
 	},
 	"chainheal": {
 		shortDesc: "Upon switching out, this Pokemon is healed for 1/3 of its max HP. Its replacement's ability is then replaced with Chain Heal.",
+		onBeforeSwitchOut: function (pokemon){
+			pokemon.side.addSideCondition('chainheal', pokemon, 'chainheal');
+		},
 		onSwitchOut: function (pokemon) {
 			pokemon.heal(pokemon.maxhp / 3);
-		},
-		onSwitchInPriority: 1,
-		onSwitchIn: function (target) {
-			if (!target.fainted && target.position === this.effectData.position) {
-                              //Add more abilities that are incompatible
-	                      let bannedAbilities = ['battlebond', 'chainheal', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'truant'];
-			      if (bannedAbilities.includes(target.ability)) {
-				      return;
-			      }
-                              let oldAbility = target.setAbility('chainheal')
-			      if (oldAbility) {
-				this.add('-ability', target, 'Chain Heal', '[from] ability: Chain Heal');
-				return;
-			}
-
-			}
 		},
 		id: "chainheal",
 		name: "Chain Heal",
@@ -10981,7 +10968,7 @@ exports.BattleAbilities = {
 	
 	"aeonflux": {
 		desc: "This Pokémon's Electric-type moves and punch moves gain a 20% boost to their Base Power before applying STAB; the percentage bonuses bonuses stack multiplicatively. Additionally, this Pokémon's punch moves use its Special Attack stat to determine their damage, though they still deal physical damage.",
-		shortDesc: "This Pokemon's punch-based and Electric-type attacks have 1.2x power, which stack. Punching moves run off this Pokemon's SpAtk instead of Atk.",
+		shortDesc: "This Pokemon's punch-based and Electric-type attacks have 1.2x power, which stack. Punching moves calculate damage based on this Pokemon's Special Attack instead of its Attack.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
 			let mod = 1;
@@ -10997,7 +10984,7 @@ exports.BattleAbilities = {
 		onModifyMove: function(move, pokemon) {
 			if (move.flags['punch'] && move.category === 'Physical'){
 				move.category = 'Special';
-				move.defensiveCategory = "Physical";
+				move.defensiveCategory = 'Physical';
 			}
 		},
 		id: "aeonflux",
