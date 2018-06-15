@@ -17613,6 +17613,11 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
+		onModifyMove: function (source, move) {
+			if (source.hasType('Electric')) {
+				move.accuracy = true;
+			}
+		},
 		status: 'par',
 		ignoreImmunity: false,
 		secondary: false,
