@@ -19,7 +19,7 @@ exports.BattleItems = {
 		},
 		onTakeItem: false,
 		onStart: function (pokemon) {
-			this.add('The, pokemon, is cloaked in a mysterious power!');
+			this.add('-item', pokemon, 'Reverse Core');
 		},
 		onEffectiveness: function(typeMod, target, type, move) {
 				if (move && !this.getImmunity(move, type)) return 1;
