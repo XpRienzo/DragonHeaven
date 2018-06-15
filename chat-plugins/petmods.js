@@ -453,7 +453,7 @@ evgutter: function (target, room, user) {
 	cupspeed: function (target, room, user) {
 		if (!this.runBroadcast()) return;
 		let buf = `<div class=infobox-limited><center><h2>List Of Fusion Evolution Pokemon</h2></center>`;
-		let feDex = require('../mods/fe/pokedex.js').BattlePokedex;
+		let feDex = require('../data/pokedex.js').BattlePokedex;
 		if (!feDex) return this.errorReply("Error Fetching FE Data.");
 		Object.values(feDex).forEach(mon => {
 			let speedtierplus = 2.2 * mon.baseStats.spe + 108.9;
