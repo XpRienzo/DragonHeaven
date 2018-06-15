@@ -4010,6 +4010,7 @@ exports.Formats = [
 					}
 				}
 			}
+			return problems;
 		},
 	},
 	{
