@@ -4252,8 +4252,13 @@ exports.Formats = [
   		ruleset: ['Gen 7 [OU]'],
 		mod: 'lukemod',
 		banlist: ['Illegal'],
-		unbanlist: ['Blaziken', 'Shaymin-Sky', 'Kangaskhanite', 'Gengarite',],
-		
+		unbanlist: ['Blaziken', 'Shaymin-Sky', 'Kangaskhanite', 'Gengarite'],
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ground' && target.hasType('Lev')) {
+				this.add('-immune', target, '[msg]');
+				return null;
+			}
+		},
 	},
 	{
 		name: "[Gen 7] Jillian",
