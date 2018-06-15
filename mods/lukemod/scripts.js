@@ -17,6 +17,12 @@ this.modData('Learnsets', 'steelix').learnset.coil = ['7L1'];
 this.modData('Learnsets', 'rapidash').learnset.extremespeed = ['7L1'];
 this.modData('Learnsets', 'rapidash').learnset.dazzlinggleam = ['7L1'];
 this.modData('Learnsets', 'shiinotic').learnset.drainkiss = ['7L1'];
+		
+this.modData('Learnsets', 'butterfree').learnset.storedpower = ['7L1'];
+this.modData('Learnsets', 'butterfree').learnset.psyshock = ['7L1'];
+this.modData('Learnsets', 'milotic').learnset.moonblast = ['7L1'];		
+		
+		
 /*this.modData('Learnsets', 'a').learnset.hurricane = ['7L1'];
 this.modData('Learnsets', 'a').learnset.hurricane = ['7L1'];
 this.modData('Learnsets', 'a').learnset.hurricane = ['7L1'];
