@@ -4251,7 +4251,7 @@ exports.Formats = [
 		      ],
   		ruleset: ['Gen 7 [OU]'],
 		mod: 'lukemod',
-		banlist: ['Illegal'],
+		//banlist: ['Illegal'],
 		unbanlist: ['Blaziken', 'Shaymin-Sky', 'Kangaskhanite', 'Gengarite'],
 		onTryHit: function (target, source, move) {
 			if (target !== source && move.type === 'Ground' && target.hasType('Lev')) {
