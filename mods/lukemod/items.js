@@ -1600,7 +1600,7 @@ exports.BattleItems = {
 		},
 		onModifyDamage: function (damage, source, target, move) {
 			if (move && move.typeMod > 0) {
-				return this.chainModify([0x1333, 0x1000]);
+				return this.chainModify(1.3);
 			}
 		},
 		num: 268,
@@ -5448,9 +5448,16 @@ exports.BattleItems = {
 			basePower: 60,
 		},
 		spritenum: 475,
-		onModifyCritRatio: function (critRatio, user) {
-			if (user.baseTemplate.species === 'Farfetch\'d') {
-				return critRatio + 2;
+		onModifyAtkPriority: 1,
+		onModifyAtk: function (atk, pokemon) {
+			if (pokemon.baseTemplate.species === "Farfetch'd") {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpePriority: 1,
+		onModifySpe: function (spe, pokemon) {
+			if (pokemon.baseTemplate.species === 'Farfetch'd') {
+				return this.chainModify(2);
 			}
 		},
 		num: 259,
