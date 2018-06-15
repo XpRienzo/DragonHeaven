@@ -14,34 +14,34 @@ exports.BattlePokedex = {
 	},
 	gastly: {
 		inherit: true,
-		types: ["Ghost", "Poison", "Luke"],
+		types: ["Ghost", "Poison", "Lev"],
 		abilities: {
 			0: "Cursed Body"
 		},
 	},
 	haunter: {
 		inherit: true,
-		types: ["Ghost", "Poison", "Luke"],
+		types: ["Ghost", "Poison", "Lev"],
 		abilities: {
 			0: "Cursed Body"
 		},
 	},
 	koffing: {
 		inherit: true,
-		types: ["Poison", "Fire", "Luke"],
+		types: ["Poison", "Fire", "Lev"],
 		abilities: {
 			0: "Flash Fire",
 			H: "Aftermath"
 		},
 	},
-/*	weezing: {
-		inherit: true,
-		types: ["Poison", "Fire", "Luke"],
-		abilities: {
-			0: "Flash Fire",
-			H: "Aftermath"
-		},
-	},*/
+	/*	weezing: {
+			inherit: true,
+			types: ["Poison", "Fire", "Lev"],
+			abilities: {
+				0: "Flash Fire",
+				H: "Aftermath"
+			},
+		},*/
 	// Mega changes
 	charizardmegax: {
 		inerit: true,
@@ -112,65 +112,109 @@ exports.BattlePokedex = {
 		},
 	},
 	// New Formes
-unownprimal: {
-num: 201,
-species: "Unown-Primal",
-baseSpecies: "Unown",
-forme: "Primal",
-formeLetter: "P", 
-types: ["Psychic"], 
-baseStats:{hp: 120, atk: 120, def: 120, spa: 120, spd: 120, spe: 120},
-abilities: {0: "Protean"}, 
-weightkg: 5, 
-},
-// New Megas
-	zangoosemega : {
-num: 335,
-species: "Zangoose-Mega",
-baseSpecies: "Zangoose",
-forme: "Mega",
-formeLetter: "M", 
-types: ["Normal", "Steel"], 
-baseStats:{hp: 73, atk: 135, def: 100, spa: 70, spd: 80, spe: 100},
-abilities: {0: "Tough Claws"}, 
-heightm: 1.3, 
-weightkg: 40.3, 
-},
-sevipermega : {
-num: 336,
-species: "Seviper-Mega",
-baseSpecies: "Seviper",
-forme: "Mega",
-formeLetter: "M", 
-types: ["Poison", "Dark"], 
-baseStats:{hp: 73, atk: 140, def: 60, spa: 120, spd: 60, spe: 105},
-abilities: {0: "Strong Jaw"}, 
-heightm: 2.7, 
-weightkg: 52.5, 
-},
-flygonmega : {
-num: 330,
-species: "Flygon-Mega",
-baseSpecies: "Flygon",
-forme: "Mega",
-formeLetter: "M", 
-types: ["Ground", "Dragon"], 
-baseStats:{hp: 80, atk: 120, def: 100, spa: 100, spd: 100, spe: 120},
-abilities: {0: "Mold Breaker"}, 
-heightm: 2, 
-weightkg: 82, 
-},
-hydreigonmega : {
-num: 635,
-species: "Hydreigon-Mega",
-baseSpecies: "Hydreigon",
-forme: "Mega",
-formeLetter: "M", 
-types: ["Dark", "Dragon"], 
-baseStats:{hp: 92, atk: 115, def: 110, spa: 165, spd: 110, spe: 108},
-abilities: {0: "Mega Launcher"}, 
-heightm: 1.8, 
-weightkg: 160, 
-},
-	
+	unownprimal: {
+		num: 201,
+		species: "Unown-Primal",
+		baseSpecies: "Unown",
+		forme: "Primal",
+		formeLetter: "P",
+		types: ["Psychic"],
+		baseStats: {
+			hp: 120,
+			atk: 120,
+			def: 120,
+			spa: 120,
+			spd: 120,
+			spe: 120
+		},
+		abilities: {
+			0: "Protean"
+		},
+		weightkg: 5,
+	},
+	// New Megas
+	zangoosemega: {
+		num: 335,
+		species: "Zangoose-Mega",
+		baseSpecies: "Zangoose",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Normal", "Steel"],
+		baseStats: {
+			hp: 73,
+			atk: 135,
+			def: 100,
+			spa: 70,
+			spd: 80,
+			spe: 100
+		},
+		abilities: {
+			0: "Tough Claws"
+		},
+		heightm: 1.3,
+		weightkg: 40.3,
+	},
+	sevipermega: {
+		num: 336,
+		species: "Seviper-Mega",
+		baseSpecies: "Seviper",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Poison", "Dark"],
+		baseStats: {
+			hp: 73,
+			atk: 140,
+			def: 60,
+			spa: 120,
+			spd: 60,
+			spe: 105
+		},
+		abilities: {
+			0: "Strong Jaw"
+		},
+		heightm: 2.7,
+		weightkg: 52.5,
+	},
+	flygonmega: {
+		num: 330,
+		species: "Flygon-Mega",
+		baseSpecies: "Flygon",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Ground", "Dragon"],
+		baseStats: {
+			hp: 80,
+			atk: 120,
+			def: 100,
+			spa: 100,
+			spd: 100,
+			spe: 120
+		},
+		abilities: {
+			0: "Mold Breaker"
+		},
+		heightm: 2,
+		weightkg: 82,
+	},
+	hydreigonmega: {
+		num: 635,
+		species: "Hydreigon-Mega",
+		baseSpecies: "Hydreigon",
+		forme: "Mega",
+		formeLetter: "M",
+		types: ["Dark", "Dragon"],
+		baseStats: {
+			hp: 92,
+			atk: 115,
+			def: 110,
+			spa: 165,
+			spd: 110,
+			spe: 108
+		},
+		abilities: {
+			0: "Mega Launcher"
+		},
+		heightm: 1.8,
+		weightkg: 160,
+	},
 };
