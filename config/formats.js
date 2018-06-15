@@ -3977,20 +3977,39 @@ exports.Formats = [
 		banlist: ['Arceus', 'King\'s Rock', 'Razor Fang'],
 		noLearn: ['Acupressure', 'Belly Drum', 'Chatter', 'Geomancy', 'Lovely Kiss', 'Shell Smash', 'Shift Gear', 'Thousand Arrows'],
 	},
-		{
+	{
 		name: "[Gen 7] Suicide Cup",
-		desc: [
-			"The first side to lose all of their Pok&eacute;mon wins.",
+		desc: `Victory is obtained when all of your Pok&eacute;mon have fainted.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3633603/">Suicide Cup</a>`,
 		],
 
 		mod: 'suicidecup',
-		ruleset: ['[Gen 7] Anything Goes', 'Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'Evasion Moves Clause'],
-		banlist: ['Assault Vest', 'Explosion', 'Final Gambit', 'Healing Wish', 'Lunar Dance', 'Magic Guard', 'Magic Room', 'Memento', 'Self Destruct', 'Shedinja', 'Misty Terrain', 'Misty Surge', 'Infiltrator'],
-		onValidateSet: function (set) {
-			if(set.level !== 100) return [`All Pokemon should be Level 100. (${set.name || set.species} is Level ${set.level})`];
+		forcedLevel: 100,
+		ruleset: ['Cancel Mod', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Moody Clause', 'Nickname Clause', 'Pokemon', 'Sleep Clause Mod', 'Species Clause', 'Team Preview'],
+		banlist: [
+			'Illegal', 'Unreleased', 'Shedinja', 'Infiltrator', 'Magic Guard', 'Misty Surge', 'Assault Vest', 'Choice Scarf', 'Explosion',
+			'Final Gambit', 'Healing Wish', 'Lunar Dance', 'Magic Room', 'Memento', 'Misty Terrain', 'Self-Destruct',
+		],
+		getEvoFamily: function (species) {
+			let template = Dex.getTemplate(species);
+			while (template.prevo) {
+				template = Dex.getTemplate(template.prevo);
+			}
+			return template.speciesid;
 		},
-		onValidateTeam: function (team) {
-			if (team.length !== 6) return ['Your team cannot have less than 6 Pokemon.'];
+		onValidateTeam: function (team, format) {
+			if (team.length !== 6) return [`Your team cannot have less than 6 Pok\u00e9mon.`];
+			// Family Clause
+			let problems = [];
+			for (let i = 0; i < team.length; i++) {
+				let set = team[i];
+				for (let j = i + 1; j < team.length; j++) {
+					if (format.getEvoFamily(set.species) === format.getEvoFamily(team[j].species)) {
+						problems.push(`You cannot have more than one Pokemon from their respective evolutionary line. (${set.name || set.species} and ${team[j].name || team[j].species} are from the same evolutionary line)`)
+					}
+				}
+			}
 		},
 	},
 	{
