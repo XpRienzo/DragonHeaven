@@ -3479,6 +3479,34 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
 		secondary: false,
+		volatileStatus: 'disarmingvoice',
+		effect: {
+			duration: 3,
+			onStart: function (target) {
+				if (target.activeTurns && !this.willMove(target)) {
+					this.effectData.duration++;
+				}
+				this.add('-start', target, 'move: Disarming Voice');
+			},
+			onResidualOrder: 12,
+			onEnd: function (target) {
+				this.add('-end', target, 'move: Disarming Voice');
+			},
+			onDisableMove: function (pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (this.getMove(moveSlot.id).category !== 'Status') {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+			onBeforeMovePriority: 5,
+			onBeforeMove: function (attacker, defender, move) {
+				if (!move.isZ && move.category !== 'Status') {
+					this.add('cant', attacker, 'move: Disarming Voice', move);
+					return false;
+				}
+			},
+		},
 		target: "allAdjacentFoes",
 		type: "Fairy",
 		zMovePower: 100,
@@ -4988,7 +5016,7 @@ exports.BattleMovedex = {
 	"firefang": {
 		num: 424,
 		accuracy: 95,
-		basePower: 65,
+		basePower: 70,
 		category: "Physical",
 		desc: "Has a 10% chance to burn the target and a 10% chance to flinch it.",
 		shortDesc: "10% chance to burn. 10% chance to flinch.",
@@ -5110,7 +5138,7 @@ exports.BattleMovedex = {
 	"firepunch": {
 		num: 7,
 		accuracy: 100,
-		basePower: 75,
+		basePower: 85,
 		category: "Physical",
 		desc: "Has a 10% chance to burn the target.",
 		shortDesc: "10% chance to burn the target.",
@@ -8297,7 +8325,7 @@ exports.BattleMovedex = {
 	"icefang": {
 		num: 423,
 		accuracy: 95,
-		basePower: 65,
+		basePower: 70,
 		category: "Physical",
 		desc: "Has a 10% chance to freeze the target and a 10% chance to flinch it.",
 		shortDesc: "10% chance to freeze. 10% chance to flinch.",
@@ -8348,7 +8376,7 @@ exports.BattleMovedex = {
 	"icepunch": {
 		num: 8,
 		accuracy: 100,
-		basePower: 75,
+		basePower: 85,
 		category: "Physical",
 		desc: "Has a 10% chance to freeze the target.",
 		shortDesc: "10% chance to freeze the target.",
@@ -13841,12 +13869,9 @@ exports.BattleMovedex = {
 	"round": {
 		num: 496,
 		accuracy: 100,
-		basePower: 60,
-		basePowerCallback: function (target, source, move) {
-			if (move.sourceEffect === 'round') {
-				return move.basePower * 2;
-			}
-			return move.basePower;
+		basePower: 20,
+		basePowerCallback: function (pokemon, target, move) {
+			return move.basePower + 20 * pokemon.positiveBoosts();
 		},
 		category: "Special",
 		desc: "If there are other active Pokemon that chose this move for use this turn, those Pokemon take their turn immediately after the user, in Speed order, and this move's power is 120 for each other user.",
@@ -13856,16 +13881,6 @@ exports.BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
-		onTry: function () {
-			for (let i = 0; i < this.queue.length; i++) {
-				let action = this.queue[i];
-				if (!action.pokemon || !action.move) continue;
-				if (action.move.id === 'round') {
-					this.prioritizeAction(action);
-					return;
-				}
-			}
-		},
 		secondary: false,
 		target: "normal",
 		type: "Normal",
@@ -17519,7 +17534,7 @@ exports.BattleMovedex = {
 	"thunderfang": {
 		num: 422,
 		accuracy: 95,
-		basePower: 65,
+		basePower: 70,
 		category: "Physical",
 		desc: "Has a 10% chance to paralyze the target and a 10% chance to flinch it.",
 		shortDesc: "10% chance to paralyze. 10% chance to flinch.",
@@ -17545,7 +17560,7 @@ exports.BattleMovedex = {
 	"thunderpunch": {
 		num: 9,
 		accuracy: 100,
-		basePower: 75,
+		basePower: 85,
 		category: "Physical",
 		desc: "Has a 10% chance to paralyze the target.",
 		shortDesc: "10% chance to paralyze the target.",
