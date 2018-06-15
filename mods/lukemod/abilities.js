@@ -1243,7 +1243,8 @@ exports.BattleAbilities = {
 		onAfterDamage: function (damage, target, source, effect) {
 			if (effect && effect.flags['contact']) {
 				this.add('-ability', target, 'Gooey');
-				this.boost({spe: -1}, source, target, null, true);
+				source.maybeTrapped = true;
+				source.tryTrap(true);
 			}
 		},
 		id: "gooey",
@@ -1406,12 +1407,10 @@ exports.BattleAbilities = {
 	},
 	"hypercutter": {
 		shortDesc: "Prevents other Pokemon from lowering this Pokemon's Attack stat stage.",
-		onBoost: function (boost, target, source, effect) {
-			if (source && target === source) return;
-			if (boost['atk'] && boost['atk'] < 0) {
-				delete boost['atk'];
-				if (!effect.secondaries) this.add("-fail", target, "unboost", "Attack", "[from] ability: Hyper Cutter", "[of] " + target);
-			}
+		onModifyMove: function (move) {
+			if (move.name === 'Slash' || move.name === 'X-Scissor' || move.name === 'Aerial Ace' || move.name === 'Leaf Blade' || move.name === 'Psycho Cut' || move.name === 'Cross Poison' || move.name === 'Night Slash' || move.name === 'Smart Strike' || move.name === 'Shadow Claw' || move.name === 'Sacred Sword' || move.name === 'Razor Leaf' || move.name === 'Air Cutter' || move.name === 'Air Slash' || move.name === 'False Swipe' || move.name === 'Cut') {
+				 move.willCrit = true;
+				 }
 		},
 		id: "hypercutter",
 		name: "Hyper Cutter",
@@ -2960,13 +2959,13 @@ exports.BattleAbilities = {
 		desc: "Prevents adjacent opposing Pokemon from choosing to switch out unless they are immune to trapping or also have this Ability.",
 		shortDesc: "Prevents adjacent foes from choosing to switch unless they also have this Ability.",
 		onFoeTrapPokemon: function (pokemon) {
-			if (!pokemon.hasAbility('shadowtag') && this.isAdjacent(pokemon, this.effectData.target)) {
+			if (!pokemon.hasAbility('shadowtag') && this.isAdjacent(pokemon, this.effectData.target) && !pokemon.activeTurns > 1) {
 				pokemon.tryTrap(true);
 			}
 		},
 		onFoeMaybeTrapPokemon: function (pokemon, source) {
 			if (!source) source = this.effectData.target;
-			if (!pokemon.hasAbility('shadowtag') && this.isAdjacent(pokemon, source)) {
+			if (!pokemon.hasAbility('shadowtag') && this.isAdjacent(pokemon, source) && !pokemon.activeTurns > 1) {
 				pokemon.maybeTrapped = true;
 			}
 		},
@@ -3612,7 +3611,8 @@ exports.BattleAbilities = {
 		onAfterDamage: function (damage, target, source, effect) {
 			if (effect && effect.flags['contact']) {
 				this.add('-ability', target, 'Tangling Hair');
-				this.boost({spe: -1}, source, target, null, null, true);
+				source.maybeTrapped = true;
+				source.tryTrap(true);
 			}
 		},
 		id: "tanglinghair",
@@ -4145,6 +4145,7 @@ exports.BattleAbilities = {
 		rating: -1,
 		num: 161,
 	},
+	
 
 	// CAP
 	"mountaineer": {
