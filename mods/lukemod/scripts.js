@@ -16,13 +16,78 @@ this.modData('Learnsets', 'absol').learnset.partingshot = ['7L1'];
 this.modData('Learnsets', 'steelix').learnset.coil = ['7L1'];
 this.modData('Learnsets', 'rapidash').learnset.extremespeed = ['7L1'];
 this.modData('Learnsets', 'rapidash').learnset.dazzlinggleam = ['7L1'];
-this.modData('Learnsets', 'shiinotic').learnset.drainkiss = ['7L1'];
+this.modData('Learnsets', 'shiinotic').learnset.drainingkiss = ['7L1'];
+		this.modData('Learnsets', 'abomasnow').learnset.icehammer = ['7L1'];
+		
+this.modData('Learnsets', 'koffing').learnset.defog = ['7L1'];
+this.modData('Learnsets', 'koffing').learnset.overheat = ['7L1'];
+		
+this.modData('Learnsets', 'weezing').learnset.defog = ['7L1'];
+this.modData('Learnsets', 'weezing').learnset.overheat = ['7L1'];
 		
 this.modData('Learnsets', 'butterfree').learnset.storedpower = ['7L1'];
 this.modData('Learnsets', 'butterfree').learnset.psyshock = ['7L1'];
 this.modData('Learnsets', 'milotic').learnset.moonblast = ['7L1'];		
 		
-		
+// Silvally
+this.modData('Learnsets', 'aurasphere').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'yawn').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'aurasphere').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'voltswitch').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'megahorn').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'stompingtantrum').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'dazzlinggleam').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'shiftgear').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'lavaplume').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'aquaring').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'iceshard').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'sleeppowder').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'psychic').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'gunkshot').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'stealthrock').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'taunt').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'destinybond').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'hurricane').learnset.silvally = ['7L1'];
+this.modData('Learnsets', 'dragonpulse').learnset.silvally = ['7L1'];
+
+
+// Unown
+		this.modData('Learnsets', 'captivate').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'boltstrike').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'captivate').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'destinybond').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'extremespeed').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'focuspunch').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'gastroacid').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'highhorsepower').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'iciclecrash').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'jumpkick').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'knockoff').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'laserfocus').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'moonlight').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'nightshade').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'overheat').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'pound').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'quiverdance').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'rapidspin').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'spiritshackle').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'torment').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'u-turn').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'voltswitch').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'willowisp').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'x-scissor').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'yawn').learnset.unown = ['7L1'];
+this.modData('Learnsets', 'zingzap').learnset.unown = ['7L1'];
+
+// Electivire 
+this.modData('Learnsets', 'swordsdance').learnset.electivire = ['7L1'];
+this.modData('Learnsets', 'machpunch').learnset.electivire = ['7L1'];
+this.modData('Learnsets', 'swordsdance').learnset.electivire = ['7L1'];
+this.modData('Learnsets', 'stormthrow').learnset.electivire = ['7L1'];
+this.modData('Learnsets', 'circlethrow').learnset.electivire = ['7L1'];
+this.modData('Learnsets', 'vacuumwave').learnset.electivire = ['7L1'];
+this.modData('Learnsets', 'lowsweep').learnset.electivire = ['7L1'];
+
 /*this.modData('Learnsets', 'a').learnset.hurricane = ['7L1'];
 this.modData('Learnsets', 'a').learnset.hurricane = ['7L1'];
 this.modData('Learnsets', 'a').learnset.hurricane = ['7L1'];
