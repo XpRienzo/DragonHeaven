@@ -2,6 +2,8 @@
 
 exports.BattleScripts = {
   init: function() {
+	  
+	  this.modData('Pokedex', 'sawsbuckwinter').types = ['Grass', 'Ice'];
     // Flame Bullet
     this.modData('Learnsets', 'octillery').learnset.flamebullet = ['7L1'];
     this.modData('Learnsets', 'toucannon').learnset.flamebullet = ['7L1'];
