@@ -26,4 +26,32 @@ randomDoubleBattleMoves: ["", "", "", "", "",],
 requiredItem: "Hydreigonite",
 tier: "OU",
 }, 
+	
+	slowkingmega:{
+randomBattleMoves: [], 
+randomDoublesBattleMoves: [], 
+requiredItem: "Slowkingite",
+tier: "OU",
+},
+	
+	butterfreemega: {
+randomBattleMoves: [], 
+randomDoublesBattleMoves: [], 
+requiredItem: "Butterfreeite",
+tier: "OU",
+},
+	
+	miloticmega: {
+randomBattleMoves: [], 
+randomDoublesBattleMoves: [], 
+requiredItem: "Miloticite",
+tier: "OU",
+},
+	
+	maractusmega: {
+randomBattleMoves: [], 
+randomDoublesBattleMoves: [], 
+requiredItem: "Maractusite",
+tier: "OU",
+},
 };
