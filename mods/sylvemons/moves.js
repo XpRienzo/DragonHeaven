@@ -879,8 +879,11 @@ exports.BattleMovedex = {
 			mirror: 1,
 			punch: 1
 		},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Parabolic Charge", target);
+		},
 		onTryHit: function(target, pokemon, move) {
-			this.add('-anim', pokemon, "Parabolic Charge", target);
 			if (!pokemon.volatiles['charge']) {
 				move.chargeup = true;
 			}
