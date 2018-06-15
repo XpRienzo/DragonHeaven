@@ -226,12 +226,19 @@ exports.BattleAbilities = {
 		num: 123,
 	},
 	"battery": {
-		shortDesc: "This Pokemon's allies have the power of their special attacks multiplied by 1.3.",
-		onBasePowerPriority: 8,
-		onAllyBasePower: function (basePower, attacker, defender, move) {
-			if (attacker !== this.effectData.target && move.category === 'Special') {
-				this.debug('Battery boost');
-				return this.chainModify([0x14CD, 0x1000]);
+		shortDesc: "Boosts the power of Electric type attacks by 50%.",
+		onModifyAtkPriority: 5,
+		onModifyAtk: function (atk, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				this.debug('Electric boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA: function (atk, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				this.debug('Electric boost');
+				return this.chainModify(1.5);
 			}
 		},
 		id: "battery",
@@ -317,6 +324,7 @@ exports.BattleAbilities = {
 			if (boost['def'] && boost['def'] < 0) {
 				delete boost['def'];
 				if (!effect.secondaries) this.add("-fail", target, "unboost", "Defense", "[from] ability: Big Pecks", "[of] " + target);
+				this.boost({def: 1});
 			}
 		},
 		id: "bigpecks",
@@ -404,9 +412,9 @@ exports.BattleAbilities = {
 	"cloudnine": {
 		shortDesc: "While this Pokemon is active, the effects of weather conditions are disabled.",
 		onStart: function (pokemon) {
+			this.setWeather('');
 			this.add('-ability', pokemon, 'Cloud Nine');
 		},
-		suppressWeather: true,
 		id: "cloudnine",
 		name: "Cloud Nine",
 		rating: 2.5,
@@ -504,9 +512,13 @@ exports.BattleAbilities = {
 	"corrosion": {
 		shortDesc: "This Pokemon can poison or badly poison other Pokemon regardless of their typing.",
 		// Implemented in sim/pokemon.js:Pokemon#setStatus
-    onEffectiveness: function (typeMod, type) {
-			if (type === 'Steel') return 0;
-      if (type === 'Poison') return 0;
+   onModifyMovePriority: -5,
+		onModifyMove: function(move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Steel'] = true;
+				move.ignoreImmunity['Poison'] = true;
+			}
 		},
 		id: "corrosion",
 		name: "Corrosion",
@@ -597,6 +609,7 @@ exports.BattleAbilities = {
 			if ((source.side === this.effectData.target.side || effect.id === 'perishsong') && effect.priority > 0.1 && effect.target !== 'foeSide') {
 				this.attrLastMove('[still]');
 				this.add('cant', this.effectData.target, 'ability: Dazzling', effect, '[of] ' + target);
+				source.addVolatile('confusion');
 				return false;
 			}
 		},
@@ -1654,8 +1667,8 @@ exports.BattleAbilities = {
 		desc: "Summons Magic Room upon switchin.",
 		shortDesc: "Summons Magic Room upon switchin.",
 		// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
-    onStart: function (source) {
-			this.setPseudoWeather('magicroom');
+   onStart: function(source) {
+			this.useMove("Magic Room", source);
 		},
 		id: "klutz",
 		name: "Klutz",
@@ -1852,14 +1865,11 @@ exports.BattleAbilities = {
 	},
 	"magmaarmor": {
 		shortDesc: "This Pokemon cannot be frozen. Gaining this Ability while frozen cures it.",
-		onUpdate: function (pokemon) {
-			if (pokemon.status === 'frz') {
-				this.add('-activate', pokemon, 'ability: Magma Armor');
-				pokemon.cureStatus();
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Ice') {
+					this.add('-immune', target, '[msg]', '[from] ability: Magma Armor');
+				return null;
 			}
-		},
-		onImmunity: function (type, pokemon) {
-			if (type === 'frz') return false;
 		},
 		id: "magmaarmor",
 		name: "Magma Armor",
@@ -2605,6 +2615,7 @@ exports.BattleAbilities = {
 			if ((source.side === this.effectData.target.side || effect.id === 'perishsong') && effect.priority > 0.1 && effect.target !== 'foeSide') {
 				this.attrLastMove('[still]');
 				this.add('cant', this.effectData.target, 'ability: Queenly Majesty', effect, '[of] ' + target);
+				this.boost({atk: -1}, source, target);
 				return false;
 			}
 		},
@@ -3282,8 +3293,8 @@ exports.BattleAbilities = {
 	},
 	"stall": {
 		shortDesc: "Summons Trick Room upon switchin.",
-		onStart: function (source) {
-			this.setPseudoWeather('trickroom');
+		onStart: function(source) {
+			this.useMove("Trick Room", source);
 		},
 		id: "stall",
 		name: "Stall",
@@ -3988,6 +3999,12 @@ exports.BattleAbilities = {
 				this.boost({def: 2});
 			}
 		},
+		onTryHit: function (target, source, move) {
+			if (target !== source && move.type === 'Water') {
+					this.add('-immune', target, '[msg]', '[from] ability: Water Compaction');
+				return null;
+			}
+		},
 		id: "watercompaction",
 		name: "Water Compaction",
 		rating: 2,
@@ -4026,17 +4043,9 @@ exports.BattleAbilities = {
 		num: 133,
 	},
 	"whitesmoke": {
-		shortDesc: "Prevents other Pokemon from lowering this Pokemon's stat stages.",
-		onBoost: function (boost, target, source, effect) {
-			if (source && target === source) return;
-			let showMsg = false;
-			for (let i in boost) {
-				if (boost[i] < 0) {
-					delete boost[i];
-					showMsg = true;
-				}
-			}
-			if (showMsg && !effect.secondaries) this.add("-fail", target, "unboost", "[from] ability: White Smoke", "[of] " + target);
+		shortDesc: "White Smoke sets Haze on switchin",
+		onStart: function(source) {
+			this.useMove("Haze", source);
 		},
 		id: "whitesmoke",
 		name: "White Smoke",
