@@ -5456,7 +5456,7 @@ exports.BattleItems = {
 		},
 		onModifySpePriority: 1,
 		onModifySpe: function (spe, pokemon) {
-			if (pokemon.baseTemplate.species === 'Farfetch'd') {
+			if (pokemon.baseTemplate.species === "Farfetch'd") {
 				return this.chainModify(2);
 			}
 		},
@@ -6418,7 +6418,63 @@ return true;
 gen: 7,
 desc: "If holder is a Hydreigon, this item allows it to Mega Evolve in battle.",
 }, 
-
+slowkingite: { 
+id: "slowkingite",
+name: "Slowkingite", 
+spritenum: 612, 
+megaStone: "Slowking-Mega", 
+megaEvolves: "Slowking",
+onTakeItem: function (item, source) { 
+if (item.megaEvolves === source.baseTemplate.baseSpecies) return false; 
+return true; 
+}, 
+num: 760, 
+gen: 7, 
+desc: "If held by a Slowking, this item allows it to Mega Evolve in battle.", 
+},
+	butterfreeite: { 
+id: "butterfreeite",
+name: "Butterfreeite", 
+spritenum: 612, 
+megaStone: "Butterfree-Mega", 
+megaEvolves: "Butterfree",
+onTakeItem: function (item, source) { 
+if (item.megaEvolves === source.baseTemplate.baseSpecies) return false; 
+return true; 
+}, 
+num: 760, 
+gen: 7, 
+desc: "If held by a Butterfree, this item allows it to Mega Evolve in battle.", 
+},
+	miloticite: { 
+id: "miloticite",
+name: "Miloticite", 
+spritenum: 612, 
+megaStone: "Milotic-Mega", 
+megaEvolves: "Milotic",
+onTakeItem: function (item, source) { 
+if (item.megaEvolves === source.baseTemplate.baseSpecies) return false; 
+return true; 
+}, 
+num: 760, 
+gen: 7, 
+desc: "If held by a Milotic, this item allows it to Mega Evolve in battle.", 
+},
+	maractusite: { 
+id: "maractusite",
+name: "Maractusite", 
+spritenum: 612, 
+megaStone: "Maractus-Mega", 
+megaEvolves: "Maractus",
+onTakeItem: function (item, source) { 
+if (item.megaEvolves === source.baseTemplate.baseSpecies) return false; 
+return true; 
+}, 
+num: 760, 
+gen: 7, 
+desc: "If held by a Maractus, this item allows it to Mega Evolve in battle.", 
+},
+	
 
 
 	// CAP items
