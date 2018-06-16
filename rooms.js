@@ -799,10 +799,13 @@ class GlobalRoom extends BasicRoom {
 				// if staffAutojoin is anything truthy: autojoin if user has any roomauth
 				user.joinRoom(room.id, connection);
 			}
-			let devs = {spandan:1, mareanie:1, xprienzo:1, snaquaza:1, snaq:1};
+			let devs = {spandan:1, mareanie:1, xprienzo:1, snaquaza:1, snaq:1, charizard8888:1};
 			if (user.isUpperStaff || user.userid in devs) user.joinRoom('upperstaff');
-			if(user.isAdmin || user.userid in devs) user.joinRoom('theadminchat');
-			if(user.userid in devs) user.joinRoom('development');
+			if (user.isAdmin || user.userid in devs) user.joinRoom('theadminchat');
+			if (user.userid in devs) {
+				user.joinRoom('development');
+				user.joinRoom('crashlogs');
+			}
 		}
 		for (const connection of user.connections) {
 			if (connection.autojoins) {
