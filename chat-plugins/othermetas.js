@@ -376,11 +376,11 @@ exports.commands = {
 		if (!template.exists) return this.errorReply("Error: Pokemon not found.");
 		let boosts = {
 			'UU': 10,
-			'BL2': 10,
+			'RUBL': 10,
 			'RU': 20,
-			'BL3': 20,
+			'NUBL': 20,
 			'NU': 30,
-			'BL4': 30,
+			'PUBL': 30,
 			'PU': 40,
 			'NFE': 40,
 			'LC Uber': 40,
@@ -507,4 +507,24 @@ exports.commands = {
 	badnboostedhelp: ["/bnb <pokemon> - Shows the base stats that a Pokemon would have in Bad 'n Boosted."],
 
 
+	'!scalemons': true,
+	scale: 'scalemons',
+	scalemons: function (target, room, user) {
+		if (!this.runBroadcast()) return;
+		if (!toId(target)) return this.parse(`/help scalemons`);
+		let template = Object.assign({}, Dex.getTemplate(target));
+		if (!template.exists) return this.errorReply(`Error: Pokemon ${target} not found.`);
+		let newStats = Object.assign({}, template.baseStats);
+		let stats = ['atk', 'def', 'spa', 'spd', 'spe'];
+		// @ts-ignore
+		let pst = stats.map(stat => template.baseStats[stat]).reduce((x, y) => x + y);
+		let scale = 600 - template.baseStats['hp'];
+		for (const stat of stats) {
+			// @ts-ignore
+			newStats[stat] = Dex.clampIntRange(template.baseStats[stat] * scale / pst, 1, 255);
+		}
+		template.baseStats = Object.assign({}, newStats);
+		this.sendReply(`|raw|${Chat.getDataPokemonHTML(template)}`);
+	},
+	scalemonshelp: [`/scale OR /scalemons <pokemon> - Shows the base stats that a Pokemon would have in Scalemons.`],
 };

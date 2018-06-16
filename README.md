@@ -17,6 +17,8 @@ Origin, EOS, Frost, Azure or Pandora has.
 For more information on Pokémon Showdown, visit the main
 [Pokémon Showdown](https://github.com/Zarel/Pokemon-Showdown) repository.
 
+You can use your own computer as a server, but for other people to connect to your computer, you'll need to expose a port (default is 8000 but you can choose a different one) to connect to, which sometimes requires [port forwarding][5]. Note that some internet providers don't let you host a server at all, in which case you'll have to rent a VPS to use as a server.
+
 ## Features
 
 - Numerous *cool* [commands](chat-plugins/EXTRA_COMMANDS) such as /urbandefine or /poof

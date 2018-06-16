@@ -94,10 +94,61 @@ class Pokemon {
 		/**@type {string | boolean} */
 		this.moveThisTurn = '';
 
-		// For Stomping Tantrum
-		/**@type {boolean | undefined} */
+		/**
+		 * The result of the last move used on the previous turn by this
+		 * Pokemon. Stomping Tantrum checks this property for a value of false
+		 * when determine whether to double its power, but it has four
+		 * possible values:
+		 *
+		 * undefined indicates this Pokemon was not active last turn. It should
+		 * not be used to indicate that a move was attempted and failed, either
+		 * in a way that boosts Stomping Tantrum or not.
+		 *
+		 * null indicates that the Pokemon's move was skipped in such a way
+		 * that does not boost Stomping Tantrum, either from having to recharge
+		 * or spending a turn trapped by another Pokemon's Sky Drop.
+		 *
+		 * false indicates that the move completely failed to execute for any
+		 * reason not mentioned above, including missing, the target being
+		 * immune, the user being immobilized by an effect such as paralysis, etc.
+		 *
+		 * true indicates that the move successfully executed one or more of
+		 * its effects on one or more targets, including hitting with an attack
+		 * but dealing 0 damage to the target in cases such as Disguise, or that
+		 * the move was blocked by one or more moves such as Protect.
+		 * @type {boolean | null | undefined}
+		 */
 		this.moveLastTurnResult = undefined;
-		/**@type {boolean | undefined} */
+		/**
+		 * The result of the most recent move used this turn by this Pokemon.
+		 * At the start of each turn, the value stored here is moved to its
+		 * counterpart, moveLastTurnResult, and this property is reinitialized
+		 * to undefined. This property can have one of four possible values:
+		 *
+		 * undefined indicates that this Pokemon has not yet finished an
+		 * attempt to use a move this turn. As this value is only overwritten
+		 * after a move finishes execution, it is not sufficient for an event
+		 * to examine only this property when checking if a Pokemon has not
+		 * moved yet this turn if the event could take place during that
+		 * Pokemon's move.
+		 *
+		 * null indicates that the Pokemon's move was skipped in such a way
+		 * that does not boost Stomping Tantrum, either from having to recharge
+		 * or spending a turn trapped by another Pokemon's Sky Drop.
+		 *
+		 * false indicates that the move completely failed to execute for any
+		 * reason not mentioned above, including missing, the target being
+		 * immune, the user being immobilized by an effect such as paralysis, etc.
+		 *
+		 * true indicates that the move successfully executed one or more of
+		 * its effects on one or more targets, including hitting with an attack
+		 * but dealing 0 damage to the target in cases such as Disguise. It can
+		 * also mean that the move was blocked by one or more moves such as
+		 * Protect. Uniquely, this value can also be true if this Pokemon mega
+		 * evolved or ultra bursted this turn, but in that case the value should
+		 * always be overwritten by a move action before the end of that turn.
+		 * @type {boolean | null | undefined}
+		 */
 		this.moveThisTurnResult = undefined;
 
 		this.lastDamage = 0;
@@ -136,6 +187,7 @@ class Pokemon {
 		this.heightm = this.template.heightm;
 		this.weightkg = this.template.weightkg;
 
+		/**@type {string} */
 		this.baseAbility = toId(set.ability);
 		this.ability = this.baseAbility;
 		this.item = toId(set.item);
@@ -226,6 +278,12 @@ class Pokemon {
 
 		this.clearVolatile();
 
+		/**
+		 * Keeps track of what type the client sees for this Pokemon
+		 * @type {string}
+		 */
+		this.apparentType = this.baseTemplate.types.join('/');
+
 		/**@type {number} */
 		this.maxhp = this.template.maxHP || this.baseStats.hp;
 		/**@type {number} */
@@ -238,6 +296,8 @@ class Pokemon {
 
 		/**@type {string | undefined} */
 		this.originalSpecies = undefined;
+		/**@type {?boolean} */
+		this.gluttonyFlag = null;
 	}
 	get moves() {
 		return this.moveSlots.map(moveSlot => moveSlot.id);
@@ -621,6 +681,7 @@ class Pokemon {
 
 		// Information should be restricted for the last active Pokémon
 		let isLastActive = this.isLastActive();
+		let canSwitchIn = this.battle.canSwitch(this.side) > 0;
 		let moves = this.getMoves(lockedMove, isLastActive);
 		let data = {moves: moves.length ? moves : [{move: 'Struggle', id: 'struggle'}]};
 
@@ -628,12 +689,15 @@ class Pokemon {
 			if (this.maybeDisabled) {
 				data.maybeDisabled = true;
 			}
-			if (this.trapped === true) {
-				data.trapped = true;
-			} else if (this.maybeTrapped) {
-				data.maybeTrapped = true;
+			if (canSwitchIn) {
+				if (this.trapped === true) {
+					data.trapped = true;
+				} else if (this.maybeTrapped) {
+					data.maybeTrapped = true;
+				}
 			}
-		} else {
+		} else if (canSwitchIn) {
+			// Discovered by selecting a valid Pokémon as a switch target and cancelling.
 			if (this.trapped) data.trapped = true;
 		}
 
@@ -739,14 +803,16 @@ class Pokemon {
 		if (!template.abilities || (pokemon && pokemon.transformed && this.battle.gen >= 2) || (user && user.transformed && this.battle.gen >= 5)) {
 			return false;
 		}
-		if (!this.formeChange(template, pokemon)) {
+		if (!this.formeChange(template, null)) {
 			return false;
 		}
 		this.transformed = true;
 
-		this.types = pokemon.types;
+		let types = pokemon.getTypes(true);
+		this.setType(pokemon.volatiles.roost ? pokemon.volatiles.roost.typeWas : types);
 		this.addedType = pokemon.addedType;
 		this.knownType = this.side === pokemon.side && pokemon.knownType;
+		this.apparentType = pokemon.apparentType;
 
 		for (let statName in this.stats) {
 			this.stats[statName] = pokemon.stats[statName];
@@ -790,10 +856,8 @@ class Pokemon {
 				// Giratina formes
 				if (this.template.species === 'Giratina' && this.item === 'griseousorb') {
 					this.formeChange('Giratina-Origin');
-					this.battle.add('-formechange', this, 'Giratina-Origin');
 				} else if (this.template.species === 'Giratina-Origin' && this.item !== 'griseousorb') {
 					this.formeChange('Giratina');
-					this.battle.add('-formechange', this, 'Giratina');
 				}
 			}
 			if (this.template.num === 493) {
@@ -802,7 +866,6 @@ class Pokemon {
 				let targetForme = (item && item.onPlate ? 'Arceus-' + item.onPlate : 'Arceus');
 				if (this.template.species !== targetForme) {
 					this.formeChange(targetForme);
-					this.battle.add('-formechange', this, targetForme);
 				}
 			}
 		}
@@ -811,25 +874,31 @@ class Pokemon {
 	}
 
 	/**
+	 * Changes this Pokemon's forme to match the given templateId (or template).
+	 * This function handles all changes to stats, ability, type, template, etc.
+	 * as well as sending all relevant messages sent to the client.
 	 * @param {string | Template} templateId
-	 * @param {Pokemon | Effect} [source]
+	 * @param {Effect | null} source
+	 * @param {boolean} [isPermanent]
+	 * @param {string} [message]
 	 */
-	formeChange(templateId, source) {
-		let template = this.battle.getTemplate(templateId);
+	formeChange(templateId, source = this.battle.effect, isPermanent, message) {
+		let rawTemplate = this.battle.getTemplate(templateId);
 
-		if (!template.abilities) return false;
+		if (!rawTemplate.abilities) return false;
 
-		template = this.battle.singleEvent('ModifyTemplate', this.battle.getFormat(), null, this, source, null, template);
+		let template = this.battle.singleEvent('ModifyTemplate', this.battle.getFormat(), null, this, source, null, rawTemplate);
 
 		if (!template) return false;
 
 		this.template = template;
 
-		this.types = template.types;
+		this.setType(template.types, true);
+		this.apparentType = rawTemplate.types.join('/');
 		this.addedType = template.addedType || '';
 		this.knownType = true;
 
-		if (!source) {
+		if (source) {
 			let stats = this.battle.spreadModify(this.template.baseStats, this.set);
 			if (!this.baseStats) this.baseStats = stats;
 			for (let statName in this.stats) {
@@ -846,6 +915,42 @@ class Pokemon {
 				if (this.status === 'brn') this.modifyStat('atk', 0.5);
 			}
 			this.speed = this.stats.spe;
+			if ((!source.id && !source.effectType) || this.battle.gen <= 2) return true;
+
+			let apparentSpecies = this.illusion ? this.illusion.template.species : template.baseSpecies; // The species the opponent sees
+			if (isPermanent) {
+				this.baseTemplate = rawTemplate;
+				this.details = template.species + (this.level === 100 ? '' : ', L' + this.level) + (this.gender === '' ? '' : ', ' + this.gender) + (this.set.shiny ? ', shiny' : '');
+				this.battle.add('detailschange', this, (this.illusion || this).details);
+				if (source.effectType === 'Item') {
+					// @ts-ignore
+					if (source.zMove) {
+						this.battle.add('-burst', this, apparentSpecies, template.requiredItem);
+						this.moveThisTurnResult = true; // Ultra Burst counts as an action for Truant
+					} else if (source.onPrimal) {
+						this.battle.add('-primal', !this.illusion && this);
+					} else {
+						this.battle.add('-mega', this, apparentSpecies, template.requiredItem);
+						this.moveThisTurnResult = true; // Mega Evolution counts as an action for Truant
+					}
+				} else if (source.effectType === 'Status') {
+					// Shaymin-Sky -> Shaymin
+					this.battle.add('-formechange', this, template.species, message);
+				}
+			} else {
+				if (source.effectType === 'Ability') {
+					this.battle.add('-formechange', this, template.species, message, `[from] ability: ${source.name}`);
+				} else {
+					this.battle.add('-formechange', this, this.illusion ? this.illusion.template.species : template.species, message);
+				}
+			}
+			if (source.effectType !== 'Ability' && source.id !== 'relicsong' && source.id !== 'zenmode') {
+				if (this.illusion) {
+					this.ability = ''; // Don't allow Illusion to wear off
+				}
+				this.setAbility(template.abilities['0'], null, true);
+				if (isPermanent) this.baseAbility = this.ability;
+			}
 		}
 		return true;
 	}
@@ -1054,6 +1159,9 @@ class Pokemon {
 	cureStatus(silent = false) {
 		if (!this.hp || !this.status) return false;
 		this.battle.add('-curestatus', this, this.status, silent ? '[silent]' : '[msg]');
+		if (this.status === 'slp' && !this.hasAbility('comatose') && this.removeVolatile('nightmare')) {
+			this.battle.add('-end', this, 'Nightmare', '[silent]');
+		}
 		this.setStatus('');
 		return true;
 	}
@@ -1465,6 +1573,7 @@ class Pokemon {
 		this.types = (typeof newType === 'string' ? [newType] : newType);
 		this.addedType = '';
 		this.knownType = true;
+		this.apparentType = this.types.join('/');
 
 		return true;
 	}
@@ -1484,12 +1593,9 @@ class Pokemon {
 	 */
 	getTypes(excludeAdded) {
 		let types = this.types;
+		types = this.battle.runEvent('Type', this, null, null, types);
 		if (!excludeAdded && this.addedType) {
 			types = types.concat(this.addedType);
-		}
-		// If a Fire/Flying type uses Burn Up and Roost, it becomes ???/Flying-type, but it's still grounded.
-		if ('roost' in this.volatiles && !types.includes('???')) {
-			types = types.filter(type => type !== 'Flying');
 		}
 		if (types.length) return types;
 		return [this.battle.gen >= 5 ? 'Normal' : '???'];

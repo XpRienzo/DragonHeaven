@@ -131,6 +131,7 @@ let BattleScripts = {
 	 * Dancer.
 	 */
 	useMove: function (move, pokemon, target, sourceEffect, zMove) {
+		pokemon.moveThisTurnResult = undefined;
 		let oldMoveResult = pokemon.moveThisTurnResult;
 		let moveResult = this.useMoveInner(move, pokemon, target, sourceEffect, zMove);
 		if (oldMoveResult === pokemon.moveThisTurnResult) pokemon.moveThisTurnResult = moveResult;
@@ -660,8 +661,8 @@ let BattleScripts = {
 		}
 
 		if (target) {
-			/**@type {?boolean | number} */
-			let didSomething = false;
+			/**@type {?boolean | number | undefined} */
+			let didSomething = undefined;
 
 			damage = this.getDamage(pokemon, target, moveData);
 
@@ -747,32 +748,51 @@ let BattleScripts = {
 				didSomething = didSomething || hitResult;
 			}
 			if (moveData.forceSwitch) {
-				if (this.canSwitch(target.side)) didSomething = true; // at least defer the fail message to later
+				hitResult = this.canSwitch(target.side);
+				didSomething = didSomething || hitResult;
 			}
 			if (moveData.selfSwitch) {
-				// If the move is Parting Shot and it fails to change the target's stats in gen 7, didSomething will be null instead of false.
+				// If the move is Parting Shot and it fails to change the target's stats in gen 7, didSomething will be null instead of undefined.
 				// Leaving didSomething as null will cause this function to return before setting the switch flag, preventing the switch.
-				if (this.canSwitch(pokemon.side) && (didSomething !== null || this.gen < 7)) didSomething = true; // at least defer the fail message to later
+				if (this.canSwitch(pokemon.side) && (didSomething !== null || this.gen < 7)) {
+					didSomething = true;
+				} else {
+					didSomething = didSomething || false;
+				}
 			}
 			// Hit events
 			//   These are like the TryHit events, except we don't need a FieldHit event.
 			//   Scroll up for the TryHit event documentation, and just ignore the "Try" part. ;)
-			hitResult = null;
 			if (move.target === 'all' && !isSelf) {
-				if (moveData.onHitField) hitResult = this.singleEvent('HitField', moveData, {}, target, pokemon, move);
+				if (moveData.onHitField) {
+					hitResult = this.singleEvent('HitField', moveData, {}, target, pokemon, move);
+					didSomething = didSomething || hitResult;
+				}
 			} else if ((move.target === 'foeSide' || move.target === 'allySide') && !isSelf) {
-				if (moveData.onHitSide) hitResult = this.singleEvent('HitSide', moveData, {}, target.side, pokemon, move);
+				if (moveData.onHitSide) {
+					hitResult = this.singleEvent('HitSide', moveData, {}, target.side, pokemon, move);
+					didSomething = didSomething || hitResult;
+				}
 			} else {
-				if (moveData.onHit) hitResult = this.singleEvent('Hit', moveData, {}, target, pokemon, move);
+				if (moveData.onHit) {
+					hitResult = this.singleEvent('Hit', moveData, {}, target, pokemon, move);
+					didSomething = didSomething || hitResult;
+				}
 				if (!isSelf && !isSecondary) {
 					this.runEvent('Hit', target, pokemon, move);
 				}
-				if (moveData.onAfterHit) hitResult = this.singleEvent('AfterHit', moveData, {}, target, pokemon, move);
+				if (moveData.onAfterHit) {
+					hitResult = this.singleEvent('AfterHit', moveData, {}, target, pokemon, move);
+					didSomething = didSomething || hitResult;
+				}
 			}
 
-			if (!hitResult && !didSomething && !moveData.self && !moveData.selfdestruct) {
+			// Move didn't fail because it didn't try to do anything
+			if (didSomething === undefined) didSomething = true;
+
+			if (!didSomething && !moveData.self && !moveData.selfdestruct) {
 				if (!isSelf && !isSecondary) {
-					if (hitResult === false || didSomething === false) this.add('-fail', pokemon);
+					if (didSomething === false) this.add('-fail', pokemon);
 				}
 				this.debug('move failed because it did nothing');
 				return false;
@@ -934,9 +954,8 @@ let BattleScripts = {
 	},
 
 	runMegaEvo: function (pokemon) {
-		const effectType = pokemon.canMegaEvo ? '-mega' : '-burst';
-		// @ts-ignore
-		const template = this.getTemplate(pokemon.canMegaEvo || pokemon.canUltraBurst);
+		const templateid = pokemon.canMegaEvo || pokemon.canUltraBurst;
+		if (!templateid) return false;
 		const side = pokemon.side;
 
 		// Pokémon affected by Sky Drop cannot mega evolve. Enforce it here for now.
@@ -946,27 +965,15 @@ let BattleScripts = {
 			}
 		}
 
-		pokemon.formeChange(template);
-		pokemon.baseTemplate = template; // mega evolution is permanent
-		pokemon.details = template.species + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
-		if (pokemon.illusion) {
-			pokemon.ability = ''; // Don't allow Illusion to wear off
-			// @ts-ignore
-			this.add(effectType, pokemon, pokemon.illusion.template.baseSpecies, template.requiredItem);
-		} else {
-			// @ts-ignore
-			this.add(effectType, pokemon, template.baseSpecies, template.requiredItem);
-			this.add('detailschange', pokemon, pokemon.details);
-		}
-		pokemon.setAbility(template.abilities['0'], null, true);
-		pokemon.baseAbility = pokemon.ability;
+		pokemon.formeChange(templateid, pokemon.getItem(), true);
 
 		// Limit one mega evolution
+		let wasMega = pokemon.canMegaEvo;
 		for (const ally of side.pokemon) {
-			if (effectType === '-burst') {
-				ally.canUltraBurst = null;
-			} else {
+			if (wasMega) {
 				ally.canMegaEvo = null;
+			} else {
+				ally.canUltraBurst = null;
 			}
 		}
 

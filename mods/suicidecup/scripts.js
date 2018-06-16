@@ -1,4 +1,5 @@
 'use strict';
+
  exports.BattleScripts = {
 	tiebreak: function () {
 		this.inputLog.push(`>tiebreak`);
