@@ -10487,6 +10487,10 @@ darkchomp: {
         abilities: {
             0: "Gutsy Beast"
         },
+        heightm: 0.9,
+        weightkg: 27.05,
+        color: "White",
+        eggGroups: ["Undiscovered"]
     },
 
 
@@ -10509,6 +10513,10 @@ darkchomp: {
         abilities: {
             0: "Skill Link"
         },
+        heightm: 1.1,
+        weightkg: 35.55,
+        color: "White",
+        eggGroups: ["Undiscovered"]
     },
 
 
@@ -10527,6 +10535,10 @@ darkchomp: {
         abilities: {
             0: "Charged Up"
         },
+        heightm: 0.4,
+        weightkg: 4.2,
+        color: "Yellow",
+        eggGroups: ["Fairy"]
     },
 
 
@@ -10609,9 +10621,9 @@ darkchomp: {
 	mimukyubusted: {
         num: 7500267,
         species: "Mimukyu-Busted",
-		baseSpecies: "Mimukyu",
-		forme: "Busted",
-		formeLetter: "B",
+		  baseSpecies: "Mimukyu",
+		  forme: "Busted",
+		  formeLetter: "B",
         types: ["Dark", "Fairy"],
         baseStats: {
             hp: 90,
