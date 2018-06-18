@@ -6073,7 +6073,7 @@ exports.BattleAbilities = {
 		shortDesc: "Immune to Fairy and Ground moves. This Pokemon's Normal type moves become Fairy type and have 1.2x power.",
 		onTryHit: function(target, source, move) {
 			if (target !== source && move.type === 'Ground' || move.type === 'Fairy') {
-				this.add('-immune', target, '[msg]', '[from] ability: Clear Levitation');
+				this.add('-immune', target, '[msg]', '[from] ability: Enchanted');
 				return null;
 			}
 		},
