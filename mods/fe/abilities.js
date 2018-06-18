@@ -6688,7 +6688,7 @@ exports.BattleAbilities = {
 		shortDesc: "If this Pokemon is on the field, Grass-type moves won't work.",
 		id: "uninhabitable",
 		onAnyTryMove: function (target, source, effect) {
-			if (move.type === 'Grass') {
+			if (effect.type === 'Grass') {
 				this.attrLastMove('[still]');
 				this.add('cant', this.effectData.target, 'ability: Uninhabitable', effect, '[of] ' + target);
 				return false;
