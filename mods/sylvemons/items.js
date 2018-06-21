@@ -33,7 +33,7 @@ exports.BattleItems = {
 		fling: {
 			basePower: 60,
 		},
-		desc: "Extends Trick Room, Magic Room and Wonder Room to 8 turns, instead of 5",
+		desc: "Extends Trick Room, Magic Room, Iverse Room and Wonder Room to 8 turns, instead of 5",
 	},
 	"safetysocks": {
 		id: "safetysocks",
@@ -183,7 +183,7 @@ exports.BattleItems = {
 			}
 		},
 		gen: 7,
-		desc: "If holder is a Wishiwashi, it becomes School Form and will not change back. It's ability becomes Intimidate rather than Schooling. Water moves are boosted by 1.2x",
+		desc: "If holder is a Wishiwashi, it becomes School Form. It's ability becomes Intimidate. Water moves are boosted by 1.2x",
 	},
 	"ragecandybar": {
 		id: "ragecandybar",
@@ -211,7 +211,7 @@ exports.BattleItems = {
 			return true;
 		},
 		gen: 7,
-		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power",
+		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan, and it's Psychic-Type moves have 1.2x more power",
 	},
 	"reliccharm": {
 		id: "reliccharm",
@@ -239,7 +239,7 @@ exports.BattleItems = {
 			return true;
 		},
 		gen: 7,
-		desc: "If this Pokémon is a Darmanitan, it becomes Zen Mode Darmanitan just by holding it, and it's Psychic-Type moves have 1.2x more power",
+		desc: "If this Pokémon is a Meloetta, it changes to Pirouette, and it's Fighting-Type moves have 1.2x more power",
 	},
 	"shadowrock": {
 		id: "shadowrock",
@@ -557,7 +557,7 @@ exports.BattleItems = {
 		desc: "If held by a Pichu, Pikachu, Raichu, Plusle, Minun, Pachirisu, Emolga, Dedenne or a Togedemaru, its Attack and Sp. Atk are doubled.",
 	},
 	"weatherwarriorscrystal": {
-		shortDesc: "When a weather is active, this peculiar crystal increases the holder's Attack and Special Attack stats by 1 stage each.",
+		shortDesc: "When a weather is active, increases the holder's Atk and Sp Atk stats by 1 stage each.",
 		onUpdate: function(pokemon) {
 			if (this.isWeather(['sunnyday', 'desolateland', 'hail', 'rainyday', 'primordialsea', 'sandstream', 'shadowsky', 'aircurrent']) && pokemon.useItem()) {
 				this.boost({
