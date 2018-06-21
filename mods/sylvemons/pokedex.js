@@ -1534,4 +1534,36 @@ exports.BattlePokedex = {
 		inherit: true,
       abilities: {0: "Iron Fist", 1: "Stalwart", H: "No Guard"},
 	},
+	goodra: {
+		inherit: true,
+      abilities: {0: "Sap Sipper", 1: "Thick Fat", H: "Gooey"},
+	},
+	buizel: {
+		inherit: true,
+      abilities: {0: "Swift Swim", 1: "Technician", H: "Wet Suit"},
+	},
+	floatzel: {
+		inherit: true,
+      abilities: {0: "Swift Swim", 1: "Technician", H: "Wet Suit"},
+	},
+	voltorb: {
+		inherit: true,
+      abilities: {0: "Soundproof", 1: "Electric Surge", H: "Aftermath"},
+	},
+	electrode: {
+		inherit: true,
+      abilities: {0: "Soundproof", 1: "Electric Surge", H: "Aftermath"},
+	},
+	exeggutor: {
+		inherit: true,
+      abilities: {0: "Grassy Surge", 1: "Bask", H: "Harvest"},
+	},
+	hitmonlee: {
+		inherit: true,
+      abilities: {0: "Sole Caliber", 1: "Reckless", H: "Unburden"},
+	},
+	golduck: {
+		inherit: true,
+      abilities: {0: "Wet Suit", 1: "Cloud Nine", H: "Swift Swim"},
+	},
 };
