@@ -197,7 +197,7 @@ exports.BattleAbilities = {
 		name: "Time Warp",
 	},
 	"dimensionwarp": {
-		shortDesc: "On switch-in, this Pokemon summons Trick Room.",
+		shortDesc: "On switch-in, this Pokemon summons Inverse Room.",
 		onStart: function(source) {
 			this.useMove("Inverse Room", source);
 		},
@@ -223,7 +223,7 @@ exports.BattleAbilities = {
 		name: "Housekeeping",
 	},
 	etheralfist: {
-		shortDesc: "Punch Moves become Special and gain 1.2x damage (Same Moves effected as Iron Fist).",
+		shortDesc: "Punch Moves become Special and gain 1.2x damage.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
 			if (move.flags['punch']) {
@@ -342,7 +342,7 @@ exports.BattleAbilities = {
 	},
 	"technician": {
 		desc: "This Pokemon's moves of 60 power or less have their power multiplied by 1.5. Does affect Struggle.",
-		shortDesc: "This Pokemon's moves of 60 power or less have 1.5x power. Includes Struggle.",
+		shortDesc: "This Pokemon's moves of 75 power or less have 1.5x power. Includes Struggle.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
 			if (basePower <= 75) {
@@ -420,7 +420,7 @@ exports.BattleAbilities = {
 		num: 204,
 	},
 	"scrappy": {
-		shortDesc: "This Pokemon can hit Ghost types with Normal- and Fighting-type moves.",
+		shortDesc: "This Pokemon ignores type-based immunities when attacking.",
 		onModifyMovePriority: -5,
 		onModifyMove: function(move) {
 			if (!move.ignoreImmunity) move.ignoreImmunity = {};
