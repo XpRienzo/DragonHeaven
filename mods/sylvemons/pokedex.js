@@ -83,6 +83,7 @@ exports.BattlePokedex = {
 	goodra: {
 		inherit: true,
 		types: ["Dragon", "Poison"],
+      abilities: {0: "Sap Sipper", 1: "Thick Fat", H: "Gooey"},
 	},
 	xurkitree: {
 		inherit: true,
@@ -1533,10 +1534,6 @@ exports.BattlePokedex = {
 	golurk: {
 		inherit: true,
       abilities: {0: "Iron Fist", 1: "Stalwart", H: "No Guard"},
-	},
-	goodra: {
-		inherit: true,
-      abilities: {0: "Sap Sipper", 1: "Thick Fat", H: "Gooey"},
 	},
 	buizel: {
 		inherit: true,
