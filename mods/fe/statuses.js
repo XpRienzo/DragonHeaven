@@ -466,7 +466,7 @@ afterstorm: {
 		},
 		onModifyPriority: function (priority, pokemon, target, move) {
 			let type = 'Normal';
-			if (pokemon.ability === 'multitype') {
+			if (pokemon.ability === 'triagesystem') {
 				// @ts-ignore
 				type = pokemon.getItem().onMemory;
 				// @ts-ignore
