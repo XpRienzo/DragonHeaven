@@ -24,10 +24,6 @@ exports.BattlePokedex = {
         types: ["Normal", "Fairy"],
         abilities: {0: "Natural Cure", 1: "Housekeeping", H: "Healer"},
     },
-    cresselia: {
-        inherit: true,
-        types: ["Psychic", "Fairy"],
-    },
 	 oshawott: {
 		inherit: true,
 		types: ["Water"],
@@ -46,6 +42,7 @@ exports.BattlePokedex = {
     musharna: {
         inherit: true,
         types: ["Psychic", "Fairy"],
+        abilities: {0: "Time Warp", 1: "Synchronize", H: "Telepathy"},
     },
     spritzee: {
         inherit: true,
@@ -115,10 +112,6 @@ exports.BattlePokedex = {
 		inherit: true,
 		types: ["Bug", "Poison"],
 		abilities: {0: "Unnerve", 1: "Poison Point", H: "Intimidate"},
-	},
-	lugia: {
-		inherit: true,
-		types: ["Water", "Dragon"],
 	},
 	rotomfan: {
 		inherit: true,
@@ -256,20 +249,6 @@ exports.BattlePokedex = {
         types: ["Grass", "Ghost"],
         abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Shadow Surge"},
     },
-	sawsbuck: {
-		num: 586,
-		species: "Sawsbuck",
-		baseForme: "Spring",
-		types: ["Normal", "Grass"],
-		baseStats: {hp: 80, atk: 100, def: 70, spa: 60, spd: 70, spe: 95},
-		abilities: {0: "Chlorophyll", 1: "Sap Sipper", H: "Serene Grace"},
-		heightm: 1.9,
-		weightkg: 92.5,
-		color: "Brown",
-		prevo: "deerling",
-		evoLevel: 34,
-		eggGroups: ["Field"],
-	},
     sawsbuckwinter: {
         num: 586,
 		  baseSpecies: "Sawsbuck",
@@ -290,7 +269,7 @@ exports.BattlePokedex = {
     sawsbuck: {
         inherit: true,
         types: ["Grass", "Fairy"],
-        abilities: {0: "Chrolophyll", 1: "Sap Sipper", H: "Misty Surge"},
+        abilities: {0: "Surge Surfer", 1: "Sap Sipper", H: "Misty Surge"},
     },
     sawsbuckautumn: {
         inherit: true,
@@ -344,7 +323,7 @@ exports.BattlePokedex = {
 	},
 	cresselia: {
 		inherit: true,
-		types: ["Psychic"],
+		types: ["Psychic", "Fairy"],
 		abilities: {0: "Levitate", H: "Magic Healing"},
 	},
 	chingling: {
@@ -365,77 +344,77 @@ exports.BattlePokedex = {
 	haunter: {
 		inherit: true,
 		types: ["Ghost", "Poison"],
-		abilities: {0: "Levitate", H: "Ethereal Fist"},
+		abilities: {0: "Levitate", H: "Etheral Fist"},
 	},
 	gengar: {
 		inherit: true,
 		types: ["Ghost", "Poison"],
-		abilities: {0: "Cursed Body", H: "Ethereal Fist"},
+		abilities: {0: "Cursed Body", H: "Etheral Fist"},
 	},
 	solosis: {
 		inherit: true,
 		types: ["Psychic"],
-      abilities: {0: "Ethereal Fist", 1: "Magic Guard", H: "Regenerator"},
+      abilities: {0: "Etheral Fist", 1: "Magic Guard", H: "Regenerator"},
 	},
 	duosion: {
 		inherit: true,
 		types: ["Psychic"],
-      abilities: {0: "Ethereal Fist", 1: "Magic Guard", H: "Regenerator"},
+      abilities: {0: "Etheral Fist", 1: "Magic Guard", H: "Regenerator"},
 	},
 	reuniclus: {
 		inherit: true,
 		types: ["Psychic"],
-      abilities: {0: "Ethereal Fist", 1: "Magic Guard", H: "Regenerator"},
+      abilities: {0: "Etheral Fist", 1: "Magic Guard", H: "Regenerator"},
 	},
 	alakazam: {
 		inherit: true,
 		types: ["Psychic"],
-      abilities: {0: "Synchronize", 1: "Ethereal Fist", H: "Magic Guard"},
+      abilities: {0: "Synchronize", 1: "Etheral Fist", H: "Magic Guard"},
 	},
 	alakazammega: {
 		inherit: true,
 		types: ["Psychic"],
-      abilities: {0: "Ethereal Fist"},
+      abilities: {0: "Etheral Fist"},
 	},
 	dusknoir: {
 		inherit: true,
 		types: ["Ghost"],
-      abilities: {0: "Pressure", 1: "Ethereal Fist", H: "Frisk"},
+      abilities: {0: "Pressure", 1: "Etheral Fist", H: "Frisk"},
 	},
 	shaymin: {
 		inherit: true,
 		types: ["Grass"],
-      abilities: {0: "Natural Cure", H: "Dispersal"},
+      abilities: {0: "Natural Cure", H: "Disperal"},
 	},
 	sunkern: {
 		inherit: true,
 		types: ["Grass"],
-      abilities: {0: "Chlorophyll", 1: "Solar Power", H: "Dispersal"},
+      abilities: {0: "Chlorophyll", 1: "Solar Power", H: "Disperal"},
 	},
 	sunflora: {
 		inherit: true,
 		types: ["Grass"],
-      abilities: {0: "Drought", 1: "Solar Power", H: "Dispersal"},
+      abilities: {0: "Drought", 1: "Solar Power", H: "Disperal"},
 	},
 	bulbasaur: {
 		inherit: true,
 		types: ["Grass", "Poison"],
-      abilities: {0: "Overgrow", H: "Dispersal"},
+      abilities: {0: "Overgrow", H: "Disperal"},
 	},
 	ivysaur: {
 		inherit: true,
 		types: ["Grass", "Poison"],
-      abilities: {0: "Overgrow", H: "Dispersal"},
+      abilities: {0: "Overgrow", H: "Disperal"},
 	},
 	venusaur: {
 		inherit: true,
 		types: ["Grass", "Poison"],
-      abilities: {0: "Overgrow", H: "Dispersal"},
+      abilities: {0: "Overgrow", H: "Disperal"},
 	},
 	trevenant: {
 		inherit: true,
 		types: ["Ghost", "Grass"],
-      abilities: {0: "Natural Cure", 1: "Dispersal", H: "Harvest"},
+      abilities: {0: "Natural Cure", 1: "Disperal", H: "Harvest"},
 	},
 	cinccino: {
 		inherit: true,
@@ -444,7 +423,7 @@ exports.BattlePokedex = {
 	},
 	jirachi: {
 		inherit: true,
-		types: ["Steel", "Psychic"],
+		types: ["Steel", "Fairy"],
       abilities: {0: "Serene Grace", H: "Housekeeping"},
 	},
 	delcatty: {
@@ -540,16 +519,17 @@ exports.BattlePokedex = {
 	tornadus: {
 		inherit: true,
 		types: ["Flying"],
-      abilities: {0: "Prankster", 1: "Forecast", H: "Regenerator"},
+      abilities: {0: "Prankster", 1: "Forecast", H: "Defiant"},
 	},
 	maractus: {
 		inherit: true,
 		types: ["Grass"],
       abilities: {0: "Water Absorb", 1: "Chlorophyll", H: "Forecast"},
 	},
+	
 	celebi: {
 		inherit: true,
-		types: ["Psychic", "Grass"],
+		types: ["Fairy", "Grass"],
       abilities: {0: "Natural Cure", H: "Time Warp"},
 	},
 	dialga: {
@@ -588,11 +568,6 @@ exports.BattlePokedex = {
       abilities: {0: "Synchronize", 1: "Time Warp", H: "Magic Bounce"},
 	},
 	munna: {
-		inherit: true,
-		types: ["Psychic"],
-      abilities: {0: "Time Warp", 1: "Synchronize", H: "Telepathy"},
-	},
-	musharna: {
 		inherit: true,
 		types: ["Psychic"],
       abilities: {0: "Time Warp", 1: "Synchronize", H: "Telepathy"},
@@ -655,17 +630,17 @@ exports.BattlePokedex = {
 	chespin: {
 		inherit: true,
 		types: ["Grass"],
-      abilities: {0: "Overgrow", 1: "Guard Up", H: "Bulletproof"},
+      abilities: {0: "Overgrow", H: "Guard Up"},
 	},
 	quilladin: {
 		inherit: true,
 		types: ["Grass"],
-      abilities: {0: "Overgrow", 1: "Guard Up", H: "Bulletproof"},
+      abilities: {0: "Overgrow", H: "Guard Up"},
 	},
 	chesnaught: {
 		inherit: true,
 		types: ["Grass", "Fighting"],
-      abilities: {0: "Overgrow", 1: "Guard Up", H: "Bulletproof"},
+      abilities: {0: "Overgrow", H: "Guard Up"},
 	},
 	metapod: {
 		inherit: true,
@@ -695,7 +670,7 @@ exports.BattlePokedex = {
 	swadloon: {
 		inherit: true,
 		types: ["Bug", "Grass"],
-      abilities: {0: "Leaf Guard", 1: "Chlorophyll", H: "Guard Up"},
+      abilities: {0: "Grassy Surge", 1: "Chlorophyll", H: "Guard Up"},
 	},
 	leavanny: {
 		inherit: true,
@@ -1099,7 +1074,7 @@ exports.BattlePokedex = {
 	},
 	lugia: {
 		inherit: true,
-		types: ["Psychic", "Flying"],
+		types: ["Water", "Dragon"],
       abilities: {0: "Pressure", 1: "Drizzle", H: "Multiscale"},
 	},
 	regirock: {
@@ -1145,7 +1120,7 @@ exports.BattlePokedex = {
 	pupitar: {
 		inherit: true,
 		types: ["Rock", "Ground"],
-      abilities: {0: "Guts", H: "Sand Stream"},
+      abilities: {0: "Shed Skin", H: "Sand Stream"},
 	},
 	cryogonal: {
 		inherit: true,
@@ -1562,5 +1537,33 @@ exports.BattlePokedex = {
 	golduck: {
 		inherit: true,
       abilities: {0: "Wet Suit", 1: "Cloud Nine", H: "Swift Swim"},
+	},
+	farfetchd: {
+		inherit: true,
+      abilities: {0: "Keen Eye", 1: "Knight's Blade", H: "Defiant"},
+	},
+   keldeo: {
+		inherit: true,
+      abilities: {0: "Justified", H: "Knight's Blade"},
+	},
+	keldeoresolute: {
+		inherit: true,
+      abilities: {0: "Justified", H: "Knight's Blade"},
+	},
+	terrakion: {
+		inherit: true,
+      abilities: {0: "Justified", H: "Knight's Blade"},
+	},
+	virizion: {
+		inherit: true,
+      abilities: {0: "Justified", H: "Knight's Blade"},
+	},	
+	cobalion: {
+		inherit: true,
+      abilities: {0: "Justified", H: "Knight's Blade"},
+	},
+	blaziken: {
+		inherit: true,
+      abilities: {0: "Blaze", H: "Sole Caliber"},
 	},
 };
