@@ -1566,4 +1566,8 @@ exports.BattlePokedex = {
 		inherit: true,
       abilities: {0: "Blaze", H: "Sole Caliber"},
 	},
+	kartana: {
+		inherit: true,
+      abilities: {0: "Beast Boost", H: "Knight's Blade"},
+	},
 };
