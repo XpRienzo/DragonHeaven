@@ -1225,7 +1225,7 @@ exports.BattleScripts = {
 // trickroom 
 this.modData('Learnsets', 'palkia').learnset.trickroom = ['7L1'];
 this.modData('Learnsets', 'dialga').learnset.trickroom = ['7L1'];
-this.modData('Learnsets', 'mr.mime').learnset.trickroom = ['7L1'];
+this.modData('Learnsets', 'mrmime').learnset.trickroom = ['7L1'];
 this.modData('Learnsets', 'mimejr.').learnset.trickroom = ['7L1'];
 this.modData('Learnsets', 'gumshoos').learnset.trickroom = ['7L1'];
 this.modData('Learnsets', 'celebi').learnset.trickroom = ['7L1'];
@@ -1260,7 +1260,7 @@ this.modData('Learnsets', 'kecleon').learnset.trickroom = ['7L1'];
 // magicroom 
 this.modData('Learnsets', 'palkia').learnset.magicroom = ['7L1'];
 this.modData('Learnsets', 'dialga').learnset.magicroom = ['7L1'];
-this.modData('Learnsets', 'mr.mime').learnset.magicroom = ['7L1'];
+this.modData('Learnsets', 'mrmime').learnset.magicroom = ['7L1'];
 this.modData('Learnsets', 'mimejr.').learnset.magicroom = ['7L1'];
 this.modData('Learnsets', 'gumshoos').learnset.magicroom = ['7L1'];
 this.modData('Learnsets', 'celebi').learnset.magicroom = ['7L1'];
@@ -1295,7 +1295,7 @@ this.modData('Learnsets', 'kecleon').learnset.magicroom = ['7L1'];
 // wonderroom 
 this.modData('Learnsets', 'palkia').learnset.wonderroom = ['7L1'];
 this.modData('Learnsets', 'dialga').learnset.wonderroom = ['7L1'];
-this.modData('Learnsets', 'mr.mime').learnset.wonderroom = ['7L1'];
+this.modData('Learnsets', 'mrmime').learnset.wonderroom = ['7L1'];
 this.modData('Learnsets', 'mimejr.').learnset.wonderroom = ['7L1'];
 this.modData('Learnsets', 'gumshoos').learnset.wonderroom = ['7L1'];
 this.modData('Learnsets', 'celebi').learnset.wonderroom = ['7L1'];
@@ -1330,7 +1330,7 @@ this.modData('Learnsets', 'kecleon').learnset.wonderroom = ['7L1'];
 // inverseroom 
 this.modData('Learnsets', 'palkia').learnset.inverseroom = ['7L1'];
 this.modData('Learnsets', 'dialga').learnset.inverseroom = ['7L1'];
-this.modData('Learnsets', 'mr.mime').learnset.inverseroom = ['7L1'];
+this.modData('Learnsets', 'mrmime').learnset.inverseroom = ['7L1'];
 this.modData('Learnsets', 'mimejr.').learnset.inverseroom = ['7L1'];
 this.modData('Learnsets', 'gumshoos').learnset.inverseroom = ['7L1'];
 this.modData('Learnsets', 'celebi').learnset.inverseroom = ['7L1'];
