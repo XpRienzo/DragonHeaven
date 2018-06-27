@@ -36,6 +36,10 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Heavy Slam", target);
+		},
 		useTargetOffensive: true,
 		secondary: false,
 		target: "normal",
