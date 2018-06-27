@@ -1544,11 +1544,11 @@ exports.BattlePokedex = {
 	},
    keldeo: {
 		inherit: true,
-      abilities: {0: "Justified", H: "Knight's Blade"},
+      abilities: {0: "Justified", 1: "Knight's Blade"},
 	},
 	keldeoresolute: {
 		inherit: true,
-      abilities: {0: "Justified", H: "Knight's Blade"},
+      abilities: {0: "Justified", 1: "Knight's Blade"},
 	},
 	terrakion: {
 		inherit: true,
