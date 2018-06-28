@@ -40,7 +40,7 @@ exports.BattleMovedex = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Heavy Slam", target);
 		},
-		useTargetOffensive: true,
+		//useTargetOffensive: true,
 		secondary: false,
 		target: "normal",
 		type: "Steel",
