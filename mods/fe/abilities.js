@@ -4803,6 +4803,10 @@ exports.BattleAbilities = {
 				return typeMod + this.getEffectiveness('Ice', type);
 			}
 		},
+		onBasePowerPriority: 8,
+		onBasePower: function(basePower, pokemon, target, move) {
+			if (move.absolutezeroboosted) return this.chainModify(1.2);
+		},
 		id: "absolutezero",
 		name: "Absolute Zero",
 	},
