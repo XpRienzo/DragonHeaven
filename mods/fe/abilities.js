@@ -2889,32 +2889,14 @@ exports.BattleAbilities = {
 		name: "Revved Up",
 	},
 	"mistysupercharge": {
-		desc: "This Pokemon's Normal-type moves become Fairy-type moves and have their power multiplied by 1.2. This effect comes after other effects that change a move's type, but before Ion Deluge and Electrify's effects.",
-		shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.2x power.",
-		onModifyMovePriority: -1,
-		onModifyMove: function(move, pokemon) {
-			if (move.type === 'Normal' || move.type === 'Electric' && !['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'].includes(move.id) && !(move.isZ && move.category !== 'Status')) {
-				move.type = 'Fairy';
-				move.mistysuperchargeBoosted = true;
-			}
-		},
-		onBasePowerPriority: 8,
-		onBasePower: function(basePower, pokemon, target, move) {
-			if (move.mistysuperchargeBoosted) return this.chainModify(1.3);
-		},
+		desc: "On switch-in, summons Misty Terrain. In that terrain, its Electric- and Fairy-type moves have 1.5x power.",
+		shortDesc: "Summons Misty Terrain. In it, Fairy- and Electric-type moves have 1.5x power.",
 		onStart: function(source) {
 			this.setTerrain('mistyterrain');
 		},
-		onModifyAtk: function(atk, attacker, defender, move) {
-			if (move.type === 'Fairy' && this.isTerrain('mistyterrain')) {
-				return this.chainModify(1.5);
-			}
-		},
-		onModifySpAPriority: 5,
-		onModifySpA: function(atk, attacker, defender, move) {
-			if (move.type === 'Fairy' && this.isTerrain('mistyterrain')) {
-				return this.chainModify(1.5);
-			}
+		onBasePowerPriority: 8,
+		onBasePower: function(basePower, pokemon, target, move) {
+			if ((move.type === 'Electric' || move.type === 'Fairy') && this.isTerrain('mistyterrain')) return this.chainModify(1.3);
 		},
 		id: "mistysupercharge",
 		name: "Misty Supercharge",
@@ -3006,16 +2988,21 @@ exports.BattleAbilities = {
 		name: "Lightning Fist",
 	},
 	"flarewings": {
-		shortDesc: "While Burned, holder's Speed is doubled; immune to Burn damage.",
-		onModifySpe: function(spe, pokemon) {
-			if (pokemon.status === 'brn') {
-				return this.chainModify(2);
-			}
-		},
+		shortDesc: "If Burned or Paralyzed, holder tries to inflict Paralysis on any active enemies at the end of the turn.",
 		onDamagePriority: 1,
 		onDamage: function(damage, target, source, effect) {
 			if (effect.id === 'brn') {
 				return false;
+			}
+		},
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function(pokemon, effect) {
+			for (const target of pokemon.side.foe.active) {
+				if (!target || target.fainted) continue;
+				if (pokemon.status === 'brn' || pokemon.status === 'par') {
+						target.trySetStatus('par', target, effect);
+				}
 			}
 		},
 		id: "flarewings",
@@ -4809,11 +4796,16 @@ exports.BattleAbilities = {
 		name: "Sleepwalker",
 	},
 	"absolutezero": {
-		shortDesc: "Biting and normal-type moves used by this Pokemon are treated as being ice-type in addition to their usual type and receive a 30% power boost.",
+		shortDesc: "Biting and normal-type moves used by this Pokemon are treated as being ice-type in addition to their usual type and receive a 20% power boost.",
 		onEffectiveness: function(typeMod, type, move) {
 			if (move.flags['bite'] || move.type === 'Normal') {
+				move.absolutezeroboosted = true;
 				return typeMod + this.getEffectiveness('Ice', type);
 			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower: function(basePower, pokemon, target, move) {
+			if (move.absolutezeroboosted) return this.chainModify(1.2);
 		},
 		id: "absolutezero",
 		name: "Absolute Zero",
@@ -4822,8 +4814,7 @@ exports.BattleAbilities = {
 		shortDesc: "Not very effective moves will also badly poison the target.",
 		onModifyDamage: function(damage, source, target, move) {
 			if (move.typeMod < 0) {
-				return this.chainModify(2);
-				source.setStatus('psn', target);
+				target.setStatus('tox', source);
 			}
 		},
 		id: "taintedlens",
@@ -5461,11 +5452,31 @@ exports.BattleAbilities = {
 		name: "Slow Surge",
 	},
 	'petrify': {
-		shortDesc: "Prevents all adjacent opponent from using sound-based moves for two turns.",
-		onStart: function(pokemon) {
+		shortDesc: "Soundproof + Intimidate.",
+		onStart: function (pokemon) {
+			let activated = false;
 			for (const target of pokemon.side.foe.active) {
-			if (!target || target.fainted) continue;
-			target.addVolatile('throatchop');
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Petrify', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target, '[msg]');
+				} else {
+					this.boost({atk: -1}, target, pokemon);
+				}
+			}
+		},
+		onTryHit: function (target, source, move) {
+			if (move.flags['sound']) {
+				this.add('-immune', target, '[msg]', '[from] ability: Petrify');
+				return null;
+			}
+		},
+		onAllyTryHitSide: function (target, source, move) {
+			if (move.flags['sound']) {
+				this.add('-immune', this.effectData.target, '[msg]', '[from] ability: Petrify');
 			}
 		},
 		id: "petrify",
@@ -5711,19 +5722,13 @@ exports.BattleAbilities = {
 	},
 	"medicalexpert": {
 		shortDesc: "This Pokemon's moves have 1.3x the power when inflicted with a status condition or when it moves last. These bonuses stack.",
-		onModifyAtkPriority: 5,
-		onModifyAtk: function (atk, pokemon) {
-			if (pokemon.status) {
-				return this.chainModify(1.3);
-			}
-		},
 		onBasePowerPriority: 8,
 		onBasePower: function (basePower, pokemon) {
 			let boosted = true;
 			let allActives = pokemon.side.active.concat(pokemon.side.foe.active);
 			for (const target of allActives) {
 				if (target === pokemon) continue;
-				if (this.willMove(target)) {
+				if (this.willMove(target) && !pokemon.status) {
 					boosted = false;
 					break;
 				}
@@ -5779,7 +5784,7 @@ exports.BattleAbilities = {
 		name: "Scout",
 	},
 	"rejuvenation": {
-		shortDesc: "Every time this Pokemon KOs another Pokemon, it heals 20% of it's HP. If this Pokemon is at full health, it's highest non-HP stat will be increased by 1 stage instead.",
+		shortDesc: "Every time this Pokemon KOs another Pokemon, it heals 33% of it's HP. If this Pokemon is at full health, it's highest non-HP stat will be increased by 1 stage instead.",
 		onSourceFaint: function (target, source, effect) {
 			if (effect && effect.effectType === 'Move' && source.hp === source.maxhp) {
 				let stat = 'atk';
@@ -5793,7 +5798,7 @@ exports.BattleAbilities = {
 				this.boost({[stat]: 1}, source);
 			}
 			else if (effect && effect.effectType === 'Move') {
-				this.heal(source.maxhp / 5);
+				this.heal(source.maxhp / 3);
 			}
 		},
 		id: "rejuvenation",
@@ -7278,25 +7283,30 @@ exports.BattleAbilities = {
 		name: "Eye of Horus",
 	},
 	"insidioustentacles": {
-		shortDesc: "This Pokemon's contact moves lower a hit target's highest stat by one stage and trap it.",
-		// upokecenter says this is implemented as an added secondary effect
+		shortDesc: "If this Pokemon lands or is hit by a contact move, the other Pokemon's highest stat is decreased by 1 stage and it gets trapped.",
 		onModifyMove: function (move, source, target) {
 			if (!move || !move.flags['contact']) return;
-			let activated = false;
-                        let stat = 'atk';
-                        let bestStat = 0;
-                        for (let i in target.stats) {
-                            if (target.stats[i] > bestStat) {
-                                stat = i;
-                                bestStat = target.stats[i];
-                            }
-                        }
-                        if (!target.volatiles['substitute']) {
-                            this.boost({[stat]: -1}, target, source);
-                            if (source.isActive) target.addVolatile('trapped', source, move, 'trapper');
-                        }
+				let activated = false;
+            let stat = 'atk';
+            let bestStat = 0;
+            for (let i in target.stats) {
+                if (target.stats[i] > bestStat) {
+                    stat = i;
+						  bestStat = target.stats[i];
+                }
+            }
+            if (!target.volatiles['substitute']) {
+                this.boost({[stat]: -1}, target, source);
+                if (source.isActive) target.addVolatile('trapped', source, move, 'trapper');
+            }
 		},
-                //TODO: Check to see if it's implemented correctly
+		onAfterDamageOrder: 1,
+		onAfterDamage: function (damage, target, source, move) {
+			if (source && source !== target && move && move.flags['contact']) {
+                this.boost({[stat]: -1}, source, target);
+                if (target.isActive) source.addVolatile('trapped', target, move, 'trapper');
+			}
+		},
 		id: "insidioustentacles",
 		name: "Insidious Tentacles",
 	},
@@ -9416,23 +9426,20 @@ exports.BattleAbilities = {
 		name: "Victory System",
 	},
 	"resurrection": {
-		shortDesc: "When this Pokémon gets KOed for the first time, it gains 50% of its original HP and changes to Reborn form.",
+		shortDesc: "When this Pokémon gets KOed for the first time, it gains 25% of its original HP and changes to Reborn form.",
 		onDamage: function (damage, target, source, effect) {
-			if (target.baseTemplate.species === 'Miminja' && damage >= target.hp && effect && effect.effectType === 'Move') {
+			if (target.baseTemplate.species === 'Miminja' && target.baseTemplate.forme !== 'Reborn' && damage >= target.hp && effect && effect.effectType === 'Move') {
 				this.add('-ability', target, 'Resurrection');
+				target.addVolatile('resurrection')
 				return target.hp - 1;
 			}
 		},
 		onAfterDamage: function (damage, target, source, move) {
-			if (target.baseTemplate.species === 'Miminja' && target.baseTemplate.forme !== 'Reborn' && target.hp === 1) {
+			if (target.baseTemplate.species === 'Miminja' && target.baseTemplate.forme !== 'Reborn' && target.hp === 1 && target.removeVolatile('resurrection')) {
 				this.add('-activate', target, 'ability: Resurrection');
 				this.add('-formechange', target, 'Miminja-Reborn', '[msg]');
 				target.formeChange("Miminja-Reborn");
-				this.heal(target.maxhp / 2);
-				let oldAbility = target.setAbility('resurrectiondone', target, 'resurrectiondone', true);
-				if (oldAbility) {
-					this.add('-activate', target, 'ability: Resurrection Done', oldAbility, '[of] ' + target);
-				}
+				this.heal(target.maxhp / 4 + 1);
 			}
 		},
 		id: "resurrection",
